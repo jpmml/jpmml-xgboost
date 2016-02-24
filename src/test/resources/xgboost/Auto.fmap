@@ -1,0 +1,13 @@
+0	cylinders=3	i
+1	cylinders=4	i
+2	cylinders=5	i
+3	cylinders=6	i
+4	cylinders=8	i
+5	displacement	q
+6	horsepower	int
+7	weight	int
+8	acceleration	q
+9	model_year	int
+10	origin=1	i
+11	origin=2	i
+12	origin=3	i
