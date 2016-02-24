@@ -62,6 +62,8 @@ xgb.save(mpg.xgb, "xgboost.model")
 xgb.dump(mpg.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 ```
 
+The utility functions `genDMatrix(y, x, file)` and `genFMap(x, file)` are given in the [`util.R`] (https://github.com/jpmml/jpmml-xgboost/blob/master/src/main/R/util.R) file.
+
 ### The JPMML-XGBoost side of operations
 
 Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
