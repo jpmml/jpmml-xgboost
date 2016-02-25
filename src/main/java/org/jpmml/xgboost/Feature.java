@@ -35,6 +35,9 @@ public class Feature {
 	abstract
 	public Predicate encodePredicate(int splitCondition, boolean left);
 
+	abstract
+	public boolean isDefaultLeft(Node node);
+
 	public FieldName getName(){
 		DataField dataField = getDataField();
 

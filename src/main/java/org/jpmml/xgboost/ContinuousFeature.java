@@ -31,6 +31,11 @@ public class ContinuousFeature extends Feature {
 	}
 
 	@Override
+	public boolean isDefaultLeft(Node node){
+		return node.default_left();
+	}
+
+	@Override
 	public Predicate encodePredicate(int splitCondition, boolean left){
 		Number value = encodeValue(splitCondition);
 

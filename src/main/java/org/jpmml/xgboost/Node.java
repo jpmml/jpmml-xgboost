@@ -56,6 +56,10 @@ public class Node {
 		return (int)(this.sindex & ((1L << 31) - 1L));
 	}
 
+	public boolean default_left(){
+		return (this.sindex >> 31) != 0;
+	}
+
 	public boolean is_leaf(){
 		return (this.cleft == -1);
 	}

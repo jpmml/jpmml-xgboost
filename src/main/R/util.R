@@ -35,6 +35,9 @@ genDMatrix = function(df_y, df_X, file){
 	col_offset = (cumsum(col_len) - col_len)
 
 	factor2pos = function(x){
+		if(is.na(x)){
+			return (NA)
+		}
 		if(is.factor(x)){
 			return (as.integer(x) - 1)
 		}
@@ -42,6 +45,9 @@ genDMatrix = function(df_y, df_X, file){
 	}
 
 	format_cell = function(x){
+		if(is.na(x)){
+			return (NA)
+		}
 		if(is.factor(x)){
 			return (1)
 		}
@@ -53,8 +59,9 @@ genDMatrix = function(df_y, df_X, file){
 	for(i in 1:nrow(df_X)){
 		cell_offset = (col_offset + sapply(df_X[i, ], FUN = factor2pos))
 		cell_value = sapply(df_X[i, ], FUN = format_cell)
+
 		y_value = df_y[i]
-		X_values = paste(cell_offset, cell_value, sep = ":", collapse = " ")
+		X_values = paste(na.omit(cell_offset), na.omit(cell_value), sep = ":", collapse = " ")
 
 		cat(paste(y_value, " ", X_values, "\n", sep = ""), file = fp)
 	}

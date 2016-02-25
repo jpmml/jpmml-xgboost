@@ -34,6 +34,11 @@ public class CategoricalFeature extends Feature {
 	}
 
 	@Override
+	public boolean isDefaultLeft(Node node){
+		return true;
+	}
+
+	@Override
 	public Predicate encodePredicate(int splitCondition, boolean left){
 		Predicate simplePredicate = new SimplePredicate()
 			.setField(getName())

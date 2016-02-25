@@ -26,7 +26,7 @@ import java.util.List;
 
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningSchema;
-import org.dmg.pmml.Predicate;
+import org.dmg.pmml.MissingValueStrategyType;
 import org.dmg.pmml.TreeModel;
 import org.dmg.pmml.True;
 import org.jpmml.converter.PMMLUtil;
@@ -96,7 +96,8 @@ public class RegTree {
 		MiningSchema miningSchema = PMMLUtil.createMiningSchema(fieldReferenceFinder);
 
 		TreeModel treeModel = new TreeModel(MiningFunctionType.REGRESSION, miningSchema, root)
-			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT);
+			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
+			.setMissingValueStrategy(MissingValueStrategyType.DEFAULT_CHILD);
 
 		return treeModel;
 	}
@@ -114,16 +115,20 @@ public class RegTree {
 			int splitCondition = node.split_cond();
 
 			org.dmg.pmml.Node leftChild = new org.dmg.pmml.Node()
-				.setPredicate(encodeSplit(feature, splitCondition, true));
+				.setPredicate(feature.encodePredicate(splitCondition, true));
 
 			encodeNode(leftChild, node.cleft(), featureMap);
 
 			org.dmg.pmml.Node rightChild = new org.dmg.pmml.Node()
-				.setPredicate(encodeSplit(feature, splitCondition, false));
+				.setPredicate(feature.encodePredicate(splitCondition, false));
 
 			parent.addNodes(leftChild, rightChild);
 
 			encodeNode(rightChild, node.cright(), featureMap);
+
+			boolean defaultLeft = feature.isDefaultLeft(node);
+
+			parent.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId());
 		} else
 
 		{
@@ -131,10 +136,5 @@ public class RegTree {
 
 			parent.setScore(ValueUtil.formatValue(score));
 		}
-	}
-
-	static
-	private Predicate encodeSplit(Feature feature, int splitCondition, boolean left){
-		return feature.encodePredicate(splitCondition, left);
 	}
 }

@@ -29,8 +29,17 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAudit() throws Exception {
+		evaluateAudit("Audit");
+	}
 
-		try(Batch batch = createBatch("LogisticRegression", "Audit")){
+	@Test
+	public void evaluateAuditNA() throws Exception {
+		evaluateAudit("AuditNA");
+	}
+
+	private void evaluateAudit(String dataset) throws Exception {
+
+		try(Batch batch = createBatch("LogisticRegression", dataset)){
 			Set<FieldName> ignoredFields = ImmutableSet.of(FieldName.create("_target"), FieldName.create("xgbValue"));
 
 			evaluate(batch, ignoredFields);

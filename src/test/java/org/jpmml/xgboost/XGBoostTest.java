@@ -32,7 +32,7 @@ public class XGBoostTest extends IntegrationTest {
 
 				FeatureMap featureMap;
 
-				try(InputStream is = open("/xgboost/" + getDataset() + ".fmap")){
+				try(InputStream is = open("/csv/" + getDataset() + ".fmap")){
 					featureMap = XGBoostUtil.loadFeatureMap(is);
 				}
 
