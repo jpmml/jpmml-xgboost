@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.DataField;
+import org.dmg.pmml.DataType;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
 import org.jpmml.converter.ValueUtil;
@@ -31,7 +32,7 @@ public class ContinuousFeature extends Feature {
 
 	@Override
 	public Predicate encodePredicate(int splitCondition, boolean left){
-		Float value = Float.intBitsToFloat(splitCondition);
+		Number value = encodeValue(splitCondition);
 
 		Predicate simplePredicate = new SimplePredicate()
 			.setField(getName())
@@ -39,5 +40,19 @@ public class ContinuousFeature extends Feature {
 			.setValue(ValueUtil.formatValue(value));
 
 		return simplePredicate;
+	}
+
+	private Number encodeValue(int splitCondition){
+		DataField dataField = getDataField();
+
+		float value = Float.intBitsToFloat(splitCondition);
+
+		DataType dataType = dataField.getDataType();
+		switch(dataType){
+			case INTEGER:
+				return ((int)(value + 1f));
+			default:
+				return value;
+		}
 	}
 }
