@@ -19,6 +19,8 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.MathContext;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -125,7 +127,7 @@ public class RegTree {
 		} else
 
 		{
-			Float score = node.leaf_value();
+			BigDecimal score = new BigDecimal(node.leaf_value(), MathContext.DECIMAL32);
 
 			parent.setScore(ValueUtil.formatValue(score));
 		}
