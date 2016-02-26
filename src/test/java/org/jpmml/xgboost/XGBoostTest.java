@@ -1,13 +1,18 @@
 package org.jpmml.xgboost;
 
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Set;
 
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.Visitor;
 import org.jpmml.evaluator.ArchiveBatch;
 import org.jpmml.evaluator.Batch;
 import org.jpmml.evaluator.IntegrationTest;
+import org.jpmml.evaluator.visitors.InvalidFeatureInspector;
+import org.jpmml.evaluator.visitors.UnsupportedFeatureInspector;
 
 public class XGBoostTest extends IntegrationTest {
 
@@ -38,6 +43,8 @@ public class XGBoostTest extends IntegrationTest {
 
 				PMML pmml = learner.encodePMML(featureMap);
 
+				ensureValidity(pmml);
+
 				return pmml;
 			}
 		};
@@ -48,5 +55,17 @@ public class XGBoostTest extends IntegrationTest {
 	@Override
 	public void evaluate(Batch batch, Set<FieldName> ignoredFields) throws Exception {
 		evaluate(batch, ignoredFields, 1e-6, 1e-6);
+	}
+
+	static
+	private void ensureValidity(PMML pmml){
+		List<Visitor> visitors = Arrays.<Visitor>asList(
+			new UnsupportedFeatureInspector(),
+			new InvalidFeatureInspector()
+		);
+
+		for(Visitor visitor : visitors){
+			visitor.applyTo(pmml);
+		}
 	}
 }
