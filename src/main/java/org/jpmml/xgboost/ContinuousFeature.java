@@ -18,6 +18,9 @@
  */
 package org.jpmml.xgboost;
 
+import java.math.BigDecimal;
+import java.math.MathContext;
+
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.Predicate;
@@ -55,9 +58,21 @@ public class ContinuousFeature extends Feature {
 		DataType dataType = dataField.getDataType();
 		switch(dataType){
 			case INTEGER:
-				return ((int)(value + 1f));
+				return encodeIntegerValue(value);
 			default:
-				return value;
+				return encodeFloatValue(value);
 		}
+	}
+
+	private Number encodeIntegerValue(float value){
+		Integer result = ((int)(value + 1f));
+
+		return result;
+	}
+
+	private Number encodeFloatValue(float value){
+		BigDecimal result = new BigDecimal(value, MathContext.DECIMAL32);
+
+		return result;
 	}
 }

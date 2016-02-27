@@ -132,7 +132,7 @@ public class RegTree {
 		} else
 
 		{
-			BigDecimal score = new BigDecimal(node.leaf_value(), MathContext.DECIMAL32);
+			Number score = new BigDecimal(node.leaf_value(), MathContext.DECIMAL32);
 
 			parent.setScore(ValueUtil.formatValue(score));
 		}
