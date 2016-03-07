@@ -18,24 +18,51 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.DataField;
+import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
+import org.dmg.pmml.MiningFunctionType;
+import org.dmg.pmml.MiningModel;
+import org.dmg.pmml.MiningSchema;
+import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
-import org.dmg.pmml.OutputField;
+import org.dmg.pmml.Segmentation;
+import org.dmg.pmml.Targets;
+import org.jpmml.converter.ModelUtil;
 
 public class LinearRegression extends ObjFunction {
 
 	public LinearRegression(){
+		super(createDataField());
 	}
 
 	@Override
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
+		DataField dataField = getDataField();
+
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(dataField, featureMap.getDataFields());
+
+		Targets targets = new Targets()
+			.addTargets(ModelUtil.createRescaleTarget(dataField, null, (double)base_score));
+
+		Output output = encodeOutput();
+
+		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
+			.setSegmentation(segmentation)
+			.setTargets(targets)
+			.setOutput(output);
+
+		return miningModel;
+	}
+
 	public Output encodeOutput(){
-		OutputField xgbValue = new OutputField(FieldName.create("xgbValue"))
-			.setFeature(FeatureType.PREDICTED_VALUE);
+		return null;
+	}
 
-		Output output = new Output()
-			.addOutputFields(xgbValue);
+	static
+	private DataField createDataField(){
+		DataField dataField = new DataField(FieldName.create("_target"), OpType.CONTINUOUS, DataType.FLOAT);
 
-		return output;
+		return dataField;
 	}
 }

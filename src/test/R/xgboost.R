@@ -9,7 +9,7 @@ loadCsv = function(file){
 }
 
 storeCsv = function(data, file){
-	write.table(data, file, sep = ",", quote = FALSE, row.names = FALSE)
+	write.table(data, file, sep = ",", quote = FALSE, row.names = FALSE, col.names = gsub("X_target", "_target", names(data)))
 }
 
 csvFile = function(name, ext){
@@ -47,7 +47,7 @@ genAutoMpg = function(auto_y, auto_X, dataset){
 	xgb.save(auto.xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.dump(auto.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 
-	storeCsv(data.frame("xgbValue" = predict(auto.xgb, newdata = auto.dmatrix)), csvFile(funcAndDataset, ".csv"))
+	storeCsv(data.frame("_target" = predict(auto.xgb, newdata = auto.dmatrix)), csvFile(funcAndDataset, ".csv"))
 }
 
 auto = loadCsv("csv/Auto.csv")
@@ -75,15 +75,18 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 	audit.fmap = genFMap(audit_X, csvFile(dataset, ".fmap"))
 	audit.dmatrix = genDMatrix(audit_y, audit_X, csvFile(dataset, ".svm"))
 
-	funcAndDataset = paste("LogisticRegression", dataset, sep = "")
+	funcAndDataset = paste("LogisticClassification", dataset, sep = "")
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 15)
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 15)
 	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 
-	storeCsv(data.frame("transformedValue" = predict(audit.xgb, newdata = audit.dmatrix)), csvFile(funcAndDataset, ".csv"))
+	probability_1 = predict(audit.xgb, newdata = audit.dmatrix)
+	probability_0 = (1 - probability_1)
+
+	storeCsv(data.frame("_target" = as.integer(probability_1 > 0.5), "probability_0" = probability_0, "probability_1" = probability_1), csvFile(funcAndDataset, ".csv"))
 }
 
 audit = loadCsv("csv/Audit.csv")

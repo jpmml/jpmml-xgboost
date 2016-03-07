@@ -18,31 +18,17 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.Set;
-
-import com.google.common.collect.ImmutableSet;
-import org.dmg.pmml.FieldName;
-import org.jpmml.evaluator.Batch;
 import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAuto() throws Exception {
-		evaluateAuto("Auto");
+		evaluate("LinearRegression", "Auto");
 	}
 
 	@Test
 	public void evaluateAutoNA() throws Exception {
-		evaluateAuto("AutoNA");
-	}
-
-	private void evaluateAuto(String dataset) throws Exception {
-
-		try(Batch batch = createBatch("LinearRegression", dataset)){
-			Set<FieldName> ignoredFields = ImmutableSet.of(FieldName.create("_target"));
-
-			evaluate(batch, ignoredFields);
-		}
+		evaluate("LinearRegression", "AutoNA");
 	}
 }

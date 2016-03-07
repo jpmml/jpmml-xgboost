@@ -18,31 +18,17 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.Set;
-
-import com.google.common.collect.ImmutableSet;
-import org.dmg.pmml.FieldName;
-import org.jpmml.evaluator.Batch;
 import org.junit.Test;
 
 public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluateAudit("Audit");
+		evaluate("LogisticClassification", "Audit");
 	}
 
 	@Test
 	public void evaluateAuditNA() throws Exception {
-		evaluateAudit("AuditNA");
-	}
-
-	private void evaluateAudit(String dataset) throws Exception {
-
-		try(Batch batch = createBatch("LogisticRegression", dataset)){
-			Set<FieldName> ignoredFields = ImmutableSet.of(FieldName.create("_target"), FieldName.create("xgbValue"));
-
-			evaluate(batch, ignoredFields);
-		}
+		evaluate("LogisticClassification", "AuditNA");
 	}
 }

@@ -18,8 +18,88 @@
  */
 package org.jpmml.xgboost;
 
-public class LogisticClassification extends LogisticRegression {
+import java.util.Arrays;
+import java.util.List;
+
+import com.google.common.collect.Lists;
+import org.dmg.pmml.DataField;
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.FieldName;
+import org.dmg.pmml.FieldRef;
+import org.dmg.pmml.MiningFunctionType;
+import org.dmg.pmml.MiningModel;
+import org.dmg.pmml.MiningSchema;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.Output;
+import org.dmg.pmml.OutputField;
+import org.dmg.pmml.Segmentation;
+import org.dmg.pmml.Value;
+import org.jpmml.converter.MiningModelUtil;
+import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.ValueUtil;
+
+public class LogisticClassification extends ObjFunction {
 
 	public LogisticClassification(){
+		super(createDataField());
 	}
+
+	@Override
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
+		DataField dataField = getDataField();
+
+		FieldName targetField = dataField.getName();
+
+		List<FieldName> activeFields = PMMLUtil.getNames(featureMap.getDataFields());
+
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
+
+		Output output;
+
+		FieldName xgbField;
+
+		if(!ValueUtil.isZero(base_score)){
+			OutputField rawXgbValue = ModelUtil.createPredictedField(FieldName.create("rawXgbValue"));
+
+			OutputField scaledXgbValue = new OutputField(FieldName.create("scaledXgbValue"))
+				.setFeature(FeatureType.TRANSFORMED_VALUE)
+				.setDataType(DataType.FLOAT)
+				.setOpType(OpType.CONTINUOUS)
+				.setExpression(PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score)));
+
+			output = new Output()
+				.addOutputFields(rawXgbValue, scaledXgbValue);
+
+			xgbField = scaledXgbValue.getName();
+		} else
+
+		{
+			OutputField xgbValue = ModelUtil.createPredictedField(FieldName.create("xgbValue"));
+
+			output = new Output()
+				.addOutputFields(xgbValue);
+
+			xgbField = xgbValue.getName();
+		}
+
+		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
+			.setSegmentation(segmentation)
+			.setOutput(output);
+
+		return MiningModelUtil.createBinaryLogisticClassification(targetField, Lists.reverse(LogisticClassification.BINARY_CLASSES), activeFields, miningModel, xgbField, -1d, true);
+	}
+
+	static
+	public DataField createDataField(){
+		DataField dataField = new DataField(FieldName.create("_target"), OpType.CATEGORICAL, DataType.STRING);
+
+		List<Value> values = dataField.getValues();
+		values.addAll(PMMLUtil.createValues(LogisticClassification.BINARY_CLASSES));
+
+		return dataField;
+	}
+
+	private static final List<String> BINARY_CLASSES = Arrays.asList("0", "1");
 }

@@ -19,10 +19,8 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
-import org.dmg.pmml.OpType;
-import org.dmg.pmml.Output;
+import org.dmg.pmml.MiningModel;
+import org.dmg.pmml.Segmentation;
 
 abstract
 public class ObjFunction {
@@ -30,13 +28,12 @@ public class ObjFunction {
 	private DataField dataField = null;
 
 
-	public ObjFunction(){
-		setDataField(new DataField(FieldName.create("_target"), OpType.CONTINUOUS, DataType.FLOAT));
+	public ObjFunction(DataField dataField){
+		setDataField(dataField);
 	}
 
-	public Output encodeOutput(){
-		return null;
-	}
+	abstract
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap);
 
 	public DataField getDataField(){
 		return this.dataField;

@@ -26,9 +26,10 @@ import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 
-public class LogisticRegression extends ObjFunction {
+public class LogisticRegression extends LinearRegression {
 
 	public LogisticRegression(){
 	}
@@ -39,17 +40,16 @@ public class LogisticRegression extends ObjFunction {
 
 		Output output = new Output();
 
-		OutputField xgbValue = new OutputField(FieldName.create("xgbValue"))
-			.setFeature(FeatureType.PREDICTED_VALUE);
+		OutputField xgbValue = ModelUtil.createPredictedField(FieldName.create("xgbValue"));
 
 		// "1 / (1 + exp(-1 * y))"
-		OutputField objectiveValue = new OutputField(FieldName.create("transformedValue"))
+		OutputField transformedValue = new OutputField(FieldName.create("transformedValue"))
 			.setFeature(FeatureType.TRANSFORMED_VALUE)
 			.setDataType(DataType.FLOAT)
 			.setOpType(OpType.CONTINUOUS)
 			.setExpression(PMMLUtil.createApply("/", one, PMMLUtil.createApply("+", one, PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1), new FieldRef(xgbValue.getName()))))));
 
-		output.addOutputFields(xgbValue, objectiveValue);
+		output.addOutputFields(xgbValue, transformedValue);
 
 		return output;
 	}
