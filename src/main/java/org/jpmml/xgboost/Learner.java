@@ -87,7 +87,7 @@ public class Learner {
 
 		DataDictionary dataDictionary = new DataDictionary(dataFields);
 
-		PMML pmml = new PMML("4.2", PMMLUtil.createHeader("JPMML-XGBoost"), dataDictionary)
+		PMML pmml = new PMML("4.2", PMMLUtil.createHeader("JPMML-XGBoost", "1.0-SNAPSHOT"), dataDictionary)
 			.addModels(miningModel);
 
 		return pmml;

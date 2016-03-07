@@ -29,9 +29,8 @@ import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MissingValueStrategyType;
 import org.dmg.pmml.TreeModel;
 import org.dmg.pmml.True;
-import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.ValueUtil;
-import org.jpmml.model.visitors.FieldReferenceFinder;
 
 public class RegTree {
 
@@ -90,10 +89,7 @@ public class RegTree {
 
 		encodeNode(root, 0, featureMap);
 
-		FieldReferenceFinder fieldReferenceFinder = new FieldReferenceFinder();
-		fieldReferenceFinder.applyTo(root);
-
-		MiningSchema miningSchema = PMMLUtil.createMiningSchema(fieldReferenceFinder);
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, featureMap.getDataFields(), root);
 
 		TreeModel treeModel = new TreeModel(MiningFunctionType.REGRESSION, miningSchema, root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)

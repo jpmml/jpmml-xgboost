@@ -28,13 +28,11 @@ import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MultipleModelMethodType;
 import org.dmg.pmml.Output;
-import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
-import org.dmg.pmml.Target;
 import org.dmg.pmml.Targets;
 import org.dmg.pmml.TreeModel;
-import org.dmg.pmml.True;
-import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.MiningModelUtil;
+import org.jpmml.converter.ModelUtil;
 
 public class GBTree {
 
@@ -87,31 +85,22 @@ public class GBTree {
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, FeatureMap featureMap){
 		DataField dataField = obj.getDataField();
 
-		List<Segment> segments = new ArrayList<>();
+		List<TreeModel> treeModels = new ArrayList<>();
 
 		for(int i = 0; i < this.trees.size(); i++){
 			RegTree tree = this.trees.get(i);
 
 			TreeModel treeModel = tree.encodeTreeModel(featureMap);
 
-			Segment segment = new Segment()
-				.setId(String.valueOf(i + 1))
-				.setPredicate(new True())
-				.setModel(treeModel);
-
-			segments.add(segment);
+			treeModels.add(treeModel);
 		}
 
-		Segmentation segmentation = new Segmentation(MultipleModelMethodType.SUM, segments);
+		Segmentation segmentation = MiningModelUtil.createSegmentation(MultipleModelMethodType.SUM, treeModels);
 
-		MiningSchema miningSchema = PMMLUtil.createMiningSchema(dataField, featureMap.getDataFields());
-
-		Target target = new Target()
-			.setField(dataField.getName())
-			.setRescaleConstant((double)base_score);
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(dataField, featureMap.getDataFields());
 
 		Targets targets = new Targets()
-			.addTargets(target);
+			.addTargets(ModelUtil.createRescaleTarget(dataField, null, (double)base_score));
 
 		Output output = obj.encodeOutput();
 
