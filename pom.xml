@@ -126,7 +126,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-							<finalName>converter-executable-${version}</finalName>
+							<finalName>converter-executable-${project.version}</finalName>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
 									<mainClass>org.jpmml.xgboost.Main</mainClass>
