@@ -71,6 +71,11 @@ Converting the model file `xgboost.model` together with the associated feature m
 java -jar target/converter-executable-1.0-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
 ```
 
+Getting help:
+```
+java -jar target/converter-executable-1.0-SNAPSHOT.jar --help
+```
+
 # License #
 
 JPMML-XGBoost is licensed under the [GNU Affero General Public License (AGPL) version 3.0] (http://www.gnu.org/licenses/agpl-3.0.html). Other licenses are available on request.
