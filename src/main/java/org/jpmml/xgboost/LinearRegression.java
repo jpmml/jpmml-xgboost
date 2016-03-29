@@ -19,22 +19,15 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
-import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.Segmentation;
 import org.dmg.pmml.Targets;
 import org.jpmml.converter.ModelUtil;
 
-public class LinearRegression extends ObjFunction {
-
-	public LinearRegression(){
-		super(createDataField());
-	}
+public class LinearRegression extends Regression {
 
 	@Override
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
@@ -57,12 +50,5 @@ public class LinearRegression extends ObjFunction {
 
 	public Output encodeOutput(){
 		return null;
-	}
-
-	static
-	private DataField createDataField(){
-		DataField dataField = new DataField(FieldName.create("_target"), OpType.CONTINUOUS, DataType.FLOAT);
-
-		return dataField;
 	}
 }

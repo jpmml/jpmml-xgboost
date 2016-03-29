@@ -24,7 +24,6 @@ import java.util.List;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
@@ -32,21 +31,18 @@ import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MultipleModelMethodType;
-import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
-import org.dmg.pmml.Value;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
-import org.jpmml.converter.ValueUtil;
 
-public class SoftMaxClassification extends ObjFunction {
+public class SoftMaxClassification extends Classification {
 
 	public SoftMaxClassification(int num_class){
-		super(createDataField(num_class));
+		super(num_class);
 	}
 
 	@Override
@@ -55,29 +51,25 @@ public class SoftMaxClassification extends ObjFunction {
 
 		List<Segment> segments = segmentation.getSegments();
 
-		List<String> targetCategories = new ArrayList<>();
-
 		MiningSchema valueMiningSchema = ModelUtil.createMiningSchema(null, featureMap.getDataFields());
 
 		List<MiningModel> models = new ArrayList<>();
 
 		List<FieldName> inputFields = new ArrayList<>();
 
-		List<Value> values = dataField.getValues();
-		for(int i = 0; i < values.size(); i++){
-			Value value = values.get(i);
+		List<String> targetCategories = getTargetCategories();
+		for(int i = 0; i < targetCategories.size(); i++){
+			String targetCategory = targetCategories.get(i);
 
-			targetCategories.add(value.getValue());
-
-			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + value.getValue()));
+			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + targetCategory));
 
 			Expression expression = PMMLUtil.createApply("exp", PMMLUtil.createApply("+", new FieldRef(xgbValue.getName()), PMMLUtil.createConstant(base_score)));
 
-			OutputField transformedValue = createTransformedField(FieldName.create("transformedValue_" + value.getValue()), expression);
+			OutputField transformedValue = createTransformedField(FieldName.create("transformedValue_" + targetCategory), expression);
 
 			inputFields.add(transformedValue.getName());
 
-			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / values.size()), values.size());
+			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / targetCategories.size()), targetCategories.size());
 
 			Segmentation valueSegmentation = new Segmentation(MultipleModelMethodType.SUM, valueSegments);
 
@@ -102,21 +94,6 @@ public class SoftMaxClassification extends ObjFunction {
 		MiningModel miningModel = MiningModelUtil.createClassification(function.apply(dataField), targetCategories, Lists.transform(featureMap.getDataFields(), function), models, inputFields, true);
 
 		return miningModel;
-	}
-
-	static
-	private DataField createDataField(int num_class){
-		DataField dataField = new DataField(FieldName.create("_target"), OpType.CATEGORICAL, DataType.STRING);
-
-		List<String> targetCategories = new ArrayList<>();
-		for(int i = 0; i < num_class; i++){
-			targetCategories.add(ValueUtil.formatValue(i));
-		}
-
-		List<Value> values = dataField.getValues();
-		values.addAll(PMMLUtil.createValues(targetCategories));
-
-		return dataField;
 	}
 
 	static

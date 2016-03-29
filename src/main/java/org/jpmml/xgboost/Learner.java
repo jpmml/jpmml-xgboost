@@ -26,6 +26,7 @@ import org.dmg.pmml.DataDictionary;
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.Value;
 import org.jpmml.converter.PMMLUtil;
 
 public class Learner {
@@ -83,10 +84,23 @@ public class Learner {
 	}
 
 	public PMML encodePMML(FeatureMap featureMap){
+		DataField dataField = this.obj.getDataField();
+
+		if(this.obj instanceof Classification){
+			Classification classification = (Classification)this.obj;
+
+			List<String> targetCategories = classification.getTargetCategories();
+			if(targetCategories != null){
+				List<Value> values = dataField.getValues();
+
+				values.addAll(PMMLUtil.createValues(targetCategories));
+			}
+		}
+
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, featureMap);
 
 		List<DataField> dataFields = new ArrayList<>();
-		dataFields.add(this.obj.getDataField());
+		dataFields.add(dataField);
 		dataFields.addAll(featureMap.getDataFields());
 
 		DataDictionary dataDictionary = new DataDictionary(dataFields);

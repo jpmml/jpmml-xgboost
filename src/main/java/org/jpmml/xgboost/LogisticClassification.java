@@ -18,32 +18,28 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.Arrays;
 import java.util.List;
 
 import com.google.common.collect.Lists;
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
-import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
-import org.dmg.pmml.Value;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.ValueUtil;
 
-public class LogisticClassification extends ObjFunction {
+public class LogisticClassification extends Classification {
 
 	public LogisticClassification(){
-		super(createDataField());
+		super(2);
 	}
 
 	@Override
@@ -86,18 +82,6 @@ public class LogisticClassification extends ObjFunction {
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
-		return MiningModelUtil.createBinaryLogisticClassification(targetField, Lists.reverse(LogisticClassification.BINARY_CLASSES), activeFields, miningModel, xgbField, -1d, true);
+		return MiningModelUtil.createBinaryLogisticClassification(targetField, Lists.reverse(getTargetCategories()), activeFields, miningModel, xgbField, -1d, true);
 	}
-
-	static
-	public DataField createDataField(){
-		DataField dataField = new DataField(FieldName.create("_target"), OpType.CATEGORICAL, DataType.STRING);
-
-		List<Value> values = dataField.getValues();
-		values.addAll(PMMLUtil.createValues(LogisticClassification.BINARY_CLASSES));
-
-		return dataField;
-	}
-
-	private static final List<String> BINARY_CLASSES = Arrays.asList("0", "1");
 }

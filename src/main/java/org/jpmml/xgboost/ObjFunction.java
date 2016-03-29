@@ -34,7 +34,9 @@ public class ObjFunction {
 	private DataField dataField = null;
 
 
-	public ObjFunction(DataField dataField){
+	public ObjFunction(OpType opType, DataType dataType){
+		DataField dataField = new DataField(FieldName.create("_target"), opType, dataType);
+
 		setDataField(dataField);
 	}
 

@@ -28,9 +28,6 @@ import org.jpmml.converter.PMMLUtil;
 
 public class LogisticRegression extends LinearRegression {
 
-	public LogisticRegression(){
-	}
-
 	@Override
 	public Output encodeOutput(){
 		Constant one = PMMLUtil.createConstant(1f);
