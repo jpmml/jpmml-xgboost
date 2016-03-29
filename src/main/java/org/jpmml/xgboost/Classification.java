@@ -36,6 +36,15 @@ public class Classification extends ObjFunction {
 		setTargetCategories(createTargetCategories(num_class));
 	}
 
+	public void updateTargetCategories(List<String> targetCategories){
+
+		if((this.targetCategories != null) && (this.targetCategories.size() != targetCategories.size())){
+			throw new IllegalArgumentException();
+		}
+
+		this.targetCategories = targetCategories;
+	}
+
 	public List<String> getTargetCategories(){
 		return this.targetCategories;
 	}

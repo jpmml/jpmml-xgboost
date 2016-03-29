@@ -41,7 +41,7 @@ public class XGBoostTest extends IntegrationTest {
 					featureMap = XGBoostUtil.loadFeatureMap(is);
 				}
 
-				PMML pmml = learner.encodePMML(featureMap);
+				PMML pmml = learner.encodePMML(null, null, featureMap);
 
 				ensureValidity(pmml);
 

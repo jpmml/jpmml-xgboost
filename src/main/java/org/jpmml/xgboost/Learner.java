@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.dmg.pmml.DataDictionary;
 import org.dmg.pmml.DataField;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Value;
@@ -83,15 +84,35 @@ public class Learner {
 		this.gbtree.load(input);
 	}
 
-	public PMML encodePMML(FeatureMap featureMap){
+	public PMML encodePMML(String targetName, List<String> targetCategories, FeatureMap featureMap){
 		DataField dataField = this.obj.getDataField();
+
+		if(targetName != null){
+			dataField.setName(FieldName.create(targetName));
+		} // End if
+
+		if(this.obj instanceof Regression){
+			Regression regression = (Regression)this.obj;
+
+			if(targetCategories != null){
+				throw new IllegalArgumentException();
+			}
+		} else
 
 		if(this.obj instanceof Classification){
 			Classification classification = (Classification)this.obj;
 
-			List<String> targetCategories = classification.getTargetCategories();
 			if(targetCategories != null){
+				classification.updateTargetCategories(targetCategories);
+			}
+
+			targetCategories = classification.getTargetCategories();
+			if(targetCategories != null && targetCategories.size() > 0){
 				List<Value> values = dataField.getValues();
+
+				if(values.size() > 0){
+					values.clear();
+				}
 
 				values.addAll(PMMLUtil.createValues(targetCategories));
 			}

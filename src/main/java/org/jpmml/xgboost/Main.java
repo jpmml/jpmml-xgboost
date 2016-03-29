@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.List;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -59,6 +60,18 @@ public class Main {
 		required = true
 	)
 	private File pmmlOutput = null;
+
+	@Parameter (
+		names = {"--target-name"},
+		description = "Target name. Defaults to \"_target\""
+	)
+	private String targetName = null;
+
+	@Parameter (
+		names = {"--target-categories"},
+		description = "Target categories. Defaults to 0-based index [0, 1, .., num_class - 1]"
+	)
+	private List<String> targetCategories = null;
 
 
 	static
@@ -98,7 +111,7 @@ public class Main {
 			featureMap = XGBoostUtil.loadFeatureMap(is);
 		}
 
-		PMML pmml = learner.encodePMML(featureMap);
+		PMML pmml = learner.encodePMML(this.targetName, this.targetCategories, featureMap);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);

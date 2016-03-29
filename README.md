@@ -68,7 +68,7 @@ The utility functions `genDMatrix(y, x, file)` and `genFMap(x, file)` are define
 
 Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
 ```
-java -jar target/converter-executable-1.0-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --pmml-output xgboost.pmml
+java -jar target/converter-executable-1.0-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
 ```
 
 # License #
