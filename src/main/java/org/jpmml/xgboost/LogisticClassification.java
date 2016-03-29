@@ -24,7 +24,7 @@ import java.util.List;
 import com.google.common.collect.Lists;
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
@@ -61,13 +61,11 @@ public class LogisticClassification extends ObjFunction {
 		FieldName xgbField;
 
 		if(!ValueUtil.isZero(base_score)){
-			OutputField rawXgbValue = ModelUtil.createPredictedField(FieldName.create("rawXgbValue"));
+			OutputField rawXgbValue = createPredictedField(FieldName.create("rawXgbValue"));
 
-			OutputField scaledXgbValue = new OutputField(FieldName.create("scaledXgbValue"))
-				.setFeature(FeatureType.TRANSFORMED_VALUE)
-				.setDataType(DataType.FLOAT)
-				.setOpType(OpType.CONTINUOUS)
-				.setExpression(PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score)));
+			Expression expression = PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score));
+
+			OutputField scaledXgbValue = createTransformedField(FieldName.create("scaledXgbValue"), expression);
 
 			output = new Output()
 				.addOutputFields(rawXgbValue, scaledXgbValue);
@@ -76,7 +74,7 @@ public class LogisticClassification extends ObjFunction {
 		} else
 
 		{
-			OutputField xgbValue = ModelUtil.createPredictedField(FieldName.create("xgbValue"));
+			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
 			output = new Output()
 				.addOutputFields(xgbValue);

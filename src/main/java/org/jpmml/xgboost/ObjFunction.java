@@ -19,7 +19,13 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.DataField;
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.Expression;
+import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningModel;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
 
 abstract
@@ -41,5 +47,24 @@ public class ObjFunction {
 
 	private void setDataField(DataField dataField){
 		this.dataField = dataField;
+	}
+
+	static
+	public OutputField createPredictedField(FieldName name){
+		OutputField outputField = new OutputField(name)
+			.setFeature(FeatureType.PREDICTED_VALUE);
+
+		return outputField;
+	}
+
+	static
+	public OutputField createTransformedField(FieldName name, Expression expression){
+		OutputField outputField = new OutputField(name)
+			.setFeature(FeatureType.TRANSFORMED_VALUE)
+			.setDataType(DataType.FLOAT)
+			.setOpType(OpType.CONTINUOUS)
+			.setExpression(expression);
+
+		return outputField;
 	}
 }

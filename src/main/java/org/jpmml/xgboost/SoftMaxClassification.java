@@ -25,7 +25,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
@@ -69,13 +69,11 @@ public class SoftMaxClassification extends ObjFunction {
 
 			targetCategories.add(value.getValue());
 
-			OutputField xgbValue = ModelUtil.createPredictedField(FieldName.create("xgbValue_" + value.getValue()));
+			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + value.getValue()));
 
-			OutputField transformedValue = new OutputField(FieldName.create("transformedValue_" + value.getValue()))
-				.setFeature(FeatureType.TRANSFORMED_VALUE)
-				.setDataType(DataType.FLOAT)
-				.setOpType(OpType.CONTINUOUS)
-				.setExpression(PMMLUtil.createApply("exp", PMMLUtil.createApply("+", new FieldRef(xgbValue.getName()), PMMLUtil.createConstant(base_score))));
+			Expression expression = PMMLUtil.createApply("exp", PMMLUtil.createApply("+", new FieldRef(xgbValue.getName()), PMMLUtil.createConstant(base_score)));
+
+			OutputField transformedValue = createTransformedField(FieldName.create("transformedValue_" + value.getValue()), expression);
 
 			inputFields.add(transformedValue.getName());
 

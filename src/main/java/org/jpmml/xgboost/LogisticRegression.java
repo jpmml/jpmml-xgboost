@@ -19,14 +19,11 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.Constant;
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.FeatureType;
+import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
-import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
-import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 
 public class LogisticRegression extends LinearRegression {
@@ -40,14 +37,12 @@ public class LogisticRegression extends LinearRegression {
 
 		Output output = new Output();
 
-		OutputField xgbValue = ModelUtil.createPredictedField(FieldName.create("xgbValue"));
+		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
 		// "1 / (1 + exp(-1 * y))"
-		OutputField transformedValue = new OutputField(FieldName.create("transformedValue"))
-			.setFeature(FeatureType.TRANSFORMED_VALUE)
-			.setDataType(DataType.FLOAT)
-			.setOpType(OpType.CONTINUOUS)
-			.setExpression(PMMLUtil.createApply("/", one, PMMLUtil.createApply("+", one, PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1), new FieldRef(xgbValue.getName()))))));
+		Expression expression = PMMLUtil.createApply("/", one, PMMLUtil.createApply("+", one, PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1f), new FieldRef(xgbValue.getName())))));
+
+		OutputField transformedValue = createTransformedField(FieldName.create("transformedValue"), expression);
 
 		output.addOutputFields(xgbValue, transformedValue);
 
