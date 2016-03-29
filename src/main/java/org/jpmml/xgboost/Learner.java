@@ -62,6 +62,10 @@ public class Learner {
 			case "binary:logistic":
 				this.obj = new LogisticClassification();
 				break;
+			case "multi:softmax":
+			case "multi:softprob":
+				this.obj = new SoftMaxClassification(this.num_class);
+				break;
 			default:
 				throw new IllegalArgumentException(name_obj);
 		}

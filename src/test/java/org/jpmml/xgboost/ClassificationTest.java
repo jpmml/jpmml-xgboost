@@ -31,4 +31,14 @@ public class ClassificationTest extends XGBoostTest {
 	public void evaluateAuditNA() throws Exception {
 		evaluate("LogisticClassification", "AuditNA");
 	}
+
+	@Test
+	public void evaluateIris() throws Exception {
+		evaluate("SoftMaxClassification", "Iris");
+	}
+
+	@Test
+	public void evaluateIrisNA() throws Exception {
+		evaluate("SoftMaxClassification", "IrisNA");
+	}
 }
