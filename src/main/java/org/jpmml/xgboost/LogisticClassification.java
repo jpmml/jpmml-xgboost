@@ -21,19 +21,15 @@ package org.jpmml.xgboost;
 import java.util.List;
 
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
-import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
-import org.jpmml.converter.ValueUtil;
 
 public class LogisticClassification extends Classification {
 
@@ -51,30 +47,20 @@ public class LogisticClassification extends Classification {
 
 		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
 
-		Output output;
-
-		if(!ValueUtil.isZero(base_score)){
-			OutputField rawXgbValue = createPredictedField(FieldName.create("rawXgbValue"));
-
-			Expression expression = PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score));
-
-			OutputField scaledXgbValue = createTransformedField(FieldName.create("scaledXgbValue"), expression);
-
-			output = new Output()
-				.addOutputFields(rawXgbValue, scaledXgbValue);
-		} else
-
-		{
-			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
-
-			output = new Output()
-				.addOutputFields(xgbValue);
-		}
+		Output output = encodeOutput(base_score);
 
 		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
 		return MiningModelUtil.createBinaryLogisticClassification(targetField, getTargetCategories(), activeFields, miningModel, -1d, true);
+	}
+
+	private Output encodeOutput(float base_score){
+		Output output = new Output();
+
+		createPredictedField(output, base_score);
+
+		return output;
 	}
 }

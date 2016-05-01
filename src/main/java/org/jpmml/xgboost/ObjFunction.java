@@ -23,10 +23,14 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FeatureType;
 import org.dmg.pmml.FieldName;
+import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.OpType;
+import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
+import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.ValueUtil;
 
 abstract
 public class ObjFunction {
@@ -49,6 +53,30 @@ public class ObjFunction {
 
 	private void setDataField(DataField dataField){
 		this.dataField = dataField;
+	}
+
+	static
+	public OutputField createPredictedField(Output output, float base_score){
+
+		if(!ValueUtil.isZero(base_score)){
+			OutputField rawXgbValue = createPredictedField(FieldName.create("rawXgbValue"));
+
+			Expression expression = PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score));
+
+			OutputField scaledXgbValue = createTransformedField(FieldName.create("scaledXgbValue"), expression);
+
+			output.addOutputFields(rawXgbValue, scaledXgbValue);
+
+			return scaledXgbValue;
+		} else
+
+		{
+			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
+
+			output.addOutputFields(xgbValue);
+
+			return xgbValue;
+		}
 	}
 
 	static

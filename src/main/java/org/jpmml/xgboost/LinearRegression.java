@@ -22,7 +22,6 @@ import org.dmg.pmml.DataField;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
-import org.dmg.pmml.Output;
 import org.dmg.pmml.Segmentation;
 import org.dmg.pmml.Targets;
 import org.jpmml.converter.ModelUtil;
@@ -38,17 +37,10 @@ public class LinearRegression extends Regression {
 		Targets targets = new Targets()
 			.addTargets(ModelUtil.createRescaleTarget(dataField, null, (double)base_score));
 
-		Output output = encodeOutput();
-
 		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
 			.setSegmentation(segmentation)
-			.setTargets(targets)
-			.setOutput(output);
+			.setTargets(targets);
 
 		return miningModel;
-	}
-
-	public Output encodeOutput(){
-		return null;
 	}
 }

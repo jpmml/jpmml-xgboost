@@ -18,29 +18,60 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.List;
+
 import org.dmg.pmml.Constant;
+import org.dmg.pmml.DataField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
+import org.dmg.pmml.MiningFunctionType;
+import org.dmg.pmml.MiningModel;
+import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
+import org.dmg.pmml.Segmentation;
+import org.jpmml.converter.MiningModelUtil;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 
-public class LogisticRegression extends LinearRegression {
+public class LogisticRegression extends Regression {
 
 	@Override
-	public Output encodeOutput(){
-		Constant one = PMMLUtil.createConstant(1f);
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
+		DataField dataField = getDataField();
 
-		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
+		FieldName targetField = dataField.getName();
+
+		List<FieldName> activeFields = PMMLUtil.getNames(featureMap.getDataFields());
+
+		Output output = encodeOutput(base_score);
+
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
+
+		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
+			.setSegmentation(segmentation)
+			.setOutput(output);
+
+		miningModel = MiningModelUtil.createRegression(targetField, activeFields, miningModel)
+			.setFunctionName(MiningFunctionType.REGRESSION); // XXX
+
+		return miningModel;
+	}
+
+	private Output encodeOutput(float base_score){
+		Output output = new Output();
+
+		OutputField xgbValue = createPredictedField(output, base_score);
+
+		Constant one = PMMLUtil.createConstant(1f);
 
 		// "1 / (1 + exp(-1 * y))"
 		Expression expression = PMMLUtil.createApply("/", one, PMMLUtil.createApply("+", one, PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1f), new FieldRef(xgbValue.getName())))));
 
 		OutputField transformedValue = createTransformedField(FieldName.create("transformedValue"), expression);
 
-		Output output = new Output()
-			.addOutputFields(xgbValue, transformedValue);
+		output.addOutputFields(transformedValue);
 
 		return output;
 	}

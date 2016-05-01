@@ -75,6 +75,18 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 	audit.fmap = genFMap(audit_X, csvFile(dataset, ".fmap"))
 	audit.dmatrix = genDMatrix(audit_y, audit_X, csvFile(dataset, ".svm"))
 
+	funcAndDataset = paste("LogisticRegression", dataset, sep = "")
+
+	set.seed(42)
+
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 11)
+	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
+	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+
+	adjusted = predict(audit.xgb, newdata = audit.dmatrix)
+
+	storeCsv(data.frame("_target" = adjusted), csvFile(funcAndDataset, ".csv"))
+
 	funcAndDataset = paste("LogisticClassification", dataset, sep = "")
 
 	set.seed(42)
