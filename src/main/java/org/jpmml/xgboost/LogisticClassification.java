@@ -20,7 +20,6 @@ package org.jpmml.xgboost;
 
 import java.util.List;
 
-import com.google.common.collect.Lists;
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
@@ -54,8 +53,6 @@ public class LogisticClassification extends Classification {
 
 		Output output;
 
-		FieldName xgbField;
-
 		if(!ValueUtil.isZero(base_score)){
 			OutputField rawXgbValue = createPredictedField(FieldName.create("rawXgbValue"));
 
@@ -65,8 +62,6 @@ public class LogisticClassification extends Classification {
 
 			output = new Output()
 				.addOutputFields(rawXgbValue, scaledXgbValue);
-
-			xgbField = scaledXgbValue.getName();
 		} else
 
 		{
@@ -74,14 +69,12 @@ public class LogisticClassification extends Classification {
 
 			output = new Output()
 				.addOutputFields(xgbValue);
-
-			xgbField = xgbValue.getName();
 		}
 
 		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
-		return MiningModelUtil.createBinaryLogisticClassification(targetField, Lists.reverse(getTargetCategories()), activeFields, miningModel, xgbField, -1d, true);
+		return MiningModelUtil.createBinaryLogisticClassification(targetField, getTargetCategories(), activeFields, miningModel, -1d, true);
 	}
 }

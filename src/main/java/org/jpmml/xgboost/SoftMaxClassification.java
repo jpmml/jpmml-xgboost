@@ -33,6 +33,7 @@ import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MultipleModelMethodType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
+import org.dmg.pmml.RegressionNormalizationMethodType;
 import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
 import org.jpmml.converter.MiningModelUtil;
@@ -55,8 +56,6 @@ public class SoftMaxClassification extends Classification {
 
 		List<MiningModel> models = new ArrayList<>();
 
-		List<FieldName> inputFields = new ArrayList<>();
-
 		List<String> targetCategories = getTargetCategories();
 		for(int i = 0; i < targetCategories.size(); i++){
 			String targetCategory = targetCategories.get(i);
@@ -66,8 +65,6 @@ public class SoftMaxClassification extends Classification {
 			Expression expression = PMMLUtil.createApply("exp", PMMLUtil.createApply("+", new FieldRef(xgbValue.getName()), PMMLUtil.createConstant(base_score)));
 
 			OutputField transformedValue = createTransformedField(FieldName.create("transformedValue_" + targetCategory), expression);
-
-			inputFields.add(transformedValue.getName());
 
 			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / targetCategories.size()), targetCategories.size());
 
@@ -91,7 +88,7 @@ public class SoftMaxClassification extends Classification {
 			}
 		};
 
-		MiningModel miningModel = MiningModelUtil.createClassification(function.apply(dataField), targetCategories, Lists.transform(featureMap.getDataFields(), function), models, inputFields, true);
+		MiningModel miningModel = MiningModelUtil.createClassification(function.apply(dataField), targetCategories, Lists.transform(featureMap.getDataFields(), function), models, RegressionNormalizationMethodType.SIMPLEMAX, true);
 
 		return miningModel;
 	}

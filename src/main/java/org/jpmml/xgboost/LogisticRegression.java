@@ -32,8 +32,6 @@ public class LogisticRegression extends LinearRegression {
 	public Output encodeOutput(){
 		Constant one = PMMLUtil.createConstant(1f);
 
-		Output output = new Output();
-
 		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
 		// "1 / (1 + exp(-1 * y))"
@@ -41,7 +39,8 @@ public class LogisticRegression extends LinearRegression {
 
 		OutputField transformedValue = createTransformedField(FieldName.create("transformedValue"), expression);
 
-		output.addOutputFields(xgbValue, transformedValue);
+		Output output = new Output()
+			.addOutputFields(xgbValue, transformedValue);
 
 		return output;
 	}
