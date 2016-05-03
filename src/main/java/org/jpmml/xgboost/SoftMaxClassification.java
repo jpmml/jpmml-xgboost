@@ -44,6 +44,10 @@ public class SoftMaxClassification extends Classification {
 
 	public SoftMaxClassification(int num_class){
 		super(num_class);
+
+		if(num_class < 3){
+			throw new IllegalArgumentException("Multi-class classification requires three or more target categories");
+		}
 	}
 
 	@Override
