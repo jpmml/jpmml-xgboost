@@ -28,6 +28,7 @@ import java.util.List;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.jpmml.model.MetroJAXBUtil;
 
@@ -122,7 +123,7 @@ public class Main {
 			featureMap = XGBoostUtil.loadFeatureMap(is);
 		}
 
-		PMML pmml = learner.encodePMML(this.targetName, this.targetCategories, featureMap);
+		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);

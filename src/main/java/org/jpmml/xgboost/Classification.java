@@ -18,49 +18,30 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 
 abstract
 public class Classification extends ObjFunction {
 
-	private List<String> targetCategories = null;
+	private int num_class;
 
 
 	public Classification(int num_class){
-		super(OpType.CATEGORICAL, DataType.STRING);
-
-		setTargetCategories(createTargetCategories(num_class));
+		this.num_class = num_class;
 	}
 
-	public void updateTargetCategories(List<String> targetCategories){
-
-		if((this.targetCategories != null) && (this.targetCategories.size() != targetCategories.size())){
-			throw new IllegalArgumentException();
-		}
-
-		this.targetCategories = targetCategories;
+	@Override
+	public DataType getDataType(){
+		return DataType.STRING;
 	}
 
-	public List<String> getTargetCategories(){
-		return this.targetCategories;
+	@Override
+	public OpType getOpType(){
+		return OpType.CATEGORICAL;
 	}
 
-	private void setTargetCategories(List<String> targetCategories){
-		this.targetCategories = targetCategories;
-	}
-
-	static
-	private List<String> createTargetCategories(int size){
-		List<String> result = new ArrayList<>();
-
-		for(int i = 0; i < size; i++){
-			result.add(String.valueOf(i));
-		}
-
-		return result;
+	public int getNumClass(){
+		return this.num_class;
 	}
 }

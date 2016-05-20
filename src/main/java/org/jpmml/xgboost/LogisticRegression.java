@@ -21,7 +21,6 @@ package org.jpmml.xgboost;
 import java.util.List;
 
 import org.dmg.pmml.Constant;
-import org.dmg.pmml.DataField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
@@ -31,6 +30,7 @@ import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
@@ -38,12 +38,8 @@ import org.jpmml.converter.PMMLUtil;
 public class LogisticRegression extends Regression {
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
-		DataField dataField = getDataField();
-
-		FieldName targetField = dataField.getName();
-
-		List<FieldName> activeFields = PMMLUtil.getNames(featureMap.getDataFields());
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+		List<FieldName> activeFields = schema.getActiveFields();
 
 		Output output = encodeOutput(base_score);
 
@@ -53,10 +49,7 @@ public class LogisticRegression extends Regression {
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
-		miningModel = MiningModelUtil.createRegression(targetField, activeFields, miningModel)
-			.setFunctionName(MiningFunctionType.REGRESSION); // XXX
-
-		return miningModel;
+		return MiningModelUtil.createRegression(schema, miningModel);
 	}
 
 	private Output encodeOutput(float base_score){

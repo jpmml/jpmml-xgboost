@@ -24,7 +24,13 @@ import org.dmg.pmml.OpType;
 abstract
 public class Regression extends ObjFunction {
 
-	public Regression(){
-		super(OpType.CONTINUOUS, DataType.FLOAT);
+	@Override
+	public DataType getDataType(){
+		return DataType.FLOAT;
+	}
+
+	@Override
+	public OpType getOpType(){
+		return OpType.CONTINUOUS;
 	}
 }

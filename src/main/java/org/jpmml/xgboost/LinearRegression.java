@@ -18,24 +18,25 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.DataField;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Segmentation;
 import org.dmg.pmml.Targets;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.ModelUtil;
 
 public class LinearRegression extends Regression {
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
-		DataField dataField = getDataField();
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+		FieldName targetField = schema.getTargetField();
 
-		MiningSchema miningSchema = ModelUtil.createMiningSchema(dataField, featureMap.getDataFields());
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(schema);
 
 		Targets targets = new Targets()
-			.addTargets(ModelUtil.createRescaleTarget(dataField, null, (double)base_score));
+			.addTargets(ModelUtil.createRescaleTarget(targetField, null, (double)base_score));
 
 		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
 			.setSegmentation(segmentation)

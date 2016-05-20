@@ -22,11 +22,19 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MissingValueStrategyType;
+import org.dmg.pmml.Predicate;
+import org.dmg.pmml.SimplePredicate;
 import org.dmg.pmml.TreeModel;
 import org.dmg.pmml.True;
+import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.Feature;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.ValueUtil;
 
@@ -81,13 +89,13 @@ public class RegTree {
 		}
 	}
 
-	public TreeModel encodeTreeModel(FeatureMap featureMap){
+	public TreeModel encodeTreeModel(FeatureSchema schema){
 		org.dmg.pmml.Node root = new org.dmg.pmml.Node()
 			.setPredicate(new True());
 
-		encodeNode(root, 0, featureMap);
+		encodeNode(root, 0, schema);
 
-		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, featureMap.getDataFields(), root);
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(schema, root);
 
 		TreeModel treeModel = new TreeModel(MiningFunctionType.REGRESSION, miningSchema, root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -96,7 +104,7 @@ public class RegTree {
 		return treeModel;
 	}
 
-	private void encodeNode(org.dmg.pmml.Node parent, int index, FeatureMap featureMap){
+	private void encodeNode(org.dmg.pmml.Node parent, int index, FeatureSchema schema){
 		parent.setId(String.valueOf(index + 1));
 
 		Node node = this.nodes.get(index);
@@ -104,23 +112,21 @@ public class RegTree {
 		if(!node.is_leaf()){
 			int splitIndex = node.split_index();
 
-			Feature feature = featureMap.getFeature(splitIndex);
-
-			int splitCondition = node.split_cond();
+			Feature feature = schema.getFeature(splitIndex);
 
 			org.dmg.pmml.Node leftChild = new org.dmg.pmml.Node()
-				.setPredicate(feature.encodePredicate(splitCondition, true));
+				.setPredicate(encodePredicate(feature, node, true));
 
-			encodeNode(leftChild, node.cleft(), featureMap);
+			encodeNode(leftChild, node.cleft(), schema);
 
 			org.dmg.pmml.Node rightChild = new org.dmg.pmml.Node()
-				.setPredicate(feature.encodePredicate(splitCondition, false));
+				.setPredicate(encodePredicate(feature, node, false));
+
+			encodeNode(rightChild, node.cright(), schema);
 
 			parent.addNodes(leftChild, rightChild);
 
-			encodeNode(rightChild, node.cright(), featureMap);
-
-			boolean defaultLeft = feature.isDefaultLeft(node);
+			boolean defaultLeft = isDefaultLeft(feature, node);
 
 			parent.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId());
 		} else
@@ -134,5 +140,65 @@ public class RegTree {
 
 	public List<Node> getNodes(){
 		return this.nodes;
+	}
+
+	static
+	private Predicate encodePredicate(Feature feature, Node node, boolean left){
+		FieldName name = feature.getName();
+		SimplePredicate.Operator operator;
+		String value;
+
+		if(feature instanceof ContinuousFeature){
+			ContinuousFeature continuousFeature = (ContinuousFeature)feature;
+
+			Number splitCondition = encodeSplitCondition(continuousFeature.getDataType(), node.split_cond());
+
+			operator = (left ? SimplePredicate.Operator.LESS_THAN : SimplePredicate.Operator.GREATER_OR_EQUAL);
+			value = ValueUtil.formatValue(splitCondition);
+		} else
+
+		if(feature instanceof BinaryFeature){
+			BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+			operator = (left ? SimplePredicate.Operator.NOT_EQUAL : SimplePredicate.Operator.EQUAL);
+			value = binaryFeature.getValue();
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
+
+		SimplePredicate simplePredicate = new SimplePredicate(name, operator)
+			.setValue(value);
+
+		return simplePredicate;
+	}
+
+	static
+	private Number encodeSplitCondition(DataType dataType, int splitCondition){
+		float value = Float.intBitsToFloat(splitCondition);
+
+		switch(dataType){
+			case INTEGER:
+				return ((int)(value + 1f));
+			default:
+				return value;
+		}
+	}
+
+	static
+	private boolean isDefaultLeft(Feature feature, Node node){
+
+		if(feature instanceof ContinuousFeature){
+			return node.default_left();
+		} else
+
+		if(feature instanceof BinaryFeature){
+			return true;
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 }

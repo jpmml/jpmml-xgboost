@@ -21,9 +21,6 @@ package org.jpmml.xgboost;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.google.common.base.Function;
-import com.google.common.collect.Lists;
-import org.dmg.pmml.DataField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
@@ -36,6 +33,7 @@ import org.dmg.pmml.OutputField;
 import org.dmg.pmml.RegressionNormalizationMethodType;
 import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
@@ -51,16 +49,16 @@ public class SoftMaxClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
-		DataField dataField = getDataField();
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+		List<FieldName> activeFields = schema.getActiveFields();
 
 		List<Segment> segments = segmentation.getSegments();
 
-		MiningSchema valueMiningSchema = ModelUtil.createMiningSchema(null, featureMap.getDataFields());
+		MiningSchema valueMiningSchema = ModelUtil.createMiningSchema(null, activeFields);
 
 		List<MiningModel> models = new ArrayList<>();
 
-		List<String> targetCategories = getTargetCategories();
+		List<String> targetCategories = schema.getTargetCategories();
 		for(int i = 0; i < targetCategories.size(); i++){
 			String targetCategory = targetCategories.get(i);
 
@@ -84,17 +82,7 @@ public class SoftMaxClassification extends Classification {
 			models.add(valueMiningModel);
 		}
 
-		Function<DataField, FieldName> function = new Function<DataField, FieldName>(){
-
-			@Override
-			public FieldName apply(DataField dataField){
-				return dataField.getName();
-			}
-		};
-
-		MiningModel miningModel = MiningModelUtil.createClassification(function.apply(dataField), targetCategories, Lists.transform(featureMap.getDataFields(), function), models, RegressionNormalizationMethodType.SIMPLEMAX, true);
-
-		return miningModel;
+		return MiningModelUtil.createClassification(schema, models, RegressionNormalizationMethodType.SIMPLEMAX, true);
 	}
 
 	static

@@ -20,16 +20,15 @@ package org.jpmml.xgboost;
 
 import java.util.List;
 
-import org.dmg.pmml.DataField;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.Segmentation;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.PMMLUtil;
 
 public class LogisticClassification extends Classification {
 
@@ -38,12 +37,8 @@ public class LogisticClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureMap featureMap){
-		DataField dataField = getDataField();
-
-		FieldName targetField = dataField.getName();
-
-		List<FieldName> activeFields = PMMLUtil.getNames(featureMap.getDataFields());
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+		List<FieldName> activeFields = schema.getActiveFields();
 
 		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
 
@@ -53,7 +48,7 @@ public class LogisticClassification extends Classification {
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
-		return MiningModelUtil.createBinaryLogisticClassification(targetField, getTargetCategories(), activeFields, miningModel, -1d, true);
+		return MiningModelUtil.createBinaryLogisticClassification(schema, miningModel, -1d, true);
 	}
 
 	private Output encodeOutput(float base_score){

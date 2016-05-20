@@ -34,12 +34,16 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.Value;
+import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.Feature;
+import org.jpmml.converter.FeatureSchema;
 
 public class FeatureMap {
 
 	private List<Feature> features = new ArrayList<>();
 
-	private Map<String, DataField> dataFields = new LinkedHashMap<>();
+	private Map<FieldName, DataField> dataFields = new LinkedHashMap<>();
 
 
 	public FeatureMap(){
@@ -88,9 +92,14 @@ public class FeatureMap {
 			name = name.substring(0, equals);
 		}
 
+		load(FieldName.create(name), value, type);
+	}
+
+	private void load(FieldName name, String value, String type){
 		DataField dataField = this.dataFields.get(name);
+
 		if(dataField == null){
-			dataField = createDataField(FieldName.create(name), type);
+			dataField = createDataField(name, type);
 
 			this.dataFields.put(name, dataField);
 		}
@@ -104,7 +113,7 @@ public class FeatureMap {
 		OpType opType = dataField.getOpType();
 		switch(opType){
 			case CATEGORICAL:
-				feature = new CategoricalFeature(dataField, value);
+				feature = new BinaryFeature(dataField, value);
 				break;
 			case CONTINUOUS:
 				feature = new ContinuousFeature(dataField);
@@ -116,14 +125,18 @@ public class FeatureMap {
 		this.features.add(feature);
 	}
 
-	public Feature getFeature(int index){
-		return this.features.get(index);
+	public FeatureSchema createSchema(FieldName targetField, List<String> targetCategories){
+		List<FieldName> activeFields = new ArrayList<>(this.dataFields.keySet());
+
+		FeatureSchema schema = new FeatureSchema(targetField, targetCategories, activeFields, this.features);
+
+		return schema;
 	}
 
 	public List<DataField> getDataFields(){
-		List<DataField> result = new ArrayList<>(this.dataFields.values());
+		List<DataField> dataFields = new ArrayList<>(this.dataFields.values());
 
-		return result;
+		return dataFields;
 	}
 
 	static

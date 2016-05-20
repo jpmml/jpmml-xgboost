@@ -28,6 +28,7 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Value;
+import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.PMMLUtil;
 
 public class Learner {
@@ -84,41 +85,44 @@ public class Learner {
 		this.gbtree.load(input);
 	}
 
-	public PMML encodePMML(String targetName, List<String> targetCategories, FeatureMap featureMap){
-		DataField dataField = this.obj.getDataField();
+	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
 
-		if(targetName != null){
-			dataField.setName(FieldName.create(targetName));
+		if(targetField == null){
+			targetField = FieldName.create("_target");
 		} // End if
-
-		if(this.obj instanceof Regression){
-			Regression regression = (Regression)this.obj;
-
-			if(targetCategories != null){
-				throw new IllegalArgumentException();
-			}
-		} else
 
 		if(this.obj instanceof Classification){
 			Classification classification = (Classification)this.obj;
 
 			if(targetCategories != null){
-				classification.updateTargetCategories(targetCategories);
-			}
 
-			targetCategories = classification.getTargetCategories();
-			if(targetCategories != null && targetCategories.size() > 0){
-				List<Value> values = dataField.getValues();
-
-				if(values.size() > 0){
-					values.clear();
+				if(targetCategories.size() != classification.getNumClass()){
+					throw new IllegalArgumentException();
 				}
+			} else
 
-				values.addAll(PMMLUtil.createValues(targetCategories));
+			{
+				targetCategories = createTargetCategories(classification.getNumClass());
+			}
+		} else
+
+		{
+			if(targetCategories != null){
+				throw new IllegalArgumentException();
 			}
 		}
 
-		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, featureMap);
+		DataField dataField = new DataField(targetField, this.obj.getOpType(), this.obj.getDataType());
+
+		if(targetCategories != null){
+			List<Value> values = dataField.getValues();
+
+			values.addAll(PMMLUtil.createValues(targetCategories));
+		}
+
+		FeatureSchema schema = featureMap.createSchema(targetField, targetCategories);
+
+		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
 
 		List<DataField> dataFields = new ArrayList<>();
 		dataFields.add(dataField);
@@ -150,5 +154,16 @@ public class Learner {
 
 	public GBTree getGBTree(){
 		return this.gbtree;
+	}
+
+	static
+	private List<String> createTargetCategories(int size){
+		List<String> result = new ArrayList<>();
+
+		for(int i = 0; i < size; i++){
+			result.add(String.valueOf(i));
+		}
+
+		return result;
 	}
 }
