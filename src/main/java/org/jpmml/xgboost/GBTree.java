@@ -91,4 +91,8 @@ public class GBTree {
 
 		return obj.encodeMiningModel(segmentation, base_score, featureMap);
 	}
+
+	public List<RegTree> getTrees(){
+		return this.trees;
+	}
 }

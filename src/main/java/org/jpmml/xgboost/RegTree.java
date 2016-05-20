@@ -133,4 +133,8 @@ public class RegTree {
 			parent.setScore(ValueUtil.formatValue(score));
 		}
 	}
+
+	public List<Node> getNodes(){
+		return this.nodes;
+	}
 }

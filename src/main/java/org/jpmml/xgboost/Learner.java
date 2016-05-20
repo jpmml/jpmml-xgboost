@@ -131,4 +131,24 @@ public class Learner {
 
 		return pmml;
 	}
+
+	public float getBaseScore(){
+		return this.base_score;
+	}
+
+	public int getNumClass(){
+		return this.num_class;
+	}
+
+	public int getNumFeatures(){
+		return this.num_features;
+	}
+
+	public ObjFunction getObj(){
+		return this.obj;
+	}
+
+	public GBTree getGBTree(){
+		return this.gbtree;
+	}
 }
