@@ -26,8 +26,8 @@ import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MultipleModelMethodType;
 import org.dmg.pmml.Segmentation;
 import org.dmg.pmml.TreeModel;
-import org.jpmml.converter.FeatureSchema;
 import org.jpmml.converter.MiningModelUtil;
+import org.jpmml.converter.Schema;
 
 public class GBTree {
 
@@ -77,10 +77,10 @@ public class GBTree {
 		}
 	}
 
-	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, FeatureSchema schema){
+	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Schema schema){
 		List<TreeModel> treeModels = new ArrayList<>();
 
-		FeatureSchema segmentSchema = new FeatureSchema(null, schema.getTargetCategories(), schema.getActiveFields(), schema.getFeatures());
+		Schema segmentSchema = schema.toAnonymousSchema();
 
 		for(int i = 0; i < this.trees.size(); i++){
 			RegTree tree = this.trees.get(i);

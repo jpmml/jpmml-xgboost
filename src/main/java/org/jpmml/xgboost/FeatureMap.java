@@ -37,7 +37,7 @@ import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 
 public class FeatureMap {
 
@@ -125,10 +125,10 @@ public class FeatureMap {
 		this.features.add(feature);
 	}
 
-	public FeatureSchema createSchema(FieldName targetField, List<String> targetCategories){
+	public Schema createSchema(FieldName targetField, List<String> targetCategories){
 		List<FieldName> activeFields = new ArrayList<>(this.dataFields.keySet());
 
-		FeatureSchema schema = new FeatureSchema(targetField, targetCategories, activeFields, this.features);
+		Schema schema = new Schema(targetField, targetCategories, activeFields, this.features);
 
 		return schema;
 	}

@@ -34,7 +34,7 @@ import org.dmg.pmml.True;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.ValueUtil;
 
@@ -89,7 +89,7 @@ public class RegTree {
 		}
 	}
 
-	public TreeModel encodeTreeModel(FeatureSchema schema){
+	public TreeModel encodeTreeModel(Schema schema){
 		org.dmg.pmml.Node root = new org.dmg.pmml.Node()
 			.setPredicate(new True());
 
@@ -104,7 +104,7 @@ public class RegTree {
 		return treeModel;
 	}
 
-	private void encodeNode(org.dmg.pmml.Node parent, int index, FeatureSchema schema){
+	private void encodeNode(org.dmg.pmml.Node parent, int index, Schema schema){
 		parent.setId(String.valueOf(index + 1));
 
 		Node node = this.nodes.get(index);

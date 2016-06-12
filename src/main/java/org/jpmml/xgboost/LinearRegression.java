@@ -24,13 +24,13 @@ import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Segmentation;
 import org.dmg.pmml.Targets;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.ModelUtil;
 
 public class LinearRegression extends Regression {
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		FieldName targetField = schema.getTargetField();
 
 		MiningSchema miningSchema = ModelUtil.createMiningSchema(schema);

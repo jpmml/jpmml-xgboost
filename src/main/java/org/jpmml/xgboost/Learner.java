@@ -28,7 +28,7 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Value;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.PMMLUtil;
 
 public class Learner {
@@ -120,7 +120,7 @@ public class Learner {
 			values.addAll(PMMLUtil.createValues(targetCategories));
 		}
 
-		FeatureSchema schema = featureMap.createSchema(targetField, targetCategories);
+		Schema schema = featureMap.createSchema(targetField, targetCategories);
 
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
 

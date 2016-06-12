@@ -26,7 +26,7 @@ import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 
@@ -37,7 +37,7 @@ public class LogisticClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		List<FieldName> activeFields = schema.getActiveFields();
 
 		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);

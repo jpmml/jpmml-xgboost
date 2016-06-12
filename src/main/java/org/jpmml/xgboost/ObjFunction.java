@@ -28,7 +28,7 @@ import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.ValueUtil;
 
@@ -42,7 +42,7 @@ public class ObjFunction {
 	public OpType getOpType();
 
 	abstract
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema);
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema);
 
 	static
 	public OutputField createPredictedField(Output output, float base_score){

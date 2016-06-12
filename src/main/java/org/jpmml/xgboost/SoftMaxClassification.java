@@ -33,7 +33,7 @@ import org.dmg.pmml.OutputField;
 import org.dmg.pmml.RegressionNormalizationMethodType;
 import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.FeatureSchema;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
@@ -49,7 +49,7 @@ public class SoftMaxClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, FeatureSchema schema){
+	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		List<FieldName> activeFields = schema.getActiveFields();
 
 		List<Segment> segments = segmentation.getSegments();
