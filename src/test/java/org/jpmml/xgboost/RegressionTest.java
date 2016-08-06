@@ -36,4 +36,9 @@ public class RegressionTest extends XGBoostTest {
 	public void evaluateAudit() throws Exception {
 		evaluate("LogisticRegression", "Audit");
 	}
+
+	@Test
+	public void evaluateAuditNA() throws Exception {
+		evaluate("LogisticRegression", "AuditNA");
+	}
 }
