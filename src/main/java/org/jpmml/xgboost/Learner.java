@@ -28,8 +28,8 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Value;
-import org.jpmml.converter.Schema;
 import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.Schema;
 
 public class Learner {
 
@@ -130,7 +130,7 @@ public class Learner {
 
 		DataDictionary dataDictionary = new DataDictionary(dataFields);
 
-		PMML pmml = new PMML("4.2", PMMLUtil.createHeader("JPMML-XGBoost", "1.0-SNAPSHOT"), dataDictionary)
+		PMML pmml = new PMML("4.2", PMMLUtil.createHeader(Learner.class), dataDictionary)
 			.addModels(miningModel);
 
 		return pmml;

@@ -34,8 +34,8 @@ import org.dmg.pmml.True;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
-import org.jpmml.converter.Schema;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
 public class RegTree {
@@ -95,7 +95,7 @@ public class RegTree {
 
 		encodeNode(root, 0, schema);
 
-		MiningSchema miningSchema = ModelUtil.createMiningSchema(schema, root);
+		MiningSchema miningSchema = ModelUtil.createMiningSchema(schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunctionType.REGRESSION, miningSchema, root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)

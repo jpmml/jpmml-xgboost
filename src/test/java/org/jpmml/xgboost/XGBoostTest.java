@@ -5,9 +5,11 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Set;
 
+import org.dmg.pmml.Application;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
+import org.dmg.pmml.VisitorAction;
 import org.jpmml.evaluator.ArchiveBatch;
 import org.jpmml.evaluator.Batch;
 import org.jpmml.evaluator.IntegrationTest;
@@ -61,7 +63,13 @@ public class XGBoostTest extends IntegrationTest {
 	private void ensureValidity(PMML pmml){
 		List<Visitor> visitors = Arrays.<Visitor>asList(
 			new UnsupportedFeatureInspector(),
-			new InvalidFeatureInspector()
+			new InvalidFeatureInspector(){
+
+				@Override
+				public VisitorAction visit(Application application){
+					return VisitorAction.SKIP;
+				}
+			}
 		);
 
 		for(Visitor visitor : visitors){
