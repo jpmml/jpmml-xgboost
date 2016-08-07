@@ -26,17 +26,16 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
-import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.MultipleModelMethodType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.RegressionNormalizationMethodType;
 import org.dmg.pmml.Segment;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.Schema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.Schema;
 
 public class SoftMaxClassification extends Classification {
 
@@ -50,11 +49,9 @@ public class SoftMaxClassification extends Classification {
 
 	@Override
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
-		List<FieldName> activeFields = schema.getActiveFields();
+		Schema segmentSchema = schema.toAnonymousSchema();
 
 		List<Segment> segments = segmentation.getSegments();
-
-		MiningSchema valueMiningSchema = ModelUtil.createMiningSchema(null, activeFields);
 
 		List<MiningModel> models = new ArrayList<>();
 
@@ -75,7 +72,7 @@ public class SoftMaxClassification extends Classification {
 			Output valueOutput = new Output()
 				.addOutputFields(xgbValue, transformedValue);
 
-			MiningModel valueMiningModel = new MiningModel(MiningFunctionType.REGRESSION, valueMiningSchema)
+			MiningModel valueMiningModel = new MiningModel(MiningFunctionType.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 				.setSegmentation(valueSegmentation)
 				.setOutput(valueOutput);
 

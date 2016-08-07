@@ -18,17 +18,13 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
-import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.Schema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.Schema;
 
 public class LogisticClassification extends Classification {
 
@@ -38,13 +34,11 @@ public class LogisticClassification extends Classification {
 
 	@Override
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
-		List<FieldName> activeFields = schema.getActiveFields();
-
-		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
+		Schema segmentSchema = schema.toAnonymousSchema();
 
 		Output output = encodeOutput(base_score);
 
-		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
+		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
 			.setOutput(output);
 

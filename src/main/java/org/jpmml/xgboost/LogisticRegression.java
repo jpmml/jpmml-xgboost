@@ -18,34 +18,29 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
 import org.dmg.pmml.Constant;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunctionType;
 import org.dmg.pmml.MiningModel;
-import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.Schema;
 import org.jpmml.converter.MiningModelUtil;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.Schema;
 
 public class LogisticRegression extends Regression {
 
 	@Override
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
-		List<FieldName> activeFields = schema.getActiveFields();
+		Schema segmentSchema = schema.toAnonymousSchema();
 
 		Output output = encodeOutput(base_score);
 
-		MiningSchema miningSchema = ModelUtil.createMiningSchema(null, activeFields);
-
-		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, miningSchema)
+		MiningModel miningModel = new MiningModel(MiningFunctionType.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
 			.setOutput(output);
 
