@@ -1,0 +1,12 @@
+0	edlevel=Coll/Univ	i
+1	edlevel=Grad School	i
+2	edlevel=HS grad	i
+3	edlevel=Not HS grad	i
+4	age	int
+5	outwork	int
+6	female	int
+7	married	int
+8	kids	int
+9	hhninc	q
+10	educ	q
+11	self	int

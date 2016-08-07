@@ -68,6 +68,40 @@ storeCsv(cbind(auto_X, "mpg" = auto_y), "csv/AutoNA.csv")
 genAutoMpg(auto_y, auto_X, "AutoNA")
 
 #
+# Poisson regression
+#
+
+genVisitCount = function(visit_y, visit_X, dataset){
+	visit.fmap = genFMap(visit_X, csvFile(dataset, ".fmap"))
+	visit.dmatrix = genDMatrix(visit_y, visit_X, csvFile(dataset, ".svm"))
+
+	funcAndDataset = paste("PoissonRegression", dataset, sep = "")
+
+	set.seed(42)
+
+	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 15)
+	xgb.save(visit.xgb, xgboostFile(funcAndDataset, ".model"))
+	xgb.dump(visit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+
+	storeCsv(data.frame("_target" = predict(visit.xgb, newdata = visit.dmatrix)), csvFile(funcAndDataset, ".csv"))
+}
+
+visit = loadCsv("csv/Visit.csv")
+
+visit_y = visit[, ncol(visit)]
+visit_X = visit[, 1:(ncol(visit) - 1)]
+
+genVisitCount(visit_y, visit_X, "Visit")
+
+set.seed(31)
+
+visit_X = insertNA(visit_X)
+
+storeCsv(cbind(visit_X, "docvis" = visit_y), "csv/VisitNA.csv")
+
+genVisitCount(visit_y, visit_X, "VisitNA")
+
+#
 # Binary classification
 #
 

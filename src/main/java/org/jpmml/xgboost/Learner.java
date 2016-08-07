@@ -62,6 +62,9 @@ public class Learner {
 			case "reg:logistic":
 				this.obj = new LogisticRegression();
 				break;
+			case "count:poisson":
+				this.obj = new PoissonRegression();
+				break;
 			case "binary:logistic":
 				this.obj = new LogisticClassification();
 				break;

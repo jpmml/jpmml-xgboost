@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost;
 
+import org.jpmml.evaluator.Batch;
 import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest {
@@ -40,5 +41,22 @@ public class RegressionTest extends XGBoostTest {
 	@Test
 	public void evaluateAuditNA() throws Exception {
 		evaluate("LogisticRegression", "AuditNA");
+	}
+
+	@Test
+	public void evaluateVisit() throws Exception {
+		evaluatePoissonRegression("Visit");
+	}
+
+	@Test
+	public void evaluateVisitNA() throws Exception {
+		evaluatePoissonRegression("VisitNA");
+	}
+
+	private void evaluatePoissonRegression(String dataset) throws Exception {
+
+		try(Batch batch = createBatch("PoissonRegression", dataset)){
+			evaluate(batch, null, 2e-6, 2e-6);
+		}
 	}
 }
