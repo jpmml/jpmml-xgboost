@@ -21,14 +21,14 @@ package org.jpmml.xgboost;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.OpType;
-import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.ResultFeature;
+import org.dmg.pmml.Target;
+import org.dmg.pmml.Targets;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
-import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
@@ -45,27 +45,18 @@ public class ObjFunction {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema);
 
 	static
-	public OutputField createPredictedField(Output output, float base_score){
+	public Targets createTargets(float base_score, Schema schema){
 
 		if(!ValueUtil.isZero(base_score)){
-			OutputField rawXgbValue = createPredictedField(FieldName.create("rawXgbValue"));
+			Target target = ModelUtil.createRescaleTarget(schema.getTargetField(), null, (double)base_score);
 
-			Expression expression = PMMLUtil.createApply("+", new FieldRef(rawXgbValue.getName()), PMMLUtil.createConstant(base_score));
+			Targets targets = new Targets()
+				.addTargets(target);
 
-			OutputField scaledXgbValue = createTransformedField(FieldName.create("scaledXgbValue"), expression);
-
-			output.addOutputFields(rawXgbValue, scaledXgbValue);
-
-			return scaledXgbValue;
-		} else
-
-		{
-			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
-
-			output.addOutputFields(xgbValue);
-
-			return xgbValue;
+			return targets;
 		}
+
+		return null;
 	}
 
 	static

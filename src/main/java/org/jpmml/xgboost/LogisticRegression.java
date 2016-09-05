@@ -38,28 +38,29 @@ public class LogisticRegression extends Regression {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		Output output = encodeOutput(base_score);
+		Output output = encodeOutput();
 
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
+			.setTargets(createTargets(base_score, segmentSchema))
 			.setOutput(output);
 
 		return MiningModelUtil.createRegression(schema, miningModel);
 	}
 
-	private Output encodeOutput(float base_score){
-		Output output = new Output();
-
-		OutputField xgbValue = createPredictedField(output, base_score);
+	static
+	private Output encodeOutput(){
+		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
 		Constant one = PMMLUtil.createConstant(1f);
 
 		// "1 / (1 + exp(-1 * y))"
 		Expression expression = PMMLUtil.createApply("/", one, PMMLUtil.createApply("+", one, PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1f), new FieldRef(xgbValue.getName())))));
 
-		OutputField transformedValue = createTransformedField(FieldName.create("transformedValue"), expression);
+		OutputField transformedXgbValue = createTransformedField(FieldName.create("transformedXgbValue"), expression);
 
-		output.addOutputFields(transformedValue);
+		Output output = new Output()
+			.addOutputFields(xgbValue, transformedXgbValue);
 
 		return output;
 	}

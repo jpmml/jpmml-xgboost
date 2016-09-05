@@ -58,27 +58,35 @@ public class SoftMaxClassification extends Classification {
 		for(int i = 0; i < targetCategories.size(); i++){
 			String targetCategory = targetCategories.get(i);
 
-			OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + targetCategory));
-
-			Expression expression = PMMLUtil.createApply("exp", PMMLUtil.createApply("+", new FieldRef(xgbValue.getName()), PMMLUtil.createConstant(base_score)));
-
-			OutputField transformedValue = createTransformedField(FieldName.create("transformedValue_" + targetCategory), expression);
+			Output valueOutput = encodeOutput(targetCategory);
 
 			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / targetCategories.size()), targetCategories.size());
 
 			Segmentation valueSegmentation = new Segmentation(Segmentation.MultipleModelMethod.SUM, valueSegments);
 
-			Output valueOutput = new Output()
-				.addOutputFields(xgbValue, transformedValue);
-
 			MiningModel valueMiningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 				.setSegmentation(valueSegmentation)
+				.setTargets(createTargets(base_score, segmentSchema))
 				.setOutput(valueOutput);
 
 			models.add(valueMiningModel);
 		}
 
 		return MiningModelUtil.createClassification(schema, models, RegressionModel.NormalizationMethod.SIMPLEMAX, true);
+	}
+
+	static
+	private Output encodeOutput(String targetCategory){
+		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + targetCategory));
+
+		Expression expression = PMMLUtil.createApply("exp", new FieldRef(xgbValue.getName()));
+
+		OutputField transformedXgbValue = createTransformedField(FieldName.create("transformedXgbValue_" + targetCategory), expression);
+
+		Output output = new Output()
+			.addOutputFields(xgbValue, transformedXgbValue);
+
+		return output;
 	}
 
 	static

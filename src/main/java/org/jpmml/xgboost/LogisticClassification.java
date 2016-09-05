@@ -19,8 +19,10 @@
 package org.jpmml.xgboost;
 
 
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Output;
+import org.dmg.pmml.OutputField;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.ModelUtil;
@@ -37,19 +39,22 @@ public class LogisticClassification extends Classification {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		Output output = encodeOutput(base_score);
+		Output output = encodeOutput();
 
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
+			.setTargets(createTargets(base_score, segmentSchema))
 			.setOutput(output);
 
 		return MiningModelUtil.createBinaryLogisticClassification(schema, miningModel, -1d, true);
 	}
 
-	private Output encodeOutput(float base_score){
-		Output output = new Output();
+	static
+	private Output encodeOutput(){
+		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
-		createPredictedField(output, base_score);
+		Output output = new Output()
+			.addOutputFields(xgbValue);
 
 		return output;
 	}

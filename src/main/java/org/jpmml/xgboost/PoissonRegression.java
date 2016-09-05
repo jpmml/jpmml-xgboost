@@ -37,27 +37,27 @@ public class PoissonRegression extends Regression {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		Output output = encodeOutput(base_score);
+		Output output = encodeOutput();
 
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
+			.setTargets(createTargets(base_score, segmentSchema))
 			.setOutput(output);
 
 		return MiningModelUtil.createRegression(schema, miningModel);
 	}
 
 	static
-	private Output encodeOutput(float base_score){
-		Output output = new Output();
-
-		OutputField xgbValue = createPredictedField(output, base_score);
+	private Output encodeOutput(){
+		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
 
 		// "exp(y)"
 		Expression expression = PMMLUtil.createApply("exp", new FieldRef(xgbValue.getName()));
 
-		OutputField transformedValue = createTransformedField(FieldName.create("transformedValue"), expression);
+		OutputField transformedXgbValue = createTransformedField(FieldName.create("transformedXgbValue"), expression);
 
-		output.addOutputFields(transformedValue);
+		Output output = new Output()
+			.addOutputFields(xgbValue, transformedXgbValue);
 
 		return output;
 	}
