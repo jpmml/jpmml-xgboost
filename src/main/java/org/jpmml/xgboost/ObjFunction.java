@@ -20,16 +20,16 @@ package org.jpmml.xgboost;
 
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
-import org.dmg.pmml.FeatureType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
-import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
-import org.dmg.pmml.Segmentation;
-import org.jpmml.converter.Schema;
+import org.dmg.pmml.ResultFeature;
+import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
 abstract
@@ -70,17 +70,16 @@ public class ObjFunction {
 
 	static
 	public OutputField createPredictedField(FieldName name){
-		OutputField outputField = new OutputField(name)
-			.setFeature(FeatureType.PREDICTED_VALUE);
+		OutputField outputField = new OutputField(name, DataType.FLOAT)
+			.setResultFeature(ResultFeature.PREDICTED_VALUE);
 
 		return outputField;
 	}
 
 	static
 	public OutputField createTransformedField(FieldName name, Expression expression){
-		OutputField outputField = new OutputField(name)
-			.setFeature(FeatureType.TRANSFORMED_VALUE)
-			.setDataType(DataType.FLOAT)
+		OutputField outputField = new OutputField(name, DataType.FLOAT)
+			.setResultFeature(ResultFeature.TRANSFORMED_VALUE)
 			.setOpType(OpType.CONTINUOUS)
 			.setExpression(expression);
 

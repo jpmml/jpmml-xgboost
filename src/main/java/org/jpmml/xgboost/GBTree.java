@@ -22,12 +22,11 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.dmg.pmml.MiningModel;
-import org.dmg.pmml.MultipleModelMethodType;
-import org.dmg.pmml.Segmentation;
-import org.dmg.pmml.TreeModel;
-import org.jpmml.converter.MiningModelUtil;
+import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.mining.Segmentation;
+import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
 
 public class GBTree {
 
@@ -90,7 +89,7 @@ public class GBTree {
 			treeModels.add(treeModel);
 		}
 
-		Segmentation segmentation = MiningModelUtil.createSegmentation(MultipleModelMethodType.SUM, treeModels);
+		Segmentation segmentation = MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels);
 
 		return obj.encodeMiningModel(segmentation, base_score, schema);
 	}

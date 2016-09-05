@@ -20,16 +20,20 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.dmg.pmml.DataDictionary;
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.MiningModel;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Value;
+import org.dmg.pmml.Visitor;
+import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
+import org.jpmml.model.visitors.DataDictionaryCleaner;
+import org.jpmml.model.visitors.MiningSchemaCleaner;
 
 public class Learner {
 
@@ -133,8 +137,13 @@ public class Learner {
 
 		DataDictionary dataDictionary = new DataDictionary(dataFields);
 
-		PMML pmml = new PMML("4.2", PMMLUtil.createHeader(Learner.class), dataDictionary)
+		PMML pmml = new PMML("4.3", PMMLUtil.createHeader(Learner.class), dataDictionary)
 			.addModels(miningModel);
+
+		List<? extends Visitor> visitors = Arrays.asList(new MiningSchemaCleaner(), new DataDictionaryCleaner());
+		for(Visitor visitor : visitors){
+			visitor.applyTo(pmml);
+		}
 
 		return pmml;
 	}

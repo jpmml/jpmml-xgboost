@@ -24,12 +24,11 @@ import java.util.List;
 
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.MiningFunctionType;
-import org.dmg.pmml.MissingValueStrategyType;
+import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
-import org.dmg.pmml.TreeModel;
 import org.dmg.pmml.True;
+import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
@@ -89,19 +88,19 @@ public class RegTree {
 	}
 
 	public TreeModel encodeTreeModel(Schema schema){
-		org.dmg.pmml.Node root = new org.dmg.pmml.Node()
+		org.dmg.pmml.tree.Node root = new org.dmg.pmml.tree.Node()
 			.setPredicate(new True());
 
 		encodeNode(root, 0, schema);
 
-		TreeModel treeModel = new TreeModel(MiningFunctionType.REGRESSION, ModelUtil.createMiningSchema(schema), root)
+		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
-			.setMissingValueStrategy(MissingValueStrategyType.DEFAULT_CHILD);
+			.setMissingValueStrategy(TreeModel.MissingValueStrategy.DEFAULT_CHILD);
 
 		return treeModel;
 	}
 
-	private void encodeNode(org.dmg.pmml.Node parent, int index, Schema schema){
+	private void encodeNode(org.dmg.pmml.tree.Node parent, int index, Schema schema){
 		parent.setId(String.valueOf(index + 1));
 
 		Node node = this.nodes.get(index);
@@ -111,12 +110,12 @@ public class RegTree {
 
 			Feature feature = schema.getFeature(splitIndex);
 
-			org.dmg.pmml.Node leftChild = new org.dmg.pmml.Node()
+			org.dmg.pmml.tree.Node leftChild = new org.dmg.pmml.tree.Node()
 				.setPredicate(encodePredicate(feature, node, true));
 
 			encodeNode(leftChild, node.cleft(), schema);
 
-			org.dmg.pmml.Node rightChild = new org.dmg.pmml.Node()
+			org.dmg.pmml.tree.Node rightChild = new org.dmg.pmml.tree.Node()
 				.setPredicate(encodePredicate(feature, node, false));
 
 			encodeNode(rightChild, node.cright(), schema);
