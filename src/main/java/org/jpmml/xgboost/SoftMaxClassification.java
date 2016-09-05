@@ -25,8 +25,6 @@ import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunction;
-import org.dmg.pmml.Output;
-import org.dmg.pmml.OutputField;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segment;
 import org.dmg.pmml.mining.Segmentation;
@@ -58,8 +56,6 @@ public class SoftMaxClassification extends Classification {
 		for(int i = 0; i < targetCategories.size(); i++){
 			String targetCategory = targetCategories.get(i);
 
-			Output valueOutput = encodeOutput(targetCategory);
-
 			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / targetCategories.size()), targetCategories.size());
 
 			Segmentation valueSegmentation = new Segmentation(Segmentation.MultipleModelMethod.SUM, valueSegments);
@@ -67,26 +63,12 @@ public class SoftMaxClassification extends Classification {
 			MiningModel valueMiningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 				.setSegmentation(valueSegmentation)
 				.setTargets(createTargets(base_score, segmentSchema))
-				.setOutput(valueOutput);
+				.setOutput(createOutput(SoftMaxClassification.TRANSFORMATION, targetCategory));
 
 			models.add(valueMiningModel);
 		}
 
 		return MiningModelUtil.createClassification(schema, models, RegressionModel.NormalizationMethod.SIMPLEMAX, true);
-	}
-
-	static
-	private Output encodeOutput(String targetCategory){
-		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue_" + targetCategory));
-
-		Expression expression = PMMLUtil.createApply("exp", new FieldRef(xgbValue.getName()));
-
-		OutputField transformedXgbValue = createTransformedField(FieldName.create("transformedXgbValue_" + targetCategory), expression);
-
-		Output output = new Output()
-			.addOutputFields(xgbValue, transformedXgbValue);
-
-		return output;
 	}
 
 	static
@@ -104,4 +86,13 @@ public class SoftMaxClassification extends Classification {
 
 		return result;
 	}
+
+	// "exp(y)"
+	private static final Transformation TRANSFORMATION = new Transformation(){
+
+		@Override
+		public Expression createExpression(FieldName name){
+			return PMMLUtil.createApply("exp", new FieldRef(name));
+		}
+	};
 }

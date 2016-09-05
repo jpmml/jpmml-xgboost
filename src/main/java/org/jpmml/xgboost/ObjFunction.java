@@ -22,6 +22,7 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
+import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.ResultFeature;
 import org.dmg.pmml.Target;
@@ -60,20 +61,39 @@ public class ObjFunction {
 	}
 
 	static
-	public OutputField createPredictedField(FieldName name){
-		OutputField outputField = new OutputField(name, DataType.FLOAT)
-			.setResultFeature(ResultFeature.PREDICTED_VALUE);
-
-		return outputField;
+	public Output createOutput(Transformation transformation){
+		return createOutput(transformation, null);
 	}
 
 	static
-	public OutputField createTransformedField(FieldName name, Expression expression){
-		OutputField outputField = new OutputField(name, DataType.FLOAT)
-			.setResultFeature(ResultFeature.TRANSFORMED_VALUE)
-			.setOpType(OpType.CONTINUOUS)
-			.setExpression(expression);
+	public Output createOutput(Transformation transformation, String targetCategory){
+		Output output = new Output();
 
-		return outputField;
+		String suffix = (targetCategory != null ? ("_" + targetCategory) : "");
+
+		OutputField xgbValue = new OutputField(FieldName.create("xgbValue" + suffix), DataType.FLOAT)
+			.setOpType(OpType.CONTINUOUS)
+			.setResultFeature(ResultFeature.PREDICTED_VALUE)
+			.setFinalResult(false);
+
+		output.addOutputFields(xgbValue);
+
+		if(transformation != null){
+			OutputField transformedXgbValue = new OutputField(FieldName.create("transformedXgbValue" + suffix), DataType.FLOAT)
+				.setOpType(OpType.CONTINUOUS)
+				.setResultFeature(ResultFeature.TRANSFORMED_VALUE)
+				.setFinalResult(false)
+				.setExpression(transformation.createExpression(xgbValue.getName()));
+
+			output.addOutputFields(transformedXgbValue);
+		}
+
+		return output;
+	}
+
+	static
+	public interface Transformation {
+
+		Expression createExpression(FieldName name);
 	}
 }

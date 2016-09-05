@@ -22,8 +22,6 @@ import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunction;
-import org.dmg.pmml.Output;
-import org.dmg.pmml.OutputField;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.ModelUtil;
@@ -37,28 +35,20 @@ public class PoissonRegression extends Regression {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		Output output = encodeOutput();
-
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
 			.setSegmentation(segmentation)
 			.setTargets(createTargets(base_score, segmentSchema))
-			.setOutput(output);
+			.setOutput(createOutput(PoissonRegression.TRANSFORMATION));
 
 		return MiningModelUtil.createRegression(schema, miningModel);
 	}
 
-	static
-	private Output encodeOutput(){
-		OutputField xgbValue = createPredictedField(FieldName.create("xgbValue"));
+	// "exp(y)"
+	private static final Transformation TRANSFORMATION = new Transformation(){
 
-		// "exp(y)"
-		Expression expression = PMMLUtil.createApply("exp", new FieldRef(xgbValue.getName()));
-
-		OutputField transformedXgbValue = createTransformedField(FieldName.create("transformedXgbValue"), expression);
-
-		Output output = new Output()
-			.addOutputFields(xgbValue, transformedXgbValue);
-
-		return output;
-	}
+		@Override
+		public Expression createExpression(FieldName name){
+			return PMMLUtil.createApply("exp", new FieldRef(name));
+		}
+	};
 }
