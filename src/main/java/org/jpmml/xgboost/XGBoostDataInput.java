@@ -23,6 +23,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
 import java.util.Arrays;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import com.google.common.io.ByteStreams;
 import com.google.common.io.LittleEndianDataInputStream;
@@ -57,6 +59,18 @@ public class XGBoostDataInput implements Closeable {
 		ByteStreams.readFully(this.dis, buffer);
 
 		return new String(buffer);
+	}
+
+	public Map<String, String> readStringMap() throws IOException {
+		int length = (int)this.dis.readLong();
+
+		Map<String, String> result = new LinkedHashMap<>();
+
+		for(int i = 0; i < length; i++){
+			result.put(readString(), readString());
+		}
+
+		return result;
 	}
 
 	public void readReserved(int length) throws IOException {

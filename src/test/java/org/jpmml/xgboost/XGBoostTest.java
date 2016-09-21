@@ -25,6 +25,7 @@ import java.util.Set;
 
 import org.dmg.pmml.Application;
 import org.dmg.pmml.FieldName;
+import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.VisitorAction;
@@ -85,6 +86,11 @@ public class XGBoostTest extends IntegrationTest {
 
 				@Override
 				public VisitorAction visit(Application application){
+					return VisitorAction.SKIP;
+				}
+
+				@Override
+				public VisitorAction visit(MiningSchema miningSchema){
 					return VisitorAction.SKIP;
 				}
 			}

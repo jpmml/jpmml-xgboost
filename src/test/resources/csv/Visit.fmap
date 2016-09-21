@@ -1,7 +1,7 @@
 0	edlevel=Coll/Univ	i
-1	edlevel=Grad School	i
-2	edlevel=HS grad	i
-3	edlevel=Not HS grad	i
+1	edlevel=Grad_School	i
+2	edlevel=HS_grad	i
+3	edlevel=Not_HS_grad	i
 4	age	int
 5	outwork	int
 6	female	int

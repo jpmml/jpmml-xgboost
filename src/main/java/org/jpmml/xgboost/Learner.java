@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.dmg.pmml.DataDictionary;
 import org.dmg.pmml.DataField;
@@ -43,9 +44,13 @@ public class Learner {
 
 	private int num_class;
 
+	private int contain_extra_attrs;
+
 	private ObjFunction obj;
 
 	private GBTree gbtree;
+
+	private Map<String, String> attributes = null;
 
 
 	public Learner(){
@@ -55,8 +60,9 @@ public class Learner {
 		this.base_score = input.readFloat();
 		this.num_features = input.readInt();
 		this.num_class = input.readInt();
+		this.contain_extra_attrs = input.readInt();
 
-		input.readReserved(31);
+		input.readReserved(30);
 
 		String name_obj = input.readString();
 		switch(name_obj){
@@ -90,6 +96,10 @@ public class Learner {
 
 		this.gbtree = new GBTree();
 		this.gbtree.load(input);
+
+		if(this.contain_extra_attrs != 0){
+			this.attributes = input.readStringMap();
+		}
 	}
 
 	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
