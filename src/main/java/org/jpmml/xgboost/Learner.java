@@ -139,7 +139,7 @@ public class Learner {
 
 		Schema schema = featureMap.createSchema(targetField, targetCategories);
 
-		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
+		MiningModel miningModel = encodeMiningModel(schema);
 
 		List<DataField> dataFields = new ArrayList<>();
 		dataFields.add(dataField);
@@ -156,6 +156,10 @@ public class Learner {
 		}
 
 		return pmml;
+	}
+
+	public MiningModel encodeMiningModel(Schema schema){
+		return this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
 	}
 
 	public float getBaseScore(){
