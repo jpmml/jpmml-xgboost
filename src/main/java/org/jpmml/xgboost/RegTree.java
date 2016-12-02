@@ -144,6 +144,13 @@ public class RegTree {
 		SimplePredicate.Operator operator;
 		String value;
 
+		if(feature instanceof BinaryFeature){
+			BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+			operator = (left ? SimplePredicate.Operator.NOT_EQUAL : SimplePredicate.Operator.EQUAL);
+			value = binaryFeature.getValue();
+		} else
+
 		if(feature instanceof ContinuousFeature){
 			ContinuousFeature continuousFeature = (ContinuousFeature)feature;
 
@@ -151,13 +158,6 @@ public class RegTree {
 
 			operator = (left ? SimplePredicate.Operator.LESS_THAN : SimplePredicate.Operator.GREATER_OR_EQUAL);
 			value = ValueUtil.formatValue(splitCondition);
-		} else
-
-		if(feature instanceof BinaryFeature){
-			BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-			operator = (left ? SimplePredicate.Operator.NOT_EQUAL : SimplePredicate.Operator.EQUAL);
-			value = binaryFeature.getValue();
 		} else
 
 		{
@@ -185,12 +185,12 @@ public class RegTree {
 	static
 	private boolean isDefaultLeft(Feature feature, Node node){
 
-		if(feature instanceof ContinuousFeature){
-			return node.default_left();
-		} else
-
 		if(feature instanceof BinaryFeature){
 			return true;
+		} else
+
+		if(feature instanceof ContinuousFeature){
+			return node.default_left();
 		} else
 
 		{
