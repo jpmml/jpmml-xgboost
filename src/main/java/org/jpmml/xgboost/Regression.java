@@ -18,6 +18,8 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.List;
+
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 
@@ -32,5 +34,15 @@ public class Regression extends ObjFunction {
 	@Override
 	public OpType getOpType(){
 		return OpType.CONTINUOUS;
+	}
+
+	@Override
+	public List<String> prepareTargetCategories(List<String> targetCategories){
+
+		if(targetCategories != null){
+			throw new IllegalArgumentException();
+		}
+
+		return targetCategories;
 	}
 }

@@ -106,32 +106,12 @@ public class Learner {
 
 		if(targetField == null){
 			targetField = FieldName.create("_target");
-		} // End if
-
-		if(this.obj instanceof Classification){
-			Classification classification = (Classification)this.obj;
-
-			if(targetCategories != null){
-
-				if(targetCategories.size() != classification.getNumClass()){
-					throw new IllegalArgumentException();
-				}
-			} else
-
-			{
-				targetCategories = createTargetCategories(classification.getNumClass());
-			}
-		} else
-
-		{
-			if(targetCategories != null){
-				throw new IllegalArgumentException();
-			}
 		}
 
 		DataField dataField = new DataField(targetField, this.obj.getOpType(), this.obj.getDataType());
 
-		if(targetCategories != null){
+		targetCategories = this.obj.prepareTargetCategories(targetCategories);
+		if(targetCategories != null && targetCategories.size() > 0){
 			List<Value> values = dataField.getValues();
 
 			values.addAll(PMMLUtil.createValues(targetCategories));
@@ -180,16 +160,5 @@ public class Learner {
 
 	public GBTree getGBTree(){
 		return this.gbtree;
-	}
-
-	static
-	private List<String> createTargetCategories(int size){
-		List<String> result = new ArrayList<>();
-
-		for(int i = 0; i < size; i++){
-			result.add(String.valueOf(i));
-		}
-
-		return result;
 	}
 }

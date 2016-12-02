@@ -18,6 +18,9 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 
@@ -39,6 +42,27 @@ public class Classification extends ObjFunction {
 	@Override
 	public OpType getOpType(){
 		return OpType.CATEGORICAL;
+	}
+
+	@Override
+	public List<String> prepareTargetCategories(List<String> targetCategories){
+
+		if(targetCategories != null){
+
+			if(targetCategories.size() != this.num_class){
+				throw new IllegalArgumentException();
+			}
+
+			return targetCategories;
+		}
+
+		List<String> result = new ArrayList<>();
+
+		for(int i = 0; i < this.num_class; i++){
+			result.add(String.valueOf(i));
+		}
+
+		return result;
 	}
 
 	public int getNumClass(){
