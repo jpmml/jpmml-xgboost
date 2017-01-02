@@ -37,13 +37,12 @@ import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
-import org.jpmml.converter.Schema;
 
 public class FeatureMap {
 
-	private List<Feature> features = new ArrayList<>();
-
 	private Map<FieldName, DataField> dataFields = new LinkedHashMap<>();
+
+	private List<Feature> features = new ArrayList<>();
 
 
 	public FeatureMap(){
@@ -113,10 +112,10 @@ public class FeatureMap {
 		OpType opType = dataField.getOpType();
 		switch(opType){
 			case CATEGORICAL:
-				feature = new BinaryFeature(dataField, value);
+				feature = new BinaryFeature(null, dataField, value);
 				break;
 			case CONTINUOUS:
-				feature = new ContinuousFeature(dataField);
+				feature = new ContinuousFeature(null, dataField);
 				break;
 			default:
 				throw new IllegalArgumentException(type);
@@ -125,18 +124,12 @@ public class FeatureMap {
 		this.features.add(feature);
 	}
 
-	public Schema createSchema(FieldName targetField, List<String> targetCategories){
-		List<FieldName> activeFields = new ArrayList<>(this.dataFields.keySet());
-
-		Schema schema = new Schema(targetField, targetCategories, activeFields, this.features);
-
-		return schema;
+	public Map<FieldName, DataField> getDataFields(){
+		return this.dataFields;
 	}
 
-	public List<DataField> getDataFields(){
-		List<DataField> dataFields = new ArrayList<>(this.dataFields.values());
-
-		return dataFields;
+	public List<Feature> getFeatures(){
+		return this.features;
 	}
 
 	static

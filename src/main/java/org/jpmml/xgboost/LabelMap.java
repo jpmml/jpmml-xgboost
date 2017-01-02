@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2017 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,30 +18,42 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
+import java.util.Collections;
+import java.util.Map;
 
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.OpType;
-import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
 
-abstract
-public class Regression extends ObjFunction {
+public class LabelMap {
 
-	@Override
-	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories){
+	private DataField dataField = null;
 
-		if(targetCategories != null){
-			throw new IllegalArgumentException();
-		}
+	private Label label = null;
 
-		DataField dataField = new DataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);
-		Label label = new ContinuousLabel(dataField);
 
-		LabelMap labelMap = new LabelMap(dataField, label);
+	public LabelMap(DataField dataField, Label label){
+		setDataField(dataField);
+		setLabel(label);
+	}
 
-		return labelMap;
+	public Map<FieldName, DataField> getDataFields(){
+		return Collections.singletonMap(this.dataField.getName(), this.dataField);
+	}
+
+	public DataField getDataField(){
+		return this.dataField;
+	}
+
+	private void setDataField(DataField dataField){
+		this.dataField = dataField;
+	}
+
+	public Label getLabel(){
+		return this.label;
+	}
+
+	private void setLabel(Label label){
+		this.label = label;
 	}
 }

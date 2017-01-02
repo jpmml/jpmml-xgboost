@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;

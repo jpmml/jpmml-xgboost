@@ -21,14 +21,18 @@ package org.jpmml.xgboost;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.google.common.base.Function;
+import com.google.common.collect.Lists;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.FieldRef;
 import org.dmg.pmml.MiningFunction;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segment;
 import org.dmg.pmml.mining.Segmentation;
 import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
@@ -48,27 +52,30 @@ public class SoftMaxClassification extends Classification {
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		List<Segment> segments = segmentation.getSegments();
+		Function<Segment, Model> function = new Function<Segment, Model>(){
 
-		List<MiningModel> models = new ArrayList<>();
+			@Override
+			public Model apply(Segment segment){
+				return segment.getModel();
+			}
+		};
 
-		List<String> targetCategories = schema.getTargetCategories();
-		for(int i = 0; i < targetCategories.size(); i++){
-			String targetCategory = targetCategories.get(i);
+		List<Model> models = Lists.transform(segmentation.getSegments(), function);
 
-			List<Segment> valueSegments = getColumn(segments, i, (segments.size() / targetCategories.size()), targetCategories.size());
+		List<MiningModel> miningModels = new ArrayList<>();
 
-			Segmentation valueSegmentation = new Segmentation(Segmentation.MultipleModelMethod.SUM, valueSegments);
+		CategoricalLabel categoricalLabel = (CategoricalLabel)segmentSchema.getLabel();
 
-			MiningModel valueMiningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
-				.setSegmentation(valueSegmentation)
+		for(int i = 0, columns = categoricalLabel.size(), rows = (models.size() / columns); i < columns; i++){
+			MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
+				.setSegmentation(MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, getColumn(models, i, rows, columns)))
 				.setTargets(createTargets(base_score, segmentSchema))
-				.setOutput(createOutput(SoftMaxClassification.TRANSFORMATION, targetCategory));
+				.setOutput(createOutput(SoftMaxClassification.TRANSFORMATION, categoricalLabel.getValue(i)));
 
-			models.add(valueMiningModel);
+			miningModels.add(miningModel);
 		}
 
-		return MiningModelUtil.createClassification(schema, models, RegressionModel.NormalizationMethod.SIMPLEMAX, true);
+		return MiningModelUtil.createClassification(schema, miningModels, RegressionModel.NormalizationMethod.SIMPLEMAX, true);
 	}
 
 	static

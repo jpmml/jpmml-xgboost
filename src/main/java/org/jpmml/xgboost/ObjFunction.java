@@ -39,13 +39,7 @@ abstract
 public class ObjFunction {
 
 	abstract
-	public DataType getDataType();
-
-	abstract
-	public OpType getOpType();
-
-	abstract
-	public List<String> prepareTargetCategories(List<String> targetCategories);
+	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories);
 
 	abstract
 	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema);
@@ -54,7 +48,7 @@ public class ObjFunction {
 	public Targets createTargets(float base_score, Schema schema){
 
 		if(!ValueUtil.isZero(base_score)){
-			Target target = ModelUtil.createRescaleTarget(schema.getTargetField(), null, (double)base_score);
+			Target target = ModelUtil.createRescaleTarget(schema, null, (double)base_score);
 
 			Targets targets = new Targets()
 				.addTargets(target);

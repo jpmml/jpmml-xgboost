@@ -19,22 +19,13 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
-import org.dmg.pmml.DataDictionary;
-import org.dmg.pmml.DataField;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
-import org.dmg.pmml.Value;
-import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
-import org.jpmml.model.visitors.DataDictionaryCleaner;
-import org.jpmml.model.visitors.MiningSchemaCleaner;
 
 public class Learner {
 
@@ -108,32 +99,15 @@ public class Learner {
 			targetField = FieldName.create("_target");
 		}
 
-		DataField dataField = new DataField(targetField, this.obj.getOpType(), this.obj.getDataType());
+		LabelMap labelMap = this.obj.createLabelMap(targetField, targetCategories);
 
-		targetCategories = this.obj.prepareTargetCategories(targetCategories);
-		if(targetCategories != null && targetCategories.size() > 0){
-			List<Value> values = dataField.getValues();
+		XGBoostEncoder encoder = new XGBoostEncoder(labelMap, featureMap);
 
-			values.addAll(PMMLUtil.createValues(targetCategories));
-		}
-
-		Schema schema = featureMap.createSchema(targetField, targetCategories);
+		Schema schema = new Schema(labelMap.getLabel(), featureMap.getFeatures());
 
 		MiningModel miningModel = encodeMiningModel(schema);
 
-		List<DataField> dataFields = new ArrayList<>();
-		dataFields.add(dataField);
-		dataFields.addAll(featureMap.getDataFields());
-
-		DataDictionary dataDictionary = new DataDictionary(dataFields);
-
-		PMML pmml = new PMML("4.3", PMMLUtil.createHeader(Learner.class), dataDictionary)
-			.addModels(miningModel);
-
-		List<? extends Visitor> visitors = Arrays.asList(new MiningSchemaCleaner(), new DataDictionaryCleaner());
-		for(Visitor visitor : visitors){
-			visitor.applyTo(pmml);
-		}
+		PMML pmml = encoder.encodePMML(miningModel);
 
 		return pmml;
 	}

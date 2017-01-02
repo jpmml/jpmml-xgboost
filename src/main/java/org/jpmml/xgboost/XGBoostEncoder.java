@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2017 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,30 +18,22 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
+import java.util.Collection;
 
 import org.dmg.pmml.DataField;
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
-import org.dmg.pmml.OpType;
-import org.jpmml.converter.ContinuousLabel;
-import org.jpmml.converter.Label;
+import org.jpmml.converter.ModelEncoder;
 
-abstract
-public class Regression extends ObjFunction {
+public class XGBoostEncoder extends ModelEncoder {
 
-	@Override
-	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories){
+	public XGBoostEncoder(LabelMap labelMap, FeatureMap featureMap){
+		addDataFields((labelMap.getDataFields()).values());
+		addDataFields((featureMap.getDataFields()).values());
+	}
 
-		if(targetCategories != null){
-			throw new IllegalArgumentException();
+	private void addDataFields(Collection<DataField> dataFields){
+
+		for(DataField dataField : dataFields){
+			addDataField(dataField);
 		}
-
-		DataField dataField = new DataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);
-		Label label = new ContinuousLabel(dataField);
-
-		LabelMap labelMap = new LabelMap(dataField, label);
-
-		return labelMap;
 	}
 }

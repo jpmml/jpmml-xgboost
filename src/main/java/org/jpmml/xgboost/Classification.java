@@ -21,8 +21,13 @@ package org.jpmml.xgboost;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
+import org.jpmml.converter.CategoricalLabel;
+import org.jpmml.converter.Label;
+import org.jpmml.converter.PMMLUtil;
 
 abstract
 public class Classification extends ObjFunction {
@@ -35,17 +40,21 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public DataType getDataType(){
-		return DataType.STRING;
+	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories){
+		targetCategories = prepareTargetCategories(targetCategories);
+
+		DataField dataField = new DataField(targetField, OpType.CATEGORICAL, DataType.STRING);
+
+		PMMLUtil.addValues(dataField, targetCategories);
+
+		Label label = new CategoricalLabel(dataField);
+
+		LabelMap labelMap = new LabelMap(dataField, label);
+
+		return labelMap;
 	}
 
-	@Override
-	public OpType getOpType(){
-		return OpType.CATEGORICAL;
-	}
-
-	@Override
-	public List<String> prepareTargetCategories(List<String> targetCategories){
+	private List<String> prepareTargetCategories(List<String> targetCategories){
 
 		if(targetCategories != null){
 
