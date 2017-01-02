@@ -24,6 +24,8 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +39,7 @@ import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
+import org.jpmml.converter.PMMLUtil;
 
 public class FeatureMap {
 
@@ -101,10 +104,10 @@ public class FeatureMap {
 			dataField = createDataField(name, type);
 
 			this.dataFields.put(name, dataField);
-		}
+		} // End if
 
 		if(value != null){
-			dataField.addValues(new Value(value));
+			PMMLUtil.addValues(dataField, Collections.singletonList(value));
 		}
 
 		Feature feature;
@@ -122,6 +125,18 @@ public class FeatureMap {
 		}
 
 		this.features.add(feature);
+	}
+
+	public void addMissingValue(String value){
+
+		if(value == null){
+			return;
+		}
+
+		Collection<DataField> dataFields = (this.dataFields).values();
+		for(DataField dataField : dataFields){
+			PMMLUtil.addValues(dataField, Collections.singletonList(value), Value.Property.MISSING);
+		}
 	}
 
 	public Map<FieldName, DataField> getDataFields(){

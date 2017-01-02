@@ -56,6 +56,12 @@ public class Main {
 	private File learnerInput = null;
 
 	@Parameter (
+		names = {"--missing-value"},
+		description = "String representation of feature value(s) that should be regarded as missing"
+	)
+	private String missingValue = null;
+
+	@Parameter (
 		names = {"--pmml-output"},
 		description = "PMML output file",
 		required = true
@@ -121,6 +127,10 @@ public class Main {
 
 		try(InputStream is = new FileInputStream(this.fmapInput)){
 			featureMap = XGBoostUtil.loadFeatureMap(is);
+		}
+
+		if(this.missingValue != null){
+			featureMap.addMissingValue(this.missingValue);
 		}
 
 		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
