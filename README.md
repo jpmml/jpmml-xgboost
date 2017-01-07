@@ -26,11 +26,10 @@ A typical workflow can be summarized as follows:
 
 ### The XGBoost side of operations
 
-Using the [`xgboost` package] (http://cran.r-project.org/web/packages/xgboost/) to train a linear regression model for the example `mtcars` dataset:
+Using [`r2pmml`] (https://github.com/jpmml/r2pmml) and [`xgboost`] (http://cran.r-project.org/web/packages/xgboost/) packages to train a linear regression model for the example `mtcars` dataset:
 ```R
+library("r2pmml")
 library("xgboost")
-
-source("src/main/R/util.R")
 
 data(mtcars)
 
@@ -44,11 +43,12 @@ mtcars$carb = as.integer(mtcars$carb)
 mpg_y = mtcars[, 1]
 mpg_X = mtcars[, 2:ncol(mtcars)]
 
-# Generate DMatrix file
-mpg.dmatrix = genDMatrix(mpg_y, mpg_X, "xgboost.svm")
+# Generate feature map
+mpg.fmap = r2pmml::genFMap(mpg_X)
+r2pmml::writeFMap(mpg.fmap, "xgboost.fmap")
 
-# Generate feature map file
-mpg.fmap = genFMap(mpg_X, "xgboost.fmap")
+# Generate DMatrix
+mpg.dmatrix = r2pmml::genDMatrix(mpg_y, mpg_X, "xgboost.svm")
 
 set.seed(31)
 
@@ -61,8 +61,6 @@ xgb.save(mpg.xgb, "xgboost.model")
 # Dump the model in text format
 xgb.dump(mpg.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 ```
-
-The utility functions `genDMatrix(y, x, file)` and `genFMap(x, file)` are defined in the [`util.R`] (https://github.com/jpmml/jpmml-xgboost/blob/master/src/main/R/util.R) file.
 
 ### The JPMML-XGBoost side of operations
 

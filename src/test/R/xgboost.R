@@ -3,9 +3,8 @@
 #remove.packages("xgboost")
 #install.packages("xgboost", repos="http://dmlc.ml/drat/", type="source")
 
+library("r2pmml")
 library("xgboost")
-
-source("../../main/R/util.R")
 
 setwd("../resources/")
 
@@ -41,7 +40,9 @@ insertNA = function(df){
 #
 
 genAutoMpg = function(auto_y, auto_X, dataset){
-	auto.fmap = genFMap(auto_X, csvFile(dataset, ".fmap"))
+	auto.fmap = genFMap(auto_X)
+	writeFMap(auto.fmap, csvFile(dataset, ".fmap"))
+
 	auto.dmatrix = genDMatrix(auto_y, auto_X, csvFile(dataset, ".svm"))
 
 	funcAndDataset = paste("LinearRegression", dataset, sep = "")
@@ -77,7 +78,9 @@ genAutoMpg(auto_y, auto_X, "AutoNA")
 #
 
 genVisitCount = function(visit_y, visit_X, dataset){
-	visit.fmap = genFMap(visit_X, csvFile(dataset, ".fmap"))
+	visit.fmap = genFMap(visit_X)
+	writeFMap(visit.fmap, csvFile(dataset, ".fmap"))
+
 	visit.dmatrix = genDMatrix(visit_y, visit_X, csvFile(dataset, ".svm"))
 
 	funcAndDataset = paste("PoissonRegression", dataset, sep = "")
@@ -111,7 +114,9 @@ genVisitCount(visit_y, visit_X, "VisitNA")
 #
 
 genAuditAdjusted = function(audit_y, audit_X, dataset){
-	audit.fmap = genFMap(audit_X, csvFile(dataset, ".fmap"))
+	audit.fmap = genFMap(audit_X)
+	writeFMap(audit.fmap, csvFile(dataset, ".fmap"))
+
 	audit.dmatrix = genDMatrix(audit_y, audit_X, csvFile(dataset, ".svm"))
 
 	funcAndDataset = paste("LogisticRegression", dataset, sep = "")
@@ -161,7 +166,9 @@ genAuditAdjusted(audit_y, audit_X, "AuditNA")
 #
 
 genIrisSpecies = function(iris_y, iris_X, dataset){
-	iris.fmap = genFMap(iris_X, csvFile(dataset, ".fmap"))
+	iris.fmap = genFMap(iris_X)
+	writeFMap(iris.fmap, csvFile(dataset, ".fmap"))
+
 	iris.dmatrix = genDMatrix(iris_y, iris_X, csvFile(dataset, ".svm"))
 
 	funcAndDataset = paste("SoftMaxClassification", dataset, sep = "")
