@@ -263,7 +263,7 @@ booster[6]
 				22:[acceleration<16.6] yes=45,no=46,missing=45
 					45:[weight<3211] yes=79,no=80,missing=79
 						79:leaf=1.09676
-						80:leaf=0.0284772
+						80:leaf=0.0284769
 					46:[displacement<104] yes=81,no=82,missing=82
 						81:leaf=0.710271
 						82:leaf=0.245312
@@ -365,7 +365,7 @@ booster[7]
 					46:leaf=0.43785
 			14:[horsepower<271] yes=27,no=28,missing=28
 				27:[displacement<103] yes=47,no=48,missing=48
-					47:leaf=0.00860367
+					47:leaf=0.0086031
 					48:[acceleration<19.75] yes=65,no=66,missing=66
 						65:leaf=0.528357
 						66:leaf=0.17922
@@ -437,7 +437,7 @@ booster[8]
 			13:[weight<2796] yes=27,no=28,missing=28
 				27:[displacement<101] yes=51,no=52,missing=52
 					51:[cylinders=3] yes=78,no=77
-						77:leaf=-0.0416702
+						77:leaf=-0.0416697
 						78:leaf=0.0359771
 					52:[weight<2463] yes=79,no=80,missing=80
 						79:leaf=0.729561
@@ -479,7 +479,7 @@ booster[9]
 				17:leaf=1.04215
 				18:[displacement<101.5] yes=35,no=36,missing=36
 					35:[weight<2049] yes=61,no=62,missing=62
-						61:leaf=0.216329
+						61:leaf=0.21633
 						62:leaf=-0.0758346
 					36:[model_year<81] yes=63,no=64,missing=64
 						63:leaf=0.202026
@@ -558,7 +558,7 @@ booster[10]
 		3:[displacement<101.5] yes=7,no=8,missing=8
 			7:[acceleration<13.9] yes=15,no=16,missing=16
 				15:[displacement<94] yes=31,no=32,missing=32
-					31:leaf=0.989464
+					31:leaf=0.989465
 					32:leaf=0.121087
 				16:[weight<1830] yes=33,no=34,missing=34
 					33:leaf=0.346297
@@ -614,7 +614,7 @@ booster[10]
 						70:leaf=0.121887
 					50:[weight<2360] yes=71,no=72,missing=71
 						71:leaf=-0.172681
-						72:leaf=0.0911436
+						72:leaf=0.0911435
 		6:[displacement<247] yes=13,no=14,missing=13
 			13:[displacement<184] yes=27,no=28,missing=27
 				27:[cylinders=5] yes=52,no=51
@@ -640,10 +640,10 @@ booster[11]
 			8:[displacement<101.5] yes=17,no=18,missing=18
 				17:[horsepower<67] yes=31,no=32,missing=32
 					31:[weight<2049] yes=51,no=52,missing=52
-						51:leaf=0.227301
+						51:leaf=0.2273
 						52:leaf=-0.0547906
 					32:[displacement<94] yes=53,no=54,missing=54
-						53:leaf=0.104066
+						53:leaf=0.104065
 						54:leaf=-0.122626
 				18:[horsepower<55] yes=33,no=34,missing=33
 					33:leaf=0.808105
@@ -655,7 +655,7 @@ booster[11]
 				19:[weight<2125] yes=35,no=36,missing=36
 					35:[weight<2115] yes=57,no=58,missing=58
 						57:leaf=-0.0721384
-						58:leaf=0.0267355
+						58:leaf=0.0267359
 					36:[weight<2133] yes=59,no=60,missing=60
 						59:leaf=0.255077
 						60:leaf=0.0395119
@@ -664,8 +664,8 @@ booster[11]
 				21:[origin=3] yes=38,no=37
 					37:[displacement<82] yes=61,no=62,missing=61
 						61:leaf=0.339117
-						62:leaf=0.940759
-					38:leaf=0.225394
+						62:leaf=0.940758
+					38:leaf=0.225395
 				22:leaf=0.129239
 	2:[model_year<74] yes=5,no=6,missing=6
 		5:[weight<4482] yes=11,no=12,missing=11
@@ -675,12 +675,12 @@ booster[11]
 						63:leaf=0.206687
 						64:leaf=-0.120798
 					40:[cylinders=6] yes=66,no=65
-						65:leaf=-0.185019
+						65:leaf=-0.185018
 						66:leaf=-0.0096797
 				24:[cylinders=4] yes=42,no=41
 					41:[acceleration<12.25] yes=67,no=68,missing=67
-						67:leaf=0.157095
-						68:leaf=-0.0339375
+						67:leaf=0.157096
+						68:leaf=-0.0339374
 					42:[acceleration<18.5] yes=69,no=70,missing=69
 						69:leaf=0.408691
 						70:leaf=0.0697765
@@ -688,8 +688,8 @@ booster[11]
 				25:[cylinders=8] yes=44,no=43
 					43:leaf=-0.201392
 					44:[horsepower<163] yes=71,no=72,missing=72
-						71:leaf=0.0210739
-						72:leaf=0.0804668
+						71:leaf=0.021074
+						72:leaf=0.080467
 				26:leaf=-0.233655
 		6:[weight<2579] yes=13,no=14,missing=14
 			13:[horsepower<88] yes=27,no=28,missing=28
@@ -711,7 +711,7 @@ booster[11]
 				29:leaf=-0.550767
 				30:[model_year<79] yes=49,no=50,missing=49
 					49:[cylinders=4] yes=82,no=81
-						81:leaf=0.0978093
+						81:leaf=0.0978094
 						82:leaf=0.251656
 					50:[displacement<247] yes=83,no=84,missing=83
 						83:leaf=0.22931
@@ -729,7 +729,7 @@ booster[12]
 						53:leaf=0.0546957
 						54:leaf=0.245504
 					32:[weight<1993] yes=55,no=56,missing=56
-						55:leaf=0.0270357
+						55:leaf=0.0270355
 						56:leaf=0.152628
 				18:[horsepower<55] yes=33,no=34,missing=33
 					33:leaf=0.626281
@@ -763,7 +763,7 @@ booster[12]
 						66:leaf=-0.215506
 					40:[acceleration<12] yes=67,no=68,missing=67
 						67:leaf=0.358881
-						68:leaf=0.059021
+						68:leaf=0.0590211
 			12:[horsepower<107] yes=25,no=26,missing=25
 				25:[weight<2712] yes=41,no=42,missing=42
 					41:[displacement<131] yes=69,no=70,missing=70
@@ -771,19 +771,19 @@ booster[12]
 						70:leaf=0.248437
 					42:[weight<3393] yes=71,no=72,missing=71
 						71:leaf=-0.186459
-						72:leaf=-0.019776
+						72:leaf=-0.0197759
 				26:[weight<4449] yes=43,no=44,missing=43
 					43:[acceleration<18] yes=73,no=74,missing=74
 						73:leaf=0.272117
 						74:leaf=0.0429766
 					44:[acceleration<13.25] yes=75,no=76,missing=76
-						75:leaf=0.0174932
+						75:leaf=0.0174934
 						76:leaf=-0.162148
 		6:[cylinders=8] yes=14,no=13
 			13:[origin=2] yes=28,no=27
 				27:[acceleration<15.15] yes=45,no=46,missing=45
 					45:[weight<2475] yes=77,no=78,missing=77
-						77:leaf=0.364766
+						77:leaf=0.364765
 						78:leaf=0.118893
 					46:[weight<2246] yes=79,no=80,missing=80
 						79:leaf=-0.271901
@@ -791,21 +791,21 @@ booster[12]
 				28:[horsepower<123] yes=47,no=48,missing=48
 					47:[displacement<118.5] yes=81,no=82,missing=82
 						81:leaf=0.242059
-						82:leaf=0.018903
+						82:leaf=0.0189029
 					48:leaf=-0.436518
 			14:[acceleration<12.35] yes=29,no=30,missing=30
 				29:[weight<4361] yes=49,no=50,missing=50
 					49:[horsepower<195] yes=83,no=84,missing=84
 						83:leaf=0.18766
-						84:leaf=0.00878563
+						84:leaf=0.00878592
 					50:leaf=0.330735
 				30:[model_year<78] yes=51,no=52,missing=51
 					51:[weight<3856] yes=85,no=86,missing=85
 						85:leaf=-0.305924
-						86:leaf=-0.00787493
+						86:leaf=-0.00787476
 					52:[displacement<334.5] yes=87,no=88,missing=88
-						87:leaf=0.34349
-						88:leaf=0.00788536
+						87:leaf=0.343491
+						88:leaf=0.00788555
 booster[13]
 0:[horsepower<80] yes=1,no=2,missing=2
 	1:[weight<2793] yes=3,no=4,missing=3
@@ -814,23 +814,23 @@ booster[13]
 				15:[weight<2011] yes=27,no=28,missing=27
 					27:[displacement<77] yes=49,no=50,missing=50
 						49:leaf=0.0431376
-						50:leaf=0.218463
+						50:leaf=0.218464
 					28:leaf=-0.0286048
 				16:[horsepower<48] yes=29,no=30,missing=30
-					29:leaf=0.134933
-					30:leaf=0.5032
+					29:leaf=0.134934
+					30:leaf=0.503199
 			8:[acceleration<15.1] yes=17,no=18,missing=18
 				17:[cylinders=4] yes=32,no=31
 					31:[model_year<78] yes=51,no=52,missing=51
-						51:leaf=0.0952058
+						51:leaf=0.095206
 						52:leaf=-0.0695316
 					32:[model_year<77] yes=53,no=54,missing=54
 						53:leaf=0.064485
 						54:leaf=0.455454
 				18:[acceleration<15.75] yes=33,no=34,missing=34
 					33:[horsepower<69] yes=55,no=56,missing=56
-						55:leaf=-0.276958
-						56:leaf=-0.0453047
+						55:leaf=-0.276959
+						56:leaf=-0.045305
 					34:[displacement<93.5] yes=57,no=58,missing=57
 						57:leaf=0.23314
 						58:leaf=0.0112288
@@ -842,7 +842,7 @@ booster[13]
 			11:[displacement<97.75] yes=19,no=20,missing=20
 				19:[origin=1] yes=36,no=35
 					35:[acceleration<14.05] yes=59,no=60,missing=60
-						59:leaf=-0.0848685
+						59:leaf=-0.0848684
 						60:leaf=0.171735
 					36:leaf=-0.185193
 				20:[acceleration<17.1] yes=37,no=38,missing=38
@@ -850,7 +850,7 @@ booster[13]
 					38:leaf=-0.0175547
 			12:[displacement<87.5] yes=21,no=22,missing=22
 				21:[cylinders=3] yes=40,no=39
-					39:leaf=0.0120134
+					39:leaf=0.0120129
 					40:leaf=0.0509849
 				22:leaf=0.948348
 		6:[model_year<74] yes=13,no=14,missing=13
@@ -889,11 +889,11 @@ booster[14]
 			7:[horsepower<74] yes=15,no=16,missing=16
 				15:[displacement<195] yes=31,no=32,missing=32
 					31:[weight<2351] yes=61,no=62,missing=62
-						61:leaf=0.0562592
+						61:leaf=0.0562593
 						62:leaf=0.2348
 					32:[model_year<75] yes=63,no=64,missing=64
-						63:leaf=0.0289892
-						64:leaf=-0.0887285
+						63:leaf=0.028989
+						64:leaf=-0.0887283
 				16:[weight<2248] yes=33,no=34,missing=33
 					33:[weight<2141] yes=65,no=66,missing=66
 						65:leaf=0.0768514
@@ -908,7 +908,7 @@ booster[14]
 						70:leaf=-0.0992149
 					36:leaf=0.000530434
 				18:[displacement<90.5] yes=37,no=38,missing=38
-					37:leaf=0.120244
+					37:leaf=0.120245
 					38:[cylinders=4] yes=72,no=71
 						71:leaf=-0.012089
 						72:leaf=0.00533924
@@ -917,10 +917,10 @@ booster[14]
 				19:[acceleration<17.85] yes=39,no=40,missing=39
 					39:[acceleration<15.1] yes=73,no=74,missing=74
 						73:leaf=0.352119
-						74:leaf=0.0602209
+						74:leaf=0.0602205
 					40:[displacement<91.5] yes=75,no=76,missing=76
 						75:leaf=0.688502
-						76:leaf=0.114693
+						76:leaf=0.114694
 				20:[displacement<114] yes=41,no=42,missing=42
 					41:[acceleration<16.65] yes=77,no=78,missing=78
 						77:leaf=-0.0618372
@@ -954,11 +954,11 @@ booster[14]
 						88:leaf=0.0831688
 			12:[displacement<87.5] yes=25,no=26,missing=26
 				25:[cylinders=3] yes=52,no=51
-					51:leaf=0.0102116
+					51:leaf=0.010211
 					52:leaf=0.0433371
 				26:[cylinders=4] yes=54,no=53
 					53:leaf=0.806096
-					54:leaf=0.0713905
+					54:leaf=0.07139
 		6:[horsepower<87] yes=13,no=14,missing=14
 			13:[displacement<243.5] yes=27,no=28,missing=27
 				27:[model_year<82] yes=55,no=56,missing=55

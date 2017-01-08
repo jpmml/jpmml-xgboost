@@ -1,8 +1,3 @@
-#install.packages("drat", repos="https://cran.rstudio.com")
-#drat:::addRepo("dmlc")
-#remove.packages("xgboost")
-#install.packages("xgboost", repos="http://dmlc.ml/drat/", type="source")
-
 library("r2pmml")
 library("xgboost")
 
