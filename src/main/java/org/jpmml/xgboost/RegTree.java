@@ -151,17 +151,24 @@ public class RegTree {
 			value = binaryFeature.getValue();
 		} else
 
-		if(feature instanceof ContinuousFeature){
-			ContinuousFeature continuousFeature = (ContinuousFeature)feature;
+		{
+			ContinuousFeature continuousFeature = feature.toContinuousFeature();
 
-			Number splitCondition = encodeSplitCondition(continuousFeature.getDataType(), node.split_cond());
+			Number splitValue = Float.intBitsToFloat(node.split_cond());
+
+			DataType dataType = continuousFeature.getDataType();
+			switch(dataType){
+				case INTEGER:
+					splitValue = (int)(splitValue.floatValue() + 1f);
+					break;
+				case FLOAT:
+					break;
+				default:
+					throw new IllegalArgumentException();
+			}
 
 			operator = (left ? SimplePredicate.Operator.LESS_THAN : SimplePredicate.Operator.GREATER_OR_EQUAL);
-			value = ValueUtil.formatValue(splitCondition);
-		} else
-
-		{
-			throw new IllegalArgumentException();
+			value = ValueUtil.formatValue(splitValue);
 		}
 
 		SimplePredicate simplePredicate = new SimplePredicate(name, operator)
@@ -171,30 +178,14 @@ public class RegTree {
 	}
 
 	static
-	private Number encodeSplitCondition(DataType dataType, int splitCondition){
-		float value = Float.intBitsToFloat(splitCondition);
-
-		switch(dataType){
-			case INTEGER:
-				return ((int)(value + 1f));
-			default:
-				return value;
-		}
-	}
-
-	static
 	private boolean isDefaultLeft(Feature feature, Node node){
 
 		if(feature instanceof BinaryFeature){
 			return true;
 		} else
 
-		if(feature instanceof ContinuousFeature){
-			return node.default_left();
-		} else
-
 		{
-			throw new IllegalArgumentException();
+			return node.default_left();
 		}
 	}
 }

@@ -112,6 +112,9 @@ public class Learner {
 		return pmml;
 	}
 
+	/**
+	 * @see XGBoostUtil#toXGBoostSchema(Schema)
+	 */
 	public MiningModel encodeMiningModel(Schema schema){
 		return this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
 	}

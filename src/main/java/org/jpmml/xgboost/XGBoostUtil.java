@@ -20,6 +20,14 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.ArrayList;
+import java.util.List;
+
+import org.dmg.pmml.DataType;
+import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.Feature;
+import org.jpmml.converter.Schema;
 
 public class XGBoostUtil {
 
@@ -47,5 +55,42 @@ public class XGBoostUtil {
 		featureMap.load(is);
 
 		return featureMap;
+	}
+
+	static
+	public Schema toXGBoostSchema(Schema schema){
+		List<Feature> xgbFeatures = new ArrayList<>();
+
+		List<Feature> features = schema.getFeatures();
+		for(Feature feature : features){
+
+			if(feature instanceof BinaryFeature){
+				BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+				xgbFeatures.add(binaryFeature);
+			} else
+
+			{
+				ContinuousFeature continuousFeature = feature.toContinuousFeature();
+
+				DataType dataType = continuousFeature.getDataType();
+				switch(dataType){
+					case INTEGER:
+					case FLOAT:
+						break;
+					case DOUBLE:
+						continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+
+				xgbFeatures.add(continuousFeature);
+			}
+		}
+
+		Schema xgbSchema = new Schema(schema.getLabel(), xgbFeatures);
+
+		return xgbSchema;
 	}
 }
