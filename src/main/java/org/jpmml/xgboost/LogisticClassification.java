@@ -18,9 +18,14 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.MiningFunction;
+import java.util.List;
+
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.FieldName;
+import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
-import org.dmg.pmml.mining.Segmentation;
+import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -32,14 +37,12 @@ public class LogisticClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
-		Schema segmentSchema = schema.toAnonymousSchema();
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+		Schema segmentSchema = new Schema(new ContinuousLabel(null, DataType.FLOAT), schema.getFeatures());
 
-		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
-			.setSegmentation(segmentation)
-			.setTargets(createTargets(base_score, segmentSchema))
-			.setOutput(createOutput(null));
+		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createBinaryLogisticClassification(schema, miningModel, -1d, true);
+		return MiningModelUtil.createBinaryLogisticClassification(schema, miningModel, RegressionModel.NormalizationMethod.SOFTMAX, 0d, 1d, true);
 	}
 }

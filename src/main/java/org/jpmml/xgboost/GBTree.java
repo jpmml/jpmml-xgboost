@@ -23,10 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.mining.MiningModel;
-import org.dmg.pmml.mining.Segmentation;
-import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.mining.MiningModelUtil;
 
 public class GBTree {
 
@@ -77,21 +74,7 @@ public class GBTree {
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Schema schema){
-		List<TreeModel> treeModels = new ArrayList<>();
-
-		Schema segmentSchema = schema.toAnonymousSchema();
-
-		for(int i = 0; i < this.trees.size(); i++){
-			RegTree tree = this.trees.get(i);
-
-			TreeModel treeModel = tree.encodeTreeModel(segmentSchema);
-
-			treeModels.add(treeModel);
-		}
-
-		Segmentation segmentation = MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels);
-
-		return obj.encodeMiningModel(segmentation, base_score, schema);
+		return obj.encodeMiningModel(this.trees, base_score, schema);
 	}
 
 	public List<RegTree> getTrees(){

@@ -18,37 +18,26 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.Expression;
+import java.util.List;
+
+import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.FieldRef;
-import org.dmg.pmml.MiningFunction;
+import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
-import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.SigmoidTransformation;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 public class LogisticRegression extends Regression {
 
 	@Override
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema){
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(segmentSchema))
-			.setSegmentation(segmentation)
-			.setTargets(createTargets(base_score, segmentSchema))
-			.setOutput(createOutput(LogisticRegression.TRANSFORMATION));
+		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT, new SigmoidTransformation(-1f)));
 
 		return MiningModelUtil.createRegression(schema, miningModel);
 	}
-
-	// "1 / (1 + exp(-1 * y))"
-	private static final Transformation TRANSFORMATION = new Transformation(){
-
-		@Override
-		public Expression createExpression(FieldName name){
-			return PMMLUtil.createApply("/", PMMLUtil.createConstant(1f), PMMLUtil.createApply("+", PMMLUtil.createConstant(1f), PMMLUtil.createApply("exp", PMMLUtil.createApply("*", PMMLUtil.createConstant(-1f), new FieldRef(name)))));
-		}
-	};
 }

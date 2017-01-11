@@ -21,9 +21,8 @@ package org.jpmml.xgboost;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
-import java.util.List;
 
+import com.google.common.base.Function;
 import org.dmg.pmml.DataType;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
@@ -72,38 +71,37 @@ public class XGBoostUtil {
 
 	static
 	public Schema toXGBoostSchema(Schema schema){
-		List<Feature> xgbFeatures = new ArrayList<>();
+		Function<Feature, Feature> function = new Function<Feature, Feature>(){
 
-		List<Feature> features = schema.getFeatures();
-		for(Feature feature : features){
+			@Override
+			public Feature apply(Feature feature){
 
-			if(feature instanceof BinaryFeature){
-				BinaryFeature binaryFeature = (BinaryFeature)feature;
+				if(feature instanceof BinaryFeature){
+					BinaryFeature binaryFeature = (BinaryFeature)feature;
 
-				xgbFeatures.add(binaryFeature);
-			} else
+					return binaryFeature;
+				} else
 
-			{
-				ContinuousFeature continuousFeature = feature.toContinuousFeature();
+				{
+					ContinuousFeature continuousFeature = feature.toContinuousFeature();
 
-				DataType dataType = continuousFeature.getDataType();
-				switch(dataType){
-					case INTEGER:
-					case FLOAT:
-						break;
-					case DOUBLE:
-						continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
-						break;
-					default:
-						throw new IllegalArgumentException();
+					DataType dataType = continuousFeature.getDataType();
+					switch(dataType){
+						case INTEGER:
+						case FLOAT:
+							break;
+						case DOUBLE:
+							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
+							break;
+						default:
+							throw new IllegalArgumentException();
+					}
+
+					return continuousFeature;
 				}
-
-				xgbFeatures.add(continuousFeature);
 			}
-		}
+		};
 
-		Schema xgbSchema = new Schema(schema.getLabel(), xgbFeatures);
-
-		return xgbSchema;
+		return schema.toTransformedSchema(function);
 	}
 }

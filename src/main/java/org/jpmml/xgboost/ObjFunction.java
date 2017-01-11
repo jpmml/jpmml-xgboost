@@ -18,22 +18,17 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.OpType;
-import org.dmg.pmml.Output;
-import org.dmg.pmml.OutputField;
-import org.dmg.pmml.ResultFeature;
-import org.dmg.pmml.Target;
-import org.dmg.pmml.Targets;
+import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
+import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.ValueUtil;
+import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
 public class ObjFunction {
@@ -42,57 +37,24 @@ public class ObjFunction {
 	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories);
 
 	abstract
-	public MiningModel encodeMiningModel(Segmentation segmentation, float base_score, Schema schema);
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema);
 
 	static
-	public Targets createTargets(float base_score, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+		Schema segmentSchema = schema.toAnonymousSchema();
 
-		if(!ValueUtil.isZero(base_score)){
-			Target target = ModelUtil.createRescaleTarget(schema, null, (double)base_score);
+		List<TreeModel> treeModels = new ArrayList<>();
 
-			Targets targets = new Targets()
-				.addTargets(target);
+		for(RegTree regTree : regTrees){
+			TreeModel treeModel = regTree.encodeTreeModel(segmentSchema);
 
-			return targets;
+			treeModels.add(treeModel);
 		}
 
-		return null;
-	}
+		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema))
+			.setSegmentation(MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels))
+			.setTargets(ModelUtil.createRescaleTargets(schema, null, base_score));
 
-	static
-	public Output createOutput(Transformation transformation){
-		return createOutput(transformation, null);
-	}
-
-	static
-	public Output createOutput(Transformation transformation, String targetCategory){
-		Output output = new Output();
-
-		String suffix = (targetCategory != null ? ("_" + targetCategory) : "");
-
-		OutputField xgbValue = new OutputField(FieldName.create("xgbValue" + suffix), DataType.FLOAT)
-			.setOpType(OpType.CONTINUOUS)
-			.setResultFeature(ResultFeature.PREDICTED_VALUE)
-			.setFinalResult(false);
-
-		output.addOutputFields(xgbValue);
-
-		if(transformation != null){
-			OutputField transformedXgbValue = new OutputField(FieldName.create("transformedXgbValue" + suffix), DataType.FLOAT)
-				.setOpType(OpType.CONTINUOUS)
-				.setResultFeature(ResultFeature.TRANSFORMED_VALUE)
-				.setFinalResult(false)
-				.setExpression(transformation.createExpression(xgbValue.getName()));
-
-			output.addOutputFields(transformedXgbValue);
-		}
-
-		return output;
-	}
-
-	static
-	public interface Transformation {
-
-		Expression createExpression(FieldName name);
+		return miningModel;
 	}
 }

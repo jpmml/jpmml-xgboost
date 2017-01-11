@@ -38,6 +38,7 @@ public class Regression extends ObjFunction {
 		}
 
 		DataField dataField = new DataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);
+
 		Label label = new ContinuousLabel(dataField);
 
 		LabelMap labelMap = new LabelMap(dataField, label);
