@@ -49,11 +49,11 @@ public class Main {
 	private boolean help = false;
 
 	@Parameter (
-		names = {"--learner-input", "--model-input"},
-		description = "XGBoost learner input file",
+		names = {"--model-input"},
+		description = "XGBoost model input file",
 		required = true
 	)
-	private File learnerInput = null;
+	private File modelInput = null;
 
 	@Parameter (
 		names = {"--missing-value"},
@@ -119,7 +119,7 @@ public class Main {
 	private void run() throws Exception {
 		Learner learner;
 
-		try(InputStream is = new FileInputStream(this.learnerInput)){
+		try(InputStream is = new FileInputStream(this.modelInput)){
 			learner = XGBoostUtil.loadLearner(is);
 		}
 
