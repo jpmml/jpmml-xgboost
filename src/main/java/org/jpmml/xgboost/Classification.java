@@ -27,7 +27,7 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.Label;
-import org.jpmml.converter.PMMLUtil;
+import org.jpmml.converter.PMMLEncoder;
 
 abstract
 public class Classification extends ObjFunction {
@@ -40,18 +40,12 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories){
+	public Label encodeLabel(FieldName targetField, List<String> targetCategories, PMMLEncoder encoder){
 		targetCategories = prepareTargetCategories(targetCategories);
 
-		DataField dataField = new DataField(targetField, OpType.CATEGORICAL, DataType.STRING);
+		DataField dataField = encoder.createDataField(targetField, OpType.CATEGORICAL, DataType.STRING, targetCategories);
 
-		PMMLUtil.addValues(dataField, targetCategories);
-
-		Label label = new CategoricalLabel(dataField);
-
-		LabelMap labelMap = new LabelMap(dataField, label);
-
-		return labelMap;
+		return new CategoricalLabel(dataField);
 	}
 
 	private List<String> prepareTargetCategories(List<String> targetCategories){

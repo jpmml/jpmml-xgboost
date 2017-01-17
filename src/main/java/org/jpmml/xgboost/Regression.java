@@ -26,23 +26,20 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
+import org.jpmml.converter.PMMLEncoder;
 
 abstract
 public class Regression extends ObjFunction {
 
 	@Override
-	public LabelMap createLabelMap(FieldName targetField, List<String> targetCategories){
+	public Label encodeLabel(FieldName targetField, List<String> targetCategories, PMMLEncoder encoder){
 
 		if(targetCategories != null){
 			throw new IllegalArgumentException();
 		}
 
-		DataField dataField = new DataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);
+		DataField dataField = encoder.createDataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);
 
-		Label label = new ContinuousLabel(dataField);
-
-		LabelMap labelMap = new LabelMap(dataField, label);
-
-		return labelMap;
+		return new ContinuousLabel(dataField);
 	}
 }

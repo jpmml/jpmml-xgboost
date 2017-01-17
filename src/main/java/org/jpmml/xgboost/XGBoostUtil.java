@@ -21,8 +21,14 @@ package org.jpmml.xgboost;
 import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.util.Iterator;
+import java.util.List;
+import java.util.StringTokenizer;
 
 import com.google.common.base.Function;
+import com.google.common.io.CharStreams;
 import org.dmg.pmml.DataType;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
@@ -64,7 +70,26 @@ public class XGBoostUtil {
 	static
 	public FeatureMap loadFeatureMap(InputStream is) throws IOException {
 		FeatureMap featureMap = new FeatureMap();
-		featureMap.load(is);
+
+		Iterator<String> lines = parseFeatureMap(is);
+		for(int i = 0; lines.hasNext(); i++){
+			String line = lines.next();
+
+			StringTokenizer st = new StringTokenizer(line, "\t");
+			if(st.countTokens() != 3){
+				throw new IllegalArgumentException(line);
+			}
+
+			String id = st.nextToken();
+			String name = st.nextToken();
+			String type = st.nextToken();
+
+			if(Integer.parseInt(id) != i){
+				throw new IllegalArgumentException(id);
+			}
+
+			featureMap.addEntry(name, type);
+		}
 
 		return featureMap;
 	}
@@ -103,5 +128,14 @@ public class XGBoostUtil {
 		};
 
 		return schema.toTransformedSchema(function);
+	}
+
+	static
+	private Iterator<String> parseFeatureMap(InputStream is) throws IOException {
+		Reader reader = new InputStreamReader(is, "UTF-8");
+
+		List<String> lines = CharStreams.readLines(reader);
+
+		return lines.iterator();
 	}
 }

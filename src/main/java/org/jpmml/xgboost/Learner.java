@@ -25,6 +25,8 @@ import java.util.Map;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.mining.MiningModel;
+import org.jpmml.converter.Feature;
+import org.jpmml.converter.Label;
 import org.jpmml.converter.Schema;
 
 public class Learner {
@@ -94,16 +96,17 @@ public class Learner {
 	}
 
 	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
+		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		if(targetField == null){
 			targetField = FieldName.create("_target");
 		}
 
-		LabelMap labelMap = this.obj.createLabelMap(targetField, targetCategories);
+		Label label = this.obj.encodeLabel(targetField, targetCategories, encoder);
 
-		XGBoostEncoder encoder = new XGBoostEncoder(labelMap, featureMap);
+		List<Feature> features = featureMap.encodeFeatures(encoder);
 
-		Schema schema = new Schema(labelMap.getLabel(), featureMap.getFeatures());
+		Schema schema = new Schema(label, features);
 
 		MiningModel miningModel = encodeMiningModel(schema);
 

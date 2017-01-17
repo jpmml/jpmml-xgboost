@@ -18,18 +18,14 @@
  */
 package org.jpmml.xgboost;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.LinkedHashMap;
+import java.util.EnumMap;
+import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
-import java.util.StringTokenizer;
+import java.util.Set;
 
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
@@ -39,53 +35,89 @@ import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
+import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PMMLUtil;
 
 public class FeatureMap {
 
-	private Map<FieldName, DataField> dataFields = new LinkedHashMap<>();
+	private List<Entry> entries = new ArrayList<>();
 
-	private List<Feature> features = new ArrayList<>();
+	private Map<Value.Property, List<String>> valueMap = new EnumMap<>(Value.Property.class);
 
 
 	public FeatureMap(){
 	}
 
-	public void load(InputStream is) throws IOException {
+	public List<Feature> encodeFeatures(PMMLEncoder encoder){
+		List<Feature> result = new ArrayList<>();
 
-		try(Reader reader = new InputStreamReader(is, "UTF-8")){
-			load(new BufferedReader(reader));
-		}
-	}
+		Set<DataField> dataFields = new LinkedHashSet<>();
 
-	public void load(BufferedReader reader) throws IOException {
+		List<Entry> entries = getEntries();
+		for(Entry entry : entries){
+			FieldName name = FieldName.create(entry.getName());
+			String value = entry.getValue();
 
-		for(int i = 0; true; i++){
-			String line = reader.readLine();
-			if(line == null){
-				break;
+			DataField dataField = encoder.getDataField(name);
+			if(dataField == null){
+				String type = entry.getType();
+
+				switch(type){
+					case "i":
+						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
+						break;
+					case "q":
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
+						break;
+					case "int":
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
+						break;
+					default:
+						throw new IllegalArgumentException(type);
+				}
 			}
 
-			StringTokenizer st = new StringTokenizer(line, "\t");
-
-			if(st.countTokens() != 3){
-				throw new IllegalArgumentException(line);
+			if(value != null){
+				PMMLUtil.addValues(dataField, Collections.singletonList(value));
 			}
 
-			load(st.nextToken(), st.nextToken(), st.nextToken());
+			dataFields.add(dataField);
+
+			Feature feature;
+
+			OpType opType = dataField.getOpType();
+			switch(opType){
+				case CATEGORICAL:
+					feature = new BinaryFeature(encoder, dataField, value);
+					break;
+				case CONTINUOUS:
+					feature = new ContinuousFeature(encoder, dataField);
+					break;
+				default:
+					throw new IllegalArgumentException();
+			}
+
+			result.add(feature);
 		}
+
+		Collection<Map.Entry<Value.Property, List<String>>> valueEntries = this.valueMap.entrySet();
+
+		for(DataField dataField : dataFields){
+
+			for(Map.Entry<Value.Property, List<String>> valueEntry : valueEntries){
+				PMMLUtil.addValues(dataField, valueEntry.getValue(), valueEntry.getKey());
+			}
+		}
+
+		return result;
 	}
 
-	public void load(String id, String name, String type){
-
-		if(Integer.parseInt(id) != this.features.size()){
-			throw new IllegalArgumentException(id);
-		}
-
+	public void addEntry(String name, String type){
 		String value = null;
 
 		if(("i").equals(type)){
 			int equals = name.indexOf('=');
+
 			if(equals < 0){
 				throw new IllegalArgumentException(name);
 			}
@@ -94,71 +126,97 @@ public class FeatureMap {
 			name = name.substring(0, equals);
 		}
 
-		load(FieldName.create(name), value, type);
+		Entry entry = new Entry(name, value, type);
+
+		addEntry(entry);
 	}
 
-	private void load(FieldName name, String value, String type){
-		DataField dataField = this.dataFields.get(name);
+	public void addEntry(Entry entry){
+		List<Entry> entries = getEntries();
 
-		if(dataField == null){
-			dataField = createDataField(name, type);
+		entries.add(entry);
+	}
 
-			this.dataFields.put(name, dataField);
-		} // End if
+	public List<Entry> getEntries(){
+		return this.entries;
+	}
 
-		if(value != null){
-			PMMLUtil.addValues(dataField, Collections.singletonList(value));
-		}
+	public void addValidValue(String value){
+		addValue(Value.Property.VALID, value);
+	}
 
-		Feature feature;
-
-		OpType opType = dataField.getOpType();
-		switch(opType){
-			case CATEGORICAL:
-				feature = new BinaryFeature(null, dataField, value);
-				break;
-			case CONTINUOUS:
-				feature = new ContinuousFeature(null, dataField);
-				break;
-			default:
-				throw new IllegalArgumentException(type);
-		}
-
-		this.features.add(feature);
+	public void addInvalidValue(String value){
+		addValue(Value.Property.INVALID, value);
 	}
 
 	public void addMissingValue(String value){
+		addValue(Value.Property.MISSING, value);
+	}
+
+	private void addValue(Value.Property property, String value){
 
 		if(value == null){
 			return;
 		}
 
-		Collection<DataField> dataFields = (this.dataFields).values();
-		for(DataField dataField : dataFields){
-			PMMLUtil.addValues(dataField, Collections.singletonList(value), Value.Property.MISSING);
+		List<String> values = this.valueMap.get(property);
+		if(values == null){
+			values = new ArrayList<>();
+
+			this.valueMap.put(property, values);
 		}
-	}
 
-	public Map<FieldName, DataField> getDataFields(){
-		return this.dataFields;
-	}
-
-	public List<Feature> getFeatures(){
-		return this.features;
+		values.add(value);
 	}
 
 	static
-	private DataField createDataField(FieldName name, String type){
+	public class Entry {
 
-		switch(type){
-			case "i":
-				return new DataField(name, OpType.CATEGORICAL, DataType.STRING);
-			case "q":
-				return new DataField(name, OpType.CONTINUOUS, DataType.FLOAT);
-			case "int":
-				return new DataField(name, OpType.CONTINUOUS, DataType.INTEGER);
-			default:
-				throw new IllegalArgumentException(type);
+		private String name = null;
+
+		private String value = null;
+
+		private String type = null;
+
+
+		public Entry(String name, String value, String type){
+			setName(name);
+			setValue(value);
+			setType(type);
+		}
+
+		public String getName(){
+			return this.name;
+		}
+
+		private void setName(String name){
+
+			if(name == null){
+				throw new IllegalArgumentException();
+			}
+
+			this.name = name;
+		}
+
+		public String getValue(){
+			return this.value;
+		}
+
+		private void setValue(String value){
+			this.value = value;
+		}
+
+		public String getType(){
+			return this.type;
+		}
+
+		private void setType(String type){
+
+			if(type == null){
+				throw new IllegalArgumentException();
+			}
+
+			this.type = type;
 		}
 	}
 }

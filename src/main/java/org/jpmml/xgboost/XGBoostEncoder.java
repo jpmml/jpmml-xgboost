@@ -18,22 +18,7 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.Collection;
-
-import org.dmg.pmml.DataField;
 import org.jpmml.converter.ModelEncoder;
 
 public class XGBoostEncoder extends ModelEncoder {
-
-	public XGBoostEncoder(LabelMap labelMap, FeatureMap featureMap){
-		addDataFields((labelMap.getDataFields()).values());
-		addDataFields((featureMap.getDataFields()).values());
-	}
-
-	private void addDataFields(Collection<DataField> dataFields){
-
-		for(DataField dataField : dataFields){
-			addDataField(dataField);
-		}
-	}
 }
