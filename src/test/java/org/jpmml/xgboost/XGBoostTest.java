@@ -19,33 +19,24 @@
 package org.jpmml.xgboost;
 
 import java.io.InputStream;
-import java.util.Arrays;
-import java.util.List;
 import java.util.Set;
 
-import org.dmg.pmml.Application;
 import org.dmg.pmml.FieldName;
-import org.dmg.pmml.MiningSchema;
 import org.dmg.pmml.PMML;
-import org.dmg.pmml.Visitor;
-import org.dmg.pmml.VisitorAction;
 import org.jpmml.evaluator.ArchiveBatch;
 import org.jpmml.evaluator.Batch;
 import org.jpmml.evaluator.IntegrationTest;
-import org.jpmml.evaluator.visitors.InvalidFeatureInspector;
-import org.jpmml.evaluator.visitors.UnsupportedFeatureInspector;
+import org.jpmml.evaluator.IntegrationTestBatch;
 
 public class XGBoostTest extends IntegrationTest {
 
 	@Override
 	protected ArchiveBatch createBatch(String name, String dataset){
-		ArchiveBatch result = new ArchiveBatch(name, dataset){
+		ArchiveBatch result = new IntegrationTestBatch(name, dataset){
 
 			@Override
-			public InputStream open(String path){
-				Class<? extends XGBoostTest> clazz = XGBoostTest.this.getClass();
-
-				return clazz.getResourceAsStream(path);
+			public IntegrationTest getIntegrationTest(){
+				return XGBoostTest.this;
 			}
 
 			@Override
@@ -76,28 +67,5 @@ public class XGBoostTest extends IntegrationTest {
 	@Override
 	public void evaluate(Batch batch, Set<FieldName> ignoredFields) throws Exception {
 		evaluate(batch, ignoredFields, 1e-6, 1e-6);
-	}
-
-	static
-	private void ensureValidity(PMML pmml){
-		List<Visitor> visitors = Arrays.<Visitor>asList(
-			new UnsupportedFeatureInspector(),
-			new InvalidFeatureInspector(){
-
-				@Override
-				public VisitorAction visit(Application application){
-					return VisitorAction.SKIP;
-				}
-
-				@Override
-				public VisitorAction visit(MiningSchema miningSchema){
-					return VisitorAction.SKIP;
-				}
-			}
-		);
-
-		for(Visitor visitor : visitors){
-			visitor.applyTo(pmml);
-		}
 	}
 }
