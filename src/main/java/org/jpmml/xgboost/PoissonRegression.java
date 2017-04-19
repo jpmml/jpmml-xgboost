@@ -38,6 +38,6 @@ public class PoissonRegression extends Regression {
 		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT, new ExpTransformation()));
 
-		return MiningModelUtil.createRegression(schema, miningModel);
+		return MiningModelUtil.createRegression(miningModel, schema);
 	}
 }

@@ -134,10 +134,9 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 
-	probability_1 = predict(audit.xgb, newdata = audit.dmatrix)
-	probability_0 = (1 - probability_1)
+	probability = predict(audit.xgb, newdata = audit.dmatrix)
 
-	storeCsv(data.frame("_target" = as.integer(probability_1 > 0.5), "probability_0" = probability_0, "probability_1" = probability_1), csvFile(funcAndDataset, ".csv"))
+	storeCsv(data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE), csvFile(funcAndDataset, ".csv"))
 }
 
 audit = loadCsv("csv/Audit.csv")
@@ -181,7 +180,7 @@ genIrisSpecies = function(iris_y, iris_X, dataset){
 
 	species = unlist(apply(probabilities, 1, FUN = function(x){ (which.max(x) - 1) }), use.names = FALSE)
 
-	storeCsv(data.frame("_target" = species, "probability_0" = probabilities[, 1], "probability_1" = probabilities[, 2], "probability_2" = probabilities[, 3]), csvFile(funcAndDataset, ".csv"))
+	storeCsv(data.frame("_target" = species, "probability(0)" = probabilities[, 1], "probability(1)" = probabilities[, 2], "probability(2)" = probabilities[, 3], check.names = FALSE), csvFile(funcAndDataset, ".csv"))
 }
 
 iris = loadCsv("csv/Iris.csv")

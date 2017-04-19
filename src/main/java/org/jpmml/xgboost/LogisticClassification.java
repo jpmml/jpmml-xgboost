@@ -43,6 +43,6 @@ public class LogisticClassification extends Classification {
 		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createBinaryLogisticClassification(schema, miningModel, RegressionModel.NormalizationMethod.SOFTMAX, 0d, 1d, true);
+		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 0d, 1d, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
 	}
 }
