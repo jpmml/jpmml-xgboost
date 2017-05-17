@@ -14,7 +14,7 @@ Enter the project root directory and build using [Apache Maven] (http://maven.ap
 mvn clean install
 ```
 
-The build produces an executable uber-JAR file `target/converter-executable-1.1-SNAPSHOT.jar`.
+The build produces an executable uber-JAR file `target/converter-executable-1.2-SNAPSHOT.jar`.
 
 # Usage #
 
@@ -66,12 +66,12 @@ xgb.dump(mpg.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 
 Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
 ```
-java -jar target/converter-executable-1.1-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
+java -jar target/converter-executable-1.2-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
 ```
 
 Getting help:
 ```
-java -jar target/converter-executable-1.1-SNAPSHOT.jar --help
+java -jar target/converter-executable-1.2-SNAPSHOT.jar --help
 ```
 
 # License #
