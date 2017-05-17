@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.DataType;
@@ -26,39 +25,24 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
-import org.jpmml.converter.CMatrixUtil;
-import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.ContinuousLabel;
-import org.jpmml.converter.ExpTransformation;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
-public class SoftMaxClassification extends Classification {
+public class BinomialLogisticRegression extends Classification {
 
-	public SoftMaxClassification(int num_class){
-		super(num_class);
-
-		if(num_class < 3){
-			throw new IllegalArgumentException("Multi-class classification requires three or more target categories");
-		}
+	public BinomialLogisticRegression(){
+		super(2);
 	}
 
 	@Override
 	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
 		Schema segmentSchema = new Schema(new ContinuousLabel(null, DataType.FLOAT), schema.getFeatures());
 
-		List<MiningModel> miningModels = new ArrayList<>();
+		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		CategoricalLabel categoricalLabel = (CategoricalLabel)schema.getLabel();
-
-		for(int i = 0, columns = categoricalLabel.size(), rows = (regTrees.size() / columns); i < columns; i++){
-			MiningModel miningModel = createMiningModel(CMatrixUtil.getColumn(regTrees, rows, columns, i), base_score, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue(" + categoricalLabel.getValue(i) + ")"), OpType.CONTINUOUS, DataType.FLOAT, new ExpTransformation()));
-
-			miningModels.add(miningModel);
-		}
-
-		return MiningModelUtil.createClassification(miningModels, RegressionModel.NormalizationMethod.SIMPLEMAX, true, schema);
+		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 0d, 1d, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
 	}
 }

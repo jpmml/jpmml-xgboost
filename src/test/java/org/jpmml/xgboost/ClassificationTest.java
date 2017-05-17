@@ -24,21 +24,21 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("LogisticClassification", "Audit");
+		evaluate("BinomialClassification", "Audit");
 	}
 
 	@Test
 	public void evaluateAuditNA() throws Exception {
-		evaluate("LogisticClassification", "AuditNA");
+		evaluate("BinomialClassification", "AuditNA");
 	}
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("SoftMaxClassification", "Iris");
+		evaluate("MultinomialClassification", "Iris");
 	}
 
 	@Test
 	public void evaluateIrisNA() throws Exception {
-		evaluate("SoftMaxClassification", "IrisNA");
+		evaluate("MultinomialClassification", "IrisNA");
 	}
 }

@@ -126,7 +126,7 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 
 	storeCsv(data.frame("_target" = adjusted), csvFile(funcAndDataset, ".csv"))
 
-	funcAndDataset = paste("LogisticClassification", dataset, sep = "")
+	funcAndDataset = paste("BinomialClassification", dataset, sep = "")
 
 	set.seed(42)
 
@@ -165,7 +165,7 @@ genIrisSpecies = function(iris_y, iris_X, dataset){
 
 	iris.dmatrix = genDMatrix(iris_y, iris_X, csvFile(dataset, ".svm"))
 
-	funcAndDataset = paste("SoftMaxClassification", dataset, sep = "")
+	funcAndDataset = paste("MultinomialClassification", dataset, sep = "")
 
 	set.seed(42)
 

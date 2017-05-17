@@ -69,11 +69,11 @@ public class Learner {
 				this.obj = new PoissonRegression();
 				break;
 			case "binary:logistic":
-				this.obj = new LogisticClassification();
+				this.obj = new BinomialLogisticRegression();
 				break;
 			case "multi:softmax":
 			case "multi:softprob":
-				this.obj = new SoftMaxClassification(this.num_class);
+				this.obj = new MultinomialLogisticRegression(this.num_class);
 				break;
 			default:
 				throw new IllegalArgumentException(name_obj);
