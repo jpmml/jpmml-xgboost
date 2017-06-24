@@ -19,20 +19,24 @@
 package org.jpmml.xgboost;
 
 import java.io.InputStream;
-import java.util.Set;
 
+import com.google.common.base.Predicate;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.jpmml.evaluator.ArchiveBatch;
-import org.jpmml.evaluator.Batch;
 import org.jpmml.evaluator.IntegrationTest;
 import org.jpmml.evaluator.IntegrationTestBatch;
+import org.jpmml.evaluator.PMMLEquivalence;
 
 public class XGBoostTest extends IntegrationTest {
 
+	public XGBoostTest(){
+		super(new PMMLEquivalence(1e-6, 1e-6));
+	}
+
 	@Override
-	protected ArchiveBatch createBatch(String name, String dataset){
-		ArchiveBatch result = new IntegrationTestBatch(name, dataset){
+	protected ArchiveBatch createBatch(String name, String dataset, Predicate<FieldName> predicate){
+		ArchiveBatch result = new IntegrationTestBatch(name, dataset, predicate){
 
 			@Override
 			public IntegrationTest getIntegrationTest(){
@@ -62,10 +66,5 @@ public class XGBoostTest extends IntegrationTest {
 		};
 
 		return result;
-	}
-
-	@Override
-	public void evaluate(Batch batch, Set<FieldName> ignoredFields) throws Exception {
-		evaluate(batch, ignoredFields, 1e-6, 1e-6);
 	}
 }
