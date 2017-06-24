@@ -43,6 +43,6 @@ public class BinomialLogisticRegression extends Classification {
 		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 0d, 1d, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
+		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 1d, 0d, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
 	}
 }
