@@ -22,8 +22,10 @@ import java.io.Closeable;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.PushbackInputStream;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.io.ByteStreams;
@@ -73,14 +75,33 @@ public class XGBoostDataInput implements Closeable {
 		return result;
 	}
 
+	public List<String> readStringList() throws IOException {
+		int length = (int)this.dis.readLong();
+
+		List<String> result = new ArrayList<>();
+
+		for(int i = 0; i < length; i++){
+			result.add(readString());
+		}
+
+		return result;
+	}
+
 	public void readReserved(int length) throws IOException {
+		int[] buffer = new int[length];
+
+		boolean empty = true;
 
 		for(int i = 0; i < length; i++){
 			int value = this.dis.readInt();
 
-			if(value != 0){
-				throw new IOException();
-			}
+			buffer[i] = value;
+
+			empty &= (value == 0);
+		}
+
+		if(!empty){
+			throw new IOException("Expected " + length + "-element array of zeroes, got " + Arrays.toString(buffer));
 		}
 	}
 

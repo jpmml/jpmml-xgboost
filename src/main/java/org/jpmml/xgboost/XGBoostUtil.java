@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -46,18 +45,6 @@ public class XGBoostUtil {
 
 		Learner learner = new Learner();
 		learner.load(input);
-
-		ObjFunction obj = learner.getObj();
-
-		if(obj instanceof PoissonRegression){
-			String max_delta_step;
-
-			try {
-				max_delta_step = input.readString();
-			} catch(EOFException eof){
-				// Ignored
-			}
-		}
 
 		int eof = is.read();
 		if(eof != -1){

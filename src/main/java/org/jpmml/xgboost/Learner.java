@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
@@ -39,11 +40,15 @@ public class Learner {
 
 	private int contain_extra_attrs;
 
+	private int contain_eval_metrics;
+
 	private ObjFunction obj;
 
 	private GBTree gbtree;
 
 	private Map<String, String> attributes = null;
+
+	private List<String> metrics = null;
 
 
 	public Learner(){
@@ -54,8 +59,9 @@ public class Learner {
 		this.num_features = input.readInt();
 		this.num_class = input.readInt();
 		this.contain_extra_attrs = input.readInt();
+		this.contain_eval_metrics = input.readInt();
 
-		input.readReserved(30);
+		input.readReserved(29);
 
 		String name_obj = input.readString();
 		switch(name_obj){
@@ -92,6 +98,20 @@ public class Learner {
 
 		if(this.contain_extra_attrs != 0){
 			this.attributes = input.readStringMap();
+		} // End if
+
+		if(this.obj instanceof PoissonRegression){
+			String max_delta_step;
+
+			try {
+				max_delta_step = input.readString();
+			} catch(EOFException eof){
+				// Ignored
+			}
+		} // End if
+
+		if(this.contain_eval_metrics != 0){
+			this.metrics = input.readStringList();
 		}
 	}
 
