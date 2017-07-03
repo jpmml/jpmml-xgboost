@@ -29,7 +29,6 @@ import org.dmg.pmml.regression.RegressionModel;
 import org.jpmml.converter.CMatrixUtil;
 import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.ContinuousLabel;
-import org.jpmml.converter.ExpTransformation;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -54,11 +53,11 @@ public class MultinomialLogisticRegression extends Classification {
 
 		for(int i = 0, columns = categoricalLabel.size(), rows = (regTrees.size() / columns); i < columns; i++){
 			MiningModel miningModel = createMiningModel(CMatrixUtil.getColumn(regTrees, rows, columns, i), base_score, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue(" + categoricalLabel.getValue(i) + ")"), OpType.CONTINUOUS, DataType.FLOAT, new ExpTransformation()));
+				.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue(" + categoricalLabel.getValue(i) + ")"), OpType.CONTINUOUS, DataType.FLOAT));
 
 			miningModels.add(miningModel);
 		}
 
-		return MiningModelUtil.createClassification(miningModels, RegressionModel.NormalizationMethod.SIMPLEMAX, true, schema);
+		return MiningModelUtil.createClassification(miningModels, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
 	}
 }

@@ -93,7 +93,7 @@ public class RegTree {
 
 		encodeNode(root, 0, schema);
 
-		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema), root)
+		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
 			.setMissingValueStrategy(TreeModel.MissingValueStrategy.DEFAULT_CHILD);
 

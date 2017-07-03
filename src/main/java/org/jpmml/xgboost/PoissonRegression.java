@@ -24,7 +24,7 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.converter.ExpTransformation;
+import org.dmg.pmml.regression.RegressionModel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -36,8 +36,8 @@ public class PoissonRegression extends Regression {
 		Schema segmentSchema = schema.toAnonymousSchema();
 
 		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT, new ExpTransformation()));
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createRegression(miningModel, schema);
+		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.EXP, schema);
 	}
 }

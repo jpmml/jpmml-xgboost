@@ -24,9 +24,9 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.regression.RegressionModel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.SigmoidTransformation;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 public class LogisticRegression extends Regression {
@@ -36,8 +36,8 @@ public class LogisticRegression extends Regression {
 		Schema segmentSchema = schema.toAnonymousSchema();
 
 		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT, new SigmoidTransformation(-1f)));
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createRegression(miningModel, schema);
+		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.LOGIT, schema);
 	}
 }

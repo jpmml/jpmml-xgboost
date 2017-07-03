@@ -26,10 +26,12 @@ import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.dmg.pmml.tree.TreeModel;
+import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
@@ -43,6 +45,8 @@ public class ObjFunction {
 
 	static
 	protected MiningModel createMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
+
 		Schema segmentSchema = schema.toAnonymousSchema();
 
 		List<TreeModel> treeModels = new ArrayList<>();
@@ -53,9 +57,9 @@ public class ObjFunction {
 			treeModels.add(treeModel);
 		}
 
-		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema))
+		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setSegmentation(MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels))
-			.setTargets(ModelUtil.createRescaleTargets(schema, null, base_score));
+			.setTargets(ModelUtil.createRescaleTargets(null, ValueUtil.floatToDouble(base_score), continuousLabel));
 
 		return miningModel;
 	}
