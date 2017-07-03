@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2017 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,27 +18,30 @@
  */
 package org.jpmml.xgboost;
 
-import org.junit.Test;
+import org.dmg.pmml.DataType;
+import org.jpmml.evaluator.Computable;
+import org.jpmml.evaluator.EvaluatorUtil;
+import org.jpmml.evaluator.RealNumberEquivalence;
+import org.jpmml.evaluator.TypeUtil;
 
-public class ClassificationTest extends XGBoostTest {
+public class XGBoostEquivalence extends RealNumberEquivalence {
 
-	@Test
-	public void evaluateAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit");
+	public XGBoostEquivalence(int tolerance){
+		super(tolerance);
 	}
 
-	@Test
-	public void evaluateAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA");
-	}
+	@Override
+	public boolean doEquivalent(Object expected, Object actual){
 
-	@Test
-	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new XGBoostEquivalence(12));
-	}
+		if(actual instanceof Computable){
+			actual = EvaluatorUtil.decode(actual);
+		} // End if
 
-	@Test
-	public void evaluateIrisNA() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA", new XGBoostEquivalence(12));
+		if(actual instanceof Number){
+			actual = TypeUtil.parseOrCast(DataType.FLOAT, actual);
+			expected = TypeUtil.parseOrCast(DataType.FLOAT, expected);
+		}
+
+		return super.doEquivalent(expected, actual);
 	}
 }

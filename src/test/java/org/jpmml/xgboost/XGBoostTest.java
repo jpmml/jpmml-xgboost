@@ -26,12 +26,11 @@ import org.dmg.pmml.PMML;
 import org.jpmml.evaluator.ArchiveBatch;
 import org.jpmml.evaluator.IntegrationTest;
 import org.jpmml.evaluator.IntegrationTestBatch;
-import org.jpmml.evaluator.PMMLEquivalence;
 
 public class XGBoostTest extends IntegrationTest {
 
 	public XGBoostTest(){
-		super(new PMMLEquivalence(1e-6, 1e-6));
+		super(new XGBoostEquivalence(1));
 	}
 
 	@Override

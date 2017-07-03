@@ -24,6 +24,7 @@ import java.util.List;
 
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
+import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
@@ -95,7 +96,8 @@ public class RegTree {
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
-			.setMissingValueStrategy(TreeModel.MissingValueStrategy.DEFAULT_CHILD);
+			.setMissingValueStrategy(TreeModel.MissingValueStrategy.DEFAULT_CHILD)
+			.setMathContext(MathContext.FLOAT);
 
 		return treeModel;
 	}
