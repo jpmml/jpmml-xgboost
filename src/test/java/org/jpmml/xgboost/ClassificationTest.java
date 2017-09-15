@@ -28,8 +28,18 @@ public class ClassificationTest extends XGBoostTest {
 	}
 
 	@Test
+	public void evaluateAuditLimit() throws Exception {
+		evaluate("BinomialClassification", "Audit@9");
+	}
+
+	@Test
 	public void evaluateAuditNA() throws Exception {
 		evaluate("BinomialClassification", "AuditNA");
+	}
+
+	@Test
+	public void evaluateAuditNALimit() throws Exception {
+		evaluate("BinomialClassification", "AuditNA@9");
 	}
 
 	@Test
@@ -38,7 +48,17 @@ public class ClassificationTest extends XGBoostTest {
 	}
 
 	@Test
+	public void evaluateIrisLimit() throws Exception {
+		evaluate("MultinomialClassification", "Iris@9", new XGBoostEquivalence(2));
+	}
+
+	@Test
 	public void evaluateIrisNA() throws Exception {
 		evaluate("MultinomialClassification", "IrisNA", new XGBoostEquivalence(12));
+	}
+
+	@Test
+	public void evaluateIrisNALimit() throws Exception {
+		evaluate("MultinomialClassification", "IrisNA@9", new XGBoostEquivalence(4));
 	}
 }

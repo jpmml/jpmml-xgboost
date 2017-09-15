@@ -18,7 +18,10 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
+import java.util.Map;
 
 import com.google.common.base.Predicate;
 import org.dmg.pmml.FieldName;
@@ -46,21 +49,51 @@ public class XGBoostTest extends IntegrationTest {
 			public PMML getPMML() throws Exception {
 				Learner learner;
 
-				try(InputStream is = open("/xgboost/" + getName() + getDataset() + ".model")){
+				String[] dataset = parseDataset();
+
+				try(InputStream is = open("/xgboost/" + getName() + dataset[0] + ".model")){
 					learner = XGBoostUtil.loadLearner(is);
 				}
 
 				FeatureMap featureMap;
 
-				try(InputStream is = open("/csv/" + getDataset() + ".fmap")){
+				try(InputStream is = open("/csv/" + dataset[0] + ".fmap")){
 					featureMap = XGBoostUtil.loadFeatureMap(is);
 				}
 
-				PMML pmml = learner.encodePMML(null, null, featureMap);
+				Integer ntreeLimit = null;
+				if(dataset.length > 1){
+					ntreeLimit = new Integer(dataset[1]);
+				}
+
+				PMML pmml = learner.encodePMML(null, null, featureMap, ntreeLimit);
 
 				ensureValidity(pmml);
 
 				return pmml;
+			}
+
+			@Override
+			public List<Map<FieldName, String>> getInput() throws IOException {
+				String[] dataset = parseDataset();
+
+				return loadRecords("/csv/" + dataset[0] + ".csv");
+			}
+
+			@Override
+			public List<Map<FieldName, String>> getOutput() throws IOException {
+				return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
+			}
+
+			private String[] parseDataset(){
+				String dataset = getDataset();
+
+				int index = dataset.indexOf('@');
+				if(index > -1){
+					return new String[]{dataset.substring(0, index), dataset.substring(index + 1)};
+				}
+
+				return new String[]{dataset};
 			}
 		};
 

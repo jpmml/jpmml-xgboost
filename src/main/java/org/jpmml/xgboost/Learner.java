@@ -115,7 +115,7 @@ public class Learner {
 		}
 	}
 
-	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
+	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Integer ntreeLimit){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		if(targetField == null){
@@ -128,7 +128,7 @@ public class Learner {
 
 		Schema schema = new Schema(label, features);
 
-		MiningModel miningModel = encodeMiningModel(schema);
+		MiningModel miningModel = encodeMiningModel(ntreeLimit, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
 
@@ -138,8 +138,8 @@ public class Learner {
 	/**
 	 * @see XGBoostUtil#toXGBoostSchema(Schema)
 	 */
-	public MiningModel encodeMiningModel(Schema schema){
-		return this.gbtree.encodeMiningModel(this.obj, this.base_score, schema);
+	public MiningModel encodeMiningModel(Integer ntreeLimit, Schema schema){
+		return this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema);
 	}
 
 	public float getBaseScore(){

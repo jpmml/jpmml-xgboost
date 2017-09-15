@@ -42,15 +42,24 @@ public class ObjFunction {
 	public Label encodeLabel(FieldName targetField, List<String> targetCategories, PMMLEncoder encoder);
 
 	abstract
-	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema);
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema);
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
 		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
 
 		Schema segmentSchema = schema.toAnonymousSchema();
 
 		List<TreeModel> treeModels = new ArrayList<>();
+
+		if(ntreeLimit != null){
+
+			if(ntreeLimit > regTrees.size()){
+				throw new IllegalArgumentException("Tree limit " + ntreeLimit + " is greater than the number of trees");
+			}
+
+			regTrees = regTrees.subList(0, ntreeLimit);
+		}
 
 		for(RegTree regTree : regTrees){
 			TreeModel treeModel = regTree.encodeTreeModel(segmentSchema);

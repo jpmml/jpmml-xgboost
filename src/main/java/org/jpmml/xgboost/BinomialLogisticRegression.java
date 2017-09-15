@@ -37,10 +37,10 @@ public class BinomialLogisticRegression extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = new Schema(new ContinuousLabel(null, DataType.FLOAT), schema.getFeatures());
 
-		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
+		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
 		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 1d, 0d, RegressionModel.NormalizationMethod.LOGIT, true, schema);

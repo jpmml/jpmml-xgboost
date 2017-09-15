@@ -32,10 +32,10 @@ import org.jpmml.converter.mining.MiningModelUtil;
 public class PoissonRegression extends Regression {
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Schema schema){
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		MiningModel miningModel = createMiningModel(regTrees, base_score, segmentSchema)
+		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
 		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.EXP, schema);

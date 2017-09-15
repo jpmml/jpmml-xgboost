@@ -108,6 +108,12 @@ genVisitCount(visit_y, visit_X, "VisitNA")
 # Binary classification
 #
 
+predictAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit){
+	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit)
+
+	return (data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE))
+}
+
 genAuditAdjusted = function(audit_y, audit_X, dataset){
 	audit.fmap = genFMap(audit_X)
 	writeFMap(audit.fmap, csvFile(dataset, ".fmap"))
@@ -134,9 +140,13 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 
-	probability = predict(audit.xgb, newdata = audit.dmatrix)
+	result = predictAuditAdjusted(audit.xgb, audit.dmatrix, 15)
 
-	storeCsv(data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE), csvFile(funcAndDataset, ".csv"))
+	storeCsv(result, csvFile(funcAndDataset, ".csv"))
+
+	result = predictAuditAdjusted(audit.xgb, audit.dmatrix, 9)
+
+	storeCsv(result, csvFile(paste(funcAndDataset, "9", sep = "@"), ".csv"))
 }
 
 audit = loadCsv("csv/Audit.csv")
@@ -159,6 +169,17 @@ genAuditAdjusted(audit_y, audit_X, "AuditNA")
 # Multi-class classification
 #
 
+predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit){
+	probabilities = predict(iris.xgb, newdata = iris.dmatrix, ntreelimit = ntreelimit)
+
+	# Convert from vector to three-column matrix
+	probabilities = t(matrix(probabilities, 3, 150))
+
+	species = unlist(apply(probabilities, 1, FUN = function(x){ (which.max(x) - 1) }), use.names = FALSE)
+
+	return (data.frame("_target" = species, "probability(0)" = probabilities[, 1], "probability(1)" = probabilities[, 2], "probability(2)" = probabilities[, 3], check.names = FALSE))
+}
+
 genIrisSpecies = function(iris_y, iris_X, dataset){
 	iris.fmap = genFMap(iris_X)
 	writeFMap(iris.fmap, csvFile(dataset, ".fmap"))
@@ -173,14 +194,13 @@ genIrisSpecies = function(iris_y, iris_X, dataset){
 	xgb.save(iris.xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.dump(iris.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 
-	probabilities = predict(iris.xgb, newdata = iris.dmatrix)
+	result = predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 15)
 
-	# Convert from vector to three-column matrix
-	probabilities = t(matrix(probabilities, 3, nrow(iris_X)))
+	storeCsv(result, csvFile(funcAndDataset, ".csv"))
 
-	species = unlist(apply(probabilities, 1, FUN = function(x){ (which.max(x) - 1) }), use.names = FALSE)
+	result = predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 9)
 
-	storeCsv(data.frame("_target" = species, "probability(0)" = probabilities[, 1], "probability(1)" = probabilities[, 2], "probability(2)" = probabilities[, 3], check.names = FALSE), csvFile(funcAndDataset, ".csv"))
+	storeCsv(result, csvFile(paste(funcAndDataset, "9", sep = "@"), ".csv"))
 }
 
 iris = loadCsv("csv/Iris.csv")

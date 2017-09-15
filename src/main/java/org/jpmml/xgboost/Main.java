@@ -80,6 +80,12 @@ public class Main {
 	)
 	private List<String> targetCategories = null;
 
+	@Parameter (
+		names = {"--ntree-limit"},
+		description = "Limit the number of trees. Defaults to all trees"
+	)
+	private Integer ntreeLimit = null;
+
 
 	static
 	public void main(String... args) throws Exception {
@@ -133,7 +139,7 @@ public class Main {
 			featureMap.addMissingValue(this.missingValue);
 		}
 
-		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
+		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);
