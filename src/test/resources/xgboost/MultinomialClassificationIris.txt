@@ -408,3 +408,53 @@ booster[44]
 			7:leaf=0.070183
 			8:leaf=-0.0533181
 		6:leaf=0.104869
+booster[45]
+0:[Petal.Length<2.45] yes=1,no=2,missing=1
+	1:leaf=0.0952757
+	2:leaf=-0.10179
+booster[46]
+0:[Petal.Length<5.15] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
+		3:leaf=-0.058531
+		4:[Petal.Width<1.75] yes=5,no=6,missing=5
+			5:[Petal.Width<1.55] yes=7,no=8,missing=7
+				7:[Petal.Length<4.65] yes=9,no=10,missing=9
+					9:leaf=0.0664431
+					10:leaf=-0.0264688
+				8:leaf=0.109369
+			6:leaf=-0.00826003
+	2:leaf=-0.0823554
+booster[47]
+0:[Petal.Length<4.95] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
+		3:[Petal.Width<1.6] yes=7,no=8,missing=7
+			7:leaf=-0.0801073
+			8:leaf=0.100336
+		4:leaf=-0.117334
+	2:[Petal.Length<5.15] yes=5,no=6,missing=5
+		5:leaf=0.0182764
+		6:leaf=0.0990471
+booster[48]
+0:[Petal.Length<2.45] yes=1,no=2,missing=1
+	1:leaf=0.089182
+	2:leaf=-0.0964985
+booster[49]
+0:[Petal.Length<4.95] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
+		3:leaf=-0.0522039
+		4:[Sepal.Length<5.95] yes=7,no=8,missing=7
+			7:leaf=0.0923672
+			8:leaf=0.0179841
+	2:[Sepal.Length<6.05] yes=5,no=6,missing=5
+		5:leaf=0.00886445
+		6:leaf=-0.0590595
+booster[50]
+0:[Petal.Length<4.95] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
+		3:[Sepal.Length<5.95] yes=7,no=8,missing=7
+			7:leaf=-0.00602423
+			8:leaf=0.0269548
+		4:leaf=-0.111514
+	2:[Petal.Length<5.15] yes=5,no=6,missing=5
+		5:leaf=0.0184795
+		6:leaf=0.0915755

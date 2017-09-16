@@ -24,12 +24,12 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAuto() throws Exception {
-		evaluate("LinearRegression", "Auto", new XGBoostEquivalence(2));
+		evaluate("LinearRegression", "Auto", new XGBoostEquivalence(4));
 	}
 
 	@Test
 	public void evaluateAutoNA() throws Exception {
-		evaluate("LinearRegression", "AutoNA", new XGBoostEquivalence(2));
+		evaluate("LinearRegression", "AutoNA", new XGBoostEquivalence(4));
 	}
 
 	@Test
@@ -44,11 +44,11 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateVisit() throws Exception {
-		evaluate("PoissonRegression", "Visit", new XGBoostEquivalence(12));
+		evaluate("PoissonRegression", "Visit", new XGBoostEquivalence(16));
 	}
 
 	@Test
 	public void evaluateVisitNA() throws Exception {
-		evaluate("PoissonRegression", "VisitNA", new XGBoostEquivalence(12));
+		evaluate("PoissonRegression", "VisitNA", new XGBoostEquivalence(20));
 	}
 }

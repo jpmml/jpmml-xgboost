@@ -3,6 +3,14 @@ library("xgboost")
 
 setwd("../resources/")
 
+csvFile = function(name, ext){
+	return (paste("csv/", name, ext, sep = ""))
+}
+
+xgboostFile = function(name, ext){
+	return (paste("xgboost/", name, ext, sep = ""))
+}
+
 loadCsv = function(file){
 	return (read.csv(file = file, header = TRUE))
 }
@@ -11,12 +19,13 @@ storeCsv = function(data, file){
 	write.table(data, file, sep = ",", quote = FALSE, row.names = FALSE, col.names = gsub("X_target", "_target", names(data)))
 }
 
-csvFile = function(name, ext){
-	return (paste("csv/", name, ext, sep = ""))
+storeModel = function(xgb, funcAndDataset, dataset){
+	xgb.save(xgb, xgboostFile(funcAndDataset, ".model"))
+	xgb.dump(xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
 }
 
-xgboostFile = function(name, ext){
-	return (paste("xgboost/", name, ext, sep = ""))
+storeResult = function(data, funcAndDataset){
+	storeCsv(data, csvFile(funcAndDataset, ".csv"))
 }
 
 # See http://stackoverflow.com/a/27454361/1808924
@@ -34,6 +43,12 @@ insertNA = function(df){
 # Regression
 #
 
+predictAutoMpg = function(auto.xgb, auto.dmatrix, ntreelimit = NULL){
+	mpg = predict(auto.xgb, newdata = auto.dmatrix, ntreelimit = ntreelimit)
+
+	return (data.frame("_target" = mpg))
+}
+
 genAutoMpg = function(auto_y, auto_X, dataset){
 	auto.fmap = genFMap(auto_X)
 	writeFMap(auto.fmap, csvFile(dataset, ".fmap"))
@@ -44,11 +59,10 @@ genAutoMpg = function(auto_y, auto_X, dataset){
 
 	set.seed(42)
 
-	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 15)
-	xgb.save(auto.xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(auto.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 31)
 
-	storeCsv(data.frame("_target" = predict(auto.xgb, newdata = auto.dmatrix)), csvFile(funcAndDataset, ".csv"))
+	storeModel(auto.xgb, funcAndDataset, dataset)
+	storeResult(predictAutoMpg(auto.xgb, auto.dmatrix), funcAndDataset)
 }
 
 auto = loadCsv("csv/Auto.csv")
@@ -72,6 +86,12 @@ genAutoMpg(auto_y, auto_X, "AutoNA")
 # Poisson regression
 #
 
+predictVisitCount = function(visit.xgb, visit.dmatrix, ntreelimit = NULL){
+	count = predict(visit.xgb, newdata = visit.dmatrix, ntreelimit = ntreelimit)
+
+	return (data.frame("_target" = count))
+}
+
 genVisitCount = function(visit_y, visit_X, dataset){
 	visit.fmap = genFMap(visit_X)
 	writeFMap(visit.fmap, csvFile(dataset, ".fmap"))
@@ -82,11 +102,10 @@ genVisitCount = function(visit_y, visit_X, dataset){
 
 	set.seed(42)
 
-	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 15)
-	xgb.save(visit.xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(visit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 31)
 
-	storeCsv(data.frame("_target" = predict(visit.xgb, newdata = visit.dmatrix)), csvFile(funcAndDataset, ".csv"))
+	storeModel(visit.xgb, funcAndDataset, dataset)
+	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
 }
 
 visit = loadCsv("csv/Visit.csv")
@@ -108,7 +127,7 @@ genVisitCount(visit_y, visit_X, "VisitNA")
 # Binary classification
 #
 
-predictAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit){
+predictAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
 	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit)
 
 	return (data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE))
@@ -124,29 +143,22 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 11)
-	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 17)
 
 	adjusted = predict(audit.xgb, newdata = audit.dmatrix)
 
-	storeCsv(data.frame("_target" = adjusted), csvFile(funcAndDataset, ".csv"))
+	storeModel(audit.xgb, funcAndDataset, dataset)
+	storeResult(data.frame("_target" = adjusted), funcAndDataset)
 
 	funcAndDataset = paste("BinomialClassification", dataset, sep = "")
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 15)
-	xgb.save(audit.xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(audit.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 71)
 
-	result = predictAuditAdjusted(audit.xgb, audit.dmatrix, 15)
-
-	storeCsv(result, csvFile(funcAndDataset, ".csv"))
-
-	result = predictAuditAdjusted(audit.xgb, audit.dmatrix, 9)
-
-	storeCsv(result, csvFile(paste(funcAndDataset, "9", sep = "@"), ".csv"))
+	storeModel(audit.xgb, funcAndDataset, dataset)
+	storeResult(predictAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
+	storeResult(predictAuditAdjusted(audit.xgb, audit.dmatrix, 31), paste(funcAndDataset, "31", sep = "@"))
 }
 
 audit = loadCsv("csv/Audit.csv")
@@ -169,7 +181,7 @@ genAuditAdjusted(audit_y, audit_X, "AuditNA")
 # Multi-class classification
 #
 
-predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit){
+predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit = NULL){
 	probabilities = predict(iris.xgb, newdata = iris.dmatrix, ntreelimit = ntreelimit)
 
 	# Convert from vector to three-column matrix
@@ -190,17 +202,11 @@ genIrisSpecies = function(iris_y, iris_X, dataset){
 
 	set.seed(42)
 
-	iris.xgb = xgboost(data = iris.dmatrix, objective = "multi:softprob", num_class = 3, nrounds = 15)
-	xgb.save(iris.xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(iris.xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	iris.xgb = xgboost(data = iris.dmatrix, objective = "multi:softprob", num_class = 3, nrounds = 17)
 
-	result = predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 15)
-
-	storeCsv(result, csvFile(funcAndDataset, ".csv"))
-
-	result = predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 9)
-
-	storeCsv(result, csvFile(paste(funcAndDataset, "9", sep = "@"), ".csv"))
+	storeModel(iris.xgb, funcAndDataset, dataset)
+	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix), funcAndDataset)
+	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 11), paste(funcAndDataset, "11", sep = "@"))
 }
 
 iris = loadCsv("csv/Iris.csv")
