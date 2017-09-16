@@ -66,7 +66,7 @@ public class XGBoostTest extends IntegrationTest {
 					ntreeLimit = new Integer(dataset[1]);
 				}
 
-				PMML pmml = learner.encodePMML(null, null, featureMap, ntreeLimit);
+				PMML pmml = learner.encodePMML(null, null, featureMap, ntreeLimit, (ntreeLimit != null));
 
 				ensureValidity(pmml);
 

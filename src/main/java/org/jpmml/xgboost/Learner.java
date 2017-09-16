@@ -20,11 +20,13 @@ package org.jpmml.xgboost;
 
 import java.io.EOFException;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
@@ -115,7 +117,7 @@ public class Learner {
 		}
 	}
 
-	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Integer ntreeLimit){
+	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Integer ntreeLimit, boolean transform){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		if(targetField == null){
@@ -128,7 +130,7 @@ public class Learner {
 
 		Schema schema = new Schema(label, features);
 
-		MiningModel miningModel = encodeMiningModel(ntreeLimit, schema);
+		MiningModel miningModel = encodeMiningModel(ntreeLimit, transform, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
 
@@ -138,8 +140,18 @@ public class Learner {
 	/**
 	 * @see XGBoostUtil#toXGBoostSchema(Schema)
 	 */
-	public MiningModel encodeMiningModel(Integer ntreeLimit, Schema schema){
-		return this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema);
+	public MiningModel encodeMiningModel(Integer ntreeLimit, boolean transform, Schema schema){
+		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema);
+
+		if(transform){
+			List<Visitor> visitors = Arrays.<Visitor>asList(new TreeModelCompactor());
+
+			for(Visitor visitor : visitors){
+				visitor.applyTo(miningModel);
+			}
+		}
+
+		return miningModel;
 	}
 
 	public float getBaseScore(){

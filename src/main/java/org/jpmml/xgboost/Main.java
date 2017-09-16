@@ -86,6 +86,12 @@ public class Main {
 	)
 	private Integer ntreeLimit = null;
 
+	@Parameter (
+		names = {"--compact"},
+		description = "Transform XGBoost-style trees to PMML-style trees"
+	)
+	private boolean transform = false;
+
 
 	static
 	public void main(String... args) throws Exception {
@@ -139,7 +145,7 @@ public class Main {
 			featureMap.addMissingValue(this.missingValue);
 		}
 
-		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit);
+		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit, this.transform);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);
