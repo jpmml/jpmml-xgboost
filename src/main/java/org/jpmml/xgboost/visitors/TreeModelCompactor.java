@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with JPMML-XGBoost.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jpmml.xgboost;
+package org.jpmml.xgboost.visitors;
 
 import java.util.Deque;
 import java.util.List;
@@ -29,7 +29,7 @@ import org.dmg.pmml.tree.Node;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.model.visitors.AbstractVisitor;
 
-class TreeModelCompactor extends AbstractVisitor {
+public class TreeModelCompactor extends AbstractVisitor {
 
 	@Override
 	public void pushParent(PMMLObject object){
@@ -53,6 +53,14 @@ class TreeModelCompactor extends AbstractVisitor {
 
 	@Override
 	public VisitorAction visit(TreeModel treeModel){
+		TreeModel.MissingValueStrategy missingValueStrategy = treeModel.getMissingValueStrategy();
+		TreeModel.NoTrueChildStrategy noTrueChildStrategy = treeModel.getNoTrueChildStrategy();
+		TreeModel.SplitCharacteristic splitCharacteristic = treeModel.getSplitCharacteristic();
+
+		if(!(TreeModel.MissingValueStrategy.DEFAULT_CHILD).equals(missingValueStrategy) || !(TreeModel.NoTrueChildStrategy.RETURN_NULL_PREDICTION).equals(noTrueChildStrategy) || !(TreeModel.SplitCharacteristic.BINARY_SPLIT).equals(splitCharacteristic)){
+			throw new IllegalArgumentException();
+		}
+
 		treeModel
 			.setMissingValueStrategy(TreeModel.MissingValueStrategy.NONE)
 			.setNoTrueChildStrategy(TreeModel.NoTrueChildStrategy.RETURN_LAST_PREDICTION)
@@ -62,17 +70,18 @@ class TreeModelCompactor extends AbstractVisitor {
 	}
 
 	private void handleNodePush(Node node){
-		String id = node.getId();
 		String defaultChild = node.getDefaultChild();
+		String id = node.getId();
+		String score = node.getScore();
 
-		if(id != null){
-			node.setId(null);
+		if(id == null){
+			throw new IllegalArgumentException();
 		} // End if
 
-		if(defaultChild != null){
+		if(node.hasNodes()){
 			List<Node> children = node.getNodes();
 
-			if(children.size() != 2){
+			if(children.size() != 2 || defaultChild == null || score != null){
 				throw new IllegalArgumentException();
 			}
 
@@ -95,14 +104,21 @@ class TreeModelCompactor extends AbstractVisitor {
 				throw new IllegalArgumentException();
 			}
 
-			secondChild.setPredicate(new True());
-
 			node.setDefaultChild(null);
+
+			secondChild.setPredicate(new True());
+		} else
+
+		{
+			if(defaultChild != null || score == null){
+				throw new IllegalArgumentException();
+			}
 		}
+
+		node.setId(null);
 	}
 
 	private void handleNodePop(Node node){
-		List<Node> children = (node.hasNodes() ? node.getNodes() : null);
 		String score = node.getScore();
 		Predicate predicate = node.getPredicate();
 
@@ -122,9 +138,14 @@ class TreeModelCompactor extends AbstractVisitor {
 
 			List<Node> parentChildren = parentNode.getNodes();
 
-			parentChildren.remove(node);
+			boolean success = parentChildren.remove(node);
+			if(!success){
+				throw new IllegalArgumentException();
+			} // End if
 
-			if(children != null && children.size() > 0){
+			if(node.hasNodes()){
+				List<Node> children = node.getNodes();
+
 				parentChildren.addAll(children);
 			}
 		}

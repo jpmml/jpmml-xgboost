@@ -31,6 +31,7 @@ import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.Schema;
+import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
 public class Learner {
 
