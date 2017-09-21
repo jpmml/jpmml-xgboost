@@ -18,26 +18,12 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
-import org.dmg.pmml.OpType;
-import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
-import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.Schema;
-import org.jpmml.converter.mining.MiningModelUtil;
 
-public class PoissonRegression extends Regression {
+public class PoissonRegression extends GeneralizedLinearRegression {
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = schema.toAnonymousSchema();
-
-		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
-
-		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.EXP, schema);
+	public RegressionModel.NormalizationMethod getNormalizationMethod(){
+		return RegressionModel.NormalizationMethod.EXP;
 	}
 }
