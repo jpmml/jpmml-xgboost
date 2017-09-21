@@ -83,7 +83,7 @@ storeCsv(cbind(auto_X, "mpg" = auto_y), "csv/AutoNA.csv")
 genAutoMpg(auto_y, auto_X, "AutoNA")
 
 #
-# Poisson regression
+# Poisson and Gamma regressions
 #
 
 predictVisitCount = function(visit.xgb, visit.dmatrix, ntreelimit = NULL){
@@ -103,6 +103,15 @@ genVisitCount = function(visit_y, visit_X, dataset){
 	set.seed(42)
 
 	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 31)
+
+	storeModel(visit.xgb, funcAndDataset, dataset)
+	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
+
+	funcAndDataset = paste("GammaRegression", dataset, sep = "")
+
+	set.seed(42)
+
+	visit.xgb = xgboost(data = visit.dmatrix, objective = "reg:gamma", nrounds = 31)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
 	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)

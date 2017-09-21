@@ -68,6 +68,9 @@ public class Learner {
 
 		String name_obj = input.readString();
 		switch(name_obj){
+			case "reg:gamma":
+				this.obj = new GammaRegression();
+				break;
 			case "reg:linear":
 				this.obj = new LinearRegression();
 				break;
