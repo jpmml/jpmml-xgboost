@@ -43,22 +43,32 @@ public class RegressionTest extends XGBoostTest {
 	}
 
 	@Test
-	public void evaluateVisit() throws Exception {
+	public void evaluateGammaVisit() throws Exception {
 		evaluate("GammaRegression", "Visit", new XGBoostEquivalence(16));
 	}
 
 	@Test
-	public void evaluateVisitNA() throws Exception {
+	public void evaluateGammaVisitNA() throws Exception {
 		evaluate("GammaRegression", "VisitNA", new XGBoostEquivalence(14));
 	}
 
 	@Test
-	public void evaluateVisitCount() throws Exception {
+	public void evaluatePoissonVisit() throws Exception {
 		evaluate("PoissonRegression", "Visit", new XGBoostEquivalence(16));
 	}
 
 	@Test
-	public void evaluateVisitCountNA() throws Exception {
+	public void evaluatePoissonVisitNA() throws Exception {
 		evaluate("PoissonRegression", "VisitNA", new XGBoostEquivalence(20));
+	}
+
+	@Test
+	public void evaluateTweedieVisit() throws Exception {
+		evaluate("TweedieRegression", "Visit", new XGBoostEquivalence(16));
+	}
+
+	@Test
+	public void evaluateTweedieVisitNA() throws Exception {
+		evaluate("TweedieRegression", "VisitNA", new XGBoostEquivalence(22));
 	}
 }

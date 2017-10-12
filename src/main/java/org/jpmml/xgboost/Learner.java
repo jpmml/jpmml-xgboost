@@ -68,14 +68,17 @@ public class Learner {
 
 		String name_obj = input.readString();
 		switch(name_obj){
-			case "reg:gamma":
-				this.obj = new GammaRegression();
-				break;
 			case "reg:linear":
 				this.obj = new LinearRegression();
 				break;
 			case "reg:logistic":
 				this.obj = new LogisticRegression();
+				break;
+			case "reg:gamma":
+				this.obj = new GammaRegression();
+				break;
+			case "reg:tweedie":
+				this.obj = new TweedieRegression();
 				break;
 			case "count:poisson":
 				this.obj = new PoissonRegression();
