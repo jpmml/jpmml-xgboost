@@ -32,8 +32,8 @@ import org.jpmml.evaluator.IntegrationTestBatch;
 
 public class XGBoostTest extends IntegrationTest {
 
-	public XGBoostTest(){
-		super(new XGBoostEquivalence(1));
+	public XGBoostTest(XGBoostEquivalence equivalence){
+		super(equivalence);
 	}
 
 	@Override

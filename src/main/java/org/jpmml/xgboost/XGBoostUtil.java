@@ -25,8 +25,8 @@ import java.io.Reader;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
+import java.util.function.Function;
 
-import com.google.common.base.Function;
 import com.google.common.io.CharStreams;
 import org.dmg.pmml.DataType;
 import org.jpmml.converter.BinaryFeature;

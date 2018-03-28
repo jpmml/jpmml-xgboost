@@ -5,7 +5,7 @@ Java library and command-line application for converting [XGBoost](https://githu
 
 # Prerequisites #
 
-* Java 1.7 or newer.
+* Java 1.8 or newer.
 
 # Installation #
 

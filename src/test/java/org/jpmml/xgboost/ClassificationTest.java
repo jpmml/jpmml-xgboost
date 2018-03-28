@@ -22,43 +22,47 @@ import org.junit.Test;
 
 public class ClassificationTest extends XGBoostTest {
 
+	public ClassificationTest(){
+		super(new XGBoostEquivalence(4));
+	}
+
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit");
+		evaluate("BinomialClassification", "Audit", new XGBoostEquivalence(16));
 	}
 
 	@Test
 	public void evaluateAuditLimit() throws Exception {
-		evaluate("BinomialClassification", "Audit@31");
+		evaluate("BinomialClassification", "Audit@31", new XGBoostEquivalence(32));
 	}
 
 	@Test
 	public void evaluateAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA");
+		evaluate("BinomialClassification", "AuditNA", new XGBoostEquivalence(32));
 	}
 
 	@Test
 	public void evaluateAuditNALimit() throws Exception {
-		evaluate("BinomialClassification", "AuditNA@31");
+		evaluate("BinomialClassification", "AuditNA@31", new XGBoostEquivalence(64));
 	}
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new XGBoostEquivalence(12));
+		evaluate("MultinomialClassification", "Iris", new XGBoostEquivalence(16));
 	}
 
 	@Test
 	public void evaluateIrisLimit() throws Exception {
-		evaluate("MultinomialClassification", "Iris@11", new XGBoostEquivalence(4));
+		evaluate("MultinomialClassification", "Iris@11");
 	}
 
 	@Test
 	public void evaluateIrisNA() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA", new XGBoostEquivalence(16));
+		evaluate("MultinomialClassification", "IrisNA", new XGBoostEquivalence(20));
 	}
 
 	@Test
 	public void evaluateIrisNALimit() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA@11", new XGBoostEquivalence(4));
+		evaluate("MultinomialClassification", "IrisNA@11");
 	}
 }

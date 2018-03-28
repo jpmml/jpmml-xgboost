@@ -22,19 +22,23 @@ import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest {
 
+	public RegressionTest(){
+		super(new XGBoostEquivalence(4));
+	}
+
 	@Test
 	public void evaluateAuto() throws Exception {
-		evaluate("LinearRegression", "Auto", new XGBoostEquivalence(4));
+		evaluate("LinearRegression", "Auto");
 	}
 
 	@Test
 	public void evaluateAutoNA() throws Exception {
-		evaluate("LinearRegression", "AutoNA", new XGBoostEquivalence(4));
+		evaluate("LinearRegression", "AutoNA");
 	}
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("LogisticRegression", "Audit");
+		evaluate("LogisticRegression", "Audit", new XGBoostEquivalence(6));
 	}
 
 	@Test
@@ -69,6 +73,6 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate("TweedieRegression", "VisitNA", new XGBoostEquivalence(22));
+		evaluate("TweedieRegression", "VisitNA", new XGBoostEquivalence(24));
 	}
 }
