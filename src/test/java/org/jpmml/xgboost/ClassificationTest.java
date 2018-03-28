@@ -18,37 +18,38 @@
  */
 package org.jpmml.xgboost;
 
+import org.jpmml.evaluator.FloatEquivalence;
 import org.junit.Test;
 
 public class ClassificationTest extends XGBoostTest {
 
 	public ClassificationTest(){
-		super(new XGBoostEquivalence(4));
+		super(new FloatEquivalence(4));
 	}
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit", new XGBoostEquivalence(16));
+		evaluate("BinomialClassification", "Audit", new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateAuditLimit() throws Exception {
-		evaluate("BinomialClassification", "Audit@31", new XGBoostEquivalence(32));
+		evaluate("BinomialClassification", "Audit@31", new FloatEquivalence(32));
 	}
 
 	@Test
 	public void evaluateAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA", new XGBoostEquivalence(32));
+		evaluate("BinomialClassification", "AuditNA", new FloatEquivalence(32));
 	}
 
 	@Test
 	public void evaluateAuditNALimit() throws Exception {
-		evaluate("BinomialClassification", "AuditNA@31", new XGBoostEquivalence(64));
+		evaluate("BinomialClassification", "AuditNA@31", new FloatEquivalence(64));
 	}
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new XGBoostEquivalence(16));
+		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(16));
 	}
 
 	@Test
@@ -58,7 +59,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateIrisNA() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA", new XGBoostEquivalence(20));
+		evaluate("MultinomialClassification", "IrisNA", new FloatEquivalence(20));
 	}
 
 	@Test

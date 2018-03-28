@@ -18,12 +18,13 @@
  */
 package org.jpmml.xgboost;
 
+import org.jpmml.evaluator.FloatEquivalence;
 import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest {
 
 	public RegressionTest(){
-		super(new XGBoostEquivalence(4));
+		super(new FloatEquivalence(4));
 	}
 
 	@Test
@@ -38,7 +39,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("LogisticRegression", "Audit", new XGBoostEquivalence(6));
+		evaluate("LogisticRegression", "Audit", new FloatEquivalence(6));
 	}
 
 	@Test
@@ -48,31 +49,31 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate("GammaRegression", "Visit", new XGBoostEquivalence(16));
+		evaluate("GammaRegression", "Visit", new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate("GammaRegression", "VisitNA", new XGBoostEquivalence(14));
+		evaluate("GammaRegression", "VisitNA", new FloatEquivalence(14));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate("PoissonRegression", "Visit", new XGBoostEquivalence(16));
+		evaluate("PoissonRegression", "Visit", new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluatePoissonVisitNA() throws Exception {
-		evaluate("PoissonRegression", "VisitNA", new XGBoostEquivalence(20));
+		evaluate("PoissonRegression", "VisitNA", new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluateTweedieVisit() throws Exception {
-		evaluate("TweedieRegression", "Visit", new XGBoostEquivalence(16));
+		evaluate("TweedieRegression", "Visit", new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate("TweedieRegression", "VisitNA", new XGBoostEquivalence(24));
+		evaluate("TweedieRegression", "VisitNA", new FloatEquivalence(24));
 	}
 }

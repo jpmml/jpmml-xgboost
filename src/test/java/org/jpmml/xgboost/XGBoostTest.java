@@ -23,6 +23,7 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 
+import com.google.common.base.Equivalence;
 import com.google.common.base.Predicate;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
@@ -32,7 +33,7 @@ import org.jpmml.evaluator.IntegrationTestBatch;
 
 public class XGBoostTest extends IntegrationTest {
 
-	public XGBoostTest(XGBoostEquivalence equivalence){
+	public XGBoostTest(Equivalence<Object> equivalence){
 		super(equivalence);
 	}
 
