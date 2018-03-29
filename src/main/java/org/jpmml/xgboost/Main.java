@@ -90,7 +90,7 @@ public class Main {
 		names = {"--compact"},
 		description = "Transform XGBoost-style trees to PMML-style trees"
 	)
-	private boolean transform = false;
+	private boolean compact = true;
 
 
 	static
@@ -145,7 +145,7 @@ public class Main {
 			featureMap.addMissingValue(this.missingValue);
 		}
 
-		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit, this.transform);
+		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit, this.compact);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);
