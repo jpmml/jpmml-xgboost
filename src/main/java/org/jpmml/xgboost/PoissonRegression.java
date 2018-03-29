@@ -18,12 +18,5 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.regression.RegressionModel;
-
 public class PoissonRegression extends GeneralizedLinearRegression {
-
-	@Override
-	public RegressionModel.NormalizationMethod getNormalizationMethod(){
-		return RegressionModel.NormalizationMethod.EXP;
-	}
 }

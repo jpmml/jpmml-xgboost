@@ -75,10 +75,8 @@ public class Learner {
 				this.obj = new LogisticRegression();
 				break;
 			case "reg:gamma":
-				this.obj = new GammaRegression();
-				break;
 			case "reg:tweedie":
-				this.obj = new TweedieRegression();
+				this.obj = new GeneralizedLinearRegression();
 				break;
 			case "count:poisson":
 				this.obj = new PoissonRegression();

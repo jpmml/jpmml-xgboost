@@ -18,12 +18,26 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.regression.RegressionModel;
+import java.util.List;
 
-public class LogisticRegression extends GeneralizedLinearRegression {
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.FieldName;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
+
+public class LogisticRegression extends Regression {
 
 	@Override
-	public RegressionModel.NormalizationMethod getNormalizationMethod(){
-		return RegressionModel.NormalizationMethod.LOGIT;
+	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
+		Schema segmentSchema = schema.toAnonymousSchema();
+
+		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
+			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
+
+		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.LOGIT, schema);
 	}
 }

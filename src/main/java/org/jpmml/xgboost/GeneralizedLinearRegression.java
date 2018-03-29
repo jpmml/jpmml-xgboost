@@ -29,11 +29,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
-abstract
 public class GeneralizedLinearRegression extends Regression {
-
-	abstract
-	public RegressionModel.NormalizationMethod getNormalizationMethod();
 
 	@Override
 	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
@@ -42,6 +38,6 @@ public class GeneralizedLinearRegression extends Regression {
 		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createRegression(miningModel, getNormalizationMethod(), schema);
+		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.EXP, schema);
 	}
 }
