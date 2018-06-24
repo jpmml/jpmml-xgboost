@@ -76,8 +76,10 @@ java -jar target/jpmml-xgboost-executable-1.3-SNAPSHOT.jar --help
 
 # License #
 
-JPMML-XGBoost is licensed under the [GNU Affero General Public License (AGPL) version 3.0](http://www.gnu.org/licenses/agpl-3.0.html). Other licenses are available on request.
+JPMML-XGBoost is dual-licensed under the [GNU Affero General Public License (AGPL) version 3.0](http://www.gnu.org/licenses/agpl-3.0.html), and a commercial license.
 
 # Additional information #
 
-Please contact [info@openscoring.io](mailto:info@openscoring.io)
+JPMML-XGBoost is developed and maintained by Openscoring Ltd, Estonia.
+
+Interested in using JPMML software in your application? Please contact [info@openscoring.io](mailto:info@openscoring.io)
