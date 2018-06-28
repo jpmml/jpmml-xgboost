@@ -31,6 +31,7 @@ import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLEncoder;
+import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -50,6 +51,8 @@ public class ObjFunction {
 
 		Schema segmentSchema = schema.toAnonymousSchema();
 
+		PredicateManager predicateManager = new PredicateManager();
+
 		List<TreeModel> treeModels = new ArrayList<>();
 
 		if(ntreeLimit != null){
@@ -62,7 +65,7 @@ public class ObjFunction {
 		}
 
 		for(RegTree regTree : regTrees){
-			TreeModel treeModel = regTree.encodeTreeModel(segmentSchema);
+			TreeModel treeModel = regTree.encodeTreeModel(predicateManager, segmentSchema);
 
 			treeModels.add(treeModel);
 		}

@@ -23,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
@@ -34,6 +33,7 @@ import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
@@ -88,11 +88,11 @@ public class RegTree {
 		}
 	}
 
-	public TreeModel encodeTreeModel(Schema schema){
+	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
 		org.dmg.pmml.tree.Node root = new org.dmg.pmml.tree.Node()
 			.setPredicate(new True());
 
-		encodeNode(root, 0, schema);
+		encodeNode(root, predicateManager, 0, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -102,7 +102,7 @@ public class RegTree {
 		return treeModel;
 	}
 
-	private void encodeNode(org.dmg.pmml.tree.Node parent, int index, Schema schema){
+	private void encodeNode(org.dmg.pmml.tree.Node parent, PredicateManager predicateManager, int index, Schema schema){
 		parent.setId(String.valueOf(index + 1));
 
 		Node node = this.nodes.get(index);
@@ -112,19 +112,57 @@ public class RegTree {
 
 			Feature feature = schema.getFeature(splitIndex);
 
-			org.dmg.pmml.tree.Node leftChild = new org.dmg.pmml.tree.Node()
-				.setPredicate(encodePredicate(feature, node, true));
+			Predicate leftPredicate;
+			Predicate rightPredicate;
 
-			encodeNode(leftChild, node.cleft(), schema);
+			boolean defaultLeft;
+
+			if(feature instanceof BinaryFeature){
+				BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+				String value = binaryFeature.getValue();
+
+				leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
+				rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
+
+				defaultLeft = true;
+			} else
+
+			{
+				ContinuousFeature continuousFeature = feature.toContinuousFeature();
+
+				Number splitValue = Float.intBitsToFloat(node.split_cond());
+
+				DataType dataType = continuousFeature.getDataType();
+				switch(dataType){
+					case INTEGER:
+						splitValue = (int)(splitValue.floatValue() + 1f);
+						break;
+					case FLOAT:
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+
+				String value = ValueUtil.formatValue(splitValue);
+
+				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, value);
+				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, value);
+
+				defaultLeft = node.default_left();
+			}
+
+			org.dmg.pmml.tree.Node leftChild = new org.dmg.pmml.tree.Node()
+				.setPredicate(leftPredicate);
+
+			encodeNode(leftChild, predicateManager, node.cleft(), schema);
 
 			org.dmg.pmml.tree.Node rightChild = new org.dmg.pmml.tree.Node()
-				.setPredicate(encodePredicate(feature, node, false));
+				.setPredicate(rightPredicate);
 
-			encodeNode(rightChild, node.cright(), schema);
+			encodeNode(rightChild, predicateManager, node.cright(), schema);
 
 			parent.addNodes(leftChild, rightChild);
-
-			boolean defaultLeft = isDefaultLeft(feature, node);
 
 			parent.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId());
 		} else
@@ -138,56 +176,5 @@ public class RegTree {
 
 	public List<Node> getNodes(){
 		return this.nodes;
-	}
-
-	static
-	private Predicate encodePredicate(Feature feature, Node node, boolean left){
-		FieldName name = feature.getName();
-		SimplePredicate.Operator operator;
-		String value;
-
-		if(feature instanceof BinaryFeature){
-			BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-			operator = (left ? SimplePredicate.Operator.NOT_EQUAL : SimplePredicate.Operator.EQUAL);
-			value = binaryFeature.getValue();
-		} else
-
-		{
-			ContinuousFeature continuousFeature = feature.toContinuousFeature();
-
-			Number splitValue = Float.intBitsToFloat(node.split_cond());
-
-			DataType dataType = continuousFeature.getDataType();
-			switch(dataType){
-				case INTEGER:
-					splitValue = (int)(splitValue.floatValue() + 1f);
-					break;
-				case FLOAT:
-					break;
-				default:
-					throw new IllegalArgumentException();
-			}
-
-			operator = (left ? SimplePredicate.Operator.LESS_THAN : SimplePredicate.Operator.GREATER_OR_EQUAL);
-			value = ValueUtil.formatValue(splitValue);
-		}
-
-		SimplePredicate simplePredicate = new SimplePredicate(name, operator)
-			.setValue(value);
-
-		return simplePredicate;
-	}
-
-	static
-	private boolean isDefaultLeft(Feature feature, Node node){
-
-		if(feature instanceof BinaryFeature){
-			return true;
-		} else
-
-		{
-			return node.default_left();
-		}
 	}
 }
