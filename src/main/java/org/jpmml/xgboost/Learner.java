@@ -121,7 +121,7 @@ public class Learner {
 		}
 	}
 
-	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Integer ntreeLimit, boolean compact){
+	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Map<String, ?> options){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		if(targetField == null){
@@ -134,7 +134,7 @@ public class Learner {
 
 		Schema schema = new Schema(label, features);
 
-		MiningModel miningModel = encodeMiningModel(ntreeLimit, compact, schema);
+		MiningModel miningModel = encodeMiningModel(options, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
 
@@ -144,10 +144,13 @@ public class Learner {
 	/**
 	 * @see XGBoostUtil#toXGBoostSchema(Schema)
 	 */
-	public MiningModel encodeMiningModel(Integer ntreeLimit, boolean compact, Schema schema){
+	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
+		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
+		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
+
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema);
 
-		if(compact){
+		if((Boolean.TRUE).equals(compact)){
 			Visitor visitor = new TreeModelCompactor();
 
 			visitor.applyTo(miningModel);

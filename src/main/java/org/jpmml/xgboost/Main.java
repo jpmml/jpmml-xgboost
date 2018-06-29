@@ -23,7 +23,9 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
@@ -145,7 +147,11 @@ public class Main {
 			featureMap.addMissingValue(this.missingValue);
 		}
 
-		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, this.ntreeLimit, this.compact);
+		Map<String, Object> options = new LinkedHashMap<>();
+		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
+		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
+
+		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, options);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);

@@ -20,6 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -67,7 +68,11 @@ public class XGBoostTest extends IntegrationTest {
 					ntreeLimit = new Integer(dataset[1]);
 				}
 
-				PMML pmml = learner.encodePMML(null, null, featureMap, ntreeLimit, (ntreeLimit != null));
+				Map<String, Object> options = new LinkedHashMap<>();
+				options.put(HasXGBoostOptions.OPTION_COMPACT, ntreeLimit != null);
+				options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
+
+				PMML pmml = learner.encodePMML(null, null, featureMap, options);
 
 				ensureValidity(pmml);
 
