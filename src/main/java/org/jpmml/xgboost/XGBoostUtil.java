@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
+import java.nio.ByteOrder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -41,7 +42,12 @@ public class XGBoostUtil {
 
 	static
 	public Learner loadLearner(InputStream is) throws IOException {
-		XGBoostDataInput input = new XGBoostDataInput(is);
+		return loadLearner(is, ByteOrder.LITTLE_ENDIAN, null);
+	}
+
+	static
+	public Learner loadLearner(InputStream is, ByteOrder byteOrder, String charset) throws IOException {
+		XGBoostDataInput input = new XGBoostDataInput(is, byteOrder, charset);
 
 		Learner learner = new Learner();
 		learner.load(input);

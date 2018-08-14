@@ -23,6 +23,7 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.nio.ByteOrder;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,19 @@ public class Main {
 		required = true
 	)
 	private File modelInput = null;
+
+	@Parameter (
+		names = {"--byte-order"},
+		description = "Endianness of XGBoost model input file. Possible values BIG_ENDIAN (BE) or LITTLE_ENDIAN (LE)",
+		converter = ByteOrderConverter.class
+	)
+	private ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
+
+	@Parameter (
+		names = {"--charset"},
+		description = "Charset of XGBoost model input file"
+	)
+	private String charset = null;
 
 	@Parameter (
 		names = {"--missing-value"},
@@ -134,7 +148,7 @@ public class Main {
 		Learner learner;
 
 		try(InputStream is = new FileInputStream(this.modelInput)){
-			learner = XGBoostUtil.loadLearner(is);
+			learner = XGBoostUtil.loadLearner(is, this.byteOrder, this.charset);
 		}
 
 		FeatureMap featureMap;

@@ -19,9 +19,11 @@
 package org.jpmml.xgboost;
 
 import java.io.Closeable;
+import java.io.DataInput;
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.io.PushbackInputStream;
+import java.nio.ByteOrder;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
@@ -33,38 +35,61 @@ import com.google.common.io.LittleEndianDataInputStream;
 
 public class XGBoostDataInput implements Closeable {
 
-	private LittleEndianDataInputStream dis = null;
+	private InputStream is = null;
+
+	private String charset = null;
 
 
-	public XGBoostDataInput(InputStream is) throws IOException {
-		this.dis = new LittleEndianDataInputStream(init(new PushbackInputStream(is, 4)));
+	public XGBoostDataInput(InputStream is, ByteOrder byteOrder, String charset){
+
+		if((ByteOrder.BIG_ENDIAN).equals(byteOrder)){
+			this.is = new DataInputStream(is);
+		} else
+
+		if((ByteOrder.LITTLE_ENDIAN).equals(byteOrder)){
+			this.is = new LittleEndianDataInputStream(is);
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
+
+		this.charset = charset;
 	}
 
 	@Override
 	public void close() throws IOException {
-		this.dis.close();
+		this.is.close();
 	}
 
 	public int readInt() throws IOException {
-		return this.dis.readInt();
+		return asDataInput().readInt();
+	}
+
+	public long readLong() throws IOException {
+		return asDataInput().readLong();
 	}
 
 	public float readFloat() throws IOException {
-		return this.dis.readFloat();
+		return asDataInput().readFloat();
 	}
 
 	public String readString() throws IOException {
-		int length = (int)this.dis.readLong();
+		int length = (int)readLong();
 
 		byte[] buffer = new byte[length];
 
-		ByteStreams.readFully(this.dis, buffer);
+		ByteStreams.readFully(this.is, buffer);
+
+		if(this.charset != null){
+			return new String(buffer, this.charset);
+		}
 
 		return new String(buffer);
 	}
 
 	public Map<String, String> readStringMap() throws IOException {
-		int length = (int)this.dis.readLong();
+		int length = (int)readLong();
 
 		Map<String, String> result = new LinkedHashMap<>();
 
@@ -76,7 +101,7 @@ public class XGBoostDataInput implements Closeable {
 	}
 
 	public List<String> readStringList() throws IOException {
-		int length = (int)this.dis.readLong();
+		int length = (int)readLong();
 
 		List<String> result = new ArrayList<>();
 
@@ -93,7 +118,7 @@ public class XGBoostDataInput implements Closeable {
 		boolean empty = true;
 
 		for(int i = 0; i < length; i++){
-			int value = this.dis.readInt();
+			int value = readInt();
 
 			buffer[i] = value;
 
@@ -105,18 +130,7 @@ public class XGBoostDataInput implements Closeable {
 		}
 	}
 
-	static
-	private InputStream init(PushbackInputStream is) throws IOException {
-		byte[] header = new byte[4];
-
-		ByteStreams.readFully(is, header);
-
-		if(!Arrays.equals(XGBoostDataInput.BINF_MAGIC, header)){
-			is.unread(header);
-		}
-
-		return is;
+	private DataInput asDataInput(){
+		return (DataInput)this.is;
 	}
-
-	private static final byte[] BINF_MAGIC = {'b', 'i', 'n', 'f'};
 }
