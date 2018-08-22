@@ -18,7 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-public interface HasXGBoostOptions {
+import org.jpmml.converter.HasOptions;
+
+public interface HasXGBoostOptions extends HasOptions {
 
 	String OPTION_COMPACT = "compact";
 
