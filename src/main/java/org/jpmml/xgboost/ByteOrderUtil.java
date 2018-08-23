@@ -20,12 +20,13 @@ package org.jpmml.xgboost;
 
 import java.nio.ByteOrder;
 
-import com.beust.jcommander.IStringConverter;
+public class ByteOrderUtil {
 
-public class ByteOrderConverter implements IStringConverter<ByteOrder> {
+	private ByteOrderUtil(){
+	}
 
-	@Override
-	public ByteOrder convert(String value){
+	static
+	public ByteOrder forValue(String value){
 
 		if(("BIG_ENDIAN").equalsIgnoreCase(value) || ("BE").equalsIgnoreCase(value)){
 			return ByteOrder.BIG_ENDIAN;

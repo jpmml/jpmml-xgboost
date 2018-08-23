@@ -60,10 +60,9 @@ public class Main {
 
 	@Parameter (
 		names = {"--byte-order"},
-		description = "Endianness of XGBoost model input file. Possible values BIG_ENDIAN (BE) or LITTLE_ENDIAN (LE)",
-		converter = ByteOrderConverter.class
+		description = "Endianness of XGBoost model input file. Possible values \"BIG_ENDIAN\" (\"BE\") or \"LITTLE_ENDIAN\" (\"LE\")"
 	)
-	private ByteOrder byteOrder = ByteOrder.nativeOrder();
+	private String byteOrder = (ByteOrder.nativeOrder()).toString();
 
 	@Parameter (
 		names = {"--charset"},
@@ -147,8 +146,10 @@ public class Main {
 	private void run() throws Exception {
 		Learner learner;
 
+		ByteOrder byteOrder = ByteOrderUtil.forValue(this.byteOrder);
+
 		try(InputStream is = new FileInputStream(this.modelInput)){
-			learner = XGBoostUtil.loadLearner(is, this.byteOrder, this.charset);
+			learner = XGBoostUtil.loadLearner(is, byteOrder, this.charset);
 		}
 
 		FeatureMap featureMap;
