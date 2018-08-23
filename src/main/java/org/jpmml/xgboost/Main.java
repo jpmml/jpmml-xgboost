@@ -63,7 +63,7 @@ public class Main {
 		description = "Endianness of XGBoost model input file. Possible values BIG_ENDIAN (BE) or LITTLE_ENDIAN (LE)",
 		converter = ByteOrderConverter.class
 	)
-	private ByteOrder byteOrder = ByteOrder.LITTLE_ENDIAN;
+	private ByteOrder byteOrder = ByteOrder.nativeOrder();
 
 	@Parameter (
 		names = {"--charset"},

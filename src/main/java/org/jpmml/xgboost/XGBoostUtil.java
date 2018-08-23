@@ -42,7 +42,7 @@ public class XGBoostUtil {
 
 	static
 	public Learner loadLearner(InputStream is) throws IOException {
-		return loadLearner(is, ByteOrder.LITTLE_ENDIAN, null);
+		return loadLearner(is, ByteOrder.nativeOrder(), null);
 	}
 
 	static
