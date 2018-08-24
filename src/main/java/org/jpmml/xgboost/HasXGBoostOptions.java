@@ -22,6 +22,10 @@ import org.jpmml.converter.HasOptions;
 
 public interface HasXGBoostOptions extends HasOptions {
 
+	String OPTION_BYTE_ORDER = "byte_order";
+
+	String OPTION_CHARSET = "charset";
+
 	String OPTION_COMPACT = "compact";
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
