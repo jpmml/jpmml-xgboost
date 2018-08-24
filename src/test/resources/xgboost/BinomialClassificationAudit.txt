@@ -5,65 +5,65 @@ booster[0]
 			7:[Education=Bachelor] yes=16,no=15
 				15:[Education=Master] yes=28,no=27
 					27:[Education=Associate] yes=42,no=41
-						41:leaf=-0.575226
-						42:leaf=-0.376744
-					28:[Income<189378] yes=43,no=44,missing=43
-						43:leaf=-0.410526
+						41:leaf=-0.57522583
+						42:leaf=-0.376744211
+					28:[Income<189377.844] yes=43,no=44,missing=43
+						43:leaf=-0.410526335
 						44:leaf=-0
 				16:[Age<42] yes=29,no=30,missing=29
 					29:[Hours<50] yes=45,no=46,missing=45
-						45:leaf=-0.52
-						46:leaf=-0.244444
-					30:[Income<76023] yes=47,no=48,missing=47
-						47:leaf=0.026087
-						48:leaf=-0.385714
+						45:leaf=-0.520000041
+						46:leaf=-0.244444445
+					30:[Income<76022.9688] yes=47,no=48,missing=47
+						47:leaf=0.0260869581
+						48:leaf=-0.385714293
 			8:[Age<44] yes=17,no=18,missing=17
-				17:leaf=-0.0666667
-				18:leaf=0.0666667
+				17:leaf=-0.0666666701
+				18:leaf=0.0666666701
 		4:[Gender=Female] yes=10,no=9
-			9:leaf=0.272727
-			10:leaf=-0.3
+			9:leaf=0.272727281
+			10:leaf=-0.300000012
 	2:[Occupation=Executive] yes=6,no=5
 		5:[Occupation=Professional] yes=12,no=11
 			11:[Age<37] yes=19,no=20,missing=19
 				19:[Hours<56] yes=31,no=32,missing=31
-					31:[Income<59953.1] yes=49,no=50,missing=49
-						49:leaf=-0.403636
-						50:leaf=-0.163636
-					32:[Income<39314.7] yes=51,no=52,missing=51
-						51:leaf=0.0947368
-						52:leaf=-0.257143
+					31:[Income<59953.125] yes=49,no=50,missing=49
+						49:leaf=-0.403636396
+						50:leaf=-0.163636371
+					32:[Income<39314.6992] yes=51,no=52,missing=51
+						51:leaf=0.0947368443
+						52:leaf=-0.257142872
 				20:[Occupation=Clerical] yes=34,no=33
 					33:[Education=Bachelor] yes=54,no=53
-						53:leaf=-0.216495
-						54:leaf=0.114894
-					34:[Income<29924] yes=55,no=56,missing=55
-						55:leaf=-0.171429
-						56:leaf=0.272727
+						53:leaf=-0.216494843
+						54:leaf=0.114893623
+					34:[Income<29924.0312] yes=55,no=56,missing=55
+						55:leaf=-0.171428591
+						56:leaf=0.272727281
 			12:[Education=College] yes=22,no=21
 				21:[Hours<23] yes=35,no=36,missing=35
-					35:leaf=-0.2
+					35:leaf=-0.200000018
 					36:[Hours<60] yes=57,no=58,missing=57
-						57:leaf=0.35122
-						58:leaf=0.0782609
-				22:leaf=-0.266667
+						57:leaf=0.351219505
+						58:leaf=0.0782608688
+				22:leaf=-0.266666681
 		6:[Age<32] yes=13,no=14,missing=13
 			13:[Education=Bachelor] yes=24,no=23
-				23:leaf=-0.317647
-				24:leaf=0.163636
+				23:leaf=-0.317647099
+				24:leaf=0.163636371
 			14:[Employment=Consultant] yes=26,no=25
 				25:[Education=HSgrad] yes=38,no=37
-					37:[Income<12751.6] yes=59,no=60,missing=59
-						59:leaf=0.0461539
-						60:leaf=0.394286
+					37:[Income<12751.5996] yes=59,no=60,missing=59
+						59:leaf=0.0461538509
+						60:leaf=0.394285738
 					38:[Employment=Private] yes=62,no=61
-						61:leaf=0.28
-						62:leaf=-0.05
-				26:[Income<43039.5] yes=39,no=40,missing=39
+						61:leaf=0.280000001
+						62:leaf=-0.0500000045
+				26:[Income<43039.4688] yes=39,no=40,missing=39
 					39:[Age<50] yes=63,no=64,missing=63
-						63:leaf=-0.0666667
-						64:leaf=0.0666667
-					40:leaf=-0.272727
+						63:leaf=-0.0666666701
+						64:leaf=0.0666666701
+					40:leaf=-0.272727281
 booster[1]
 0:[Marital=Married] yes=2,no=1
 	1:[Education=Professional] yes=4,no=3
@@ -71,137 +71,137 @@ booster[1]
 			7:[Education=Bachelor] yes=16,no=15
 				15:[Education=Associate] yes=28,no=27
 					27:[Education=Master] yes=46,no=45
-						45:leaf=-0.442639
-						46:leaf=-0.282477
+						45:leaf=-0.442638993
+						46:leaf=-0.282476664
 					28:[Age<25] yes=47,no=48,missing=47
-						47:leaf=-0.0541021
-						48:leaf=-0.315531
+						47:leaf=-0.0541020669
+						48:leaf=-0.315530866
 				16:[Age<41] yes=29,no=30,missing=29
 					29:[Marital=Unmarried] yes=50,no=49
-						49:leaf=-0.389037
-						50:leaf=-0.0175235
-					30:[Income<77266.1] yes=51,no=52,missing=51
-						51:leaf=0.0336244
-						52:leaf=-0.331921
-			8:[Income<87586.7] yes=17,no=18,missing=17
-				17:leaf=-0.0689306
-				18:leaf=0.0689306
+						49:leaf=-0.389036655
+						50:leaf=-0.0175234526
+					30:[Income<77266.0938] yes=51,no=52,missing=51
+						51:leaf=0.0336244293
+						52:leaf=-0.331920683
+			8:[Income<87586.6719] yes=17,no=18,missing=17
+				17:leaf=-0.0689305663
+				18:leaf=0.0689306036
 		4:[Age<37] yes=9,no=10,missing=9
-			9:leaf=-0.190478
-			10:leaf=0.210677
+			9:leaf=-0.190477818
+			10:leaf=0.210677475
 	2:[Occupation=Executive] yes=6,no=5
 		5:[Occupation=Professional] yes=12,no=11
 			11:[Hours<42] yes=19,no=20,missing=19
 				19:[Age<44] yes=31,no=32,missing=31
 					31:[Hours<40] yes=53,no=54,missing=53
-						53:leaf=-0.441044
-						54:leaf=-0.260908
-					32:[Income<55991.4] yes=55,no=56,missing=55
-						55:leaf=-0.179168
-						56:leaf=0.22135
+						53:leaf=-0.441043794
+						54:leaf=-0.260908097
+					32:[Income<55991.3555] yes=55,no=56,missing=55
+						55:leaf=-0.179168463
+						56:leaf=0.221349895
 				20:[Occupation=Sales] yes=34,no=33
 					33:[Hours<44] yes=57,no=58,missing=57
-						57:leaf=0.299864
-						58:leaf=-0.119126
+						57:leaf=0.299863547
+						58:leaf=-0.119125895
 					34:[Education=HSgrad] yes=60,no=59
-						59:leaf=0.210233
-						60:leaf=-0.0631818
+						59:leaf=0.210232913
+						60:leaf=-0.0631818473
 			12:[Education=College] yes=22,no=21
 				21:[Hours<23] yes=35,no=36,missing=35
-					35:leaf=-0.167703
+					35:leaf=-0.167702854
 					36:[Age<40] yes=61,no=62,missing=61
-						61:leaf=0.329036
-						62:leaf=0.135295
-				22:[Income<37409.2] yes=37,no=38,missing=37
-					37:leaf=-0.292001
-					38:leaf=-0.0844297
+						61:leaf=0.329035878
+						62:leaf=0.135294706
+				22:[Income<37409.2148] yes=37,no=38,missing=37
+					37:leaf=-0.292000532
+					38:leaf=-0.0844297484
 		6:[Employment=Consultant] yes=14,no=13
 			13:[Age<32] yes=23,no=24,missing=23
 				23:[Education=Bachelor] yes=40,no=39
-					39:leaf=-0.233468
-					40:leaf=0.13303
+					39:leaf=-0.233468026
+					40:leaf=0.133030415
 				24:[Education=HSgrad] yes=42,no=41
-					41:[Income<27597.1] yes=63,no=64,missing=63
-						63:leaf=0.135032
-						64:leaf=0.322837
-					42:[Income<34287.6] yes=65,no=66,missing=65
-						65:leaf=0.180541
-						66:leaf=-0.0772396
-			14:[Income<43039.5] yes=25,no=26,missing=25
+					41:[Income<27597.1445] yes=63,no=64,missing=63
+						63:leaf=0.135031685
+						64:leaf=0.322837442
+					42:[Income<34287.5703] yes=65,no=66,missing=65
+						65:leaf=0.180540875
+						66:leaf=-0.0772396326
+			14:[Income<43039.4688] yes=25,no=26,missing=25
 				25:[Education=HSgrad] yes=44,no=43
-					43:leaf=-0.0689306
-					44:leaf=0.0689306
-				26:leaf=-0.247859
+					43:leaf=-0.0689305663
+					44:leaf=0.0689306036
+				26:leaf=-0.247859284
 booster[2]
 0:[Marital=Married] yes=2,no=1
 	1:[Hours<50] yes=3,no=4,missing=3
 		3:[Occupation=Professional] yes=8,no=7
 			7:[Education=Master] yes=16,no=15
-				15:leaf=-0.380033
-				16:leaf=-0.0500341
+				15:leaf=-0.380033493
+				16:leaf=-0.0500340909
 			8:[Age<48] yes=17,no=18,missing=17
 				17:[Gender=Female] yes=28,no=27
 					27:[Age<32] yes=45,no=46,missing=45
-						45:leaf=-0.280435
-						46:leaf=0.0392183
-					28:leaf=-0.366177
-				18:[Income<76023] yes=29,no=30,missing=29
+						45:leaf=-0.280434966
+						46:leaf=0.0392183177
+					28:leaf=-0.366176724
+				18:[Income<76022.9688] yes=29,no=30,missing=29
 					29:[Education=Master] yes=48,no=47
-						47:leaf=0.208962
-						48:leaf=-0.0947572
+						47:leaf=0.208961621
+						48:leaf=-0.0947572216
 					30:[Age<53] yes=49,no=50,missing=49
-						49:leaf=0.045008
-						50:leaf=-0.29397
+						49:leaf=0.0450080335
+						50:leaf=-0.293970346
 		4:[Education=Professional] yes=10,no=9
 			9:[Age<53] yes=19,no=20,missing=19
 				19:[Occupation=Executive] yes=32,no=31
-					31:[Income<50818.1] yes=51,no=52,missing=51
-						51:leaf=-0.135339
-						52:leaf=-0.306483
-					32:[Income<63642.1] yes=53,no=54,missing=53
-						53:leaf=0.171439
-						54:leaf=-0.173527
+					31:[Income<50818.0781] yes=51,no=52,missing=51
+						51:leaf=-0.135338739
+						52:leaf=-0.306483448
+					32:[Income<63642.0938] yes=53,no=54,missing=53
+						53:leaf=0.171439439
+						54:leaf=-0.173527449
 				20:[Employment=Private] yes=34,no=33
-					33:leaf=0.188477
-					34:leaf=-0.12849
-			10:leaf=0.149966
+					33:leaf=0.188477203
+					34:leaf=-0.128489539
+			10:leaf=0.149965733
 	2:[Education=Master] yes=6,no=5
 		5:[Education=Bachelor] yes=12,no=11
 			11:[Age<37] yes=21,no=22,missing=21
 				21:[Education=Professional] yes=36,no=35
 					35:[Education=College] yes=56,no=55
-						55:leaf=-0.263005
-						56:leaf=-0.0910526
-					36:leaf=0.25232
+						55:leaf=-0.263004869
+						56:leaf=-0.091052562
+					36:leaf=0.252319783
 				22:[Hours<35] yes=37,no=38,missing=37
 					37:[Occupation=Clerical] yes=58,no=57
-						57:leaf=-0.330901
-						58:leaf=0.0296026
+						57:leaf=-0.330901384
+						58:leaf=0.0296025611
 					38:[Employment=Private] yes=60,no=59
-						59:leaf=0.0773597
-						60:leaf=-0.0885497
+						59:leaf=0.0773597062
+						60:leaf=-0.0885497332
 			12:[Employment=Private] yes=24,no=23
 				23:[Occupation=Protective] yes=40,no=39
 					39:[Hours<50] yes=61,no=62,missing=61
-						61:leaf=-0.274298
-						62:leaf=0.0204994
-					40:leaf=0.27071
+						61:leaf=-0.27429831
+						62:leaf=0.0204993617
+					40:leaf=0.270710021
 				24:[Hours<42] yes=41,no=42,missing=41
 					41:[Age<34] yes=63,no=64,missing=63
-						63:leaf=-0.159993
-						64:leaf=0.143866
-					42:[Income<38762.9] yes=65,no=66,missing=65
-						65:leaf=0.178818
-						66:leaf=0.383065
+						63:leaf=-0.159993127
+						64:leaf=0.143865973
+					42:[Income<38762.9297] yes=65,no=66,missing=65
+						65:leaf=0.178818047
+						66:leaf=0.383065253
 		6:[Hours<27] yes=13,no=14,missing=13
-			13:leaf=-0.00282002
-			14:[Income<14991.8] yes=25,no=26,missing=25
-				25:leaf=0.000998163
+			13:leaf=-0.00282001705
+			14:[Income<14991.7695] yes=25,no=26,missing=25
+				25:leaf=0.000998163363
 				26:[Hours<49] yes=43,no=44,missing=43
-					43:leaf=0.440693
+					43:leaf=0.44069317
 					44:[Age<46] yes=67,no=68,missing=67
-						67:leaf=0.349882
-						68:leaf=-0.0361303
+						67:leaf=0.349881619
+						68:leaf=-0.0361302719
 booster[3]
 0:[Marital=Married] yes=2,no=1
 	1:[Hours<50] yes=3,no=4,missing=3
@@ -209,711 +209,711 @@ booster[3]
 			7:[Education=Master] yes=16,no=15
 				15:[Age<35] yes=31,no=32,missing=31
 					31:[Education=Associate] yes=54,no=53
-						53:leaf=-0.366152
-						54:leaf=-0.172046
-					32:[Income<47019.2] yes=55,no=56,missing=55
-						55:leaf=-0.146923
-						56:leaf=-0.314694
-				16:leaf=-0.041311
+						53:leaf=-0.366152376
+						54:leaf=-0.172046185
+					32:[Income<47019.25] yes=55,no=56,missing=55
+						55:leaf=-0.146923482
+						56:leaf=-0.31469366
+				16:leaf=-0.0413110144
 			8:[Age<48] yes=17,no=18,missing=17
 				17:[Gender=Female] yes=34,no=33
 					33:[Age<32] yes=57,no=58,missing=57
-						57:leaf=-0.240052
-						58:leaf=0.0300876
-					34:[Income<29693.9] yes=59,no=60,missing=59
-						59:leaf=-0.0764216
-						60:leaf=-0.332732
+						57:leaf=-0.240051836
+						58:leaf=0.0300876144
+					34:[Income<29693.8867] yes=59,no=60,missing=59
+						59:leaf=-0.0764216185
+						60:leaf=-0.33273232
 				18:[Income<90487] yes=35,no=36,missing=35
-					35:[Income<62109.5] yes=61,no=62,missing=61
-						61:leaf=-0.0600146
-						62:leaf=0.176508
-					36:leaf=-0.195306
+					35:[Income<62109.5391] yes=61,no=62,missing=61
+						61:leaf=-0.0600146018
+						62:leaf=0.176507711
+					36:leaf=-0.19530566
 		4:[Age<39] yes=9,no=10,missing=9
 			9:[Occupation=Professional] yes=20,no=19
 				19:[Education=Bachelor] yes=38,no=37
 					37:[Occupation=Clerical] yes=64,no=63
-						63:leaf=-0.318392
-						64:leaf=-0.0689339
+						63:leaf=-0.31839174
+						64:leaf=-0.0689338595
 					38:[Age<31] yes=65,no=66,missing=65
-						65:leaf=-0.198888
-						66:leaf=0.132022
-				20:leaf=0.0249848
-			10:[Income<78501.9] yes=21,no=22,missing=21
+						65:leaf=-0.198888436
+						66:leaf=0.132022187
+				20:leaf=0.0249847844
+			10:[Income<78501.9453] yes=21,no=22,missing=21
 				21:[Marital=Absent] yes=40,no=39
 					39:[Gender=Female] yes=68,no=67
-						67:leaf=0.0809165
-						68:leaf=-0.221265
-					40:leaf=0.341675
+						67:leaf=0.0809164792
+						68:leaf=-0.221264705
+					40:leaf=0.341675401
 				22:[Hours<59] yes=41,no=42,missing=41
 					41:[Hours<54] yes=69,no=70,missing=69
-						69:leaf=-0.133796
-						70:leaf=0.184565
-					42:leaf=-0.297032
+						69:leaf=-0.13379626
+						70:leaf=0.184564531
+					42:leaf=-0.297032475
 	2:[Education=Master] yes=6,no=5
 		5:[Education=Bachelor] yes=12,no=11
 			11:[Occupation=Clerical] yes=24,no=23
 				23:[Hours<38] yes=43,no=44,missing=43
 					43:[Employment=Consultant] yes=72,no=71
-						71:leaf=-0.333825
-						72:leaf=-0.111152
+						71:leaf=-0.333825469
+						72:leaf=-0.111151583
 					44:[Occupation=Professional] yes=74,no=73
-						73:leaf=-0.0937852
-						74:leaf=0.140463
-				24:[Income<36700.2] yes=45,no=46,missing=45
-					45:[Income<27635.1] yes=75,no=76,missing=75
-						75:leaf=-0.26241
-						76:leaf=-0.035616
+						73:leaf=-0.0937851518
+						74:leaf=0.140462548
+				24:[Income<36700.1953] yes=45,no=46,missing=45
+					45:[Income<27635.0859] yes=75,no=76,missing=75
+						75:leaf=-0.262410164
+						76:leaf=-0.0356160291
 					46:[Education=Associate] yes=78,no=77
-						77:leaf=0.358993
-						78:leaf=0.0469124
+						77:leaf=0.358992547
+						78:leaf=0.0469123609
 			12:[Employment=Private] yes=26,no=25
 				25:[Hours<39] yes=47,no=48,missing=47
-					47:leaf=-0.303934
+					47:leaf=-0.303933769
 					48:[Occupation=Professional] yes=80,no=79
-						79:leaf=0.13062
-						80:leaf=-0.281784
+						79:leaf=0.130620316
+						80:leaf=-0.28178376
 				26:[Occupation=Repair] yes=50,no=49
 					49:[Hours<42] yes=81,no=82,missing=81
-						81:leaf=0.0736912
-						82:leaf=0.254706
-					50:leaf=-0.226096
+						81:leaf=0.0736912414
+						82:leaf=0.254706264
+					50:leaf=-0.22609593
 		6:[Occupation=Professional] yes=14,no=13
 			13:[Age<40] yes=27,no=28,missing=27
-				27:leaf=0.0826593
-				28:leaf=0.343564
-			14:[Income<23505.8] yes=29,no=30,missing=29
-				29:leaf=-0.0229027
-				30:[Income<29191.6] yes=51,no=52,missing=51
-					51:leaf=0.258048
+				27:leaf=0.0826593041
+				28:leaf=0.343564153
+			14:[Income<23505.7812] yes=29,no=30,missing=29
+				29:leaf=-0.022902742
+				30:[Income<29191.6289] yes=51,no=52,missing=51
+					51:leaf=0.258048326
 					52:[Age<52] yes=83,no=84,missing=83
-						83:leaf=0.158458
-						84:leaf=-0.140099
+						83:leaf=0.158458188
+						84:leaf=-0.14009881
 booster[4]
 0:[Marital=Married] yes=2,no=1
 	1:[Hours<50] yes=3,no=4,missing=3
 		3:[Age<39] yes=7,no=8,missing=7
 			7:[Education=Associate] yes=16,no=15
-				15:leaf=-0.326577
-				16:[Income<79260.3] yes=29,no=30,missing=29
-					29:leaf=-0.244152
-					30:[Income<139716] yes=49,no=50,missing=49
-						49:leaf=0.0845231
-						50:leaf=-0.0692023
-			8:[Income<47019.2] yes=17,no=18,missing=17
-				17:[Income<39787.7] yes=31,no=32,missing=31
+				15:leaf=-0.326577365
+				16:[Income<79260.2812] yes=29,no=30,missing=29
+					29:leaf=-0.244151503
+					30:[Income<139716.281] yes=49,no=50,missing=49
+						49:leaf=0.0845230892
+						50:leaf=-0.0692022666
+			8:[Income<47019.25] yes=17,no=18,missing=17
+				17:[Income<39787.6758] yes=31,no=32,missing=31
 					31:[Education=Bachelor] yes=52,no=51
-						51:leaf=-0.267935
-						52:leaf=0.00966796
-					32:leaf=0.20967
+						51:leaf=-0.267935306
+						52:leaf=0.00966796465
+					32:leaf=0.209670261
 				18:[Occupation=Professional] yes=34,no=33
 					33:[Age<44] yes=53,no=54,missing=53
-						53:leaf=-0.186526
-						54:leaf=-0.310033
-					34:[Income<77266.1] yes=55,no=56,missing=55
-						55:leaf=0.0336682
-						56:leaf=-0.188595
-		4:[Income<128253] yes=9,no=10,missing=9
+						53:leaf=-0.186525792
+						54:leaf=-0.31003347
+					34:[Income<77266.0938] yes=55,no=56,missing=55
+						55:leaf=0.0336681828
+						56:leaf=-0.18859534
+		4:[Income<128252.984] yes=9,no=10,missing=9
 			9:[Age<26] yes=19,no=20,missing=19
-				19:leaf=-0.276809
-				20:[Income<96606] yes=35,no=36,missing=35
+				19:leaf=-0.276808679
+				20:[Income<96605.9844] yes=35,no=36,missing=35
 					35:[Occupation=Service] yes=58,no=57
-						57:leaf=-0.0505539
-						58:leaf=-0.266308
+						57:leaf=-0.0505539291
+						58:leaf=-0.266308397
 					36:[Hours<59] yes=59,no=60,missing=59
-						59:leaf=0.243001
-						60:leaf=-0.0711007
-			10:leaf=-0.313086
+						59:leaf=0.243000731
+						60:leaf=-0.0711007491
+			10:leaf=-0.313085765
 	2:[Occupation=Executive] yes=6,no=5
 		5:[Hours<42] yes=11,no=12,missing=11
-			11:[Income<52592.3] yes=21,no=22,missing=21
+			11:[Income<52592.2734] yes=21,no=22,missing=21
 				21:[Age<44] yes=37,no=38,missing=37
 					37:[Occupation=Repair] yes=62,no=61
-						61:leaf=-0.228929
-						62:leaf=-0.0797177
+						61:leaf=-0.228929192
+						62:leaf=-0.079717651
 					38:[Age<67] yes=63,no=64,missing=63
-						63:leaf=-0.0349142
-						64:leaf=-0.35294
-				22:[Income<54498.1] yes=39,no=40,missing=39
-					39:leaf=0.347441
+						63:leaf=-0.0349142328
+						64:leaf=-0.352940232
+				22:[Income<54498.1289] yes=39,no=40,missing=39
+					39:leaf=0.347441435
 					40:[Occupation=Transport] yes=66,no=65
-						65:leaf=0.0179828
-						66:leaf=-0.287982
-			12:[Income<59863.6] yes=23,no=24,missing=23
+						65:leaf=0.0179828145
+						66:leaf=-0.287982434
+			12:[Income<59863.6328] yes=23,no=24,missing=23
 				23:[Age<36] yes=41,no=42,missing=41
 					41:[Hours<44] yes=67,no=68,missing=67
-						67:leaf=0.186833
-						68:leaf=-0.145261
+						67:leaf=0.186833262
+						68:leaf=-0.145261005
 					42:[Employment=Consultant] yes=70,no=69
-						69:leaf=0.100105
-						70:leaf=-0.115498
+						69:leaf=0.100105479
+						70:leaf=-0.115497909
 				24:[Age<51] yes=43,no=44,missing=43
 					43:[Employment=Consultant] yes=72,no=71
-						71:leaf=0.368548
-						72:leaf=0.0860657
-					44:leaf=-0.0907024
+						71:leaf=0.368547767
+						72:leaf=0.0860657394
+					44:leaf=-0.0907023698
 		6:[Employment=Consultant] yes=14,no=13
 			13:[Age<58] yes=25,no=26,missing=25
 				25:[Age<52] yes=45,no=46,missing=45
-					45:[Income<29416.7] yes=73,no=74,missing=73
-						73:leaf=-0.00791997
-						74:leaf=0.227351
-					46:[Income<34569.2] yes=75,no=76,missing=75
-						75:leaf=0.130817
-						76:leaf=-0.288001
-				26:leaf=0.33705
-			14:[Income<43039.5] yes=27,no=28,missing=27
+					45:[Income<29416.7246] yes=73,no=74,missing=73
+						73:leaf=-0.00791996717
+						74:leaf=0.227350712
+					46:[Income<34569.25] yes=75,no=76,missing=75
+						75:leaf=0.130816773
+						76:leaf=-0.288000911
+				26:leaf=0.337050319
+			14:[Income<43039.4688] yes=27,no=28,missing=27
 				27:[Hours<41] yes=47,no=48,missing=47
-					47:leaf=0.102104
-					48:leaf=-0.0542507
-				28:leaf=-0.187052
+					47:leaf=0.102103554
+					48:leaf=-0.0542506836
+				28:leaf=-0.187052056
 booster[5]
 0:[Marital=Married] yes=2,no=1
 	1:[Age<39] yes=3,no=4,missing=3
 		3:[Hours<50] yes=7,no=8,missing=7
 			7:[Education=Associate] yes=16,no=15
 				15:[Education=Master] yes=28,no=27
-					27:leaf=-0.307181
-					28:leaf=-0.105254
+					27:leaf=-0.307180762
+					28:leaf=-0.105253659
 				16:[Age<25] yes=29,no=30,missing=29
-					29:leaf=0.0580137
-					30:leaf=-0.18245
+					29:leaf=0.0580136627
+					30:leaf=-0.182449609
 			8:[Employment=Consultant] yes=18,no=17
 				17:[Occupation=Executive] yes=32,no=31
-					31:[Income<96606] yes=45,no=46,missing=45
-						45:leaf=-0.285564
-						46:leaf=-0.0753634
-					32:leaf=0.01039
-				18:leaf=0.056719
+					31:[Income<96605.9844] yes=45,no=46,missing=45
+						45:leaf=-0.285563618
+						46:leaf=-0.0753633901
+					32:leaf=0.0103900339
+				18:leaf=0.0567190126
 		4:[Education=Professional] yes=10,no=9
 			9:[Hours<42] yes=19,no=20,missing=19
 				19:[Occupation=Professional] yes=34,no=33
 					33:[Age<43] yes=47,no=48,missing=47
-						47:leaf=-0.130994
-						48:leaf=-0.287671
-					34:[Income<77266.1] yes=49,no=50,missing=49
-						49:leaf=0.0638531
-						50:leaf=-0.167936
-				20:[Income<47042.2] yes=35,no=36,missing=35
+						47:leaf=-0.130994499
+						48:leaf=-0.287671477
+					34:[Income<77266.0938] yes=49,no=50,missing=49
+						49:leaf=0.0638531148
+						50:leaf=-0.167936474
+				20:[Income<47042.2344] yes=35,no=36,missing=35
 					35:[Marital=Absent] yes=52,no=51
-						51:leaf=-0.161766
-						52:leaf=0.435845
+						51:leaf=-0.161765784
+						52:leaf=0.435845166
 					36:[Age<53] yes=53,no=54,missing=53
-						53:leaf=-0.176048
-						54:leaf=0.0605144
-			10:leaf=0.181716
+						53:leaf=-0.176047593
+						54:leaf=0.060514383
+			10:leaf=0.181715906
 	2:[Education=Master] yes=6,no=5
 		5:[Occupation=Service] yes=12,no=11
-			11:[Income<59640] yes=21,no=22,missing=21
+			11:[Income<59640.0078] yes=21,no=22,missing=21
 				21:[Age<37] yes=37,no=38,missing=37
 					37:[Hours<57] yes=55,no=56,missing=55
-						55:leaf=-0.153735
-						56:leaf=0.0885875
+						55:leaf=-0.153734967
+						56:leaf=0.0885874629
 					38:[Occupation=Repair] yes=58,no=57
-						57:leaf=0.0337126
-						58:leaf=-0.133955
+						57:leaf=0.0337126032
+						58:leaf=-0.133955374
 				22:[Occupation=Machinist] yes=40,no=39
-					39:[Income<213612] yes=59,no=60,missing=59
-						59:leaf=0.206074
-						60:leaf=0.0220124
+					39:[Income<213612.344] yes=59,no=60,missing=59
+						59:leaf=0.20607388
+						60:leaf=0.0220123678
 					40:[Gender=Female] yes=62,no=61
-						61:leaf=-0.00688642
-						62:leaf=-0.319125
+						61:leaf=-0.0068864245
+						62:leaf=-0.319124758
 			12:[Age<58] yes=23,no=24,missing=23
 				23:[Education=College] yes=42,no=41
 					41:[Hours<33] yes=63,no=64,missing=63
-						63:leaf=-0.0586177
-						64:leaf=-0.318594
-					42:leaf=-0.0750668
-				24:leaf=0.00182587
-		6:[Income<13431.7] yes=13,no=14,missing=13
-			13:leaf=-0.00991216
+						63:leaf=-0.0586176813
+						64:leaf=-0.318594038
+					42:leaf=-0.0750667602
+				24:leaf=0.0018258699
+		6:[Income<13431.71] yes=13,no=14,missing=13
+			13:leaf=-0.00991216116
 			14:[Age<58] yes=25,no=26,missing=25
 				25:[Age<34] yes=43,no=44,missing=43
-					43:leaf=0.0691075
+					43:leaf=0.0691075176
 					44:[Hours<49] yes=65,no=66,missing=65
-						65:leaf=0.338138
-						66:leaf=0.13781
-				26:leaf=-0.0354025
+						65:leaf=0.338137805
+						66:leaf=0.137809917
+				26:leaf=-0.0354025178
 booster[6]
 0:[Marital=Married] yes=2,no=1
 	1:[Age<28] yes=3,no=4,missing=3
 		3:[Education=Associate] yes=8,no=7
 			7:[Hours<59] yes=15,no=16,missing=15
-				15:leaf=-0.310309
-				16:leaf=-0.0501729
-			8:leaf=-0.0701644
-		4:[Income<105720] yes=9,no=10,missing=9
+				15:leaf=-0.31030941
+				16:leaf=-0.0501728989
+			8:leaf=-0.0701644048
+		4:[Income<105720.125] yes=9,no=10,missing=9
 			9:[Hours<50] yes=17,no=18,missing=17
 				17:[Occupation=Professional] yes=28,no=27
 					27:[Age<58] yes=43,no=44,missing=43
-						43:leaf=-0.217332
-						44:leaf=0.0212541
+						43:leaf=-0.217331558
+						44:leaf=0.0212541148
 					28:[Education=Master] yes=46,no=45
-						45:leaf=0.0568181
-						46:leaf=-0.153858
+						45:leaf=0.0568181425
+						46:leaf=-0.153858081
 				18:[Occupation=Service] yes=30,no=29
 					29:[Employment=SelfEmp] yes=48,no=47
-						47:leaf=0.0865156
-						48:leaf=-0.11582
-					30:leaf=-0.212159
+						47:leaf=0.0865155756
+						48:leaf=-0.11581967
+					30:leaf=-0.212159485
 			10:[Occupation=Sales] yes=20,no=19
 				19:[Occupation=Executive] yes=32,no=31
 					31:[Marital=Widowed] yes=50,no=49
-						49:leaf=-0.300449
-						50:leaf=-0.0321251
-					32:[Income<140743] yes=51,no=52,missing=51
-						51:leaf=0.0778775
-						52:leaf=-0.18295
-				20:leaf=-0.00070724
+						49:leaf=-0.300449014
+						50:leaf=-0.032125093
+					32:[Income<140743.375] yes=51,no=52,missing=51
+						51:leaf=0.0778775364
+						52:leaf=-0.182949543
+				20:leaf=-0.000707240019
 	2:[Hours<38] yes=5,no=6,missing=5
-		5:[Income<26086.5] yes=11,no=12,missing=11
+		5:[Income<26086.4648] yes=11,no=12,missing=11
 			11:[Age<44] yes=21,no=22,missing=21
-				21:leaf=-0.219575
+				21:leaf=-0.219575495
 				22:[Age<65] yes=33,no=34,missing=33
-					33:leaf=0.301954
-					34:leaf=-0.0131348
-			12:[Income<105569] yes=23,no=24,missing=23
-				23:[Income<41090.6] yes=35,no=36,missing=35
+					33:leaf=0.301953524
+					34:leaf=-0.013134771
+			12:[Income<105568.625] yes=23,no=24,missing=23
+				23:[Income<41090.6484] yes=35,no=36,missing=35
 					35:[Age<45] yes=53,no=54,missing=53
-						53:leaf=0.0781347
-						54:leaf=-0.273998
-					36:leaf=-0.378813
+						53:leaf=0.078134656
+						54:leaf=-0.273998111
+					36:leaf=-0.378813237
 				24:[Age<31] yes=37,no=38,missing=37
-					37:leaf=-0.228539
+					37:leaf=-0.228538737
 					38:[Education=HSgrad] yes=56,no=55
-						55:leaf=0.156708
-						56:leaf=-0.105286
+						55:leaf=0.15670836
+						56:leaf=-0.105285756
 		6:[Education=Yr9] yes=14,no=13
 			13:[Education=HSgrad] yes=26,no=25
 				25:[Education=Yr7t8] yes=40,no=39
-					39:[Income<21264.2] yes=57,no=58,missing=57
-						57:leaf=0.190631
-						58:leaf=0.0305399
-					40:leaf=-0.305172
-				26:[Income<26964.5] yes=41,no=42,missing=41
-					41:[Income<23547.8] yes=59,no=60,missing=59
-						59:leaf=-0.116347
-						60:leaf=-0.303849
-					42:[Income<31083.5] yes=61,no=62,missing=61
-						61:leaf=0.215158
-						62:leaf=-0.0265768
-			14:leaf=-0.346862
+					39:[Income<21264.1758] yes=57,no=58,missing=57
+						57:leaf=0.190631419
+						58:leaf=0.030539887
+					40:leaf=-0.305172026
+				26:[Income<26964.4805] yes=41,no=42,missing=41
+					41:[Income<23547.7539] yes=59,no=60,missing=59
+						59:leaf=-0.11634732
+						60:leaf=-0.303848922
+					42:[Income<31083.5195] yes=61,no=62,missing=61
+						61:leaf=0.215158165
+						62:leaf=-0.0265768301
+			14:leaf=-0.34686178
 booster[7]
 0:[Marital=Married] yes=2,no=1
 	1:[Age<27] yes=3,no=4,missing=3
 		3:[Education=Associate] yes=8,no=7
 			7:[Hours<56] yes=15,no=16,missing=15
-				15:leaf=-0.306978
-				16:leaf=-0.0328679
-			8:leaf=-0.0576883
+				15:leaf=-0.306978017
+				16:leaf=-0.0328678787
+			8:leaf=-0.0576882549
 		4:[Education=Bachelor] yes=10,no=9
 			9:[Education=Doctorate] yes=18,no=17
 				17:[Education=Professional] yes=28,no=27
 					27:[Occupation=Protective] yes=42,no=41
-						41:leaf=-0.2033
-						42:leaf=0.0893385
-					28:leaf=0.0815828
-				18:[Income<87586.7] yes=29,no=30,missing=29
-					29:leaf=-0.0298226
-					30:leaf=0.18417
-			10:[Income<27756.7] yes=19,no=20,missing=19
-				19:leaf=0.199303
+						41:leaf=-0.203299746
+						42:leaf=0.0893384516
+					28:leaf=0.0815828294
+				18:[Income<87586.6719] yes=29,no=30,missing=29
+					29:leaf=-0.029822601
+					30:leaf=0.18416965
+			10:[Income<27756.6836] yes=19,no=20,missing=19
+				19:leaf=0.199303091
 				20:[Employment=Private] yes=32,no=31
 					31:[Employment=Consultant] yes=44,no=43
-						43:leaf=-0.289931
-						44:leaf=0.127341
-					32:[Income<139504] yes=45,no=46,missing=45
-						45:leaf=0.0758262
-						46:leaf=-0.187849
+						43:leaf=-0.289931118
+						44:leaf=0.127341419
+					32:[Income<139504.281] yes=45,no=46,missing=45
+						45:leaf=0.0758262128
+						46:leaf=-0.187849015
 	2:[Education=Master] yes=6,no=5
 		5:[Occupation=Support] yes=12,no=11
 			11:[Hours<42] yes=21,no=22,missing=21
 				21:[Age<29] yes=33,no=34,missing=33
 					33:[Employment=Private] yes=48,no=47
-						47:leaf=-0.0316851
-						48:leaf=-0.263454
-					34:[Income<36558.3] yes=49,no=50,missing=49
-						49:leaf=-0.0922419
-						50:leaf=0.0106531
-				22:[Income<61026.2] yes=35,no=36,missing=35
+						47:leaf=-0.0316850618
+						48:leaf=-0.263454318
+					34:[Income<36558.2891] yes=49,no=50,missing=49
+						49:leaf=-0.0922419131
+						50:leaf=0.0106530627
+				22:[Income<61026.2031] yes=35,no=36,missing=35
 					35:[Education=Professional] yes=52,no=51
-						51:leaf=-0.00877309
-						52:leaf=0.280381
-					36:[Income<202057] yes=53,no=54,missing=53
-						53:leaf=0.261037
-						54:leaf=-0.0436845
+						51:leaf=-0.00877308939
+						52:leaf=0.280380845
+					36:[Income<202056.906] yes=53,no=54,missing=53
+						53:leaf=0.261036664
+						54:leaf=-0.0436845124
 			12:[Age<37] yes=23,no=24,missing=23
-				23:leaf=-0.0211363
+				23:leaf=-0.0211362876
 				24:[Education=Bachelor] yes=38,no=37
-					37:leaf=0.36276
-					38:leaf=0.0895255
-		6:[Income<13431.7] yes=13,no=14,missing=13
-			13:leaf=-0.0325525
+					37:leaf=0.362759948
+					38:leaf=0.0895255059
+		6:[Income<13431.71] yes=13,no=14,missing=13
+			13:leaf=-0.0325525366
 			14:[Age<58] yes=25,no=26,missing=25
 				25:[Hours<58] yes=39,no=40,missing=39
 					39:[Age<34] yes=55,no=56,missing=55
-						55:leaf=0.0787919
-						56:leaf=0.265081
-					40:leaf=0.0784431
-				26:leaf=-0.0250344
+						55:leaf=0.0787919164
+						56:leaf=0.265080661
+					40:leaf=0.0784431174
+				26:leaf=-0.0250344239
 booster[8]
 0:[Marital=Married] yes=2,no=1
 	1:[Hours<36] yes=3,no=4,missing=3
 		3:[Employment=Consultant] yes=8,no=7
-			7:leaf=-0.305415
-			8:leaf=0.0329807
-		4:[Income<105709] yes=9,no=10,missing=9
-			9:[Income<86429.9] yes=15,no=16,missing=15
+			7:leaf=-0.305415154
+			8:leaf=0.0329807103
+		4:[Income<105708.875] yes=9,no=10,missing=9
+			9:[Income<86429.9297] yes=15,no=16,missing=15
 				15:[Age<28] yes=27,no=28,missing=27
-					27:leaf=-0.27412
+					27:leaf=-0.274119884
 					28:[Occupation=Service] yes=42,no=41
-						41:leaf=-0.029375
-						42:leaf=-0.241055
-				16:[Income<91914.1] yes=29,no=30,missing=29
-					29:leaf=0.384914
-					30:[Income<95920.6] yes=43,no=44,missing=43
-						43:leaf=-0.227666
-						44:leaf=0.0686124
+						41:leaf=-0.0293749664
+						42:leaf=-0.241055086
+				16:[Income<91914.0625] yes=29,no=30,missing=29
+					29:leaf=0.384914249
+					30:[Income<95920.625] yes=43,no=44,missing=43
+						43:leaf=-0.227666184
+						44:leaf=0.0686123744
 			10:[Education=Associate] yes=18,no=17
 				17:[Marital=Widowed] yes=32,no=31
 					31:[Occupation=Sales] yes=46,no=45
-						45:leaf=-0.256277
-						46:leaf=-0.0557344
-					32:leaf=0.0218576
-				18:leaf=0.0547155
+						45:leaf=-0.256277263
+						46:leaf=-0.0557343699
+					32:leaf=0.0218576007
+				18:leaf=0.0547154918
 	2:[Occupation=Service] yes=6,no=5
 		5:[Occupation=Transport] yes=12,no=11
 			11:[Occupation=Farming] yes=20,no=19
 				19:[Occupation=Cleaner] yes=34,no=33
 					33:[Education=Yr7t8] yes=48,no=47
-						47:leaf=0.0416316
-						48:leaf=-0.264006
+						47:leaf=0.0416315906
+						48:leaf=-0.26400584
 					34:[Hours<45] yes=49,no=50,missing=49
-						49:leaf=-0.255283
-						50:leaf=0.057299
+						49:leaf=-0.255283207
+						50:leaf=0.0572989509
 				20:[Age<62] yes=35,no=36,missing=35
 					35:[Age<44] yes=51,no=52,missing=51
-						51:leaf=-0.0636688
-						52:leaf=-0.280964
-					36:leaf=0.00889824
+						51:leaf=-0.0636688396
+						52:leaf=-0.280963898
+					36:leaf=0.00889823958
 			12:[Age<44] yes=21,no=22,missing=21
-				21:leaf=-0.291906
-				22:[Income<50143.5] yes=37,no=38,missing=37
-					37:[Income<23623.4] yes=53,no=54,missing=53
-						53:leaf=-0.106768
-						54:leaf=0.202069
-					38:leaf=-0.234387
+				21:leaf=-0.291905761
+				22:[Income<50143.5312] yes=37,no=38,missing=37
+					37:[Income<23623.3633] yes=53,no=54,missing=53
+						53:leaf=-0.10676796
+						54:leaf=0.202068761
+					38:leaf=-0.234386519
 		6:[Age<53] yes=13,no=14,missing=13
-			13:[Income<27380.8] yes=23,no=24,missing=23
-				23:leaf=-0.0688442
+			13:[Income<27380.8203] yes=23,no=24,missing=23
+				23:leaf=-0.0688442066
 				24:[Age<42] yes=39,no=40,missing=39
-					39:leaf=-0.315597
-					40:leaf=-0.056538
+					39:leaf=-0.315596998
+					40:leaf=-0.0565380231
 			14:[Age<60] yes=25,no=26,missing=25
-				25:leaf=0.0589156
-				26:leaf=-0.0640268
+				25:leaf=0.0589155816
+				26:leaf=-0.0640268177
 booster[9]
 0:[Age<25] yes=1,no=2,missing=1
 	1:[Education=Associate] yes=4,no=3
 		3:[Occupation=Professional] yes=8,no=7
-			7:leaf=-0.298316
-			8:leaf=-0.0711877
-		4:leaf=0.00834531
+			7:leaf=-0.2983163
+			8:leaf=-0.0711877421
+		4:leaf=0.00834530685
 	2:[Occupation=Service] yes=6,no=5
 		5:[Hours<38] yes=9,no=10,missing=9
-			9:[Income<265026] yes=13,no=14,missing=13
-				13:[Income<26086.5] yes=19,no=20,missing=19
+			9:[Income<265026.031] yes=13,no=14,missing=13
+				13:[Income<26086.4648] yes=19,no=20,missing=19
 					19:[Age<44] yes=27,no=28,missing=27
-						27:leaf=-0.183556
-						28:leaf=0.147455
+						27:leaf=-0.183556065
+						28:leaf=0.147454977
 					20:[Occupation=Professional] yes=30,no=29
-						29:leaf=-0.247366
-						30:leaf=-0.0245008
-				14:leaf=0.184264
+						29:leaf=-0.247365952
+						30:leaf=-0.0245008245
+				14:leaf=0.184264243
 			10:[Occupation=Machinist] yes=16,no=15
 				15:[Occupation=Transport] yes=22,no=21
 					21:[Occupation=Farming] yes=32,no=31
-						31:leaf=0.0320865
-						32:leaf=-0.160656
+						31:leaf=0.0320864692
+						32:leaf=-0.160656244
 					22:[Age<44] yes=33,no=34,missing=33
-						33:leaf=-0.254715
-						34:leaf=0.0317117
-				16:[Income<19578.1] yes=23,no=24,missing=23
-					23:[Income<14877.7] yes=35,no=36,missing=35
-						35:leaf=-0.140245
-						36:leaf=0.369257
-					24:[Income<35713.2] yes=37,no=38,missing=37
-						37:leaf=-0.274416
-						38:leaf=-0.0940631
+						33:leaf=-0.254715174
+						34:leaf=0.0317116901
+				16:[Income<19578.1289] yes=23,no=24,missing=23
+					23:[Income<14877.7246] yes=35,no=36,missing=35
+						35:leaf=-0.14024502
+						36:leaf=0.369256675
+					24:[Income<35713.1641] yes=37,no=38,missing=37
+						37:leaf=-0.274416387
+						38:leaf=-0.0940630808
 		6:[Age<58] yes=11,no=12,missing=11
 			11:[Hours<22] yes=17,no=18,missing=17
-				17:leaf=-0.0368632
+				17:leaf=-0.0368632451
 				18:[Education=College] yes=26,no=25
 					25:[Age<54] yes=39,no=40,missing=39
-						39:leaf=-0.291049
-						40:leaf=-0.0780156
-					26:leaf=-0.0541319
-			12:leaf=-0.0394204
+						39:leaf=-0.291048616
+						40:leaf=-0.0780155733
+					26:leaf=-0.0541319251
+			12:leaf=-0.0394203961
 booster[10]
 0:[Age<25] yes=1,no=2,missing=1
 	1:[Education=Associate] yes=4,no=3
 		3:[Occupation=Professional] yes=8,no=7
-			7:leaf=-0.282803
-			8:leaf=-0.0619254
-		4:leaf=0.00685087
+			7:leaf=-0.282802731
+			8:leaf=-0.0619254075
+		4:leaf=0.00685087265
 	2:[Marital=Married] yes=6,no=5
-		5:[Income<116070] yes=9,no=10,missing=9
+		5:[Income<116069.711] yes=9,no=10,missing=9
 			9:[Gender=Female] yes=14,no=13
-				13:[Income<43741.4] yes=19,no=20,missing=19
+				13:[Income<43741.4375] yes=19,no=20,missing=19
 					19:[Education=Bachelor] yes=30,no=29
-						29:leaf=-0.20812
-						30:leaf=-0.0381632
-					20:[Income<50945.4] yes=31,no=32,missing=31
-						31:leaf=0.249852
-						32:leaf=0.0185503
+						29:leaf=-0.208120406
+						30:leaf=-0.0381632261
+					20:[Income<50945.3945] yes=31,no=32,missing=31
+						31:leaf=0.249852136
+						32:leaf=0.0185502693
 				14:[Education=Associate] yes=22,no=21
-					21:[Income<42940.5] yes=33,no=34,missing=33
-						33:leaf=0.0356635
-						34:leaf=-0.193548
-					22:leaf=0.129586
+					21:[Income<42940.5469] yes=33,no=34,missing=33
+						33:leaf=0.035663534
+						34:leaf=-0.19354786
+					22:leaf=0.129586086
 			10:[Education=Master] yes=16,no=15
 				15:[Marital=Widowed] yes=24,no=23
 					23:[Occupation=Executive] yes=36,no=35
-						35:leaf=-0.270815
-						36:leaf=-0.0307125
-					24:leaf=-0.00306383
-				16:leaf=0.0928408
+						35:leaf=-0.270815462
+						36:leaf=-0.0307124872
+					24:leaf=-0.00306383334
+				16:leaf=0.0928407684
 		6:[Education=Yr7t8] yes=12,no=11
-			11:[Income<60990.6] yes=17,no=18,missing=17
-				17:[Income<20620.3] yes=25,no=26,missing=25
+			11:[Income<60990.6055] yes=17,no=18,missing=17
+				17:[Income<20620.3164] yes=25,no=26,missing=25
 					25:[Education=HSgrad] yes=38,no=37
-						37:leaf=0.144673
-						38:leaf=-0.0972782
-					26:[Income<26403.9] yes=39,no=40,missing=39
-						39:leaf=-0.140679
-						40:leaf=-0.00166857
+						37:leaf=0.144673392
+						38:leaf=-0.0972782299
+					26:[Income<26403.9297] yes=39,no=40,missing=39
+						39:leaf=-0.14067927
+						40:leaf=-0.00166856928
 				18:[Occupation=Machinist] yes=28,no=27
 					27:[Occupation=Service] yes=42,no=41
-						41:leaf=0.135616
-						42:leaf=-0.137747
-					28:leaf=-0.126817
-			12:leaf=-0.242951
+						41:leaf=0.135615975
+						42:leaf=-0.137747407
+					28:leaf=-0.126817077
+			12:leaf=-0.242951155
 booster[11]
 0:[Hours<38] yes=1,no=2,missing=1
 	1:[Age<32] yes=3,no=4,missing=3
-		3:leaf=-0.292131
+		3:leaf=-0.292130649
 		4:[Education=HSgrad] yes=8,no=7
-			7:[Income<27061.7] yes=11,no=12,missing=11
+			7:[Income<27061.6797] yes=11,no=12,missing=11
 				11:[Age<52] yes=19,no=20,missing=19
-					19:leaf=-0.0123218
-					20:leaf=0.219111
-				12:[Income<73953.4] yes=21,no=22,missing=21
+					19:leaf=-0.0123217981
+					20:leaf=0.219111413
+				12:[Income<73953.4297] yes=21,no=22,missing=21
 					21:[Age<65] yes=31,no=32,missing=31
-						31:leaf=-0.309701
-						32:leaf=0.0471894
+						31:leaf=-0.309701145
+						32:leaf=0.0471894294
 					22:[Age<52] yes=33,no=34,missing=33
-						33:leaf=0.130797
-						34:leaf=-0.161655
-			8:[Income<197735] yes=13,no=14,missing=13
+						33:leaf=0.130796567
+						34:leaf=-0.161655337
+			8:[Income<197734.906] yes=13,no=14,missing=13
 				13:[Occupation=Executive] yes=24,no=23
-					23:leaf=-0.287544
-					24:leaf=-0.0781786
-				14:leaf=-0.0707155
+					23:leaf=-0.28754425
+					24:leaf=-0.0781785697
+				14:leaf=-0.0707154945
 	2:[Education=Yr9] yes=6,no=5
 		5:[Age<37] yes=9,no=10,missing=9
 			9:[Hours<70] yes=15,no=16,missing=15
 				15:[Employment=PSLocal] yes=26,no=25
 					25:[Education=Master] yes=36,no=35
-						35:leaf=-0.0616774
-						36:leaf=0.234102
+						35:leaf=-0.0616773814
+						36:leaf=0.234101906
 					26:[Income<64752.5] yes=37,no=38,missing=37
-						37:leaf=-0.288734
-						38:leaf=-0.072377
-				16:leaf=0.240097
-			10:[Income<12647] yes=17,no=18,missing=17
+						37:leaf=-0.28873387
+						38:leaf=-0.0723769665
+				16:leaf=0.240097433
+			10:[Income<12646.9902] yes=17,no=18,missing=17
 				17:[Age<54] yes=27,no=28,missing=27
 					27:[Hours<43] yes=39,no=40,missing=39
-						39:leaf=-0.339659
-						40:leaf=-0.0693471
-					28:[Income<6464.29] yes=41,no=42,missing=41
-						41:leaf=-0.130893
-						42:leaf=0.199968
-				18:[Income<21264.2] yes=29,no=30,missing=29
+						39:leaf=-0.339659274
+						40:leaf=-0.0693470985
+					28:[Income<6464.29004] yes=41,no=42,missing=41
+						41:leaf=-0.130892545
+						42:leaf=0.199967518
+				18:[Income<21264.1758] yes=29,no=30,missing=29
 					29:[Employment=Private] yes=44,no=43
-						43:leaf=0.276418
-						44:leaf=0.0607604
-					30:[Income<22128.3] yes=45,no=46,missing=45
-						45:leaf=-0.37471
-						46:leaf=0.0297451
-		6:leaf=-0.287722
+						43:leaf=0.276418149
+						44:leaf=0.0607604124
+					30:[Income<22128.3203] yes=45,no=46,missing=45
+						45:leaf=-0.374710143
+						46:leaf=0.0297450554
+		6:leaf=-0.287722051
 booster[12]
 0:[Age<24] yes=1,no=2,missing=1
-	1:leaf=-0.224613
+	1:leaf=-0.224612907
 	2:[Occupation=Service] yes=4,no=3
 		3:[Occupation=Cleaner] yes=6,no=5
 			5:[Age<67] yes=9,no=10,missing=9
 				9:[Occupation=Protective] yes=16,no=15
 					15:[Education=Yr7t8] yes=26,no=25
-						25:leaf=0.00408921
-						26:leaf=-0.229443
+						25:leaf=0.00408921158
+						26:leaf=-0.229443371
 					16:[Age<38] yes=27,no=28,missing=27
-						27:leaf=-0.0606752
-						28:leaf=0.312815
+						27:leaf=-0.060675174
+						28:leaf=0.312815428
 				10:[Occupation=Executive] yes=18,no=17
 					17:[Hours<31] yes=29,no=30,missing=29
-						29:leaf=-0.0787011
-						30:leaf=-0.289678
-					18:leaf=0.05881
-			6:[Income<34738.7] yes=11,no=12,missing=11
+						29:leaf=-0.0787010938
+						30:leaf=-0.289678395
+					18:leaf=0.0588100143
+			6:[Income<34738.7305] yes=11,no=12,missing=11
 				11:[Hours<45] yes=19,no=20,missing=19
-					19:leaf=-0.151794
-					20:leaf=0.161521
-				12:leaf=-0.263484
+					19:leaf=-0.151793584
+					20:leaf=0.161520898
+				12:leaf=-0.263484061
 		4:[Marital=Married] yes=8,no=7
-			7:leaf=-0.251298
-			8:[Income<40015.2] yes=13,no=14,missing=13
+			7:leaf=-0.251297772
+			8:[Income<40015.2031] yes=13,no=14,missing=13
 				13:[Age<38] yes=21,no=22,missing=21
-					21:leaf=0.0510637
-					22:leaf=-0.278945
+					21:leaf=0.0510637201
+					22:leaf=-0.278944701
 				14:[Age<42] yes=23,no=24,missing=23
-					23:leaf=-0.216565
-					24:leaf=0.201176
+					23:leaf=-0.216564655
+					24:leaf=0.201175854
 booster[13]
 0:[Hours<38] yes=1,no=2,missing=1
 	1:[Age<32] yes=3,no=4,missing=3
-		3:leaf=-0.272375
+		3:leaf=-0.27237466
 		4:[Education=HSgrad] yes=8,no=7
 			7:[Employment=PSState] yes=12,no=11
-				11:[Income<27061.7] yes=19,no=20,missing=19
+				11:[Income<27061.6797] yes=19,no=20,missing=19
 					19:[Education=College] yes=32,no=31
-						31:leaf=0.238084
-						32:leaf=-0.00596265
-					20:[Income<105122] yes=33,no=34,missing=33
-						33:leaf=-0.136412
-						34:leaf=0.0652849
-				12:leaf=-0.211401
-			8:[Income<197735] yes=13,no=14,missing=13
+						31:leaf=0.23808448
+						32:leaf=-0.00596264983
+					20:[Income<105121.906] yes=33,no=34,missing=33
+						33:leaf=-0.136411518
+						34:leaf=0.0652849004
+				12:leaf=-0.211400613
+			8:[Income<197734.906] yes=13,no=14,missing=13
 				13:[Hours<35] yes=21,no=22,missing=21
-					21:leaf=-0.269159
-					22:leaf=-0.0673029
-				14:leaf=-0.0585005
+					21:leaf=-0.269159406
+					22:leaf=-0.0673029125
+				14:leaf=-0.0585004948
 	2:[Education=Yr9] yes=6,no=5
 		5:[Marital=Married] yes=10,no=9
 			9:[Education=College] yes=16,no=15
 				15:[Education=Vocational] yes=24,no=23
-					23:[Income<105556] yes=35,no=36,missing=35
-						35:leaf=0.027913
-						36:leaf=-0.0946146
-					24:leaf=-0.219908
+					23:[Income<105556.367] yes=35,no=36,missing=35
+						35:leaf=0.0279130153
+						36:leaf=-0.0946146399
+					24:leaf=-0.219908133
 				16:[Age<47] yes=25,no=26,missing=25
-					25:leaf=-0.273201
-					26:leaf=0.0319002
+					25:leaf=-0.273201197
+					26:leaf=0.03190016
 			10:[Employment=PSState] yes=18,no=17
 				17:[Education=Yr10] yes=28,no=27
 					27:[Occupation=Support] yes=38,no=37
-						37:leaf=0.00912755
-						38:leaf=0.185264
+						37:leaf=0.0091275489
+						38:leaf=0.185263708
 					28:[Age<43] yes=39,no=40,missing=39
-						39:leaf=0.0338836
-						40:leaf=-0.311185
+						39:leaf=0.0338836312
+						40:leaf=-0.311185062
 				18:[Age<58] yes=29,no=30,missing=29
 					29:[Age<46] yes=41,no=42,missing=41
-						41:leaf=0.0202953
-						42:leaf=0.326965
-					30:leaf=-0.0491812
-		6:leaf=-0.2504
+						41:leaf=0.0202953368
+						42:leaf=0.326964647
+					30:leaf=-0.0491812229
+		6:leaf=-0.250400394
 booster[14]
 0:[Occupation=Service] yes=2,no=1
 	1:[Age<28] yes=3,no=4,missing=3
 		3:[Hours<40] yes=7,no=8,missing=7
-			7:leaf=-0.22843
-			8:[Income<64044.6] yes=13,no=14,missing=13
+			7:leaf=-0.228430212
+			8:[Income<64044.5859] yes=13,no=14,missing=13
 				13:[Education=HSgrad] yes=22,no=21
-					21:[Income<38807.5] yes=33,no=34,missing=33
-						33:leaf=-0.097988
-						34:leaf=-0.284504
+					21:[Income<38807.4609] yes=33,no=34,missing=33
+						33:leaf=-0.0979879573
+						34:leaf=-0.284504145
 					22:[Hours<50] yes=35,no=36,missing=35
-						35:leaf=-0.112512
-						36:leaf=0.100513
-				14:[Income<92143.9] yes=23,no=24,missing=23
-					23:leaf=0.211802
+						35:leaf=-0.11251235
+						36:leaf=0.100512981
+				14:[Income<92143.8516] yes=23,no=24,missing=23
+					23:leaf=0.211802363
 					24:[Hours<45] yes=37,no=38,missing=37
-						37:leaf=-0.149476
-						38:leaf=0.160834
+						37:leaf=-0.149475574
+						38:leaf=0.160833538
 		4:[Occupation=Cleaner] yes=10,no=9
 			9:[Occupation=Transport] yes=16,no=15
 				15:[Occupation=Machinist] yes=26,no=25
 					25:[Education=Professional] yes=40,no=39
-						39:leaf=0.01864
-						40:leaf=0.171265
-					26:[Income<64569] yes=41,no=42,missing=41
-						41:leaf=-0.0180362
-						42:leaf=-0.26016
+						39:leaf=0.0186400209
+						40:leaf=0.171264917
+					26:[Income<64568.9609] yes=41,no=42,missing=41
+						41:leaf=-0.0180362184
+						42:leaf=-0.260160238
 				16:[Age<47] yes=27,no=28,missing=27
-					27:[Income<28871.2] yes=43,no=44,missing=43
-						43:leaf=-0.0566363
-						44:leaf=-0.231503
-					28:[Income<42015.5] yes=45,no=46,missing=45
-						45:leaf=0.170043
-						46:leaf=-0.207992
-			10:[Income<31847.4] yes=17,no=18,missing=17
+					27:[Income<28871.1895] yes=43,no=44,missing=43
+						43:leaf=-0.0566363372
+						44:leaf=-0.231503457
+					28:[Income<42015.4648] yes=45,no=46,missing=45
+						45:leaf=0.170043096
+						46:leaf=-0.207991689
+			10:[Income<31847.4102] yes=17,no=18,missing=17
 				17:[Age<47] yes=29,no=30,missing=29
-					29:leaf=0.0650676
-					30:leaf=-0.0842773
-				18:leaf=-0.233493
+					29:leaf=0.0650675818
+					30:leaf=-0.0842773467
+				18:leaf=-0.233493105
 	2:[Age<58] yes=5,no=6,missing=5
-		5:[Income<26828.4] yes=11,no=12,missing=11
-			11:leaf=-0.0314887
+		5:[Income<26828.3984] yes=11,no=12,missing=11
+			11:leaf=-0.0314887278
 			12:[Age<42] yes=19,no=20,missing=19
-				19:leaf=-0.26791
-				20:[Income<45664.9] yes=31,no=32,missing=31
-					31:leaf=-0.206407
-					32:leaf=0.0388133
-		6:leaf=0.00938104
+				19:leaf=-0.267910272
+				20:[Income<45664.9258] yes=31,no=32,missing=31
+					31:leaf=-0.206406921
+					32:leaf=0.0388133228
+		6:leaf=0.00938103534
 booster[15]
 0:[Hours<38] yes=1,no=2,missing=1
 	1:[Age<32] yes=3,no=4,missing=3
-		3:leaf=-0.24817
+		3:leaf=-0.248170257
 		4:[Education=HSgrad] yes=8,no=7
 			7:[Hours<17] yes=13,no=14,missing=13
 				13:[Occupation=Professional] yes=24,no=23
-					23:[Income<38067.9] yes=35,no=36,missing=35
-						35:leaf=0.267821
-						36:leaf=0.0634402
-					24:leaf=-0.121054
+					23:[Income<38067.8984] yes=35,no=36,missing=35
+						35:leaf=0.267820597
+						36:leaf=0.0634402335
+					24:leaf=-0.121054009
 				14:[Age<37] yes=25,no=26,missing=25
-					25:leaf=0.148585
+					25:leaf=0.148584813
 					26:[Hours<25] yes=37,no=38,missing=37
-						37:leaf=-0.239016
-						38:leaf=-0.0364434
+						37:leaf=-0.239016399
+						38:leaf=-0.0364434384
 			8:[Employment=Private] yes=16,no=15
-				15:leaf=-0.0695772
-				16:leaf=-0.227238
+				15:leaf=-0.06957715
+				16:leaf=-0.227238104
 	2:[Education=Master] yes=6,no=5
 		5:[Education=Yr9] yes=10,no=9
 			9:[Education=Yr7t8] yes=18,no=17
 				17:[Education=Yr10] yes=28,no=27
 					27:[Education=Yr5t6] yes=40,no=39
-						39:leaf=0.00400834
-						40:leaf=-0.191676
-					28:[Income<37934.5] yes=41,no=42,missing=41
-						41:leaf=-0.0132418
-						42:leaf=-0.248149
-				18:leaf=-0.210864
-			10:leaf=-0.219248
+						39:leaf=0.00400834158
+						40:leaf=-0.191676319
+					28:[Income<37934.4883] yes=41,no=42,missing=41
+						41:leaf=-0.0132417846
+						42:leaf=-0.248148724
+				18:leaf=-0.21086438
+			10:leaf=-0.219248474
 		6:[Employment=Private] yes=12,no=11
-			11:[Income<32045.2] yes=19,no=20,missing=19
+			11:[Income<32045.2402] yes=19,no=20,missing=19
 				19:[Age<47] yes=29,no=30,missing=29
-					29:leaf=-0.0381301
-					30:leaf=0.229459
+					29:leaf=-0.0381300747
+					30:leaf=0.229458705
 				20:[Age<50] yes=31,no=32,missing=31
-					31:leaf=0.0948907
-					32:leaf=-0.246093
-			12:[Income<30082.6] yes=21,no=22,missing=21
+					31:leaf=0.0948907211
+					32:leaf=-0.246093363
+			12:[Income<30082.5996] yes=21,no=22,missing=21
 				21:[Age<48] yes=33,no=34,missing=33
-					33:leaf=-0.0769443
-					34:leaf=0.00384071
-				22:leaf=0.316149
+					33:leaf=-0.076944299
+					34:leaf=0.0038407133
+				22:leaf=0.316148639
 booster[16]
 0:[Marital=Married] yes=2,no=1
 	1:[Education=College] yes=4,no=3
@@ -921,277 +921,277 @@ booster[16]
 			7:[Education=Vocational] yes=16,no=15
 				15:[Gender=Female] yes=26,no=25
 					25:[Employment=PSFederal] yes=40,no=39
-						39:leaf=0.0565368
-						40:leaf=-0.169612
+						39:leaf=0.0565368161
+						40:leaf=-0.169611588
 					26:[Age<58] yes=41,no=42,missing=41
-						41:leaf=-0.0906227
-						42:leaf=0.142358
-				16:leaf=-0.207567
-			8:leaf=-0.215588
+						41:leaf=-0.090622656
+						42:leaf=0.142358035
+				16:leaf=-0.207567453
+			8:leaf=-0.215588138
 		4:[Age<47] yes=9,no=10,missing=9
-			9:leaf=-0.263721
-			10:leaf=-0.010473
-	2:[Income<59640] yes=5,no=6,missing=5
-		5:[Income<55885.8] yes=11,no=12,missing=11
+			9:leaf=-0.263721019
+			10:leaf=-0.010472957
+	2:[Income<59640.0078] yes=5,no=6,missing=5
+		5:[Income<55885.8125] yes=11,no=12,missing=11
 			11:[Occupation=Farming] yes=18,no=17
 				17:[Hours<34] yes=27,no=28,missing=27
-					27:[Income<34099.4] yes=43,no=44,missing=43
-						43:leaf=-0.00286843
-						44:leaf=-0.259175
-					28:[Income<36186.9] yes=45,no=46,missing=45
-						45:leaf=-0.0140888
-						46:leaf=0.0598077
-				18:[Income<36584.9] yes=29,no=30,missing=29
+					27:[Income<34099.4219] yes=43,no=44,missing=43
+						43:leaf=-0.00286842813
+						44:leaf=-0.259174526
+					28:[Income<36186.8672] yes=45,no=46,missing=45
+						45:leaf=-0.0140888495
+						46:leaf=0.0598077066
+				18:[Income<36584.8555] yes=29,no=30,missing=29
 					29:[Education=HSgrad] yes=48,no=47
-						47:leaf=0.174941
-						48:leaf=-0.154126
-					30:leaf=-0.270516
+						47:leaf=0.174940616
+						48:leaf=-0.154126108
+					30:leaf=-0.270516217
 			12:[Education=College] yes=20,no=19
-				19:[Income<58815.3] yes=31,no=32,missing=31
-					31:leaf=-0.297453
-					32:leaf=-0.0371466
-				20:leaf=0.0917102
-		6:[Income<167403] yes=13,no=14,missing=13
-			13:[Income<98568.1] yes=21,no=22,missing=21
-				21:[Income<79680.7] yes=33,no=34,missing=33
+				19:[Income<58815.3125] yes=31,no=32,missing=31
+					31:leaf=-0.297452599
+					32:leaf=-0.037146572
+				20:leaf=0.09171018
+		6:[Income<167403.156] yes=13,no=14,missing=13
+			13:[Income<98568.1328] yes=21,no=22,missing=21
+				21:[Income<79680.6562] yes=33,no=34,missing=33
 					33:[Education=College] yes=50,no=49
-						49:leaf=0.16726
-						50:leaf=-0.0731641
-					34:leaf=-0.149503
+						49:leaf=0.167259574
+						50:leaf=-0.0731641129
+					34:leaf=-0.14950338
 				22:[Age<32] yes=35,no=36,missing=35
-					35:leaf=0.0598887
-					36:leaf=0.286215
+					35:leaf=0.059888687
+					36:leaf=0.28621453
 			14:[Age<48] yes=23,no=24,missing=23
 				23:[Age<43] yes=37,no=38,missing=37
 					37:[Age<40] yes=51,no=52,missing=51
-						51:leaf=0.0516718
-						52:leaf=-0.146096
-					38:leaf=0.235466
-				24:leaf=-0.22685
+						51:leaf=0.0516717806
+						52:leaf=-0.14609614
+					38:leaf=0.235466182
+				24:leaf=-0.226850301
 booster[17]
 0:[Age<24] yes=1,no=2,missing=1
-	1:[Income<79356.1] yes=3,no=4,missing=3
-		3:leaf=-0.209582
-		4:[Income<111518] yes=7,no=8,missing=7
-			7:leaf=0.0695334
-			8:leaf=-0.169849
+	1:[Income<79356.0859] yes=3,no=4,missing=3
+		3:leaf=-0.209581882
+		4:[Income<111518.055] yes=7,no=8,missing=7
+			7:leaf=0.06953343
+			8:leaf=-0.169848859
 	2:[Education=Yr7t8] yes=6,no=5
 		5:[Occupation=Service] yes=10,no=9
 			9:[Hours<42] yes=11,no=12,missing=11
-				11:[Income<13589.5] yes=15,no=16,missing=15
+				11:[Income<13589.54] yes=15,no=16,missing=15
 					15:[Occupation=Executive] yes=22,no=21
-						21:leaf=-0.246994
-						22:leaf=-0.00356283
+						21:leaf=-0.24699384
+						22:leaf=-0.00356282736
 					16:[Education=Yr11] yes=24,no=23
-						23:leaf=-0.000410796
-						24:leaf=-0.249768
+						23:leaf=-0.000410796114
+						24:leaf=-0.249768496
 				12:[Employment=Private] yes=18,no=17
-					17:[Income<18783.9] yes=25,no=26,missing=25
-						25:leaf=0.166028
-						26:leaf=-0.0614335
+					17:[Income<18783.8711] yes=25,no=26,missing=25
+						25:leaf=0.166028231
+						26:leaf=-0.0614335239
 					18:[Education=College] yes=28,no=27
-						27:leaf=0.0948801
-						28:leaf=-0.0675031
+						27:leaf=0.0948800743
+						28:leaf=-0.0675031245
 			10:[Age<58] yes=13,no=14,missing=13
 				13:[Hours<45] yes=19,no=20,missing=19
-					19:[Income<28081.2] yes=29,no=30,missing=29
-						29:leaf=0.0863458
-						30:leaf=-0.126317
-					20:leaf=-0.231584
-				14:leaf=0.0318947
-		6:leaf=-0.20732
+					19:[Income<28081.2051] yes=29,no=30,missing=29
+						29:leaf=0.0863457918
+						30:leaf=-0.126317248
+					20:leaf=-0.231584474
+				14:leaf=0.031894695
+		6:leaf=-0.207319856
 booster[18]
 0:[Occupation=Protective] yes=2,no=1
 	1:[Hours<38] yes=3,no=4,missing=3
 		3:[Employment=Consultant] yes=8,no=7
 			7:[Education=Bachelor] yes=14,no=13
-				13:[Income<105025] yes=21,no=22,missing=21
-					21:leaf=-0.259293
+				13:[Income<105024.969] yes=21,no=22,missing=21
+					21:leaf=-0.259292692
 					22:[Age<42] yes=35,no=36,missing=35
-						35:leaf=-0.180311
-						36:leaf=0.0781098
-				14:[Income<27061.7] yes=23,no=24,missing=23
-					23:leaf=0.169342
+						35:leaf=-0.180311188
+						36:leaf=0.0781098306
+				14:[Income<27061.6797] yes=23,no=24,missing=23
+					23:leaf=0.169341788
 					24:[Occupation=Professional] yes=38,no=37
-						37:leaf=-0.117907
-						38:leaf=0.14814
-			8:[Income<42437.4] yes=15,no=16,missing=15
+						37:leaf=-0.117907062
+						38:leaf=0.148139685
+			8:[Income<42437.4219] yes=15,no=16,missing=15
 				15:[Age<65] yes=25,no=26,missing=25
-					25:leaf=0.0118415
-					26:leaf=0.182843
+					25:leaf=0.0118414983
+					26:leaf=0.182843387
 				16:[Age<49] yes=27,no=28,missing=27
-					27:leaf=0.0698574
-					28:leaf=-0.195397
-		4:[Income<227694] yes=9,no=10,missing=9
-			9:[Income<192151] yes=17,no=18,missing=17
+					27:leaf=0.0698573738
+					28:leaf=-0.195396796
+		4:[Income<227693.547] yes=9,no=10,missing=9
+			9:[Income<192150.938] yes=17,no=18,missing=17
 				17:[Age<58] yes=29,no=30,missing=29
-					29:[Income<12647] yes=39,no=40,missing=39
-						39:leaf=-0.141416
-						40:leaf=-0.00852793
+					29:[Income<12646.9902] yes=39,no=40,missing=39
+						39:leaf=-0.141416281
+						40:leaf=-0.00852792989
 					30:[Age<61] yes=41,no=42,missing=41
-						41:leaf=0.164755
-						42:leaf=-0.0249138
+						41:leaf=0.16475518
+						42:leaf=-0.024913827
 				18:[Age<39] yes=31,no=32,missing=31
-					31:leaf=0.0680435
-					32:leaf=0.329356
+					31:leaf=0.0680435225
+					32:leaf=0.329356074
 			10:[Marital=Married] yes=20,no=19
-				19:leaf=-0.199737
+				19:leaf=-0.199737266
 				20:[Occupation=Clerical] yes=34,no=33
-					33:leaf=-0.0027275
-					34:leaf=-0.115809
+					33:leaf=-0.0027274969
+					34:leaf=-0.115809016
 	2:[Age<59] yes=5,no=6,missing=5
 		5:[Age<33] yes=11,no=12,missing=11
-			11:leaf=-0.0559123
-			12:leaf=0.3221
-		6:leaf=-0.123026
+			11:leaf=-0.0559123382
+			12:leaf=0.322099805
+		6:leaf=-0.123025604
 booster[19]
 0:[Marital=Married] yes=2,no=1
 	1:[Education=College] yes=4,no=3
 		3:[Education=Vocational] yes=8,no=7
-			7:[Income<116070] yes=13,no=14,missing=13
-				13:[Income<88155.3] yes=19,no=20,missing=19
+			7:[Income<116069.711] yes=13,no=14,missing=13
+				13:[Income<88155.2656] yes=19,no=20,missing=19
 					19:[Age<28] yes=31,no=32,missing=31
-						31:leaf=-0.224004
-						32:leaf=0.00420087
+						31:leaf=-0.224003807
+						32:leaf=0.00420086831
 					20:[Employment=Private] yes=34,no=33
-						33:leaf=-0.111647
-						34:leaf=0.187744
-				14:[Income<187264] yes=21,no=22,missing=21
+						33:leaf=-0.11164666
+						34:leaf=0.187744007
+				14:[Income<187263.562] yes=21,no=22,missing=21
 					21:[Hours<45] yes=35,no=36,missing=35
-						35:leaf=-0.254261
-						36:leaf=0.0536562
-					22:[Income<218067] yes=37,no=38,missing=37
-						37:leaf=0.195503
-						38:leaf=-0.136789
-			8:leaf=-0.197326
+						35:leaf=-0.254260838
+						36:leaf=0.0536561571
+					22:[Income<218067.469] yes=37,no=38,missing=37
+						37:leaf=0.195503369
+						38:leaf=-0.136789083
+			8:leaf=-0.197326243
 		4:[Age<47] yes=9,no=10,missing=9
-			9:leaf=-0.244517
-			10:leaf=-0.00427848
+			9:leaf=-0.244517311
+			10:leaf=-0.00427847682
 	2:[Education=Yr5t6] yes=6,no=5
-		5:[Income<62903.6] yes=11,no=12,missing=11
-			11:[Income<21264.2] yes=15,no=16,missing=15
-				15:[Income<18753.3] yes=23,no=24,missing=23
+		5:[Income<62903.5742] yes=11,no=12,missing=11
+			11:[Income<21264.1758] yes=15,no=16,missing=15
+				15:[Income<18753.2812] yes=23,no=24,missing=23
 					23:[Education=HSgrad] yes=40,no=39
-						39:leaf=0.0740979
-						40:leaf=-0.16652
+						39:leaf=0.0740978867
+						40:leaf=-0.166519642
 					24:[Hours<43] yes=41,no=42,missing=41
-						41:leaf=0.319727
-						42:leaf=0.0636514
-				16:[Income<22532.3] yes=25,no=26,missing=25
+						41:leaf=0.319727361
+						42:leaf=0.0636513531
+				16:[Income<22532.3008] yes=25,no=26,missing=25
 					25:[Age<47] yes=43,no=44,missing=43
-						43:leaf=-0.355613
-						44:leaf=-0.042639
+						43:leaf=-0.355612814
+						44:leaf=-0.0426389538
 					26:[Age<37] yes=45,no=46,missing=45
-						45:leaf=-0.0606804
-						46:leaf=0.0220284
-			12:[Income<167403] yes=17,no=18,missing=17
+						45:leaf=-0.0606803559
+						46:leaf=0.0220284164
+			12:[Income<167403.156] yes=17,no=18,missing=17
 				17:[Employment=Consultant] yes=28,no=27
 					27:[Occupation=Executive] yes=48,no=47
-						47:leaf=0.194827
-						48:leaf=0.0284952
-					28:leaf=-0.0182872
-				18:[Income<188537] yes=29,no=30,missing=29
-					29:leaf=-0.21492
-					30:[Income<210147] yes=49,no=50,missing=49
-						49:leaf=0.197326
-						50:leaf=-0.0328072
-		6:leaf=-0.165616
+						47:leaf=0.194826931
+						48:leaf=0.0284951907
+					28:leaf=-0.0182871595
+				18:[Income<188537.312] yes=29,no=30,missing=29
+					29:leaf=-0.21491985
+					30:[Income<210146.875] yes=49,no=50,missing=49
+						49:leaf=0.197326407
+						50:leaf=-0.0328071713
+		6:leaf=-0.165616125
 booster[20]
 0:[Education=Professional] yes=2,no=1
 	1:[Education=Associate] yes=4,no=3
 		3:[Age<25] yes=7,no=8,missing=7
-			7:leaf=-0.183854
+			7:leaf=-0.183854371
 			8:[Occupation=Executive] yes=12,no=11
 				11:[Age<32] yes=17,no=18,missing=17
 					17:[Marital=Married] yes=24,no=23
-						23:leaf=-0.0744489
-						24:leaf=0.0861544
+						23:leaf=-0.0744488686
+						24:leaf=0.086154446
 					18:[Age<37] yes=25,no=26,missing=25
-						25:leaf=-0.111593
-						26:leaf=-0.0197094
+						25:leaf=-0.111593179
+						26:leaf=-0.0197094008
 				12:[Age<31] yes=19,no=20,missing=19
-					19:[Income<42064.4] yes=27,no=28,missing=27
-						27:leaf=-0.171062
-						28:leaf=-0.0224075
+					19:[Income<42064.375] yes=27,no=28,missing=27
+						27:leaf=-0.171061769
+						28:leaf=-0.0224074703
 					20:[Hours<52] yes=29,no=30,missing=29
-						29:leaf=0.0174114
-						30:leaf=0.151412
-		4:[Income<81989.9] yes=9,no=10,missing=9
-			9:[Income<47933.3] yes=13,no=14,missing=13
+						29:leaf=0.017411394
+						30:leaf=0.15141207
+		4:[Income<81989.875] yes=9,no=10,missing=9
+			9:[Income<47933.2969] yes=13,no=14,missing=13
 				13:[Age<42] yes=21,no=22,missing=21
-					21:leaf=0.206476
-					22:leaf=-0.00192937
-				14:leaf=-0.140719
-			10:[Income<194154] yes=15,no=16,missing=15
-				15:leaf=0.278012
-				16:leaf=0.00740725
-	2:[Income<49228.3] yes=5,no=6,missing=5
-		5:leaf=0.236534
-		6:leaf=-0.0322996
+					21:leaf=0.206475884
+					22:leaf=-0.00192936766
+				14:leaf=-0.140718862
+			10:[Income<194154.078] yes=15,no=16,missing=15
+				15:leaf=0.278011739
+				16:leaf=0.00740724569
+	2:[Income<49228.3203] yes=5,no=6,missing=5
+		5:leaf=0.236534387
+		6:leaf=-0.0322995707
 booster[21]
 0:[Occupation=Transport] yes=2,no=1
-	1:[Income<21493.8] yes=3,no=4,missing=3
-		3:[Income<13304.1] yes=7,no=8,missing=7
+	1:[Income<21493.7891] yes=3,no=4,missing=3
+		3:[Income<13304.0898] yes=7,no=8,missing=7
 			7:[Hours<55] yes=15,no=16,missing=15
 				15:[Education=Bachelor] yes=28,no=27
 					27:[Education=College] yes=44,no=43
-						43:leaf=-0.196146
-						44:leaf=-0.0159434
+						43:leaf=-0.196146116
+						44:leaf=-0.0159433633
 					28:[Age<46] yes=45,no=46,missing=45
-						45:leaf=0.00545682
-						46:leaf=0.140775
-				16:leaf=0.18286
+						45:leaf=0.00545682479
+						46:leaf=0.140774935
+				16:leaf=0.182860345
 			8:[Occupation=Repair] yes=18,no=17
-				17:[Income<20620.3] yes=29,no=30,missing=29
+				17:[Income<20620.3164] yes=29,no=30,missing=29
 					29:[Hours<38] yes=47,no=48,missing=47
-						47:leaf=0.0076461
-						48:leaf=0.241843
-					30:leaf=-0.0237897
+						47:leaf=0.00764610292
+						48:leaf=0.241843089
+					30:leaf=-0.0237896591
 				18:[Education=College] yes=32,no=31
 					31:[Age<44] yes=49,no=50,missing=49
-						49:leaf=-0.237981
-						50:leaf=0.0600102
-					32:leaf=0.121916
-		4:[Income<26204.6] yes=9,no=10,missing=9
+						49:leaf=-0.237980798
+						50:leaf=0.0600101724
+					32:leaf=0.121915527
+		4:[Income<26204.6016] yes=9,no=10,missing=9
 			9:[Age<45] yes=19,no=20,missing=19
 				19:[Occupation=Repair] yes=34,no=33
 					33:[Hours<50] yes=51,no=52,missing=51
-						51:leaf=-0.338959
-						52:leaf=-0.0585917
-					34:leaf=-0.00232377
+						51:leaf=-0.338958502
+						52:leaf=-0.0585916676
+					34:leaf=-0.00232377322
 				20:[Occupation=Repair] yes=36,no=35
 					35:[Age<58] yes=53,no=54,missing=53
-						53:leaf=0.156682
-						54:leaf=-0.0680767
-					36:leaf=-0.260262
-			10:[Income<27425.7] yes=21,no=22,missing=21
+						53:leaf=0.156681895
+						54:leaf=-0.0680767447
+					36:leaf=-0.26026246
+			10:[Income<27425.7305] yes=21,no=22,missing=21
 				21:[Education=Bachelor] yes=38,no=37
 					37:[Age<47] yes=55,no=56,missing=55
-						55:leaf=-0.225414
-						56:leaf=0.260297
-					38:leaf=0.305391
+						55:leaf=-0.225414246
+						56:leaf=0.260297269
+					38:leaf=0.305391431
 				22:[Age<52] yes=39,no=40,missing=39
 					39:[Education=Master] yes=58,no=57
-						57:leaf=0.00549599
-						58:leaf=0.179818
+						57:leaf=0.00549599295
+						58:leaf=0.179818317
 					40:[Employment=PSFederal] yes=60,no=59
-						59:leaf=-0.0725701
-						60:leaf=0.195005
+						59:leaf=-0.0725700706
+						60:leaf=0.195005015
 	2:[Age<44] yes=5,no=6,missing=5
-		5:[Income<28853.4] yes=11,no=12,missing=11
-			11:leaf=-0.066455
+		5:[Income<28853.4395] yes=11,no=12,missing=11
+			11:leaf=-0.0664550141
 			12:[Age<30] yes=23,no=24,missing=23
-				23:leaf=-0.0577631
-				24:leaf=-0.253855
-		6:[Income<50143.5] yes=13,no=14,missing=13
-			13:[Income<23623.4] yes=25,no=26,missing=25
-				25:leaf=-0.119916
-				26:[Income<33260.7] yes=41,no=42,missing=41
-					41:leaf=0.286709
+				23:leaf=-0.057763055
+				24:leaf=-0.253855348
+		6:[Income<50143.5312] yes=13,no=14,missing=13
+			13:[Income<23623.3633] yes=25,no=26,missing=25
+				25:leaf=-0.119916134
+				26:[Income<33260.7109] yes=41,no=42,missing=41
+					41:leaf=0.286708683
 					42:[Age<53] yes=61,no=62,missing=61
-						61:leaf=-0.120783
-						62:leaf=0.207309
-			14:leaf=-0.183365
+						61:leaf=-0.120782696
+						62:leaf=0.20730938
+			14:leaf=-0.183364689
 booster[22]
 0:[Education=Yr7t8] yes=2,no=1
 	1:[Occupation=Service] yes=4,no=3
@@ -1199,81 +1199,81 @@ booster[22]
 			5:[Hours<83] yes=9,no=10,missing=9
 				9:[Hours<65] yes=15,no=16,missing=15
 					15:[Education=Doctorate] yes=20,no=19
-						19:leaf=-0.00233473
-						20:leaf=0.143587
+						19:leaf=-0.00233472954
+						20:leaf=0.143586889
 					16:[Age<45] yes=21,no=22,missing=21
-						21:leaf=0.237843
-						22:leaf=-0.0775172
-				10:leaf=-0.16449
+						21:leaf=0.237843245
+						22:leaf=-0.0775172263
+				10:leaf=-0.164490461
 			6:[Age<36] yes=11,no=12,missing=11
-				11:leaf=-0.00281174
-				12:leaf=-0.215327
+				11:leaf=-0.00281173806
+				12:leaf=-0.215326965
 		4:[Age<54] yes=7,no=8,missing=7
-			7:[Income<59761.8] yes=13,no=14,missing=13
+			7:[Income<59761.7969] yes=13,no=14,missing=13
 				13:[Hours<45] yes=17,no=18,missing=17
 					17:[Age<40] yes=23,no=24,missing=23
-						23:leaf=0.0879642
-						24:leaf=0.0125009
-					18:leaf=-0.176272
-				14:leaf=-0.220578
-			8:leaf=0.0208524
-	2:leaf=-0.184395
+						23:leaf=0.0879642069
+						24:leaf=0.0125008551
+					18:leaf=-0.176271796
+				14:leaf=-0.220578238
+			8:leaf=0.0208523534
+	2:leaf=-0.184395224
 booster[23]
 0:[Marital=Married] yes=2,no=1
 	1:[Education=College] yes=4,no=3
 		3:[Marital=Unmarried] yes=8,no=7
 			7:[Employment=PSFederal] yes=16,no=15
 				15:[Age<35] yes=25,no=26,missing=25
-					25:[Income<116331] yes=37,no=38,missing=37
-						37:leaf=-0.0234841
-						38:leaf=-0.231225
+					25:[Income<116331.148] yes=37,no=38,missing=37
+						37:leaf=-0.0234841015
+						38:leaf=-0.231225058
 					26:[Age<45] yes=39,no=40,missing=39
-						39:leaf=0.10275
-						40:leaf=-0.0625247
-				16:leaf=-0.190712
+						39:leaf=0.102749951
+						40:leaf=-0.0625247434
+				16:leaf=-0.190711841
 			8:[Age<36] yes=17,no=18,missing=17
-				17:leaf=0.162355
-				18:leaf=0.0230911
+				17:leaf=0.162355244
+				18:leaf=0.0230910853
 		4:[Marital=Divorced] yes=10,no=9
-			9:leaf=-0.233872
-			10:leaf=0.0205078
-	2:[Income<62903.6] yes=5,no=6,missing=5
+			9:leaf=-0.233872458
+			10:leaf=0.0205078274
+	2:[Income<62903.5742] yes=5,no=6,missing=5
 		5:[Occupation=Farming] yes=12,no=11
 			11:[Occupation=Repair] yes=20,no=19
 				19:[Age<37] yes=27,no=28,missing=27
-					27:[Income<9242.7] yes=41,no=42,missing=41
-						41:leaf=0.315806
-						42:leaf=-0.0660658
+					27:[Income<9242.69922] yes=41,no=42,missing=41
+						41:leaf=0.315805614
+						42:leaf=-0.0660657808
 					28:[Hours<56] yes=43,no=44,missing=43
-						43:leaf=0.057613
-						44:leaf=-0.0860293
+						43:leaf=0.0576129518
+						44:leaf=-0.0860293433
 				20:[Age<55] yes=29,no=30,missing=29
-					29:[Income<42574.1] yes=45,no=46,missing=45
-						45:leaf=-0.0441129
-						46:leaf=0.175206
+					29:[Income<42574.0781] yes=45,no=46,missing=45
+						45:leaf=-0.0441128574
+						46:leaf=0.175206497
 					30:[Age<60] yes=47,no=48,missing=47
-						47:leaf=-0.301297
-						48:leaf=-0.0805823
-			12:[Income<36584.9] yes=21,no=22,missing=21
+						47:leaf=-0.30129689
+						48:leaf=-0.080582343
+			12:[Income<36584.8555] yes=21,no=22,missing=21
 				21:[Education=HSgrad] yes=32,no=31
-					31:leaf=0.147376
-					32:leaf=-0.113446
-				22:leaf=-0.236145
+					31:leaf=0.147376418
+					32:leaf=-0.11344599
+				22:leaf=-0.236144871
 		6:[Occupation=Machinist] yes=14,no=13
 			13:[Age<38] yes=23,no=24,missing=23
 				23:[Education=HSgrad] yes=34,no=33
 					33:[Occupation=Clerical] yes=50,no=49
-						49:leaf=0.277528
-						50:leaf=-0.0150301
-					34:[Income<84504.8] yes=51,no=52,missing=51
-						51:leaf=0.129837
-						52:leaf=-0.136019
-				24:[Income<68302.4] yes=35,no=36,missing=35
-					35:leaf=-0.189075
-					36:[Income<165965] yes=53,no=54,missing=53
-						53:leaf=0.20831
-						54:leaf=-0.0306258
-			14:leaf=-0.122878
+						49:leaf=0.277528137
+						50:leaf=-0.0150300507
+					34:[Income<84504.8125] yes=51,no=52,missing=51
+						51:leaf=0.129836634
+						52:leaf=-0.136018902
+				24:[Income<68302.375] yes=35,no=36,missing=35
+					35:leaf=-0.189075336
+					36:[Income<165964.734] yes=53,no=54,missing=53
+						53:leaf=0.208309755
+						54:leaf=-0.030625822
+			14:leaf=-0.122878417
 booster[24]
 0:[Hours<42] yes=1,no=2,missing=1
 	1:[Occupation=Protective] yes=4,no=3
@@ -1281,417 +1281,417 @@ booster[24]
 			7:[Age<29] yes=13,no=14,missing=13
 				13:[Occupation=Professional] yes=22,no=21
 					21:[Education=College] yes=38,no=37
-						37:leaf=-0.213395
-						38:leaf=0.0314387
-					22:leaf=0.0529929
+						37:leaf=-0.213394567
+						38:leaf=0.0314386599
+					22:leaf=0.0529928803
 				14:[Age<32] yes=23,no=24,missing=23
-					23:[Income<30730.3] yes=39,no=40,missing=39
-						39:leaf=0.300557
-						40:leaf=-0.000768209
-					24:[Income<29096.5] yes=41,no=42,missing=41
-						41:leaf=-0.0998815
-						42:leaf=-0.0119492
-			8:[Income<81989.9] yes=15,no=16,missing=15
-				15:[Income<47577.5] yes=25,no=26,missing=25
-					25:[Income<37517] yes=43,no=44,missing=43
-						43:leaf=0.135409
-						44:leaf=0.0313392
-					26:leaf=-0.126638
-				16:[Income<194154] yes=27,no=28,missing=27
-					27:leaf=0.264831
-					28:leaf=0.00993195
-		4:leaf=0.159425
+					23:[Income<30730.3047] yes=39,no=40,missing=39
+						39:leaf=0.300556719
+						40:leaf=-0.000768209342
+					24:[Income<29096.4609] yes=41,no=42,missing=41
+						41:leaf=-0.0998815373
+						42:leaf=-0.0119492384
+			8:[Income<81989.875] yes=15,no=16,missing=15
+				15:[Income<47577.5469] yes=25,no=26,missing=25
+					25:[Income<37516.9922] yes=43,no=44,missing=43
+						43:leaf=0.13540858
+						44:leaf=0.0313391536
+					26:leaf=-0.126638263
+				16:[Income<194154.078] yes=27,no=28,missing=27
+					27:leaf=0.264830589
+					28:leaf=0.00993194617
+		4:leaf=0.159425318
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:[Income<30752.8] yes=9,no=10,missing=9
-			9:leaf=-0.0921501
-			10:leaf=0.274746
-		6:[Income<38191.7] yes=11,no=12,missing=11
+		5:[Income<30752.8496] yes=9,no=10,missing=9
+			9:leaf=-0.092150107
+			10:leaf=0.27474609
+		6:[Income<38191.7344] yes=11,no=12,missing=11
 			11:[Education=College] yes=18,no=17
 				17:[Employment=Consultant] yes=30,no=29
 					29:[Age<60] yes=45,no=46,missing=45
-						45:leaf=0.0875568
-						46:leaf=0.284295
+						45:leaf=0.0875568017
+						46:leaf=0.28429535
 					30:[Occupation=Repair] yes=48,no=47
-						47:leaf=0.00820156
-						48:leaf=-0.230792
-				18:[Income<28343.3] yes=31,no=32,missing=31
-					31:[Income<18891.1] yes=49,no=50,missing=49
-						49:leaf=0.0730321
-						50:leaf=-0.293841
+						47:leaf=0.00820156187
+						48:leaf=-0.23079215
+				18:[Income<28343.2695] yes=31,no=32,missing=31
+					31:[Income<18891.1289] yes=49,no=50,missing=49
+						49:leaf=0.0730320737
+						50:leaf=-0.293840677
 					32:[Hours<48] yes=51,no=52,missing=51
-						51:leaf=-0.0659885
-						52:leaf=0.136142
-			12:[Income<49094.9] yes=19,no=20,missing=19
-				19:[Income<45579.1] yes=33,no=34,missing=33
-					33:[Income<41717.7] yes=53,no=54,missing=53
-						53:leaf=-0.16312
-						54:leaf=0.0512758
+						51:leaf=-0.0659884661
+						52:leaf=0.136141762
+			12:[Income<49094.9297] yes=19,no=20,missing=19
+				19:[Income<45579.1406] yes=33,no=34,missing=33
+					33:[Income<41717.6797] yes=53,no=54,missing=53
+						53:leaf=-0.163119584
+						54:leaf=0.0512757748
 					34:[Age<44] yes=55,no=56,missing=55
-						55:leaf=-0.0255252
-						56:leaf=-0.344397
-				20:[Income<51155.7] yes=35,no=36,missing=35
+						55:leaf=-0.0255251713
+						56:leaf=-0.344396681
+				20:[Income<51155.7109] yes=35,no=36,missing=35
 					35:[Education=Bachelor] yes=58,no=57
-						57:leaf=0.309092
-						58:leaf=0.0516486
+						57:leaf=0.309091806
+						58:leaf=0.0516485795
 					36:[Age<57] yes=59,no=60,missing=59
-						59:leaf=-0.0442607
-						60:leaf=0.123265
+						59:leaf=-0.0442607328
+						60:leaf=0.123265043
 booster[25]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Education=Yr7t8] yes=4,no=3
 		3:[Age<24] yes=5,no=6,missing=5
 			5:[Age<23] yes=7,no=8,missing=7
-				7:leaf=-0.0279107
-				8:leaf=-0.16919
+				7:leaf=-0.0279107485
+				8:leaf=-0.169189692
 			6:[Occupation=Cleaner] yes=10,no=9
 				9:[Age<67] yes=11,no=12,missing=11
 					11:[Age<47] yes=15,no=16,missing=15
-						15:leaf=-0.00318727
-						16:leaf=0.0383607
+						15:leaf=-0.00318727014
+						16:leaf=0.038360659
 					12:[Occupation=Executive] yes=18,no=17
-						17:leaf=-0.204472
-						18:leaf=0.0450269
-				10:[Income<34738.7] yes=13,no=14,missing=13
+						17:leaf=-0.204472363
+						18:leaf=0.0450268909
+				10:[Income<34738.7305] yes=13,no=14,missing=13
 					13:[Age<43] yes=19,no=20,missing=19
-						19:leaf=0.136869
-						20:leaf=-0.139773
-					14:leaf=-0.179466
-		4:leaf=-0.167594
-	2:leaf=-0.152046
+						19:leaf=0.136868536
+						20:leaf=-0.139773026
+					14:leaf=-0.179465696
+		4:leaf=-0.167594209
+	2:leaf=-0.152045533
 booster[26]
 0:[Occupation=Transport] yes=2,no=1
 	1:[Occupation=Service] yes=4,no=3
 		3:[Education=Professional] yes=8,no=7
 			7:[Age<50] yes=15,no=16,missing=15
 				15:[Age<47] yes=31,no=32,missing=31
-					31:[Income<29376.5] yes=37,no=38,missing=37
-						37:leaf=-0.0535134
-						38:leaf=0.0209874
+					31:[Income<29376.4805] yes=37,no=38,missing=37
+						37:leaf=-0.0535133928
+						38:leaf=0.0209874418
 					32:[Employment=Private] yes=40,no=39
-						39:leaf=0.190894
-						40:leaf=0.00132897
-				16:[Income<163693] yes=33,no=34,missing=33
-					33:[Income<36301.6] yes=41,no=42,missing=41
-						41:leaf=-0.0591731
-						42:leaf=0.036857
-					34:leaf=-0.202194
-			8:[Income<49228.3] yes=17,no=18,missing=17
-				17:leaf=0.225502
-				18:leaf=-0.0317592
-		4:[Income<40015.2] yes=9,no=10,missing=9
+						39:leaf=0.190893844
+						40:leaf=0.00132897426
+				16:[Income<163693.406] yes=33,no=34,missing=33
+					33:[Income<36301.6016] yes=41,no=42,missing=41
+						41:leaf=-0.0591731034
+						42:leaf=0.0368569903
+					34:leaf=-0.20219402
+			8:[Income<49228.3203] yes=17,no=18,missing=17
+				17:leaf=0.225501791
+				18:leaf=-0.0317591764
+		4:[Income<40015.2031] yes=9,no=10,missing=9
 			9:[Age<38] yes=19,no=20,missing=19
-				19:leaf=0.0410119
-				20:leaf=-0.236788
+				19:leaf=0.0410118625
+				20:leaf=-0.236788198
 			10:[Age<42] yes=21,no=22,missing=21
-				21:leaf=-0.185812
-				22:[Income<59011.5] yes=35,no=36,missing=35
-					35:leaf=0.144473
-					36:leaf=0.0228433
-	2:[Income<37700] yes=5,no=6,missing=5
-		5:[Income<24386.3] yes=11,no=12,missing=11
-			11:[Income<17304.1] yes=23,no=24,missing=23
-				23:leaf=-0.0218512
-				24:leaf=-0.216966
+				21:leaf=-0.185812399
+				22:[Income<59011.4922] yes=35,no=36,missing=35
+					35:leaf=0.144473046
+					36:leaf=0.022843333
+	2:[Income<37699.9844] yes=5,no=6,missing=5
+		5:[Income<24386.2852] yes=11,no=12,missing=11
+			11:[Income<17304.0547] yes=23,no=24,missing=23
+				23:leaf=-0.0218511727
+				24:leaf=-0.216966093
 			12:[Age<47] yes=25,no=26,missing=25
-				25:leaf=-0.0311035
-				26:leaf=0.221119
-		6:[Income<50143.5] yes=13,no=14,missing=13
+				25:leaf=-0.0311035085
+				26:leaf=0.221119151
+		6:[Income<50143.5312] yes=13,no=14,missing=13
 			13:[Education=HSgrad] yes=28,no=27
-				27:leaf=0.00421098
-				28:leaf=-0.11627
+				27:leaf=0.00421097549
+				28:leaf=-0.116269678
 			14:[Age<34] yes=29,no=30,missing=29
-				29:leaf=-0.0605971
-				30:leaf=-0.222676
+				29:leaf=-0.0605971254
+				30:leaf=-0.222676039
 booster[27]
-0:[Income<21264.2] yes=1,no=2,missing=1
-	1:[Income<18753.3] yes=3,no=4,missing=3
+0:[Income<21264.1758] yes=1,no=2,missing=1
+	1:[Income<18753.2812] yes=3,no=4,missing=3
 		3:[Hours<50] yes=7,no=8,missing=7
 			7:[Occupation=Executive] yes=14,no=13
 				13:[Education=HSgrad] yes=24,no=23
 					23:[Occupation=Machinist] yes=38,no=37
-						37:leaf=-0.0703993
-						38:leaf=0.190749
-					24:leaf=-0.273412
-				14:[Income<12751.6] yes=25,no=26,missing=25
-					25:[Income<7105.61] yes=39,no=40,missing=39
-						39:leaf=0.0759856
-						40:leaf=-0.0354986
-					26:leaf=0.172268
+						37:leaf=-0.070399262
+						38:leaf=0.190748572
+					24:leaf=-0.273412168
+				14:[Income<12751.5996] yes=25,no=26,missing=25
+					25:[Income<7105.61035] yes=39,no=40,missing=39
+						39:leaf=0.0759855658
+						40:leaf=-0.0354986228
+					26:leaf=0.172268406
 			8:[Education=HSgrad] yes=16,no=15
 				15:[Age<35] yes=27,no=28,missing=27
-					27:leaf=0.0187193
-					28:leaf=0.226891
-				16:leaf=0.0104732
+					27:leaf=0.0187192671
+					28:leaf=0.22689122
+				16:leaf=0.0104732411
 		4:[Age<39] yes=9,no=10,missing=9
-			9:leaf=-0.00124328
+			9:leaf=-0.00124327862
 			10:[Education=College] yes=18,no=17
-				17:leaf=0.262974
-				18:leaf=0.0257992
-	2:[Income<22128.3] yes=5,no=6,missing=5
-		5:leaf=-0.243515
+				17:leaf=0.262973547
+				18:leaf=0.0257992353
+	2:[Income<22128.3203] yes=5,no=6,missing=5
+		5:leaf=-0.24351494
 		6:[Occupation=Machinist] yes=12,no=11
 			11:[Hours<60] yes=19,no=20,missing=19
 				19:[Education=Vocational] yes=30,no=29
-					29:[Income<31022.7] yes=41,no=42,missing=41
-						41:leaf=0.0710396
-						42:leaf=0.00296704
+					29:[Income<31022.6641] yes=41,no=42,missing=41
+						41:leaf=0.0710396245
+						42:leaf=0.00296704099
 					30:[Age<50] yes=43,no=44,missing=43
-						43:leaf=-0.187846
-						44:leaf=0.0998614
+						43:leaf=-0.187846482
+						44:leaf=0.0998614281
 				20:[Hours<70] yes=31,no=32,missing=31
 					31:[Education=HSgrad] yes=46,no=45
-						45:leaf=-0.0435525
-						46:leaf=-0.234972
+						45:leaf=-0.0435525142
+						46:leaf=-0.234971657
 					32:[Age<44] yes=47,no=48,missing=47
-						47:leaf=0.199706
-						48:leaf=-0.128961
-			12:[Income<35713.2] yes=21,no=22,missing=21
-				21:[Income<30182.4] yes=33,no=34,missing=33
-					33:leaf=-0.0554841
-					34:leaf=-0.269749
-				22:[Income<44387.4] yes=35,no=36,missing=35
-					35:leaf=0.268231
+						47:leaf=0.199705884
+						48:leaf=-0.128961116
+			12:[Income<35713.1641] yes=21,no=22,missing=21
+				21:[Income<30182.4492] yes=33,no=34,missing=33
+					33:leaf=-0.0554841347
+					34:leaf=-0.269749314
+				22:[Income<44387.4258] yes=35,no=36,missing=35
+					35:leaf=0.268231452
 					36:[Education=College] yes=50,no=49
-						49:leaf=-0.23141
-						50:leaf=0.138636
+						49:leaf=-0.231410384
+						50:leaf=0.138636023
 booster[28]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Marital=Divorced] yes=4,no=3
 		3:[Employment=PSLocal] yes=6,no=5
 			5:[Occupation=Cleaner] yes=10,no=9
 				9:[Age<24] yes=15,no=16,missing=15
-					15:leaf=-0.148472
+					15:leaf=-0.148471624
 					16:[Age<67] yes=27,no=28,missing=27
-						27:leaf=0.0197258
-						28:leaf=-0.0910296
+						27:leaf=0.019725766
+						28:leaf=-0.0910296068
 				10:[Age<34] yes=17,no=18,missing=17
-					17:leaf=0.0408716
+					17:leaf=0.040871609
 					18:[Age<53] yes=29,no=30,missing=29
-						29:leaf=-0.241984
-						30:leaf=-0.0123088
+						29:leaf=-0.241984382
+						30:leaf=-0.0123087624
 			6:[Occupation=Professional] yes=12,no=11
-				11:[Income<42249.3] yes=19,no=20,missing=19
+				11:[Income<42249.3398] yes=19,no=20,missing=19
 					19:[Age<51] yes=31,no=32,missing=31
-						31:leaf=0.178495
-						32:leaf=-0.0488551
+						31:leaf=0.178495452
+						32:leaf=-0.0488550924
 					20:[Income<64752.5] yes=33,no=34,missing=33
-						33:leaf=-0.169789
-						34:leaf=-0.0251544
+						33:leaf=-0.169789255
+						34:leaf=-0.0251543727
 				12:[Gender=Female] yes=22,no=21
-					21:leaf=-0.295574
-					22:leaf=-0.0841185
+					21:leaf=-0.295573771
+					22:leaf=-0.084118478
 		4:[Occupation=Clerical] yes=8,no=7
-			7:[Income<86452.3] yes=13,no=14,missing=13
-				13:[Income<67088.9] yes=23,no=24,missing=23
-					23:[Income<56519.9] yes=35,no=36,missing=35
-						35:leaf=-0.120195
-						36:leaf=0.198672
-					24:leaf=-0.224117
+			7:[Income<86452.3047] yes=13,no=14,missing=13
+				13:[Income<67088.8594] yes=23,no=24,missing=23
+					23:[Income<56519.9453] yes=35,no=36,missing=35
+						35:leaf=-0.120195165
+						36:leaf=0.19867155
+					24:leaf=-0.224117488
 				14:[Age<45] yes=25,no=26,missing=25
-					25:[Income<113859] yes=37,no=38,missing=37
-						37:leaf=0.30837
-						38:leaf=0.0322832
+					25:[Income<113859.383] yes=37,no=38,missing=37
+						37:leaf=0.308369905
+						38:leaf=0.0322832428
 					26:[Age<53] yes=39,no=40,missing=39
-						39:leaf=-0.16728
-						40:leaf=0.0545987
-			8:leaf=-0.214747
-	2:leaf=-0.136296
+						39:leaf=-0.167280018
+						40:leaf=0.0545986556
+			8:leaf=-0.214746818
+	2:leaf=-0.136296272
 booster[29]
-0:[Income<20620.3] yes=1,no=2,missing=1
-	1:[Income<18753.3] yes=3,no=4,missing=3
+0:[Income<20620.3164] yes=1,no=2,missing=1
+	1:[Income<18753.2812] yes=3,no=4,missing=3
 		3:[Hours<50] yes=7,no=8,missing=7
 			7:[Employment=PSFederal] yes=16,no=15
-				15:[Income<15131] yes=27,no=28,missing=27
-					27:[Income<13589.5] yes=41,no=42,missing=41
-						41:leaf=-0.0887052
-						42:leaf=0.235039
+				15:[Income<15130.9854] yes=27,no=28,missing=27
+					27:[Income<13589.54] yes=41,no=42,missing=41
+						41:leaf=-0.088705197
+						42:leaf=0.235038504
 					28:[Hours<40] yes=43,no=44,missing=43
-						43:leaf=0.00487207
-						44:leaf=-0.232102
-				16:leaf=0.155176
+						43:leaf=0.00487207063
+						44:leaf=-0.23210229
+				16:leaf=0.15517588
 			8:[Education=HSgrad] yes=18,no=17
 				17:[Age<35] yes=29,no=30,missing=29
-					29:leaf=0.0127337
-					30:leaf=0.19734
-				18:leaf=0.00640689
+					29:leaf=0.0127336709
+					30:leaf=0.197340354
+				18:leaf=0.00640689069
 		4:[Age<46] yes=9,no=10,missing=9
 			9:[Hours<43] yes=19,no=20,missing=19
-				19:leaf=0.103509
-				20:leaf=-0.0300935
-			10:leaf=0.255477
-	2:[Income<26204.6] yes=5,no=6,missing=5
+				19:leaf=0.103509434
+				20:leaf=-0.0300935116
+			10:leaf=0.255476534
+	2:[Income<26204.6016] yes=5,no=6,missing=5
 		5:[Hours<37] yes=11,no=12,missing=11
-			11:leaf=0.101064
-			12:[Income<25018.2] yes=21,no=22,missing=21
-				21:[Income<24137.6] yes=31,no=32,missing=31
+			11:leaf=0.101064064
+			12:[Income<25018.1602] yes=21,no=22,missing=21
+				21:[Income<24137.5801] yes=31,no=32,missing=31
 					31:[Age<40] yes=45,no=46,missing=45
-						45:leaf=-0.218241
-						46:leaf=-0.0186593
-					32:leaf=0.144536
+						45:leaf=-0.218240842
+						46:leaf=-0.0186592545
+					32:leaf=0.144535512
 				22:[Hours<43] yes=33,no=34,missing=33
-					33:leaf=-0.305924
-					34:leaf=-0.0107268
-		6:[Income<27803.4] yes=13,no=14,missing=13
+					33:leaf=-0.305923551
+					34:leaf=-0.0107268486
+		6:[Income<27803.4297] yes=13,no=14,missing=13
 			13:[Education=College] yes=24,no=23
 				23:[Hours<43] yes=35,no=36,missing=35
 					35:[Employment=Private] yes=48,no=47
-						47:leaf=0.224404
-						48:leaf=-0.0877623
-					36:leaf=0.375608
-				24:leaf=-0.122333
-			14:[Income<29882.9] yes=25,no=26,missing=25
+						47:leaf=0.224404052
+						48:leaf=-0.0877622962
+					36:leaf=0.375608414
+				24:leaf=-0.122332744
+			14:[Income<29882.875] yes=25,no=26,missing=25
 				25:[Age<34] yes=37,no=38,missing=37
-					37:leaf=0.0625245
+					37:leaf=0.0625244975
 					38:[Employment=Consultant] yes=50,no=49
-						49:leaf=-0.309243
-						50:leaf=-0.0559751
-				26:[Income<30139.4] yes=39,no=40,missing=39
-					39:leaf=0.387251
+						49:leaf=-0.309243262
+						50:leaf=-0.0559751354
+				26:[Income<30139.4297] yes=39,no=40,missing=39
+					39:leaf=0.387250662
 					40:[Employment=Private] yes=52,no=51
-						51:leaf=-0.0424139
-						52:leaf=0.00657729
+						51:leaf=-0.0424138978
+						52:leaf=0.00657728687
 booster[30]
 0:[Occupation=Transport] yes=2,no=1
-	1:[Income<21493.8] yes=3,no=4,missing=3
-		3:[Income<13304.1] yes=7,no=8,missing=7
-			7:[Income<9242.7] yes=15,no=16,missing=15
+	1:[Income<21493.7891] yes=3,no=4,missing=3
+		3:[Income<13304.0898] yes=7,no=8,missing=7
+			7:[Income<9242.69922] yes=15,no=16,missing=15
 				15:[Age<38] yes=29,no=30,missing=29
-					29:leaf=0.222167
+					29:leaf=0.222167447
 					30:[Age<60] yes=43,no=44,missing=43
-						43:leaf=-0.152801
-						44:leaf=0.122858
+						43:leaf=-0.152800933
+						44:leaf=0.122857548
 				16:[Education=Bachelor] yes=32,no=31
 					31:[Hours<42] yes=45,no=46,missing=45
-						45:leaf=-0.228834
-						46:leaf=-0.0723482
-					32:leaf=0.0447826
+						45:leaf=-0.22883372
+						46:leaf=-0.0723482072
+					32:leaf=0.0447825864
 			8:[Age<32] yes=17,no=18,missing=17
-				17:leaf=0.242445
-				18:[Income<19893] yes=33,no=34,missing=33
-					33:[Income<14802.4] yes=47,no=48,missing=47
-						47:leaf=0.201407
-						48:leaf=-0.0405448
+				17:leaf=0.242445454
+				18:[Income<19892.9746] yes=33,no=34,missing=33
+					33:[Income<14802.4248] yes=47,no=48,missing=47
+						47:leaf=0.201407298
+						48:leaf=-0.0405447595
 					34:[Age<44] yes=49,no=50,missing=49
-						49:leaf=0.212383
-						50:leaf=0.050307
-		4:[Income<25931.6] yes=9,no=10,missing=9
+						49:leaf=0.212383464
+						50:leaf=0.0503069945
+		4:[Income<25931.5859] yes=9,no=10,missing=9
 			9:[Age<45] yes=19,no=20,missing=19
 				19:[Occupation=Repair] yes=36,no=35
-					35:leaf=-0.230031
-					36:leaf=0.0402313
+					35:leaf=-0.230031356
+					36:leaf=0.040231254
 				20:[Occupation=Repair] yes=38,no=37
 					37:[Age<52] yes=51,no=52,missing=51
-						51:leaf=0.154418
-						52:leaf=-0.0354988
-					38:leaf=-0.215509
+						51:leaf=0.154417783
+						52:leaf=-0.0354988351
+					38:leaf=-0.215508625
 			10:[Occupation=Machinist] yes=22,no=21
-				21:[Income<30489.6] yes=39,no=40,missing=39
-					39:[Income<29882.9] yes=53,no=54,missing=53
-						53:leaf=0.00117289
-						54:leaf=0.21337
-					40:[Income<33483.3] yes=55,no=56,missing=55
-						55:leaf=-0.0985093
-						56:leaf=0.0115049
+				21:[Income<30489.6094] yes=39,no=40,missing=39
+					39:[Income<29882.875] yes=53,no=54,missing=53
+						53:leaf=0.00117288902
+						54:leaf=0.213369936
+					40:[Income<33483.2812] yes=55,no=56,missing=55
+						55:leaf=-0.0985092968
+						56:leaf=0.0115049016
 				22:[Age<39] yes=41,no=42,missing=41
-					41:[Income<56451.4] yes=57,no=58,missing=57
-						57:leaf=0.150832
-						58:leaf=-0.214948
-					42:[Income<31109] yes=59,no=60,missing=59
-						59:leaf=-0.0068116
-						60:leaf=-0.182823
+					41:[Income<56451.3828] yes=57,no=58,missing=57
+						57:leaf=0.150832027
+						58:leaf=-0.214947611
+					42:[Income<31108.9609] yes=59,no=60,missing=59
+						59:leaf=-0.00681160018
+						60:leaf=-0.182823211
 	2:[Age<44] yes=5,no=6,missing=5
-		5:[Income<30975] yes=11,no=12,missing=11
-			11:leaf=-0.0355574
+		5:[Income<30975.0449] yes=11,no=12,missing=11
+			11:leaf=-0.0355574302
 			12:[Age<32] yes=23,no=24,missing=23
-				23:leaf=-0.0548996
-				24:leaf=-0.215385
-		6:[Income<33260.7] yes=13,no=14,missing=13
-			13:[Income<23623.4] yes=25,no=26,missing=25
-				25:leaf=-0.0682396
-				26:leaf=0.174513
+				23:leaf=-0.0548996031
+				24:leaf=-0.215385154
+		6:[Income<33260.7109] yes=13,no=14,missing=13
+			13:[Income<23623.3633] yes=25,no=26,missing=25
+				25:leaf=-0.0682395995
+				26:leaf=0.174512863
 			14:[Age<53] yes=27,no=28,missing=27
-				27:leaf=-0.131268
-				28:leaf=0.0476253
+				27:leaf=-0.13126789
+				28:leaf=0.0476252995
 booster[31]
 0:[Education=Doctorate] yes=2,no=1
 	1:[Marital=Married] yes=4,no=3
-		3:[Income<91914.1] yes=7,no=8,missing=7
-			7:[Income<86452.3] yes=13,no=14,missing=13
+		3:[Income<91914.0625] yes=7,no=8,missing=7
+			7:[Income<86452.3047] yes=13,no=14,missing=13
 				13:[Age<28] yes=21,no=22,missing=21
-					21:leaf=-0.202894
-					22:[Income<79492.5] yes=33,no=34,missing=33
-						33:leaf=0.00849186
-						34:leaf=-0.153387
+					21:leaf=-0.202893764
+					22:[Income<79492.5469] yes=33,no=34,missing=33
+						33:leaf=0.00849185977
+						34:leaf=-0.153386727
 				14:[Age<40] yes=23,no=24,missing=23
-					23:leaf=0.305951
-					24:leaf=0.0909244
+					23:leaf=0.305951357
+					24:leaf=0.0909244195
 			8:[Occupation=Sales] yes=16,no=15
 				15:[Education=Associate] yes=26,no=25
 					25:[Hours<45] yes=35,no=36,missing=35
-						35:leaf=-0.207655
-						36:leaf=-0.0481803
-					26:leaf=0.0929811
-				16:leaf=0.0835198
+						35:leaf=-0.207654789
+						36:leaf=-0.0481802598
+					26:leaf=0.0929810703
+				16:leaf=0.0835198313
 		4:[Employment=PSState] yes=10,no=9
 			9:[Age<49] yes=17,no=18,missing=17
 				17:[Age<45] yes=27,no=28,missing=27
 					27:[Hours<70] yes=37,no=38,missing=37
-						37:leaf=-0.00729377
-						38:leaf=0.18239
+						37:leaf=-0.00729376823
+						38:leaf=0.182389751
 					28:[Occupation=Professional] yes=40,no=39
-						39:leaf=0.150841
-						40:leaf=-0.188946
+						39:leaf=0.150841355
+						40:leaf=-0.188946262
 				18:[Occupation=Support] yes=30,no=29
 					29:[Age<58] yes=41,no=42,missing=41
-						41:leaf=-0.0867854
-						42:leaf=0.0230283
-					30:leaf=0.173903
+						41:leaf=-0.0867853761
+						42:leaf=0.0230282713
+					30:leaf=0.17390348
 			10:[Age<47] yes=19,no=20,missing=19
-				19:leaf=-0.0152319
-				20:[Income<35244.8] yes=31,no=32,missing=31
-					31:leaf=0.073106
-					32:leaf=0.226938
-	2:[Income<39855.6] yes=5,no=6,missing=5
-		5:leaf=-0.0148098
+				19:leaf=-0.0152318953
+				20:[Income<35244.8438] yes=31,no=32,missing=31
+					31:leaf=0.0731060356
+					32:leaf=0.226938173
+	2:[Income<39855.6016] yes=5,no=6,missing=5
+		5:leaf=-0.0148098012
 		6:[Age<47] yes=11,no=12,missing=11
-			11:leaf=0.0600841
-			12:leaf=0.192877
+			11:leaf=0.0600840896
+			12:leaf=0.192877069
 booster[32]
 0:[Hours<38] yes=1,no=2,missing=1
 	1:[Hours<17] yes=3,no=4,missing=3
-		3:[Income<36065.1] yes=7,no=8,missing=7
-			7:leaf=0.137643
-			8:[Income<118595] yes=13,no=14,missing=13
-				13:leaf=-0.121545
-				14:leaf=0.104511
+		3:[Income<36065.1016] yes=7,no=8,missing=7
+			7:leaf=0.137642518
+			8:[Income<118594.555] yes=13,no=14,missing=13
+				13:leaf=-0.121545129
+				14:leaf=0.104510896
 		4:[Occupation=Professional] yes=10,no=9
-			9:[Income<27061.7] yes=15,no=16,missing=15
-				15:[Income<22925.8] yes=23,no=24,missing=23
-					23:leaf=-0.0395794
-					24:leaf=0.175512
+			9:[Income<27061.6797] yes=15,no=16,missing=15
+				15:[Income<22925.7891] yes=23,no=24,missing=23
+					23:leaf=-0.0395794436
+					24:leaf=0.175512195
 				16:[Occupation=Clerical] yes=26,no=25
-					25:leaf=-0.238556
-					26:leaf=-0.0519845
-			10:[Income<72253.3] yes=17,no=18,missing=17
-				17:leaf=-0.109613
-				18:leaf=0.150711
+					25:leaf=-0.238556221
+					26:leaf=-0.0519844666
+			10:[Income<72253.2734] yes=17,no=18,missing=17
+				17:leaf=-0.109612592
+				18:leaf=0.150710702
 	2:[Education=Yr9] yes=6,no=5
 		5:[Education=Yr10] yes=12,no=11
-			11:[Income<227694] yes=19,no=20,missing=19
-				19:[Income<192151] yes=27,no=28,missing=27
+			11:[Income<227693.547] yes=19,no=20,missing=19
+				19:[Income<192150.938] yes=27,no=28,missing=27
 					27:[Marital=Widowed] yes=32,no=31
-						31:leaf=0.00566831
-						32:leaf=0.128795
+						31:leaf=0.00566831138
+						32:leaf=0.128794551
 					28:[Age<39] yes=33,no=34,missing=33
-						33:leaf=0.065997
-						34:leaf=0.273758
-				20:[Income<262620] yes=29,no=30,missing=29
-					29:leaf=-0.130635
-					30:leaf=-0.0275229
-			12:[Income<37934.5] yes=21,no=22,missing=21
-				21:leaf=0.0245975
-				22:leaf=-0.211285
-		6:leaf=-0.179543
+						33:leaf=0.0659970045
+						34:leaf=0.273757875
+				20:[Income<262620.5] yes=29,no=30,missing=29
+					29:leaf=-0.130634844
+					30:leaf=-0.0275229365
+			12:[Income<37934.4883] yes=21,no=22,missing=21
+				21:leaf=0.0245975163
+				22:leaf=-0.211285338
+		6:leaf=-0.179543391
 booster[33]
 0:[Hours<83] yes=1,no=2,missing=1
 	1:[Hours<70] yes=3,no=4,missing=3
@@ -1699,27 +1699,27 @@ booster[33]
 			5:[Hours<60] yes=9,no=10,missing=9
 				9:[Occupation=Farming] yes=14,no=13
 					13:[Hours<38] yes=19,no=20,missing=19
-						19:leaf=-0.053275
-						20:leaf=0.0124943
-					14:[Income<34036] yes=21,no=22,missing=21
-						21:leaf=0.0174414
-						22:leaf=-0.207757
+						19:leaf=-0.0532750078
+						20:leaf=0.0124943312
+					14:[Income<34035.9922] yes=21,no=22,missing=21
+						21:leaf=0.0174413882
+						22:leaf=-0.2077571
 				10:[Occupation=Professional] yes=16,no=15
-					15:[Income<19826.9] yes=23,no=24,missing=23
-						23:leaf=0.12388
-						24:leaf=-0.0516633
+					15:[Income<19826.9355] yes=23,no=24,missing=23
+						23:leaf=0.123879582
+						24:leaf=-0.0516632982
 					16:[Age<49] yes=25,no=26,missing=25
-						25:leaf=-0.30623
-						26:leaf=-0.00353133
+						25:leaf=-0.306230128
+						26:leaf=-0.00353132817
 			6:[Hours<48] yes=11,no=12,missing=11
-				11:[Income<39855.6] yes=17,no=18,missing=17
-					17:leaf=-0.142193
-					18:leaf=0.13049
-				12:leaf=0.2483
+				11:[Income<39855.6016] yes=17,no=18,missing=17
+					17:leaf=-0.142193347
+					18:leaf=0.130490273
+				12:leaf=0.248300463
 		4:[Age<45] yes=7,no=8,missing=7
-			7:leaf=0.19311
-			8:leaf=-0.0812111
-	2:leaf=-0.134395
+			7:leaf=0.193109781
+			8:leaf=-0.0812110975
+	2:leaf=-0.134394661
 booster[34]
 0:[Education=Professional] yes=2,no=1
 	1:[Marital=Married] yes=4,no=3
@@ -1727,161 +1727,161 @@ booster[34]
 			7:[Education=Vocational] yes=12,no=11
 				11:[Employment=PSFederal] yes=20,no=19
 					19:[Gender=Female] yes=30,no=29
-						29:leaf=0.0356027
-						30:leaf=-0.0346389
-					20:leaf=-0.137862
-				12:leaf=-0.166129
+						29:leaf=0.0356026813
+						30:leaf=-0.0346388854
+					20:leaf=-0.137862399
+				12:leaf=-0.166128501
 			8:[Marital=Divorced] yes=14,no=13
-				13:leaf=-0.216611
-				14:leaf=0.0117056
-		4:[Income<60990.6] yes=9,no=10,missing=9
+				13:leaf=-0.21661143
+				14:leaf=0.0117055541
+		4:[Income<60990.6055] yes=9,no=10,missing=9
 			9:[Employment=PSFederal] yes=16,no=15
 				15:[Age<30] yes=21,no=22,missing=21
-					21:[Income<18150.3] yes=31,no=32,missing=31
-						31:leaf=0.079217
-						32:leaf=-0.140639
+					21:[Income<18150.2812] yes=31,no=32,missing=31
+						31:leaf=0.0792170465
+						32:leaf=-0.14063935
 					22:[Education=Yr11] yes=34,no=33
-						33:leaf=0.00535901
-						34:leaf=-0.208584
+						33:leaf=0.00535900611
+						34:leaf=-0.208584189
 				16:[Occupation=Repair] yes=24,no=23
-					23:[Income<27639.9] yes=35,no=36,missing=35
-						35:leaf=-0.0191244
-						36:leaf=0.215615
-					24:leaf=-0.0564133
+					23:[Income<27639.9141] yes=35,no=36,missing=35
+						35:leaf=-0.0191243738
+						36:leaf=0.215614855
+					24:leaf=-0.056413319
 			10:[Hours<42] yes=17,no=18,missing=17
 				17:[Age<43] yes=25,no=26,missing=25
 					25:[Age<40] yes=37,no=38,missing=37
-						37:leaf=0.0225219
-						38:leaf=-0.182095
+						37:leaf=0.0225219335
+						38:leaf=-0.182095319
 					26:[Age<53] yes=39,no=40,missing=39
-						39:leaf=0.221253
-						40:leaf=-0.0443548
+						39:leaf=0.221252695
+						40:leaf=-0.0443547629
 				18:[Age<45] yes=27,no=28,missing=27
-					27:leaf=0.246716
-					28:leaf=-0.00124854
+					27:leaf=0.24671641
+					28:leaf=-0.00124853814
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:leaf=-0.063337
-		6:leaf=0.191802
+		5:leaf=-0.0633369535
+		6:leaf=0.191802099
 booster[35]
 0:[Occupation=Transport] yes=2,no=1
-	1:[Income<21493.8] yes=3,no=4,missing=3
+	1:[Income<21493.7891] yes=3,no=4,missing=3
 		3:[Occupation=Repair] yes=8,no=7
 			7:[Education=Bachelor] yes=16,no=15
 				15:[Age<38] yes=25,no=26,missing=25
-					25:[Income<11472.9] yes=41,no=42,missing=41
-						41:leaf=0.172395
-						42:leaf=0.0492313
+					25:[Income<11472.8848] yes=41,no=42,missing=41
+						41:leaf=0.17239508
+						42:leaf=0.0492312722
 					26:[Age<59] yes=43,no=44,missing=43
-						43:leaf=-0.090733
-						44:leaf=0.136114
+						43:leaf=-0.0907330364
+						44:leaf=0.136113793
 				16:[Occupation=Professional] yes=28,no=27
-					27:[Income<12337.5] yes=45,no=46,missing=45
-						45:leaf=0.0665051
-						46:leaf=0.252569
-					28:leaf=0.00119044
-			8:[Income<17311.1] yes=17,no=18,missing=17
+					27:[Income<12337.4902] yes=45,no=46,missing=45
+						45:leaf=0.0665050745
+						46:leaf=0.252569079
+					28:leaf=0.00119043898
+			8:[Income<17311.1406] yes=17,no=18,missing=17
 				17:[Age<46] yes=29,no=30,missing=29
-					29:leaf=-0.179091
-					30:leaf=-0.0155768
+					29:leaf=-0.179091409
+					30:leaf=-0.0155767575
 				18:[Education=HSgrad] yes=32,no=31
-					31:leaf=0.123076
-					32:leaf=-0.0772472
-		4:[Income<25797.6] yes=9,no=10,missing=9
+					31:leaf=0.123075947
+					32:leaf=-0.0772472322
+		4:[Income<25797.5781] yes=9,no=10,missing=9
 			9:[Occupation=Executive] yes=20,no=19
 				19:[Education=HSgrad] yes=34,no=33
 					33:[Employment=Private] yes=48,no=47
-						47:leaf=-0.0195686
-						48:leaf=-0.23324
-					34:[Income<22900.7] yes=49,no=50,missing=49
-						49:leaf=0.116971
-						50:leaf=-0.0938751
-				20:leaf=0.0588678
+						47:leaf=-0.0195685774
+						48:leaf=-0.233240023
+					34:[Income<22900.7109] yes=49,no=50,missing=49
+						49:leaf=0.116970897
+						50:leaf=-0.0938750952
+				20:leaf=0.0588678122
 			10:[Occupation=Machinist] yes=22,no=21
 				21:[Age<66] yes=35,no=36,missing=35
 					35:[Age<63] yes=51,no=52,missing=51
-						51:leaf=0.00947283
-						52:leaf=-0.101027
+						51:leaf=0.0094728265
+						52:leaf=-0.101026587
 					36:[Age<68] yes=53,no=54,missing=53
-						53:leaf=0.257395
-						54:leaf=-0.0390003
+						53:leaf=0.257395387
+						54:leaf=-0.0390003361
 				22:[Age<39] yes=37,no=38,missing=37
-					37:[Income<56451.4] yes=55,no=56,missing=55
-						55:leaf=0.121282
-						56:leaf=-0.195414
-					38:[Income<31109] yes=57,no=58,missing=57
-						57:leaf=-0.00307646
-						58:leaf=-0.166172
+					37:[Income<56451.3828] yes=55,no=56,missing=55
+						55:leaf=0.121282123
+						56:leaf=-0.195414096
+					38:[Income<31108.9609] yes=57,no=58,missing=57
+						57:leaf=-0.00307646464
+						58:leaf=-0.166171774
 	2:[Age<44] yes=5,no=6,missing=5
-		5:[Income<30975] yes=11,no=12,missing=11
-			11:leaf=-0.0319655
-			12:leaf=-0.170793
+		5:[Income<30975.0449] yes=11,no=12,missing=11
+			11:leaf=-0.0319654867
+			12:leaf=-0.170792997
 		6:[Age<57] yes=13,no=14,missing=13
-			13:[Income<33260.7] yes=23,no=24,missing=23
-				23:leaf=0.121062
+			13:[Income<33260.7109] yes=23,no=24,missing=23
+				23:leaf=0.121062033
 				24:[Age<52] yes=39,no=40,missing=39
-					39:leaf=-0.0879998
-					40:leaf=0.0443649
-			14:leaf=-0.10002
+					39:leaf=-0.087999776
+					40:leaf=0.0443649404
+			14:leaf=-0.100020461
 booster[36]
 0:[Education=Master] yes=2,no=1
 	1:[Marital=Divorced] yes=4,no=3
 		3:[Occupation=Clerical] yes=8,no=7
 			7:[Marital=Unmarried] yes=16,no=15
 				15:[Education=Bachelor] yes=30,no=29
-					29:[Income<116033] yes=47,no=48,missing=47
-						47:leaf=-0.00997764
-						48:leaf=-0.138822
-					30:[Income<71576.3] yes=49,no=50,missing=49
-						49:leaf=-0.0157068
-						50:leaf=0.186365
+					29:[Income<116033.359] yes=47,no=48,missing=47
+						47:leaf=-0.00997764058
+						48:leaf=-0.138822049
+					30:[Income<71576.2656] yes=49,no=50,missing=49
+						49:leaf=-0.0157067776
+						50:leaf=0.186365157
 				16:[Hours<44] yes=31,no=32,missing=31
-					31:leaf=0.0127885
-					32:leaf=0.187481
+					31:leaf=0.0127885221
+					32:leaf=0.187480569
 			8:[Education=HSgrad] yes=18,no=17
 				17:[Education=College] yes=34,no=33
-					33:[Income<48477.4] yes=51,no=52,missing=51
-						51:leaf=0.0843029
-						52:leaf=-0.279587
+					33:[Income<48477.3633] yes=51,no=52,missing=51
+						51:leaf=0.0843029246
+						52:leaf=-0.279587209
 					34:[Income<50902.5] yes=53,no=54,missing=53
-						53:leaf=-0.0189493
-						54:leaf=0.219776
+						53:leaf=-0.0189492591
+						54:leaf=0.219775841
 				18:[Hours<40] yes=35,no=36,missing=35
-					35:leaf=-0.0197707
-					36:[Income<36532.7] yes=55,no=56,missing=55
-						55:leaf=0.031589
-						56:leaf=0.34323
+					35:leaf=-0.0197706912
+					36:[Income<36532.7266] yes=55,no=56,missing=55
+						55:leaf=0.0315890424
+						56:leaf=0.343230009
 		4:[Hours<44] yes=9,no=10,missing=9
 			9:[Age<42] yes=19,no=20,missing=19
 				19:[Gender=Female] yes=38,no=37
-					37:leaf=0.168339
-					38:leaf=-0.165235
+					37:leaf=0.168338522
+					38:leaf=-0.16523461
 				20:[Education=Bachelor] yes=40,no=39
-					39:leaf=-0.24779
-					40:leaf=-0.030206
+					39:leaf=-0.247789964
+					40:leaf=-0.0302060079
 			10:[Age<43] yes=21,no=22,missing=21
 				21:[Education=Bachelor] yes=42,no=41
-					41:leaf=-0.157013
-					42:leaf=0.012868
+					41:leaf=-0.157012925
+					42:leaf=0.0128679723
 				22:[Age<48] yes=43,no=44,missing=43
-					43:leaf=0.220997
-					44:[Income<91235.3] yes=57,no=58,missing=57
-						57:leaf=0.0234249
-						58:leaf=-0.0576801
+					43:leaf=0.220997006
+					44:[Income<91235.2969] yes=57,no=58,missing=57
+						57:leaf=0.0234249141
+						58:leaf=-0.0576800667
 	2:[Occupation=Professional] yes=6,no=5
 		5:[Employment=Private] yes=12,no=11
 			11:[Hours<43] yes=23,no=24,missing=23
-				23:leaf=0.160234
-				24:leaf=-0.143485
-			12:[Income<33931.9] yes=25,no=26,missing=25
-				25:leaf=0.0429438
-				26:leaf=0.251053
+				23:leaf=0.160233706
+				24:leaf=-0.14348492
+			12:[Income<33931.8555] yes=25,no=26,missing=25
+				25:leaf=0.0429437645
+				26:leaf=0.251053035
 		6:[Marital=Absent] yes=14,no=13
 			13:[Age<50] yes=27,no=28,missing=27
-				27:[Income<27145.6] yes=45,no=46,missing=45
-					45:leaf=-0.0760762
-					46:leaf=0.233258
-				28:leaf=-0.0654528
-			14:leaf=-0.135144
+				27:[Income<27145.5547] yes=45,no=46,missing=45
+					45:leaf=-0.0760761946
+					46:leaf=0.2332578
+				28:leaf=-0.065452829
+			14:leaf=-0.135144219
 booster[37]
 0:[Marital=Absent] yes=2,no=1
 	1:[Education=Associate] yes=4,no=3
@@ -1889,211 +1889,211 @@ booster[37]
 			7:[Employment=Consultant] yes=16,no=15
 				15:[Age<41] yes=29,no=30,missing=29
 					29:[Employment=PSLocal] yes=48,no=47
-						47:leaf=0.0298666
-						48:leaf=-0.144668
-					30:[Income<40535.6] yes=49,no=50,missing=49
-						49:leaf=0.0539325
-						50:leaf=-0.198717
-				16:[Income<59236.3] yes=31,no=32,missing=31
-					31:[Income<30809.6] yes=51,no=52,missing=51
-						51:leaf=-0.00453675
-						52:leaf=-0.333354
-					32:leaf=0.0352996
-			8:[Income<52592.3] yes=17,no=18,missing=17
-				17:[Income<45285.9] yes=33,no=34,missing=33
-					33:[Income<42563.1] yes=53,no=54,missing=53
-						53:leaf=-0.0072225
-						54:leaf=0.233336
+						47:leaf=0.0298665948
+						48:leaf=-0.14466764
+					30:[Income<40535.6055] yes=49,no=50,missing=49
+						49:leaf=0.0539324693
+						50:leaf=-0.198716968
+				16:[Income<59236.3398] yes=31,no=32,missing=31
+					31:[Income<30809.6133] yes=51,no=52,missing=51
+						51:leaf=-0.00453674514
+						52:leaf=-0.333353817
+					32:leaf=0.0352996066
+			8:[Income<52592.2734] yes=17,no=18,missing=17
+				17:[Income<45285.9375] yes=33,no=34,missing=33
+					33:[Income<42563.0703] yes=53,no=54,missing=53
+						53:leaf=-0.00722250482
+						54:leaf=0.23333621
 					34:[Age<47] yes=55,no=56,missing=55
-						55:leaf=0.0574436
-						56:leaf=-0.178661
+						55:leaf=0.05744363
+						56:leaf=-0.178660542
 				18:[Occupation=Repair] yes=36,no=35
 					35:[Age<50] yes=57,no=58,missing=57
-						57:leaf=0.141595
-						58:leaf=-0.0316961
-					36:leaf=0.350362
+						57:leaf=0.141595066
+						58:leaf=-0.0316960737
+					36:leaf=0.350362211
 		4:[Age<42] yes=9,no=10,missing=9
 			9:[Age<38] yes=19,no=20,missing=19
-				19:[Income<64660] yes=37,no=38,missing=37
-					37:leaf=-0.026434
-					38:leaf=0.0816955
-				20:leaf=0.255283
+				19:[Income<64659.9609] yes=37,no=38,missing=37
+					37:leaf=-0.026434049
+					38:leaf=0.0816954598
+				20:leaf=0.255283237
 			10:[Age<59] yes=21,no=22,missing=21
-				21:[Income<39680.7] yes=39,no=40,missing=39
-					39:leaf=0.0216312
-					40:leaf=-0.133175
-				22:leaf=0.0726202
+				21:[Income<39680.6992] yes=39,no=40,missing=39
+					39:leaf=0.0216312483
+					40:leaf=-0.133175328
+				22:leaf=0.0726202056
 	2:[Gender=Female] yes=6,no=5
-		5:[Income<92055.3] yes=11,no=12,missing=11
+		5:[Income<92055.3125] yes=11,no=12,missing=11
 			11:[Occupation=Sales] yes=24,no=23
-				23:[Income<45318.3] yes=41,no=42,missing=41
-					41:leaf=-0.0782845
+				23:[Income<45318.2891] yes=41,no=42,missing=41
+					41:leaf=-0.0782845318
 					42:[Age<40] yes=59,no=60,missing=59
-						59:leaf=0.208735
-						60:leaf=0.026548
-				24:leaf=-0.152805
-			12:[Income<105143] yes=25,no=26,missing=25
-				25:leaf=-0.181415
-				26:[Income<117767] yes=43,no=44,missing=43
-					43:leaf=0.152962
-					44:leaf=-0.17238
-		6:[Income<41675.7] yes=13,no=14,missing=13
-			13:leaf=0.0530093
-			14:[Income<83490.9] yes=27,no=28,missing=27
-				27:leaf=-0.216932
+						59:leaf=0.208734989
+						60:leaf=0.026548015
+				24:leaf=-0.15280509
+			12:[Income<105142.734] yes=25,no=26,missing=25
+				25:leaf=-0.181414604
+				26:[Income<117766.516] yes=43,no=44,missing=43
+					43:leaf=0.152961716
+					44:leaf=-0.172379762
+		6:[Income<41675.6797] yes=13,no=14,missing=13
+			13:leaf=0.0530093051
+			14:[Income<83490.875] yes=27,no=28,missing=27
+				27:leaf=-0.216931731
 				28:[Occupation=Professional] yes=46,no=45
-					45:[Income<119148] yes=61,no=62,missing=61
-						61:leaf=-0.170951
-						62:leaf=-0.011402
-					46:leaf=0.0538963
+					45:[Income<119148.078] yes=61,no=62,missing=61
+						61:leaf=-0.17095089
+						62:leaf=-0.0114019532
+					46:leaf=0.0538963489
 booster[38]
 0:[Education=Professional] yes=2,no=1
 	1:[Marital=Married] yes=4,no=3
 		3:[Age<57] yes=7,no=8,missing=7
 			7:[Education=College] yes=12,no=11
 				11:[Employment=Private] yes=20,no=19
-					19:[Income<162777] yes=33,no=34,missing=33
-						33:leaf=-0.133115
-						34:leaf=0.0655738
+					19:[Income<162776.547] yes=33,no=34,missing=33
+						33:leaf=-0.133115068
+						34:leaf=0.0655738339
 					20:[Education=Bachelor] yes=36,no=35
-						35:leaf=-0.0444341
-						36:leaf=0.0759688
-				12:[Income<58592.7] yes=21,no=22,missing=21
-					21:leaf=-0.0411601
-					22:leaf=-0.207327
+						35:leaf=-0.0444340706
+						36:leaf=0.0759687796
+				12:[Income<58592.6797] yes=21,no=22,missing=21
+					21:leaf=-0.041160062
+					22:leaf=-0.20732674
 			8:[Education=Bachelor] yes=14,no=13
-				13:[Income<53537.1] yes=23,no=24,missing=23
-					23:leaf=0.200354
-					24:leaf=0.0637207
-				14:leaf=-0.0720252
-		4:[Income<36186.9] yes=9,no=10,missing=9
-			9:[Income<35355.8] yes=15,no=16,missing=15
-				15:[Income<34722.4] yes=25,no=26,missing=25
-					25:[Income<34265.1] yes=37,no=38,missing=37
-						37:leaf=0.00234713
-						38:leaf=-0.237987
+				13:[Income<53537.0508] yes=23,no=24,missing=23
+					23:leaf=0.200354457
+					24:leaf=0.0637207031
+				14:leaf=-0.0720251575
+		4:[Income<36186.8672] yes=9,no=10,missing=9
+			9:[Income<35355.7852] yes=15,no=16,missing=15
+				15:[Income<34722.3828] yes=25,no=26,missing=25
+					25:[Income<34265.0938] yes=37,no=38,missing=37
+						37:leaf=0.00234712753
+						38:leaf=-0.237986743
 					26:[Education=HSgrad] yes=40,no=39
-						39:leaf=0.301843
-						40:leaf=-0.0142996
-				16:[Income<35700] yes=27,no=28,missing=27
-					27:leaf=-0.0811913
-					28:leaf=-0.286842
-			10:[Income<37564.9] yes=17,no=18,missing=17
+						39:leaf=0.30184263
+						40:leaf=-0.0142995706
+				16:[Income<35699.9805] yes=27,no=28,missing=27
+					27:leaf=-0.0811913088
+					28:leaf=-0.286841542
+			10:[Income<37564.8711] yes=17,no=18,missing=17
 				17:[Hours<43] yes=29,no=30,missing=29
-					29:leaf=0.309761
-					30:leaf=0.0799773
-				18:[Income<39451.4] yes=31,no=32,missing=31
-					31:[Income<38641.3] yes=41,no=42,missing=41
-						41:leaf=0.00200099
-						42:leaf=-0.291321
+					29:leaf=0.309761077
+					30:leaf=0.0799772739
+				18:[Income<39451.3789] yes=31,no=32,missing=31
+					31:[Income<38641.3359] yes=41,no=42,missing=41
+						41:leaf=0.00200098846
+						42:leaf=-0.29132098
 					32:[Occupation=Sales] yes=44,no=43
-						43:leaf=0.0434151
-						44:leaf=-0.0855929
+						43:leaf=0.0434150696
+						44:leaf=-0.0855928808
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:leaf=-0.0430771
-		6:leaf=0.180351
+		5:leaf=-0.043077141
+		6:leaf=0.18035087
 booster[39]
 0:[Occupation=Protective] yes=2,no=1
 	1:[Employment=PSLocal] yes=4,no=3
 		3:[Marital=Divorced] yes=8,no=7
 			7:[Occupation=Cleaner] yes=12,no=11
-				11:[Income<12647] yes=17,no=18,missing=17
+				11:[Income<12646.9902] yes=17,no=18,missing=17
 					17:[Occupation=Sales] yes=30,no=29
-						29:leaf=-0.0982283
-						30:leaf=0.0865727
-					18:[Income<16577.3] yes=31,no=32,missing=31
-						31:leaf=0.12421
-						32:leaf=0.00764624
+						29:leaf=-0.0982283279
+						30:leaf=0.086572662
+					18:[Income<16577.3242] yes=31,no=32,missing=31
+						31:leaf=0.124210246
+						32:leaf=0.00764624262
 				12:[Hours<45] yes=19,no=20,missing=19
-					19:[Income<51380.7] yes=33,no=34,missing=33
-						33:leaf=-0.210294
-						34:leaf=-0.0072033
-					20:leaf=0.0392938
-			8:[Income<86452.3] yes=13,no=14,missing=13
+					19:[Income<51380.7188] yes=33,no=34,missing=33
+						33:leaf=-0.2102945
+						34:leaf=-0.00720329629
+					20:leaf=0.0392938256
+			8:[Income<86452.3047] yes=13,no=14,missing=13
 				13:[Education=Bachelor] yes=22,no=21
-					21:leaf=-0.224217
-					22:[Income<47391.1] yes=35,no=36,missing=35
-						35:leaf=0.0735043
-						36:leaf=-0.116835
+					21:leaf=-0.224217489
+					22:[Income<47391.1328] yes=35,no=36,missing=35
+						35:leaf=0.0735042617
+						36:leaf=-0.116834767
 				14:[Age<45] yes=23,no=24,missing=23
 					23:[Age<37] yes=37,no=38,missing=37
-						37:leaf=-0.0690323
-						38:leaf=0.23182
+						37:leaf=-0.0690323189
+						38:leaf=0.231819868
 					24:[Age<53] yes=39,no=40,missing=39
-						39:leaf=-0.144488
-						40:leaf=0.0496917
+						39:leaf=-0.144487917
+						40:leaf=0.0496917032
 		4:[Occupation=Executive] yes=10,no=9
 			9:[Gender=Female] yes=16,no=15
 				15:[Occupation=Professional] yes=26,no=25
 					25:[Age<47] yes=41,no=42,missing=41
-						41:leaf=-0.0932086
-						42:leaf=-0.00163456
-					26:leaf=-0.239146
+						41:leaf=-0.0932086334
+						42:leaf=-0.00163455529
+					26:leaf=-0.239145741
 				16:[Marital=Absent] yes=28,no=27
-					27:leaf=0.108954
-					28:leaf=-0.095562
-			10:leaf=0.0678511
+					27:leaf=0.108953848
+					28:leaf=-0.0955619812
+			10:leaf=0.067851074
 	2:[Hours<43] yes=5,no=6,missing=5
-		5:leaf=0.185566
-		6:leaf=-0.046309
+		5:leaf=0.185565501
+		6:leaf=-0.0463089794
 booster[40]
 0:[Age<37] yes=1,no=2,missing=1
 	1:[Age<34] yes=3,no=4,missing=3
 		3:[Hours<40] yes=7,no=8,missing=7
-			7:leaf=-0.163108
+			7:leaf=-0.163107544
 			8:[Occupation=Repair] yes=16,no=15
 				15:[Hours<50] yes=27,no=28,missing=27
-					27:[Income<42900.3] yes=41,no=42,missing=41
-						41:leaf=-0.125009
-						42:leaf=0.0183779
-					28:[Income<36964.7] yes=43,no=44,missing=43
+					27:[Income<42900.2695] yes=41,no=42,missing=41
+						41:leaf=-0.125009149
+						42:leaf=0.018377943
+					28:[Income<36964.7188] yes=43,no=44,missing=43
 						43:leaf=0.172481
-						44:leaf=-0.0286187
+						44:leaf=-0.0286187399
 				16:[Hours<42] yes=29,no=30,missing=29
-					29:[Income<36360.4] yes=45,no=46,missing=45
-						45:leaf=0.067865
-						46:leaf=0.245993
-					30:[Income<45251] yes=47,no=48,missing=47
-						47:leaf=-0.196508
-						48:leaf=0.0790477
-		4:[Income<27104.4] yes=9,no=10,missing=9
+					29:[Income<36360.4062] yes=45,no=46,missing=45
+						45:leaf=0.0678649768
+						46:leaf=0.245992973
+					30:[Income<45250.9648] yes=47,no=48,missing=47
+						47:leaf=-0.196508124
+						48:leaf=0.0790476501
+		4:[Income<27104.4492] yes=9,no=10,missing=9
 			9:[Hours<48] yes=17,no=18,missing=17
-				17:leaf=0.158802
-				18:leaf=-0.00613386
-			10:[Income<37213.3] yes=19,no=20,missing=19
-				19:leaf=-0.239942
+				17:leaf=0.158802241
+				18:leaf=-0.00613386044
+			10:[Income<37213.3281] yes=19,no=20,missing=19
+				19:leaf=-0.239942044
 				20:[Employment=Private] yes=32,no=31
-					31:leaf=-0.210925
-					32:[Income<60585.9] yes=49,no=50,missing=49
-						49:leaf=0.0727035
-						50:leaf=-0.112889
+					31:leaf=-0.210925236
+					32:[Income<60585.8672] yes=49,no=50,missing=49
+						49:leaf=0.0727035105
+						50:leaf=-0.112888612
 	2:[Hours<60] yes=5,no=6,missing=5
-		5:[Income<5263.63] yes=11,no=12,missing=11
-			11:leaf=-0.136442
+		5:[Income<5263.62988] yes=11,no=12,missing=11
+			11:leaf=-0.136441529
 			12:[Occupation=Protective] yes=22,no=21
 				21:[Hours<42] yes=33,no=34,missing=33
 					33:[Occupation=Repair] yes=52,no=51
-						51:leaf=0.019139
-						52:leaf=-0.0876694
+						51:leaf=0.0191390123
+						52:leaf=-0.0876694173
 					34:[Employment=Private] yes=54,no=53
-						53:leaf=-0.0387888
-						54:leaf=0.0976346
+						53:leaf=-0.0387887731
+						54:leaf=0.0976346135
 				22:[Age<55] yes=35,no=36,missing=35
-					35:leaf=0.262391
-					36:leaf=-0.0621766
+					35:leaf=0.262391031
+					36:leaf=-0.0621766336
 		6:[Employment=SelfEmp] yes=14,no=13
 			13:[Age<41] yes=23,no=24,missing=23
-				23:[Income<39644] yes=37,no=38,missing=37
-					37:leaf=0.0236518
-					38:leaf=0.199676
+				23:[Income<39644.0352] yes=37,no=38,missing=37
+					37:leaf=0.0236518178
+					38:leaf=0.19967559
 				24:[Age<55] yes=39,no=40,missing=39
-					39:[Income<37179.4] yes=55,no=56,missing=55
-						55:leaf=-0.11318
-						56:leaf=-0.305457
-					40:leaf=0.0460168
-			14:[Income<41971] yes=25,no=26,missing=25
-				25:leaf=-0.0617384
-				26:leaf=0.240946
+					39:[Income<37179.375] yes=55,no=56,missing=55
+						55:leaf=-0.113180123
+						56:leaf=-0.305456847
+					40:leaf=0.0460168011
+			14:[Income<41970.9609] yes=25,no=26,missing=25
+				25:leaf=-0.0617384315
+				26:leaf=0.24094592
 booster[41]
 0:[Occupation=Transport] yes=2,no=1
 	1:[Education=Doctorate] yes=4,no=3
@@ -2101,595 +2101,595 @@ booster[41]
 			7:[Age<66] yes=15,no=16,missing=15
 				15:[Occupation=Cleaner] yes=22,no=21
 					21:[Education=Yr10] yes=28,no=27
-						27:leaf=0.00383473
-						28:leaf=-0.125212
+						27:leaf=0.00383472582
+						28:leaf=-0.125211567
 					22:[Age<43] yes=29,no=30,missing=29
-						29:leaf=0.00961477
-						30:leaf=-0.211773
+						29:leaf=0.00961477123
+						30:leaf=-0.211773157
 				16:[Age<67] yes=23,no=24,missing=23
-					23:leaf=0.202933
-					24:leaf=0.0272321
-			8:leaf=-0.138946
+					23:leaf=0.202933192
+					24:leaf=0.0272320919
+			8:leaf=-0.138946161
 		4:[Hours<48] yes=9,no=10,missing=9
-			9:[Income<39855.6] yes=17,no=18,missing=17
-				17:leaf=-0.123285
-				18:leaf=0.115847
-			10:leaf=0.147282
+			9:[Income<39855.6016] yes=17,no=18,missing=17
+				17:leaf=-0.123284802
+				18:leaf=0.115847431
+			10:leaf=0.147282228
 	2:[Age<44] yes=5,no=6,missing=5
 		5:[Education=HSgrad] yes=12,no=11
-			11:leaf=-0.19072
-			12:leaf=-0.0442817
+			11:leaf=-0.190719828
+			12:leaf=-0.0442816913
 		6:[Education=College] yes=14,no=13
 			13:[Hours<45] yes=19,no=20,missing=19
 				19:[Education=HSgrad] yes=26,no=25
-					25:leaf=-0.05304
-					26:leaf=0.137987
-				20:leaf=-0.159027
-			14:leaf=0.066413
+					25:leaf=-0.0530399866
+					26:leaf=0.137987405
+				20:leaf=-0.159026831
+			14:leaf=0.0664129928
 booster[42]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Education=Master] yes=4,no=3
-		3:[Income<5330.79] yes=5,no=6,missing=5
-			5:leaf=0.100372
+		3:[Income<5330.79004] yes=5,no=6,missing=5
+			5:leaf=0.100371681
 			6:[Age<58] yes=9,no=10,missing=9
-				9:[Income<12641.5] yes=15,no=16,missing=15
+				9:[Income<12641.4951] yes=15,no=16,missing=15
 					15:[Education=Bachelor] yes=24,no=23
-						23:leaf=-0.206439
-						24:leaf=0.0396521
-					16:[Income<16577.3] yes=25,no=26,missing=25
-						25:leaf=0.0896907
-						26:leaf=-0.0118081
-				10:[Income<36350.8] yes=17,no=18,missing=17
-					17:[Income<19488.5] yes=27,no=28,missing=27
-						27:leaf=0.115125
-						28:leaf=-0.114544
+						23:leaf=-0.206439063
+						24:leaf=0.0396520942
+					16:[Income<16577.3242] yes=25,no=26,missing=25
+						25:leaf=0.0896907225
+						26:leaf=-0.011808116
+				10:[Income<36350.7656] yes=17,no=18,missing=17
+					17:[Income<19488.5449] yes=27,no=28,missing=27
+						27:leaf=0.11512462
+						28:leaf=-0.114544392
 					18:[Education=College] yes=30,no=29
-						29:leaf=0.16398
-						30:leaf=-0.0891254
+						29:leaf=0.163980246
+						30:leaf=-0.0891253501
 		4:[Gender=Female] yes=8,no=7
 			7:[Hours<49] yes=11,no=12,missing=11
 				11:[Age<49] yes=19,no=20,missing=19
-					19:[Income<32789.3] yes=31,no=32,missing=31
-						31:leaf=-0.0752231
-						32:leaf=0.0773826
-					20:leaf=0.247009
+					19:[Income<32789.2812] yes=31,no=32,missing=31
+						31:leaf=-0.0752230585
+						32:leaf=0.0773826241
+					20:leaf=0.247008964
 				12:[Age<46] yes=21,no=22,missing=21
-					21:leaf=0.178775
+					21:leaf=0.178775296
 					22:[Hours<56] yes=33,no=34,missing=33
-						33:leaf=-0.199086
-						34:leaf=0.0145423
+						33:leaf=-0.199086189
+						34:leaf=0.0145422863
 			8:[Marital=Divorced] yes=14,no=13
-				13:leaf=-0.169378
-				14:leaf=0.0781721
-	2:leaf=-0.120973
+				13:leaf=-0.169378161
+				14:leaf=0.0781721324
+	2:leaf=-0.120972849
 booster[43]
 0:[Education=Professional] yes=2,no=1
 	1:[Marital=Married] yes=4,no=3
 		3:[Education=Doctorate] yes=8,no=7
 			7:[Hours<40] yes=11,no=12,missing=11
-				11:leaf=-0.160674
-				12:[Income<63525.7] yes=17,no=18,missing=17
-					17:[Income<45106.5] yes=27,no=28,missing=27
-						27:leaf=-0.0415015
-						28:leaf=0.0987629
-					18:[Income<74100.2] yes=29,no=30,missing=29
-						29:leaf=-0.195929
-						30:leaf=-0.0171851
-			8:leaf=0.105272
+				11:leaf=-0.160673752
+				12:[Income<63525.6836] yes=17,no=18,missing=17
+					17:[Income<45106.5391] yes=27,no=28,missing=27
+						27:leaf=-0.0415014587
+						28:leaf=0.0987628773
+					18:[Income<74100.1562] yes=29,no=30,missing=29
+						29:leaf=-0.19592917
+						30:leaf=-0.0171851013
+			8:leaf=0.105271704
 		4:[Employment=PSFederal] yes=10,no=9
-			9:[Income<60990.6] yes=13,no=14,missing=13
-				13:[Income<55885.8] yes=19,no=20,missing=19
-					19:[Income<46004.5] yes=31,no=32,missing=31
-						31:leaf=-0.010106
-						32:leaf=0.060392
+			9:[Income<60990.6055] yes=13,no=14,missing=13
+				13:[Income<55885.8125] yes=19,no=20,missing=19
+					19:[Income<46004.5078] yes=31,no=32,missing=31
+						31:leaf=-0.0101059815
+						32:leaf=0.0603920184
 					20:[Age<42] yes=33,no=34,missing=33
-						33:leaf=-0.19227
-						34:leaf=0.0533892
+						33:leaf=-0.192270011
+						34:leaf=0.0533892177
 				14:[Hours<42] yes=21,no=22,missing=21
 					21:[Age<43] yes=35,no=36,missing=35
-						35:leaf=-0.0283393
-						36:leaf=0.0661539
+						35:leaf=-0.0283393208
+						36:leaf=0.0661539212
 					22:[Age<45] yes=37,no=38,missing=37
-						37:leaf=0.206375
-						38:leaf=-0.00194534
-			10:[Income<35605.4] yes=15,no=16,missing=15
-				15:[Income<26625.3] yes=23,no=24,missing=23
-					23:leaf=0.0644787
-					24:leaf=0.194391
-				16:[Income<49773.6] yes=25,no=26,missing=25
-					25:leaf=-0.164698
-					26:leaf=0.12469
+						37:leaf=0.206375405
+						38:leaf=-0.00194533891
+			10:[Income<35605.4453] yes=15,no=16,missing=15
+				15:[Income<26625.2617] yes=23,no=24,missing=23
+					23:leaf=0.0644787401
+					24:leaf=0.194390625
+				16:[Income<49773.6094] yes=25,no=26,missing=25
+					25:leaf=-0.164698407
+					26:leaf=0.124690212
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:leaf=-0.0330685
-		6:leaf=0.157579
+		5:leaf=-0.0330685005
+		6:leaf=0.157578737
 booster[44]
 0:[Occupation=Transport] yes=2,no=1
 	1:[Occupation=Service] yes=4,no=3
 		3:[Occupation=Machinist] yes=8,no=7
-			7:[Income<188872] yes=15,no=16,missing=15
-				15:[Income<163651] yes=25,no=26,missing=25
+			7:[Income<188872.25] yes=15,no=16,missing=15
+				15:[Income<163651.469] yes=25,no=26,missing=25
 					25:[Hours<35] yes=33,no=34,missing=33
-						33:leaf=-0.0600339
-						34:leaf=0.0116235
-					26:leaf=-0.1238
-				16:[Income<227694] yes=27,no=28,missing=27
-					27:leaf=0.169068
+						33:leaf=-0.0600339323
+						34:leaf=0.0116234785
+					26:leaf=-0.123800106
+				16:[Income<227693.547] yes=27,no=28,missing=27
+					27:leaf=0.169067889
 					28:[Hours<34] yes=35,no=36,missing=35
-						35:leaf=0.068263
-						36:leaf=-0.0982686
-			8:[Income<19578.1] yes=17,no=18,missing=17
-				17:[Income<15729.5] yes=29,no=30,missing=29
-					29:leaf=-0.0331389
-					30:leaf=0.232844
-				18:[Income<35713.2] yes=31,no=32,missing=31
-					31:leaf=-0.194971
-					32:[Income<44387.4] yes=37,no=38,missing=37
-						37:leaf=0.182939
-						38:leaf=-0.099538
-		4:[Income<40015.2] yes=9,no=10,missing=9
+						35:leaf=0.0682630464
+						36:leaf=-0.0982685983
+			8:[Income<19578.1289] yes=17,no=18,missing=17
+				17:[Income<15729.4648] yes=29,no=30,missing=29
+					29:leaf=-0.0331389308
+					30:leaf=0.232843876
+				18:[Income<35713.1641] yes=31,no=32,missing=31
+					31:leaf=-0.194971189
+					32:[Income<44387.4258] yes=37,no=38,missing=37
+						37:leaf=0.182938978
+						38:leaf=-0.0995380208
+		4:[Income<40015.2031] yes=9,no=10,missing=9
 			9:[Age<38] yes=19,no=20,missing=19
-				19:leaf=0.0112295
-				20:leaf=-0.20252
+				19:leaf=0.0112295244
+				20:leaf=-0.202520117
 			10:[Age<42] yes=21,no=22,missing=21
-				21:leaf=-0.16112
-				22:leaf=0.138315
-	2:[Income<33260.7] yes=5,no=6,missing=5
-		5:[Income<24386.3] yes=11,no=12,missing=11
-			11:leaf=-0.128684
-			12:leaf=0.14853
+				21:leaf=-0.161120474
+				22:leaf=0.138314903
+	2:[Income<33260.7109] yes=5,no=6,missing=5
+		5:[Income<24386.2852] yes=11,no=12,missing=11
+			11:leaf=-0.128683865
+			12:leaf=0.148530081
 		6:[Age<53] yes=13,no=14,missing=13
-			13:[Income<49563.2] yes=23,no=24,missing=23
-				23:leaf=-0.213991
-				24:leaf=-0.02408
-			14:leaf=0.0460631
+			13:[Income<49563.2188] yes=23,no=24,missing=23
+				23:leaf=-0.213990554
+				24:leaf=-0.0240799505
+			14:leaf=0.0460630916
 booster[45]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Education=Yr9] yes=4,no=3
 		3:[Occupation=Farming] yes=6,no=5
 			5:[Gender=Female] yes=8,no=7
 				7:[Age<54] yes=11,no=12,missing=11
-					11:[Income<29376.5] yes=15,no=16,missing=15
-						15:leaf=-0.0167902
-						16:leaf=0.034921
-					12:[Income<39280.1] yes=17,no=18,missing=17
-						17:leaf=-0.0728014
-						18:leaf=0.036404
+					11:[Income<29376.4805] yes=15,no=16,missing=15
+						15:leaf=-0.0167902298
+						16:leaf=0.0349210054
+					12:[Income<39280.1211] yes=17,no=18,missing=17
+						17:leaf=-0.072801359
+						18:leaf=0.0364040248
 				8:[Age<58] yes=13,no=14,missing=13
-					13:[Income<99922.3] yes=19,no=20,missing=19
-						19:leaf=-0.124802
-						20:leaf=0.00945366
-					14:[Income<130333] yes=21,no=22,missing=21
-						21:leaf=0.18253
-						22:leaf=-0.0233498
+					13:[Income<99922.2656] yes=19,no=20,missing=19
+						19:leaf=-0.12480212
+						20:leaf=0.0094536636
+					14:[Income<130332.906] yes=21,no=22,missing=21
+						21:leaf=0.182529688
+						22:leaf=-0.0233498421
 			6:[Age<55] yes=9,no=10,missing=9
-				9:leaf=-0.154185
-				10:leaf=0.0331533
-		4:leaf=-0.1044
-	2:leaf=-0.111061
+				9:leaf=-0.154184893
+				10:leaf=0.0331533067
+		4:leaf=-0.104399502
+	2:leaf=-0.111060597
 booster[46]
-0:[Income<37688.1] yes=1,no=2,missing=1
-	1:[Income<36532.7] yes=3,no=4,missing=3
-		3:[Income<35355.8] yes=7,no=8,missing=7
-			7:[Income<34722.4] yes=15,no=16,missing=15
-				15:[Income<34265.1] yes=25,no=26,missing=25
-					25:[Income<33726] yes=33,no=34,missing=33
-						33:leaf=-0.0008486
-						34:leaf=0.227827
-					26:leaf=-0.192356
+0:[Income<37688.0781] yes=1,no=2,missing=1
+	1:[Income<36532.7266] yes=3,no=4,missing=3
+		3:[Income<35355.7852] yes=7,no=8,missing=7
+			7:[Income<34722.3828] yes=15,no=16,missing=15
+				15:[Income<34265.0938] yes=25,no=26,missing=25
+					25:[Income<33725.9844] yes=33,no=34,missing=33
+						33:leaf=-0.00084859971
+						34:leaf=0.227827445
+					26:leaf=-0.192356274
 				16:[Education=HSgrad] yes=28,no=27
-					27:leaf=0.260635
-					28:leaf=-0.0155951
+					27:leaf=0.260635346
+					28:leaf=-0.0155951185
 			8:[Age<35] yes=17,no=18,missing=17
-				17:leaf=-0.04236
+				17:leaf=-0.042360045
 				18:[Hours<41] yes=29,no=30,missing=29
-					29:leaf=-0.0711617
-					30:leaf=-0.247725
+					29:leaf=-0.071161747
+					30:leaf=-0.247724965
 		4:[Hours<50] yes=9,no=10,missing=9
-			9:[Income<37065.3] yes=19,no=20,missing=19
-				19:leaf=0.312435
-				20:leaf=0.0851577
-			10:leaf=0.00842648
-	2:[Income<39451.4] yes=5,no=6,missing=5
+			9:[Income<37065.2578] yes=19,no=20,missing=19
+				19:leaf=0.312434703
+				20:leaf=0.0851577148
+			10:leaf=0.0084264772
+	2:[Income<39451.3789] yes=5,no=6,missing=5
 		5:[Occupation=Sales] yes=12,no=11
-			11:[Income<38179.1] yes=21,no=22,missing=21
-				21:leaf=-0.0401596
-				22:leaf=-0.274257
-			12:leaf=0.0206679
-		6:[Income<39994.5] yes=13,no=14,missing=13
-			13:leaf=0.187892
+			11:[Income<38179.1406] yes=21,no=22,missing=21
+				21:leaf=-0.0401595868
+				22:leaf=-0.274257034
+			12:leaf=0.0206678659
+		6:[Income<39994.4922] yes=13,no=14,missing=13
+			13:leaf=0.187891647
 			14:[Education=Yr10] yes=24,no=23
 				23:[Occupation=Sales] yes=32,no=31
 					31:[Hours<25] yes=35,no=36,missing=35
-						35:leaf=-0.106324
-						36:leaf=0.0109676
+						35:leaf=-0.106324315
+						36:leaf=0.0109676439
 					32:[Age<56] yes=37,no=38,missing=37
-						37:leaf=-0.128426
-						38:leaf=0.0955129
-				24:leaf=-0.186208
+						37:leaf=-0.128425583
+						38:leaf=0.095512867
+				24:leaf=-0.186208189
 booster[47]
 0:[Education=Master] yes=2,no=1
-	1:[Income<20620.3] yes=3,no=4,missing=3
-		3:[Income<18753.3] yes=7,no=8,missing=7
+	1:[Income<20620.3164] yes=3,no=4,missing=3
+		3:[Income<18753.2812] yes=7,no=8,missing=7
 			7:[Employment=Private] yes=14,no=13
 				13:[Education=HSgrad] yes=26,no=25
-					25:[Income<14691.3] yes=39,no=40,missing=39
-						39:leaf=0.173832
-						40:leaf=0.0182876
-					26:leaf=-0.0228724
+					25:[Income<14691.3203] yes=39,no=40,missing=39
+						39:leaf=0.173831671
+						40:leaf=0.0182875972
+					26:leaf=-0.0228724014
 				14:[Occupation=Executive] yes=28,no=27
 					27:[Age<32] yes=41,no=42,missing=41
-						41:leaf=0.105103
-						42:leaf=-0.152819
-					28:leaf=0.131776
+						41:leaf=0.10510347
+						42:leaf=-0.152819023
+					28:leaf=0.131776422
 			8:[Age<46] yes=15,no=16,missing=15
 				15:[Hours<43] yes=29,no=30,missing=29
-					29:leaf=0.0924127
-					30:leaf=-0.0150602
-				16:leaf=0.208676
-		4:[Income<25797.6] yes=9,no=10,missing=9
+					29:leaf=0.0924127251
+					30:leaf=-0.0150602264
+				16:leaf=0.208675936
+		4:[Income<25797.5781] yes=9,no=10,missing=9
 			9:[Age<51] yes=17,no=18,missing=17
 				17:[Age<45] yes=31,no=32,missing=31
 					31:[Occupation=Repair] yes=44,no=43
-						43:leaf=-0.182352
-						44:leaf=0.0896815
-					32:leaf=0.158791
-				18:leaf=-0.216622
+						43:leaf=-0.182352081
+						44:leaf=0.0896814764
+					32:leaf=0.158790976
+				18:leaf=-0.216621667
 			10:[Marital=Divorced] yes=20,no=19
-				19:[Income<27803.4] yes=33,no=34,missing=33
+				19:[Income<27803.4297] yes=33,no=34,missing=33
 					33:[Education=College] yes=46,no=45
-						45:leaf=0.140576
-						46:leaf=-0.118996
-					34:[Income<28247.7] yes=47,no=48,missing=47
-						47:leaf=-0.22338
-						48:leaf=0.00116283
+						45:leaf=0.140575811
+						46:leaf=-0.11899583
+					34:[Income<28247.7188] yes=47,no=48,missing=47
+						47:leaf=-0.223379746
+						48:leaf=0.00116282515
 				20:[Age<45] yes=35,no=36,missing=35
-					35:[Income<87885.8] yes=49,no=50,missing=49
-						49:leaf=-0.128118
-						50:leaf=0.0945511
+					35:[Income<87885.75] yes=49,no=50,missing=49
+						49:leaf=-0.128117502
+						50:leaf=0.0945510641
 					36:[Hours<54] yes=51,no=52,missing=51
-						51:leaf=-0.179642
-						52:leaf=0.0800269
+						51:leaf=-0.17964226
+						52:leaf=0.0800268576
 	2:[Gender=Female] yes=6,no=5
 		5:[Occupation=Professional] yes=12,no=11
-			11:[Income<47123.1] yes=21,no=22,missing=21
-				21:[Income<33560.2] yes=37,no=38,missing=37
-					37:leaf=0.102535
-					38:leaf=-0.0476221
-				22:leaf=0.213373
-			12:[Income<29191.6] yes=23,no=24,missing=23
-				23:leaf=0.090729
-				24:leaf=-0.0717
-		6:leaf=-0.0485187
+			11:[Income<47123.0938] yes=21,no=22,missing=21
+				21:[Income<33560.1836] yes=37,no=38,missing=37
+					37:leaf=0.10253524
+					38:leaf=-0.0476220548
+				22:leaf=0.213373289
+			12:[Income<29191.6289] yes=23,no=24,missing=23
+				23:leaf=0.0907289535
+				24:leaf=-0.071699962
+		6:leaf=-0.0485186614
 booster[48]
 0:[Age<37] yes=1,no=2,missing=1
-	1:[Income<30233.4] yes=3,no=4,missing=3
+	1:[Income<30233.3555] yes=3,no=4,missing=3
 		3:[Age<28] yes=7,no=8,missing=7
-			7:leaf=-0.0821336
+			7:leaf=-0.082133621
 			8:[Occupation=Machinist] yes=16,no=15
-				15:[Income<27647.1] yes=23,no=24,missing=23
-					23:[Income<15063.3] yes=35,no=36,missing=35
-						35:leaf=0.157811
-						36:leaf=-0.0381298
-					24:leaf=0.231671
-				16:leaf=-0.0734899
-		4:[Income<40268.7] yes=9,no=10,missing=9
+				15:[Income<27647.0703] yes=23,no=24,missing=23
+					23:[Income<15063.3447] yes=35,no=36,missing=35
+						35:leaf=0.157810524
+						36:leaf=-0.0381297991
+					24:leaf=0.231671259
+				16:leaf=-0.0734898672
+		4:[Income<40268.7031] yes=9,no=10,missing=9
 			9:[Hours<58] yes=17,no=18,missing=17
 				17:[Age<27] yes=25,no=26,missing=25
-					25:leaf=0.0559622
+					25:leaf=0.0559622012
 					26:[Occupation=Repair] yes=38,no=37
-						37:leaf=-0.208626
-						38:leaf=-0.0578669
-				18:leaf=0.0786286
+						37:leaf=-0.208625779
+						38:leaf=-0.0578668751
+				18:leaf=0.0786285847
 			10:[Education=HSgrad] yes=20,no=19
 				19:[Occupation=Executive] yes=28,no=27
-					27:[Income<83490.9] yes=39,no=40,missing=39
-						39:leaf=-0.087433
-						40:leaf=0.0755652
+					27:[Income<83490.875] yes=39,no=40,missing=39
+						39:leaf=-0.0874329656
+						40:leaf=0.0755652413
 					28:[Marital=Absent] yes=42,no=41
-						41:leaf=0.274347
-						42:leaf=-0.0694577
-				20:[Income<51052.5] yes=29,no=30,missing=29
-					29:[Income<48208.2] yes=43,no=44,missing=43
-						43:leaf=-0.0567063
-						44:leaf=0.223368
+						41:leaf=0.27434662
+						42:leaf=-0.0694577098
+				20:[Income<51052.4766] yes=29,no=30,missing=29
+					29:[Income<48208.1641] yes=43,no=44,missing=43
+						43:leaf=-0.0567062907
+						44:leaf=0.223367721
 					30:[Occupation=Clerical] yes=46,no=45
-						45:leaf=-0.204134
-						46:leaf=0.126742
+						45:leaf=-0.204134032
+						46:leaf=0.126742199
 	2:[Occupation=Protective] yes=6,no=5
-		5:[Income<6556.19] yes=11,no=12,missing=11
-			11:leaf=-0.145259
-			12:[Income<14802.4] yes=21,no=22,missing=21
+		5:[Income<6556.19043] yes=11,no=12,missing=11
+			11:leaf=-0.145258948
+			12:[Income<14802.4248] yes=21,no=22,missing=21
 				21:[Age<46] yes=31,no=32,missing=31
-					31:leaf=-0.0407794
-					32:leaf=0.211888
-				22:[Income<16377.3] yes=33,no=34,missing=33
-					33:leaf=-0.147008
+					31:leaf=-0.0407793857
+					32:leaf=0.211888269
+				22:[Income<16377.3008] yes=33,no=34,missing=33
+					33:leaf=-0.147007987
 					34:[Age<40] yes=47,no=48,missing=47
-						47:leaf=0.0673888
-						48:leaf=-0.00274588
+						47:leaf=0.0673887655
+						48:leaf=-0.00274587655
 		6:[Age<54] yes=13,no=14,missing=13
-			13:leaf=0.193632
-			14:leaf=0.0302533
+			13:leaf=0.193631545
+			14:leaf=0.0302532595
 booster[49]
-0:[Income<90162.4] yes=1,no=2,missing=1
-	1:[Income<83537.8] yes=3,no=4,missing=3
-		3:[Income<79680.7] yes=7,no=8,missing=7
+0:[Income<90162.3906] yes=1,no=2,missing=1
+	1:[Income<83537.7734] yes=3,no=4,missing=3
+		3:[Income<79680.6562] yes=7,no=8,missing=7
 			7:[Occupation=Protective] yes=14,no=13
-				13:[Income<78218.6] yes=19,no=20,missing=19
-					19:[Income<64708.4] yes=29,no=30,missing=29
-						29:leaf=0.0049448
-						30:leaf=-0.0781731
-					20:leaf=0.145196
+				13:[Income<78218.5547] yes=19,no=20,missing=19
+					19:[Income<64708.4219] yes=29,no=30,missing=29
+						29:leaf=0.0049448004
+						30:leaf=-0.0781730935
+					20:leaf=0.145195559
 				14:[Hours<43] yes=21,no=22,missing=21
-					21:leaf=0.206654
-					22:leaf=-0.0699365
-			8:leaf=-0.182391
+					21:leaf=0.206654221
+					22:leaf=-0.0699365363
+			8:leaf=-0.182390705
 		4:[Occupation=Professional] yes=10,no=9
-			9:leaf=0.0140387
-			10:leaf=0.282084
-	2:[Income<95920.6] yes=5,no=6,missing=5
-		5:leaf=-0.175192
+			9:leaf=0.0140387462
+			10:leaf=0.282084048
+	2:[Income<95920.625] yes=5,no=6,missing=5
+		5:leaf=-0.175192133
 		6:[Marital=Absent] yes=12,no=11
 			11:[Education=HSgrad] yes=16,no=15
 				15:[Occupation=Clerical] yes=24,no=23
 					23:[Education=College] yes=32,no=31
-						31:leaf=0.136658
-						32:leaf=-0.078629
+						31:leaf=0.136658162
+						32:leaf=-0.0786289573
 					24:[Education=College] yes=34,no=33
-						33:leaf=-0.148756
-						34:leaf=0.119702
+						33:leaf=-0.148756236
+						34:leaf=0.119701616
 				16:[Age<58] yes=25,no=26,missing=25
 					25:[Age<40] yes=35,no=36,missing=35
-						35:leaf=-0.190462
-						36:leaf=-0.049557
-					26:leaf=0.143646
+						35:leaf=-0.190462023
+						36:leaf=-0.0495569818
+					26:leaf=0.143645778
 			12:[Employment=Private] yes=18,no=17
-				17:leaf=-0.186058
-				18:[Income<116070] yes=27,no=28,missing=27
+				17:leaf=-0.186058208
+				18:[Income<116069.711] yes=27,no=28,missing=27
 					27:[Age<31] yes=37,no=38,missing=37
-						37:leaf=0.146367
-						38:leaf=-0.118684
-					28:leaf=-0.0953435
+						37:leaf=0.146366626
+						38:leaf=-0.11868374
+					28:leaf=-0.0953435376
 booster[50]
-0:[Income<89832.3] yes=1,no=2,missing=1
-	1:[Income<83537.8] yes=3,no=4,missing=3
-		3:[Income<79680.7] yes=7,no=8,missing=7
-			7:[Income<78412.9] yes=15,no=16,missing=15
+0:[Income<89832.3438] yes=1,no=2,missing=1
+	1:[Income<83537.7734] yes=3,no=4,missing=3
+		3:[Income<79680.6562] yes=7,no=8,missing=7
+			7:[Income<78412.9062] yes=15,no=16,missing=15
 				15:[Age<56] yes=19,no=20,missing=19
-					19:[Income<5330.79] yes=25,no=26,missing=25
-						25:leaf=0.182172
-						26:leaf=0.00583663
+					19:[Income<5330.79004] yes=25,no=26,missing=25
+						25:leaf=0.182172105
+						26:leaf=0.00583663117
 					20:[Education=Bachelor] yes=28,no=27
-						27:leaf=-0.068225
-						28:leaf=0.0801605
-				16:leaf=0.133173
-			8:leaf=-0.167628
+						27:leaf=-0.0682249963
+						28:leaf=0.0801604763
+				16:leaf=0.133173242
+			8:leaf=-0.167627737
 		4:[Hours<44] yes=9,no=10,missing=9
-			9:leaf=0.203715
-			10:leaf=0.0551746
+			9:leaf=0.203714982
+			10:leaf=0.0551745854
 	2:[Education=Associate] yes=6,no=5
 		5:[Age<59] yes=11,no=12,missing=11
-			11:[Income<99065.8] yes=17,no=18,missing=17
+			11:[Income<99065.75] yes=17,no=18,missing=17
 				17:[Occupation=Professional] yes=22,no=21
-					21:leaf=-0.275491
-					22:leaf=0.0085967
+					21:leaf=-0.275490999
+					22:leaf=0.00859670434
 				18:[Marital=Married] yes=24,no=23
-					23:[Income<100546] yes=29,no=30,missing=29
-						29:leaf=0.0632446
-						30:leaf=-0.100023
-					24:[Income<167403] yes=31,no=32,missing=31
-						31:leaf=0.14246
-						32:leaf=-0.0363298
-			12:leaf=0.0884838
+					23:[Income<100545.578] yes=29,no=30,missing=29
+						29:leaf=0.0632445961
+						30:leaf=-0.100023478
+					24:[Income<167403.156] yes=31,no=32,missing=31
+						31:leaf=0.142459631
+						32:leaf=-0.0363297537
+			12:leaf=0.0884838104
 		6:[Age<34] yes=13,no=14,missing=13
-			13:leaf=-0.0146852
-			14:leaf=0.156148
+			13:leaf=-0.0146851651
+			14:leaf=0.156147525
 booster[51]
 0:[Hours<83] yes=1,no=2,missing=1
 	1:[Hours<70] yes=3,no=4,missing=3
 		3:[Education=Doctorate] yes=6,no=5
 			5:[Hours<60] yes=9,no=10,missing=9
-				9:[Income<12647] yes=13,no=14,missing=13
+				9:[Income<12646.9902] yes=13,no=14,missing=13
 					13:[Age<54] yes=19,no=20,missing=19
-						19:leaf=-0.121416
-						20:leaf=0.0441311
-					14:[Income<14802.4] yes=21,no=22,missing=21
-						21:leaf=0.133223
-						22:leaf=0.00369791
-				10:[Income<37756.1] yes=15,no=16,missing=15
+						19:leaf=-0.121415526
+						20:leaf=0.0441310927
+					14:[Income<14802.4248] yes=21,no=22,missing=21
+						21:leaf=0.133223206
+						22:leaf=0.00369790639
+				10:[Income<37756.1406] yes=15,no=16,missing=15
 					15:[Age<38] yes=23,no=24,missing=23
-						23:leaf=0.127181
-						24:leaf=-0.0600854
+						23:leaf=0.127181336
+						24:leaf=-0.0600854121
 					16:[Employment=SelfEmp] yes=26,no=25
-						25:leaf=-0.196478
-						26:leaf=0.146306
+						25:leaf=-0.196477816
+						26:leaf=0.146305785
 			6:[Hours<48] yes=11,no=12,missing=11
-				11:[Income<39855.6] yes=17,no=18,missing=17
-					17:leaf=-0.093842
-					18:leaf=0.094906
-				12:leaf=0.207838
+				11:[Income<39855.6016] yes=17,no=18,missing=17
+					17:leaf=-0.093842037
+					18:leaf=0.0949060023
+				12:leaf=0.207838014
 		4:[Age<45] yes=7,no=8,missing=7
-			7:leaf=0.158523
-			8:leaf=-0.0394275
-	2:leaf=-0.104107
+			7:leaf=0.158523172
+			8:leaf=-0.0394275002
+	2:leaf=-0.104107283
 booster[52]
 0:[Education=Master] yes=2,no=1
-	1:[Income<211146] yes=3,no=4,missing=3
-		3:[Income<188872] yes=7,no=8,missing=7
-			7:[Income<163651] yes=15,no=16,missing=15
+	1:[Income<211146.25] yes=3,no=4,missing=3
+		3:[Income<188872.25] yes=7,no=8,missing=7
+			7:[Income<163651.469] yes=15,no=16,missing=15
 				15:[Hours<42] yes=23,no=24,missing=23
 					23:[Occupation=Professional] yes=28,no=27
-						27:leaf=-0.0224984
-						28:leaf=0.0349731
+						27:leaf=-0.022498358
+						28:leaf=0.0349731334
 					24:[Hours<45] yes=29,no=30,missing=29
-						29:leaf=0.148415
-						30:leaf=0.00473783
-				16:leaf=-0.139793
-			8:[Income<198368] yes=17,no=18,missing=17
-				17:leaf=0.179612
-				18:leaf=0.0251972
-		4:[Income<324721] yes=9,no=10,missing=9
+						29:leaf=0.148414508
+						30:leaf=0.00473782839
+				16:leaf=-0.139792562
+			8:[Income<198367.672] yes=17,no=18,missing=17
+				17:leaf=0.179612413
+				18:leaf=0.0251972284
+		4:[Income<324720.688] yes=9,no=10,missing=9
 			9:[Age<40] yes=19,no=20,missing=19
-				19:leaf=-0.171585
+				19:leaf=-0.171584547
 				20:[Occupation=Clerical] yes=26,no=25
-					25:leaf=-0.102317
-					26:leaf=0.0539466
-			10:leaf=0.0532063
+					25:leaf=-0.102316655
+					26:leaf=0.0539465919
+			10:leaf=0.053206306
 	2:[Hours<49] yes=5,no=6,missing=5
 		5:[Age<47] yes=11,no=12,missing=11
 			11:[Occupation=Professional] yes=22,no=21
-				21:leaf=0.0446241
-				22:leaf=-0.119065
-			12:leaf=0.20004
+				21:leaf=0.0446240678
+				22:leaf=-0.119065031
+			12:leaf=0.200039789
 		6:[Age<50] yes=13,no=14,missing=13
-			13:leaf=0.0944965
-			14:leaf=-0.0922453
+			13:leaf=0.0944965109
+			14:leaf=-0.0922453031
 booster[53]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Education=Yr9] yes=4,no=3
 		3:[Occupation=Farming] yes=6,no=5
 			5:[Marital=Married] yes=8,no=7
 				7:[Employment=SelfEmp] yes=12,no=11
-					11:[Income<105709] yes=15,no=16,missing=15
-						15:leaf=0.0123172
-						16:leaf=-0.0658213
-					12:leaf=-0.159571
+					11:[Income<105708.875] yes=15,no=16,missing=15
+						15:leaf=0.0123171881
+						16:leaf=-0.0658212602
+					12:leaf=-0.159571141
 				8:[Occupation=Professional] yes=14,no=13
 					13:[Employment=PSState] yes=18,no=17
-						17:leaf=0.0155719
-						18:leaf=0.152856
+						17:leaf=0.0155719183
+						18:leaf=0.152856439
 					14:[Age<40] yes=19,no=20,missing=19
-						19:leaf=0.0883482
-						20:leaf=-0.0863741
+						19:leaf=0.0883482248
+						20:leaf=-0.0863741338
 			6:[Hours<58] yes=9,no=10,missing=9
-				9:leaf=-0.124642
-				10:leaf=0.0421932
-		4:leaf=-0.0932629
-	2:leaf=-0.0932809
+				9:leaf=-0.124642238
+				10:leaf=0.042193193
+		4:leaf=-0.0932628885
+	2:leaf=-0.0932808816
 booster[54]
 0:[Age<37] yes=1,no=2,missing=1
-	1:[Income<59953.1] yes=3,no=4,missing=3
-		3:[Income<54471.4] yes=7,no=8,missing=7
+	1:[Income<59953.125] yes=3,no=4,missing=3
+		3:[Income<54471.3594] yes=7,no=8,missing=7
 			7:[Occupation=Repair] yes=16,no=15
-				15:[Income<31830] yes=25,no=26,missing=25
-					25:[Income<30812.4] yes=41,no=42,missing=41
-						41:leaf=-0.00740183
-						42:leaf=0.189423
+				15:[Income<31830.0312] yes=25,no=26,missing=25
+					25:[Income<30812.4102] yes=41,no=42,missing=41
+						41:leaf=-0.00740183052
+						42:leaf=0.189422548
 					26:[Occupation=Machinist] yes=44,no=43
-						43:leaf=-0.134771
-						44:leaf=0.0694069
-				16:[Income<36381.1] yes=27,no=28,missing=27
-					27:[Income<25046.3] yes=45,no=46,missing=45
-						45:leaf=0.0283202
-						46:leaf=-0.125177
+						43:leaf=-0.134770706
+						44:leaf=0.0694069341
+				16:[Income<36381.1484] yes=27,no=28,missing=27
+					27:[Income<25046.2695] yes=45,no=46,missing=45
+						45:leaf=0.028320184
+						46:leaf=-0.125176936
 					28:[Age<30] yes=47,no=48,missing=47
-						47:leaf=0.0593042
-						48:leaf=0.310493
-			8:leaf=-0.206998
-		4:[Income<66636.5] yes=9,no=10,missing=9
+						47:leaf=0.0593042076
+						48:leaf=0.310492784
+			8:leaf=-0.20699802
+		4:[Income<66636.4922] yes=9,no=10,missing=9
 			9:[Hours<47] yes=17,no=18,missing=17
-				17:leaf=0.217821
-				18:leaf=0.0221102
+				17:leaf=0.217820659
+				18:leaf=0.0221102182
 			10:[Occupation=Professional] yes=20,no=19
 				19:[Education=Bachelor] yes=30,no=29
 					29:[Age<27] yes=49,no=50,missing=49
-						49:leaf=0.0012985
-						50:leaf=-0.190784
-					30:[Income<111458] yes=51,no=52,missing=51
-						51:leaf=-0.0792209
-						52:leaf=0.133509
-				20:[Income<90760.2] yes=31,no=32,missing=31
-					31:[Income<78870.9] yes=53,no=54,missing=53
-						53:leaf=0.0173889
-						54:leaf=0.249874
-					32:leaf=-0.0386573
+						49:leaf=0.00129850022
+						50:leaf=-0.190784082
+					30:[Income<111457.641] yes=51,no=52,missing=51
+						51:leaf=-0.0792208686
+						52:leaf=0.133509457
+				20:[Income<90760.25] yes=31,no=32,missing=31
+					31:[Income<78870.9375] yes=53,no=54,missing=53
+						53:leaf=0.0173889268
+						54:leaf=0.249873713
+					32:leaf=-0.0386572666
 	2:[Occupation=Support] yes=6,no=5
 		5:[Hours<60] yes=11,no=12,missing=11
 			11:[Age<49] yes=21,no=22,missing=21
-				21:[Income<29321.9] yes=33,no=34,missing=33
-					33:[Income<26330.2] yes=55,no=56,missing=55
-						55:leaf=0.0284618
-						56:leaf=-0.188125
+				21:[Income<29321.9102] yes=33,no=34,missing=33
+					33:[Income<26330.2109] yes=55,no=56,missing=55
+						55:leaf=0.0284617599
+						56:leaf=-0.188125283
 					34:[Employment=PSFederal] yes=58,no=57
-						57:leaf=0.0744987
-						58:leaf=-0.190627
-				22:[Income<47460.1] yes=35,no=36,missing=35
+						57:leaf=0.0744986832
+						58:leaf=-0.190627441
+				22:[Income<47460.1484] yes=35,no=36,missing=35
 					35:[Hours<50] yes=59,no=60,missing=59
-						59:leaf=0.0281257
-						60:leaf=-0.0944846
-					36:[Income<52796.2] yes=61,no=62,missing=61
-						61:leaf=-0.26692
-						62:leaf=0.00569723
+						59:leaf=0.0281257275
+						60:leaf=-0.09448459
+					36:[Income<52796.2109] yes=61,no=62,missing=61
+						61:leaf=-0.266919643
+						62:leaf=0.00569722895
 			12:[Age<54] yes=23,no=24,missing=23
 				23:[Age<41] yes=37,no=38,missing=37
-					37:[Income<39644] yes=63,no=64,missing=63
-						63:leaf=-0.0588866
-						64:leaf=0.153307
+					37:[Income<39644.0352] yes=63,no=64,missing=63
+						63:leaf=-0.0588865913
+						64:leaf=0.153306514
 					38:[Employment=SelfEmp] yes=66,no=65
-						65:leaf=-0.204506
-						66:leaf=0.0548561
-				24:[Income<42095.2] yes=39,no=40,missing=39
-					39:leaf=-0.0526586
-					40:leaf=0.233336
-		6:[Income<43394.4] yes=13,no=14,missing=13
-			13:leaf=0.174841
-			14:leaf=-0.0165748
+						65:leaf=-0.204505906
+						66:leaf=0.0548560992
+				24:[Income<42095.2422] yes=39,no=40,missing=39
+					39:leaf=-0.0526585914
+					40:leaf=0.233336121
+		6:[Income<43394.3516] yes=13,no=14,missing=13
+			13:leaf=0.174841166
+			14:leaf=-0.0165748056
 booster[55]
 0:[Hours<42] yes=1,no=2,missing=1
 	1:[Age<29] yes=3,no=4,missing=3
-		3:[Income<49901.4] yes=7,no=8,missing=7
-			7:leaf=-0.180697
-			8:[Income<92143.9] yes=15,no=16,missing=15
-				15:leaf=0.0973593
-				16:[Income<193064] yes=25,no=26,missing=25
-					25:leaf=-0.169377
-					26:leaf=0.0194457
+		3:[Income<49901.3594] yes=7,no=8,missing=7
+			7:leaf=-0.180696517
+			8:[Income<92143.8516] yes=15,no=16,missing=15
+				15:leaf=0.0973593444
+				16:[Income<193064.469] yes=25,no=26,missing=25
+					25:leaf=-0.169376835
+					26:leaf=0.0194457006
 		4:[Age<32] yes=9,no=10,missing=9
-			9:[Income<30730.3] yes=17,no=18,missing=17
-				17:leaf=0.189456
-				18:[Income<42858.2] yes=27,no=28,missing=27
-					27:leaf=-0.168364
-					28:[Income<54471.4] yes=37,no=38,missing=37
-						37:leaf=0.241924
-						38:leaf=0.0140028
+			9:[Income<30730.3047] yes=17,no=18,missing=17
+				17:leaf=0.189456463
+				18:[Income<42858.1719] yes=27,no=28,missing=27
+					27:leaf=-0.168364033
+					28:[Income<54471.3594] yes=37,no=38,missing=37
+						37:leaf=0.241924286
+						38:leaf=0.014002759
 			10:[Occupation=Repair] yes=20,no=19
-				19:[Income<50208.9] yes=29,no=30,missing=29
+				19:[Income<50208.9492] yes=29,no=30,missing=29
 					29:[Age<34] yes=39,no=40,missing=39
-						39:leaf=-0.214436
-						40:leaf=0.0399598
-					30:[Income<53023.2] yes=41,no=42,missing=41
-						41:leaf=-0.333712
-						42:leaf=-0.00266541
-				20:[Income<45519.8] yes=31,no=32,missing=31
+						39:leaf=-0.214436382
+						40:leaf=0.0399598479
+					30:[Income<53023.1875] yes=41,no=42,missing=41
+						41:leaf=-0.33371222
+						42:leaf=-0.00266541168
+				20:[Income<45519.8359] yes=31,no=32,missing=31
 					31:[Employment=Private] yes=44,no=43
-						43:leaf=0.00162136
-						44:leaf=-0.21206
-					32:[Income<55175.4] yes=45,no=46,missing=45
-						45:leaf=0.191489
-						46:leaf=-0.0209393
+						43:leaf=0.00162136077
+						44:leaf=-0.212059617
+					32:[Income<55175.4062] yes=45,no=46,missing=45
+						45:leaf=0.191488579
+						46:leaf=-0.0209392849
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:[Income<33971.1] yes=11,no=12,missing=11
-			11:leaf=-0.02784
-			12:[Income<52763.1] yes=21,no=22,missing=21
-				21:leaf=0.228286
-				22:leaf=-0.0019158
+		5:[Income<33971.1172] yes=11,no=12,missing=11
+			11:leaf=-0.0278399903
+			12:[Income<52763.0781] yes=21,no=22,missing=21
+				21:leaf=0.228286192
+				22:leaf=-0.00191579864
 		6:[Age<26] yes=13,no=14,missing=13
-			13:leaf=-0.147033
-			14:[Income<37689.6] yes=23,no=24,missing=23
+			13:leaf=-0.147032917
+			14:[Income<37689.6484] yes=23,no=24,missing=23
 				23:[Education=College] yes=34,no=33
 					33:[Employment=Private] yes=48,no=47
-						47:leaf=-0.0232752
-						48:leaf=0.109781
+						47:leaf=-0.0232752431
+						48:leaf=0.109781019
 					34:[Age<52] yes=49,no=50,missing=49
-						49:leaf=-0.0968738
-						50:leaf=0.103849
-				24:[Income<49094.9] yes=35,no=36,missing=35
-					35:[Income<45579.1] yes=51,no=52,missing=51
-						51:leaf=-0.0216411
-						52:leaf=-0.180526
-					36:[Income<51155.7] yes=53,no=54,missing=53
-						53:leaf=0.180381
-						54:leaf=-0.0126192
+						49:leaf=-0.0968737677
+						50:leaf=0.103849128
+				24:[Income<49094.9297] yes=35,no=36,missing=35
+					35:[Income<45579.1406] yes=51,no=52,missing=51
+						51:leaf=-0.0216411445
+						52:leaf=-0.180525854
+					36:[Income<51155.7109] yes=53,no=54,missing=53
+						53:leaf=0.180381477
+						54:leaf=-0.0126191825
 booster[56]
 0:[Age<67] yes=1,no=2,missing=1
 	1:[Age<66] yes=3,no=4,missing=3
@@ -2697,27 +2697,27 @@ booster[56]
 			7:[Marital=Married] yes=10,no=9
 				9:[Occupation=Professional] yes=14,no=13
 					13:[Education=HSgrad] yes=20,no=19
-						19:leaf=-0.0751714
-						20:leaf=0.0143031
+						19:leaf=-0.0751714036
+						20:leaf=0.0143031171
 					14:[Age<48] yes=21,no=22,missing=21
-						21:leaf=-0.0425965
-						22:leaf=0.134274
+						21:leaf=-0.0425964966
+						22:leaf=0.134274423
 				10:[Employment=PSFederal] yes=16,no=15
-					15:[Income<46681.6] yes=23,no=24,missing=23
-						23:leaf=-0.00647514
-						24:leaf=0.0312375
-					16:[Income<35605.4] yes=25,no=26,missing=25
-						25:leaf=0.149641
-						26:leaf=-0.0226775
+					15:[Income<46681.6016] yes=23,no=24,missing=23
+						23:leaf=-0.00647513708
+						24:leaf=0.0312374681
+					16:[Income<35605.4453] yes=25,no=26,missing=25
+						25:leaf=0.149640977
+						26:leaf=-0.0226775035
 			8:[Age<43] yes=11,no=12,missing=11
 				11:[Age<31] yes=17,no=18,missing=17
-					17:leaf=-0.039312
-					18:leaf=0.0717383
-				12:leaf=-0.188468
-		4:leaf=0.169673
-	2:[Income<37478] yes=5,no=6,missing=5
-		5:leaf=-0.105604
-		6:leaf=-0.0105462
+					17:leaf=-0.0393120311
+					18:leaf=0.0717382878
+				12:leaf=-0.188467547
+		4:leaf=0.169672638
+	2:[Income<37478.0391] yes=5,no=6,missing=5
+		5:leaf=-0.105604328
+		6:leaf=-0.0105462158
 booster[57]
 0:[Hours<42] yes=1,no=2,missing=1
 	1:[Occupation=Protective] yes=4,no=3
@@ -2725,213 +2725,213 @@ booster[57]
 			7:[Education=Associate] yes=12,no=11
 				11:[Education=Master] yes=18,no=17
 					17:[Age<49] yes=25,no=26,missing=25
-						25:leaf=-0.00834979
-						26:leaf=-0.0722457
+						25:leaf=-0.00834979024
+						26:leaf=-0.0722456574
 					18:[Age<47] yes=27,no=28,missing=27
-						27:leaf=-0.0478198
-						28:leaf=0.154141
-				12:[Income<81989.9] yes=19,no=20,missing=19
-					19:[Income<45425] yes=29,no=30,missing=29
-						29:leaf=0.0789164
-						30:leaf=-0.0960574
-					20:leaf=0.137938
-			8:leaf=0.0959481
-		4:leaf=0.092276
+						27:leaf=-0.0478197709
+						28:leaf=0.154140875
+				12:[Income<81989.875] yes=19,no=20,missing=19
+					19:[Income<45425.0352] yes=29,no=30,missing=29
+						29:leaf=0.0789163932
+						30:leaf=-0.0960574374
+					20:leaf=0.137938142
+			8:leaf=0.0959481224
+		4:leaf=0.0922759771
 	2:[Occupation=Support] yes=6,no=5
-		5:[Income<27783.3] yes=9,no=10,missing=9
-			9:[Income<26649.1] yes=13,no=14,missing=13
+		5:[Income<27783.2656] yes=9,no=10,missing=9
+			9:[Income<26649.0645] yes=13,no=14,missing=13
 				13:[Occupation=Professional] yes=22,no=21
-					21:[Income<23022.2] yes=31,no=32,missing=31
-						31:leaf=0.0107517
-						32:leaf=-0.137778
-					22:leaf=0.148128
-				14:leaf=0.265655
-			10:[Income<29888.6] yes=15,no=16,missing=15
-				15:leaf=-0.240642
+					21:[Income<23022.1602] yes=31,no=32,missing=31
+						31:leaf=0.0107517187
+						32:leaf=-0.137778223
+					22:leaf=0.148127615
+				14:leaf=0.265655428
+			10:[Income<29888.625] yes=15,no=16,missing=15
+				15:leaf=-0.240641668
 				16:[Occupation=Professional] yes=24,no=23
-					23:[Income<86989.7] yes=33,no=34,missing=33
-						33:leaf=0.0446163
-						34:leaf=-0.07932
+					23:[Income<86989.7266] yes=33,no=34,missing=33
+						33:leaf=0.0446162596
+						34:leaf=-0.0793199837
 					24:[Age<35] yes=35,no=36,missing=35
-						35:leaf=0.0762496
-						36:leaf=-0.139636
-		6:leaf=0.156651
+						35:leaf=0.0762495548
+						36:leaf=-0.139635921
+		6:leaf=0.156650573
 booster[58]
 0:[Education=Professional] yes=2,no=1
 	1:[Occupation=Transport] yes=4,no=3
 		3:[Education=Doctorate] yes=8,no=7
 			7:[Hours<65] yes=11,no=12,missing=11
-				11:[Income<61251.8] yes=19,no=20,missing=19
-					19:[Income<59732.8] yes=29,no=30,missing=29
-						29:leaf=-0.00166838
-						30:leaf=0.175286
-					20:[Income<62994.1] yes=31,no=32,missing=31
-						31:leaf=-0.238903
-						32:leaf=-0.0080678
+				11:[Income<61251.7656] yes=19,no=20,missing=19
+					19:[Income<59732.7734] yes=29,no=30,missing=29
+						29:leaf=-0.0016683765
+						30:leaf=0.17528601
+					20:[Income<62994.1172] yes=31,no=32,missing=31
+						31:leaf=-0.238902599
+						32:leaf=-0.00806779973
 				12:[Education=HSgrad] yes=22,no=21
 					21:[Education=Bachelor] yes=34,no=33
-						33:leaf=-0.122987
-						34:leaf=0.101475
-					22:leaf=0.172703
+						33:leaf=-0.122986801
+						34:leaf=0.101475157
+					22:leaf=0.172703296
 			8:[Hours<48] yes=13,no=14,missing=13
-				13:[Income<39855.6] yes=23,no=24,missing=23
-					23:leaf=-0.080657
-					24:leaf=0.0862831
-				14:leaf=0.120274
+				13:[Income<39855.6016] yes=23,no=24,missing=23
+					23:leaf=-0.0806570128
+					24:leaf=0.0862830579
+				14:leaf=0.120274261
 		4:[Age<47] yes=9,no=10,missing=9
-			9:[Income<49563.2] yes=15,no=16,missing=15
-				15:[Income<28853.4] yes=25,no=26,missing=25
-					25:leaf=-0.0181611
-					26:leaf=-0.208649
-				16:leaf=0.00572422
-			10:[Income<42015.5] yes=17,no=18,missing=17
+			9:[Income<49563.2188] yes=15,no=16,missing=15
+				15:[Income<28853.4395] yes=25,no=26,missing=25
+					25:leaf=-0.0181611236
+					26:leaf=-0.208648846
+				16:leaf=0.0057242238
+			10:[Income<42015.4648] yes=17,no=18,missing=17
 				17:[Hours<43] yes=27,no=28,missing=27
-					27:leaf=-0.00685835
-					28:leaf=0.168187
-				18:leaf=-0.131813
+					27:leaf=-0.0068583549
+					28:leaf=0.168186933
+				18:leaf=-0.131813228
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:leaf=-0.0159055
-		6:leaf=0.14204
+		5:leaf=-0.015905546
+		6:leaf=0.142039984
 booster[59]
-0:[Income<253673] yes=1,no=2,missing=1
-	1:[Income<188872] yes=3,no=4,missing=3
-		3:[Income<163651] yes=7,no=8,missing=7
+0:[Income<253672.844] yes=1,no=2,missing=1
+	1:[Income<188872.25] yes=3,no=4,missing=3
+		3:[Income<163651.469] yes=7,no=8,missing=7
 			7:[Age<47] yes=13,no=14,missing=13
-				13:[Income<27612.7] yes=17,no=18,missing=17
+				13:[Income<27612.6699] yes=17,no=18,missing=17
 					17:[Education=Bachelor] yes=22,no=21
-						21:leaf=-0.0892277
-						22:leaf=0.0584266
-					18:[Income<28461.2] yes=23,no=24,missing=23
-						23:leaf=0.210772
-						24:leaf=-0.00481101
+						21:leaf=-0.0892276838
+						22:leaf=0.0584266372
+					18:[Income<28461.1562] yes=23,no=24,missing=23
+						23:leaf=0.21077244
+						24:leaf=-0.00481100753
 				14:[Age<49] yes=19,no=20,missing=19
-					19:[Income<17041.1] yes=25,no=26,missing=25
-						25:leaf=-0.0503476
-						26:leaf=0.138763
+					19:[Income<17041.1445] yes=25,no=26,missing=25
+						25:leaf=-0.0503475927
+						26:leaf=0.138762653
 					20:[Employment=Consultant] yes=28,no=27
-						27:leaf=-0.0104973
-						28:leaf=0.0889942
-			8:leaf=-0.11315
+						27:leaf=-0.0104972934
+						28:leaf=0.0889942199
+			8:leaf=-0.113149814
 		4:[Occupation=Clerical] yes=10,no=9
 			9:[Occupation=Professional] yes=16,no=15
-				15:leaf=-0.0880976
-				16:leaf=0.111121
-			10:leaf=0.181188
-	2:[Income<266754] yes=5,no=6,missing=5
-		5:leaf=-0.153108
+				15:leaf=-0.0880976021
+				16:leaf=0.111121334
+			10:leaf=0.18118763
+	2:[Income<266754.125] yes=5,no=6,missing=5
+		5:leaf=-0.153108478
 		6:[Hours<34] yes=11,no=12,missing=11
-			11:leaf=0.0875846
-			12:leaf=-0.0645309
+			11:leaf=0.0875846446
+			12:leaf=-0.0645309463
 booster[60]
 0:[Education=Professional] yes=2,no=1
-	1:[Income<20620.3] yes=3,no=4,missing=3
-		3:[Income<18753.3] yes=7,no=8,missing=7
+	1:[Income<20620.3164] yes=3,no=4,missing=3
+		3:[Income<18753.2812] yes=7,no=8,missing=7
 			7:[Employment=PSFederal] yes=12,no=11
 				11:[Education=College] yes=20,no=19
 					19:[Occupation=Executive] yes=30,no=29
-						29:leaf=-0.10811
-						30:leaf=0.0743378
+						29:leaf=-0.108110212
+						30:leaf=0.0743378401
 					20:[Income<12386.5] yes=31,no=32,missing=31
-						31:leaf=-0.0649024
-						32:leaf=0.121523
-				12:leaf=0.125043
+						31:leaf=-0.064902395
+						32:leaf=0.121523179
+				12:leaf=0.125043094
 			8:[Age<46] yes=13,no=14,missing=13
 				13:[Hours<43] yes=21,no=22,missing=21
-					21:leaf=0.0889706
-					22:leaf=-0.000307275
-				14:leaf=0.184101
-		4:[Income<22774.7] yes=9,no=10,missing=9
-			9:[Income<21264.2] yes=15,no=16,missing=15
-				15:leaf=-0.00291801
+					21:leaf=0.0889706463
+					22:leaf=-0.000307275448
+				14:leaf=0.184101462
+		4:[Income<22774.6992] yes=9,no=10,missing=9
+			9:[Income<21264.1758] yes=15,no=16,missing=15
+				15:leaf=-0.00291801267
 				16:[Age<46] yes=23,no=24,missing=23
-					23:leaf=-0.225182
-					24:leaf=-0.00900963
+					23:leaf=-0.225181937
+					24:leaf=-0.00900963321
 			10:[Occupation=Machinist] yes=18,no=17
 				17:[Education=Vocational] yes=26,no=25
-					25:[Income<25018.2] yes=33,no=34,missing=33
-						33:leaf=0.133268
-						34:leaf=0.00403578
-					26:[Income<40268.7] yes=35,no=36,missing=35
-						35:leaf=-0.173515
-						36:leaf=0.0277509
-				18:[Income<35713.2] yes=27,no=28,missing=27
-					27:[Income<30182.4] yes=37,no=38,missing=37
-						37:leaf=-0.022911
-						38:leaf=-0.209342
-					28:[Income<44387.4] yes=39,no=40,missing=39
-						39:leaf=0.121857
-						40:leaf=-0.0863324
+					25:[Income<25018.1602] yes=33,no=34,missing=33
+						33:leaf=0.133268222
+						34:leaf=0.00403578021
+					26:[Income<40268.7031] yes=35,no=36,missing=35
+						35:leaf=-0.17351523
+						36:leaf=0.0277508758
+				18:[Income<35713.1641] yes=27,no=28,missing=27
+					27:[Income<30182.4492] yes=37,no=38,missing=37
+						37:leaf=-0.022910988
+						38:leaf=-0.209341601
+					28:[Income<44387.4258] yes=39,no=40,missing=39
+						39:leaf=0.121856794
+						40:leaf=-0.0863324404
 	2:[Hours<45] yes=5,no=6,missing=5
-		5:leaf=-0.0124189
-		6:leaf=0.132382
+		5:leaf=-0.0124189286
+		6:leaf=0.13238208
 booster[61]
 0:[Occupation=Transport] yes=2,no=1
-	1:[Income<20620.3] yes=3,no=4,missing=3
+	1:[Income<20620.3164] yes=3,no=4,missing=3
 		3:[Occupation=Repair] yes=8,no=7
 			7:[Income<15952.5] yes=13,no=14,missing=13
 				13:[Education=College] yes=24,no=23
 					23:[Education=Bachelor] yes=36,no=35
-						35:leaf=-0.0846392
-						36:leaf=0.102563
-					24:leaf=0.110394
-				14:leaf=0.135854
+						35:leaf=-0.0846391544
+						36:leaf=0.102562591
+					24:leaf=0.110394105
+				14:leaf=0.135854423
 			8:[Age<47] yes=15,no=16,missing=15
-				15:[Income<17311.1] yes=25,no=26,missing=25
-					25:leaf=-0.150616
-					26:leaf=-0.0245982
-				16:leaf=0.0480161
-		4:[Income<26204.6] yes=9,no=10,missing=9
+				15:[Income<17311.1406] yes=25,no=26,missing=25
+					25:leaf=-0.150615901
+					26:leaf=-0.0245981887
+				16:leaf=0.0480161309
+		4:[Income<26204.6016] yes=9,no=10,missing=9
 			9:[Hours<50] yes=17,no=18,missing=17
 				17:[Hours<39] yes=27,no=28,missing=27
-					27:leaf=0.0126606
+					27:leaf=0.0126606422
 					28:[Occupation=Professional] yes=38,no=37
-						37:leaf=-0.164275
-						38:leaf=-0.0127453
+						37:leaf=-0.164274961
+						38:leaf=-0.0127453171
 				18:[Hours<54] yes=29,no=30,missing=29
-					29:leaf=0.132065
-					30:leaf=-0.132532
-			10:[Income<27097.5] yes=19,no=20,missing=19
-				19:[Income<26678.3] yes=31,no=32,missing=31
-					31:leaf=0.0237584
-					32:leaf=0.174577
-				20:[Income<29882.9] yes=33,no=34,missing=33
+					29:leaf=0.13206479
+					30:leaf=-0.132531628
+			10:[Income<27097.5449] yes=19,no=20,missing=19
+				19:[Income<26678.3242] yes=31,no=32,missing=31
+					31:leaf=0.0237583946
+					32:leaf=0.174577415
+				20:[Income<29882.875] yes=33,no=34,missing=33
 					33:[Employment=Private] yes=40,no=39
-						39:leaf=0.0429285
-						40:leaf=-0.125459
-					34:[Income<30139.4] yes=41,no=42,missing=41
-						41:leaf=0.274554
-						42:leaf=0.000299367
+						39:leaf=0.0429284945
+						40:leaf=-0.125458568
+					34:[Income<30139.4297] yes=41,no=42,missing=41
+						41:leaf=0.274553508
+						42:leaf=0.000299367442
 	2:[Age<44] yes=5,no=6,missing=5
-		5:leaf=-0.104357
+		5:leaf=-0.104357362
 		6:[Hours<45] yes=11,no=12,missing=11
 			11:[Age<54] yes=21,no=22,missing=21
-				21:leaf=0.107572
-				22:leaf=-0.085017
-			12:leaf=-0.051336
+				21:leaf=0.107571751
+				22:leaf=-0.0850170255
+			12:leaf=-0.0513360165
 booster[62]
 0:[Education=Yr5t6] yes=2,no=1
 	1:[Education=Yr9] yes=4,no=3
 		3:[Hours<38] yes=5,no=6,missing=5
 			5:[Hours<17] yes=7,no=8,missing=7
-				7:[Income<36065.1] yes=11,no=12,missing=11
-					11:leaf=0.11496
-					12:leaf=-0.00566664
+				7:[Income<36065.1016] yes=11,no=12,missing=11
+					11:leaf=0.114960156
+					12:leaf=-0.00566664431
 				8:[Occupation=Professional] yes=14,no=13
-					13:[Income<27061.7] yes=17,no=18,missing=17
-						17:leaf=0.0368695
-						18:leaf=-0.169819
+					13:[Income<27061.6797] yes=17,no=18,missing=17
+						17:leaf=0.0368694551
+						18:leaf=-0.169819325
 					14:[Hours<32] yes=19,no=20,missing=19
-						19:leaf=0.0521161
-						20:leaf=-0.0197036
+						19:leaf=0.0521161221
+						20:leaf=-0.0197035894
 			6:[Hours<39] yes=9,no=10,missing=9
-				9:leaf=0.101253
-				10:[Income<227694] yes=15,no=16,missing=15
-					15:[Income<192151] yes=21,no=22,missing=21
-						21:leaf=0.00422696
-						22:leaf=0.136674
-					16:leaf=-0.0833571
-		4:leaf=-0.0917735
-	2:leaf=-0.0939194
+				9:leaf=0.101252712
+				10:[Income<227693.547] yes=15,no=16,missing=15
+					15:[Income<192150.938] yes=21,no=22,missing=21
+						21:leaf=0.00422696257
+						22:leaf=0.136674359
+					16:leaf=-0.0833570585
+		4:leaf=-0.0917734951
+	2:leaf=-0.0939193666
 booster[63]
 0:[Employment=PSLocal] yes=2,no=1
 	1:[Education=Master] yes=4,no=3
@@ -2939,109 +2939,109 @@ booster[63]
 			7:[Occupation=Professional] yes=16,no=15
 				15:[Hours<50] yes=23,no=24,missing=23
 					23:[Hours<48] yes=33,no=34,missing=33
-						33:leaf=-0.00583433
-						34:leaf=-0.170275
+						33:leaf=-0.00583432801
+						34:leaf=-0.170274585
 					24:[Age<49] yes=35,no=36,missing=35
-						35:leaf=0.0473856
-						36:leaf=-0.0437354
+						35:leaf=0.0473855883
+						36:leaf=-0.0437353924
 				16:[Education=College] yes=26,no=25
 					25:[Hours<60] yes=37,no=38,missing=37
-						37:leaf=0.109716
-						38:leaf=-0.107393
-					26:leaf=-0.127825
+						37:leaf=0.109715544
+						38:leaf=-0.107393213
+					26:leaf=-0.127824917
 			8:[Age<45] yes=17,no=18,missing=17
-				17:[Income<87885.8] yes=27,no=28,missing=27
+				17:[Income<87885.75] yes=27,no=28,missing=27
 					27:[Age<41] yes=39,no=40,missing=39
-						39:leaf=-0.148071
-						40:leaf=0.00365765
-					28:[Income<113859] yes=41,no=42,missing=41
-						41:leaf=0.153172
-						42:leaf=-0.0190929
+						39:leaf=-0.148070812
+						40:leaf=0.00365764648
+					28:[Income<113859.383] yes=41,no=42,missing=41
+						41:leaf=0.153171927
+						42:leaf=-0.0190928634
 				18:[Age<53] yes=29,no=30,missing=29
-					29:leaf=-0.180339
-					30:[Income<86452.3] yes=43,no=44,missing=43
-						43:leaf=-0.0413529
-						44:leaf=0.0695163
-		4:[Income<22307.8] yes=9,no=10,missing=9
-			9:leaf=-0.0629856
+					29:leaf=-0.180339307
+					30:[Income<86452.3047] yes=43,no=44,missing=43
+						43:leaf=-0.0413529091
+						44:leaf=0.0695162788
+		4:[Income<22307.8145] yes=9,no=10,missing=9
+			9:leaf=-0.0629856065
 			10:[Age<58] yes=19,no=20,missing=19
 				19:[Occupation=Professional] yes=32,no=31
-					31:leaf=0.179272
+					31:leaf=0.17927219
 					32:[Marital=Married] yes=46,no=45
-						45:leaf=-0.0166774
-						46:leaf=0.0970196
-				20:leaf=-0.0381038
+						45:leaf=-0.0166773647
+						46:leaf=0.0970195904
+				20:leaf=-0.038103763
 	2:[Occupation=Professional] yes=6,no=5
 		5:[Age<41] yes=11,no=12,missing=11
-			11:leaf=-0.106254
+			11:leaf=-0.106253728
 			12:[Age<51] yes=21,no=22,missing=21
-				21:leaf=0.164069
-				22:leaf=-0.0495942
+				21:leaf=0.164069146
+				22:leaf=-0.0495941527
 		6:[Age<48] yes=13,no=14,missing=13
-			13:leaf=-0.185226
-			14:leaf=-0.0160471
+			13:leaf=-0.185225815
+			14:leaf=-0.0160470717
 booster[64]
 0:[Marital=Absent] yes=2,no=1
 	1:[Occupation=Protective] yes=4,no=3
 		3:[Age<58] yes=7,no=8,missing=7
 			7:[Age<57] yes=13,no=14,missing=13
-				13:[Income<5293.19] yes=19,no=20,missing=19
-					19:leaf=0.150208
-					20:[Income<12647] yes=29,no=30,missing=29
-						29:leaf=-0.120641
-						30:leaf=0.000476325
-				14:[Income<39281.1] yes=21,no=22,missing=21
-					21:leaf=-0.198855
-					22:leaf=0.0542582
+				13:[Income<5293.18994] yes=19,no=20,missing=19
+					19:leaf=0.150208294
+					20:[Income<12646.9902] yes=29,no=30,missing=29
+						29:leaf=-0.12064109
+						30:leaf=0.000476324843
+				14:[Income<39281.1484] yes=21,no=22,missing=21
+					21:leaf=-0.198855162
+					22:leaf=0.0542582087
 			8:[Age<61] yes=15,no=16,missing=15
 				15:[Employment=Private] yes=24,no=23
-					23:[Income<52422.6] yes=31,no=32,missing=31
-						31:leaf=-0.0664839
-						32:leaf=0.10154
-					24:leaf=0.18903
+					23:[Income<52422.5898] yes=31,no=32,missing=31
+						31:leaf=-0.0664838925
+						32:leaf=0.101540133
+					24:leaf=0.189029589
 				16:[Education=College] yes=26,no=25
 					25:[Age<62] yes=33,no=34,missing=33
-						33:leaf=-0.101948
-						34:leaf=0.0716991
-					26:leaf=-0.132808
+						33:leaf=-0.10194771
+						34:leaf=0.071699068
+					26:leaf=-0.132808208
 		4:[Hours<43] yes=9,no=10,missing=9
-			9:leaf=0.148819
-			10:leaf=-0.0430155
+			9:leaf=0.148819312
+			10:leaf=-0.0430155136
 	2:[Occupation=Clerical] yes=6,no=5
-		5:[Income<116070] yes=11,no=12,missing=11
+		5:[Income<116069.711] yes=11,no=12,missing=11
 			11:[Employment=Consultant] yes=18,no=17
 				17:[Employment=Private] yes=28,no=27
-					27:leaf=-0.178684
+					27:leaf=-0.178684086
 					28:[Hours<44] yes=35,no=36,missing=35
-						35:leaf=0.0672804
-						36:leaf=-0.0849339
-				18:leaf=0.112029
-			12:leaf=-0.198607
-		6:leaf=0.0739094
+						35:leaf=0.0672803894
+						36:leaf=-0.084933877
+				18:leaf=0.112029202
+			12:leaf=-0.198606953
+		6:leaf=0.0739094168
 booster[65]
 0:[Age<67] yes=1,no=2,missing=1
 	1:[Age<66] yes=3,no=4,missing=3
 		3:[Occupation=Cleaner] yes=8,no=7
 			7:[Marital=Married] yes=10,no=9
 				9:[Age<26] yes=13,no=14,missing=13
-					13:leaf=-0.116446
-					14:[Income<91360.4] yes=17,no=18,missing=17
-						17:leaf=0.00168836
-						18:leaf=-0.05288
+					13:leaf=-0.116446458
+					14:[Income<91360.4375] yes=17,no=18,missing=17
+						17:leaf=0.00168835674
+						18:leaf=-0.052880045
 				10:[Occupation=Farming] yes=16,no=15
-					15:[Income<5330.79] yes=19,no=20,missing=19
-						19:leaf=0.127337
-						20:leaf=0.00940719
-					16:[Income<31001.1] yes=21,no=22,missing=21
-						21:leaf=-0.0136988
-						22:leaf=-0.105184
+					15:[Income<5330.79004] yes=19,no=20,missing=19
+						19:leaf=0.127336875
+						20:leaf=0.00940718874
+					16:[Income<31001.1211] yes=21,no=22,missing=21
+						21:leaf=-0.0136987502
+						22:leaf=-0.105183929
 			8:[Age<34] yes=11,no=12,missing=11
-				11:leaf=0.0220599
-				12:leaf=-0.144684
-		4:leaf=0.135073
-	2:[Income<37478] yes=5,no=6,missing=5
-		5:leaf=-0.110947
-		6:leaf=-0.0103139
+				11:leaf=0.0220599137
+				12:leaf=-0.144684479
+		4:leaf=0.135072693
+	2:[Income<37478.0391] yes=5,no=6,missing=5
+		5:leaf=-0.110947199
+		6:leaf=-0.0103138592
 booster[66]
 0:[Occupation=Transport] yes=2,no=1
 	1:[Education=Doctorate] yes=4,no=3
@@ -3049,149 +3049,149 @@ booster[66]
 			7:[Age<71] yes=15,no=16,missing=15
 				15:[Hours<16] yes=23,no=24,missing=23
 					23:[Age<60] yes=25,no=26,missing=25
-						25:leaf=0.000245631
-						26:leaf=0.128532
+						25:leaf=0.000245630858
+						26:leaf=0.128532231
 					24:[Hours<35] yes=27,no=28,missing=27
-						27:leaf=-0.0744108
-						28:leaf=-0.000147372
-				16:leaf=-0.102229
-			8:[Income<34825.9] yes=17,no=18,missing=17
-				17:leaf=-0.0676823
-				18:leaf=0.1377
+						27:leaf=-0.0744108409
+						28:leaf=-0.000147371553
+				16:leaf=-0.102229141
+			8:[Income<34825.9453] yes=17,no=18,missing=17
+				17:leaf=-0.067682296
+				18:leaf=0.137699783
 		4:[Hours<48] yes=9,no=10,missing=9
-			9:[Income<39855.6] yes=19,no=20,missing=19
-				19:leaf=-0.0783095
-				20:leaf=0.0652691
-			10:leaf=0.122657
+			9:[Income<39855.6016] yes=19,no=20,missing=19
+				19:leaf=-0.0783095211
+				20:leaf=0.0652690679
+			10:leaf=0.122656517
 	2:[Age<52] yes=5,no=6,missing=5
-		5:[Income<31439] yes=11,no=12,missing=11
-			11:leaf=0.017532
-			12:[Income<49563.2] yes=21,no=22,missing=21
-				21:leaf=-0.171206
-				22:leaf=0.00862756
+		5:[Income<31438.9551] yes=11,no=12,missing=11
+			11:leaf=0.017531991
+			12:[Income<49563.2188] yes=21,no=22,missing=21
+				21:leaf=-0.171205536
+				22:leaf=0.00862756092
 		6:[Age<54] yes=13,no=14,missing=13
-			13:leaf=0.0944412
-			14:leaf=-0.0488055
+			13:leaf=0.0944412202
+			14:leaf=-0.0488055497
 booster[67]
 0:[Education=Professional] yes=2,no=1
 	1:[Marital=Married] yes=4,no=3
 		3:[Hours<40] yes=5,no=6,missing=5
 			5:[Occupation=Professional] yes=10,no=9
-				9:leaf=-0.129864
-				10:leaf=-0.00688933
+				9:leaf=-0.129864052
+				10:leaf=-0.00688932743
 			6:[Employment=Private] yes=12,no=11
 				11:[Age<47] yes=17,no=18,missing=17
 					17:[Education=HSgrad] yes=28,no=27
-						27:leaf=-0.189225
-						28:leaf=0.0410054
+						27:leaf=-0.189224944
+						28:leaf=0.0410054065
 					18:[Occupation=Professional] yes=30,no=29
-						29:leaf=-0.00403632
-						30:leaf=0.115738
-				12:[Income<83537.8] yes=19,no=20,missing=19
+						29:leaf=-0.00403632363
+						30:leaf=0.11573793
+				12:[Income<83537.7734] yes=19,no=20,missing=19
 					19:[Age<32] yes=31,no=32,missing=31
-						31:leaf=-0.175098
-						32:leaf=0.00921494
-					20:[Income<92044.4] yes=33,no=34,missing=33
-						33:leaf=0.155032
-						34:leaf=0.0147762
-		4:[Income<68140.6] yes=7,no=8,missing=7
-			7:[Income<64708.4] yes=13,no=14,missing=13
-				13:[Income<60990.6] yes=21,no=22,missing=21
-					21:[Income<55885.8] yes=35,no=36,missing=35
-						35:leaf=0.00372656
-						36:leaf=-0.0929711
-					22:leaf=0.110464
-				14:leaf=-0.116134
-			8:[Income<167403] yes=15,no=16,missing=15
+						31:leaf=-0.175098032
+						32:leaf=0.00921493862
+					20:[Income<92044.375] yes=33,no=34,missing=33
+						33:leaf=0.155032039
+						34:leaf=0.0147761703
+		4:[Income<68140.6094] yes=7,no=8,missing=7
+			7:[Income<64708.4219] yes=13,no=14,missing=13
+				13:[Income<60990.6055] yes=21,no=22,missing=21
+					21:[Income<55885.8125] yes=35,no=36,missing=35
+						35:leaf=0.0037265576
+						36:leaf=-0.0929711163
+					22:leaf=0.110463753
+				14:leaf=-0.11613398
+			8:[Income<167403.156] yes=15,no=16,missing=15
 				15:[Age<31] yes=23,no=24,missing=23
-					23:leaf=-0.033283
-					24:[Income<98518.2] yes=37,no=38,missing=37
-						37:leaf=0.0410076
-						38:leaf=0.213241
+					23:leaf=-0.0332830176
+					24:[Income<98518.1562] yes=37,no=38,missing=37
+						37:leaf=0.0410076156
+						38:leaf=0.213240966
 				16:[Age<51] yes=25,no=26,missing=25
 					25:[Age<43] yes=39,no=40,missing=39
-						39:leaf=-0.0112443
-						40:leaf=0.118296
-					26:leaf=-0.116982
-	2:leaf=0.0690386
+						39:leaf=-0.0112443492
+						40:leaf=0.118296437
+					26:leaf=-0.116982184
+	2:leaf=0.0690386295
 booster[68]
 0:[Education=Yr9] yes=2,no=1
 	1:[Hours<42] yes=3,no=4,missing=3
-		3:[Income<29376.5] yes=5,no=6,missing=5
+		3:[Income<29376.4805] yes=5,no=6,missing=5
 			5:[Employment=Private] yes=10,no=9
 				9:[Age<48] yes=17,no=18,missing=17
 					17:[Occupation=Professional] yes=30,no=29
-						29:leaf=0.00530029
-						30:leaf=-0.179107
+						29:leaf=0.00530028623
+						30:leaf=-0.179106593
 					18:[Age<54] yes=31,no=32,missing=31
-						31:leaf=0.214895
-						32:leaf=0.0431051
+						31:leaf=0.214895383
+						32:leaf=0.0431051292
 				10:[Age<38] yes=19,no=20,missing=19
-					19:[Income<26860.3] yes=33,no=34,missing=33
-						33:leaf=0.0877392
-						34:leaf=-0.0369575
+					19:[Income<26860.3047] yes=33,no=34,missing=33
+						33:leaf=0.0877392441
+						34:leaf=-0.0369575433
 					20:[Hours<40] yes=35,no=36,missing=35
-						35:leaf=0.00880929
-						36:leaf=-0.175565
-			6:[Income<30501.4] yes=11,no=12,missing=11
-				11:leaf=0.23981
-				12:[Income<33726] yes=21,no=22,missing=21
+						35:leaf=0.00880928524
+						36:leaf=-0.17556493
+			6:[Income<30501.4141] yes=11,no=12,missing=11
+				11:leaf=0.239809975
+				12:[Income<33725.9844] yes=21,no=22,missing=21
 					21:[Employment=Private] yes=38,no=37
-						37:leaf=-0.263851
-						38:leaf=-0.0359307
-					22:[Income<37513.1] yes=39,no=40,missing=39
-						39:leaf=0.0889733
-						40:leaf=-0.0117058
+						37:leaf=-0.263851374
+						38:leaf=-0.0359306596
+					22:[Income<37513.1484] yes=39,no=40,missing=39
+						39:leaf=0.088973321
+						40:leaf=-0.0117058214
 		4:[Hours<45] yes=7,no=8,missing=7
-			7:[Income<37026.1] yes=13,no=14,missing=13
-				13:leaf=-0.0130722
+			7:[Income<37026.1094] yes=13,no=14,missing=13
+				13:leaf=-0.0130721731
 				14:[Marital=Married] yes=24,no=23
-					23:leaf=0.0504599
-					24:leaf=0.238814
+					23:leaf=0.0504599474
+					24:leaf=0.238814369
 			8:[Age<42] yes=15,no=16,missing=15
 				15:[Employment=Private] yes=26,no=25
 					25:[Age<36] yes=41,no=42,missing=41
-						41:leaf=-8.60845e-05
-						42:leaf=-0.241985
+						41:leaf=-8.60844884e-05
+						42:leaf=-0.241985202
 					26:[Hours<56] yes=43,no=44,missing=43
-						43:leaf=-0.0395589
-						44:leaf=0.108038
+						43:leaf=-0.0395588651
+						44:leaf=0.108038001
 				16:[Hours<48] yes=27,no=28,missing=27
 					27:[Education=Bachelor] yes=46,no=45
-						45:leaf=0.0476932
-						46:leaf=0.255645
+						45:leaf=0.0476932041
+						46:leaf=0.255645186
 					28:[Hours<50] yes=47,no=48,missing=47
-						47:leaf=-0.145209
-						48:leaf=0.0274665
-	2:leaf=-0.0843241
+						47:leaf=-0.14520894
+						48:leaf=0.0274664555
+	2:leaf=-0.0843240917
 booster[69]
 0:[Education=Master] yes=2,no=1
-	1:[Income<9242.7] yes=3,no=4,missing=3
+	1:[Income<9242.69922] yes=3,no=4,missing=3
 		3:[Age<43] yes=7,no=8,missing=7
-			7:leaf=0.146528
-			8:leaf=-0.0387446
-		4:[Income<12641.5] yes=9,no=10,missing=9
+			7:leaf=0.146528453
+			8:leaf=-0.0387445651
+		4:[Income<12641.4951] yes=9,no=10,missing=9
 			9:[Age<44] yes=13,no=14,missing=13
-				13:leaf=-0.134727
-				14:leaf=0.00106485
-			10:[Income<14885.5] yes=15,no=16,missing=15
-				15:leaf=0.0957292
+				13:leaf=-0.134726942
+				14:leaf=0.00106484874
+			10:[Income<14885.4697] yes=15,no=16,missing=15
+				15:leaf=0.0957291648
 				16:[Occupation=Transport] yes=20,no=19
-					19:[Income<20620.3] yes=23,no=24,missing=23
-						23:leaf=0.043491
-						24:leaf=-0.00536381
-					20:[Income<24386.3] yes=25,no=26,missing=25
-						25:leaf=-0.139355
-						26:leaf=-0.0178437
+					19:[Income<20620.3164] yes=23,no=24,missing=23
+						23:leaf=0.0434909984
+						24:leaf=-0.00536381127
+					20:[Income<24386.2852] yes=25,no=26,missing=25
+						25:leaf=-0.139355451
+						26:leaf=-0.0178437289
 	2:[Gender=Female] yes=6,no=5
-		5:[Income<39043.2] yes=11,no=12,missing=11
-			11:[Income<29191.6] yes=17,no=18,missing=17
+		5:[Income<39043.2188] yes=11,no=12,missing=11
+			11:[Income<29191.6289] yes=17,no=18,missing=17
 				17:[Age<50] yes=21,no=22,missing=21
-					21:leaf=-0.0411388
-					22:leaf=0.191244
-				18:leaf=-0.0857058
-			12:leaf=0.119204
-		6:leaf=-0.060686
+					21:leaf=-0.0411388166
+					22:leaf=0.191244215
+				18:leaf=-0.0857058093
+			12:leaf=0.119203702
+		6:leaf=-0.0606859922
 booster[70]
 0:[Age<67] yes=1,no=2,missing=1
 	1:[Age<66] yes=3,no=4,missing=3
@@ -3199,20 +3199,20 @@ booster[70]
 			7:[Age<61] yes=9,no=10,missing=9
 				9:[Occupation=Service] yes=14,no=13
 					13:[Age<60] yes=17,no=18,missing=17
-						17:leaf=0.00463499
-						18:leaf=0.107476
-					14:[Income<48247.1] yes=19,no=20,missing=19
-						19:leaf=-0.127357
-						20:leaf=0.03972
-				10:[Income<29246.4] yes=15,no=16,missing=15
-					15:leaf=0.119331
+						17:leaf=0.00463499455
+						18:leaf=0.107476145
+					14:[Income<48247.0664] yes=19,no=20,missing=19
+						19:leaf=-0.127356932
+						20:leaf=0.0397200435
+				10:[Income<29246.3711] yes=15,no=16,missing=15
+					15:leaf=0.119330704
 					16:[Gender=Female] yes=22,no=21
-						21:leaf=-0.149731
-						22:leaf=0.0245807
+						21:leaf=-0.149730951
+						22:leaf=0.0245806724
 			8:[Age<34] yes=11,no=12,missing=11
-				11:leaf=0.0176464
-				12:leaf=-0.127899
-		4:leaf=0.114434
-	2:[Income<37478] yes=5,no=6,missing=5
-		5:leaf=-0.0895478
-		6:leaf=-0.00607005
+				11:leaf=0.0176464301
+				12:leaf=-0.127899006
+		4:leaf=0.114433713
+	2:[Income<37478.0391] yes=5,no=6,missing=5
+		5:leaf=-0.0895478427
+		6:leaf=-0.00607005367

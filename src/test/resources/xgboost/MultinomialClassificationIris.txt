@@ -1,460 +1,460 @@
 booster[0]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.430622
-	2:leaf=-0.220049
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.430622011
+	2:leaf=-0.220048919
 booster[1]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.215311
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.215311036
 	2:[Petal.Width<1.75] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:[Petal.Width<1.55] yes=9,no=10,missing=9
-				9:leaf=0.428571
-				10:leaf=0.128571
-			6:[Petal.Width<1.55] yes=11,no=12,missing=11
-				11:leaf=-0.128571
-				12:leaf=0.128571
-		4:[Petal.Length<4.85] yes=7,no=8,missing=7
-			7:leaf=-7.66345e-09
-			8:leaf=-0.213812
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:[Petal.Width<1.54999995] yes=9,no=10,missing=9
+				9:leaf=0.428571463
+				10:leaf=0.128571421
+			6:[Petal.Width<1.54999995] yes=11,no=12,missing=11
+				11:leaf=-0.128571451
+				12:leaf=0.128571421
+		4:[Petal.Length<4.85000038] yes=7,no=8,missing=7
+			7:leaf=-7.66345476e-09
+			8:leaf=-0.213812172
 booster[2]
-0:[Petal.Width<1.65] yes=1,no=2,missing=1
-	1:[Petal.Length<4.95] yes=3,no=4,missing=3
-		3:leaf=-0.219899
-		4:leaf=0.217241
-	2:leaf=0.402985
+0:[Petal.Width<1.6500001] yes=1,no=2,missing=1
+	1:[Petal.Length<4.94999981] yes=3,no=4,missing=3
+		3:leaf=-0.219899267
+		4:leaf=0.217241377
+	2:leaf=0.402985066
 booster[3]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.295083
-	2:leaf=-0.196837
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.295082778
+	2:leaf=-0.19683747
 booster[4]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.191612
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.191612214
 	2:[Petal.Width<1.75] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.287215
-			6:[Petal.Width<1.55] yes=9,no=10,missing=9
-				9:leaf=-0.119655
-				10:leaf=0.121238
-		4:[Petal.Length<4.85] yes=7,no=8,missing=7
-			7:leaf=0.0119827
-			8:leaf=-0.191139
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.287215412
+			6:[Petal.Width<1.54999995] yes=9,no=10,missing=9
+				9:leaf=-0.119655393
+				10:leaf=0.121238194
+		4:[Petal.Length<4.85000038] yes=7,no=8,missing=7
+			7:leaf=0.0119826663
+			8:leaf=-0.191138521
 booster[5]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.195822
-		4:leaf=-0.00269367
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.195821807
+		4:leaf=-0.00269367103
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Length<4.95] yes=7,no=8,missing=7
-			7:leaf=-0.107413
-			8:[Petal.Width<1.55] yes=11,no=12,missing=11
-				11:leaf=0.209872
-				12:leaf=-0.0265716
-		6:[Petal.Length<4.85] yes=9,no=10,missing=9
-			9:leaf=0.0771064
-			10:leaf=0.29754
+		5:[Petal.Length<4.94999981] yes=7,no=8,missing=7
+			7:leaf=-0.107412621
+			8:[Petal.Width<1.54999995] yes=11,no=12,missing=11
+				11:leaf=0.209871635
+				12:leaf=-0.0265715588
+		6:[Petal.Length<4.85000038] yes=9,no=10,missing=9
+			9:leaf=0.0771064013
+			10:leaf=0.297540128
 booster[6]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.236307
-	2:leaf=-0.181337
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.236306787
+	2:leaf=-0.181336597
 booster[7]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.175504
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.175504029
 	2:[Petal.Width<1.75] yes=3,no=4,missing=3
-		3:[Petal.Length<5.05] yes=5,no=6,missing=5
-			5:[Sepal.Length<5.05] yes=9,no=10,missing=9
-				9:leaf=0.0784917
+		3:[Petal.Length<5.05000019] yes=5,no=6,missing=5
+			5:[Sepal.Length<5.05000019] yes=9,no=10,missing=9
+				9:leaf=0.0784917325
 				10:[Sepal.Width<2.25] yes=11,no=12,missing=11
-					11:leaf=0.0668418
-					12:leaf=0.241057
-			6:leaf=-0.0371556
-		4:[Petal.Length<4.85] yes=7,no=8,missing=7
-			7:leaf=0.0100614
-			8:leaf=-0.174704
+					11:leaf=0.0668418482
+					12:leaf=0.241057426
+			6:leaf=-0.0371556394
+		4:[Petal.Length<4.85000038] yes=7,no=8,missing=7
+			7:leaf=0.0100614149
+			8:leaf=-0.174704418
 booster[8]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.180166
-		4:leaf=0.00726488
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.180165544
+		4:leaf=0.00726488465
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:leaf=-0.0578228
-			8:leaf=0.122338
-		6:[Petal.Length<4.85] yes=9,no=10,missing=9
-			9:leaf=0.0630182
-			10:leaf=0.237204
+		5:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:leaf=-0.0578227639
+			8:leaf=0.122338183
+		6:[Petal.Length<4.85000038] yes=9,no=10,missing=9
+			9:leaf=0.0630181506
+			10:leaf=0.237204403
 booster[9]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.203852
-	2:leaf=-0.170495
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.203852341
+	2:leaf=-0.170494914
 booster[10]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.163606
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.163605615
 	2:[Petal.Width<1.75] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:[Petal.Width<1.55] yes=9,no=10,missing=9
-				9:leaf=0.204519
-				10:leaf=0.0464835
-			6:[Petal.Width<1.55] yes=11,no=12,missing=11
-				11:leaf=-0.109693
-				12:leaf=0.092642
-		4:[Petal.Length<4.85] yes=7,no=8,missing=7
-			7:leaf=0.00903446
-			8:leaf=-0.162477
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:[Petal.Width<1.54999995] yes=9,no=10,missing=9
+				9:leaf=0.204518631
+				10:leaf=0.0464834869
+			6:[Petal.Width<1.54999995] yes=11,no=12,missing=11
+				11:leaf=-0.109693311
+				12:leaf=0.0926420242
+		4:[Petal.Length<4.85000038] yes=7,no=8,missing=7
+			7:leaf=0.0090344632
+			8:leaf=-0.162477046
 booster[11]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.169104
-		4:leaf=0.0137579
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.169104204
+		4:leaf=0.0137579208
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:leaf=-0.0452597
-			8:leaf=0.100356
-		6:[Petal.Length<4.85] yes=9,no=10,missing=9
-			9:leaf=0.0519055
-			10:leaf=0.203949
+		5:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:leaf=-0.0452597365
+			8:leaf=0.100356087
+		6:[Petal.Length<4.85000038] yes=9,no=10,missing=9
+			9:leaf=0.0519054718
+			10:leaf=0.203949228
 booster[12]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.183452
-	2:leaf=-0.162297
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.183452412
+	2:leaf=-0.162297457
 booster[13]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.154139
-	2:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.186947
-			6:leaf=-0.0532644
-		4:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.13548
-				10:leaf=0.0885926
-			8:leaf=-0.150663
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.154138923
+	2:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.186947152
+			6:leaf=-0.053264387
+		4:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.135480031
+				10:leaf=0.0885925591
+			8:leaf=-0.150662541
 booster[14]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.160509
-		4:leaf=0.0125772
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.160508573
+		4:leaf=0.0125771537
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:leaf=-0.038876
-			8:leaf=0.0858836
-		6:[Petal.Length<4.85] yes=9,no=10,missing=9
-			9:leaf=0.0429419
-			10:leaf=0.183017
+		5:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:leaf=-0.0388760455
+			8:leaf=0.0858836025
+		6:[Petal.Length<4.85000038] yes=9,no=10,missing=9
+			9:leaf=0.042941872
+			10:leaf=0.183017045
 booster[15]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.169368
-	2:leaf=-0.1557
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.169368118
+	2:leaf=-0.155699849
 booster[16]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.146013
-	2:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.172505
-			6:leaf=-0.0471911
-		4:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.126945
-				10:leaf=0.0799104
-			8:leaf=-0.141917
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.146013469
+	2:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.172504574
+			6:leaf=-0.0471911393
+		4:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.126944765
+				10:leaf=0.0799103677
+			8:leaf=-0.141917035
 booster[17]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.153491
-		4:leaf=0.0134451
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.153490961
+		4:leaf=0.0134451231
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.071751
-			8:leaf=-0.041498
-		6:[Sepal.Length<5.95] yes=9,no=10,missing=9
-			9:[Petal.Length<5.05] yes=11,no=12,missing=11
-				11:leaf=-0.0288851
-				12:leaf=0.0977884
-			10:leaf=0.173988
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0717510283
+			8:leaf=-0.0414980128
+		6:[Sepal.Length<5.94999981] yes=9,no=10,missing=9
+			9:[Petal.Length<5.05000019] yes=11,no=12,missing=11
+				11:leaf=-0.028885141
+				12:leaf=0.0977884308
+			10:leaf=0.173987702
 booster[18]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.1588
-	2:leaf=-0.150105
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.158799544
+	2:leaf=-0.150105298
 booster[19]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.138523
-	2:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.161983
-			6:leaf=-0.0443761
-		4:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.118574
-				10:leaf=0.0743857
-			8:leaf=-0.133838
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.138523117
+	2:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.161982983
+			6:leaf=-0.0443760864
+		4:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.118573882
+				10:leaf=0.0743857473
+			8:leaf=-0.133837625
 booster[20]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.147346
-		4:leaf=0.0142603
-	2:[Petal.Length<5.15] yes=5,no=6,missing=5
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.147345766
+		4:leaf=0.0142603237
+	2:[Petal.Length<5.14999962] yes=5,no=6,missing=5
 		5:[Petal.Width<1.75] yes=7,no=8,missing=7
-			7:leaf=-0.0415497
-			8:[Sepal.Length<5.95] yes=9,no=10,missing=9
-				9:leaf=0.0351803
-				10:leaf=0.138524
-		6:leaf=0.163173
+			7:leaf=-0.0415497161
+			8:[Sepal.Length<5.94999981] yes=9,no=10,missing=9
+				9:leaf=0.0351802632
+				10:leaf=0.138523564
+		6:leaf=0.163172677
 booster[21]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.150205
-	2:leaf=-0.145045
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.150204912
+	2:leaf=-0.145044655
 booster[22]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.131211
-	2:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.153308
-			6:leaf=-0.039567
-		4:[Petal.Length<5.05] yes=7,no=8,missing=7
-			7:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.11099
-				10:leaf=0.0704312
-			8:leaf=-0.126175
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.131210536
+	2:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.153308138
+			6:leaf=-0.0395669565
+		4:[Petal.Length<5.05000019] yes=7,no=8,missing=7
+			7:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.1109901
+				10:leaf=0.0704311654
+			8:leaf=-0.12617521
 booster[23]
 0:[Petal.Length<4.75] yes=1,no=2,missing=1
-	1:[Petal.Width<1.55] yes=3,no=4,missing=3
-		3:leaf=-0.141555
-		4:leaf=0.0149866
-	2:[Petal.Length<5.15] yes=5,no=6,missing=5
+	1:[Petal.Width<1.54999995] yes=3,no=4,missing=3
+		3:leaf=-0.141554654
+		4:leaf=0.0149865942
+	2:[Petal.Length<5.14999962] yes=5,no=6,missing=5
 		5:[Petal.Width<1.75] yes=7,no=8,missing=7
-			7:leaf=-0.0383817
-			8:[Sepal.Length<5.95] yes=9,no=10,missing=9
-				9:leaf=0.0241115
-				10:leaf=0.128226
-		6:leaf=0.153535
+			7:leaf=-0.0383817479
+			8:[Sepal.Length<5.94999981] yes=9,no=10,missing=9
+				9:leaf=0.0241114963
+				10:leaf=0.128226236
+		6:leaf=0.153534696
 booster[24]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.142667
-	2:leaf=-0.140169
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.1426671
+	2:leaf=-0.140168741
 booster[25]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=-0.123805
-	2:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:[Petal.Length<4.95] yes=5,no=6,missing=5
-			5:leaf=0.145801
-			6:leaf=-0.0351787
-		4:[Sepal.Width<3.15] yes=7,no=8,missing=7
-			7:[Sepal.Length<6.6] yes=9,no=10,missing=9
-				9:leaf=-0.134182
-				10:leaf=-0.0213955
-			8:leaf=0.00879808
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=-0.123804785
+	2:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:[Petal.Length<4.94999981] yes=5,no=6,missing=5
+			5:leaf=0.14580147
+			6:leaf=-0.035178721
+		4:[Sepal.Width<3.1500001] yes=7,no=8,missing=7
+			7:[Sepal.Length<6.5999999] yes=9,no=10,missing=9
+				9:leaf=-0.134182259
+				10:leaf=-0.0213955063
+			8:leaf=0.0087980805
 booster[26]
-0:[Petal.Length<4.85] yes=1,no=2,missing=1
-	1:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:leaf=-0.139297
-		4:leaf=0.0532883
+0:[Petal.Length<4.85000038] yes=1,no=2,missing=1
+	1:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:leaf=-0.139297202
+		4:leaf=0.0532883145
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.0847027
-			8:leaf=-0.052511
-		6:leaf=0.142963
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0847027004
+			8:leaf=-0.0525109619
+		6:leaf=0.142963231
 booster[27]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.13558
-	2:leaf=-0.135065
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.13557972
+	2:leaf=-0.135064989
 booster[28]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Petal.Length<2.45] yes=3,no=4,missing=3
-		3:leaf=-0.116192
-		4:[Petal.Width<1.65] yes=5,no=6,missing=5
-			5:[Sepal.Width<2.35] yes=7,no=8,missing=7
-				7:leaf=0.0164911
-				8:leaf=0.13855
-			6:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.102068
-				10:leaf=0.0555419
-	2:leaf=-0.123394
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Petal.Length<2.45000005] yes=3,no=4,missing=3
+		3:leaf=-0.116191648
+		4:[Petal.Width<1.6500001] yes=5,no=6,missing=5
+			5:[Sepal.Width<2.3499999] yes=7,no=8,missing=7
+				7:leaf=0.0164910723
+				8:leaf=0.13854973
+			6:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.102068059
+				10:leaf=0.0555418916
+	2:leaf=-0.123394012
 booster[29]
-0:[Petal.Length<4.85] yes=1,no=2,missing=1
-	1:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:leaf=-0.133229
-		4:leaf=0.0398605
+0:[Petal.Length<4.85000038] yes=1,no=2,missing=1
+	1:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:leaf=-0.133229241
+		4:leaf=0.0398604795
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.0778191
-			8:leaf=-0.052116
-		6:leaf=0.136264
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0778191239
+			8:leaf=-0.052116029
+		6:leaf=0.136263967
 booster[30]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.128655
-	2:leaf=-0.129812
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.12865451
+	2:leaf=-0.129812017
 booster[31]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Petal.Length<2.45] yes=3,no=4,missing=3
-		3:leaf=-0.108378
-		4:[Petal.Width<1.65] yes=5,no=6,missing=5
-			5:[Petal.Length<4.95] yes=7,no=8,missing=7
-				7:leaf=0.131557
-				8:leaf=0.0130663
-			6:[Sepal.Width<2.9] yes=9,no=10,missing=9
-				9:leaf=-0.0950064
-				10:leaf=0.0532187
-	2:leaf=-0.116842
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Petal.Length<2.45000005] yes=3,no=4,missing=3
+		3:leaf=-0.108377993
+		4:[Petal.Width<1.6500001] yes=5,no=6,missing=5
+			5:[Petal.Length<4.94999981] yes=7,no=8,missing=7
+				7:leaf=0.131557465
+				8:leaf=0.0130662899
+			6:[Sepal.Width<2.9000001] yes=9,no=10,missing=9
+				9:leaf=-0.0950063542
+				10:leaf=0.0532187186
+	2:leaf=-0.116841592
 booster[32]
-0:[Petal.Length<4.85] yes=1,no=2,missing=1
-	1:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:leaf=-0.127086
-		4:leaf=0.0335974
+0:[Petal.Length<4.85000038] yes=1,no=2,missing=1
+	1:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:leaf=-0.127085507
+		4:leaf=0.0335973576
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.0742606
-			8:leaf=-0.047729
-		6:leaf=0.129317
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0742606148
+			8:leaf=-0.0477290265
+		6:leaf=0.129317284
 booster[33]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.121719
-	2:leaf=-0.124217
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.121719062
+	2:leaf=-0.12421722
 booster[34]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Petal.Length<2.45] yes=3,no=4,missing=3
-		3:leaf=-0.10047
-		4:[Petal.Width<1.65] yes=5,no=6,missing=5
-			5:[Petal.Length<4.95] yes=7,no=8,missing=7
-				7:leaf=0.124527
-				8:leaf=0.0127948
-			6:[Sepal.Length<5.95] yes=9,no=10,missing=9
-				9:leaf=0.0182135
-				10:leaf=-0.0351226
-	2:leaf=-0.110419
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Petal.Length<2.45000005] yes=3,no=4,missing=3
+		3:leaf=-0.100470193
+		4:[Petal.Width<1.6500001] yes=5,no=6,missing=5
+			5:[Petal.Length<4.94999981] yes=7,no=8,missing=7
+				7:leaf=0.124527253
+				8:leaf=0.012794828
+			6:[Sepal.Length<5.94999981] yes=9,no=10,missing=9
+				9:leaf=0.0182135236
+				10:leaf=-0.0351226181
+	2:leaf=-0.110418819
 booster[35]
-0:[Petal.Length<4.85] yes=1,no=2,missing=1
-	1:[Petal.Width<1.65] yes=3,no=4,missing=3
-		3:leaf=-0.120434
-		4:leaf=0.0284562
+0:[Petal.Length<4.85000038] yes=1,no=2,missing=1
+	1:[Petal.Width<1.6500001] yes=3,no=4,missing=3
+		3:leaf=-0.120433971
+		4:leaf=0.028456239
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.0697158
-			8:leaf=-0.0468012
-		6:leaf=0.122497
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0697158203
+			8:leaf=-0.0468012132
+		6:leaf=0.122496508
 booster[36]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.11473
-	2:leaf=-0.118421
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.11473041
+	2:leaf=-0.118420579
 booster[37]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Petal.Length<2.45] yes=3,no=4,missing=3
-		3:leaf=-0.0926298
-		4:[Petal.Width<1.65] yes=5,no=6,missing=5
-			5:[Petal.Length<4.95] yes=7,no=8,missing=7
-				7:leaf=0.117551
-				8:leaf=0.012518
-			6:[Sepal.Length<5.95] yes=9,no=10,missing=9
-				9:leaf=0.0207842
-				10:leaf=-0.0313819
-	2:leaf=-0.104252
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Petal.Length<2.45000005] yes=3,no=4,missing=3
+		3:leaf=-0.0926298425
+		4:[Petal.Width<1.6500001] yes=5,no=6,missing=5
+			5:[Petal.Length<4.94999981] yes=7,no=8,missing=7
+				7:leaf=0.117551051
+				8:leaf=0.0125180241
+			6:[Sepal.Length<5.94999981] yes=9,no=10,missing=9
+				9:leaf=0.0207842346
+				10:leaf=-0.0313819125
+	2:leaf=-0.104251929
 booster[38]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
-		3:[Petal.Width<1.65] yes=5,no=6,missing=5
-			5:[Petal.Length<4.95] yes=7,no=8,missing=7
-				7:leaf=-0.0915681
-				8:leaf=0.00862101
-			6:[Petal.Length<4.85] yes=9,no=10,missing=9
-				9:leaf=0.110006
-				10:leaf=0.0243458
-		4:leaf=-0.120479
-	2:leaf=0.121317
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.04999995] yes=3,no=4,missing=3
+		3:[Petal.Width<1.6500001] yes=5,no=6,missing=5
+			5:[Petal.Length<4.94999981] yes=7,no=8,missing=7
+				7:leaf=-0.0915681124
+				8:leaf=0.00862100534
+			6:[Petal.Length<4.85000038] yes=9,no=10,missing=9
+				9:leaf=0.110005915
+				10:leaf=0.0243457537
+		4:leaf=-0.120479003
+	2:leaf=0.121317282
 booster[39]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.107695
-	2:leaf=-0.112577
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.107694656
+	2:leaf=-0.112576976
 booster[40]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
-		3:leaf=-0.0735687
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.44999981] yes=3,no=4,missing=3
+		3:leaf=-0.0735686794
 		4:[Petal.Width<1.75] yes=5,no=6,missing=5
-			5:[Sepal.Width<2.65] yes=7,no=8,missing=7
-				7:leaf=0.0123189
-				8:leaf=0.105095
-			6:leaf=-0.0113838
-	2:leaf=-0.095527
+			5:[Sepal.Width<2.6500001] yes=7,no=8,missing=7
+				7:leaf=0.0123189101
+				8:leaf=0.105095081
+			6:leaf=-0.0113838017
+	2:leaf=-0.0955269709
 booster[41]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.04999995] yes=3,no=4,missing=3
 		3:[Petal.Width<1.75] yes=5,no=6,missing=5
-			5:[Sepal.Width<2.55] yes=7,no=8,missing=7
-				7:leaf=0.0497051
-				8:leaf=-0.0900263
-			6:leaf=0.100667
-		4:leaf=-0.112032
-	2:leaf=0.11275
+			5:[Sepal.Width<2.54999995] yes=7,no=8,missing=7
+				7:leaf=0.0497050621
+				8:leaf=-0.0900263041
+			6:leaf=0.100666717
+		4:leaf=-0.112032153
+	2:leaf=0.112749942
 booster[42]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.10138
-	2:leaf=-0.107117
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.101380005
+	2:leaf=-0.107117154
 booster[43]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
-		3:leaf=-0.0654773
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.44999981] yes=3,no=4,missing=3
+		3:leaf=-0.0654773042
 		4:[Petal.Width<1.75] yes=5,no=6,missing=5
-			5:[Petal.Width<1.55] yes=7,no=8,missing=7
-				7:[Petal.Length<4.65] yes=9,no=10,missing=9
-					9:leaf=0.0710402
-					10:leaf=-0.0316097
-				8:leaf=0.11912
-			6:leaf=-0.00900871
-	2:leaf=-0.0873807
+			5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+				7:[Petal.Length<4.64999962] yes=9,no=10,missing=9
+					9:leaf=0.071040161
+					10:leaf=-0.0316096507
+				8:leaf=0.119120017
+			6:leaf=-0.0090087112
+	2:leaf=-0.0873806626
 booster[44]
-0:[Petal.Length<4.85] yes=1,no=2,missing=1
-	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
-		3:leaf=0.0128667
-		4:leaf=-0.121714
+0:[Petal.Length<4.85000038] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.04999995] yes=3,no=4,missing=3
+		3:leaf=0.0128666768
+		4:leaf=-0.121713579
 	2:[Petal.Width<1.75] yes=5,no=6,missing=5
-		5:[Petal.Width<1.55] yes=7,no=8,missing=7
-			7:leaf=0.070183
-			8:leaf=-0.0533181
-		6:leaf=0.104869
+		5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+			7:leaf=0.0701830015
+			8:leaf=-0.0533180647
+		6:leaf=0.104869373
 booster[45]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.0952757
-	2:leaf=-0.10179
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.095275715
+	2:leaf=-0.101790331
 booster[46]
-0:[Petal.Length<5.15] yes=1,no=2,missing=1
-	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
-		3:leaf=-0.058531
+0:[Petal.Length<5.14999962] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.44999981] yes=3,no=4,missing=3
+		3:leaf=-0.0585310273
 		4:[Petal.Width<1.75] yes=5,no=6,missing=5
-			5:[Petal.Width<1.55] yes=7,no=8,missing=7
-				7:[Petal.Length<4.65] yes=9,no=10,missing=9
-					9:leaf=0.0664431
-					10:leaf=-0.0264688
-				8:leaf=0.109369
-			6:leaf=-0.00826003
-	2:leaf=-0.0823554
+			5:[Petal.Width<1.54999995] yes=7,no=8,missing=7
+				7:[Petal.Length<4.64999962] yes=9,no=10,missing=9
+					9:leaf=0.0664431378
+					10:leaf=-0.0264687967
+				8:leaf=0.109369479
+			6:leaf=-0.00826003402
+	2:leaf=-0.0823554322
 booster[47]
-0:[Petal.Length<4.95] yes=1,no=2,missing=1
-	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
-		3:[Petal.Width<1.6] yes=7,no=8,missing=7
-			7:leaf=-0.0801073
-			8:leaf=0.100336
-		4:leaf=-0.117334
-	2:[Petal.Length<5.15] yes=5,no=6,missing=5
-		5:leaf=0.0182764
-		6:leaf=0.0990471
+0:[Petal.Length<4.94999981] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.04999995] yes=3,no=4,missing=3
+		3:[Petal.Width<1.60000002] yes=7,no=8,missing=7
+			7:leaf=-0.0801073164
+			8:leaf=0.100336127
+		4:leaf=-0.117334045
+	2:[Petal.Length<5.14999962] yes=5,no=6,missing=5
+		5:leaf=0.0182764474
+		6:leaf=0.0990470797
 booster[48]
-0:[Petal.Length<2.45] yes=1,no=2,missing=1
-	1:leaf=0.089182
-	2:leaf=-0.0964985
+0:[Petal.Length<2.45000005] yes=1,no=2,missing=1
+	1:leaf=0.0891820192
+	2:leaf=-0.0964985415
 booster[49]
-0:[Petal.Length<4.95] yes=1,no=2,missing=1
-	1:[Sepal.Length<5.45] yes=3,no=4,missing=3
-		3:leaf=-0.0522039
-		4:[Sepal.Length<5.95] yes=7,no=8,missing=7
-			7:leaf=0.0923672
-			8:leaf=0.0179841
-	2:[Sepal.Length<6.05] yes=5,no=6,missing=5
-		5:leaf=0.00886445
-		6:leaf=-0.0590595
+0:[Petal.Length<4.94999981] yes=1,no=2,missing=1
+	1:[Sepal.Length<5.44999981] yes=3,no=4,missing=3
+		3:leaf=-0.0522038937
+		4:[Sepal.Length<5.94999981] yes=7,no=8,missing=7
+			7:leaf=0.0923672318
+			8:leaf=0.0179841146
+	2:[Sepal.Length<6.05000019] yes=5,no=6,missing=5
+		5:leaf=0.00886444841
+		6:leaf=-0.0590595044
 booster[50]
-0:[Petal.Length<4.95] yes=1,no=2,missing=1
-	1:[Sepal.Width<3.05] yes=3,no=4,missing=3
-		3:[Sepal.Length<5.95] yes=7,no=8,missing=7
-			7:leaf=-0.00602423
-			8:leaf=0.0269548
-		4:leaf=-0.111514
-	2:[Petal.Length<5.15] yes=5,no=6,missing=5
-		5:leaf=0.0184795
-		6:leaf=0.0915755
+0:[Petal.Length<4.94999981] yes=1,no=2,missing=1
+	1:[Sepal.Width<3.04999995] yes=3,no=4,missing=3
+		3:[Sepal.Length<5.94999981] yes=7,no=8,missing=7
+			7:leaf=-0.00602423493
+			8:leaf=0.0269548204
+		4:leaf=-0.111514151
+	2:[Petal.Length<5.14999962] yes=5,no=6,missing=5
+		5:leaf=0.0184794962
+		6:leaf=0.091575481
