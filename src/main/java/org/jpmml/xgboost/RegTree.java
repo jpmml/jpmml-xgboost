@@ -89,7 +89,7 @@ public class RegTree {
 	}
 
 	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = new org.dmg.pmml.tree.Node()
+		org.dmg.pmml.tree.Node root = new org.dmg.pmml.tree.ComplexNode()
 			.setPredicate(new True());
 
 		encodeNode(root, predicateManager, 0, schema);
@@ -152,12 +152,12 @@ public class RegTree {
 				defaultLeft = node.default_left();
 			}
 
-			org.dmg.pmml.tree.Node leftChild = new org.dmg.pmml.tree.Node()
+			org.dmg.pmml.tree.Node leftChild = new org.dmg.pmml.tree.ComplexNode()
 				.setPredicate(leftPredicate);
 
 			encodeNode(leftChild, predicateManager, node.cleft(), schema);
 
-			org.dmg.pmml.tree.Node rightChild = new org.dmg.pmml.tree.Node()
+			org.dmg.pmml.tree.Node rightChild = new org.dmg.pmml.tree.ComplexNode()
 				.setPredicate(rightPredicate);
 
 			encodeNode(rightChild, predicateManager, node.cright(), schema);
