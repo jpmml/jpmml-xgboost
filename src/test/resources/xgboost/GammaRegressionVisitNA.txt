@@ -3,7 +3,7 @@ booster[0]
 	1:[outwork<1] yes=3,no=4,missing=3
 		3:[female<1] yes=7,no=8,missing=8
 			7:[hhninc<2.91386199] yes=13,no=14,missing=14
-				13:[age<95] yes=21,no=22,missing=22
+				13:[age<94] yes=21,no=22,missing=22
 					21:[hhninc<1.6500001] yes=29,no=30,missing=30
 						29:leaf=0.229870126
 						30:leaf=0.261463434
@@ -41,14 +41,14 @@ booster[1]
 	1:[outwork<1] yes=3,no=4,missing=3
 		3:[female<1] yes=7,no=8,missing=8
 			7:[hhninc<2.91386199] yes=15,no=16,missing=16
-				15:[age<95] yes=29,no=30,missing=30
+				15:[age<94] yes=29,no=30,missing=30
 					29:[hhninc<1.6500001] yes=49,no=50,missing=50
 						49:leaf=0.212041244
 						50:leaf=0.249971852
 					30:leaf=0.265958399
 				16:[hhninc<3.74499989] yes=31,no=32,missing=31
 					31:leaf=0.244541213
-					32:[age<27] yes=51,no=52,missing=52
+					32:[age<26] yes=51,no=52,missing=52
 						51:leaf=0.0647326708
 						52:leaf=0.227632955
 			8:[hhninc<7.1500001] yes=17,no=18,missing=17
@@ -71,9 +71,9 @@ booster[1]
 					37:[hhninc<3.95000005] yes=57,no=58,missing=57
 						57:leaf=0.252169549
 						58:leaf=0.196645111
-					38:[hhninc<1.5250001] yes=59,no=60,missing=60
-						59:leaf=0.160071
-						60:leaf=0.271588683
+					38:[edlevel=HS_grad] yes=60,no=59
+						59:leaf=0.271588683
+						60:leaf=0.160071
 				22:[edlevel=Not_HS_grad] yes=40,no=39
 					39:leaf=0.183204666
 					40:leaf=0.105341107
@@ -107,7 +107,7 @@ booster[2]
 	1:[outwork<1] yes=3,no=4,missing=3
 		3:[female<1] yes=7,no=8,missing=8
 			7:[hhninc<2.91386199] yes=15,no=16,missing=16
-				15:[age<95] yes=31,no=32,missing=32
+				15:[age<94] yes=31,no=32,missing=32
 					31:[self<1] yes=57,no=58,missing=58
 						57:leaf=0.236657143
 						58:leaf=0.193370268
@@ -149,9 +149,9 @@ booster[2]
 					41:[hhninc<3.95000005] yes=75,no=76,missing=75
 						75:leaf=0.238474533
 						76:leaf=0.174964935
-					42:[edlevel=HS_grad] yes=78,no=77
-						77:leaf=0.262837708
-						78:leaf=0.12285243
+					42:[hhninc<1.5250001] yes=77,no=78,missing=78
+						77:leaf=0.122852422
+						78:leaf=0.262837708
 				22:[edlevel=Not_HS_grad] yes=44,no=43
 					43:leaf=0.163288862
 					44:leaf=0.0867902711
@@ -246,8 +246,8 @@ booster[3]
 						79:leaf=0.22194095
 						80:leaf=0.152040258
 					44:[educ<10.75] yes=81,no=82,missing=82
-						81:leaf=0.262038946
-						82:leaf=0.200415149
+						81:leaf=0.262068868
+						82:leaf=0.20015125
 				22:[edlevel=Not_HS_grad] yes=46,no=45
 					45:leaf=0.14326258
 					46:leaf=0.0704177171
@@ -299,7 +299,7 @@ booster[4]
 	1:[outwork<1] yes=3,no=4,missing=3
 		3:[female<1] yes=7,no=8,missing=8
 			7:[hhninc<2.88243866] yes=15,no=16,missing=16
-				15:[age<95] yes=31,no=32,missing=32
+				15:[age<94] yes=31,no=32,missing=32
 					31:[edlevel=Coll/Univ] yes=64,no=63
 						63:leaf=0.195480585
 						64:leaf=0.0707979798
@@ -339,7 +339,7 @@ booster[4]
 					41:[hhninc<2.95000005] yes=81,no=82,missing=82
 						81:leaf=0.134650066
 						82:leaf=0.210228965
-					42:[age<95] yes=83,no=84,missing=84
+					42:[age<94] yes=83,no=84,missing=84
 						83:leaf=0.20234029
 						84:leaf=0.266173929
 			10:[self<3] yes=21,no=22,missing=22
@@ -350,11 +350,11 @@ booster[4]
 					44:leaf=0.12775667
 				22:[hhninc<1.8835001] yes=45,no=46,missing=46
 					45:[educ<9.75] yes=87,no=88,missing=88
-						87:leaf=0.038035959
-						88:leaf=0.122411482
+						87:leaf=0.0417622328
+						88:leaf=0.123575427
 					46:[educ<10.75] yes=89,no=90,missing=90
-						89:leaf=0.257534534
-						90:leaf=0.176340699
+						89:leaf=0.257533282
+						90:leaf=0.176038638
 	2:[hhninc<3.96913147] yes=5,no=6,missing=5
 		5:[female<1] yes=11,no=12,missing=11
 			11:[age<60] yes=23,no=24,missing=24
@@ -415,7 +415,7 @@ booster[5]
 	1:[outwork<1] yes=3,no=4,missing=3
 		3:[female<1] yes=7,no=8,missing=8
 			7:[hhninc<2.88243866] yes=15,no=16,missing=16
-				15:[age<95] yes=31,no=32,missing=32
+				15:[age<94] yes=31,no=32,missing=32
 					31:[hhninc<1.6500001] yes=61,no=62,missing=62
 						61:leaf=0.101444691
 						62:leaf=0.178645074
@@ -437,7 +437,7 @@ booster[5]
 					36:[kids<3] yes=71,no=72,missing=72
 						71:leaf=0.185984403
 						72:leaf=0.246017888
-				18:[age<42] yes=37,no=38,missing=38
+				18:[age<41] yes=37,no=38,missing=38
 					37:[kids<3] yes=73,no=74,missing=74
 						73:leaf=0.0425902046
 						74:leaf=-0.118916206
@@ -468,11 +468,11 @@ booster[5]
 						86:leaf=0.127910286
 				22:[educ<10.75] yes=45,no=46,missing=46
 					45:[hhninc<1.97500002] yes=87,no=88,missing=88
-						87:leaf=0.0840534568
-						88:leaf=0.246989131
+						87:leaf=0.0859403461
+						88:leaf=0.246987611
 					46:[age<40] yes=89,no=90,missing=90
-						89:leaf=0.187530637
-						90:leaf=0.0897083431
+						89:leaf=0.187208757
+						90:leaf=0.089552179
 	2:[hhninc<3.96913147] yes=5,no=6,missing=5
 		5:[hhninc<1.82500005] yes=11,no=12,missing=12
 			11:[hhninc<0.674999952] yes=23,no=24,missing=24
@@ -569,24 +569,24 @@ booster[6]
 					41:[hhninc<2.95000005] yes=79,no=80,missing=80
 						79:leaf=0.0746944025
 						80:leaf=0.165463924
-					42:[age<95] yes=81,no=82,missing=82
+					42:[age<94] yes=81,no=82,missing=82
 						81:leaf=0.155432463
 						82:leaf=0.245819375
 			10:[married<1] yes=21,no=22,missing=22
 				21:[female<1] yes=43,no=44,missing=43
 					43:[educ<12] yes=83,no=84,missing=84
-						83:leaf=0.261283457
+						83:leaf=0.261282742
 						84:leaf=0.120114796
-					44:[age<36] yes=85,no=86,missing=85
+					44:[age<35] yes=85,no=86,missing=85
 						85:leaf=-0.0664587915
-						86:leaf=0.109275281
+						86:leaf=0.109016769
 				22:[hhninc<1.89499998] yes=45,no=46,missing=46
 					45:[age<33] yes=87,no=88,missing=87
-						87:leaf=0.107978798
-						88:leaf=-0.0477158464
+						87:leaf=0.108509772
+						88:leaf=-0.0477779396
 					46:[hhninc<3.95000005] yes=89,no=90,missing=89
-						89:leaf=0.168907449
-						90:leaf=0.0958933234
+						89:leaf=0.168878645
+						90:leaf=0.0958967209
 	2:[self<1] yes=5,no=6,missing=5
 		5:[hhninc<1.82500005] yes=11,no=12,missing=12
 			11:[hhninc<0.674999952] yes=23,no=24,missing=24
@@ -675,30 +675,30 @@ booster[7]
 						79:leaf=0.0827294961
 						80:leaf=0.188846305
 					40:[edlevel=Coll/Univ] yes=82,no=81
-						81:leaf=0.277517974
+						81:leaf=0.277517796
 						82:leaf=0.0643073097
-				20:[age<46] yes=41,no=42,missing=41
+				20:[age<45] yes=41,no=42,missing=41
 					41:[educ<10.25] yes=83,no=84,missing=84
-						83:leaf=0.0227433722
-						84:leaf=0.151794389
+						83:leaf=0.0227434095
+						84:leaf=0.151796013
 					42:[kids<1] yes=85,no=86,missing=85
 						85:leaf=0.263647109
-						86:leaf=0.0034142721
+						86:leaf=0.00261114584
 			10:[hhninc<1.89499998] yes=21,no=22,missing=22
 				21:[hhninc<1.76999998] yes=43,no=44,missing=44
 					43:[kids<3] yes=87,no=88,missing=88
-						87:leaf=0.0847064257
+						87:leaf=0.0850291774
 						88:leaf=0.151123613
 					44:[educ<26] yes=89,no=90,missing=90
-						89:leaf=-0.0262262356
-						90:leaf=0.0793403089
+						89:leaf=-0.0262830183
+						90:leaf=0.0792903155
 				22:[hhninc<2.05530787] yes=45,no=46,missing=46
 					45:[kids<1] yes=91,no=92,missing=91
 						91:leaf=0.245783612
-						92:leaf=0.15750128
+						92:leaf=0.157500729
 					46:[educ<10.6527443] yes=93,no=94,missing=93
-						93:leaf=0.135355562
-						94:leaf=0.181405976
+						93:leaf=0.135361761
+						94:leaf=0.181364596
 	2:[hhninc<3.96913147] yes=5,no=6,missing=5
 		5:[female<1] yes=11,no=12,missing=11
 			11:[age<60] yes=23,no=24,missing=24
@@ -746,7 +746,7 @@ booster[7]
 						115:leaf=0.145253301
 						116:leaf=0.0598205589
 			14:[age<54] yes=29,no=30,missing=30
-				29:[age<52] yes=59,no=60,missing=60
+				29:[age<51] yes=59,no=60,missing=60
 					59:leaf=-0.0246700607
 					60:leaf=0.0436298065
 				30:[female<3] yes=61,no=62,missing=62
@@ -760,7 +760,7 @@ booster[8]
 		3:[hhninc<4.87899971] yes=7,no=8,missing=7
 			7:[female<1] yes=15,no=16,missing=16
 				15:[hhninc<1.375] yes=31,no=32,missing=32
-					31:[age<36] yes=63,no=64,missing=63
+					31:[age<35] yes=63,no=64,missing=63
 						63:leaf=0.211516663
 						64:leaf=-0.0194507204
 					32:[hhninc<1.6500001] yes=65,no=66,missing=66
@@ -793,30 +793,30 @@ booster[8]
 						77:leaf=0.0658188388
 						78:leaf=0.168278471
 					40:[edlevel=Coll/Univ] yes=80,no=79
-						79:leaf=0.270468652
+						79:leaf=0.270468444
 						80:leaf=0.0529498197
-				20:[age<46] yes=41,no=42,missing=41
+				20:[age<45] yes=41,no=42,missing=41
 					41:[educ<10.25] yes=81,no=82,missing=81
-						81:leaf=0.054385934
-						82:leaf=0.153237462
+						81:leaf=0.0543856919
+						82:leaf=0.153239727
 					42:[kids<1] yes=83,no=84,missing=83
 						83:leaf=0.253250211
-						84:leaf=0.00290217809
+						84:leaf=0.00221950747
 			10:[hhninc<1.89499998] yes=21,no=22,missing=21
 				21:[hhninc<1.1500001] yes=43,no=44,missing=43
 					43:[age<42] yes=85,no=86,missing=85
-						85:leaf=0.124840729
-						86:leaf=0.0494361222
+						85:leaf=0.124870278
+						86:leaf=0.0494386479
 					44:[hhninc<1.47500002] yes=87,no=88,missing=88
-						87:leaf=-0.0904107615
-						88:leaf=0.0685039461
+						87:leaf=-0.087316528
+						88:leaf=0.0684015155
 				22:[age<29] yes=45,no=46,missing=45
 					45:[kids<1] yes=89,no=90,missing=89
-						89:leaf=0.188164666
-						90:leaf=0.126542017
+						89:leaf=0.18816568
+						90:leaf=0.126522571
 					46:[age<32] yes=91,no=92,missing=92
-						91:leaf=-0.0780383125
-						92:leaf=0.122033522
+						91:leaf=-0.0780327842
+						92:leaf=0.121998146
 	2:[hhninc<3.96913147] yes=5,no=6,missing=5
 		5:[outwork<3] yes=11,no=12,missing=12
 			11:[age<49] yes=23,no=24,missing=24
@@ -881,24 +881,24 @@ booster[9]
 			7:[age<29] yes=15,no=16,missing=16
 				15:[hhninc<3.19999981] yes=31,no=32,missing=31
 					31:[married<1] yes=61,no=62,missing=61
-						61:leaf=0.0379776843
-						62:leaf=-0.0527227223
-					32:leaf=0.136989295
+						61:leaf=0.0379829332
+						62:leaf=-0.0521869957
+					32:leaf=0.136994287
 				16:leaf=-0.137664407
 			8:[kids<3] yes=17,no=18,missing=18
 				17:[self<1] yes=33,no=34,missing=34
 					33:[age<49] yes=63,no=64,missing=63
-						63:leaf=0.118277833
+						63:leaf=0.118274882
 						64:leaf=0.202762365
 					34:[hhninc<1.71592546] yes=65,no=66,missing=65
-						65:leaf=-0.0240942258
-						66:leaf=0.0854892582
+						65:leaf=-0.0238119736
+						66:leaf=0.0854899585
 				18:[married<3] yes=35,no=36,missing=36
 					35:[hhninc<3.20000005] yes=67,no=68,missing=67
-						67:leaf=0.205608338
-						68:leaf=0.0798455402
+						67:leaf=0.205608711
+						68:leaf=0.0798451975
 					36:[hhninc<4.25] yes=69,no=70,missing=69
-						69:leaf=-0.207377076
+						69:leaf=-0.207374945
 						70:leaf=0.039147377
 		4:[edlevel=Not_HS_grad] yes=10,no=9
 			9:[age<47] yes=19,no=20,missing=19
@@ -907,30 +907,30 @@ booster[9]
 						71:leaf=0.0813677311
 						72:leaf=0.0224075299
 					38:[hhninc<3.95000005] yes=73,no=74,missing=73
-						73:leaf=0.107182793
-						74:leaf=0.0339942575
+						73:leaf=0.107166626
+						74:leaf=0.0340003856
 				20:[hhninc<3.66349983] yes=39,no=40,missing=39
 					39:[outwork<1] yes=75,no=76,missing=75
 						75:leaf=0.0019616764
-						76:leaf=-0.198114708
+						76:leaf=-0.198108613
 					40:[educ<15] yes=77,no=78,missing=77
 						77:leaf=0.0853067786
 						78:leaf=-0.0142151844
 			10:[married<1] yes=21,no=22,missing=22
 				21:[age<48] yes=41,no=42,missing=41
 					41:[hhninc<1.6500001] yes=79,no=80,missing=79
-						79:leaf=0.108660325
-						80:leaf=0.158175707
+						79:leaf=0.108660258
+						80:leaf=0.158175319
 					42:[hhninc<1.75] yes=81,no=82,missing=81
 						81:leaf=0.0723553523
 						82:leaf=-0.0953294113
 				22:[age<34] yes=43,no=44,missing=44
 					43:[hhninc<3.09805107] yes=83,no=84,missing=83
-						83:leaf=0.0851188526
-						84:leaf=-0.0657884106
+						83:leaf=0.085118629
+						84:leaf=-0.065787077
 					44:[hhninc<4.55000019] yes=85,no=86,missing=86
-						85:leaf=0.11487639
-						86:leaf=0.0834463984
+						85:leaf=0.114874922
+						86:leaf=0.08344879
 	2:[hhninc<1.82500005] yes=5,no=6,missing=5
 		5:[educ<10.75] yes=11,no=12,missing=11
 			11:[kids<1] yes=23,no=24,missing=23
@@ -997,33 +997,33 @@ booster[10]
 			7:[edlevel=Not_HS_grad] yes=16,no=15
 				15:[educ<9.5] yes=31,no=32,missing=32
 					31:[hhninc<1.79999995] yes=63,no=64,missing=64
-						63:leaf=-0.137489006
-						64:leaf=0.107574143
+						63:leaf=-0.13754943
+						64:leaf=0.107568949
 					32:[age<34] yes=65,no=66,missing=66
-						65:leaf=0.0796092153
-						66:leaf=0.0447376221
+						65:leaf=0.0796102434
+						66:leaf=0.0447385982
 				16:[age<48] yes=33,no=34,missing=33
 					33:[age<46] yes=67,no=68,missing=67
-						67:leaf=0.0827176273
-						68:leaf=0.0216027275
+						67:leaf=0.0827169567
+						68:leaf=0.0216028057
 					34:[hhninc<2.57500005] yes=69,no=70,missing=69
-						69:leaf=-0.00996752176
-						70:leaf=0.156124204
+						69:leaf=-0.0099792853
+						70:leaf=0.156124264
 			8:[kids<3] yes=17,no=18,missing=18
 				17:[self<3] yes=35,no=36,missing=36
 					35:[married<1] yes=71,no=72,missing=72
-						71:leaf=-0.234771371
-						72:leaf=0.0356301926
+						71:leaf=-0.234819785
+						72:leaf=0.0356300995
 					36:[female<1] yes=73,no=74,missing=74
-						73:leaf=-0.0313784368
-						74:leaf=-0.336576879
+						73:leaf=-0.0313787721
+						74:leaf=-0.33661142
 				18:[married<1] yes=37,no=38,missing=38
 					37:[self<3] yes=75,no=76,missing=76
 						75:leaf=0.0620000251
 						76:leaf=0.223940372
 					38:[educ<10] yes=77,no=78,missing=77
-						77:leaf=-0.208195284
-						78:leaf=0.0612057708
+						77:leaf=-0.208195165
+						78:leaf=0.0612056963
 		4:[self<1] yes=9,no=10,missing=9
 			9:[outwork<1] yes=19,no=20,missing=20
 				19:[educ<11.25] yes=39,no=40,missing=39
@@ -1048,7 +1048,7 @@ booster[10]
 					44:[hhninc<4.05000019] yes=89,no=90,missing=90
 						89:leaf=-0.0116345063
 						90:leaf=0.0461483747
-				22:[age<59] yes=45,no=46,missing=46
+				22:[age<58] yes=45,no=46,missing=46
 					45:leaf=-0.0365190096
 					46:[age<61] yes=91,no=92,missing=92
 						91:leaf=0.173405647
@@ -1058,42 +1058,42 @@ booster[10]
 			11:[age<36] yes=23,no=24,missing=23
 				23:[age<28] yes=47,no=48,missing=47
 					47:[hhninc<1.8499999] yes=93,no=94,missing=94
-						93:leaf=0.0535995141
-						94:leaf=0.147019997
+						93:leaf=0.0536737591
+						94:leaf=0.147018239
 					48:[hhninc<1.54999995] yes=95,no=96,missing=96
-						95:leaf=-0.167441458
-						96:leaf=0.0212398414
+						95:leaf=-0.162822947
+						96:leaf=0.0212267637
 				24:[edlevel=Not_HS_grad] yes=50,no=49
 					49:[kids<1] yes=97,no=98,missing=98
-						97:leaf=0.0499081686
-						98:leaf=0.237275347
+						97:leaf=0.0499087013
+						98:leaf=0.237276003
 					50:[hhninc<1.48500001] yes=99,no=100,missing=100
 						99:leaf=0.172938913
-						100:leaf=0.115678094
+						100:leaf=0.115674324
 			12:[kids<1] yes=25,no=26,missing=26
 				25:[age<56] yes=51,no=52,missing=51
 					51:[hhninc<1.54999995] yes=101,no=102,missing=102
-						101:leaf=0.0456340834
-						102:leaf=0.182193771
+						101:leaf=0.0455271788
+						102:leaf=0.182194978
 					52:[self<1] yes=103,no=104,missing=104
 						103:leaf=0.0810683668
 						104:leaf=-0.0607984252
 				26:[age<42] yes=53,no=54,missing=53
 					53:[female<1] yes=105,no=106,missing=105
-						105:leaf=0.103960641
-						106:leaf=0.0114685139
+						105:leaf=0.103905924
+						106:leaf=0.0114614591
 					54:[female<3] yes=107,no=108,missing=108
-						107:leaf=0.0119141815
-						108:leaf=-0.197243541
+						107:leaf=0.0119154109
+						108:leaf=-0.197134688
 		6:[married<1] yes=13,no=14,missing=14
 			13:[age<61] yes=27,no=28,missing=27
 				27:[female<3] yes=55,no=56,missing=56
 					55:[kids<1] yes=109,no=110,missing=110
-						109:leaf=0.101264641
-						110:leaf=0.207311139
+						109:leaf=0.101265296
+						110:leaf=0.207310766
 					56:[self<1] yes=111,no=112,missing=112
-						111:leaf=0.108335376
-						112:leaf=-0.220134497
+						111:leaf=0.108335838
+						112:leaf=-0.220133051
 				28:[hhninc<2.95000005] yes=57,no=58,missing=57
 					57:[educ<9.5] yes=113,no=114,missing=114
 						113:leaf=-0.0480388626
@@ -1101,19 +1101,19 @@ booster[10]
 					58:leaf=0.0600469112
 			14:[educ<10.6527443] yes=29,no=30,missing=29
 				29:[hhninc<3.18508959] yes=59,no=60,missing=60
-					59:[age<60] yes=115,no=116,missing=115
-						115:leaf=-0.02491224
+					59:[age<59] yes=115,no=116,missing=115
+						115:leaf=-0.0249060374
 						116:leaf=0.121050574
 					60:[age<64] yes=117,no=118,missing=117
-						117:leaf=0.0838545114
+						117:leaf=0.0838571936
 						118:leaf=-0.050680209
 				30:[age<53] yes=61,no=62,missing=62
 					61:[edlevel=HS_grad] yes=120,no=119
-						119:leaf=0.0854101628
-						120:leaf=-0.0370063484
+						119:leaf=0.0854339004
+						120:leaf=-0.0379066952
 					62:[kids<1] yes=121,no=122,missing=121
-						121:leaf=0.163927823
-						122:leaf=0.0331196226
+						121:leaf=0.163929731
+						122:leaf=0.0329616852
 booster[11]
 0:[outwork<1] yes=1,no=2,missing=1
 	1:[age<52] yes=3,no=4,missing=3
@@ -1121,33 +1121,33 @@ booster[11]
 			7:[age<27] yes=15,no=16,missing=16
 				15:[hhninc<1.95000005] yes=31,no=32,missing=32
 					31:[edlevel=Not_HS_grad] yes=64,no=63
-						63:leaf=-0.044619441
-						64:leaf=0.13570188
+						63:leaf=-0.0446171351
+						64:leaf=0.135702014
 					32:[kids<1] yes=65,no=66,missing=66
-						65:leaf=-0.110129483
-						66:leaf=-0.0102741206
+						65:leaf=-0.110128127
+						66:leaf=-0.0102915047
 				16:[age<50] yes=33,no=34,missing=33
 					33:[hhninc<1.21447003] yes=67,no=68,missing=68
-						67:leaf=0.128306866
-						68:leaf=0.0536149256
+						67:leaf=0.128307477
+						68:leaf=0.0536144599
 					34:[hhninc<3.5] yes=69,no=70,missing=70
-						69:leaf=-0.0780285299
-						70:leaf=0.0258823019
+						69:leaf=-0.0780342892
+						70:leaf=0.0258803088
 			8:[outwork<1] yes=17,no=18,missing=18
 				17:[married<3] yes=35,no=36,missing=36
 					35:[hhninc<2.51399994] yes=71,no=72,missing=72
-						71:leaf=0.109711342
-						72:leaf=0.0496515743
+						71:leaf=0.109711573
+						72:leaf=0.049650494
 					36:[educ<10.75] yes=73,no=74,missing=74
-						73:leaf=-0.125996813
-						74:leaf=0.0103599727
+						73:leaf=-0.125996649
+						74:leaf=0.0103598367
 				18:[hhninc<4.5] yes=37,no=38,missing=37
 					37:[hhninc<2.54999995] yes=75,no=76,missing=75
-						75:leaf=0.0528792441
-						76:leaf=0.159748971
-					38:[age<45] yes=77,no=78,missing=77
-						77:leaf=-0.138942629
-						78:leaf=0.0472158268
+						75:leaf=0.0528801382
+						76:leaf=0.159749687
+					38:[age<44] yes=77,no=78,missing=77
+						77:leaf=-0.138945118
+						78:leaf=0.0472156331
 		4:[hhninc<6.4000001] yes=9,no=10,missing=10
 			9:[kids<3] yes=19,no=20,missing=20
 				19:[educ<9.5] yes=39,no=40,missing=40
@@ -1184,60 +1184,60 @@ booster[11]
 			11:[age<55] yes=23,no=24,missing=23
 				23:[age<47] yes=47,no=48,missing=47
 					47:[female<1] yes=95,no=96,missing=95
-						95:leaf=0.0909444541
-						96:leaf=-0.00858531706
+						95:leaf=0.0909479782
+						96:leaf=-0.00841820613
 					48:[married<3] yes=97,no=98,missing=98
-						97:leaf=0.186198741
-						98:leaf=-0.113245115
+						97:leaf=0.186198443
+						98:leaf=-0.113260947
 				24:[self<1] yes=49,no=50,missing=50
 					49:[hhninc<2.90867996] yes=99,no=100,missing=100
-						99:leaf=0.0665007681
-						100:leaf=-0.076306358
+						99:leaf=0.0665005818
+						100:leaf=-0.0763073266
 					50:[age<61] yes=101,no=102,missing=102
-						101:leaf=-0.217492595
-						102:leaf=0.00725006452
+						101:leaf=-0.217492715
+						102:leaf=0.00724999048
 			12:[age<36] yes=25,no=26,missing=26
 				25:[age<26] yes=51,no=52,missing=52
-					51:leaf=0.214976087
+					51:leaf=0.214975715
 					52:[hhninc<1.6500001] yes=103,no=104,missing=104
-						103:leaf=-0.0876662061
-						104:leaf=0.0290686134
+						103:leaf=-0.0862526298
+						104:leaf=0.029024398
 				26:[hhninc<3.6500001] yes=53,no=54,missing=54
 					53:[age<59] yes=105,no=106,missing=106
-						105:leaf=0.135057509
-						106:leaf=0.089575842
+						105:leaf=0.135037765
+						106:leaf=0.0895640403
 					54:[hhninc<3.89199591] yes=107,no=108,missing=108
-						107:leaf=0.217134014
+						107:leaf=0.217135161
 						108:leaf=0.0259646513
 		6:[educ<10.6527443] yes=13,no=14,missing=14
 			13:[kids<3] yes=27,no=28,missing=28
 				27:[age<61] yes=55,no=56,missing=56
 					55:[age<58] yes=109,no=110,missing=110
-						109:leaf=-0.0192113407
-						110:leaf=-0.3093822
+						109:leaf=-0.0192207992
+						110:leaf=-0.309382856
 					56:[edlevel=Not_HS_grad] yes=112,no=111
-						111:leaf=0.0976643786
-						112:leaf=0.0030805741
+						111:leaf=0.0976600498
+						112:leaf=0.00307517988
 				28:[female<3] yes=57,no=58,missing=58
 					57:[hhninc<4.9000001] yes=113,no=114,missing=113
-						113:leaf=-0.00515206438
-						114:leaf=0.101470761
+						113:leaf=-0.00515510235
+						114:leaf=0.101469181
 					58:[married<1] yes=115,no=116,missing=115
-						115:leaf=0.0323223509
-						116:leaf=0.216005549
+						115:leaf=0.0323219895
+						116:leaf=0.216004476
 			14:[age<61] yes=29,no=30,missing=29
-				29:[age<53] yes=59,no=60,missing=59
+				29:[age<52] yes=59,no=60,missing=59
 					59:[educ<11.75] yes=117,no=118,missing=118
-						117:leaf=0.137028843
-						118:leaf=0.0247450117
+						117:leaf=0.137047738
+						118:leaf=0.0247594956
 					60:[married<3] yes=119,no=120,missing=120
-						119:leaf=0.163421214
-						120:leaf=-0.0630971715
+						119:leaf=0.163421601
+						120:leaf=-0.0630978793
 				30:[educ<13] yes=61,no=62,missing=62
-					61:leaf=-0.281968683
+					61:leaf=-0.281969249
 					62:[female<1] yes=121,no=122,missing=122
-						121:leaf=0.05968244
-						122:leaf=-0.0434119925
+						121:leaf=0.059682142
+						122:leaf=-0.0434125885
 booster[12]
 0:[kids<1] yes=1,no=2,missing=1
 	1:[hhninc<2.71334362] yes=3,no=4,missing=4
@@ -1245,113 +1245,113 @@ booster[12]
 			7:[hhninc<0.789000034] yes=15,no=16,missing=16
 				15:[female<1] yes=31,no=32,missing=31
 					31:[educ<11.25] yes=61,no=62,missing=62
-						61:leaf=-0.0133900801
-						62:leaf=0.0804501921
+						61:leaf=-0.0135342935
+						62:leaf=0.0804517418
 					32:[married<1] yes=63,no=64,missing=64
-						63:leaf=-0.158792645
-						64:leaf=0.0218673572
+						63:leaf=-0.158788532
+						64:leaf=0.0218703076
 				16:[self<1] yes=33,no=34,missing=34
 					33:[married<1] yes=65,no=66,missing=65
-						65:leaf=0.237148806
+						65:leaf=0.237149715
 						66:leaf=0.0212503634
-					34:[age<129] yes=67,no=68,missing=68
-						67:leaf=-0.141673207
-						68:leaf=0.05479775
+					34:[age<128] yes=67,no=68,missing=68
+						67:leaf=-0.141673103
+						68:leaf=0.0547904782
 			8:[hhninc<1.02499998] yes=17,no=18,missing=18
-				17:[age<52] yes=35,no=36,missing=35
+				17:[age<51] yes=35,no=36,missing=35
 					35:[kids<1] yes=69,no=70,missing=70
-						69:leaf=0.0975343361
-						70:leaf=-0.155709371
+						69:leaf=0.0975160748
+						70:leaf=-0.155923039
 					36:[edlevel=Coll/Univ] yes=72,no=71
-						71:leaf=-0.350585997
-						72:leaf=0.044021327
+						71:leaf=-0.35058111
+						72:leaf=0.0440230444
 				18:[married<1] yes=37,no=38,missing=37
 					37:[hhninc<2.58766198] yes=73,no=74,missing=74
-						73:leaf=0.0620409809
-						74:leaf=-0.0343544222
+						73:leaf=0.0620387644
+						74:leaf=-0.0343521461
 					38:[hhninc<2.57999992] yes=75,no=76,missing=76
-						75:leaf=0.0839449391
-						76:leaf=0.156717777
+						75:leaf=0.0839433298
+						76:leaf=0.156717002
 		4:[hhninc<3.49499989] yes=9,no=10,missing=10
 			9:[hhninc<3.25526762] yes=19,no=20,missing=20
 				19:[age<46] yes=39,no=40,missing=40
 					39:[hhninc<2.92113161] yes=77,no=78,missing=78
-						77:leaf=-0.22681658
-						78:leaf=0.0238059424
+						77:leaf=-0.226786926
+						78:leaf=0.0238032714
 					40:[age<49] yes=79,no=80,missing=80
-						79:leaf=0.145760596
-						80:leaf=0.0415563434
+						79:leaf=0.145761728
+						80:leaf=0.0415572822
 				20:[outwork<1] yes=41,no=42,missing=41
 					41:[married<1] yes=81,no=82,missing=82
-						81:leaf=-0.372090489
-						82:leaf=-0.132101238
+						81:leaf=-0.37209028
+						82:leaf=-0.132100582
 					42:[female<3] yes=83,no=84,missing=84
-						83:leaf=0.0972802565
-						84:leaf=-0.184386253
+						83:leaf=0.0972818285
+						84:leaf=-0.184383586
 			10:[educ<10.75] yes=21,no=22,missing=22
 				21:[female<3] yes=43,no=44,missing=44
 					43:[married<1] yes=85,no=86,missing=86
-						85:leaf=-0.0368762836
-						86:leaf=0.027266914
+						85:leaf=-0.0368778929
+						86:leaf=0.0272664614
 					44:[educ<10.25] yes=87,no=88,missing=88
-						87:leaf=0.123076878
-						88:leaf=0.0161826592
+						87:leaf=0.123075642
+						88:leaf=0.0161822401
 				22:[age<61] yes=45,no=46,missing=46
 					45:[age<51] yes=89,no=90,missing=90
-						89:leaf=0.0638248175
-						90:leaf=0.111731537
+						89:leaf=0.0638273582
+						90:leaf=0.111731477
 					46:[outwork<3] yes=91,no=92,missing=92
-						91:leaf=0.0547278635
-						92:leaf=-0.0679671466
+						91:leaf=0.0547272265
+						92:leaf=-0.0679663792
 	2:[age<53] yes=5,no=6,missing=5
 		5:[self<3] yes=11,no=12,missing=12
 			11:[age<42] yes=23,no=24,missing=23
 				23:[married<3] yes=47,no=48,missing=48
 					47:[age<41] yes=93,no=94,missing=93
-						93:leaf=0.0276462846
-						94:leaf=-0.144989729
+						93:leaf=0.0276470128
+						94:leaf=-0.144999102
 					48:[edlevel=Not_HS_grad] yes=96,no=95
-						95:leaf=0.0183289479
-						96:leaf=-0.148651958
+						95:leaf=0.0182965752
+						96:leaf=-0.148681194
 				24:[hhninc<1.69000006] yes=49,no=50,missing=50
-					49:leaf=-0.283628225
+					49:leaf=-0.283620298
 					50:[married<1] yes=97,no=98,missing=98
-						97:leaf=-0.212712377
-						98:leaf=0.061831072
+						97:leaf=-0.212708354
+						98:leaf=0.0618348792
 			12:[edlevel=HS_grad] yes=26,no=25
 				25:[educ<9.5] yes=51,no=52,missing=52
 					51:[outwork<1] yes=99,no=100,missing=100
-						99:leaf=-0.210495129
-						100:leaf=0.00463285623
+						99:leaf=-0.21059081
+						100:leaf=0.00504971249
 					52:[edlevel=Not_HS_grad] yes=102,no=101
-						101:leaf=0.0238294844
-						102:leaf=0.0978199467
+						101:leaf=0.0239694361
+						102:leaf=0.0978267714
 				26:[age<35] yes=53,no=54,missing=53
-					53:leaf=-0.376779169
+					53:leaf=-0.381958574
 					54:[female<1] yes=103,no=104,missing=104
-						103:leaf=0.0292006433
-						104:leaf=-0.0924677402
+						103:leaf=0.0292017702
+						104:leaf=-0.0964749157
 		6:[age<56] yes=13,no=14,missing=14
 			13:[educ<10.75] yes=27,no=28,missing=27
 				27:[self<1] yes=55,no=56,missing=56
 					55:[hhninc<1.70000005] yes=105,no=106,missing=106
-						105:leaf=0.0536984652
-						106:leaf=0.197768062
-					56:leaf=0.0370025299
+						105:leaf=0.0537020415
+						106:leaf=0.197768375
+					56:leaf=0.0370022096
 				28:[female<1] yes=57,no=58,missing=58
 					57:leaf=-0.0485630371
 					58:[hhninc<1.94999993] yes=107,no=108,missing=108
-						107:leaf=0.0630736351
-						108:leaf=0.010541942
+						107:leaf=0.0630762875
+						108:leaf=0.0105561791
 			14:[age<62] yes=29,no=30,missing=30
 				29:[educ<9.5] yes=59,no=60,missing=60
-					59:[age<60] yes=109,no=110,missing=110
-						109:leaf=-0.13470009
-						110:leaf=0.0326266661
+					59:[age<59] yes=109,no=110,missing=110
+						109:leaf=-0.134697169
+						110:leaf=0.0326284282
 					60:[female<3] yes=111,no=112,missing=112
-						111:leaf=0.127783135
-						112:leaf=-0.0598076209
-				30:leaf=-0.114246257
+						111:leaf=0.127783835
+						112:leaf=-0.0598062016
+				30:leaf=-0.114245728
 booster[13]
 0:[hhninc<1.43149996] yes=1,no=2,missing=2
 	1:[educ<10.25] yes=3,no=4,missing=3
@@ -1359,113 +1359,113 @@ booster[13]
 			7:[hhninc<0.892499983] yes=15,no=16,missing=16
 				15:[age<61] yes=31,no=32,missing=32
 					31:[hhninc<0.725000024] yes=61,no=62,missing=62
-						61:leaf=0.0748565122
-						62:leaf=-0.0191910677
-					32:[age<64] yes=63,no=64,missing=63
-						63:leaf=-0.14575015
-						64:leaf=0.0426758565
+						61:leaf=0.0748650506
+						62:leaf=-0.0191831626
+					32:[age<63] yes=63,no=64,missing=63
+						63:leaf=-0.145751163
+						64:leaf=0.042675674
 				16:[outwork<1] yes=33,no=34,missing=33
 					33:[edlevel=Not_HS_grad] yes=66,no=65
-						65:leaf=-0.139907852
-						66:leaf=0.0500915088
-					34:leaf=0.236939386
+						65:leaf=-0.139899969
+						66:leaf=0.0500959866
+					34:leaf=0.236940295
 			8:[married<1] yes=17,no=18,missing=17
 				17:[kids<1] yes=35,no=36,missing=36
 					35:[hhninc<1.199] yes=67,no=68,missing=68
-						67:leaf=0.0616073646
-						68:leaf=-0.0856403261
+						67:leaf=0.0615961663
+						68:leaf=-0.0856643021
 					36:[edlevel=Not_HS_grad] yes=70,no=69
-						69:leaf=0.00809082203
-						70:leaf=-0.413649768
+						69:leaf=0.00794872269
+						70:leaf=-0.413627267
 				18:[hhninc<1.10800004] yes=37,no=38,missing=38
-					37:[age<123] yes=71,no=72,missing=72
-						71:leaf=-0.368162572
-						72:leaf=0.0283654481
+					37:[age<122] yes=71,no=72,missing=72
+						71:leaf=-0.368214846
+						72:leaf=0.0282899309
 					38:[outwork<1] yes=73,no=74,missing=74
-						73:leaf=-0.105366759
-						74:leaf=0.135034725
+						73:leaf=-0.105379984
+						74:leaf=0.135140494
 		4:[hhninc<1.278] yes=9,no=10,missing=10
 			9:[self<1] yes=19,no=20,missing=19
 				19:[married<1] yes=39,no=40,missing=40
-					39:[age<48] yes=75,no=76,missing=75
-						75:leaf=0.0060384078
-						76:leaf=0.139578357
+					39:[age<47] yes=75,no=76,missing=75
+						75:leaf=0.00597752584
+						76:leaf=0.139580518
 					40:[kids<1] yes=77,no=78,missing=77
-						77:leaf=-0.2212082
-						78:leaf=0.0354354233
-				20:leaf=0.232924625
+						77:leaf=-0.221422479
+						78:leaf=0.0359426588
+				20:leaf=0.232924804
 			10:[self<1] yes=21,no=22,missing=22
 				21:[female<1] yes=41,no=42,missing=42
-					41:[age<58] yes=79,no=80,missing=80
-						79:leaf=0.0809808299
-						80:leaf=0.170566037
-					42:leaf=0.239476949
+					41:[age<57] yes=79,no=80,missing=80
+						79:leaf=0.0809818283
+						80:leaf=0.170567453
+					42:leaf=0.23947753
 				22:[married<3] yes=43,no=44,missing=44
-					43:leaf=0.110472806
-					44:leaf=-0.00219194568
+					43:leaf=0.110462643
+					44:leaf=-0.00218967162
 	2:[female<1] yes=5,no=6,missing=5
 		5:[hhninc<1.68199992] yes=11,no=12,missing=12
 			11:[outwork<1] yes=23,no=24,missing=24
 				23:[self<1] yes=45,no=46,missing=46
 					45:[married<1] yes=81,no=82,missing=81
-						81:leaf=-0.0682052076
-						82:leaf=-0.411583334
+						81:leaf=-0.0682029501
+						82:leaf=-0.411583573
 					46:[edlevel=Not_HS_grad] yes=84,no=83
-						83:leaf=0.054877948
-						84:leaf=-0.0659036413
+						83:leaf=0.0548599176
+						84:leaf=-0.0659031197
 				24:[educ<10.75] yes=47,no=48,missing=47
 					47:[age<56] yes=85,no=86,missing=85
-						85:leaf=0.0240774602
-						86:leaf=-0.0817849711
+						85:leaf=0.0240965784
+						86:leaf=-0.0817830861
 					48:[hhninc<1.47749996] yes=87,no=88,missing=88
-						87:leaf=0.0345115364
-						88:leaf=-0.231970176
+						87:leaf=0.0345117785
+						88:leaf=-0.231983051
 			12:[educ<10.25] yes=25,no=26,missing=25
 				25:[married<3] yes=49,no=50,missing=50
 					49:[hhninc<3.56999993] yes=89,no=90,missing=89
-						89:leaf=0.0669336319
-						90:leaf=0.00670215441
-					50:[age<40] yes=91,no=92,missing=91
-						91:leaf=-0.0580401346
-						92:leaf=0.0529318787
+						89:leaf=0.0669337139
+						90:leaf=0.00670227828
+					50:[age<39] yes=91,no=92,missing=91
+						91:leaf=-0.0580398254
+						92:leaf=0.0529295914
 				26:[age<29] yes=51,no=52,missing=52
 					51:[outwork<3] yes=93,no=94,missing=94
-						93:leaf=0.0400769562
-						94:leaf=0.148689628
+						93:leaf=0.0400415324
+						94:leaf=0.148689792
 					52:[hhninc<2.41900015] yes=95,no=96,missing=95
-						95:leaf=-0.000165902486
-						96:leaf=0.0347160548
+						95:leaf=-0.000171495296
+						96:leaf=0.0347184129
 		6:[hhninc<2.00399995] yes=13,no=14,missing=14
 			13:[educ<8] yes=27,no=28,missing=27
-				27:[age<49] yes=53,no=54,missing=53
+				27:[age<48] yes=53,no=54,missing=53
 					53:[edlevel=Not_HS_grad] yes=98,no=97
-						97:leaf=-0.18059057
-						98:leaf=-0.0738289803
+						97:leaf=-0.180595234
+						98:leaf=-0.0738911256
 					54:[age<56] yes=99,no=100,missing=100
-						99:leaf=0.171504676
-						100:leaf=0.00199368945
+						99:leaf=0.171504632
+						100:leaf=0.00199429737
 				28:[age<63] yes=55,no=56,missing=56
 					55:[age<54] yes=101,no=102,missing=102
-						101:leaf=0.0904909074
-						102:leaf=0.00753058214
+						101:leaf=0.0904676244
+						102:leaf=0.00753365969
 					56:[hhninc<1.61500001] yes=103,no=104,missing=104
-						103:leaf=0.0556292012
-						104:leaf=0.159274369
+						103:leaf=0.05559358
+						104:leaf=0.159270629
 			14:[age<63] yes=29,no=30,missing=30
 				29:[hhninc<2.17500019] yes=57,no=58,missing=58
-					57:[age<30] yes=105,no=106,missing=106
-						105:leaf=0.116486214
-						106:leaf=-0.290075153
+					57:[age<29] yes=105,no=106,missing=106
+						105:leaf=0.116493188
+						106:leaf=-0.29007563
 					58:[educ<13.25] yes=107,no=108,missing=107
-						107:leaf=0.0490057766
-						108:leaf=0.117112547
+						107:leaf=0.0489998646
+						108:leaf=0.117111988
 				30:[educ<10.75] yes=59,no=60,missing=59
 					59:[hhninc<2.1500001] yes=109,no=110,missing=109
-						109:leaf=0.0358168297
-						110:leaf=-0.0442108586
+						109:leaf=0.0358104259
+						110:leaf=-0.0442148708
 					60:[hhninc<2.375] yes=111,no=112,missing=111
-						111:leaf=-0.022538038
-						112:leaf=0.104338102
+						111:leaf=-0.0225109253
+						112:leaf=0.104345553
 booster[14]
 0:[hhninc<1.43149996] yes=1,no=2,missing=2
 	1:[educ<10.25] yes=3,no=4,missing=3
@@ -1473,109 +1473,109 @@ booster[14]
 			7:[hhninc<0.892499983] yes=15,no=16,missing=16
 				15:[female<1] yes=31,no=32,missing=31
 					31:[hhninc<0.735000014] yes=61,no=62,missing=62
-						61:leaf=0.0719198883
-						62:leaf=0.0245116409
+						61:leaf=0.0719309375
+						62:leaf=0.0245197136
 					32:[hhninc<0.434000015] yes=63,no=64,missing=64
-						63:leaf=0.0330603756
-						64:leaf=-0.0719257966
+						63:leaf=0.0330603011
+						64:leaf=-0.0719266906
 				16:[outwork<1] yes=33,no=34,missing=33
 					33:[edlevel=Not_HS_grad] yes=66,no=65
-						65:leaf=-0.108544774
-						66:leaf=0.0427581333
-					34:leaf=0.221548885
+						65:leaf=-0.108538695
+						66:leaf=0.0427619852
+					34:leaf=0.221549943
 			8:[married<1] yes=17,no=18,missing=17
 				17:[kids<1] yes=35,no=36,missing=36
 					35:[hhninc<1.199] yes=67,no=68,missing=68
-						67:leaf=0.0472096428
-						68:leaf=-0.055865936
+						67:leaf=0.0472004935
+						68:leaf=-0.0558801517
 					36:[age<39] yes=69,no=70,missing=70
-						69:leaf=-0.00577152055
-						70:leaf=-0.227286234
+						69:leaf=-0.0058774082
+						70:leaf=-0.227263764
 				18:[hhninc<1.15799999] yes=37,no=38,missing=38
-					37:[age<63] yes=71,no=72,missing=72
-						71:leaf=-0.222057551
-						72:leaf=0.0161393769
+					37:[age<62] yes=71,no=72,missing=72
+						71:leaf=-0.222084329
+						72:leaf=0.0160845947
 					38:[outwork<1] yes=73,no=74,missing=74
-						73:leaf=-0.0820359439
-						74:leaf=0.11649958
+						73:leaf=-0.0820461139
+						74:leaf=0.116602316
 		4:[hhninc<1.278] yes=9,no=10,missing=10
 			9:[self<1] yes=19,no=20,missing=19
 				19:[female<1] yes=39,no=40,missing=40
 					39:[educ<11.25] yes=75,no=76,missing=76
-						75:leaf=-0.102717109
-						76:leaf=0.0174821764
+						75:leaf=-0.102823794
+						76:leaf=0.0175058898
 					40:[age<58] yes=77,no=78,missing=78
-						77:leaf=0.104835905
-						78:leaf=0.00414619688
-				20:leaf=0.217743561
+						77:leaf=0.104960524
+						78:leaf=0.004052395
+				20:leaf=0.217743769
 			10:[self<1] yes=21,no=22,missing=22
 				21:[female<1] yes=41,no=42,missing=42
-					41:[age<58] yes=79,no=80,missing=80
-						79:leaf=0.0661073774
-						80:leaf=0.152415425
-					42:leaf=0.224474639
+					41:[age<57] yes=79,no=80,missing=80
+						79:leaf=0.0661082491
+						80:leaf=0.152416795
+					42:leaf=0.224475294
 				22:[married<3] yes=43,no=44,missing=44
-					43:leaf=0.0934163705
-					44:leaf=-0.00175214361
+					43:leaf=0.0934071839
+					44:leaf=-0.00175031635
 	2:[age<42] yes=5,no=6,missing=6
 		5:[age<36] yes=11,no=12,missing=12
 			11:[female<1] yes=23,no=24,missing=24
 				23:[educ<10.75] yes=45,no=46,missing=45
 					45:[self<1] yes=81,no=82,missing=82
-						81:leaf=0.046851676
-						82:leaf=-0.139721662
+						81:leaf=0.0468538664
+						82:leaf=-0.13973923
 					46:[self<1] yes=83,no=84,missing=84
-						83:leaf=-0.165082142
-						84:leaf=-0.0258251037
+						83:leaf=-0.16507268
+						84:leaf=-0.0259448159
 				24:[educ<13.75] yes=47,no=48,missing=47
 					47:[educ<13.25] yes=85,no=86,missing=86
-						85:leaf=0.036753986
-						86:leaf=0.077386871
+						85:leaf=0.036766585
+						86:leaf=0.0773912519
 					48:[hhninc<3.2750001] yes=87,no=88,missing=87
-						87:leaf=-0.130537614
-						88:leaf=0.0837791711
+						87:leaf=-0.130533889
+						88:leaf=0.0837798715
 			12:[outwork<1] yes=25,no=26,missing=25
 				25:[kids<1] yes=49,no=50,missing=49
 					49:[hhninc<1.95000005] yes=89,no=90,missing=90
-						89:leaf=-0.234469488
-						90:leaf=0.00826973375
+						89:leaf=-0.234462678
+						90:leaf=0.00827119872
 					50:[age<38] yes=91,no=92,missing=92
-						91:leaf=-0.163712382
-						92:leaf=-0.0244597252
+						91:leaf=-0.163679659
+						92:leaf=-0.0244594123
 				26:[hhninc<2.45000005] yes=51,no=52,missing=51
 					51:[married<3] yes=93,no=94,missing=94
-						93:leaf=0.104403228
-						94:leaf=-0.0756154656
+						93:leaf=0.104414858
+						94:leaf=-0.0756075978
 					52:[edlevel=Not_HS_grad] yes=96,no=95
-						95:leaf=-0.131463185
-						96:leaf=-0.0156498663
+						95:leaf=-0.132729337
+						96:leaf=-0.0156297218
 		6:[self<1] yes=13,no=14,missing=13
 			13:[hhninc<7.1500001] yes=27,no=28,missing=27
 				27:[educ<9.5] yes=53,no=54,missing=54
 					53:[age<53] yes=97,no=98,missing=97
-						97:leaf=0.0663327277
-						98:leaf=0.0140266083
+						97:leaf=0.0663225353
+						98:leaf=0.0140293771
 					54:[educ<10.75] yes=99,no=100,missing=100
-						99:leaf=0.0156660322
-						100:leaf=0.0382113308
+						99:leaf=0.0156645291
+						100:leaf=0.0382107012
 				28:[married<1] yes=55,no=56,missing=56
-					55:leaf=0.040588662
+					55:leaf=0.0405889489
 					56:[educ<9.75] yes=101,no=102,missing=102
-						101:leaf=-0.00512204552
-						102:leaf=-0.136326417
+						101:leaf=-0.00511978241
+						102:leaf=-0.136326566
 			14:[kids<1] yes=29,no=30,missing=29
 				29:[age<58] yes=57,no=58,missing=58
 					57:[kids<1] yes=103,no=104,missing=104
-						103:leaf=-0.123995289
-						104:leaf=0.0107645113
+						103:leaf=-0.123993903
+						104:leaf=0.0107897585
 					58:[age<60] yes=105,no=106,missing=105
-						105:leaf=0.0918016136
-						106:leaf=-0.0427979268
+						105:leaf=0.0918019563
+						106:leaf=-0.0427974574
 				30:[married<1] yes=59,no=60,missing=59
-					59:leaf=-0.285147041
+					59:leaf=-0.285137564
 					60:[hhninc<2.70000005] yes=107,no=108,missing=108
-						107:leaf=0.0481312722
-						108:leaf=-0.108959891
+						107:leaf=0.048130773
+						108:leaf=-0.108959794
 booster[15]
 0:[hhninc<2.05577087] yes=1,no=2,missing=2
 	1:[age<26] yes=3,no=4,missing=4
@@ -1583,253 +1583,253 @@ booster[15]
 			7:[edlevel=Not_HS_grad] yes=16,no=15
 				15:[educ<15] yes=27,no=28,missing=27
 					27:[edlevel=HS_grad] yes=52,no=51
-						51:leaf=-0.149159908
-						52:leaf=-0.0146827037
-					28:leaf=0.0340678543
+						51:leaf=-0.149160236
+						52:leaf=-0.014687459
+					28:leaf=0.0340708904
 				16:[educ<23] yes=29,no=30,missing=30
-					29:leaf=-0.0385472327
-					30:leaf=0.0410118625
-			8:leaf=-0.201116338
+					29:leaf=-0.0385535508
+					30:leaf=0.0410109535
+			8:leaf=-0.201107711
 		4:[educ<11.75] yes=9,no=10,missing=10
 			9:[age<61] yes=17,no=18,missing=18
 				17:[married<1] yes=31,no=32,missing=32
 					31:[age<58] yes=53,no=54,missing=54
-						53:leaf=0.0873161182
-						54:leaf=-0.135657147
+						53:leaf=0.0872953907
+						54:leaf=-0.135652035
 					32:[outwork<1] yes=55,no=56,missing=55
-						55:leaf=-0.037835855
-						56:leaf=0.0403975919
+						55:leaf=-0.037846338
+						56:leaf=0.0404678807
 				18:[hhninc<1.1910131] yes=33,no=34,missing=34
 					33:[age<63] yes=57,no=58,missing=58
-						57:leaf=-0.185237065
-						58:leaf=0.0259329248
+						57:leaf=-0.185230389
+						58:leaf=0.0259061754
 					34:[kids<1] yes=59,no=60,missing=59
-						59:leaf=0.0961821228
-						60:leaf=0.029313935
+						59:leaf=0.0961779952
+						60:leaf=0.0294024404
 			10:[age<59] yes=19,no=20,missing=20
 				19:[age<47] yes=35,no=36,missing=36
 					35:[age<29] yes=61,no=62,missing=62
-						61:leaf=0.0752759576
-						62:leaf=-0.0321031995
+						61:leaf=0.0752526969
+						62:leaf=-0.032115493
 					36:[married<1] yes=63,no=64,missing=64
-						63:leaf=0.0172169469
-						64:leaf=0.118708558
+						63:leaf=0.0172181167
+						64:leaf=0.118708961
 				20:[married<1] yes=37,no=38,missing=38
 					37:[kids<1] yes=65,no=66,missing=66
-						65:leaf=0.0525999777
-						66:leaf=-0.15941903
+						65:leaf=0.0526061952
+						66:leaf=-0.159433857
 					38:[educ<13.75] yes=67,no=68,missing=67
-						67:leaf=-0.0526678376
-						68:leaf=0.0735847801
+						67:leaf=-0.052689936
+						68:leaf=0.0735872015
 	2:[hhninc<2.30375147] yes=5,no=6,missing=6
 		5:[age<57] yes=11,no=12,missing=11
 			11:[age<28] yes=21,no=22,missing=21
 				21:[married<3] yes=39,no=40,missing=40
-					39:[age<27] yes=69,no=70,missing=70
-						69:leaf=0.15092133
-						70:leaf=-0.0533770137
+					39:[age<26] yes=69,no=70,missing=70
+						69:leaf=0.150920242
+						70:leaf=-0.0535126813
 					40:[educ<9.75] yes=71,no=72,missing=71
-						71:leaf=0.0110603822
-						72:leaf=0.165912732
+						71:leaf=0.0110733034
+						72:leaf=0.165915102
 				22:[educ<9.5] yes=41,no=42,missing=41
-					41:[age<42] yes=73,no=74,missing=74
-						73:leaf=0.0266865529
-						74:leaf=-0.127979741
+					41:[age<41] yes=73,no=74,missing=74
+						73:leaf=0.0266804788
+						74:leaf=-0.127975062
 					42:[age<47] yes=75,no=76,missing=76
-						75:leaf=-0.229363233
-						76:leaf=-0.086573258
+						75:leaf=-0.229355767
+						76:leaf=-0.0865692496
 			12:[edlevel=Not_HS_grad] yes=24,no=23
 				23:[outwork<3] yes=43,no=44,missing=44
 					43:[kids<1] yes=77,no=78,missing=78
-						77:leaf=0.0933856964
-						78:leaf=0.212776184
+						77:leaf=0.0933878124
+						78:leaf=0.212778255
 					44:[female<1] yes=79,no=80,missing=79
-						79:leaf=-0.109239988
-						80:leaf=0.0223416053
+						79:leaf=-0.109239787
+						80:leaf=0.0223428942
 				24:[age<59] yes=45,no=46,missing=46
-					45:leaf=-0.12052387
+					45:leaf=-0.120521583
 					46:[hhninc<2.26320791] yes=81,no=82,missing=82
-						81:leaf=-0.0224510096
-						82:leaf=0.0516196154
+						81:leaf=-0.0224480946
+						82:leaf=0.0516234189
 		6:[hhninc<2.32800007] yes=13,no=14,missing=14
-			13:leaf=0.200454399
+			13:leaf=0.200457186
 			14:[age<60] yes=25,no=26,missing=26
 				25:[age<52] yes=47,no=48,missing=48
 					47:[hhninc<4.8739996] yes=83,no=84,missing=83
-						83:leaf=0.0206963532
-						84:leaf=-0.0420113243
+						83:leaf=0.0206955541
+						84:leaf=-0.0420108438
 					48:[hhninc<2.85848403] yes=85,no=86,missing=85
-						85:leaf=0.0737625659
-						86:leaf=0.0119507341
+						85:leaf=0.0737637877
+						86:leaf=0.0119515201
 				26:[educ<7.75] yes=49,no=50,missing=50
-					49:leaf=-0.215093613
+					49:leaf=-0.215100452
 					50:[hhninc<2.35813856] yes=87,no=88,missing=88
-						87:leaf=-0.17884317
-						88:leaf=0.0119949253
+						87:leaf=-0.178832918
+						88:leaf=0.0119923316
 booster[16]
 0:[hhninc<0.947999954] yes=1,no=2,missing=2
 	1:[hhninc<0.789000034] yes=3,no=4,missing=4
 		3:[edlevel=Not_HS_grad] yes=8,no=7
 			7:[kids<1] yes=15,no=16,missing=16
 				15:[educ<9.75] yes=31,no=32,missing=32
-					31:leaf=0.0174085367
-					32:leaf=-0.126117051
+					31:leaf=0.0174335707
+					32:leaf=-0.12647891
 				16:[age<26] yes=33,no=34,missing=33
-					33:leaf=0.0208741389
-					34:leaf=-0.0139231365
+					33:leaf=0.0208992343
+					34:leaf=-0.0123291779
 			8:[educ<10.25] yes=17,no=18,missing=18
 				17:[age<62] yes=35,no=36,missing=36
 					35:[hhninc<0.414000005] yes=55,no=56,missing=56
-						55:leaf=0.038809374
-						56:leaf=-0.0128208278
-					36:leaf=-0.104329824
-				18:[age<51] yes=37,no=38,missing=38
+						55:leaf=0.0388097167
+						56:leaf=-0.0128263785
+					36:leaf=-0.10433206
+				18:[age<50] yes=37,no=38,missing=38
 					37:[outwork<1] yes=57,no=58,missing=58
-						57:leaf=-0.0145835551
-						58:leaf=0.0266970228
-					38:leaf=0.0913913026
+						57:leaf=-0.0145763205
+						58:leaf=0.0267054513
+					38:leaf=0.0913256779
 		4:[self<1] yes=9,no=10,missing=10
 			9:[kids<1] yes=19,no=20,missing=19
 				19:[educ<22] yes=39,no=40,missing=40
 					39:[married<1] yes=59,no=60,missing=59
-						59:leaf=0.196510836
-						60:leaf=0.0229309089
-					40:leaf=0.0129645886
+						59:leaf=0.196509138
+						60:leaf=0.0229301155
+					40:leaf=0.0129523389
 				20:[edlevel=Not_HS_grad] yes=42,no=41
 					41:[female<3] yes=61,no=62,missing=62
-						61:leaf=-0.0546085835
-						62:leaf=0.0217463002
-					42:leaf=0.0442133509
+						61:leaf=-0.0545729697
+						62:leaf=0.0217445623
+					42:leaf=0.0442198664
 			10:[age<63] yes=21,no=22,missing=21
-				21:leaf=-0.0691059977
-				22:leaf=0.0546384864
+				21:leaf=-0.0690803155
+				22:leaf=0.0546416566
 	2:[hhninc<1.02499998] yes=5,no=6,missing=6
-		5:[age<30] yes=11,no=12,missing=11
+		5:[age<29] yes=11,no=12,missing=11
 			11:[educ<26] yes=23,no=24,missing=24
 				23:[female<1] yes=43,no=44,missing=43
 					43:[edlevel=Coll/Univ] yes=64,no=63
-						63:leaf=-0.0886896476
-						64:leaf=0.000124563696
-					44:leaf=0.00908986665
-				24:leaf=0.115416713
+						63:leaf=-0.08861994
+						64:leaf=0.000123152233
+					44:leaf=0.00902341027
+				24:leaf=0.115420885
 			12:[female<1] yes=25,no=26,missing=26
-				25:leaf=0.0421190746
+				25:leaf=0.0420968235
 				26:[edlevel=Coll/Univ] yes=46,no=45
 					45:[married<3] yes=65,no=66,missing=66
-						65:leaf=-0.271963626
-						66:leaf=-0.09098728
-					46:leaf=0.00828743819
+						65:leaf=-0.271947265
+						66:leaf=-0.0910317749
+					46:leaf=0.00830175728
 		6:[hhninc<1.43149996] yes=13,no=14,missing=14
 			13:[educ<10.25] yes=27,no=28,missing=27
 				27:[age<61] yes=47,no=48,missing=48
-					47:[age<54] yes=67,no=68,missing=68
-						67:leaf=-0.0248262398
-						68:leaf=0.11192029
+					47:[age<53] yes=67,no=68,missing=68
+						67:leaf=-0.0248345044
+						68:leaf=0.111901283
 					48:[married<3] yes=69,no=70,missing=70
-						69:leaf=-0.017585367
-						70:leaf=-0.229321033
+						69:leaf=-0.0174038969
+						70:leaf=-0.22944741
 				28:[educ<11.75] yes=49,no=50,missing=50
 					49:[self<3] yes=71,no=72,missing=72
-						71:leaf=0.124329604
-						72:leaf=0.0332583413
-					50:[age<46] yes=73,no=74,missing=73
-						73:leaf=-0.114442691
-						74:leaf=-0.00440171175
+						71:leaf=0.124322638
+						72:leaf=0.0332191959
+					50:[age<45] yes=73,no=74,missing=73
+						73:leaf=-0.114661582
+						74:leaf=-0.00439585745
 			14:[hhninc<1.61500001] yes=29,no=30,missing=30
 				29:[age<52] yes=51,no=52,missing=51
 					51:[age<39] yes=75,no=76,missing=75
-						75:leaf=-0.0379216708
-						76:leaf=-0.135964006
+						75:leaf=-0.0379745364
+						76:leaf=-0.136089146
 					52:[age<53] yes=77,no=78,missing=78
-						77:leaf=0.148412481
-						78:leaf=-0.00312289363
+						77:leaf=0.148418248
+						78:leaf=-0.00312189083
 				30:[hhninc<1.74000001] yes=53,no=54,missing=54
 					53:[female<3] yes=79,no=80,missing=80
-						79:leaf=0.0916775614
-						80:leaf=-0.0730154961
+						79:leaf=0.091672495
+						80:leaf=-0.0730172247
 					54:[outwork<1] yes=81,no=82,missing=81
-						81:leaf=0.0109513393
-						82:leaf=0.0239703171
+						81:leaf=0.0109530007
+						82:leaf=0.0239636581
 booster[17]
 0:[hhninc<0.947999954] yes=1,no=2,missing=2
 	1:[hhninc<0.789000034] yes=3,no=4,missing=4
 		3:[edlevel=Not_HS_grad] yes=8,no=7
 			7:[kids<1] yes=15,no=16,missing=16
 				15:[educ<9.75] yes=31,no=32,missing=32
-					31:leaf=0.0148048177
-					32:leaf=-0.0921257883
+					31:leaf=0.0148261311
+					32:leaf=-0.0923778713
 				16:[age<26] yes=33,no=34,missing=33
-					33:leaf=0.0168388132
-					34:leaf=-0.011082923
+					33:leaf=0.0168592464
+					34:leaf=-0.00981951691
 			8:[educ<10.25] yes=17,no=18,missing=18
 				17:[age<62] yes=35,no=36,missing=36
 					35:[hhninc<0.414000005] yes=57,no=58,missing=58
-						57:leaf=0.0330717154
-						58:leaf=-0.00986481085
-					36:leaf=-0.0812405795
-				18:[age<51] yes=37,no=38,missing=38
-					37:[age<36] yes=59,no=60,missing=60
-						59:leaf=0.0228261631
-						60:leaf=-0.0131693771
-					38:leaf=0.0744300261
+						57:leaf=0.0330719985
+						58:leaf=-0.00986908004
+					36:leaf=-0.081242308
+				18:[age<50] yes=37,no=38,missing=38
+					37:[age<35] yes=59,no=60,missing=60
+						59:leaf=0.0228554457
+						60:leaf=-0.0131922811
+					38:leaf=0.0743725896
 		4:[female<1] yes=9,no=10,missing=9
 			9:[hhninc<0.925500035] yes=19,no=20,missing=20
 				19:[outwork<3] yes=39,no=40,missing=40
-					39:[age<109] yes=61,no=62,missing=62
-						61:leaf=0.190493539
-						62:leaf=0.0516293086
-					40:leaf=0.0195085425
-				20:leaf=0.0327495113
+					39:[age<108] yes=61,no=62,missing=62
+						61:leaf=0.190491989
+						62:leaf=0.0516457446
+					40:leaf=0.0195078384
+				20:leaf=0.0327389352
 			10:[age<63] yes=21,no=22,missing=22
 				21:[hhninc<0.800999999] yes=41,no=42,missing=42
-					41:leaf=0.0305720288
-					42:leaf=-0.116204679
-				22:leaf=0.102380157
+					41:leaf=0.0305747949
+					42:leaf=-0.116197646
+				22:leaf=0.102385521
 	2:[hhninc<1.19001293] yes=5,no=6,missing=6
 		5:[educ<27] yes=11,no=12,missing=12
 			11:[age<59] yes=23,no=24,missing=24
-				23:[age<57] yes=43,no=44,missing=44
+				23:[age<56] yes=43,no=44,missing=44
 					43:[kids<1] yes=63,no=64,missing=63
-						63:leaf=-0.0191239025
-						64:leaf=-0.113963
+						63:leaf=-0.0191772245
+						64:leaf=-0.114023171
 					44:[age<58] yes=65,no=66,missing=66
-						65:leaf=0.083096832
-						66:leaf=0.0132939583
+						65:leaf=0.0830834284
+						66:leaf=0.0133023048
 				24:[age<63] yes=45,no=46,missing=46
-					45:leaf=-0.175680473
+					45:leaf=-0.175669923
 					46:[outwork<3] yes=67,no=68,missing=68
-						67:leaf=-0.0249430183
-						68:leaf=-0.113655865
+						67:leaf=-0.0249485467
+						68:leaf=-0.113673173
 			12:[age<30] yes=25,no=26,missing=25
-				25:leaf=0.10188432
+				25:leaf=0.101866655
 				26:[edlevel=Not_HS_grad] yes=48,no=47
-					47:leaf=0.0428251289
-					48:leaf=-0.140294582
+					47:leaf=0.0428222828
+					48:leaf=-0.140322641
 		6:[hhninc<1.43149996] yes=13,no=14,missing=14
-			13:[age<28] yes=27,no=28,missing=28
+			13:[age<27] yes=27,no=28,missing=28
 				27:[outwork<1] yes=49,no=50,missing=50
-					49:leaf=-0.147529423
-					50:leaf=-0.0312934741
+					49:leaf=-0.14752166
+					50:leaf=-0.0312898457
 				28:[self<1] yes=51,no=52,missing=51
 					51:[age<64] yes=69,no=70,missing=70
-						69:leaf=0.0655296743
-						70:leaf=-0.0301545821
-					52:leaf=0.181441963
+						69:leaf=0.0655154288
+						70:leaf=-0.0300091058
+					52:leaf=0.181443259
 			14:[married<1] yes=29,no=30,missing=30
 				29:[kids<1] yes=53,no=54,missing=54
 					53:[edlevel=Grad_School] yes=72,no=71
-						71:leaf=-0.0148808928
-						72:leaf=0.115282848
+						71:leaf=-0.0148752602
+						72:leaf=0.115288787
 					54:[hhninc<2.75] yes=73,no=74,missing=74
-						73:leaf=0.0168677531
-						74:leaf=0.0780612826
+						73:leaf=0.0168546401
+						74:leaf=0.0780666173
 				30:[age<42] yes=55,no=56,missing=56
 					55:[hhninc<4.35000038] yes=75,no=76,missing=75
-						75:leaf=0.000637103221
-						76:leaf=-0.090792954
+						75:leaf=0.000625586312
+						76:leaf=-0.0907110572
 					56:[hhninc<1.61500001] yes=77,no=78,missing=77
-						77:leaf=-0.00319638941
-						78:leaf=0.0183094181
+						77:leaf=-0.00320615876
+						78:leaf=0.018312173
 booster[18]
 0:[hhninc<2.74950004] yes=1,no=2,missing=2
 	1:[hhninc<2.69000006] yes=3,no=4,missing=4
@@ -1837,111 +1837,111 @@ booster[18]
 			7:[age<42] yes=15,no=16,missing=15
 				15:[hhninc<1.90999997] yes=31,no=32,missing=32
 					31:[self<1] yes=63,no=64,missing=63
-						63:leaf=0.00607909914
-						64:leaf=0.163231909
+						63:leaf=0.00605789572
+						64:leaf=0.163233221
 					32:[educ<9.5] yes=65,no=66,missing=66
-						65:leaf=0.00831632968
-						66:leaf=0.0734394416
+						65:leaf=0.00832571462
+						66:leaf=0.073445946
 				16:[age<47] yes=33,no=34,missing=34
 					33:[educ<12.75] yes=67,no=68,missing=67
-						67:leaf=-0.076495111
-						68:leaf=0.0966154411
+						67:leaf=-0.0764804855
+						68:leaf=0.0966203436
 					34:[age<52] yes=69,no=70,missing=70
-						69:leaf=0.0462178066
-						70:leaf=0.00246698526
+						69:leaf=0.0462237112
+						70:leaf=0.00246738549
 			8:[outwork<1] yes=17,no=18,missing=18
 				17:[age<34] yes=35,no=36,missing=35
 					35:[married<1] yes=71,no=72,missing=71
-						71:leaf=-0.0329463929
-						72:leaf=-0.224020913
+						71:leaf=-0.0330418684
+						72:leaf=-0.224032715
 					36:[hhninc<2.42750001] yes=73,no=74,missing=74
-						73:leaf=0.00783535279
-						74:leaf=-0.158953518
+						73:leaf=0.0078396406
+						74:leaf=-0.158952877
 				18:[age<50] yes=37,no=38,missing=37
 					37:[educ<9.75] yes=75,no=76,missing=76
-						75:leaf=-0.0767351314
-						76:leaf=0.017980244
-					38:[age<56] yes=77,no=78,missing=78
-						77:leaf=0.10657309
-						78:leaf=-0.0274613593
+						75:leaf=-0.0764847249
+						76:leaf=0.0179656073
+					38:[age<55] yes=77,no=78,missing=78
+						77:leaf=0.106563978
+						78:leaf=-0.0274745524
 		4:[self<1] yes=9,no=10,missing=10
 			9:[kids<1] yes=19,no=20,missing=19
-				19:[age<44] yes=39,no=40,missing=39
+				19:[age<43] yes=39,no=40,missing=39
 					39:[edlevel=Coll/Univ] yes=80,no=79
-						79:leaf=-0.232368991
-						80:leaf=0.00701368134
+						79:leaf=-0.232368588
+						80:leaf=0.00703160511
 					40:[educ<11] yes=81,no=82,missing=81
-						81:leaf=-0.058375001
-						82:leaf=0.124586277
-				20:[age<35] yes=41,no=42,missing=41
+						81:leaf=-0.0583724827
+						82:leaf=0.124586433
+				20:[age<34] yes=41,no=42,missing=41
 					41:[educ<11] yes=83,no=84,missing=83
-						83:leaf=0.158243388
-						84:leaf=0.0350782648
+						83:leaf=0.158244565
+						84:leaf=0.0350779295
 					42:[female<1] yes=85,no=86,missing=86
-						85:leaf=0.0775671005
-						86:leaf=-0.061226014
+						85:leaf=0.0775669068
+						86:leaf=-0.0612284243
 			10:[edlevel=Not_HS_grad] yes=22,no=21
 				21:[age<56] yes=43,no=44,missing=43
-					43:leaf=0.230625242
-					44:leaf=0.0610601828
+					43:leaf=0.230625585
+					44:leaf=0.0610590838
 				22:[outwork<3] yes=45,no=46,missing=46
-					45:leaf=0.00923883542
-					46:leaf=0.0941243842
+					45:leaf=0.00924770441
+					46:leaf=0.0940679908
 	2:[edlevel=HS_grad] yes=6,no=5
 		5:[self<1] yes=11,no=12,missing=11
 			11:[age<33] yes=23,no=24,missing=23
 				23:[educ<13.75] yes=47,no=48,missing=47
 					47:[hhninc<3.66522455] yes=87,no=88,missing=88
-						87:leaf=-0.0203147549
-						88:leaf=0.011576199
+						87:leaf=-0.0203132555
+						88:leaf=0.0115794735
 					48:[hhninc<3.2750001] yes=89,no=90,missing=89
-						89:leaf=-0.106817074
-						90:leaf=0.00925071444
+						89:leaf=-0.106812999
+						90:leaf=0.00925663579
 				24:[age<36] yes=49,no=50,missing=50
 					49:[educ<11.75] yes=91,no=92,missing=91
-						91:leaf=0.0825067312
-						92:leaf=-0.136535197
+						91:leaf=0.0825134665
+						92:leaf=-0.136533633
 					50:[age<42] yes=93,no=94,missing=94
-						93:leaf=-0.0257291999
-						94:leaf=0.0147117572
+						93:leaf=-0.0257060416
+						94:leaf=0.0147119435
 			12:[kids<1] yes=25,no=26,missing=25
 				25:[female<3] yes=51,no=52,missing=52
 					51:[outwork<1] yes=95,no=96,missing=95
-						95:leaf=-0.0671997517
-						96:leaf=0.113593303
+						95:leaf=-0.0672000423
+						96:leaf=0.113593847
 					52:[educ<10.75] yes=97,no=98,missing=97
-						97:leaf=0.104997061
-						98:leaf=-0.101040833
+						97:leaf=0.104997113
+						98:leaf=-0.101040415
 				26:[edlevel=Not_HS_grad] yes=54,no=53
 					53:[educ<24] yes=99,no=100,missing=100
-						99:leaf=0.0597312674
-						100:leaf=-0.19626382
-					54:leaf=-0.275087357
+						99:leaf=0.0597266965
+						100:leaf=-0.196262285
+					54:leaf=-0.275086433
 		6:[kids<1] yes=13,no=14,missing=13
 			13:[age<58] yes=27,no=28,missing=27
 				27:[self<3] yes=55,no=56,missing=56
 					55:[hhninc<3.1500001] yes=101,no=102,missing=102
-						101:leaf=-0.0814715326
-						102:leaf=0.0619518831
+						101:leaf=-0.0814363509
+						102:leaf=0.0619696155
 					56:[hhninc<5] yes=103,no=104,missing=104
-						103:leaf=0.105482057
-						104:leaf=-0.1829447
-				28:[age<63] yes=57,no=58,missing=58
-					57:leaf=-0.296403795
-					58:leaf=0.0128209097
+						103:leaf=0.105479904
+						104:leaf=-0.182892665
+				28:[age<62] yes=57,no=58,missing=58
+					57:leaf=-0.296401978
+					58:leaf=0.012824595
 			14:[hhninc<3.75] yes=29,no=30,missing=30
-				29:[age<28] yes=59,no=60,missing=59
-					59:leaf=-0.140631512
+				29:[age<27] yes=59,no=60,missing=59
+					59:leaf=-0.140630081
 					60:[female<1] yes=105,no=106,missing=105
-						105:leaf=0.0980823711
-						106:leaf=-0.0349221788
+						105:leaf=0.0980836675
+						106:leaf=-0.0375794172
 				30:[hhninc<4.55000019] yes=61,no=62,missing=61
 					61:[outwork<1] yes=107,no=108,missing=107
-						107:leaf=-0.314714462
-						108:leaf=-0.0901151597
+						107:leaf=-0.313964665
+						108:leaf=-0.0905784443
 					62:[age<41] yes=109,no=110,missing=109
-						109:leaf=-0.0779896453
-						110:leaf=0.0110673383
+						109:leaf=-0.0780054554
+						110:leaf=0.0110649653
 booster[19]
 0:[hhninc<2.05710196] yes=1,no=2,missing=2
 	1:[age<26] yes=3,no=4,missing=4
@@ -1949,169 +1949,169 @@ booster[19]
 			7:[edlevel=Not_HS_grad] yes=16,no=15
 				15:[educ<32] yes=29,no=30,missing=30
 					29:[outwork<1] yes=51,no=52,missing=52
-						51:leaf=0.0239693448
-						52:leaf=-0.0148334168
+						51:leaf=0.0239768084
+						52:leaf=-0.0147875054
 					30:[hhninc<1.8499999] yes=53,no=54,missing=54
-						53:leaf=-0.127267599
-						54:leaf=0.00146045303
+						53:leaf=-0.127252638
+						54:leaf=0.00146204676
 				16:[educ<23] yes=31,no=32,missing=32
-					31:leaf=-0.0353170447
-					32:leaf=0.0354784019
-			8:leaf=-0.132346198
+					31:leaf=-0.0353127867
+					32:leaf=0.0354775116
+			8:leaf=-0.132330418
 		4:[educ<9.5] yes=9,no=10,missing=10
 			9:[hhninc<1.78999996] yes=17,no=18,missing=18
 				17:[hhninc<1.63092542] yes=33,no=34,missing=34
 					33:[hhninc<1.61500001] yes=55,no=56,missing=56
-						55:leaf=0.00647260435
-						56:leaf=0.138923526
+						55:leaf=0.00651020231
+						56:leaf=0.138925716
 					34:[outwork<1] yes=57,no=58,missing=58
-						57:leaf=0.0826816261
-						58:leaf=-0.274129093
+						57:leaf=0.0826902539
+						58:leaf=-0.274246037
 				18:[age<40] yes=35,no=36,missing=35
 					35:[kids<1] yes=59,no=60,missing=59
-						59:leaf=0.155824304
-						60:leaf=-0.00933557935
+						59:leaf=0.155828863
+						60:leaf=-0.00937980041
 					36:[self<1] yes=61,no=62,missing=62
-						61:leaf=0.0539868064
-						62:leaf=-0.134989023
+						61:leaf=0.0539830625
+						62:leaf=-0.135029987
 			10:[married<1] yes=19,no=20,missing=20
 				19:[age<35] yes=37,no=38,missing=38
 					37:[hhninc<1.6500001] yes=63,no=64,missing=64
-						63:leaf=-0.0347443409
-						64:leaf=0.122971378
+						63:leaf=-0.0347560868
+						64:leaf=0.122980461
 					38:[age<61] yes=65,no=66,missing=65
-						65:leaf=0.00176241028
-						66:leaf=0.0925730467
+						65:leaf=0.00176517724
+						66:leaf=0.0925770625
 				20:[female<3] yes=39,no=40,missing=40
 					39:[age<35] yes=67,no=68,missing=68
-						67:leaf=-0.0568179898
-						68:leaf=0.0208292753
+						67:leaf=-0.0566816144
+						68:leaf=0.0208164603
 					40:[hhninc<1.52499998] yes=69,no=70,missing=70
-						69:leaf=0.0133372154
-						70:leaf=-0.0780679509
+						69:leaf=0.0132087348
+						70:leaf=-0.0780577585
 	2:[hhninc<2.40753889] yes=5,no=6,missing=6
 		5:[outwork<1] yes=11,no=12,missing=11
 			11:[age<33] yes=21,no=22,missing=21
 				21:[married<1] yes=41,no=42,missing=42
 					41:[educ<10.75] yes=71,no=72,missing=72
-						71:leaf=-0.161950231
-						72:leaf=-0.0486921184
+						71:leaf=-0.161925301
+						72:leaf=-0.048657883
 					42:[kids<1] yes=73,no=74,missing=74
-						73:leaf=0.0733042955
-						74:leaf=-0.0202174522
+						73:leaf=0.0733135045
+						74:leaf=-0.0202163663
 				22:[age<58] yes=43,no=44,missing=44
 					43:[kids<1] yes=75,no=76,missing=75
-						75:leaf=-0.209915459
-						76:leaf=-0.0356619768
+						75:leaf=-0.209918126
+						76:leaf=-0.0356598906
 					44:[educ<9.75] yes=77,no=78,missing=78
-						77:leaf=-0.129400954
-						78:leaf=0.0253176708
+						77:leaf=-0.12940304
+						78:leaf=0.0253178813
 			12:[hhninc<2.17199993] yes=23,no=24,missing=24
 				23:[kids<1] yes=45,no=46,missing=46
 					45:[female<1] yes=79,no=80,missing=80
-						79:leaf=-0.0652274489
-						80:leaf=-0.232908785
-					46:[age<47] yes=81,no=82,missing=82
-						81:leaf=-0.0709179416
-						82:leaf=0.0546921454
+						79:leaf=-0.0652218163
+						80:leaf=-0.232918948
+					46:[age<46] yes=81,no=82,missing=82
+						81:leaf=-0.0714814961
+						82:leaf=0.0546945967
 				24:[educ<14] yes=47,no=48,missing=48
 					47:[kids<1] yes=83,no=84,missing=83
-						83:leaf=0.095643796
-						84:leaf=-0.0273614116
+						83:leaf=0.0956525952
+						84:leaf=-0.0273725819
 					48:[kids<1] yes=85,no=86,missing=85
-						85:leaf=-0.243910328
-						86:leaf=0.0863139182
+						85:leaf=-0.243925035
+						86:leaf=0.0863043889
 		6:[hhninc<2.44922543] yes=13,no=14,missing=14
 			13:[age<40] yes=25,no=26,missing=26
-				25:leaf=0.040261142
-				26:leaf=0.147425622
+				25:leaf=0.0402433425
+				26:leaf=0.147425771
 			14:[hhninc<2.48500013] yes=27,no=28,missing=28
-				27:leaf=-0.184400558
+				27:leaf=-0.184398904
 				28:[age<63] yes=49,no=50,missing=49
 					49:[hhninc<2.74950004] yes=87,no=88,missing=88
-						87:leaf=0.0257208589
-						88:leaf=0.00406217529
+						87:leaf=0.0257226396
+						88:leaf=0.00406084582
 					50:[kids<3] yes=89,no=90,missing=90
-						89:leaf=-0.075673826
-						90:leaf=0.0520840548
+						89:leaf=-0.0756685436
+						90:leaf=0.0520864129
 booster[20]
 0:[hhninc<0.947999954] yes=1,no=2,missing=2
 	1:[hhninc<0.789000034] yes=3,no=4,missing=4
-		3:[age<42] yes=7,no=8,missing=8
-			7:[age<35] yes=15,no=16,missing=16
+		3:[age<41] yes=7,no=8,missing=8
+			7:[age<34] yes=15,no=16,missing=16
 				15:[hhninc<0.588] yes=29,no=30,missing=30
-					29:leaf=0.0162007585
+					29:leaf=0.0159953255
 					30:[edlevel=HS_grad] yes=52,no=51
-						51:leaf=-0.025440542
-						52:leaf=0.00474459818
-				16:leaf=-0.0876805559
+						51:leaf=-0.0238107312
+						52:leaf=0.00472712144
+				16:leaf=-0.0881951675
 			8:[educ<10.25] yes=17,no=18,missing=18
 				17:[kids<1] yes=31,no=32,missing=32
 					31:[hhninc<0.725000024] yes=53,no=54,missing=54
-						53:leaf=0.0323775187
-						54:leaf=0.000357505342
+						53:leaf=0.0323804393
+						54:leaf=0.000352617411
 					32:[age<60] yes=55,no=56,missing=56
-						55:leaf=0.0141781615
-						56:leaf=-0.072886467
+						55:leaf=0.0141648194
+						56:leaf=-0.0729109049
 				18:[educ<10.75] yes=33,no=34,missing=33
 					33:[edlevel=Not_HS_grad] yes=58,no=57
-						57:leaf=0.0156593472
-						58:leaf=0.0550063364
-					34:leaf=-0.00639765756
+						57:leaf=0.0156989861
+						58:leaf=0.054965388
+					34:leaf=-0.00630193343
 		4:[female<1] yes=9,no=10,missing=9
 			9:[hhninc<0.925500035] yes=19,no=20,missing=20
 				19:[outwork<3] yes=35,no=36,missing=36
-					35:[age<109] yes=59,no=60,missing=60
-						59:leaf=0.169826359
-						60:leaf=0.0429309458
-					36:leaf=0.0152556971
-				20:leaf=0.0304116942
+					35:[age<108] yes=59,no=60,missing=60
+						59:leaf=0.169823557
+						60:leaf=0.0429478325
+					36:leaf=0.0152494134
+				20:leaf=0.0304035973
 			10:[age<63] yes=21,no=22,missing=22
 				21:[self<1] yes=37,no=38,missing=38
 					37:[outwork<3] yes=61,no=62,missing=62
-						61:leaf=-0.0270945057
-						62:leaf=0.0502285846
-					38:leaf=-0.127489537
+						61:leaf=-0.0270709228
+						62:leaf=0.050212346
+					38:leaf=-0.127492398
 				22:[kids<1] yes=39,no=40,missing=40
-					39:leaf=0.11022865
-					40:leaf=0.0293123946
+					39:leaf=0.110227861
+					40:leaf=0.0293204021
 	2:[hhninc<1.19001293] yes=5,no=6,missing=6
 		5:[educ<27] yes=11,no=12,missing=12
 			11:[age<59] yes=23,no=24,missing=24
-				23:[age<57] yes=41,no=42,missing=42
+				23:[age<56] yes=41,no=42,missing=42
 					41:[edlevel=Not_HS_grad] yes=64,no=63
-						63:leaf=0.0115760192
-						64:leaf=-0.0598062389
+						63:leaf=0.0114938179
+						64:leaf=-0.0598325878
 					42:[age<58] yes=65,no=66,missing=66
-						65:leaf=0.0708627254
-						66:leaf=0.00893270317
+						65:leaf=0.0708504319
+						66:leaf=0.00893200189
 				24:[age<63] yes=43,no=44,missing=43
 					43:[self<1] yes=67,no=68,missing=67
-						67:leaf=-0.100047909
-						68:leaf=0.00132049643
-					44:leaf=-0.0172536336
+						67:leaf=-0.100050204
+						68:leaf=0.00131865311
+					44:leaf=-0.0172759015
 			12:[age<30] yes=25,no=26,missing=25
-				25:leaf=0.0856405795
+				25:leaf=0.0856206492
 				26:[edlevel=Not_HS_grad] yes=46,no=45
-					45:leaf=0.0391873606
-					46:leaf=-0.114340223
+					45:leaf=0.0391879193
+					46:leaf=-0.114337824
 		6:[hhninc<1.199] yes=13,no=14,missing=14
-			13:leaf=0.132875502
+			13:leaf=0.132883668
 			14:[hhninc<4.66499996] yes=27,no=28,missing=27
 				27:[hhninc<4.55052185] yes=47,no=48,missing=47
 					47:[edlevel=Grad_School] yes=70,no=69
-						69:leaf=0.00330081256
-						70:leaf=0.0377448797
+						69:leaf=0.00329952897
+						70:leaf=0.0377490148
 					48:[educ<10.75] yes=71,no=72,missing=72
-						71:leaf=0.158212036
-						72:leaf=-0.0981861278
+						71:leaf=0.158211067
+						72:leaf=-0.0981657356
 				28:[hhninc<5.73000002] yes=49,no=50,missing=50
 					49:[married<3] yes=73,no=74,missing=74
-						73:leaf=-0.0114243962
-						74:leaf=-0.138030455
+						73:leaf=-0.0114211719
+						74:leaf=-0.138039425
 					50:[kids<3] yes=75,no=76,missing=76
-						75:leaf=-0.0109921936
-						76:leaf=0.112188786
+						75:leaf=-0.0109953322
+						76:leaf=0.11218632
 booster[21]
 0:[hhninc<1.43149996] yes=1,no=2,missing=2
 	1:[married<1] yes=3,no=4,missing=3
@@ -2119,91 +2119,91 @@ booster[21]
 			7:[hhninc<1.23947001] yes=15,no=16,missing=16
 				15:[female<3] yes=29,no=30,missing=30
 					29:[age<59] yes=55,no=56,missing=55
-						55:leaf=0.0377240293
-						56:leaf=-0.0200919416
-					30:[age<63] yes=57,no=58,missing=58
-						57:leaf=-0.165775955
-						58:leaf=-0.0222780667
+						55:leaf=0.0377750359
+						56:leaf=-0.0200976133
+					30:[age<62] yes=57,no=58,missing=58
+						57:leaf=-0.165768862
+						58:leaf=-0.0223005228
 				16:[age<63] yes=31,no=32,missing=32
-					31:[age<54] yes=59,no=60,missing=60
-						59:leaf=-0.0638077408
-						60:leaf=0.0641242713
+					31:[age<53] yes=59,no=60,missing=60
+						59:leaf=-0.0637966245
+						60:leaf=0.0641246662
 					32:[hhninc<1.41149998] yes=61,no=62,missing=62
-						61:leaf=-0.290434301
-						62:leaf=0.0170386843
+						61:leaf=-0.290671706
+						62:leaf=0.0170508362
 			8:[edlevel=Not_HS_grad] yes=18,no=17
 				17:[female<3] yes=33,no=34,missing=34
 					33:[age<58] yes=63,no=64,missing=63
-						63:leaf=-0.0608111247
-						64:leaf=-0.0140589019
-					34:[age<77] yes=65,no=66,missing=66
-						65:leaf=0.00859960075
-						66:leaf=0.0366047211
+						63:leaf=-0.0608842298
+						64:leaf=-0.0140450094
+					34:[age<76] yes=65,no=66,missing=66
+						65:leaf=0.00842735451
+						66:leaf=0.0366192088
 				18:[age<51] yes=35,no=36,missing=35
 					35:[outwork<3] yes=67,no=68,missing=68
-						67:leaf=0.0158027373
-						68:leaf=-0.024909066
-					36:leaf=0.17000556
+						67:leaf=0.0158157889
+						68:leaf=-0.0248897914
+					36:leaf=0.170008391
 		4:[hhninc<1.27349997] yes=9,no=10,missing=10
 			9:[self<1] yes=19,no=20,missing=19
 				19:[educ<9.75] yes=37,no=38,missing=37
 					37:[hhninc<1.22350001] yes=69,no=70,missing=70
-						69:leaf=0.0347848572
-						70:leaf=-0.144201532
+						69:leaf=0.034735281
+						70:leaf=-0.1446421
 					38:[hhninc<1.10000002] yes=71,no=72,missing=72
-						71:leaf=-0.00733538996
-						72:leaf=-0.149351344
-				20:leaf=0.142449349
-			10:[age<62] yes=21,no=22,missing=21
+						71:leaf=-0.00737803383
+						72:leaf=-0.149495974
+				20:leaf=0.14245227
+			10:[age<61] yes=21,no=22,missing=21
 				21:[educ<8] yes=39,no=40,missing=40
-					39:leaf=0.00114815205
+					39:leaf=0.00370178162
 					40:[kids<1] yes=73,no=74,missing=74
-						73:leaf=0.014219108
-						74:leaf=0.119652256
+						73:leaf=0.0141984336
+						74:leaf=0.119619139
 				22:[outwork<3] yes=41,no=42,missing=42
-					41:leaf=-0.0799314529
-					42:leaf=0.023028994
+					41:leaf=-0.0800292045
+					42:leaf=0.0229445286
 	2:[hhninc<1.50481844] yes=5,no=6,missing=6
 		5:[kids<1] yes=11,no=12,missing=12
 			11:[age<64] yes=23,no=24,missing=23
 				23:[outwork<1] yes=43,no=44,missing=43
-					43:[age<61] yes=75,no=76,missing=76
-						75:leaf=0.0563877709
-						76:leaf=-0.107757956
+					43:[age<60] yes=75,no=76,missing=76
+						75:leaf=0.0563910194
+						76:leaf=-0.107721306
 					44:[hhninc<1.47749996] yes=77,no=78,missing=78
-						77:leaf=-0.0975029245
-						78:leaf=-0.438328594
+						77:leaf=-0.0974806473
+						78:leaf=-0.438336134
 				24:[edlevel=Not_HS_grad] yes=46,no=45
-					45:leaf=0.0177267417
-					46:leaf=0.10381531
+					45:leaf=0.0177291315
+					46:leaf=0.103823312
 			12:[age<51] yes=25,no=26,missing=26
 				25:[educ<10.75] yes=47,no=48,missing=48
 					47:[hhninc<1.47500002] yes=79,no=80,missing=80
-						79:leaf=-0.0256033037
-						80:leaf=-0.227088481
-					48:leaf=0.0601472892
+						79:leaf=-0.02446579
+						80:leaf=-0.227631912
+					48:leaf=0.0601315349
 				26:[outwork<3] yes=49,no=50,missing=50
 					49:[educ<21] yes=81,no=82,missing=82
-						81:leaf=0.104526915
-						82:leaf=-0.000791519589
-					50:[age<60] yes=83,no=84,missing=84
-						83:leaf=0.0708527341
-						84:leaf=-0.132533416
+						81:leaf=0.104493335
+						82:leaf=-0.000810089812
+					50:[age<59] yes=83,no=84,missing=84
+						83:leaf=0.0708561987
+						84:leaf=-0.132528469
 		6:[hhninc<1.53499997] yes=13,no=14,missing=14
-			13:leaf=0.141388655
+			13:leaf=0.141391456
 			14:[hhninc<1.61500001] yes=27,no=28,missing=28
-				27:[age<30] yes=51,no=52,missing=52
-					51:leaf=0.0643928498
+				27:[age<29] yes=51,no=52,missing=52
+					51:leaf=0.064234823
 					52:[kids<1] yes=85,no=86,missing=86
-						85:leaf=0.00447888765
-						86:leaf=-0.0997106507
+						85:leaf=0.00448644161
+						86:leaf=-0.099925302
 				28:[hhninc<1.74000001] yes=53,no=54,missing=54
 					53:[married<3] yes=87,no=88,missing=88
-						87:leaf=0.0746186078
-						88:leaf=-0.0597659945
+						87:leaf=0.074617736
+						88:leaf=-0.0597900413
 					54:[hhninc<1.90999997] yes=89,no=90,missing=90
-						89:leaf=-0.018604124
-						90:leaf=0.00313082081
+						89:leaf=-0.0185987484
+						90:leaf=0.00313000614
 booster[22]
 0:[hhninc<2.12496614] yes=1,no=2,missing=2
 	1:[educ<10.25] yes=3,no=4,missing=4
@@ -2211,93 +2211,93 @@ booster[22]
 			7:[hhninc<1.63092542] yes=13,no=14,missing=14
 				13:[hhninc<1.61500001] yes=25,no=26,missing=26
 					25:[hhninc<1.58500004] yes=49,no=50,missing=50
-						49:leaf=0.0104405899
-						50:leaf=-0.0996957123
+						49:leaf=0.01047906
+						50:leaf=-0.100042038
 					26:[edlevel=Not_HS_grad] yes=52,no=51
-						51:leaf=0.133011431
-						52:leaf=0.034311831
+						51:leaf=0.133013859
+						52:leaf=0.0343165435
 				14:[age<52] yes=27,no=28,missing=27
 					27:[age<49] yes=53,no=54,missing=53
-						53:leaf=-0.0528210253
-						54:leaf=0.0599674135
-					28:leaf=-0.216469869
-			8:[age<38] yes=15,no=16,missing=15
+						53:leaf=-0.0529110394
+						54:leaf=0.0599754862
+					28:leaf=-0.216423035
+			8:[age<37] yes=15,no=16,missing=15
 				15:[kids<3] yes=29,no=30,missing=30
 					29:[hhninc<1.8499999] yes=55,no=56,missing=56
-						55:leaf=-0.064475961
-						56:leaf=0.0832119584
-					30:[age<33] yes=57,no=58,missing=58
-						57:leaf=0.0187704768
-						58:leaf=0.177912787
+						55:leaf=-0.0644685626
+						56:leaf=0.0832019299
+					30:[age<32] yes=57,no=58,missing=58
+						57:leaf=0.0187555645
+						58:leaf=0.177915707
 				16:[age<49] yes=31,no=32,missing=32
 					31:[kids<1] yes=59,no=60,missing=59
-						59:leaf=-0.169311494
-						60:leaf=-0.0187634211
+						59:leaf=-0.169247866
+						60:leaf=-0.0187868923
 					32:[hhninc<1.90999997] yes=61,no=62,missing=62
-						61:leaf=0.101411097
-						62:leaf=-0.0154681616
+						61:leaf=0.101406954
+						62:leaf=-0.0154792424
 		4:[hhninc<1.78999996] yes=9,no=10,missing=10
 			9:[hhninc<1.69650006] yes=17,no=18,missing=18
 				17:[hhninc<1.63999999] yes=33,no=34,missing=34
 					33:[self<1] yes=63,no=64,missing=63
-						63:leaf=0.00327241537
-						64:leaf=0.0762495622
+						63:leaf=0.00327446242
+						64:leaf=0.0762662143
 					34:[hhninc<1.68199992] yes=65,no=66,missing=66
-						65:leaf=-0.139894575
-						66:leaf=-0.0473652706
+						65:leaf=-0.139896408
+						66:leaf=-0.0473640822
 				18:[kids<3] yes=35,no=36,missing=36
 					35:[female<3] yes=67,no=68,missing=68
-						67:leaf=0.0994868055
-						68:leaf=-0.0482286476
+						67:leaf=0.0994853452
+						68:leaf=-0.0482211038
 					36:[age<44] yes=69,no=70,missing=70
-						69:leaf=-0.00987852179
-						70:leaf=-0.153643534
+						69:leaf=-0.00983019173
+						70:leaf=-0.153627038
 			10:[hhninc<1.90999997] yes=19,no=20,missing=20
 				19:[age<60] yes=37,no=38,missing=37
 					37:[educ<11.25] yes=71,no=72,missing=72
-						71:leaf=-0.236997098
-						72:leaf=-0.0486912318
+						71:leaf=-0.236992985
+						72:leaf=-0.0486907475
 					38:[kids<1] yes=73,no=74,missing=74
-						73:leaf=0.0882576704
-						74:leaf=-0.0632079914
+						73:leaf=0.0882583559
+						74:leaf=-0.0631975606
 				20:[age<53] yes=39,no=40,missing=39
 					39:[age<45] yes=75,no=76,missing=75
-						75:leaf=0.00670679798
-						76:leaf=0.114300199
+						75:leaf=0.00668831309
+						76:leaf=0.114301525
 					40:[hhninc<2.10796595] yes=77,no=78,missing=78
-						77:leaf=-0.0672643706
-						78:leaf=0.0726182535
+						77:leaf=-0.0672625899
+						78:leaf=0.0726212263
 	2:[hhninc<2.17500019] yes=5,no=6,missing=6
-		5:leaf=-0.141144618
+		5:leaf=-0.141133279
 		6:[educ<10.6527443] yes=11,no=12,missing=12
 			11:[edlevel=Not_HS_grad] yes=22,no=21
 				21:[educ<8] yes=41,no=42,missing=42
-					41:leaf=0.128085896
+					41:leaf=0.128084049
 					42:[hhninc<3.44500017] yes=79,no=80,missing=80
-						79:leaf=-0.0211976506
-						80:leaf=0.023347076
+						79:leaf=-0.0211947244
+						80:leaf=0.0233484805
 				22:[hhninc<6.1500001] yes=43,no=44,missing=44
 					43:[age<51] yes=81,no=82,missing=82
-						81:leaf=0.0279703401
-						82:leaf=-0.0282607414
+						81:leaf=0.0279697552
+						82:leaf=-0.0282571074
 					44:[age<50] yes=83,no=84,missing=84
-						83:leaf=-0.0826360285
-						84:leaf=-0.00388579816
+						83:leaf=-0.0826424062
+						84:leaf=-0.0038823518
 			12:[hhninc<2.31299996] yes=23,no=24,missing=24
 				23:[age<37] yes=45,no=46,missing=46
 					45:[edlevel=Coll/Univ] yes=86,no=85
-						85:leaf=-0.263583869
-						86:leaf=-0.0477115773
+						85:leaf=-0.26360321
+						86:leaf=-0.0477181114
 					46:[age<41] yes=87,no=88,missing=88
-						87:leaf=0.118966974
-						88:leaf=-0.065385744
+						87:leaf=0.11896459
+						88:leaf=-0.0653727204
 				24:[age<60] yes=47,no=48,missing=47
 					47:[age<52] yes=89,no=90,missing=89
-						89:leaf=0.00357121811
-						90:leaf=0.0380399786
+						89:leaf=0.0035702209
+						90:leaf=0.0380416326
 					48:[educ<14.25] yes=91,no=92,missing=91
-						91:leaf=-0.0593404397
-						92:leaf=0.0549704507
+						91:leaf=-0.0593376718
+						92:leaf=0.0549718142
 booster[23]
 0:[edlevel=Coll/Univ] yes=2,no=1
 	1:[hhninc<3.09805107] yes=3,no=4,missing=3
@@ -2305,101 +2305,101 @@ booster[23]
 			7:[age<42] yes=15,no=16,missing=15
 				15:[educ<11.75] yes=31,no=32,missing=31
 					31:[educ<9.5] yes=61,no=62,missing=62
-						61:leaf=-0.00580067793
-						62:leaf=0.017016219
+						61:leaf=-0.005788818
+						62:leaf=0.0170228463
 					32:[hhninc<2.81027412] yes=63,no=64,missing=63
-						63:leaf=-0.045095399
-						64:leaf=0.0753450543
+						63:leaf=-0.0452211872
+						64:leaf=0.0753506422
 				16:[female<3] yes=33,no=34,missing=34
 					33:[edlevel=Grad_School] yes=66,no=65
-						65:leaf=0.0592966266
-						66:leaf=0.212868348
+						65:leaf=0.0593003146
+						66:leaf=0.212867588
 					34:[kids<1] yes=67,no=68,missing=68
-						67:leaf=0.0607882403
-						68:leaf=-0.313262224
+						67:leaf=0.0607845671
+						68:leaf=-0.313151032
 			8:[age<48] yes=17,no=18,missing=18
 				17:[educ<10.75] yes=35,no=36,missing=35
 					35:[hhninc<3.0250001] yes=69,no=70,missing=70
-						69:leaf=-0.0305453576
-						70:leaf=-0.118236475
+						69:leaf=-0.0305615515
+						70:leaf=-0.11825224
 					36:[female<1] yes=71,no=72,missing=71
-						71:leaf=0.0462106168
-						72:leaf=-0.134309635
+						71:leaf=0.046221666
+						72:leaf=-0.13418673
 				18:[female<3] yes=37,no=38,missing=38
 					37:[married<3] yes=73,no=74,missing=74
-						73:leaf=0.0239954572
-						74:leaf=-0.00854685623
+						73:leaf=0.0239978489
+						74:leaf=-0.00854501221
 					38:[age<54] yes=75,no=76,missing=76
-						75:leaf=-0.0595019422
-						76:leaf=-0.00555839203
+						75:leaf=-0.0595001467
+						76:leaf=-0.00555682462
 		4:[hhninc<3.18833447] yes=9,no=10,missing=10
-			9:[age<119] yes=19,no=20,missing=20
+			9:[age<118] yes=19,no=20,missing=20
 				19:[married<1] yes=39,no=40,missing=40
-					39:leaf=-0.0718640536
+					39:leaf=-0.0718501508
 					40:[outwork<3] yes=77,no=78,missing=78
-						77:leaf=-0.322627336
-						78:leaf=-0.0923894718
+						77:leaf=-0.322609484
+						78:leaf=-0.0923899114
 				20:[outwork<3] yes=41,no=42,missing=42
-					41:leaf=0.0987465158
-					42:leaf=-0.0107649975
+					41:leaf=0.0987418666
+					42:leaf=-0.0107631674
 			10:[age<43] yes=21,no=22,missing=21
 				21:[outwork<1] yes=43,no=44,missing=43
 					43:[hhninc<3.4749999] yes=79,no=80,missing=80
-						79:leaf=-0.121622302
-						80:leaf=-0.0230194163
+						79:leaf=-0.121597491
+						80:leaf=-0.0230147894
 					44:[married<3] yes=81,no=82,missing=82
-						81:leaf=0.0540551655
-						82:leaf=-0.102981329
+						81:leaf=0.0540061407
+						82:leaf=-0.102970459
 				22:[married<1] yes=45,no=46,missing=46
 					45:[age<57] yes=83,no=84,missing=84
-						83:leaf=-0.185018957
-						84:leaf=-0.0192267988
+						83:leaf=-0.185020164
+						84:leaf=-0.0192251075
 					46:[self<1] yes=85,no=86,missing=86
-						85:leaf=0.0395519063
-						86:leaf=-0.0224906541
+						85:leaf=0.0395531021
+						86:leaf=-0.0224959217
 	2:[married<3] yes=5,no=6,missing=6
 		5:[hhninc<4.03250027] yes=11,no=12,missing=12
 			11:[hhninc<3.07499981] yes=23,no=24,missing=24
 				23:[educ<32] yes=47,no=48,missing=48
 					47:[hhninc<2.95000005] yes=87,no=88,missing=88
-						87:leaf=0.0103959907
-						88:leaf=-0.0867719054
-					48:leaf=-0.335563213
+						87:leaf=0.0104012731
+						88:leaf=-0.0867218971
+					48:leaf=-0.335580826
 				24:[female<3] yes=49,no=50,missing=50
 					49:[educ<13.25] yes=89,no=90,missing=89
-						89:leaf=0.0930317342
-						90:leaf=-0.0793845579
-					50:[age<113] yes=91,no=92,missing=92
-						91:leaf=0.158783555
-						92:leaf=0.00275227148
+						89:leaf=0.0930325985
+						90:leaf=-0.0793695003
+					50:[age<112] yes=91,no=92,missing=92
+						91:leaf=0.158785552
+						92:leaf=0.00275100744
 			12:[female<3] yes=25,no=26,missing=26
 				25:[hhninc<5.39999962] yes=51,no=52,missing=51
 					51:[educ<14.25] yes=93,no=94,missing=93
-						93:leaf=-0.14546749
-						94:leaf=-0.0143806646
+						93:leaf=-0.145424232
+						94:leaf=-0.0143804671
 					52:[female<1] yes=95,no=96,missing=96
-						95:leaf=-0.0448934697
-						96:leaf=0.0946060345
-				26:[age<33] yes=53,no=54,missing=54
-					53:leaf=-0.0821544975
-					54:leaf=-0.388341755
+						95:leaf=-0.0448951721
+						96:leaf=0.0946039632
+				26:[age<32] yes=53,no=54,missing=54
+					53:leaf=-0.0821587592
+					54:leaf=-0.388367474
 		6:[female<1] yes=13,no=14,missing=14
 			13:[kids<1] yes=27,no=28,missing=27
 				27:[hhninc<2.4000001] yes=55,no=56,missing=56
-					55:[age<29] yes=97,no=98,missing=98
-						97:leaf=0.0493512638
-						98:leaf=-0.00456896611
-					56:leaf=-0.339813471
-				28:leaf=0.0731237009
-			14:[age<28] yes=29,no=30,missing=29
+					55:[age<28] yes=97,no=98,missing=98
+						97:leaf=0.0493061207
+						98:leaf=-0.00454542646
+					56:leaf=-0.33979395
+				28:leaf=0.0731168389
+			14:[age<27] yes=29,no=30,missing=29
 				29:[age<26] yes=57,no=58,missing=58
-					57:leaf=0.0772265419
+					57:leaf=0.0772265866
 					58:[hhninc<1.72500002] yes=99,no=100,missing=99
-						99:leaf=-0.0828589275
-						100:leaf=0.0245162081
+						99:leaf=-0.0828556567
+						100:leaf=0.0245240536
 				30:[hhninc<4.2082243] yes=59,no=60,missing=59
-					59:leaf=0.159053162
-					60:leaf=-0.0596489124
+					59:leaf=0.159053102
+					60:leaf=-0.0596622787
 booster[24]
 0:[hhninc<4.66499996] yes=1,no=2,missing=1
 	1:[hhninc<4.55052185] yes=3,no=4,missing=3
@@ -2407,101 +2407,101 @@ booster[24]
 			7:[edlevel=HS_grad] yes=16,no=15
 				15:[self<3] yes=29,no=30,missing=30
 					29:[hhninc<3.39450502] yes=57,no=58,missing=57
-						57:leaf=-0.00993661024
-						58:leaf=0.0170025453
+						57:leaf=-0.00994259957
+						58:leaf=0.0170070119
 					30:[hhninc<3.0250001] yes=59,no=60,missing=59
-						59:leaf=0.0217673145
-						60:leaf=-0.0524315611
+						59:leaf=0.0217863023
+						60:leaf=-0.0524379872
 				16:[female<3] yes=31,no=32,missing=32
 					31:[kids<1] yes=61,no=62,missing=61
-						61:leaf=0.0424563028
-						62:leaf=-0.123831578
-					32:[age<29] yes=63,no=64,missing=63
-						63:leaf=0.0297431685
-						64:leaf=0.140888333
+						61:leaf=0.0424542055
+						62:leaf=-0.123562478
+					32:[age<28] yes=63,no=64,missing=63
+						63:leaf=0.0297398157
+						64:leaf=0.140889928
 			8:[edlevel=HS_grad] yes=18,no=17
 				17:[age<36] yes=33,no=34,missing=34
 					33:[age<29] yes=65,no=66,missing=66
-						65:leaf=0.037245322
-						66:leaf=-0.0516321957
+						65:leaf=0.0372555926
+						66:leaf=-0.0516209379
 					34:[outwork<3] yes=67,no=68,missing=68
-						67:leaf=0.0288778301
-						68:leaf=-0.00895252917
+						67:leaf=0.0288880803
+						68:leaf=-0.00894873217
 				18:[age<57] yes=35,no=36,missing=35
 					35:[age<34] yes=69,no=70,missing=69
-						69:leaf=-0.0304491352
-						70:leaf=-0.119632229
+						69:leaf=-0.0306732245
+						70:leaf=-0.119828552
 					36:[hhninc<3] yes=71,no=72,missing=71
-						71:leaf=0.0946151763
-						72:leaf=-0.0962067097
+						71:leaf=0.0946185812
+						72:leaf=-0.0962077007
 		4:[educ<9.75] yes=9,no=10,missing=10
-			9:leaf=0.210574254
+			9:leaf=0.210575372
 			10:[educ<11.25] yes=19,no=20,missing=20
-				19:[age<39] yes=37,no=38,missing=38
-					37:leaf=-0.0343809724
+				19:[age<38] yes=37,no=38,missing=38
+					37:leaf=-0.0344130769
 					38:[age<49] yes=73,no=74,missing=74
-						73:leaf=0.0574911572
-						74:leaf=0.000374700961
+						73:leaf=0.0574855842
+						74:leaf=0.000374986324
 				20:[edlevel=HS_grad] yes=40,no=39
-					39:leaf=-0.140325367
-					40:leaf=-0.0291738864
+					39:leaf=-0.140338883
+					40:leaf=-0.0291133728
 	2:[edlevel=Not_HS_grad] yes=6,no=5
 		5:[kids<1] yes=11,no=12,missing=12
 			11:[female<1] yes=21,no=22,missing=21
 				21:[educ<11.75] yes=41,no=42,missing=41
 					41:[self<3] yes=75,no=76,missing=76
-						75:leaf=-0.27216813
-						76:leaf=-0.0216382891
-					42:[age<36] yes=77,no=78,missing=77
-						77:leaf=-0.0941944122
-						78:leaf=0.0101770163
+						75:leaf=-0.272168577
+						76:leaf=-0.0216302872
+					42:[age<35] yes=77,no=78,missing=77
+						77:leaf=-0.0942013934
+						78:leaf=0.0101726484
 				22:[edlevel=HS_grad] yes=44,no=43
 					43:[educ<11] yes=79,no=80,missing=79
-						79:leaf=0.0291117895
-						80:leaf=-0.0544758849
-					44:leaf=0.113598958
+						79:leaf=0.0291105192
+						80:leaf=-0.0544799156
+					44:leaf=0.113594986
 			12:[edlevel=Grad_School] yes=24,no=23
-				23:[age<45] yes=45,no=46,missing=45
+				23:[age<44] yes=45,no=46,missing=45
 					45:[age<42] yes=81,no=82,missing=81
-						81:leaf=0.0483565032
-						82:leaf=-0.126998082
+						81:leaf=0.0483546481
+						82:leaf=-0.126997501
 					46:[married<3] yes=83,no=84,missing=84
-						83:leaf=0.136337429
-						84:leaf=0.0374253429
+						83:leaf=0.136336938
+						84:leaf=0.0374253802
 				24:[age<40] yes=47,no=48,missing=47
-					47:leaf=-0.0157596488
+					47:leaf=-0.0156382434
 					48:[hhninc<5.10979462] yes=85,no=86,missing=86
-						85:leaf=-0.08276999
-						86:leaf=-0.0283569675
+						85:leaf=-0.082782574
+						86:leaf=-0.0283547584
 		6:[age<49] yes=13,no=14,missing=13
 			13:[hhninc<5.68000031] yes=25,no=26,missing=26
 				25:[married<3] yes=49,no=50,missing=50
 					49:[educ<11.25] yes=87,no=88,missing=87
-						87:leaf=0.0242275149
-						88:leaf=-0.167745054
+						87:leaf=0.0242268983
+						88:leaf=-0.167753547
 					50:[educ<11.25] yes=89,no=90,missing=89
-						89:leaf=-0.253324389
-						90:leaf=0.0491157919
+						89:leaf=-0.253353059
+						90:leaf=0.0491159298
 				26:[outwork<1] yes=51,no=52,missing=52
-					51:[age<39] yes=91,no=92,missing=92
-						91:leaf=0.0150278052
-						92:leaf=0.108636789
+					51:[age<38] yes=91,no=92,missing=92
+						91:leaf=0.0150218476
+						92:leaf=0.108637147
 					52:[hhninc<5.88000011] yes=93,no=94,missing=94
-						93:leaf=0.0529703796
-						94:leaf=-0.105493702
+						93:leaf=0.0529717989
+						94:leaf=-0.105496928
 			14:[outwork<3] yes=27,no=28,missing=28
 				27:[self<1] yes=53,no=54,missing=54
 					53:[educ<11] yes=95,no=96,missing=95
-						95:leaf=-0.242437497
-						96:leaf=-0.061895892
+						95:leaf=-0.24243401
+						96:leaf=-0.0619012788
 					54:[age<56] yes=97,no=98,missing=98
-						97:leaf=0.0117845954
-						98:leaf=-0.0609278046
+						97:leaf=0.0117989322
+						98:leaf=-0.0609265007
 				28:[kids<1] yes=55,no=56,missing=56
-					55:leaf=-0.117376231
+					55:leaf=-0.117375284
 					56:[female<1] yes=99,no=100,missing=100
-						99:leaf=0.0270271599
-						100:leaf=0.0916124135
+						99:leaf=0.0270254761
+						100:leaf=0.0916125923
 booster[25]
 0:[educ<17.5] yes=1,no=2,missing=1
 	1:[educ<16.5] yes=3,no=4,missing=3
@@ -2509,131 +2509,133 @@ booster[25]
 			7:[edlevel=Coll/Univ] yes=16,no=15
 				15:[kids<3] yes=29,no=30,missing=30
 					29:[hhninc<3.7249999] yes=43,no=44,missing=43
-						43:leaf=0.00404267944
-						44:leaf=-0.0273209456
+						43:leaf=0.00404462684
+						44:leaf=-0.0273214448
 					30:[hhninc<3.73494196] yes=45,no=46,missing=45
-						45:leaf=0.00105156598
-						46:leaf=0.0549871884
+						45:leaf=0.0010544036
+						46:leaf=0.0549894497
 				16:[age<44] yes=31,no=32,missing=32
-					31:[age<30] yes=47,no=48,missing=48
-						47:leaf=-0.106444918
-						48:leaf=0.111445799
+					31:[age<29] yes=47,no=48,missing=48
+						47:leaf=-0.106472649
+						48:leaf=0.111445978
 					32:[age<58] yes=49,no=50,missing=49
-						49:leaf=-0.215307906
-						50:leaf=-0.0267163534
+						49:leaf=-0.215299591
+						50:leaf=-0.0267245006
 			8:[hhninc<3.50267267] yes=17,no=18,missing=17
 				17:[hhninc<3.0250001] yes=33,no=34,missing=33
 					33:[hhninc<2.48500013] yes=51,no=52,missing=51
-						51:leaf=-0.0256452467
-						52:leaf=0.0263470504
+						51:leaf=-0.0256727803
+						52:leaf=0.0263847653
 					34:[self<3] yes=53,no=54,missing=54
-						53:leaf=-0.162351325
-						54:leaf=0.0486694835
+						53:leaf=-0.162223205
+						54:leaf=0.0480529033
 				18:[hhninc<4.04948044] yes=35,no=36,missing=36
-					35:[age<44] yes=55,no=56,missing=56
-						55:leaf=-0.0014430806
-						56:leaf=0.0802114606
+					35:[age<43] yes=55,no=56,missing=56
+						55:leaf=-0.00145223935
+						56:leaf=0.0802126601
 					36:[kids<1] yes=57,no=58,missing=57
-						57:leaf=0.0122444583
-						58:leaf=-0.0756090507
+						57:leaf=0.0122517571
+						58:leaf=-0.0754419044
 		4:[hhninc<2.81559253] yes=9,no=10,missing=9
-			9:[age<39] yes=19,no=20,missing=19
-				19:leaf=0.0885907114
-				20:leaf=0.193278611
-			10:leaf=-0.05734846
+			9:[age<38] yes=19,no=20,missing=19
+				19:leaf=0.0886167437
+				20:leaf=0.193276927
+			10:leaf=-0.0573522523
 	2:[hhninc<3.89199591] yes=5,no=6,missing=6
 		5:[hhninc<3.75] yes=11,no=12,missing=12
-			11:[age<54] yes=21,no=22,missing=21
+			11:[age<53] yes=21,no=22,missing=21
 				21:[female<3] yes=37,no=38,missing=38
 					37:[age<28] yes=59,no=60,missing=60
-						59:leaf=-0.106708847
-						60:leaf=0.0476502515
+						59:leaf=-0.106659286
+						60:leaf=0.047665555
 					38:[age<47] yes=61,no=62,missing=61
-						61:leaf=-0.147167474
-						62:leaf=0.0220708549
-				22:leaf=-0.211461723
+						61:leaf=-0.147147506
+						62:leaf=0.0220679399
+				22:leaf=-0.211465567
 			12:[edlevel=Grad_School] yes=24,no=23
-				23:leaf=0.0434428789
-				24:leaf=0.158482045
+				23:leaf=0.0434399359
+				24:leaf=0.158488497
 		6:[hhninc<4.47050571] yes=13,no=14,missing=14
-			13:[age<54] yes=25,no=26,missing=26
-				25:leaf=-0.28556934
-				26:leaf=-0.0893781483
-			14:[age<28] yes=27,no=28,missing=27
+			13:[age<53] yes=25,no=26,missing=26
+				25:leaf=-0.285509497
+				26:leaf=-0.0893544555
+			14:[age<27] yes=27,no=28,missing=27
 				27:[married<1] yes=39,no=40,missing=40
-					39:leaf=-0.0626549646
-					40:leaf=-0.206803024
+					39:leaf=-0.0626262799
+					40:leaf=-0.206770167
 				28:[age<33] yes=41,no=42,missing=42
 					41:[age<30] yes=63,no=64,missing=64
-						63:leaf=0.0313159376
-						64:leaf=0.11674206
+						63:leaf=0.0313332193
+						64:leaf=0.116746739
 					42:[female<3] yes=65,no=66,missing=66
-						65:leaf=-0.0671458691
-						66:leaf=0.0366162173
+						65:leaf=-0.0671236217
+						66:leaf=0.0366193503
 booster[26]
 0:[hhninc<0.947999954] yes=1,no=2,missing=2
 	1:[hhninc<0.877499998] yes=3,no=4,missing=4
 		3:[female<3] yes=7,no=8,missing=8
-			7:[married<3] yes=15,no=16,missing=16
-				15:[age<43] yes=29,no=30,missing=30
-					29:[age<35] yes=45,no=46,missing=46
-						45:leaf=-0.00497423671
-						46:leaf=-0.0693330467
-					30:[hhninc<0.676999986] yes=47,no=48,missing=48
-						47:leaf=-0.0170685556
-						48:leaf=0.0203711521
-				16:[kids<3] yes=31,no=32,missing=32
-					31:leaf=-0.115113698
-					32:leaf=0.00745057687
+			7:[self<1] yes=15,no=16,missing=16
+				15:[age<43] yes=29,no=30,missing=29
+					29:[hhninc<0.633999944] yes=45,no=46,missing=46
+						45:leaf=0.00303251832
+						46:leaf=-0.0774100646
+					30:[educ<10.75] yes=47,no=48,missing=48
+						47:leaf=0.022368867
+						48:leaf=-0.014770247
+				16:[age<53] yes=31,no=32,missing=31
+					31:[edlevel=Not_HS_grad] yes=50,no=49
+						49:leaf=-0.0126191974
+						50:leaf=0.0132064046
+					32:leaf=-0.14024435
 			8:[educ<11.25] yes=17,no=18,missing=18
-				17:leaf=0.0859693438
-				18:leaf=0.0332466178
+				17:leaf=0.0859551579
+				18:leaf=0.0331591852
 		4:[outwork<1] yes=9,no=10,missing=9
 			9:[edlevel=Not_HS_grad] yes=20,no=19
-				19:leaf=-0.0272330232
-				20:leaf=0.00451225508
+				19:leaf=-0.0272523928
+				20:leaf=0.00451170001
 			10:[educ<10] yes=21,no=22,missing=22
-				21:leaf=0.141485542
-				22:leaf=0.0259646475
+				21:leaf=0.141478166
+				22:leaf=0.0259739719
 	2:[hhninc<1.19001293] yes=5,no=6,missing=6
 		5:[female<1] yes=11,no=12,missing=12
 			11:[edlevel=Not_HS_grad] yes=24,no=23
 				23:[edlevel=Coll/Univ] yes=34,no=33
-					33:leaf=0.0197884664
-					34:leaf=0.0590764619
-				24:[age<55] yes=35,no=36,missing=35
-					35:leaf=-0.00605408475
-					36:leaf=0.005972174
-			12:[age<30] yes=25,no=26,missing=25
+					33:leaf=0.0197786167
+					34:leaf=0.0590432175
+				24:[age<54] yes=35,no=36,missing=35
+					35:leaf=-0.00603395561
+					36:leaf=0.00595570076
+			12:[age<29] yes=25,no=26,missing=25
 				25:[outwork<1] yes=37,no=38,missing=38
-					37:leaf=0.0661380365
-					38:[outwork<3] yes=49,no=50,missing=50
-						49:leaf=-0.00774864154
-						50:leaf=-0.0422832146
+					37:leaf=0.066142194
+					38:[outwork<3] yes=51,no=52,missing=52
+						51:leaf=-0.00782548077
+						52:leaf=-0.0422595143
 				26:[educ<9.5] yes=39,no=40,missing=39
-					39:[hhninc<1.10800004] yes=51,no=52,missing=52
-						51:leaf=-0.107695974
-						52:leaf=-0.0245380253
-					40:[married<1] yes=53,no=54,missing=54
-						53:leaf=0.0277082622
-						54:leaf=-0.0673381239
+					39:[hhninc<1.10800004] yes=53,no=54,missing=54
+						53:leaf=-0.107709721
+						54:leaf=-0.0245734993
+					40:[married<1] yes=55,no=56,missing=56
+						55:leaf=0.0277004093
+						56:leaf=-0.0673679113
 		6:[hhninc<1.199] yes=13,no=14,missing=14
-			13:leaf=0.112992384
+			13:leaf=0.112993501
 			14:[self<3] yes=27,no=28,missing=28
 				27:[age<31] yes=41,no=42,missing=42
-					41:[female<3] yes=55,no=56,missing=56
-						55:leaf=-0.00447006198
-						56:leaf=0.0620859712
-					42:[age<32] yes=57,no=58,missing=58
-						57:leaf=-0.0683124289
-						58:leaf=-0.00208068709
+					41:[female<3] yes=57,no=58,missing=58
+						57:leaf=-0.00446357299
+						58:leaf=0.0620823465
+					42:[age<32] yes=59,no=60,missing=60
+						59:leaf=-0.0683168247
+						60:leaf=-0.0020780738
 				28:[age<31] yes=43,no=44,missing=44
-					43:[married<1] yes=59,no=60,missing=59
-						59:leaf=-0.0092032142
-						60:leaf=-0.156741589
-					44:[age<36] yes=61,no=62,missing=62
-						61:leaf=0.0584210083
-						62:leaf=0.00540656596
+					43:[married<1] yes=61,no=62,missing=61
+						61:leaf=-0.0092052063
+						62:leaf=-0.156681284
+					44:[age<36] yes=63,no=64,missing=64
+						63:leaf=0.0584407449
+						64:leaf=0.00539246807
 booster[27]
 0:[age<29] yes=1,no=2,missing=2
 	1:[kids<1] yes=3,no=4,missing=4
@@ -2641,283 +2643,291 @@ booster[27]
 			7:[hhninc<2.07499981] yes=15,no=16,missing=16
 				15:[married<1] yes=29,no=30,missing=30
 					29:[outwork<1] yes=57,no=58,missing=58
-						57:leaf=0.0664081126
-						58:leaf=-0.0257113054
+						57:leaf=0.0664184168
+						58:leaf=-0.0217587333
 					30:[outwork<1] yes=59,no=60,missing=60
-						59:leaf=-0.303571075
-						60:leaf=0.0505112894
+						59:leaf=-0.303583145
+						60:leaf=0.0504825339
 				16:[educ<14] yes=31,no=32,missing=32
 					31:[female<1] yes=61,no=62,missing=62
-						61:leaf=0.0288824234
-						62:leaf=0.149994865
-					32:leaf=-0.0267612897
+						61:leaf=0.028890606
+						62:leaf=0.149996981
+					32:leaf=-0.0267527755
 			8:[married<1] yes=17,no=18,missing=17
 				17:[hhninc<2.9000001] yes=33,no=34,missing=33
 					33:[edlevel=Not_HS_grad] yes=64,no=63
-						63:leaf=-0.0510665812
-						64:leaf=-0.281464815
+						63:leaf=-0.0510592274
+						64:leaf=-0.281463027
 					34:[age<28] yes=65,no=66,missing=66
-						65:leaf=-0.0435813963
-						66:leaf=0.0685870349
+						65:leaf=-0.043571867
+						66:leaf=0.0685943738
 				18:[age<26] yes=35,no=36,missing=36
-					35:leaf=-0.100720204
+					35:leaf=-0.100720979
 					36:[hhninc<6.00000095] yes=67,no=68,missing=68
-						67:leaf=-0.133028254
-						68:leaf=-0.422410399
+						67:leaf=-0.133060545
+						68:leaf=-0.422381103
 		4:[hhninc<3.86999989] yes=9,no=10,missing=9
 			9:[educ<11.25] yes=19,no=20,missing=20
 				19:[female<1] yes=37,no=38,missing=38
 					37:[edlevel=Not_HS_grad] yes=70,no=69
-						69:leaf=0.142217293
-						70:leaf=0.049830094
+						69:leaf=0.142228499
+						70:leaf=0.0498310775
 					38:[hhninc<2.8499999] yes=71,no=72,missing=72
-						71:leaf=-0.000499882211
-						72:leaf=-0.100100458
+						71:leaf=-0.000374615105
+						72:leaf=-0.100124657
 				20:[hhninc<2.2249999] yes=39,no=40,missing=40
 					39:[female<3] yes=73,no=74,missing=74
-						73:leaf=-0.0354212821
-						74:leaf=0.0456905067
+						73:leaf=-0.0359914228
+						74:leaf=0.0457088277
 					40:[outwork<1] yes=75,no=76,missing=76
-						75:leaf=0.0340646133
-						76:leaf=0.122541264
-			10:leaf=-0.149410129
+						75:leaf=0.0340754017
+						76:leaf=0.122572936
+			10:leaf=-0.14943704
 	2:[age<32] yes=5,no=6,missing=6
 		5:[female<3] yes=11,no=12,missing=12
 			11:[educ<36] yes=21,no=22,missing=22
 				21:[married<3] yes=41,no=42,missing=42
 					41:[outwork<3] yes=77,no=78,missing=78
-						77:leaf=-0.0670088306
-						78:leaf=-0.274741441
+						77:leaf=-0.0670058429
+						78:leaf=-0.274733543
 					42:[hhninc<3.63322449] yes=79,no=80,missing=80
-						79:leaf=-0.0485317707
-						80:leaf=0.0758249164
+						79:leaf=-0.0511414632
+						80:leaf=0.0758197606
 				22:[hhninc<3.5250001] yes=43,no=44,missing=44
-					43:leaf=-0.113587849
-					44:leaf=-0.30979377
+					43:leaf=-0.113617092
+					44:leaf=-0.309747934
 			12:[hhninc<1.875] yes=23,no=24,missing=24
 				23:[outwork<3] yes=45,no=46,missing=46
-					45:leaf=-0.190479964
-					46:leaf=0.015469946
+					45:leaf=-0.190620631
+					46:leaf=0.0154893426
 				24:[hhninc<3.6500001] yes=47,no=48,missing=47
 					47:[educ<11.25] yes=81,no=82,missing=81
-						81:leaf=0.113465555
-						82:leaf=0.00145098497
+						81:leaf=0.113473475
+						82:leaf=0.00144487526
 					48:[outwork<1] yes=83,no=84,missing=84
-						83:leaf=-0.134630665
-						84:leaf=-0.0349711701
+						83:leaf=-0.134633288
+						84:leaf=-0.0349862352
 		6:[female<3] yes=13,no=14,missing=14
 			13:[educ<11.6591206] yes=25,no=26,missing=26
 				25:[educ<10.6527443] yes=49,no=50,missing=50
 					49:[age<35] yes=85,no=86,missing=86
-						85:leaf=0.0489194095
-						86:leaf=-0.000230912308
+						85:leaf=0.0488346033
+						86:leaf=-0.000210633327
 					50:[age<58] yes=87,no=88,missing=88
-						87:leaf=-0.00465553487
-						88:leaf=0.0470109954
+						87:leaf=-0.00479489146
+						88:leaf=0.0469708256
 				26:[age<42] yes=51,no=52,missing=51
 					51:[kids<3] yes=89,no=90,missing=90
-						89:leaf=-0.0105368998
-						90:leaf=-0.0560865477
+						89:leaf=-0.0105533246
+						90:leaf=-0.0560813509
 					52:[hhninc<3.4124999] yes=91,no=92,missing=92
-						91:leaf=-0.0155604137
-						92:leaf=0.0299487803
+						91:leaf=-0.0154615417
+						92:leaf=0.0299550649
 			14:[educ<10.25] yes=27,no=28,missing=27
 				27:[edlevel=Coll/Univ] yes=54,no=53
 					53:[age<44] yes=93,no=94,missing=93
-						93:leaf=0.04232179
-						94:leaf=-0.00911021046
-					54:leaf=-0.237364739
+						93:leaf=0.0423203819
+						94:leaf=-0.00911051687
+					54:leaf=-0.23737739
 				28:[married<1] yes=55,no=56,missing=55
 					55:[age<44] yes=95,no=96,missing=96
-						95:leaf=-0.0795699358
-						96:leaf=0.0281738043
+						95:leaf=-0.0795463845
+						96:leaf=0.0281829052
 					56:[hhninc<4.05000019] yes=97,no=98,missing=98
-						97:leaf=-0.0139059061
-						98:leaf=-0.0934349671
+						97:leaf=-0.0139063327
+						98:leaf=-0.0934754759
 booster[28]
 0:[hhninc<2.12496614] yes=1,no=2,missing=2
-	1:[age<55] yes=3,no=4,missing=3
-		3:[hhninc<1.96000004] yes=7,no=8,missing=8
-			7:[educ<9.5] yes=15,no=16,missing=16
-				15:[hhninc<1.75] yes=29,no=30,missing=30
-					29:[age<54] yes=57,no=58,missing=57
-						57:leaf=0.00479343534
-						58:leaf=-0.166220382
-					30:[age<47] yes=59,no=60,missing=60
-						59:leaf=-0.0989742652
-						60:leaf=0.137519509
-				16:[hhninc<1.78999996] yes=31,no=32,missing=32
-					31:[hhninc<1.69650006] yes=61,no=62,missing=62
-						61:leaf=-0.00577097759
-						62:leaf=0.0393067785
-					32:[educ<11.25] yes=63,no=64,missing=64
-						63:leaf=-0.1175045
-						64:leaf=0.00569324475
-			8:[age<27] yes=17,no=18,missing=18
-				17:[edlevel=Not_HS_grad] yes=34,no=33
-					33:leaf=0.0245994069
-					34:leaf=-0.14508
-				18:[educ<10.75] yes=35,no=36,missing=36
-					35:[age<43] yes=65,no=66,missing=65
-						65:leaf=0.0735579431
-						66:leaf=-0.00548298471
-					36:[age<45] yes=67,no=68,missing=67
-						67:leaf=-0.0231840946
-						68:leaf=0.0951419696
-		4:[hhninc<1.63999999] yes=9,no=10,missing=10
-			9:[female<1] yes=19,no=20,missing=19
-				19:[hhninc<1.59500003] yes=37,no=38,missing=38
-					37:[educ<11.25] yes=69,no=70,missing=69
-						69:leaf=-0.0455874428
-						70:leaf=0.061499998
-					38:leaf=0.0752733648
-				20:[hhninc<1.19001293] yes=39,no=40,missing=40
-					39:[age<64] yes=71,no=72,missing=72
-						71:leaf=-0.0234770775
-						72:leaf=0.0533020832
-					40:[hhninc<1.3499999] yes=73,no=74,missing=74
-						73:leaf=0.0969330519
-						74:leaf=0.0203639679
-			10:[age<57] yes=21,no=22,missing=22
+	1:[educ<10.25] yes=3,no=4,missing=4
+		3:[hhninc<1.78999996] yes=7,no=8,missing=8
+			7:[hhninc<1.69000006] yes=15,no=16,missing=16
+				15:[kids<1] yes=29,no=30,missing=29
+					29:[age<59] yes=57,no=58,missing=58
+						57:leaf=0.035360381
+						58:leaf=-0.0093676988
+					30:[age<30] yes=59,no=60,missing=59
+						59:leaf=0.0225294586
+						60:leaf=-0.104068935
+				16:[age<52] yes=31,no=32,missing=31
+					31:leaf=0.0204026923
+					32:leaf=-0.189342007
+			8:[age<49] yes=17,no=18,missing=18
+				17:[age<40] yes=33,no=34,missing=34
+					33:[hhninc<1.81500006] yes=61,no=62,missing=62
+						61:leaf=-0.106591985
+						62:leaf=0.0646823347
+					34:[female<1] yes=63,no=64,missing=64
+						63:leaf=0.0271469448
+						64:leaf=-0.133933231
+				18:[age<55] yes=35,no=36,missing=35
+					35:[female<1] yes=65,no=66,missing=66
+						65:leaf=-0.0136161381
+						66:leaf=0.104453869
+					36:[married<1] yes=67,no=68,missing=67
+						67:leaf=0.0568608493
+						68:leaf=-0.0652917027
+		4:[outwork<1] yes=9,no=10,missing=10
+			9:[educ<10.75] yes=19,no=20,missing=19
+				19:[hhninc<1.25] yes=37,no=38,missing=38
+					37:[age<54] yes=69,no=70,missing=70
+						69:leaf=-0.048819337
+						70:leaf=0.109713241
+					38:[hhninc<1.97500002] yes=71,no=72,missing=72
+						71:leaf=-0.0621109344
+						72:leaf=-0.00194947934
+				20:[age<55] yes=39,no=40,missing=39
+					39:[kids<1] yes=73,no=74,missing=73
+						73:leaf=0.051267188
+						74:leaf=-0.0249032509
+					40:[educ<11.75] yes=75,no=76,missing=76
+						75:leaf=-0.145434693
+						76:leaf=-0.0156297963
+			10:[age<55] yes=21,no=22,missing=22
 				21:[edlevel=Not_HS_grad] yes=42,no=41
-					41:[self<1] yes=75,no=76,missing=76
-						75:leaf=-0.0940196365
-						76:leaf=0.0424696393
-					42:[outwork<1] yes=77,no=78,missing=77
-						77:leaf=-0.312065154
-						78:leaf=-0.114870265
-				22:[hhninc<1.71500003] yes=43,no=44,missing=44
-					43:[edlevel=HS_grad] yes=80,no=79
-						79:leaf=-0.138013572
-						80:leaf=0.0379005037
-					44:[hhninc<1.99900007] yes=81,no=82,missing=82
-						81:leaf=0.0342874601
-						82:leaf=-0.0358856879
+					41:[educ<14.75] yes=77,no=78,missing=77
+						77:leaf=-0.014763589
+						78:leaf=0.115052335
+					42:[kids<3] yes=79,no=80,missing=80
+						79:leaf=0.0539346337
+						80:leaf=-0.0237164572
+				22:[age<61] yes=43,no=44,missing=44
+					43:[married<3] yes=81,no=82,missing=82
+						81:leaf=-0.0898969546
+						82:leaf=0.0573914312
+					44:[educ<11.25] yes=83,no=84,missing=84
+						83:leaf=0.039229311
+						84:leaf=-0.0183286574
 	2:[hhninc<2.29750013] yes=5,no=6,missing=6
-		5:[age<28] yes=11,no=12,missing=12
-			11:leaf=0.124198534
+		5:[age<27] yes=11,no=12,missing=12
+			11:leaf=0.124196723
 			12:[educ<10.25] yes=23,no=24,missing=23
 				23:[kids<1] yes=45,no=46,missing=45
-					45:[self<1] yes=83,no=84,missing=84
-						83:leaf=-0.201030925
-						84:leaf=-0.0482664667
-					46:[female<1] yes=85,no=86,missing=85
-						85:leaf=-0.0465792269
-						86:leaf=0.0744523704
+					45:[self<1] yes=85,no=86,missing=86
+						85:leaf=-0.201024368
+						86:leaf=-0.0482575558
+					46:[female<1] yes=87,no=88,missing=87
+						87:leaf=-0.0465585515
+						88:leaf=0.0744191334
 				24:[outwork<1] yes=47,no=48,missing=47
-					47:[age<43] yes=87,no=88,missing=88
-						87:leaf=-0.0938476846
-						88:leaf=0.0419014618
-					48:[edlevel=Not_HS_grad] yes=90,no=89
-						89:leaf=-0.0223807488
-						90:leaf=-0.152262643
+					47:[age<42] yes=89,no=90,missing=90
+						89:leaf=-0.0936530232
+						90:leaf=0.0419089757
+					48:[edlevel=Not_HS_grad] yes=92,no=91
+						91:leaf=-0.02238282
+						92:leaf=-0.152259216
 		6:[age<60] yes=13,no=14,missing=13
 			13:[age<56] yes=25,no=26,missing=25
 				25:[hhninc<2.30375147] yes=49,no=50,missing=50
-					49:[edlevel=HS_grad] yes=92,no=91
-						91:leaf=-0.11324089
-						92:leaf=0.085083805
-					50:[hhninc<2.31750011] yes=93,no=94,missing=94
-						93:leaf=0.177898392
-						94:leaf=-0.000349646143
+					49:[edlevel=HS_grad] yes=94,no=93
+						93:leaf=-0.113240734
+						94:leaf=0.0850839168
+					50:[hhninc<2.31750011] yes=95,no=96,missing=96
+						95:leaf=0.177899301
+						96:leaf=-0.000346731977
 				26:[hhninc<2.86748409] yes=51,no=52,missing=51
-					51:[educ<9.75] yes=95,no=96,missing=95
-						95:leaf=0.000148429404
-						96:leaf=0.0920685381
-					52:[outwork<1] yes=97,no=98,missing=98
-						97:leaf=0.0125271305
-						98:leaf=-0.0809355006
+					51:[educ<9.75] yes=97,no=98,missing=97
+						97:leaf=0.000144710546
+						98:leaf=0.0920708925
+					52:[outwork<1] yes=99,no=100,missing=100
+						99:leaf=0.0125168646
+						100:leaf=-0.0809330344
 			14:[hhninc<2.51839447] yes=27,no=28,missing=28
 				27:[educ<10.75] yes=53,no=54,missing=54
-					53:[female<3] yes=99,no=100,missing=100
-						99:leaf=-0.348566443
-						100:leaf=-0.068583414
-					54:[hhninc<2.36299992] yes=101,no=102,missing=102
-						101:leaf=0.0592489205
-						102:leaf=-0.113680631
+					53:[female<3] yes=101,no=102,missing=102
+						101:leaf=-0.348571241
+						102:leaf=-0.0685833693
+					54:[hhninc<2.36299992] yes=103,no=104,missing=104
+						103:leaf=0.0592423566
+						104:leaf=-0.113698646
 				28:[female<1] yes=55,no=56,missing=55
-					55:[age<63] yes=103,no=104,missing=104
-						103:leaf=-0.0607152358
-						104:leaf=0.00313953054
-					56:[age<63] yes=105,no=106,missing=106
-						105:leaf=0.0511127152
-						106:leaf=-0.0253735334
+					55:[age<63] yes=105,no=106,missing=106
+						105:leaf=-0.0607190728
+						106:leaf=0.00313688582
+					56:[age<63] yes=107,no=108,missing=108
+						107:leaf=0.0511105545
+						108:leaf=-0.025376685
 booster[29]
-0:[hhninc<0.947999954] yes=1,no=2,missing=2
-	1:[hhninc<0.91049999] yes=3,no=4,missing=4
-		3:[female<3] yes=7,no=8,missing=8
-			7:[age<64] yes=15,no=16,missing=15
-				15:[self<1] yes=29,no=30,missing=30
-					29:[age<43] yes=47,no=48,missing=47
-						47:leaf=-0.0203177109
-						48:leaf=0.0225168876
-					30:[age<53] yes=49,no=50,missing=49
-						49:leaf=0.00766686769
-						50:leaf=-0.0898612216
-				16:[kids<1] yes=31,no=32,missing=32
-					31:leaf=0.0720923916
-					32:leaf=0.0146254087
-			8:[edlevel=Not_HS_grad] yes=18,no=17
-				17:leaf=0.0149957417
-				18:leaf=0.0652353913
-		4:[kids<3] yes=9,no=10,missing=10
-			9:[edlevel=Not_HS_grad] yes=20,no=19
-				19:leaf=0.00572138885
-				20:leaf=0.0296466947
-			10:leaf=0.119727537
-	2:[hhninc<5.73000002] yes=5,no=6,missing=5
-		5:[hhninc<5.00500011] yes=11,no=12,missing=11
-			11:[hhninc<4.47050571] yes=21,no=22,missing=21
-				21:[hhninc<4.28999996] yes=33,no=34,missing=33
-					33:[age<44] yes=51,no=52,missing=52
-						51:leaf=0.0059251464
-						52:leaf=-0.00278107426
-					34:[age<52] yes=53,no=54,missing=53
-						53:leaf=-0.109458603
-						54:leaf=0.0651273578
-				22:[female<3] yes=35,no=36,missing=36
-					35:[married<1] yes=55,no=56,missing=55
-						55:leaf=-0.0262414888
-						56:leaf=0.048107259
-					36:[educ<36] yes=57,no=58,missing=58
-						57:leaf=-0.0312521569
-						58:leaf=-0.131321266
-			12:[educ<10.75] yes=23,no=24,missing=24
-				23:[married<1] yes=37,no=38,missing=37
-					37:leaf=0.054743778
-					38:[female<1] yes=59,no=60,missing=60
-						59:leaf=0.0460399278
-						60:leaf=-0.104161955
-				24:[educ<14.5] yes=39,no=40,missing=40
-					39:[female<1] yes=61,no=62,missing=61
-						61:leaf=-0.238148004
-						62:leaf=-0.00258011883
-					40:[hhninc<5.3499999] yes=63,no=64,missing=64
-						63:leaf=-0.0930843204
-						64:leaf=0.0171077419
-		6:[outwork<3] yes=13,no=14,missing=14
-			13:[educ<10.75] yes=25,no=26,missing=26
-				25:[self<1] yes=41,no=42,missing=41
-					41:[educ<9.5] yes=65,no=66,missing=66
-						65:leaf=-0.00533379568
-						66:leaf=-0.122262143
-					42:[age<97] yes=67,no=68,missing=68
-						67:leaf=0.00744049298
-						68:leaf=0.0756482631
-				26:[hhninc<7.1500001] yes=43,no=44,missing=44
-					43:[kids<1] yes=69,no=70,missing=70
-						69:leaf=-0.113550037
-						70:leaf=0.10331925
-					44:[educ<12.5] yes=71,no=72,missing=72
-						71:leaf=-0.0631872192
-						72:leaf=0.0589137413
-			14:[educ<9.75] yes=27,no=28,missing=28
-				27:leaf=0.0724130794
-				28:[married<3] yes=45,no=46,missing=46
-					45:[age<45] yes=73,no=74,missing=74
-						73:leaf=-0.0269154366
-						74:leaf=-0.197315246
-					46:leaf=0.0199131928
+0:[hhninc<5.73000002] yes=1,no=2,missing=1
+	1:[hhninc<5.00500011] yes=3,no=4,missing=3
+		3:[hhninc<4.47050571] yes=7,no=8,missing=7
+			7:[hhninc<4.28999996] yes=15,no=16,missing=15
+				15:[age<44] yes=29,no=30,missing=30
+					29:[age<42] yes=53,no=54,missing=54
+						53:leaf=0.00063411973
+						54:leaf=0.0363718346
+					30:[age<45] yes=55,no=56,missing=56
+						55:leaf=-0.0437524281
+						56:leaf=-0.000790593214
+				16:[age<51] yes=31,no=32,missing=31
+					31:[outwork<3] yes=57,no=58,missing=58
+						57:leaf=-0.146802843
+						58:leaf=-0.0130377384
+					32:[edlevel=Not_HS_grad] yes=60,no=59
+						59:leaf=0.0824484006
+						60:leaf=0.031436123
+			8:[female<3] yes=17,no=18,missing=18
+				17:[married<1] yes=33,no=34,missing=33
+					33:[kids<3] yes=61,no=62,missing=62
+						61:leaf=-0.0942393169
+						62:leaf=0.0375578441
+					34:[hhninc<4.64999962] yes=63,no=64,missing=64
+						63:leaf=0.0871704072
+						64:leaf=0.00639505032
+				18:[educ<36] yes=35,no=36,missing=36
+					35:[edlevel=Not_HS_grad] yes=66,no=65
+						65:leaf=0.00617457693
+						66:leaf=-0.0626338571
+					36:leaf=-0.131321073
+		4:[educ<10.75] yes=9,no=10,missing=10
+			9:[married<1] yes=19,no=20,missing=19
+				19:leaf=0.0547434911
+				20:[female<1] yes=37,no=38,missing=38
+					37:leaf=0.046038799
+					38:leaf=-0.104155749
+			10:[educ<14.5] yes=21,no=22,missing=22
+				21:[female<1] yes=39,no=40,missing=39
+					39:leaf=-0.238151237
+					40:leaf=-0.00256428216
+				22:[hhninc<5.3499999] yes=41,no=42,missing=42
+					41:[edlevel=Grad_School] yes=68,no=67
+						67:leaf=-0.141014725
+						68:leaf=-0.0239327978
+					42:[married<3] yes=69,no=70,missing=70
+						69:leaf=0.0287022311
+						70:leaf=0.00371750281
+	2:[outwork<3] yes=5,no=6,missing=6
+		5:[educ<10.75] yes=11,no=12,missing=12
+			11:[self<1] yes=23,no=24,missing=23
+				23:[educ<9.5] yes=43,no=44,missing=44
+					43:[age<45] yes=71,no=72,missing=72
+						71:leaf=0.0520863272
+						72:leaf=-0.044168748
+					44:leaf=-0.122265428
+				24:[age<96] yes=45,no=46,missing=46
+					45:leaf=0.00744673377
+					46:leaf=0.0756520778
+			12:[hhninc<7.1500001] yes=25,no=26,missing=26
+				25:[kids<1] yes=47,no=48,missing=48
+					47:leaf=-0.113540031
+					48:[educ<15] yes=73,no=74,missing=74
+						73:leaf=0.142967358
+						74:leaf=0.0561451577
+				26:[educ<12.5] yes=49,no=50,missing=50
+					49:[age<49] yes=75,no=76,missing=76
+						75:leaf=-0.0131765353
+						76:leaf=-0.0838012397
+					50:[hhninc<8.25] yes=77,no=78,missing=78
+						77:leaf=0.00637868373
+						78:leaf=0.0742802843
+		6:[educ<9.75] yes=13,no=14,missing=14
+			13:leaf=0.0724114552
+			14:[married<3] yes=27,no=28,missing=28
+				27:[age<45] yes=51,no=52,missing=52
+					51:[edlevel=HS_grad] yes=80,no=79
+						79:leaf=-0.0482808612
+						80:leaf=0.012411898
+					52:leaf=-0.197323725
+				28:leaf=0.0199087709
 booster[30]
 0:[self<3] yes=1,no=2,missing=2
 	1:[kids<1] yes=3,no=4,missing=3
@@ -2925,108 +2935,106 @@ booster[30]
 			7:[female<3] yes=15,no=16,missing=16
 				15:[age<36] yes=31,no=32,missing=31
 					31:[age<27] yes=59,no=60,missing=59
-						59:leaf=0.00470475294
-						60:leaf=-0.0372688435
+						59:leaf=0.00415261136
+						60:leaf=-0.0349610411
 					32:[age<39] yes=61,no=62,missing=62
-						61:leaf=0.0915137529
-						62:leaf=0.00278867106
+						61:leaf=0.094361119
+						62:leaf=-0.000227593962
 				16:[age<26] yes=33,no=34,missing=34
 					33:[hhninc<2.6500001] yes=63,no=64,missing=64
-						63:leaf=-0.026065588
-						64:leaf=-0.287321091
+						63:leaf=-0.0227190908
+						64:leaf=-0.285429537
 					34:[age<43] yes=65,no=66,missing=65
-						65:leaf=0.0269565415
-						66:leaf=0.150816947
-			8:[age<46] yes=17,no=18,missing=18
-				17:[hhninc<2.75] yes=35,no=36,missing=36
-					35:[educ<11.75] yes=67,no=68,missing=68
-						67:leaf=0.053999804
-						68:leaf=-0.0622609593
-					36:[hhninc<3.4000001] yes=69,no=70,missing=69
-						69:leaf=-0.262751818
-						70:leaf=-0.00300854072
-				18:[outwork<3] yes=37,no=38,missing=38
-					37:[age<55] yes=71,no=72,missing=72
-						71:leaf=0.0184051041
-						72:leaf=-0.00496327318
-					38:[age<61] yes=73,no=74,missing=74
-						73:leaf=-0.051478982
-						74:leaf=0.0190005787
+						65:leaf=0.0264775008
+						66:leaf=0.146597952
+			8:[outwork<3] yes=17,no=18,missing=18
+				17:[age<46] yes=35,no=36,missing=36
+					35:[hhninc<2.75] yes=67,no=68,missing=68
+						67:leaf=0.0196978524
+						68:leaf=-0.143910751
+					36:[age<55] yes=69,no=70,missing=70
+						69:leaf=0.0181679092
+						70:leaf=-0.00377108064
+				18:[age<61] yes=37,no=38,missing=38
+					37:[hhninc<2.86748409] yes=71,no=72,missing=72
+						71:leaf=-0.00766415382
+						72:leaf=-0.104323164
+					38:[educ<17] yes=73,no=74,missing=74
+						73:leaf=0.0313962102
+						74:leaf=-0.0303657707
 		4:[age<53] yes=9,no=10,missing=9
 			9:[age<34] yes=19,no=20,missing=20
 				19:[hhninc<3.69999981] yes=39,no=40,missing=39
 					39:[hhninc<2.6500001] yes=75,no=76,missing=76
-						75:leaf=-0.0137536461
-						76:leaf=0.0390818827
+						75:leaf=-0.0176810417
+						76:leaf=0.0404487811
 					40:[outwork<1] yes=77,no=78,missing=77
-						77:leaf=-0.137429953
-						78:leaf=0.000992591376
+						77:leaf=-0.136168823
+						78:leaf=0.00569222216
 				20:[female<1] yes=41,no=42,missing=41
 					41:[hhninc<6.19999981] yes=79,no=80,missing=80
-						79:leaf=-0.0188987702
-						80:leaf=-0.0912855864
+						79:leaf=-0.0184811745
+						80:leaf=-0.0916093886
 					42:[outwork<1] yes=81,no=82,missing=81
-						81:leaf=0.0315733068
-						82:leaf=-0.038128674
-			10:[hhninc<1.54999995] yes=21,no=22,missing=21
-				21:[age<55] yes=43,no=44,missing=44
-					43:[married<1] yes=83,no=84,missing=84
-						83:leaf=0.0169452894
-						84:leaf=0.16621469
-					44:[age<61] yes=85,no=86,missing=86
-						85:leaf=-0.0369045623
-						86:leaf=0.080356434
-				22:[age<57] yes=45,no=46,missing=46
-					45:[educ<11.5] yes=87,no=88,missing=88
-						87:leaf=0.0908011198
-						88:leaf=-0.0580789521
-					46:[educ<11.75] yes=89,no=90,missing=90
-						89:leaf=-0.104585215
-						90:leaf=0.0499859639
+						81:leaf=0.0321509428
+						82:leaf=-0.0393610522
+			10:[age<57] yes=21,no=22,missing=22
+				21:[hhninc<1.70000005] yes=43,no=44,missing=44
+					43:leaf=-0.105046272
+					44:[hhninc<5.0999999] yes=83,no=84,missing=83
+						83:leaf=0.115509033
+						84:leaf=-0.091026485
+				22:[edlevel=Not_HS_grad] yes=46,no=45
+					45:[educ<9.75] yes=85,no=86,missing=86
+						85:leaf=-0.0522263087
+						86:leaf=0.0719638988
+					46:[age<63] yes=87,no=88,missing=88
+						87:leaf=-0.110404469
+						88:leaf=0.013417515
 	2:[hhninc<2.67721891] yes=5,no=6,missing=5
 		5:[educ<10.25] yes=11,no=12,missing=11
 			11:[hhninc<2.53499985] yes=23,no=24,missing=23
 				23:[female<1] yes=47,no=48,missing=47
-					47:[age<48] yes=91,no=92,missing=91
-						91:leaf=0.0796946809
-						92:leaf=-0.00309687969
-					48:[age<51] yes=93,no=94,missing=93
-						93:leaf=-0.0429523103
-						94:leaf=0.0462591164
-				24:leaf=-0.169098258
-			12:[hhninc<2.25] yes=25,no=26,missing=26
-				25:[kids<3] yes=49,no=50,missing=50
-					49:[hhninc<1.71500003] yes=95,no=96,missing=96
-						95:leaf=-0.0216165129
-						96:leaf=0.0715613142
-					50:[outwork<3] yes=97,no=98,missing=98
-						97:leaf=-0.0297079589
-						98:leaf=-0.215831861
-				26:[age<50] yes=51,no=52,missing=52
-					51:[hhninc<2.45000005] yes=99,no=100,missing=100
-						99:leaf=-0.191300377
-						100:leaf=0.00670085242
-					52:[married<3] yes=101,no=102,missing=102
-						101:leaf=-0.133740485
-						102:leaf=0.0173661858
+					47:[age<48] yes=89,no=90,missing=89
+						89:leaf=0.0813591257
+						90:leaf=-0.00780336093
+					48:[age<51] yes=91,no=92,missing=91
+						91:leaf=-0.0396694392
+						92:leaf=0.048396457
+				24:leaf=-0.169748098
+			12:[age<50] yes=25,no=26,missing=26
+				25:[age<37] yes=49,no=50,missing=50
+					49:[educ<10.75] yes=93,no=94,missing=94
+						93:leaf=-0.107101507
+						94:leaf=-0.0102175893
+					50:[kids<3] yes=95,no=96,missing=96
+						95:leaf=0.0620450005
+						96:leaf=-0.101459131
+				26:[hhninc<2.3499999] yes=51,no=52,missing=52
+					51:[kids<3] yes=97,no=98,missing=98
+						97:leaf=0.0582657568
+						98:leaf=-0.10875389
+					52:[outwork<1] yes=99,no=100,missing=100
+						99:leaf=-0.18909812
+						100:leaf=-0.0589149557
 		6:[hhninc<2.74066353] yes=13,no=14,missing=14
 			13:[edlevel=Not_HS_grad] yes=28,no=27
-				27:leaf=0.207250684
+				27:leaf=0.207078114
 				28:[female<1] yes=53,no=54,missing=53
-					53:leaf=-0.141391322
-					54:leaf=0.101234064
+					53:leaf=-0.141262054
+					54:leaf=0.102015525
 			14:[educ<8] yes=29,no=30,missing=29
-				29:[hhninc<5.3499999] yes=55,no=56,missing=56
-					55:[outwork<3] yes=103,no=104,missing=104
-						103:leaf=-0.119418792
-						104:leaf=-0.0163029283
-					56:[edlevel=Not_HS_grad] yes=106,no=105
-						105:leaf=0.0976656154
-						106:leaf=-0.0132788997
-				30:[age<51] yes=57,no=58,missing=58
-					57:[outwork<3] yes=107,no=108,missing=108
-						107:leaf=0.0274729747
-						108:leaf=0.109687604
-					58:[hhninc<3.53849983] yes=109,no=110,missing=110
-						109:leaf=-0.0425314754
-						110:leaf=0.0393872969
+				29:[age<29] yes=55,no=56,missing=55
+					55:[hhninc<5.5999999] yes=101,no=102,missing=102
+						101:leaf=-0.0286795162
+						102:leaf=0.103947841
+					56:[outwork<3] yes=103,no=104,missing=104
+						103:leaf=-0.162557393
+						104:leaf=-0.0220849011
+				30:[age<50] yes=57,no=58,missing=58
+					57:[outwork<3] yes=105,no=106,missing=106
+						105:leaf=0.0266687218
+						106:leaf=0.108742267
+					58:[hhninc<3.53849983] yes=107,no=108,missing=108
+						107:leaf=-0.0402728692
+						108:leaf=0.0372477174
