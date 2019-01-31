@@ -145,10 +145,16 @@ genVisitCount(visit_y, visit_X, "VisitNA")
 # Binary classification
 #
 
-predictAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
+predictBinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
 	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit)
 
 	return (data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE))
+}
+
+predictMultinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
+	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit, reshape = TRUE)
+
+	return (data.frame("_target" = as.integer(probability[, 2] > 0.5), "probability(0)" = probability[, 1], "probability(1)" = probability[, 2], check.names = FALSE))
 }
 
 genAuditAdjusted = function(audit_y, audit_X, dataset){
@@ -175,8 +181,16 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 71)
 
 	storeModel(audit.xgb, funcAndDataset, dataset)
-	storeResult(predictAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
-	storeResult(predictAuditAdjusted(audit.xgb, audit.dmatrix, 31), paste(funcAndDataset, "31", sep = "@"))
+	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
+	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 31), paste(funcAndDataset, "31", sep = "@"))
+
+	funcAndDataset = paste("MultinomialClassification", dataset, sep = "")
+
+	set.seed(42)
+
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "multi:softprob", num_class = 2, nrounds = 31)
+	storeModel(audit.xgb, funcAndDataset, dataset)
+	storeResult(predictMultinomialAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
 }
 
 audit = loadCsv("csv/Audit.csv")

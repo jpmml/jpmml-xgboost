@@ -28,23 +28,33 @@ public class ClassificationTest extends XGBoostTest {
 	}
 
 	@Test
-	public void evaluateAudit() throws Exception {
+	public void evaluateBinomialAudit() throws Exception {
 		evaluate("BinomialClassification", "Audit", new FloatEquivalence(16));
 	}
 
 	@Test
-	public void evaluateAuditLimit() throws Exception {
+	public void evaluateBinomialAuditLimit() throws Exception {
 		evaluate("BinomialClassification", "Audit@31", new FloatEquivalence(32));
 	}
 
 	@Test
-	public void evaluateAuditNA() throws Exception {
+	public void evaluateBinomialAuditNA() throws Exception {
 		evaluate("BinomialClassification", "AuditNA", new FloatEquivalence(32));
 	}
 
 	@Test
-	public void evaluateAuditNALimit() throws Exception {
+	public void evaluateBinomialAuditNALimit() throws Exception {
 		evaluate("BinomialClassification", "AuditNA@31", new FloatEquivalence(64));
+	}
+
+	@Test
+	public void evaluateMultinomialAudit() throws Exception {
+		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(32));
+	}
+
+	@Test
+	public void evaluateMultinomialAuditNA() throws Exception {
+		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(32));
 	}
 
 	@Test
