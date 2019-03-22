@@ -51,7 +51,7 @@ public class Classification extends ObjFunction {
 
 		{
 			if(targetCategories.size() != this.num_class){
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Expected " + this.num_class + " target categories, got " + targetCategories.size() + " target categories");
 			}
 
 			dataField = encoder.createDataField(targetField, OpType.CATEGORICAL, DataType.STRING, targetCategories);

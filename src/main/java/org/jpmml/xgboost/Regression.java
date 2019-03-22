@@ -35,7 +35,7 @@ public class Regression extends ObjFunction {
 	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder){
 
 		if(targetCategories != null){
-			throw new IllegalArgumentException();
+			throw new IllegalArgumentException("Regression requires zero target categories");
 		}
 
 		DataField dataField = encoder.createDataField(targetField, OpType.CONTINUOUS, DataType.FLOAT);

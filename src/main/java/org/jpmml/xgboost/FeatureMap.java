@@ -94,7 +94,7 @@ public class FeatureMap {
 					feature = new ContinuousFeature(encoder, dataField);
 					break;
 				default:
-					throw new IllegalArgumentException();
+					throw new IllegalArgumentException("Expected categorical or continuous operational type, got " + opType.value() + " operational type");
 			}
 
 			result.add(feature);

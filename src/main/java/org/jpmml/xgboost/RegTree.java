@@ -139,7 +139,7 @@ public class RegTree {
 					case FLOAT:
 						break;
 					default:
-						throw new IllegalArgumentException();
+						throw new IllegalArgumentException("Expected integer or float data type, got " + dataType.value() + " data type");
 				}
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);

@@ -112,7 +112,7 @@ public class XGBoostUtil {
 							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
 							break;
 						default:
-							throw new IllegalArgumentException();
+							throw new IllegalArgumentException("Expected integer, float or double data type, got " + dataType.value() + " data type");
 					}
 
 					return continuousFeature;
