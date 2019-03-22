@@ -37,7 +37,6 @@ import org.jpmml.converter.Feature;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.ValueUtil;
 
 public class RegTree {
 
@@ -102,7 +101,7 @@ public class RegTree {
 	}
 
 	private org.dmg.pmml.tree.Node encodeNode(Predicate predicate, PredicateManager predicateManager, int index, Schema schema){
-		String id = String.valueOf(index + 1);
+		Integer id = Integer.valueOf(index + 1);
 
 		Node node = this.nodes.get(index);
 
@@ -119,7 +118,7 @@ public class RegTree {
 			if(feature instanceof BinaryFeature){
 				BinaryFeature binaryFeature = (BinaryFeature)feature;
 
-				String value = binaryFeature.getValue();
+				Object value = binaryFeature.getValue();
 
 				leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
 				rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
@@ -143,10 +142,8 @@ public class RegTree {
 						throw new IllegalArgumentException();
 				}
 
-				String value = ValueUtil.formatValue(splitValue);
-
-				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, value);
-				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, value);
+				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);
+				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 
 				defaultLeft = node.default_left();
 			}
@@ -165,7 +162,7 @@ public class RegTree {
 		} else
 
 		{
-			float value = node.leaf_value();
+			Float value = node.leaf_value();
 
 			org.dmg.pmml.tree.Node result = new LeafNode()
 				.setId(id)

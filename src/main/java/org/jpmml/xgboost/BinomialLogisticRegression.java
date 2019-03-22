@@ -25,7 +25,6 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
-import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -38,7 +37,7 @@ public class BinomialLogisticRegression extends Classification {
 
 	@Override
 	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = new Schema(new ContinuousLabel(null, DataType.FLOAT), schema.getFeatures());
+		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		MiningModel miningModel = createMiningModel(regTrees, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT));

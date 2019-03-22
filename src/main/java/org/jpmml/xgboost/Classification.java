@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.DataField;
@@ -27,6 +26,7 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.Label;
+import org.jpmml.converter.LabelUtil;
 import org.jpmml.converter.PMMLEncoder;
 
 abstract
@@ -40,32 +40,24 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public Label encodeLabel(FieldName targetField, List<String> targetCategories, PMMLEncoder encoder){
-		targetCategories = prepareTargetCategories(targetCategories);
+	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder){
+		DataField dataField;
 
-		DataField dataField = encoder.createDataField(targetField, OpType.CATEGORICAL, DataType.STRING, targetCategories);
+		if(targetCategories == null){
+			targetCategories = LabelUtil.createTargetCategories(this.num_class);
 
-		return new CategoricalLabel(dataField);
-	}
+			dataField = encoder.createDataField(targetField, OpType.CATEGORICAL, DataType.INTEGER, targetCategories);
+		} else
 
-	private List<String> prepareTargetCategories(List<String> targetCategories){
-
-		if(targetCategories != null){
-
+		{
 			if(targetCategories.size() != this.num_class){
 				throw new IllegalArgumentException();
 			}
 
-			return targetCategories;
+			dataField = encoder.createDataField(targetField, OpType.CATEGORICAL, DataType.STRING, targetCategories);
 		}
 
-		List<String> result = new ArrayList<>();
-
-		for(int i = 0; i < this.num_class; i++){
-			result.add(String.valueOf(i));
-		}
-
-		return result;
+		return new CategoricalLabel(dataField);
 	}
 
 	public int getNumClass(){
