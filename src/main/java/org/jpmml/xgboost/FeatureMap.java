@@ -25,6 +25,7 @@ import java.util.EnumMap;
 import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import org.dmg.pmml.DataField;
@@ -190,12 +191,7 @@ public class FeatureMap {
 		}
 
 		private void setName(String name){
-
-			if(name == null){
-				throw new IllegalArgumentException();
-			}
-
-			this.name = name;
+			this.name = Objects.requireNonNull(name);
 		}
 
 		public String getValue(){
@@ -211,12 +207,7 @@ public class FeatureMap {
 		}
 
 		private void setType(String type){
-
-			if(type == null){
-				throw new IllegalArgumentException();
-			}
-
-			this.type = type;
+			this.type = Objects.requireNonNull(type);
 		}
 	}
 }
