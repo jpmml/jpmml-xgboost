@@ -33,7 +33,6 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
@@ -73,7 +72,7 @@ public class ObjFunction {
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setMathContext(MathContext.FLOAT)
 			.setSegmentation(MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels))
-			.setTargets(ModelUtil.createRescaleTargets(null, ValueUtil.floatToDouble(base_score), continuousLabel));
+			.setTargets(ModelUtil.createRescaleTargets(null, base_score, continuousLabel));
 
 		return miningModel;
 	}
