@@ -43,7 +43,7 @@ insertNA = function(df){
 # Regression
 #
 
-predictAutoMpg = function(auto.xgb, auto.dmatrix, ntreelimit = NULL){
+predictAutoMpg = function(auto.xgb, auto.dmatrix, ntreelimit){
 	mpg = predict(auto.xgb, newdata = auto.dmatrix, ntreelimit = ntreelimit)
 
 	return (data.frame("_target" = mpg))
@@ -62,7 +62,7 @@ genAutoMpg = function(auto_y, auto_X, dataset, ...){
 	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 31, ...)
 
 	storeModel(auto.xgb, funcAndDataset, dataset)
-	storeResult(predictAutoMpg(auto.xgb, auto.dmatrix), funcAndDataset)
+	storeResult(predictAutoMpg(auto.xgb, auto.dmatrix, 31), funcAndDataset)
 }
 
 auto = loadCsv("csv/Auto.csv")
@@ -86,7 +86,7 @@ genAutoMpg(auto_y, auto_X, "AutoNA")
 # Poisson, Tweedie and Gamma regressions
 #
 
-predictVisitCount = function(visit.xgb, visit.dmatrix, ntreelimit = NULL){
+predictVisitCount = function(visit.xgb, visit.dmatrix, ntreelimit){
 	count = predict(visit.xgb, newdata = visit.dmatrix, ntreelimit = ntreelimit)
 
 	return (data.frame("_target" = count))
@@ -105,7 +105,7 @@ genVisitCount = function(visit_y, visit_X, dataset, ...){
 	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 31, ...)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
-	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
+	storeResult(predictVisitCount(visit.xgb, visit.dmatrix, 31), funcAndDataset)
 
 	funcAndDataset = paste("TweedieRegression", dataset, sep = "")
 
@@ -114,7 +114,7 @@ genVisitCount = function(visit_y, visit_X, dataset, ...){
 	visit.xgb = xgb.train(data = visit.dmatrix, params = list(objective = "reg:tweedie", tweedie_variance_power = 1.5), nrounds = 31)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
-	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
+	storeResult(predictVisitCount(visit.xgb, visit.dmatrix, 31), funcAndDataset)
 
 	funcAndDataset = paste("GammaRegression", dataset, sep = "")
 
@@ -123,7 +123,7 @@ genVisitCount = function(visit_y, visit_X, dataset, ...){
 	visit.xgb = xgboost(data = visit.dmatrix, objective = "reg:gamma", nrounds = 31, ...)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
-	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
+	storeResult(predictVisitCount(visit.xgb, visit.dmatrix, 31), funcAndDataset)
 }
 
 visit = loadCsv("csv/Visit.csv")
@@ -145,13 +145,13 @@ genVisitCount(visit_y, visit_X, "VisitNA")
 # Binary classification
 #
 
-predictBinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
+predictBinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit){
 	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit)
 
 	return (data.frame("_target" = as.integer(probability > 0.5), "probability(0)" = (1 - probability), "probability(1)" = probability, check.names = FALSE))
 }
 
-predictMultinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit = NULL){
+predictMultinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit){
 	probability = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = ntreelimit, reshape = TRUE)
 
 	return (data.frame("_target" = as.integer(probability[, 2] > 0.5), "probability(0)" = probability[, 1], "probability(1)" = probability[, 2], check.names = FALSE))
@@ -169,7 +169,7 @@ genAuditAdjusted = function(audit_y, audit_X, dataset, ...){
 
 	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 17, ...)
 
-	adjusted = predict(audit.xgb, newdata = audit.dmatrix)
+	adjusted = predict(audit.xgb, newdata = audit.dmatrix, ntreelimit = 17)
 
 	storeModel(audit.xgb, funcAndDataset, dataset)
 	storeResult(data.frame("_target" = adjusted), funcAndDataset)
@@ -178,19 +178,19 @@ genAuditAdjusted = function(audit_y, audit_X, dataset, ...){
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 71)
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:logistic", nrounds = 71, ...)
 
 	storeModel(audit.xgb, funcAndDataset, dataset)
-	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
+	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 71), funcAndDataset)
 	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 31), paste(funcAndDataset, "31", sep = "@"))
 
 	funcAndDataset = paste("MultinomialClassification", dataset, sep = "")
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "multi:softprob", num_class = 2, nrounds = 31)
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "multi:softprob", num_class = 2, nrounds = 31, ...)
 	storeModel(audit.xgb, funcAndDataset, dataset)
-	storeResult(predictMultinomialAuditAdjusted(audit.xgb, audit.dmatrix), funcAndDataset)
+	storeResult(predictMultinomialAuditAdjusted(audit.xgb, audit.dmatrix, 31), funcAndDataset)
 }
 
 audit = loadCsv("csv/Audit.csv")
@@ -213,7 +213,7 @@ genAuditAdjusted(audit_y, audit_X, "AuditNA")
 # Multi-class classification
 #
 
-predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit = NULL){
+predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit){
 	probabilities = predict(iris.xgb, newdata = iris.dmatrix, ntreelimit = ntreelimit)
 
 	# Convert from vector to three-column matrix
@@ -224,7 +224,7 @@ predictIrisSpecies = function(iris.xgb, iris.dmatrix, ntreelimit = NULL){
 	return (data.frame("_target" = species, "probability(0)" = probabilities[, 1], "probability(1)" = probabilities[, 2], "probability(2)" = probabilities[, 3], check.names = FALSE))
 }
 
-genIrisSpecies = function(iris_y, iris_X, dataset){
+genIrisSpecies = function(iris_y, iris_X, dataset, ...){
 	iris.fmap = genFMap(iris_X)
 	writeFMap(iris.fmap, csvFile(dataset, ".fmap"))
 
@@ -234,11 +234,11 @@ genIrisSpecies = function(iris_y, iris_X, dataset){
 
 	set.seed(42)
 
-	iris.xgb = xgboost(data = iris.dmatrix, objective = "multi:softprob", num_class = 3, nrounds = 17)
+	iris.xgb = xgboost(data = iris.dmatrix, objective = "multi:softprob", num_class = 3, nrounds = 17, ...)
 
 	storeModel(iris.xgb, funcAndDataset, dataset)
-	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix), funcAndDataset)
-	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix, ntreelimit = 11), paste(funcAndDataset, "11", sep = "@"))
+	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix, 17), funcAndDataset)
+	storeResult(predictIrisSpecies(iris.xgb, iris.dmatrix, 11), paste(funcAndDataset, "11", sep = "@"))
 }
 
 iris = loadCsv("csv/Iris.csv")
@@ -249,7 +249,7 @@ iris_X = iris[, 1:(ncol(iris) - 1)]
 # Convert from factor levels to 0-based indexes
 iris_y = (as.integer(iris_y) - 1)
 
-genIrisSpecies(iris_y, iris_X, "Iris")
+genIrisSpecies(iris_y, iris_X, "Iris", booster = "dart", rate_drop = 0.05)
 
 set.seed(31)
 

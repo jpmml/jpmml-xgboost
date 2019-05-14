@@ -29,7 +29,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit", new FloatEquivalence(16));
+		evaluate("BinomialClassification", "Audit", new FloatEquivalence(32));
 	}
 
 	@Test
