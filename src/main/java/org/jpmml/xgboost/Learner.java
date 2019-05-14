@@ -94,12 +94,15 @@ public class Learner {
 		String name_gbm = input.readString();
 		switch(name_gbm){
 			case "gbtree":
+				this.gbtree = new GBTree();
+				break;
+			case "dart":
+				this.gbtree = new Dart();
 				break;
 			default:
 				throw new IllegalArgumentException(name_gbm);
 		}
 
-		this.gbtree = new GBTree();
 		this.gbtree.load(input);
 
 		if(this.contain_extra_attrs != 0){

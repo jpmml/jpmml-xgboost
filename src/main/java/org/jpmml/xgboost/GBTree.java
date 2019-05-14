@@ -74,10 +74,18 @@ public class GBTree {
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, Schema schema){
-		return obj.encodeMiningModel(this.trees, base_score, ntreeLimit, schema);
+		return obj.encodeMiningModel(trees(), weight_drop(), base_score, ntreeLimit, schema);
 	}
 
-	public List<RegTree> getTrees(){
+	public int num_trees(){
+		return this.num_trees;
+	}
+
+	public List<RegTree> trees(){
 		return this.trees;
+	}
+
+	public List<Float> weight_drop(){
+		return null;
 	}
 }

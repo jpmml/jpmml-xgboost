@@ -74,6 +74,18 @@ public class XGBoostDataInput implements Closeable {
 		return asDataInput().readFloat();
 	}
 
+	public List<Float> readFloatList() throws IOException {
+		int length = (int)readLong();
+
+		List<Float> result = new ArrayList<>();
+
+		for(int i = 0; i < length; i++){
+			result.add(readFloat());
+		}
+
+		return result;
+	}
+
 	public String readString() throws IOException {
 		int length = (int)readLong();
 

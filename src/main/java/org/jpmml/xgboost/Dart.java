@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2019 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,17 +18,29 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.IOException;
 import java.util.List;
 
-import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.converter.Schema;
+public class Dart extends GBTree {
 
-public class LinearRegression extends Regression {
+	private List<Float> weight_drop;
+
+
+	public Dart(){
+	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, schema);
+	public void load(XGBoostDataInput input) throws IOException {
+		super.load(input);
 
-		return miningModel;
+		int num_trees = num_trees();
+		if(num_trees > 0){
+			this.weight_drop = input.readFloatList();
+		}
+	}
+
+	@Override
+	public List<Float> weight_drop(){
+		return this.weight_drop;
 	}
 }

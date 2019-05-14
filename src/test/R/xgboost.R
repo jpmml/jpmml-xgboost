@@ -49,7 +49,7 @@ predictAutoMpg = function(auto.xgb, auto.dmatrix, ntreelimit = NULL){
 	return (data.frame("_target" = mpg))
 }
 
-genAutoMpg = function(auto_y, auto_X, dataset){
+genAutoMpg = function(auto_y, auto_X, dataset, ...){
 	auto.fmap = genFMap(auto_X)
 	writeFMap(auto.fmap, csvFile(dataset, ".fmap"))
 
@@ -59,7 +59,7 @@ genAutoMpg = function(auto_y, auto_X, dataset){
 
 	set.seed(42)
 
-	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 31)
+	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 31, ...)
 
 	storeModel(auto.xgb, funcAndDataset, dataset)
 	storeResult(predictAutoMpg(auto.xgb, auto.dmatrix), funcAndDataset)
@@ -72,7 +72,7 @@ auto$origin = as.factor(auto$origin)
 auto_y = auto[, ncol(auto)]
 auto_X = auto[, 1:(ncol(auto) - 1)]
 
-genAutoMpg(auto_y, auto_X, "Auto")
+genAutoMpg(auto_y, auto_X, "Auto", booster = "dart", rate_drop = 0.05)
 
 set.seed(31)
 
@@ -92,7 +92,7 @@ predictVisitCount = function(visit.xgb, visit.dmatrix, ntreelimit = NULL){
 	return (data.frame("_target" = count))
 }
 
-genVisitCount = function(visit_y, visit_X, dataset){
+genVisitCount = function(visit_y, visit_X, dataset, ...){
 	visit.fmap = genFMap(visit_X)
 	writeFMap(visit.fmap, csvFile(dataset, ".fmap"))
 
@@ -102,7 +102,7 @@ genVisitCount = function(visit_y, visit_X, dataset){
 
 	set.seed(42)
 
-	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 31)
+	visit.xgb = xgboost(data = visit.dmatrix, objective = "count:poisson", nrounds = 31, ...)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
 	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
@@ -120,7 +120,7 @@ genVisitCount = function(visit_y, visit_X, dataset){
 
 	set.seed(42)
 
-	visit.xgb = xgboost(data = visit.dmatrix, objective = "reg:gamma", nrounds = 31)
+	visit.xgb = xgboost(data = visit.dmatrix, objective = "reg:gamma", nrounds = 31, ...)
 
 	storeModel(visit.xgb, funcAndDataset, dataset)
 	storeResult(predictVisitCount(visit.xgb, visit.dmatrix), funcAndDataset)
@@ -131,7 +131,7 @@ visit = loadCsv("csv/Visit.csv")
 visit_y = visit[, ncol(visit)]
 visit_X = visit[, 1:(ncol(visit) - 1)]
 
-genVisitCount(visit_y, visit_X, "Visit")
+genVisitCount(visit_y, visit_X, "Visit", booster = "dart", rate_drop = 0.05)
 
 set.seed(31)
 
@@ -157,7 +157,7 @@ predictMultinomialAuditAdjusted = function(audit.xgb, audit.dmatrix, ntreelimit 
 	return (data.frame("_target" = as.integer(probability[, 2] > 0.5), "probability(0)" = probability[, 1], "probability(1)" = probability[, 2], check.names = FALSE))
 }
 
-genAuditAdjusted = function(audit_y, audit_X, dataset){
+genAuditAdjusted = function(audit_y, audit_X, dataset, ...){
 	audit.fmap = genFMap(audit_X)
 	writeFMap(audit.fmap, csvFile(dataset, ".fmap"))
 
@@ -167,7 +167,7 @@ genAuditAdjusted = function(audit_y, audit_X, dataset){
 
 	set.seed(42)
 
-	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 17)
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "reg:logistic", nrounds = 17, ...)
 
 	adjusted = predict(audit.xgb, newdata = audit.dmatrix)
 
@@ -199,7 +199,7 @@ audit$Deductions = NULL
 audit_y = audit[, ncol(audit)]
 audit_X = audit[, 1:(ncol(audit) - 1)]
 
-genAuditAdjusted(audit_y, audit_X, "Audit")
+genAuditAdjusted(audit_y, audit_X, "Audit", booster = "dart", rate_drop = 0.05)
 
 set.seed(31)
 

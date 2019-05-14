@@ -33,6 +33,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
@@ -42,10 +43,18 @@ public class ObjFunction {
 	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
-	public MiningModel encodeMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema);
+	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> regTrees, float base_score, Integer ntreeLimit, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+
+		if(weights != null){
+
+			if(trees.size() != weights.size()){
+				throw new IllegalArgumentException();
+			}
+		}
+
 		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
 
 		Schema segmentSchema = schema.toAnonymousSchema();
@@ -56,22 +65,38 @@ public class ObjFunction {
 
 		if(ntreeLimit != null){
 
-			if(ntreeLimit > regTrees.size()){
+			if(ntreeLimit > trees.size()){
 				throw new IllegalArgumentException("Tree limit " + ntreeLimit + " is greater than the number of trees");
 			}
 
-			regTrees = regTrees.subList(0, ntreeLimit);
+			trees = trees.subList(0, ntreeLimit);
+
+			if(weights != null){
+				weights = weights.subList(0, ntreeLimit);
+			}
 		}
 
-		for(RegTree regTree : regTrees){
-			TreeModel treeModel = regTree.encodeTreeModel(predicateManager, segmentSchema);
+		for(RegTree tree : trees){
+			TreeModel treeModel = tree.encodeTreeModel(predicateManager, segmentSchema);
 
 			treeModels.add(treeModel);
 		}
 
+		if(weights != null){
+			boolean allOnes = true;
+
+			for(Float weight : weights){
+				allOnes &= ValueUtil.isOne(weight);
+			}
+
+			if(allOnes){
+				weights = null;
+			}
+		}
+
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setMathContext(MathContext.FLOAT)
-			.setSegmentation(MiningModelUtil.createSegmentation(Segmentation.MultipleModelMethod.SUM, treeModels))
+			.setSegmentation(MiningModelUtil.createSegmentation((weights != null) ? Segmentation.MultipleModelMethod.WEIGHTED_SUM : Segmentation.MultipleModelMethod.SUM, treeModels, weights))
 			.setTargets(ModelUtil.createRescaleTargets(null, base_score, continuousLabel));
 
 		return miningModel;
