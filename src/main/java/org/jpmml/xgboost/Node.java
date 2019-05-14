@@ -20,7 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
-public class Node {
+public class Node implements Loadable {
 
 	private int parent;
 
@@ -36,6 +36,7 @@ public class Node {
 	public Node(){
 	}
 
+	@Override
 	public void load(XGBoostDataInput input) throws IOException {
 		this.parent = input.readInt();
 		this.cleft = input.readInt();

@@ -19,8 +19,6 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.MathContext;
@@ -38,7 +36,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 
-public class RegTree {
+public class RegTree implements Loadable {
 
 	private int num_roots;
 
@@ -52,14 +50,15 @@ public class RegTree {
 
 	private int size_leaf_vector;
 
-	private List<Node> nodes;
+	private Node[] nodes;
 
-	private List<NodeStat> stats;
+	private NodeStat[] stats;
 
 
 	public RegTree(){
 	}
 
+	@Override
 	public void load(XGBoostDataInput input) throws IOException {
 		this.num_roots = input.readInt();
 		this.num_nodes = input.readInt();
@@ -70,23 +69,8 @@ public class RegTree {
 
 		input.readReserved(31);
 
-		this.nodes = new ArrayList<>();
-
-		for(int i = 0; i < this.num_nodes; i++){
-			Node node = new Node();
-			node.load(input);
-
-			this.nodes.add(node);
-		}
-
-		this.stats = new ArrayList<>();
-
-		for(int i = 0; i < this.num_nodes; i++){
-			NodeStat stat = new NodeStat();
-			stat.load(input);
-
-			this.stats.add(stat);
-		}
+		this.nodes = input.readObjectArray(Node.class, this.num_nodes);
+		this.stats = input.readObjectArray(NodeStat.class, this.num_nodes);
 	}
 
 	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
@@ -103,7 +87,7 @@ public class RegTree {
 	private org.dmg.pmml.tree.Node encodeNode(Predicate predicate, PredicateManager predicateManager, int index, Schema schema){
 		Integer id = Integer.valueOf(index + 1);
 
-		Node node = this.nodes.get(index);
+		Node node = this.nodes[index];
 
 		if(!node.is_leaf()){
 			int splitIndex = node.split_index();
@@ -171,9 +155,5 @@ public class RegTree {
 
 			return result;
 		}
-	}
-
-	public List<Node> getNodes(){
-		return this.nodes;
 	}
 }

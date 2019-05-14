@@ -32,7 +32,7 @@ import org.jpmml.converter.Label;
 import org.jpmml.converter.Schema;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
-public class Learner {
+public class Learner implements Loadable {
 
 	private float base_score;
 
@@ -50,12 +50,13 @@ public class Learner {
 
 	private Map<String, String> attributes = null;
 
-	private List<String> metrics = null;
+	private String[] metrics = null;
 
 
 	public Learner(){
 	}
 
+	@Override
 	public void load(XGBoostDataInput input) throws IOException {
 		this.base_score = input.readFloat();
 		this.num_features = input.readInt();
@@ -120,7 +121,7 @@ public class Learner {
 		} // End if
 
 		if(this.contain_eval_metrics != 0){
-			this.metrics = input.readStringList();
+			this.metrics = input.readStringVector();
 		}
 	}
 
@@ -163,23 +164,11 @@ public class Learner {
 		return miningModel;
 	}
 
-	public float getBaseScore(){
-		return this.base_score;
-	}
-
-	public int getNumClass(){
+	public int num_features(){
 		return this.num_class;
 	}
 
-	public int getNumFeatures(){
-		return this.num_features;
-	}
-
-	public ObjFunction getObj(){
+	public ObjFunction obj(){
 		return this.obj;
-	}
-
-	public GBTree getGBTree(){
-		return this.gbtree;
 	}
 }

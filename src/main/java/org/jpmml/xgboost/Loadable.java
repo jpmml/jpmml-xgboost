@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2019 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -20,25 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
-public class NodeStat implements Loadable {
+public interface Loadable {
 
-	private float loss_chg;
-
-	private float sum_hess;
-
-	private float base_weight;
-
-	private int leaf_child_cnt;
-
-
-	public NodeStat(){
-	}
-
-	@Override
-	public void load(XGBoostDataInput input) throws IOException {
-		this.loss_chg = input.readFloat();
-		this.sum_hess = input.readFloat();
-		this.base_weight = input.readFloat();
-		this.leaf_child_cnt = input.readInt();
-	}
+	void load(XGBoostDataInput input) throws IOException;
 }

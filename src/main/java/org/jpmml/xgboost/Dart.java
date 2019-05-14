@@ -19,11 +19,10 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
-import java.util.List;
 
 public class Dart extends GBTree {
 
-	private List<Float> weight_drop;
+	private float[] weight_drop;
 
 
 	public Dart(){
@@ -39,13 +38,13 @@ public class Dart extends GBTree {
 		super.load(input);
 
 		int num_trees = num_trees();
-		if(num_trees > 0){
-			this.weight_drop = input.readFloatList();
+		if(num_trees != 0){
+			this.weight_drop = input.readFloatVector();
 		}
 	}
 
 	@Override
-	public List<Float> weight_drop(){
+	public float[] tree_weights(){
 		return this.weight_drop;
 	}
 }

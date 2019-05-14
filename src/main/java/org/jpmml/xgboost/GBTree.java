@@ -19,9 +19,9 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
+import com.google.common.primitives.Floats;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 
@@ -37,7 +37,7 @@ public class GBTree extends GradientBooster {
 
 	private int size_leaf_vector;
 
-	private List<RegTree> trees;
+	private RegTree[] trees;
 
 	private int[] tree_info;
 
@@ -50,6 +50,7 @@ public class GBTree extends GradientBooster {
 		return "GBTree";
 	}
 
+	@Override
 	public void load(XGBoostDataInput input) throws IOException {
 		this.num_trees = input.readInt();
 		this.num_roots = input.readInt();
@@ -62,35 +63,26 @@ public class GBTree extends GradientBooster {
 
 		input.readReserved(32);
 
-		this.trees = new ArrayList<>();
-
-		for(int i = 0; i < this.num_trees; i++){
-			RegTree tree = new RegTree();
-			tree.load(input);
-
-			this.trees.add(tree);
-		}
-
-		this.tree_info = new int[this.num_trees];
-
-		for(int i = 0; i < this.num_trees; i++){
-			this.tree_info[i] = input.readInt();
-		}
+		this.trees = input.readObjectArray(RegTree.class, this.num_trees);
+		this.tree_info = input.readIntArray(this.num_trees);
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, Schema schema){
-		return obj.encodeMiningModel(trees(), weight_drop(), base_score, ntreeLimit, schema);
+		RegTree[] trees = trees();
+		float[] weights = tree_weights();
+
+		return obj.encodeMiningModel(Arrays.asList(trees), weights != null ? Floats.asList(weights) : null, base_score, ntreeLimit, schema);
 	}
 
 	public int num_trees(){
 		return this.num_trees;
 	}
 
-	public List<RegTree> trees(){
+	public RegTree[] trees(){
 		return this.trees;
 	}
 
-	public List<Float> weight_drop(){
+	public float[] tree_weights(){
 		return null;
 	}
 }

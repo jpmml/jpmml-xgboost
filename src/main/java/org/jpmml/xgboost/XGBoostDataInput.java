@@ -23,11 +23,10 @@ import java.io.DataInput;
 import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Array;
 import java.nio.ByteOrder;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 import com.google.common.io.ByteStreams;
@@ -66,6 +65,24 @@ public class XGBoostDataInput implements Closeable {
 		return asDataInput().readInt();
 	}
 
+	public int[] readIntVector() throws IOException {
+		int length = (int)readLong();
+
+		return readIntArray(length);
+	}
+
+	public int[] readIntArray(int length) throws IOException {
+		DataInput dataInput = asDataInput();
+
+		int[] result = new int[length];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = dataInput.readInt();
+		}
+
+		return result;
+	}
+
 	public long readLong() throws IOException {
 		return asDataInput().readLong();
 	}
@@ -74,13 +91,19 @@ public class XGBoostDataInput implements Closeable {
 		return asDataInput().readFloat();
 	}
 
-	public List<Float> readFloatList() throws IOException {
+	public float[] readFloatVector() throws IOException {
 		int length = (int)readLong();
 
-		List<Float> result = new ArrayList<>();
+		return readFloatArray(length);
+	}
 
-		for(int i = 0; i < length; i++){
-			result.add(readFloat());
+	public float[] readFloatArray(int length) throws IOException {
+		DataInput dataInput = asDataInput();
+
+		float[] result = new float[length];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = dataInput.readFloat();
 		}
 
 		return result;
@@ -100,6 +123,22 @@ public class XGBoostDataInput implements Closeable {
 		return new String(buffer);
 	}
 
+	public String[] readStringVector() throws IOException {
+		int length = (int)readLong();
+
+		return readStringArray(length);
+	}
+
+	public String[] readStringArray(int length) throws IOException {
+		String[] result = new String[length];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = readString();
+		}
+
+		return result;
+	}
+
 	public Map<String, String> readStringMap() throws IOException {
 		int length = (int)readLong();
 
@@ -112,13 +151,27 @@ public class XGBoostDataInput implements Closeable {
 		return result;
 	}
 
-	public List<String> readStringList() throws IOException {
+	public <E extends Loadable> E[] readObjectVector(Class<? extends E> clazz) throws IOException {
 		int length = (int)readLong();
 
-		List<String> result = new ArrayList<>();
+		return readObjectArray(clazz, length);
+	}
 
-		for(int i = 0; i < length; i++){
-			result.add(readString());
+	public <E extends Loadable> E[] readObjectArray(Class<? extends E> clazz, int length) throws IOException {
+		E[] result = (E[])Array.newInstance(clazz, length);
+
+		for(int i = 0; i < result.length; i++){
+			E object;
+
+			try {
+				object = clazz.newInstance();
+			} catch(ReflectiveOperationException roe){
+				throw new IOException(roe);
+			}
+
+			object.load(this);
+
+			result[i] = object;
 		}
 
 		return result;

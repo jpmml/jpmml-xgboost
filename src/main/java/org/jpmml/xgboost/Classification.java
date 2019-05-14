@@ -60,7 +60,7 @@ public class Classification extends ObjFunction {
 		return new CategoricalLabel(dataField);
 	}
 
-	public int getNumClass(){
+	public int num_class(){
 		return this.num_class;
 	}
 }
