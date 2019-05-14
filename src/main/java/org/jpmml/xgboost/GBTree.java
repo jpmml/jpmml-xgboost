@@ -25,7 +25,7 @@ import java.util.List;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 
-public class GBTree {
+public class GBTree extends GradientBooster {
 
 	private int num_trees;
 
@@ -43,6 +43,11 @@ public class GBTree {
 
 
 	public GBTree(){
+	}
+
+	@Override
+	public String getAlgorithmName(){
+		return "GBTree";
 	}
 
 	public void load(XGBoostDataInput input) throws IOException {

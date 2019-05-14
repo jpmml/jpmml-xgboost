@@ -18,34 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-import java.io.IOException;
-import java.util.List;
+abstract
+public class GradientBooster {
 
-public class Dart extends GBTree {
-
-	private List<Float> weight_drop;
-
-
-	public Dart(){
-	}
-
-	@Override
-	public String getAlgorithmName(){
-		return "DART";
-	}
-
-	@Override
-	public void load(XGBoostDataInput input) throws IOException {
-		super.load(input);
-
-		int num_trees = num_trees();
-		if(num_trees > 0){
-			this.weight_drop = input.readFloatList();
-		}
-	}
-
-	@Override
-	public List<Float> weight_drop(){
-		return this.weight_drop;
-	}
+	abstract
+	public String getAlgorithmName();
 }

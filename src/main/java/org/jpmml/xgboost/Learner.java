@@ -152,7 +152,7 @@ public class Learner {
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
-			.setAlgorithmName("XGBoost");
+			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
 		if((Boolean.TRUE).equals(compact)){
 			Visitor visitor = new TreeModelCompactor();
