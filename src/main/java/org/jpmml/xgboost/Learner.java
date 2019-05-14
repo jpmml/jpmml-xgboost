@@ -165,6 +165,10 @@ public class Learner implements Loadable {
 	}
 
 	public int num_features(){
+		return this.num_features;
+	}
+
+	public int num_class(){
 		return this.num_class;
 	}
 
