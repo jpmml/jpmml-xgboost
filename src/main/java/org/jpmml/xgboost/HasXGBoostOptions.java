@@ -18,6 +18,9 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
+
 import org.jpmml.converter.HasOptions;
 
 public interface HasXGBoostOptions extends HasOptions {
@@ -29,4 +32,12 @@ public interface HasXGBoostOptions extends HasOptions {
 	String OPTION_COMPACT = "compact";
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
+
+	default
+	public Map<String, ?> xgboostOptions(){
+		Map<String, Object> result = new LinkedHashMap<>();
+		result.put(HasXGBoostOptions.OPTION_COMPACT, Boolean.FALSE);
+
+		return result;
+	}
 }
