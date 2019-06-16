@@ -74,7 +74,7 @@ public class RegTree implements Loadable {
 	}
 
 	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(new True(), predicateManager, 0, schema);
+		org.dmg.pmml.tree.Node root = encodeNode(True.INSTANCE, predicateManager, 0, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -135,11 +135,9 @@ public class RegTree implements Loadable {
 			org.dmg.pmml.tree.Node leftChild = encodeNode(leftPredicate, predicateManager, node.cleft(), schema);
 			org.dmg.pmml.tree.Node rightChild = encodeNode(rightPredicate, predicateManager, node.cright(), schema);
 
-			org.dmg.pmml.tree.Node result = new BranchNode()
+			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)
-				.setScore(null) // XXX
 				.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId())
-				.setPredicate(predicate)
 				.addNodes(leftChild, rightChild);
 
 			return result;
@@ -148,10 +146,8 @@ public class RegTree implements Loadable {
 		{
 			Float value = node.leaf_value();
 
-			org.dmg.pmml.tree.Node result = new LeafNode()
-				.setId(id)
-				.setScore(value)
-				.setPredicate(predicate);
+			org.dmg.pmml.tree.Node result = new LeafNode(value, predicate)
+				.setId(id);
 
 			return result;
 		}
