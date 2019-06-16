@@ -85,7 +85,7 @@ public class RegTree implements Loadable {
 	}
 
 	private org.dmg.pmml.tree.Node encodeNode(Predicate predicate, PredicateManager predicateManager, int index, Schema schema){
-		Integer id = Integer.valueOf(index + 1);
+		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
 
