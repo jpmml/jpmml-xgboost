@@ -1,8 +1,6 @@
 library("r2pmml")
 library("xgboost")
 
-setwd("../resources/")
-
 csvFile = function(name, ext){
 	return (paste("csv/", name, ext, sep = ""))
 }

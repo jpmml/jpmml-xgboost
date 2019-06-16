@@ -1,7 +1,5 @@
 library("COUNT")
 
-setwd("../resources/")
-
 data("rwm1984")
 
 loadVisit = function(){
