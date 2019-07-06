@@ -21,9 +21,10 @@ package org.jpmml.xgboost;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.jpmml.converter.HasNativeConfiguration;
 import org.jpmml.converter.HasOptions;
 
-public interface HasXGBoostOptions extends HasOptions {
+public interface HasXGBoostOptions extends HasOptions, HasNativeConfiguration {
 
 	String OPTION_BYTE_ORDER = "byte_order";
 
@@ -33,8 +34,9 @@ public interface HasXGBoostOptions extends HasOptions {
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
 
+	@Override
 	default
-	public Map<String, ?> xgboostOptions(){
+	public Map<String, ?> getNativeConfiguration(){
 		Map<String, Object> result = new LinkedHashMap<>();
 		result.put(HasXGBoostOptions.OPTION_COMPACT, Boolean.FALSE);
 
