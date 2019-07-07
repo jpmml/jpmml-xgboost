@@ -103,7 +103,8 @@ public class Main {
 
 	@Parameter (
 		names = {"--compact"},
-		description = "Transform XGBoost-style trees to PMML-style trees"
+		description = "Transform XGBoost-style trees to PMML-style trees",
+		arity = 1
 	)
 	private boolean compact = true;
 
