@@ -84,6 +84,11 @@ public class Learner implements Loadable {
 			case "binary:logistic":
 				this.obj = new BinomialLogisticRegression();
 				break;
+			case "rank:map":
+			case "rank:ndcg":
+			case "rank:pairwise":
+				this.obj = new LambdaMART();
+				break;
 			case "multi:softmax":
 			case "multi:softprob":
 				this.obj = new MultinomialLogisticRegression(this.num_class);
