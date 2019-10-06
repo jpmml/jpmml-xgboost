@@ -22,11 +22,15 @@ import java.io.EOFException;
 import java.io.IOException;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
+import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
+import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.Schema;
@@ -143,6 +147,41 @@ public class Learner implements Loadable {
 		return new Schema(label, features);
 	}
 
+	public Schema toXGBoostSchema(Schema schema){
+		Function<Feature, Feature> function = new Function<Feature, Feature>(){
+
+			@Override
+			public Feature apply(Feature feature){
+
+				if(feature instanceof BinaryFeature){
+					BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+					return binaryFeature;
+				} else
+
+				{
+					ContinuousFeature continuousFeature = feature.toContinuousFeature();
+
+					DataType dataType = continuousFeature.getDataType();
+					switch(dataType){
+						case INTEGER:
+						case FLOAT:
+							break;
+						case DOUBLE:
+							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
+							break;
+						default:
+							throw new IllegalArgumentException("Expected integer, float or double data type, got " + dataType.value() + " data type");
+					}
+
+					return continuousFeature;
+				}
+			}
+		};
+
+		return schema.toTransformedSchema(function);
+	}
+
 	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Map<String, ?> options){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
@@ -155,9 +194,6 @@ public class Learner implements Loadable {
 		return pmml;
 	}
 
-	/**
-	 * @see XGBoostUtil#toXGBoostSchema(Schema)
-	 */
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
 		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);

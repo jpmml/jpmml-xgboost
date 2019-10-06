@@ -26,14 +26,8 @@ import java.nio.ByteOrder;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
-import java.util.function.Function;
 
 import com.google.common.io.CharStreams;
-import org.dmg.pmml.DataType;
-import org.jpmml.converter.BinaryFeature;
-import org.jpmml.converter.ContinuousFeature;
-import org.jpmml.converter.Feature;
-import org.jpmml.converter.Schema;
 
 public class XGBoostUtil {
 
@@ -85,42 +79,6 @@ public class XGBoostUtil {
 		}
 
 		return featureMap;
-	}
-
-	static
-	public Schema toXGBoostSchema(Schema schema){
-		Function<Feature, Feature> function = new Function<Feature, Feature>(){
-
-			@Override
-			public Feature apply(Feature feature){
-
-				if(feature instanceof BinaryFeature){
-					BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-					return binaryFeature;
-				} else
-
-				{
-					ContinuousFeature continuousFeature = feature.toContinuousFeature();
-
-					DataType dataType = continuousFeature.getDataType();
-					switch(dataType){
-						case INTEGER:
-						case FLOAT:
-							break;
-						case DOUBLE:
-							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
-							break;
-						default:
-							throw new IllegalArgumentException("Expected integer, float or double data type, got " + dataType.value() + " data type");
-					}
-
-					return continuousFeature;
-				}
-			}
-		};
-
-		return schema.toTransformedSchema(function);
 	}
 
 	static
