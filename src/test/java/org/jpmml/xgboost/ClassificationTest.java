@@ -34,7 +34,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate("BinomialClassification", "Audit@31", new FloatEquivalence(32));
+		evaluate("BinomialClassification", "Audit@31", new FloatEquivalence(16));
 	}
 
 	@Test
@@ -49,22 +49,22 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(32));
+		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(32));
+		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(24));
 	}
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(16));
+		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateIrisLimit() throws Exception {
-		evaluate("MultinomialClassification", "Iris@11");
+		evaluate("MultinomialClassification", "Iris@11", new FloatEquivalence(8));
 	}
 
 	@Test

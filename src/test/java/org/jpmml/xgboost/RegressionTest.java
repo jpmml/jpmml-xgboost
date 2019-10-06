@@ -39,7 +39,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateAudit() throws Exception {
-		evaluate("LogisticRegression", "Audit", new FloatEquivalence(6));
+		evaluate("LogisticRegression", "Audit");
 	}
 
 	@Test
@@ -49,7 +49,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate("GammaRegression", "Visit", new FloatEquivalence(32));
+		evaluate("GammaRegression", "Visit", new FloatEquivalence(16));
 	}
 
 	@Test
@@ -59,7 +59,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate("PoissonRegression", "Visit", new FloatEquivalence(16));
+		evaluate("PoissonRegression", "Visit", new FloatEquivalence(8));
 	}
 
 	@Test
