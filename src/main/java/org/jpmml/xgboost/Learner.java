@@ -130,8 +130,7 @@ public class Learner implements Loadable {
 		}
 	}
 
-	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Map<String, ?> options){
-		XGBoostEncoder encoder = new XGBoostEncoder();
+	public Schema encodeSchema(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
 
 		if(targetField == null){
 			targetField = FieldName.create("_target");
@@ -141,7 +140,13 @@ public class Learner implements Loadable {
 
 		List<Feature> features = featureMap.encodeFeatures(encoder);
 
-		Schema schema = new Schema(label, features);
+		return new Schema(label, features);
+	}
+
+	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Map<String, ?> options){
+		XGBoostEncoder encoder = new XGBoostEncoder();
+
+		Schema schema = encodeSchema(targetField, targetCategories, featureMap, encoder);
 
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
