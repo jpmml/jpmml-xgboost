@@ -57,7 +57,7 @@ genAutoMpg = function(auto_y, auto_X, dataset, ...){
 
 	set.seed(42)
 
-	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:linear", nrounds = 31, ...)
+	auto.xgb = xgboost(data = auto.dmatrix, objective = "reg:squarederror", nrounds = 31, ...)
 
 	storeModel(auto.xgb, funcAndDataset, dataset)
 	storeResult(predictAutoMpg(auto.xgb, auto.dmatrix, 31), funcAndDataset)

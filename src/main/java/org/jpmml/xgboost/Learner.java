@@ -73,6 +73,7 @@ public class Learner implements Loadable {
 		String name_obj = input.readString();
 		switch(name_obj){
 			case "reg:linear":
+			case "reg:squarederror":
 				this.obj = new LinearRegression();
 				break;
 			case "reg:logistic":
