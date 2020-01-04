@@ -74,6 +74,11 @@ Getting help:
 java -jar target/jpmml-xgboost-executable-1.3-SNAPSHOT.jar --help
 ```
 
+# Documentation #
+
+* [Stacking Scikit-Learn, LightGBM and XGBoost models](https://openscoring.io/blog/2020/01/02/stacking_sklearn_lightgbm_xgboost/)
+* [Extending Scikit-Learn with GBDT plus LR ensemble (GBDT+LR) model type](https://openscoring.io/blog/2019/06/19/sklearn_gbdt_lr_ensemble/) (Using XGBoost models on the GBDT side of GBDT+LR ensemble)
+
 # License #
 
 JPMML-XGBoost is dual-licensed under the [GNU Affero General Public License (AGPL) version 3.0](http://www.gnu.org/licenses/agpl-3.0.html), and a commercial license.
