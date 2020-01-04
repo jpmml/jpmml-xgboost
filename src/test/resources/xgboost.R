@@ -182,6 +182,15 @@ genAuditAdjusted = function(audit_y, audit_X, dataset, ...){
 	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 71), funcAndDataset)
 	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 31), paste(funcAndDataset, "31", sep = "@"))
 
+	funcAndDataset = paste("HingeClassification", dataset, sep = "")
+
+	set.seed(42)
+
+	audit.xgb = xgboost(data = audit.dmatrix, objective = "binary:hinge", nrounds = 31, ...)
+
+	storeModel(audit.xgb, funcAndDataset, dataset)
+	storeResult(predictBinomialAuditAdjusted(audit.xgb, audit.dmatrix, 31), funcAndDataset)
+
 	funcAndDataset = paste("MultinomialClassification", dataset, sep = "")
 
 	set.seed(42)

@@ -48,6 +48,16 @@ public class ClassificationTest extends XGBoostTest {
 	}
 
 	@Test
+	public void evaluateHingeAudit() throws Exception {
+		evaluate("HingeClassification", "Audit");
+	}
+
+	@Test
+	public void evaluateHingeAuditNA() throws Exception {
+		evaluate("HingeClassification", "AuditNA");
+	}
+
+	@Test
 	public void evaluateMultinomialAudit() throws Exception {
 		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(8));
 	}

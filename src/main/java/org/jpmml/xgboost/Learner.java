@@ -86,6 +86,9 @@ public class Learner implements Loadable {
 			case "count:poisson":
 				this.obj = new PoissonRegression();
 				break;
+			case "binary:hinge":
+				this.obj = new HingeClassification();
+				break;
 			case "binary:logistic":
 				this.obj = new BinomialLogisticRegression();
 				break;
