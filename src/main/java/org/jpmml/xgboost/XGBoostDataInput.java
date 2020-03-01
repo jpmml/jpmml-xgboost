@@ -20,17 +20,14 @@ package org.jpmml.xgboost;
 
 import java.io.Closeable;
 import java.io.DataInput;
-import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
-import java.nio.ByteOrder;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 import com.google.common.io.ByteStreams;
-import com.google.common.io.LittleEndianDataInputStream;
 
 public class XGBoostDataInput implements Closeable {
 
@@ -39,20 +36,8 @@ public class XGBoostDataInput implements Closeable {
 	private String charset = null;
 
 
-	public XGBoostDataInput(InputStream is, ByteOrder byteOrder, String charset){
-
-		if((ByteOrder.BIG_ENDIAN).equals(byteOrder)){
-			this.is = new DataInputStream(is);
-		} else
-
-		if((ByteOrder.LITTLE_ENDIAN).equals(byteOrder)){
-			this.is = new LittleEndianDataInputStream(is);
-		} else
-
-		{
-			throw new IllegalArgumentException();
-		}
-
+	public XGBoostDataInput(InputStream is, String charset){
+		this.is = is;
 		this.charset = charset;
 	}
 
