@@ -85,6 +85,7 @@ public class Learner implements Loadable {
 		switch(name_obj){
 			case "reg:linear":
 			case "reg:squarederror":
+			case "reg:squaredlogerror":
 				this.obj = new LinearRegression();
 				break;
 			case "reg:logistic":
