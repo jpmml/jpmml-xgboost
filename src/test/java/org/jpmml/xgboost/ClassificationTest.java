@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost;
 
+import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.FloatEquivalence;
 import org.junit.Test;
 
@@ -29,22 +30,22 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit", new FloatEquivalence(32));
+		evaluate("BinomialClassification", "Audit", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate("BinomialClassification", "Audit@31", new FloatEquivalence(16));
+		evaluate("BinomialClassification", "Audit@31", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA", new FloatEquivalence(32));
+		evaluate("BinomialClassification", "AuditNA", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate("BinomialClassification", "AuditNA@31", new FloatEquivalence(64));
+		evaluate("BinomialClassification", "AuditNA@31", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
 	}
 
 	@Test
@@ -86,4 +87,7 @@ public class ClassificationTest extends XGBoostTest {
 	public void evaluateIrisNALimit() throws Exception {
 		evaluate("MultinomialClassification", "IrisNA@11");
 	}
+
+	private static final FieldName falseProbabilityField = FieldName.create("probability(0)");
+	private static final FieldName trueProbabilityField = FieldName.create("probability(1)");
 }
