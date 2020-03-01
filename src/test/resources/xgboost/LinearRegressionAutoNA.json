@@ -1,0 +1,3021 @@
+[
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 85, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 225, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "leaf": 9.29857159 }, 
+      { "nodeid": 4, "leaf": 3.48750019 }
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 198.5, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "weight", "split_condition": 3330, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "leaf": 7.62034512 }, 
+        { "nodeid": 8, "leaf": 3.17000008 }
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=8", "yes": 10, "no": 9} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 3103, "yes": 11, "no": 12, "missing": 11 , "children": [
+          { "nodeid": 11, "depth": 4, "split": "horsepower", "split_condition": 149, "yes": 13, "no": 14, "missing": 13 , "children": [
+            { "nodeid": 13, "leaf": 6.6140914 }, 
+            { "nodeid": 14, "leaf": 3.03750014 }
+          ]}, 
+          { "nodeid": 12, "depth": 4, "split": "displacement", "split_condition": 311.5, "yes": 15, "no": 16, "missing": 15 , "children": [
+            { "nodeid": 15, "leaf": 5.22306156 }, 
+            { "nodeid": 16, "leaf": 3.68000007 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "leaf": 4.05661774 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2220, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "cylinders=3", "yes": 4, "no": 3} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "model_year", "split_condition": 77, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 5.68060827 }, 
+        { "nodeid": 8, "leaf": 7.44187593 }
+      ]}, 
+      { "nodeid": 4, "leaf": 1.48194826 }
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 198.5, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "model_year", "split_condition": 79, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "cylinders=8", "yes": 14, "no": 13} , "children": [
+          { "nodeid": 13, "depth": 4, "split": "weight", "split_condition": 2707, "yes": 17, "no": 18, "missing": 17 , "children": [
+            { "nodeid": 17, "leaf": 4.70760393 }, 
+            { "nodeid": 18, "leaf": 3.38334608 }
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "acceleration", "split_condition": 16.5, "yes": 19, "no": 20, "missing": 19 , "children": [
+            { "nodeid": 19, "leaf": 2.79871964 }, 
+            { "nodeid": 20, "leaf": 0.666507363 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "weight", "split_condition": 3258, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "leaf": 5.92537212 }, 
+          { "nodeid": 16, "leaf": 3.4741292 }
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 282, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": 3.80569005 }, 
+        { "nodeid": 12, "leaf": 2.92892003 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "displacement", "split_condition": 120.5, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "model_year", "split_condition": 78, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "leaf": 3.74348736 }, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 47, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 1.3139329 }, 
+        { "nodeid": 8, "depth": 3, "split": "cylinders=3", "yes": 14, "no": 13} , "children": [
+          { "nodeid": 13, "leaf": 5.25050831 }, 
+          { "nodeid": 14, "leaf": 1.44814253 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "horsepower", "split_condition": 97, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 259, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 3.08826876 }, 
+        { "nodeid": 10, "depth": 3, "split": "model_year", "split_condition": 72, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "leaf": 1.73874176 }, 
+          { "nodeid": 16, "leaf": 4.31863642 }
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "model_year", "split_condition": 75, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "weight", "split_condition": 4359, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "cylinders=4", "yes": 22, "no": 21} , "children": [
+            { "nodeid": 21, "leaf": 2.18941331 }, 
+            { "nodeid": 22, "leaf": 3.20574594 }
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "weight", "split_condition": 4379, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "leaf": 0.3771694 }, 
+            { "nodeid": 24, "leaf": 1.47784126 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "model_year", "split_condition": 80, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "displacement", "split_condition": 241, "yes": 25, "no": 26, "missing": 25 , "children": [
+            { "nodeid": 25, "leaf": 3.04120207 }, 
+            { "nodeid": 26, "leaf": 2.30089259 }
+          ]}, 
+          { "nodeid": 20, "leaf": 4.10754299 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 71, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2133, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "horsepower", "split_condition": 47, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 1.51959562 }, 
+        { "nodeid": 8, "leaf": 4.01331282 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 63, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 0.301356703 }, 
+        { "nodeid": 10, "leaf": 2.57355738 }
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 79, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "weight", "split_condition": 2750, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 113, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "acceleration", "split_condition": 18.7999992, "yes": 23, "no": 24, "missing": 23 , "children": [
+            { "nodeid": 23, "leaf": 2.20007205 }, 
+            { "nodeid": 24, "leaf": 0.751234472 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 2600, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "leaf": 3.45306039 }, 
+            { "nodeid": 26, "leaf": 2.07313275 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "cylinders=4", "yes": 18, "no": 17} , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 3728, "yes": 27, "no": 28, "missing": 28 , "children": [
+            { "nodeid": 27, "leaf": 1.88667929 }, 
+            { "nodeid": 28, "depth": 5, "split": "model_year", "split_condition": 75, "yes": 31, "no": 32, "missing": 32 , "children": [
+              { "nodeid": 31, "leaf": 1.19034088 }, 
+              { "nodeid": 32, "leaf": 1.60290182 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "acceleration", "split_condition": 18.1000004, "yes": 29, "no": 30, "missing": 29 , "children": [
+            { "nodeid": 29, "leaf": 2.50533199 }, 
+            { "nodeid": 30, "leaf": 1.53216994 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "weight", "split_condition": 3038, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "cylinders=8", "yes": 20, "no": 19} , "children": [
+          { "nodeid": 19, "leaf": 3.44310117 }, 
+          { "nodeid": 20, "leaf": 0.857035458 }
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 3145, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "leaf": 0.426285297 }, 
+          { "nodeid": 22, "leaf": 2.04121804 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 80, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 109, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "cylinders=3", "yes": 8, "no": 7} , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 93.5, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "acceleration", "split_condition": 13.8999996, "yes": 21, "no": 22, "missing": 21 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "displacement", "split_condition": 81.5, "yes": 33, "no": 34, "missing": 34 , "children": [
+              { "nodeid": 33, "leaf": 0.944359601 }, 
+              { "nodeid": 34, "leaf": 3.47929311 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "horsepower", "split_condition": 71, "yes": 35, "no": 36, "missing": 35 , "children": [
+              { "nodeid": 35, "leaf": 2.25791693 }, 
+              { "nodeid": 36, "leaf": 0.712752581 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "horsepower", "split_condition": 79, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "leaf": 1.50684381 }, 
+            { "nodeid": 24, "depth": 5, "split": "acceleration", "split_condition": 18.3500004, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": 2.36223245 }, 
+              { "nodeid": 38, "leaf": 0.757372081 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "leaf": 0.663383722 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "weight", "split_condition": 2124, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 2.59724641 }, 
+        { "nodeid": 10, "depth": 3, "split": "cylinders=8", "yes": 18, "no": 17} , "children": [
+          { "nodeid": 17, "depth": 4, "split": "model_year", "split_condition": 76, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "origin=1", "yes": 40, "no": 39} , "children": [
+              { "nodeid": 39, "leaf": 1.33608365 }, 
+              { "nodeid": 40, "leaf": 0.943370521 }
+            ]}, 
+            { "nodeid": 26, "depth": 5, "split": "horsepower", "split_condition": 107, "yes": 41, "no": 42, "missing": 41 , "children": [
+              { "nodeid": 41, "leaf": 1.68625581 }, 
+              { "nodeid": 42, "leaf": 1.1962626 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "horsepower", "split_condition": 151, "yes": 27, "no": 28, "missing": 28 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "weight", "split_condition": 3972, "yes": 43, "no": 44, "missing": 44 , "children": [
+              { "nodeid": 43, "leaf": 1.55425382 }, 
+              { "nodeid": 44, "leaf": 0.92281425 }
+            ]}, 
+            { "nodeid": 28, "depth": 5, "split": "acceleration", "split_condition": 16.7000008, "yes": 45, "no": 46, "missing": 46 , "children": [
+              { "nodeid": 45, "leaf": 0.861519635 }, 
+              { "nodeid": 46, "leaf": 0.295695305 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "weight", "split_condition": 2462, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "horsepower", "split_condition": 96, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "leaf": 3.18403697 }, 
+        { "nodeid": 12, "leaf": 1.32742167 }
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "weight", "split_condition": 3423, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "horsepower", "split_condition": 87, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 2893, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "leaf": 1.69256139 }, 
+            { "nodeid": 30, "leaf": 3.08308864 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "horsepower", "split_condition": 89, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "leaf": 0.362342566 }, 
+            { "nodeid": 32, "leaf": 1.47320342 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "leaf": 0.441264451 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 79, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 109, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "horsepower", "split_condition": 68, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "weight", "split_condition": 2355, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 69.5, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "leaf": 0.371444046 }, 
+            { "nodeid": 30, "depth": 5, "split": "displacement", "split_condition": 94, "yes": 47, "no": 48, "missing": 48 , "children": [
+              { "nodeid": 47, "leaf": 2.02366328 }, 
+              { "nodeid": 48, "leaf": 1.4377296 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "leaf": 0.612957597 }
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "weight", "split_condition": 2447, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "cylinders=3", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "acceleration", "split_condition": 18.6000004, "yes": 49, "no": 50, "missing": 49 , "children": [
+              { "nodeid": 49, "leaf": 1.0165143 }, 
+              { "nodeid": 50, "leaf": 0.287993431 }
+            ]}, 
+            { "nodeid": 32, "leaf": 0.26861459 }
+          ]}, 
+          { "nodeid": 18, "leaf": 1.73272502 }
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "weight", "split_condition": 1995, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 2.27482414 }, 
+        { "nodeid": 10, "depth": 3, "split": "weight", "split_condition": 3728, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "displacement", "split_condition": 241, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "displacement", "split_condition": 132.5, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.787590146 }, 
+              { "nodeid": 52, "leaf": 1.10273659 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "weight", "split_condition": 3345, "yes": 53, "no": 54, "missing": 53 , "children": [
+              { "nodeid": 53, "leaf": 0.583772719 }, 
+              { "nodeid": 54, "leaf": 1.04143763 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "horsepower", "split_condition": 199, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 3766, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.137323201 }, 
+              { "nodeid": 56, "leaf": 0.654370487 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "displacement", "split_condition": 400, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": -0.0357876793 }, 
+              { "nodeid": 58, "leaf": 0.501805484 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "weight", "split_condition": 2462, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 127.5, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "cylinders=3", "yes": 22, "no": 21} , "children": [
+          { "nodeid": 21, "depth": 4, "split": "acceleration", "split_condition": 19.9500008, "yes": 37, "no": 38, "missing": 37 , "children": [
+            { "nodeid": 37, "leaf": 2.34421778 }, 
+            { "nodeid": 38, "leaf": 0.614974022 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.515342653 }
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "cylinders=6", "yes": 24, "no": 23} , "children": [
+          { "nodeid": 23, "leaf": 1.18771422 }, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 215.5, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "leaf": 0.09938851 }, 
+            { "nodeid": 40, "leaf": 0.390322804 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "horsepower", "split_condition": 87, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "cylinders=8", "yes": 26, "no": 25} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "weight", "split_condition": 2516, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "leaf": 0.487818748 }, 
+            { "nodeid": 42, "leaf": 1.75225258 }
+          ]}, 
+          { "nodeid": 26, "leaf": 0.438796967 }
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "horsepower", "split_condition": 89, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "cylinders=4", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "leaf": 0.307991147 }, 
+            { "nodeid": 44, "leaf": -0.0281187072 }
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "displacement", "split_condition": 145.5, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.292456359 }, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2977, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 1.35442579 }, 
+              { "nodeid": 60, "leaf": 0.737518013 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 79, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2750, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 93.5, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "model_year", "split_condition": 156, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "cylinders=3", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "acceleration", "split_condition": 20.8500004, "yes": 59, "no": 60, "missing": 59 , "children": [
+              { "nodeid": 59, "leaf": 1.1355803 }, 
+              { "nodeid": 60, "leaf": 0.222365871 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 160, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.442549914 }, 
+              { "nodeid": 62, "leaf": 0.0524997748 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 13.8999996, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "cylinders=6", "yes": 64, "no": 63} , "children": [
+              { "nodeid": 63, "leaf": 2.33780193 }, 
+              { "nodeid": 64, "leaf": 0.511349499 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "weight", "split_condition": 1973, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.283408523 }, 
+              { "nodeid": 66, "leaf": 1.27356911 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 92, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "horsepower", "split_condition": 91, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "acceleration", "split_condition": 16.3500004, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": 0.867888689 }, 
+              { "nodeid": 68, "leaf": 0.44297421 }
+            ]}, 
+            { "nodeid": 36, "leaf": -0.595521688 }
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "origin=2", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 215.5, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": 1.14446759 }, 
+              { "nodeid": 70, "leaf": 0.154301837 }
+            ]}, 
+            { "nodeid": 38, "leaf": 0.23257485 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "cylinders=4", "yes": 10, "no": 9} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "model_year", "split_condition": 75, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 4559, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "displacement", "split_condition": 88, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": -0.0816836357 }, 
+              { "nodeid": 72, "leaf": 0.43826282 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "weight", "split_condition": 4644, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": -0.151886195 }, 
+              { "nodeid": 74, "leaf": 0.231099889 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "horsepower", "split_condition": 140, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "origin=2", "yes": 76, "no": 75} , "children": [
+              { "nodeid": 75, "leaf": 0.759776652 }, 
+              { "nodeid": 76, "leaf": 0.317370892 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "displacement", "split_condition": 241, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.729655743 }, 
+              { "nodeid": 78, "leaf": 0.475513577 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 77, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "acceleration", "split_condition": 14.4499998, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "leaf": 0.334655285 }, 
+            { "nodeid": 44, "leaf": 1.48533726 }
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "acceleration", "split_condition": 16.6000004, "yes": 45, "no": 46, "missing": 45 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "weight", "split_condition": 3210, "yes": 79, "no": 80, "missing": 79 , "children": [
+              { "nodeid": 79, "leaf": 1.09676063 }, 
+              { "nodeid": 80, "leaf": 0.0284769069 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "displacement", "split_condition": 104, "yes": 81, "no": 82, "missing": 82 , "children": [
+              { "nodeid": 81, "leaf": 0.71027112 }, 
+              { "nodeid": 82, "leaf": 0.245312199 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "horsepower", "split_condition": 70, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 16.0499992, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "acceleration", "split_condition": 15.1499996, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "leaf": 1.35964108 }, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 90, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "leaf": -0.107403092 }, 
+            { "nodeid": 48, "leaf": -0.00487861643 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "weight", "split_condition": 1818, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "leaf": 0.460121185 }, 
+          { "nodeid": 26, "depth": 4, "split": "acceleration", "split_condition": 20.2999992, "yes": 49, "no": 50, "missing": 49 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": 0.557044923 }, 
+              { "nodeid": 84, "leaf": 2.28206563 }
+            ]}, 
+            { "nodeid": 50, "leaf": 0.522728086 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "acceleration", "split_condition": 15.1499996, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "displacement", "split_condition": 200, "yes": 27, "no": 28, "missing": 27 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "horsepower", "split_condition": 75, "yes": 51, "no": 52, "missing": 52 , "children": [
+            { "nodeid": 51, "leaf": 0.442591101 }, 
+            { "nodeid": 52, "depth": 5, "split": "weight", "split_condition": 3258, "yes": 85, "no": 86, "missing": 85 , "children": [
+              { "nodeid": 85, "leaf": 1.70909846 }, 
+              { "nodeid": 86, "leaf": 0.547312438 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "cylinders=6", "yes": 54, "no": 53} , "children": [
+            { "nodeid": 53, "leaf": 0.421094954 }, 
+            { "nodeid": 54, "leaf": 0.0127138142 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "displacement", "split_condition": 246.5, "yes": 29, "no": 30, "missing": 29 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "displacement", "split_condition": 159.5, "yes": 55, "no": 56, "missing": 55 , "children": [
+            { "nodeid": 55, "depth": 5, "split": "weight", "split_condition": 2123, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.0101211555 }, 
+              { "nodeid": 88, "leaf": 0.953552902 }
+            ]}, 
+            { "nodeid": 56, "depth": 5, "split": "horsepower", "split_condition": 88, "yes": 89, "no": 90, "missing": 90 , "children": [
+              { "nodeid": 89, "leaf": 0.131144911 }, 
+              { "nodeid": 90, "leaf": 0.40641591 }
+            ]}
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "horsepower", "split_condition": 118, "yes": 57, "no": 58, "missing": 58 , "children": [
+            { "nodeid": 57, "leaf": 2.097435 }, 
+            { "nodeid": 58, "leaf": 0.310819119 }
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 68, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "model_year", "split_condition": 77, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "acceleration", "split_condition": 15.75, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": -0.0694310218 }, 
+        { "nodeid": 8, "depth": 3, "split": "model_year", "split_condition": 72, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "cylinders=4", "yes": 30, "no": 29} , "children": [
+            { "nodeid": 29, "leaf": 0.352028847 }, 
+            { "nodeid": 30, "leaf": 0.0564708747 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 2019, "yes": 31, "no": 32, "missing": 31 , "children": [
+            { "nodeid": 31, "leaf": 0.762893438 }, 
+            { "nodeid": 32, "leaf": 0.189010918 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 59, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "displacement", "split_condition": 78.5, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "leaf": 0.328819394 }, 
+          { "nodeid": 18, "depth": 4, "split": "horsepower", "split_condition": 47, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "leaf": 0.380771548 }, 
+            { "nodeid": 34, "leaf": 2.09380269 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 63, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "cylinders=4", "yes": 36, "no": 35} , "children": [
+            { "nodeid": 35, "leaf": -0.251978874 }, 
+            { "nodeid": 36, "depth": 5, "split": "acceleration", "split_condition": 15.8500004, "yes": 49, "no": 50, "missing": 50 , "children": [
+              { "nodeid": 49, "leaf": -0.0912926719 }, 
+              { "nodeid": 50, "leaf": 0.984307289 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "leaf": 1.20296645 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 79, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 113.5, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "weight", "split_condition": 1975, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "leaf": 0.30042994 }, 
+          { "nodeid": 22, "depth": 4, "split": "model_year", "split_condition": 156, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "weight", "split_condition": 2447, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.588746071 }, 
+              { "nodeid": 52, "leaf": 0.895993412 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "acceleration", "split_condition": 19.5499992, "yes": 53, "no": 54, "missing": 53 , "children": [
+              { "nodeid": 53, "leaf": 1.5772444 }, 
+              { "nodeid": 54, "leaf": 0.026962854 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "model_year", "split_condition": 75, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "acceleration", "split_condition": 17.5, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "origin=2", "yes": 56, "no": 55} , "children": [
+              { "nodeid": 55, "leaf": 0.319001913 }, 
+              { "nodeid": 56, "leaf": 0.750468791 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "acceleration", "split_condition": 18.75, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": -0.165469944 }, 
+              { "nodeid": 58, "leaf": 0.154675484 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 115, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "leaf": -0.506193399 }, 
+            { "nodeid": 42, "depth": 5, "split": "weight", "split_condition": 2698, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.7611624 }, 
+              { "nodeid": 60, "leaf": 0.4663212 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "acceleration", "split_condition": 15.1499996, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "weight", "split_condition": 3038, "yes": 25, "no": 26, "missing": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "weight", "split_condition": 2905, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "weight", "split_condition": 2818, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.971328616 }, 
+              { "nodeid": 62, "leaf": -0.0353440791 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "horsepower", "split_condition": 85, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.732536197 }, 
+              { "nodeid": 64, "leaf": 1.97239745 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "horsepower", "split_condition": 107, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.140883252 }, 
+            { "nodeid": 46, "leaf": 0.437849998 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "horsepower", "split_condition": 270, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "displacement", "split_condition": 103, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "leaf": 0.00860309601 }, 
+            { "nodeid": 48, "depth": 5, "split": "acceleration", "split_condition": 19.75, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.528357029 }, 
+              { "nodeid": 66, "leaf": 0.1792202 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "leaf": 1.07317173 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2145, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "horsepower", "split_condition": 67, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 2061, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 101.5, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2048, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "acceleration", "split_condition": 14.4499998, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": -0.0196812637 }, 
+              { "nodeid": 60, "leaf": 0.506461859 }
+            ]}, 
+            { "nodeid": 32, "leaf": -0.0892172828 }
+          ]}, 
+          { "nodeid": 16, "leaf": 1.27625203 }
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "displacement", "split_condition": 82, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 2127, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "leaf": 0.59570545 }, 
+            { "nodeid": 34, "leaf": 0.144225314 }
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 101, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "leaf": 1.99097407 }, 
+            { "nodeid": 36, "leaf": 0.510730386 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 15.25, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "cylinders=4", "yes": 20, "no": 19} , "children": [
+          { "nodeid": 19, "leaf": 0.162249416 }, 
+          { "nodeid": 20, "depth": 4, "split": "weight", "split_condition": 1838, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": 0.167594433 }, 
+            { "nodeid": 38, "depth": 5, "split": "model_year", "split_condition": 77, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.452881455 }, 
+              { "nodeid": 62, "leaf": 1.42060578 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "acceleration", "split_condition": 15.8500004, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "displacement", "split_condition": 94.5, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "leaf": -0.210694119 }, 
+            { "nodeid": 40, "leaf": 0.00731277512 }
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "weight", "split_condition": 1988, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "displacement", "split_condition": 94, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.28816697 }, 
+              { "nodeid": 64, "leaf": -0.164217293 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "acceleration", "split_condition": 17.75, "yes": 65, "no": 66, "missing": 65 , "children": [
+              { "nodeid": 65, "leaf": 0.472775966 }, 
+              { "nodeid": 66, "leaf": 0.0496315993 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 79, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 109, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 62, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "displacement", "split_condition": 97.5, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "leaf": 0.312751591 }, 
+            { "nodeid": 44, "leaf": -0.214181915 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "model_year", "split_condition": 71, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.0660205856 }, 
+            { "nodeid": 46, "depth": 5, "split": "model_year", "split_condition": 72, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": 1.02544796 }, 
+              { "nodeid": 68, "leaf": 0.540971696 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "weight", "split_condition": 3590, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "displacement", "split_condition": 259, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "origin=2", "yes": 70, "no": 69} , "children": [
+              { "nodeid": 69, "leaf": 0.309932113 }, 
+              { "nodeid": 70, "leaf": 0.0193409454 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "origin=3", "yes": 72, "no": 71} , "children": [
+              { "nodeid": 71, "leaf": 0.559238911 }, 
+              { "nodeid": 72, "leaf": 0.0331141949 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "displacement", "split_condition": 178, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "acceleration", "split_condition": 16.8500004, "yes": 73, "no": 74, "missing": 73 , "children": [
+              { "nodeid": 73, "leaf": 0.736625791 }, 
+              { "nodeid": 74, "leaf": 0.0097037321 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "origin=3", "yes": 76, "no": 75} , "children": [
+              { "nodeid": 75, "leaf": 0.177665144 }, 
+              { "nodeid": 76, "leaf": 0.793054402 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "weight", "split_condition": 2905, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "weight", "split_condition": 2795, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "displacement", "split_condition": 101, "yes": 51, "no": 52, "missing": 52 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "cylinders=3", "yes": 78, "no": 77} , "children": [
+              { "nodeid": 77, "leaf": -0.0416696556 }, 
+              { "nodeid": 78, "leaf": 0.0359770805 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "weight", "split_condition": 2462, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": 0.729561329 }, 
+              { "nodeid": 80, "leaf": 0.463339031 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "displacement", "split_condition": 464, "yes": 53, "no": 54, "missing": 54 , "children": [
+            { "nodeid": 53, "depth": 5, "split": "horsepower", "split_condition": 99, "yes": 81, "no": 82, "missing": 81 , "children": [
+              { "nodeid": 81, "leaf": 0.0282732025 }, 
+              { "nodeid": 82, "leaf": 0.140051842 }
+            ]}, 
+            { "nodeid": 54, "leaf": -0.161632359 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 3038, "yes": 29, "no": 30, "missing": 29 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "acceleration", "split_condition": 15.1499996, "yes": 55, "no": 56, "missing": 55 , "children": [
+            { "nodeid": 55, "depth": 5, "split": "horsepower", "split_condition": 264, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": 1.30258691 }, 
+              { "nodeid": 84, "leaf": 0.38444528 }
+            ]}, 
+            { "nodeid": 56, "depth": 5, "split": "acceleration", "split_condition": 16.4500008, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": 0.145382553 }, 
+              { "nodeid": 86, "leaf": 0.805619895 }
+            ]}
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "horsepower", "split_condition": 270, "yes": 57, "no": 58, "missing": 58 , "children": [
+            { "nodeid": 57, "depth": 5, "split": "acceleration", "split_condition": 40.8000031, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.302189827 }, 
+              { "nodeid": 88, "leaf": 0.112706758 }
+            ]}, 
+            { "nodeid": 58, "leaf": 0.577497602 }
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2145, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2061, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 1900, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "acceleration", "split_condition": 18.7999992, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 94, "yes": 31, "no": 32, "missing": 31 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "displacement", "split_condition": 77.5, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": 0.16162549 }, 
+              { "nodeid": 58, "leaf": 1.03497005 }
+            ]}, 
+            { "nodeid": 32, "leaf": 0.142455205 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "model_year", "split_condition": 73, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "cylinders=4", "yes": 60, "no": 59} , "children": [
+              { "nodeid": 59, "leaf": 0.223255351 }, 
+              { "nodeid": 60, "leaf": -0.0279690754 }
+            ]}, 
+            { "nodeid": 34, "leaf": 0.338310152 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 50, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "leaf": 1.04215109 }, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 101.5, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 2048, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.216329589 }, 
+              { "nodeid": 62, "leaf": -0.0758345649 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": 0.202025518 }, 
+              { "nodeid": 64, "leaf": 0.56992954 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 17.25, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2125, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 2114, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": -0.0998457 }, 
+            { "nodeid": 38, "depth": 5, "split": "cylinders=3", "yes": 66, "no": 65} , "children": [
+              { "nodeid": 65, "leaf": 0.00621585874 }, 
+              { "nodeid": 66, "leaf": 0.0492905639 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "model_year", "split_condition": 79, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "displacement", "split_condition": 97.5, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": 0.333024651 }, 
+              { "nodeid": 68, "leaf": 0.0611449257 }
+            ]}, 
+            { "nodeid": 40, "leaf": 0.84546119 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 97.5, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "displacement", "split_condition": 82, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "leaf": 0.36013329 }, 
+            { "nodeid": 42, "leaf": 1.49323046 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.393457621 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 78, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 109, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "displacement", "split_condition": 90.5, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "origin=2", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "model_year", "split_condition": 73, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": 1.55468667 }, 
+              { "nodeid": 70, "leaf": 0.36900714 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "cylinders=4", "yes": 72, "no": 71} , "children": [
+              { "nodeid": 71, "leaf": -0.140162095 }, 
+              { "nodeid": 72, "leaf": 0.118190393 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 96.5, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "displacement", "split_condition": 93.5, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": -0.130898669 }, 
+              { "nodeid": 74, "leaf": 0.0161587726 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2168, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.0475483425 }, 
+              { "nodeid": 76, "leaf": 0.460014611 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "acceleration", "split_condition": 19.5499992, "yes": 25, "no": 26, "missing": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "acceleration", "split_condition": 17.75, "yes": 47, "no": 48, "missing": 47 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "displacement", "split_condition": 241, "yes": 77, "no": 78, "missing": 77 , "children": [
+              { "nodeid": 77, "leaf": 0.263281256 }, 
+              { "nodeid": 78, "leaf": 0.118118308 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "horsepower", "split_condition": 99, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": 0.0656813383 }, 
+              { "nodeid": 80, "leaf": -0.196195379 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "horsepower", "split_condition": 100, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "cylinders=5", "yes": 82, "no": 81} , "children": [
+              { "nodeid": 81, "leaf": 0.689771712 }, 
+              { "nodeid": 82, "leaf": 0.118819147 }
+            ]}, 
+            { "nodeid": 50, "leaf": -0.0261540432 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 247, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "acceleration", "split_condition": 15.1499996, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "origin=2", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 51, "depth": 5, "split": "horsepower", "split_condition": 99, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": 0.795593202 }, 
+              { "nodeid": 84, "leaf": 0.349408954 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "displacement", "split_condition": 326, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": -0.380040854 }, 
+              { "nodeid": 86, "leaf": 0.0489120521 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "horsepower", "split_condition": 75, "yes": 53, "no": 54, "missing": 53 , "children": [
+            { "nodeid": 53, "depth": 5, "split": "weight", "split_condition": 2620, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.0165829193 }, 
+              { "nodeid": 88, "leaf": 0.58352226 }
+            ]}, 
+            { "nodeid": 54, "depth": 5, "split": "displacement", "split_condition": 462, "yes": 89, "no": 90, "missing": 90 , "children": [
+              { "nodeid": 89, "leaf": 0.247976705 }, 
+              { "nodeid": 90, "leaf": -0.0759078041 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 3705, "yes": 29, "no": 30, "missing": 29 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "displacement", "split_condition": 350.5, "yes": 55, "no": 56, "missing": 56 , "children": [
+            { "nodeid": 55, "leaf": 1.03624308 }, 
+            { "nodeid": 56, "leaf": 0.190383494 }
+          ]}, 
+          { "nodeid": 30, "leaf": 0.139614493 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2145, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2061, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 101.5, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "acceleration", "split_condition": 13.8999996, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 94, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "leaf": 0.989464819 }, 
+            { "nodeid": 32, "leaf": 0.121086791 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 1830, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "leaf": 0.346297324 }, 
+            { "nodeid": 34, "depth": 5, "split": "weight", "split_condition": 2048, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.159040511 }, 
+              { "nodeid": 56, "leaf": -0.0644594207 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 55, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "leaf": 1.04271615 }, 
+          { "nodeid": 18, "depth": 4, "split": "acceleration", "split_condition": 17.8999996, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "horsepower", "split_condition": 71, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": 0.324486941 }, 
+              { "nodeid": 58, "leaf": 0.0267233867 }
+            ]}, 
+            { "nodeid": 36, "leaf": 0.0118829729 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 17.25, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2125, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 2114, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": -0.0848688185 }, 
+            { "nodeid": 38, "depth": 5, "split": "cylinders=3", "yes": 60, "no": 59} , "children": [
+              { "nodeid": 59, "leaf": 0.00528373756 }, 
+              { "nodeid": 60, "leaf": 0.0418971069 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "model_year", "split_condition": 79, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "horsepower", "split_condition": 72, "yes": 61, "no": 62, "missing": 61 , "children": [
+              { "nodeid": 61, "leaf": 0.0830738097 }, 
+              { "nodeid": 62, "leaf": 0.295700282 }
+            ]}, 
+            { "nodeid": 40, "leaf": 0.655232072 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 97.5, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "origin=3", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "displacement", "split_condition": 82, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": 0.306113154 }, 
+              { "nodeid": 64, "leaf": 1.2378397 }
+            ]}, 
+            { "nodeid": 42, "leaf": 0.265170485 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.31476593 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 79, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 90.5, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "origin=2", "yes": 24, "no": 23} , "children": [
+          { "nodeid": 23, "depth": 4, "split": "cylinders=3", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "leaf": 1.10510421 }, 
+            { "nodeid": 44, "leaf": 0.0982237831 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "cylinders=4", "yes": 46, "no": 45} , "children": [
+            { "nodeid": 45, "leaf": -0.119137861 }, 
+            { "nodeid": 46, "leaf": 0.0945522338 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "horsepower", "split_condition": 79, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "displacement", "split_condition": 500, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "model_year", "split_condition": 76, "yes": 65, "no": 66, "missing": 65 , "children": [
+              { "nodeid": 65, "leaf": 0.10768842 }, 
+              { "nodeid": 66, "leaf": 0.377649903 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "model_year", "split_condition": 76, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": 0.0998409316 }, 
+              { "nodeid": 68, "leaf": 0.952221692 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "acceleration", "split_condition": 17.75, "yes": 49, "no": 50, "missing": 49 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "displacement", "split_condition": 212.5, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": 0.245601073 }, 
+              { "nodeid": 70, "leaf": 0.121886723 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "weight", "split_condition": 2359, "yes": 71, "no": 72, "missing": 71 , "children": [
+              { "nodeid": 71, "leaf": -0.172681049 }, 
+              { "nodeid": 72, "leaf": 0.0911434665 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 247, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "displacement", "split_condition": 184, "yes": 27, "no": 28, "missing": 27 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "cylinders=5", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 51, "depth": 5, "split": "horsepower", "split_condition": 61, "yes": 73, "no": 74, "missing": 73 , "children": [
+              { "nodeid": 73, "leaf": 0.460259408 }, 
+              { "nodeid": 74, "leaf": 0.252238065 }
+            ]}, 
+            { "nodeid": 52, "leaf": 0.795707464 }
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "horsepower", "split_condition": 88, "yes": 53, "no": 54, "missing": 53 , "children": [
+            { "nodeid": 53, "depth": 5, "split": "cylinders=6", "yes": 76, "no": 75} , "children": [
+              { "nodeid": 75, "leaf": 0.0173303615 }, 
+              { "nodeid": 76, "leaf": -0.142019078 }
+            ]}, 
+            { "nodeid": 54, "leaf": 0.162979901 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "cylinders=6", "yes": 30, "no": 29} , "children": [
+          { "nodeid": 29, "leaf": 0.292015672 }, 
+          { "nodeid": 30, "leaf": 1.21117151 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2145, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2061, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "acceleration", "split_condition": 13.8999996, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 94, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "leaf": 0.841045201 }, 
+          { "nodeid": 16, "leaf": 0.102923878 }
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "displacement", "split_condition": 101.5, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "horsepower", "split_condition": 66, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "weight", "split_condition": 2048, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.227300376 }, 
+              { "nodeid": 52, "leaf": -0.0547905937 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 94, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": 0.104065396 }, 
+              { "nodeid": 54, "leaf": -0.122625738 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "horsepower", "split_condition": 55, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "leaf": 0.808104813 }, 
+            { "nodeid": 34, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 55, "no": 56, "missing": 55 , "children": [
+              { "nodeid": 55, "leaf": 0.117667653 }, 
+              { "nodeid": 56, "leaf": 0.316476077 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 17.25, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2140, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 2125, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 2114, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": -0.0721384063 }, 
+              { "nodeid": 58, "leaf": 0.0267358776 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "weight", "split_condition": 2133, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.255077451 }, 
+              { "nodeid": 60, "leaf": 0.0395118743 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "leaf": 0.665394425 }
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 97.5, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "origin=3", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 82, "yes": 61, "no": 62, "missing": 61 , "children": [
+              { "nodeid": 61, "leaf": 0.339117467 }, 
+              { "nodeid": 62, "leaf": 0.940758407 }
+            ]}, 
+            { "nodeid": 38, "leaf": 0.22539483 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.129239276 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 74, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "weight", "split_condition": 4482, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "weight", "split_condition": 3104, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "horsepower", "split_condition": 96, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "acceleration", "split_condition": 16.25, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.206686839 }, 
+              { "nodeid": 64, "leaf": -0.120798238 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "cylinders=6", "yes": 66, "no": 65} , "children": [
+              { "nodeid": 65, "leaf": -0.185018495 }, 
+              { "nodeid": 66, "leaf": -0.00967969932 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "cylinders=4", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "acceleration", "split_condition": 12.25, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": 0.157095551 }, 
+              { "nodeid": 68, "leaf": -0.033937417 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "acceleration", "split_condition": 18.5, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": 0.408691257 }, 
+              { "nodeid": 70, "leaf": 0.0697764903 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "horsepower", "split_condition": 187, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "cylinders=8", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "leaf": -0.201392278 }, 
+            { "nodeid": 44, "depth": 5, "split": "horsepower", "split_condition": 163, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": 0.0210740101 }, 
+              { "nodeid": 72, "leaf": 0.0804669857 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "leaf": -0.233654946 }
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "weight", "split_condition": 2579, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "horsepower", "split_condition": 87, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "model_year", "split_condition": 164, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "acceleration", "split_condition": 12.9499998, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": -0.162732422 }, 
+              { "nodeid": 74, "leaf": 0.249047011 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2339, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": -0.37414214 }, 
+              { "nodeid": 76, "leaf": 0.0736378729 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "model_year", "split_condition": 80, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "weight", "split_condition": 2529, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.170100987 }, 
+              { "nodeid": 78, "leaf": 0.517500162 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "cylinders=3", "yes": 80, "no": 79} , "children": [
+              { "nodeid": 79, "leaf": 0.860388935 }, 
+              { "nodeid": 80, "leaf": -0.0596663505 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 2590, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "leaf": -0.550767124 }, 
+          { "nodeid": 30, "depth": 4, "split": "model_year", "split_condition": 79, "yes": 49, "no": 50, "missing": 49 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "cylinders=4", "yes": 82, "no": 81} , "children": [
+              { "nodeid": 81, "leaf": 0.0978093818 }, 
+              { "nodeid": 82, "leaf": 0.251656115 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "displacement", "split_condition": 247, "yes": 83, "no": 84, "missing": 83 , "children": [
+              { "nodeid": 83, "leaf": 0.229309812 }, 
+              { "nodeid": 84, "leaf": 0.592848063 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2145, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2061, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "acceleration", "split_condition": 13.8999996, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 94, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "leaf": 0.714888394 }, 
+          { "nodeid": 16, "leaf": 0.087485224 }
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "displacement", "split_condition": 97.5, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 1830, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "weight", "split_condition": 1767, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": 0.0546957031 }, 
+              { "nodeid": 54, "leaf": 0.24550359 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "weight", "split_condition": 1993, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.0270354562 }, 
+              { "nodeid": 56, "leaf": 0.152627572 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "horsepower", "split_condition": 55, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "leaf": 0.626281083 }, 
+            { "nodeid": 34, "depth": 5, "split": "weight", "split_condition": 2051, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": 0.183888882 }, 
+              { "nodeid": 58, "leaf": -0.0465720184 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 17.25, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2140, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 2125, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 2114, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": -0.0613177307 }, 
+              { "nodeid": 60, "leaf": 0.0213886257 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "horsepower", "split_condition": 176, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.195198163 }, 
+              { "nodeid": 62, "leaf": 0.021914864 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "leaf": 0.565585375 }
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 97.5, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "leaf": 0.596491992 }, 
+          { "nodeid": 22, "leaf": 0.109853558 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 76, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "origin=1", "yes": 12, "no": 11} , "children": [
+        { "nodeid": 11, "depth": 3, "split": "displacement", "split_condition": 101, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "cylinders=3", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 75.5, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.285446644 }, 
+              { "nodeid": 64, "leaf": 0.154545978 }
+            ]}, 
+            { "nodeid": 38, "leaf": -0.117133714 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "weight", "split_condition": 4423, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "displacement", "split_condition": 276, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.0475381576 }, 
+              { "nodeid": 66, "leaf": -0.215505987 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "acceleration", "split_condition": 12, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": 0.358881295 }, 
+              { "nodeid": 68, "leaf": 0.0590211302 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "horsepower", "split_condition": 106, "yes": 25, "no": 26, "missing": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "weight", "split_condition": 2711, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "displacement", "split_condition": 131, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": -0.126653105 }, 
+              { "nodeid": 70, "leaf": 0.248437047 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "weight", "split_condition": 3393, "yes": 71, "no": 72, "missing": 71 , "children": [
+              { "nodeid": 71, "leaf": -0.186458766 }, 
+              { "nodeid": 72, "leaf": -0.0197758637 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "weight", "split_condition": 4449, "yes": 43, "no": 44, "missing": 43 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "acceleration", "split_condition": 18, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.272117466 }, 
+              { "nodeid": 74, "leaf": 0.0429765731 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "acceleration", "split_condition": 13.25, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.0174933914 }, 
+              { "nodeid": 76, "leaf": -0.162148088 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=8", "yes": 14, "no": 13} , "children": [
+        { "nodeid": 13, "depth": 3, "split": "origin=2", "yes": 28, "no": 27} , "children": [
+          { "nodeid": 27, "depth": 4, "split": "acceleration", "split_condition": 15.1499996, "yes": 45, "no": 46, "missing": 45 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "weight", "split_condition": 2475, "yes": 77, "no": 78, "missing": 77 , "children": [
+              { "nodeid": 77, "leaf": 0.364765406 }, 
+              { "nodeid": 78, "leaf": 0.11889337 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2246, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": -0.271900624 }, 
+              { "nodeid": 80, "leaf": 0.135790318 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "horsepower", "split_condition": 123, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "displacement", "split_condition": 118.5, "yes": 81, "no": 82, "missing": 82 , "children": [
+              { "nodeid": 81, "leaf": 0.242059335 }, 
+              { "nodeid": 82, "leaf": 0.0189029388 }
+            ]}, 
+            { "nodeid": 48, "leaf": -0.436517924 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "acceleration", "split_condition": 12.3500004, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "weight", "split_condition": 4361, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "horsepower", "split_condition": 194, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": 0.187660113 }, 
+              { "nodeid": 84, "leaf": 0.00878591556 }
+            ]}, 
+            { "nodeid": 50, "leaf": 0.33073476 }
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "model_year", "split_condition": 77, "yes": 51, "no": 52, "missing": 51 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "weight", "split_condition": 3855, "yes": 85, "no": 86, "missing": 85 , "children": [
+              { "nodeid": 85, "leaf": -0.305924326 }, 
+              { "nodeid": 86, "leaf": -0.00787476171 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "displacement", "split_condition": 334.5, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.343490571 }, 
+              { "nodeid": 88, "leaf": 0.00788555201 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 79, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2793, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "horsepower", "split_condition": 59, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "model_year", "split_condition": 79, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2010, "yes": 27, "no": 28, "missing": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "displacement", "split_condition": 77, "yes": 49, "no": 50, "missing": 50 , "children": [
+              { "nodeid": 49, "leaf": 0.0431376472 }, 
+              { "nodeid": 50, "leaf": 0.218463615 }
+            ]}, 
+            { "nodeid": 28, "leaf": -0.0286047943 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "horsepower", "split_condition": 47, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "leaf": 0.134933576 }, 
+            { "nodeid": 30, "leaf": 0.50319922 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "acceleration", "split_condition": 15.1000004, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "cylinders=4", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "model_year", "split_condition": 78, "yes": 51, "no": 52, "missing": 51 , "children": [
+              { "nodeid": 51, "leaf": 0.0952060297 }, 
+              { "nodeid": 52, "leaf": -0.0695315897 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "model_year", "split_condition": 76, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": 0.0644849762 }, 
+              { "nodeid": 54, "leaf": 0.455454051 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "acceleration", "split_condition": 15.75, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "horsepower", "split_condition": 69, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": -0.276958704 }, 
+              { "nodeid": 56, "leaf": -0.0453050137 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "displacement", "split_condition": 93.5, "yes": 57, "no": 58, "missing": 57 , "children": [
+              { "nodeid": 57, "leaf": 0.23314032 }, 
+              { "nodeid": 58, "leaf": 0.0112287933 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "cylinders=4", "yes": 10, "no": 9} , "children": [
+        { "nodeid": 9, "leaf": 0.646472573 }, 
+        { "nodeid": 10, "leaf": 0.0930190086 }
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 101, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 47, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "displacement", "split_condition": 97.75, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "origin=1", "yes": 36, "no": 35} , "children": [
+            { "nodeid": 35, "depth": 5, "split": "acceleration", "split_condition": 14.0500002, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": -0.0848683864 }, 
+              { "nodeid": 60, "leaf": 0.171734914 }
+            ]}, 
+            { "nodeid": 36, "leaf": -0.185193256 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "acceleration", "split_condition": 17.1000004, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": 0.393190503 }, 
+            { "nodeid": 38, "leaf": -0.017554665 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "displacement", "split_condition": 87.5, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "cylinders=3", "yes": 40, "no": 39} , "children": [
+            { "nodeid": 39, "leaf": 0.0120128635 }, 
+            { "nodeid": 40, "leaf": 0.0509848632 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.948347867 }
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "model_year", "split_condition": 74, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "horsepower", "split_condition": 87, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "cylinders=6", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "weight", "split_condition": 4566, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": -0.0196155123 }, 
+              { "nodeid": 62, "leaf": -0.296463817 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "acceleration", "split_condition": 16, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": -0.260454178 }, 
+              { "nodeid": 64, "leaf": 0.21817407 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 117, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "displacement", "split_condition": 113.5, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.00347694405 }, 
+              { "nodeid": 66, "leaf": -0.48830539 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "horsepower", "split_condition": 97, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": 0.237606466 }, 
+              { "nodeid": 68, "leaf": 0.0265652314 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "origin=3", "yes": 26, "no": 25} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "acceleration", "split_condition": 11.75, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.329596728 }, 
+            { "nodeid": 46, "depth": 5, "split": "acceleration", "split_condition": 12.0500002, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": -0.31813392 }, 
+              { "nodeid": 70, "leaf": 0.0683966279 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "acceleration", "split_condition": 14.8999996, "yes": 47, "no": 48, "missing": 47 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "weight", "split_condition": 2530, "yes": 71, "no": 72, "missing": 71 , "children": [
+              { "nodeid": 71, "leaf": -0.088822633 }, 
+              { "nodeid": 72, "leaf": 0.28061372 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "displacement", "split_condition": 113.5, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.0978455618 }, 
+              { "nodeid": 74, "leaf": 0.663281679 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 79, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "model_year", "split_condition": 80, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "origin=2", "yes": 8, "no": 7} , "children": [
+        { "nodeid": 7, "depth": 3, "split": "horsepower", "split_condition": 74, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 195, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "weight", "split_condition": 2350, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.0562593266 }, 
+              { "nodeid": 62, "leaf": 0.234799922 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "model_year", "split_condition": 75, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": 0.02898903 }, 
+              { "nodeid": 64, "leaf": -0.0887283385 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 2248, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "weight", "split_condition": 2140, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.076851368 }, 
+              { "nodeid": 66, "leaf": 0.277786791 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "cylinders=4", "yes": 68, "no": 67} , "children": [
+              { "nodeid": 67, "leaf": -0.00558042526 }, 
+              { "nodeid": 68, "leaf": 0.0330728553 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "model_year", "split_condition": 76, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "displacement", "split_condition": 242, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 2206, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": -0.0363262184 }, 
+              { "nodeid": 70, "leaf": -0.0992148966 }
+            ]}, 
+            { "nodeid": 36, "leaf": 0.000530433666 }
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 90.5, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": 0.120244607 }, 
+            { "nodeid": 38, "depth": 5, "split": "cylinders=4", "yes": 72, "no": 71} , "children": [
+              { "nodeid": 71, "leaf": -0.0120889666 }, 
+              { "nodeid": 72, "leaf": 0.00533924112 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "displacement", "split_condition": 120.5, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2145, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "acceleration", "split_condition": 17.8499985, "yes": 39, "no": 40, "missing": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "acceleration", "split_condition": 15.1000004, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.352119058 }, 
+              { "nodeid": 74, "leaf": 0.0602205284 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "displacement", "split_condition": 91.5, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.688501775 }, 
+              { "nodeid": 76, "leaf": 0.114693552 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "displacement", "split_condition": 114, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "acceleration", "split_condition": 16.6499996, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": -0.0618372001 }, 
+              { "nodeid": 78, "leaf": -0.18882595 }
+            ]}, 
+            { "nodeid": 42, "leaf": 0.0750324279 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "model_year", "split_condition": 81, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "acceleration", "split_condition": 17.7999992, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "horsepower", "split_condition": 73, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": -0.0144716268 }, 
+              { "nodeid": 80, "leaf": 0.13210088 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "displacement", "split_condition": 131, "yes": 81, "no": 82, "missing": 81 , "children": [
+              { "nodeid": 81, "leaf": 0.699018896 }, 
+              { "nodeid": 82, "leaf": 0.0847900361 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "weight", "split_condition": 2120, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.151438236 }, 
+            { "nodeid": 46, "depth": 5, "split": "cylinders=4", "yes": 84, "no": 83} , "children": [
+              { "nodeid": 83, "leaf": -0.0260232929 }, 
+              { "nodeid": 84, "leaf": 0.0214201938 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 109, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 47, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 87, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "displacement", "split_condition": 97.75, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "leaf": -0.106532484 }, 
+            { "nodeid": 48, "leaf": 0.33698836 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "weight", "split_condition": 2235, "yes": 49, "no": 50, "missing": 49 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "acceleration", "split_condition": 20, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": 0.133388937 }, 
+              { "nodeid": 86, "leaf": -0.0900665373 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "displacement", "split_condition": 107.5, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": -0.125966951 }, 
+              { "nodeid": 88, "leaf": 0.0831687972 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "displacement", "split_condition": 87.5, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "cylinders=3", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 51, "leaf": 0.0102109909 }, 
+            { "nodeid": 52, "leaf": 0.043337062 }
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "cylinders=4", "yes": 54, "no": 53} , "children": [
+            { "nodeid": 53, "leaf": 0.806095541 }, 
+            { "nodeid": 54, "leaf": 0.0713899657 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "horsepower", "split_condition": 87, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "displacement", "split_condition": 243.5, "yes": 27, "no": 28, "missing": 27 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "model_year", "split_condition": 82, "yes": 55, "no": 56, "missing": 55 , "children": [
+            { "nodeid": 55, "depth": 5, "split": "horsepower", "split_condition": 82, "yes": 89, "no": 90, "missing": 90 , "children": [
+              { "nodeid": 89, "leaf": 0.0321694389 }, 
+              { "nodeid": 90, "leaf": -0.265101045 }
+            ]}, 
+            { "nodeid": 56, "depth": 5, "split": "weight", "split_condition": 2545, "yes": 91, "no": 92, "missing": 92 , "children": [
+              { "nodeid": 91, "leaf": 0.276905268 }, 
+              { "nodeid": 92, "leaf": -0.0402997993 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "leaf": 0.91247493 }
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 2675, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "weight", "split_condition": 2637, "yes": 57, "no": 58, "missing": 58 , "children": [
+            { "nodeid": 57, "depth": 5, "split": "weight", "split_condition": 2579, "yes": 93, "no": 94, "missing": 94 , "children": [
+              { "nodeid": 93, "leaf": 0.143908322 }, 
+              { "nodeid": 94, "leaf": -0.181224927 }
+            ]}, 
+            { "nodeid": 58, "depth": 5, "split": "horsepower", "split_condition": 230, "yes": 95, "no": 96, "missing": 96 , "children": [
+              { "nodeid": 95, "leaf": 0.596039891 }, 
+              { "nodeid": 96, "leaf": 0.039884951 }
+            ]}
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "weight", "split_condition": 3199, "yes": 59, "no": 60, "missing": 60 , "children": [
+            { "nodeid": 59, "depth": 5, "split": "horsepower", "split_condition": 109, "yes": 97, "no": 98, "missing": 98 , "children": [
+              { "nodeid": 97, "leaf": -0.154181808 }, 
+              { "nodeid": 98, "leaf": 0.0311092604 }
+            ]}, 
+            { "nodeid": 60, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 99, "no": 100, "missing": 99 , "children": [
+              { "nodeid": 99, "leaf": 0.0472479314 }, 
+              { "nodeid": 100, "leaf": 0.288927794 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 68, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "acceleration", "split_condition": 14.1000004, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "leaf": 0.486518681 }, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 16.1000004, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "acceleration", "split_condition": 15.25, "yes": 13, "no": 14, "missing": 14 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "displacement", "split_condition": 88.5, "yes": 25, "no": 26, "missing": 25 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "displacement", "split_condition": 172, "yes": 45, "no": 46, "missing": 46 , "children": [
+              { "nodeid": 45, "leaf": -0.012272072 }, 
+              { "nodeid": 46, "leaf": 0.00194950111 }
+            ]}, 
+            { "nodeid": 26, "depth": 5, "split": "weight", "split_condition": 2045, "yes": 47, "no": 48, "missing": 47 , "children": [
+              { "nodeid": 47, "leaf": 0.173242584 }, 
+              { "nodeid": 48, "leaf": 0.0203390121 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "displacement", "split_condition": 182, "yes": 27, "no": 28, "missing": 28 , "children": [
+            { "nodeid": 27, "leaf": -0.2630831 }, 
+            { "nodeid": 28, "leaf": 0.0041152956 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "model_year", "split_condition": 80, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "origin=2", "yes": 30, "no": 29} , "children": [
+            { "nodeid": 29, "depth": 5, "split": "weight", "split_condition": 2137, "yes": 49, "no": 50, "missing": 49 , "children": [
+              { "nodeid": 49, "leaf": 0.0647181496 }, 
+              { "nodeid": 50, "leaf": -0.177294165 }
+            ]}, 
+            { "nodeid": 30, "leaf": 0.275150746 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 2068, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "displacement", "split_condition": 172, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.00276517868 }, 
+              { "nodeid": 52, "leaf": 0.117103577 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 242, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": 0.403020293 }, 
+              { "nodeid": 54, "leaf": 0.0182072651 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 106, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 47, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "displacement", "split_condition": 97.75, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "model_year", "split_condition": 72, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "leaf": 0.194605649 }, 
+            { "nodeid": 34, "depth": 5, "split": "origin=3", "yes": 56, "no": 55} , "children": [
+              { "nodeid": 55, "leaf": -0.0410175882 }, 
+              { "nodeid": 56, "leaf": 0.139391899 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "horsepower", "split_condition": 73, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "acceleration", "split_condition": 15.3999996, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": 0.161325082 }, 
+              { "nodeid": 58, "leaf": -0.0341284759 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.124612428 }, 
+              { "nodeid": 60, "leaf": 0.419323385 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 89, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "cylinders=4", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "cylinders=3", "yes": 62, "no": 61} , "children": [
+              { "nodeid": 61, "leaf": 0.00867919996 }, 
+              { "nodeid": 62, "leaf": 0.036836531 }
+            ]}, 
+            { "nodeid": 38, "leaf": -0.0425557159 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "displacement", "split_condition": 93.5, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "leaf": 0.68518126 }, 
+            { "nodeid": 40, "leaf": 0.158159077 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "acceleration", "split_condition": 21.3999996, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "acceleration", "split_condition": 17.75, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "origin=1", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "displacement", "split_condition": 117.5, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": -0.107968681 }, 
+              { "nodeid": 64, "leaf": 0.0271227807 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "displacement", "split_condition": 334, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.131009802 }, 
+              { "nodeid": 66, "leaf": 0.00818724278 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "origin=1", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "weight", "split_condition": 2573, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": -0.0605793037 }, 
+              { "nodeid": 68, "leaf": 0.0947086513 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "horsepower", "split_condition": 82, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": 0.062651448 }, 
+              { "nodeid": 70, "leaf": -0.148373932 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "cylinders=4", "yes": 24, "no": 23} , "children": [
+          { "nodeid": 23, "leaf": 0.353030205 }, 
+          { "nodeid": 24, "leaf": 0.104207426 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2750, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 93.5, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "horsepower", "split_condition": 96, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "weight", "split_condition": 2375, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2227, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "horsepower", "split_condition": 68, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.148101702 }, 
+              { "nodeid": 56, "leaf": -0.0105222706 }
+            ]}, 
+            { "nodeid": 30, "leaf": 0.343318909 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 14.6999998, "yes": 31, "no": 32, "missing": 31 , "children": [
+            { "nodeid": 31, "leaf": -0.457084775 }, 
+            { "nodeid": 32, "depth": 5, "split": "cylinders=4", "yes": 58, "no": 57} , "children": [
+              { "nodeid": 57, "leaf": -0.183805853 }, 
+              { "nodeid": 58, "leaf": 0.0828802586 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "cylinders=3", "yes": 18, "no": 17} , "children": [
+          { "nodeid": 17, "depth": 4, "split": "acceleration", "split_condition": 13.75, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "weight", "split_condition": 2229, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.0618690513 }, 
+              { "nodeid": 60, "leaf": 0.497580677 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "acceleration", "split_condition": 14.9499998, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": -0.0526097789 }, 
+              { "nodeid": 62, "leaf": 0.183501124 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 75, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "leaf": -0.131237611 }, 
+            { "nodeid": 36, "leaf": 0.0313110352 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "model_year", "split_condition": 74, "yes": 9, "no": 10, "missing": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "horsepower", "split_condition": 53, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "displacement", "split_condition": 215.5, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "model_year", "split_condition": 72, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.144345552 }, 
+              { "nodeid": 64, "leaf": -0.13544856 }
+            ]}, 
+            { "nodeid": 38, "leaf": -0.144982055 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "model_year", "split_condition": 73, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "horsepower", "split_condition": 81, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": -0.0640807673 }, 
+              { "nodeid": 66, "leaf": 0.0519703664 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "acceleration", "split_condition": 14.25, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": -0.306680202 }, 
+              { "nodeid": 68, "leaf": -0.0484516546 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 85, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "origin=2", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "model_year", "split_condition": 77, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": 0.117936976 }, 
+              { "nodeid": 70, "leaf": -0.0310487654 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "cylinders=4", "yes": 72, "no": 71} , "children": [
+              { "nodeid": 71, "leaf": 0.0548812896 }, 
+              { "nodeid": 72, "leaf": 0.263990611 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "horsepower", "split_condition": 96, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "weight", "split_condition": 2393, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.102998935 }, 
+              { "nodeid": 74, "leaf": 0.377951622 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "displacement", "split_condition": 120.5, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.0548194908 }, 
+              { "nodeid": 76, "leaf": -0.0389834419 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "weight", "split_condition": 2901, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "weight", "split_condition": 2832, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "acceleration", "split_condition": 13.9499998, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "cylinders=5", "yes": 46, "no": 45} , "children": [
+            { "nodeid": 45, "leaf": 0.0375394821 }, 
+            { "nodeid": 46, "leaf": 0.00598783512 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 148, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "leaf": 0.00126457214 }, 
+            { "nodeid": 48, "leaf": -0.110911138 }
+          ]}
+        ]}, 
+        { "nodeid": 12, "leaf": -0.214625657 }
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "model_year", "split_condition": 82, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "displacement", "split_condition": 199, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "displacement", "split_condition": 165.5, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "displacement", "split_condition": 153.5, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.0899240747 }, 
+              { "nodeid": 78, "leaf": -0.360426068 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "cylinders=5", "yes": 80, "no": 79} , "children": [
+              { "nodeid": 79, "leaf": 0.488027483 }, 
+              { "nodeid": 80, "leaf": 0.021194173 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "acceleration", "split_condition": 15.4499998, "yes": 51, "no": 52, "missing": 52 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "horsepower", "split_condition": 118, "yes": 81, "no": 82, "missing": 82 , "children": [
+              { "nodeid": 81, "leaf": 0.211029217 }, 
+              { "nodeid": 82, "leaf": 0.00752954371 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "origin=3", "yes": 84, "no": 83} , "children": [
+              { "nodeid": 83, "leaf": -0.0506147332 }, 
+              { "nodeid": 84, "leaf": 0.424076587 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "horsepower", "split_condition": 85, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "leaf": -0.110700995 }, 
+          { "nodeid": 28, "depth": 4, "split": "displacement", "split_condition": 206.5, "yes": 53, "no": 54, "missing": 54 , "children": [
+            { "nodeid": 53, "leaf": 0.0595825203 }, 
+            { "nodeid": 54, "leaf": 0.770076632 }
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 80, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 3607, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 3211, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "weight", "split_condition": 2919, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "acceleration", "split_condition": 17.4500008, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "displacement", "split_condition": 121.5, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": 0.0226962101 }, 
+              { "nodeid": 58, "leaf": 0.119685926 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 400, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.00634332281 }, 
+              { "nodeid": 60, "leaf": -0.127113372 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 14.75, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "weight", "split_condition": 3187, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": -0.264568597 }, 
+              { "nodeid": 62, "leaf": 0.0816810653 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "displacement", "split_condition": 241, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": 0.101482041 }, 
+              { "nodeid": 64, "leaf": -0.12088123 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 103, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "horsepower", "split_condition": 95, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "acceleration", "split_condition": 17.6000004, "yes": 65, "no": 66, "missing": 65 , "children": [
+              { "nodeid": 65, "leaf": 0.184537902 }, 
+              { "nodeid": 66, "leaf": -0.00345039391 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "acceleration", "split_condition": 38.4000015, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": -0.00510664005 }, 
+              { "nodeid": 68, "leaf": -0.23951149 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "origin=1", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 311, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": 0.0835224167 }, 
+              { "nodeid": 70, "leaf": -0.0253646858 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "displacement", "split_condition": 240.5, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": 0.135530099 }, 
+              { "nodeid": 72, "leaf": 0.499142498 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "cylinders=6", "yes": 10, "no": 9} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "horsepower", "split_condition": 218, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 4141, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "acceleration", "split_condition": 13.8500004, "yes": 73, "no": 74, "missing": 73 , "children": [
+              { "nodeid": 73, "leaf": -0.244875371 }, 
+              { "nodeid": 74, "leaf": -0.0640549511 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "horsepower", "split_condition": 189, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.0264899116 }, 
+              { "nodeid": 76, "leaf": -0.182974875 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "cylinders=8", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "depth": 5, "split": "acceleration", "split_condition": 17.5499992, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.230649382 }, 
+              { "nodeid": 78, "leaf": -0.00151720049 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "displacement", "split_condition": 311, "yes": 79, "no": 80, "missing": 79 , "children": [
+              { "nodeid": 79, "leaf": -0.132799298 }, 
+              { "nodeid": 80, "leaf": 0.0774216875 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 99, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "acceleration", "split_condition": 16.1499996, "yes": 43, "no": 44, "missing": 43 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "acceleration", "split_condition": 15, "yes": 81, "no": 82, "missing": 81 , "children": [
+              { "nodeid": 81, "leaf": -0.12273474 }, 
+              { "nodeid": 82, "leaf": -0.310790837 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "displacement", "split_condition": 237.5, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": -0.128909975 }, 
+              { "nodeid": 84, "leaf": -0.00385963474 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "model_year", "split_condition": 77, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "displacement", "split_condition": 241, "yes": 85, "no": 86, "missing": 85 , "children": [
+              { "nodeid": 85, "leaf": 0.0722601414 }, 
+              { "nodeid": 86, "leaf": 0.00671181688 }
+            ]}, 
+            { "nodeid": 46, "leaf": -0.0576976798 }
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "cylinders=8", "yes": 6, "no": 5} , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 259, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 84, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "acceleration", "split_condition": 15.75, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "acceleration", "split_condition": 15.1000004, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.0898340419 }, 
+              { "nodeid": 88, "leaf": -0.154433638 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "displacement", "split_condition": 90.5, "yes": 89, "no": 90, "missing": 89 , "children": [
+              { "nodeid": 89, "leaf": 0.224782914 }, 
+              { "nodeid": 90, "leaf": 0.0511763841 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "horsepower", "split_condition": 109, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "weight", "split_condition": 2828, "yes": 91, "no": 92, "missing": 91 , "children": [
+              { "nodeid": 91, "leaf": 0.0386828184 }, 
+              { "nodeid": 92, "leaf": -0.204901829 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "weight", "split_condition": 2905, "yes": 93, "no": 94, "missing": 93 , "children": [
+              { "nodeid": 93, "leaf": -0.097551018 }, 
+              { "nodeid": 94, "leaf": 0.236149669 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "displacement", "split_condition": 282, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "leaf": 0.632072866 }, 
+          { "nodeid": 26, "depth": 4, "split": "weight", "split_condition": 4172, "yes": 51, "no": 52, "missing": 52 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "displacement", "split_condition": 303, "yes": 95, "no": 96, "missing": 96 , "children": [
+              { "nodeid": 95, "leaf": 0.0997930542 }, 
+              { "nodeid": 96, "leaf": -0.0729255453 }
+            ]}, 
+            { "nodeid": 52, "leaf": 0.274390131 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "horsepower", "split_condition": 460, "yes": 13, "no": 14, "missing": 14 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "acceleration", "split_condition": 14.75, "yes": 27, "no": 28, "missing": 28 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "weight", "split_condition": 4333, "yes": 53, "no": 54, "missing": 53 , "children": [
+            { "nodeid": 53, "depth": 5, "split": "displacement", "split_condition": 375.5, "yes": 97, "no": 98, "missing": 98 , "children": [
+              { "nodeid": 97, "leaf": -0.0553604178 }, 
+              { "nodeid": 98, "leaf": 0.221100539 }
+            ]}, 
+            { "nodeid": 54, "depth": 5, "split": "displacement", "split_condition": 800, "yes": 99, "no": 100, "missing": 100 , "children": [
+              { "nodeid": 99, "leaf": -0.0931709334 }, 
+              { "nodeid": 100, "leaf": -0.00596151361 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "weight", "split_condition": 4795, "yes": 55, "no": 56, "missing": 56 , "children": [
+            { "nodeid": 55, "leaf": 0.0379330181 }, 
+            { "nodeid": 56, "leaf": -0.183075637 }
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "weight", "split_condition": 8590, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "leaf": 0.00346469902 }, 
+          { "nodeid": 30, "leaf": -0.33186847 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 80, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 3607, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 3216, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "horsepower", "split_condition": 97, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 241, "yes": 31, "no": 32, "missing": 31 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "displacement", "split_condition": 128, "yes": 59, "no": 60, "missing": 59 , "children": [
+              { "nodeid": 59, "leaf": 0.0109448917 }, 
+              { "nodeid": 60, "leaf": 0.158385754 }
+            ]}, 
+            { "nodeid": 32, "leaf": -0.186309323 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "cylinders=4", "yes": 34, "no": 33} , "children": [
+            { "nodeid": 33, "depth": 5, "split": "origin=3", "yes": 62, "no": 61} , "children": [
+              { "nodeid": 61, "leaf": -0.121865027 }, 
+              { "nodeid": 62, "leaf": 0.0683563277 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "horsepower", "split_condition": 113, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": -0.0154634863 }, 
+              { "nodeid": 64, "leaf": 0.098692134 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 103, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "origin=1", "yes": 36, "no": 35} , "children": [
+            { "nodeid": 35, "depth": 5, "split": "cylinders=6", "yes": 66, "no": 65} , "children": [
+              { "nodeid": 65, "leaf": 0.185885817 }, 
+              { "nodeid": 66, "leaf": 0.0272978786 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "displacement", "split_condition": 316.5, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": -0.191609204 }, 
+              { "nodeid": 68, "leaf": -0.0159734357 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "origin=1", "yes": 38, "no": 37} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 311, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": 0.0668178573 }, 
+              { "nodeid": 70, "leaf": -0.0215599537 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "model_year", "split_condition": 77, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": 0.413453996 }, 
+              { "nodeid": 72, "leaf": 0.189668372 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 169, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "model_year", "split_condition": 71, "yes": 19, "no": 20, "missing": 20 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 7218, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "leaf": -0.0813973919 }, 
+            { "nodeid": 40, "leaf": 0.249678984 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "horsepower", "split_condition": 159, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "model_year", "split_condition": 76, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": -0.00304812123 }, 
+              { "nodeid": 74, "leaf": -0.0919026136 }
+            ]}, 
+            { "nodeid": 42, "leaf": -0.26653564 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 386.5, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "model_year", "split_condition": 72, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "displacement", "split_condition": 371.5, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": -0.219858691 }, 
+              { "nodeid": 76, "leaf": -0.0509367026 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "acceleration", "split_condition": 11.0500002, "yes": 77, "no": 78, "missing": 77 , "children": [
+              { "nodeid": 77, "leaf": -0.10850136 }, 
+              { "nodeid": 78, "leaf": 0.0606297739 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "weight", "split_condition": 4707, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.203113467 }, 
+            { "nodeid": 46, "leaf": 0.0375914834 }
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 81, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "horsepower", "split_condition": 64, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "acceleration", "split_condition": 19.3999996, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "leaf": -0.159880549 }, 
+          { "nodeid": 24, "leaf": 0.0979903787 }
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "origin=1", "yes": 26, "no": 25} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "origin=3", "yes": 48, "no": 47} , "children": [
+            { "nodeid": 47, "depth": 5, "split": "acceleration", "split_condition": 17.1499996, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": 0.16318661 }, 
+              { "nodeid": 80, "leaf": 0.537989795 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "horsepower", "split_condition": 84, "yes": 81, "no": 82, "missing": 82 , "children": [
+              { "nodeid": 81, "leaf": -0.0570568107 }, 
+              { "nodeid": 82, "leaf": 0.269774437 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "cylinders=4", "yes": 50, "no": 49} , "children": [
+            { "nodeid": 49, "leaf": 0.039688684 }, 
+            { "nodeid": 50, "leaf": -0.0969381407 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=6", "yes": 14, "no": 13} , "children": [
+        { "nodeid": 13, "depth": 3, "split": "displacement", "split_condition": 106, "yes": 27, "no": 28, "missing": 27 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "weight", "split_condition": 3165, "yes": 51, "no": 52, "missing": 51 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "horsepower", "split_condition": 94, "yes": 83, "no": 84, "missing": 83 , "children": [
+              { "nodeid": 83, "leaf": 0.0460938029 }, 
+              { "nodeid": 84, "leaf": 0.443484157 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "cylinders=8", "yes": 86, "no": 85} , "children": [
+              { "nodeid": 85, "leaf": -0.332244873 }, 
+              { "nodeid": 86, "leaf": 0.0198503509 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "origin=1", "yes": 54, "no": 53} , "children": [
+            { "nodeid": 53, "depth": 5, "split": "acceleration", "split_condition": 17.8999996, "yes": 87, "no": 88, "missing": 87 , "children": [
+              { "nodeid": 87, "leaf": -0.167938262 }, 
+              { "nodeid": 88, "leaf": 0.0885455161 }
+            ]}, 
+            { "nodeid": 54, "depth": 5, "split": "acceleration", "split_condition": 15.5500002, "yes": 89, "no": 90, "missing": 90 , "children": [
+              { "nodeid": 89, "leaf": 0.153643727 }, 
+              { "nodeid": 90, "leaf": -0.0111819543 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "acceleration", "split_condition": 18.2999992, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "displacement", "split_condition": 231.5, "yes": 55, "no": 56, "missing": 55 , "children": [
+            { "nodeid": 55, "depth": 5, "split": "weight", "split_condition": 3158, "yes": 91, "no": 92, "missing": 92 , "children": [
+              { "nodeid": 91, "leaf": -0.0533423461 }, 
+              { "nodeid": 92, "leaf": 0.100489259 }
+            ]}, 
+            { "nodeid": 56, "leaf": -0.155896425 }
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "weight", "split_condition": 2835, "yes": 57, "no": 58, "missing": 58 , "children": [
+            { "nodeid": 57, "depth": 5, "split": "displacement", "split_condition": 464, "yes": 93, "no": 94, "missing": 94 , "children": [
+              { "nodeid": 93, "leaf": -0.130911261 }, 
+              { "nodeid": 94, "leaf": 0.0435576439 }
+            ]}, 
+            { "nodeid": 58, "depth": 5, "split": "weight", "split_condition": 3088, "yes": 95, "no": 96, "missing": 95 , "children": [
+              { "nodeid": 95, "leaf": 0.553164482 }, 
+              { "nodeid": 96, "leaf": 0.127753839 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 4849, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "horsepower", "split_condition": 50, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 194, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 0.0585572757 }, 
+        { "nodeid": 8, "leaf": 0.229810536 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "model_year", "split_condition": 74, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "model_year", "split_condition": 72, "yes": 13, "no": 14, "missing": 14 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "acceleration", "split_condition": 13.25, "yes": 17, "no": 18, "missing": 17 , "children": [
+            { "nodeid": 17, "depth": 5, "split": "displacement", "split_condition": 109, "yes": 25, "no": 26, "missing": 26 , "children": [
+              { "nodeid": 25, "leaf": -0.10117951 }, 
+              { "nodeid": 26, "leaf": 0.0997453928 }
+            ]}, 
+            { "nodeid": 18, "depth": 5, "split": "horsepower", "split_condition": 89, "yes": 27, "no": 28, "missing": 28 , "children": [
+              { "nodeid": 27, "leaf": 0.101346403 }, 
+              { "nodeid": 28, "leaf": -0.0743054375 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "displacement", "split_condition": 334, "yes": 19, "no": 20, "missing": 19 , "children": [
+            { "nodeid": 19, "depth": 5, "split": "displacement", "split_condition": 148, "yes": 29, "no": 30, "missing": 29 , "children": [
+              { "nodeid": 29, "leaf": -0.050477013 }, 
+              { "nodeid": 30, "leaf": 0.0754437223 }
+            ]}, 
+            { "nodeid": 20, "depth": 5, "split": "horsepower", "split_condition": 171, "yes": 31, "no": 32, "missing": 31 , "children": [
+              { "nodeid": 31, "leaf": -0.159114033 }, 
+              { "nodeid": 32, "leaf": 0.148373947 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "acceleration", "split_condition": 11.75, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 3713, "yes": 21, "no": 22, "missing": 21 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "model_year", "split_condition": 78, "yes": 33, "no": 34, "missing": 34 , "children": [
+              { "nodeid": 33, "leaf": 0.0520071052 }, 
+              { "nodeid": 34, "leaf": 0.205647588 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "horsepower", "split_condition": 189, "yes": 35, "no": 36, "missing": 36 , "children": [
+              { "nodeid": 35, "leaf": 0.0754388869 }, 
+              { "nodeid": 36, "leaf": -0.00804491062 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 12.0500002, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "leaf": -0.188450232 }, 
+            { "nodeid": 24, "depth": 5, "split": "weight", "split_condition": 4141, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": 0.0168264359 }, 
+              { "nodeid": 38, "leaf": 0.130347386 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 72, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 391.5, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": -0.0265405662 }, 
+        { "nodeid": 12, "leaf": 0.0166568756 }
+      ]}, 
+      { "nodeid": 6, "leaf": -0.160932183 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "displacement", "split_condition": 329, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 259, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "acceleration", "split_condition": 13.7000008, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "cylinders=6", "yes": 16, "no": 15} , "children": [
+          { "nodeid": 15, "depth": 4, "split": "model_year", "split_condition": 78, "yes": 27, "no": 28, "missing": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "horsepower", "split_condition": 93, "yes": 45, "no": 46, "missing": 46 , "children": [
+              { "nodeid": 45, "leaf": 0.000498533249 }, 
+              { "nodeid": 46, "leaf": -0.0859605819 }
+            ]}, 
+            { "nodeid": 28, "leaf": -0.222704604 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "horsepower", "split_condition": 127, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "leaf": -0.00499992399 }, 
+            { "nodeid": 30, "leaf": 0.129185781 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "acceleration", "split_condition": 13.8999996, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "leaf": 0.371390373 }, 
+          { "nodeid": 18, "depth": 4, "split": "weight", "split_condition": 2040, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "model_year", "split_condition": 79, "yes": 47, "no": 48, "missing": 48 , "children": [
+              { "nodeid": 47, "leaf": 0.00260825176 }, 
+              { "nodeid": 48, "leaf": -0.0833225399 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 87, "yes": 49, "no": 50, "missing": 50 , "children": [
+              { "nodeid": 49, "leaf": 0.153382421 }, 
+              { "nodeid": 50, "leaf": 0.0150126489 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 105, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 0.438122004 }, 
+        { "nodeid": 10, "depth": 3, "split": "origin=1", "yes": 20, "no": 19} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "weight", "split_condition": 3416, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "model_year", "split_condition": 74, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.00231361389 }, 
+              { "nodeid": 52, "leaf": -0.245060816 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "model_year", "split_condition": 73, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": -0.0648186728 }, 
+              { "nodeid": 54, "leaf": 0.192966938 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "weight", "split_condition": 3621, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 3465, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.0724239349 }, 
+              { "nodeid": 56, "leaf": 0.2503452 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "weight", "split_condition": 3766, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": -0.108971149 }, 
+              { "nodeid": 58, "leaf": 0.081744723 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "origin=2", "yes": 6, "no": 5} , "children": [
+      { "nodeid": 5, "depth": 2, "split": "model_year", "split_condition": 79, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 78, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "horsepower", "split_condition": 74, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "acceleration", "split_condition": 18.75, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": -0.0670252815 }, 
+              { "nodeid": 60, "leaf": 0.00218143477 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "weight", "split_condition": 2178, "yes": 61, "no": 62, "missing": 62 , "children": [
+              { "nodeid": 61, "leaf": 0.0407152176 }, 
+              { "nodeid": 62, "leaf": 0.278518736 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "horsepower", "split_condition": 87, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "horsepower", "split_condition": 82, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": -0.0373194702 }, 
+              { "nodeid": 64, "leaf": -0.31721431 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "weight", "split_condition": 2757, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": 0.0689491332 }, 
+              { "nodeid": 66, "leaf": -0.0333724469 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "acceleration", "split_condition": 13.75, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "leaf": 0.256331503 }, 
+          { "nodeid": 24, "depth": 4, "split": "weight", "split_condition": 3032, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "weight", "split_condition": 2038, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": 0.0430282615 }, 
+              { "nodeid": 68, "leaf": -0.148625806 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "acceleration", "split_condition": 14.9499998, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": -0.0591535978 }, 
+              { "nodeid": 70, "leaf": 0.128682137 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "model_year", "split_condition": 74, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "leaf": 0.211900637 }, 
+        { "nodeid": 14, "depth": 3, "split": "horsepower", "split_condition": 109, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "acceleration", "split_condition": 14.9499998, "yes": 43, "no": 44, "missing": 43 , "children": [
+            { "nodeid": 43, "leaf": -0.0864795744 }, 
+            { "nodeid": 44, "depth": 5, "split": "horsepower", "split_condition": 90, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": 0.049076844 }, 
+              { "nodeid": 72, "leaf": 0.00132207875 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "leaf": 0.123382479 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 80, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 109, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 2318, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "acceleration", "split_condition": 16.4500008, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 90.5, "yes": 27, "no": 28, "missing": 28 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "model_year", "split_condition": 75, "yes": 49, "no": 50, "missing": 49 , "children": [
+              { "nodeid": 49, "leaf": -0.0754223913 }, 
+              { "nodeid": 50, "leaf": 0.011867905 }
+            ]}, 
+            { "nodeid": 28, "depth": 5, "split": "horsepower", "split_condition": 68, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.261892319 }, 
+              { "nodeid": 52, "leaf": 0.0648737848 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "origin=1", "yes": 30, "no": 29} , "children": [
+            { "nodeid": 29, "depth": 5, "split": "weight", "split_condition": 1990, "yes": 53, "no": 54, "missing": 54 , "children": [
+              { "nodeid": 53, "leaf": -0.0387456454 }, 
+              { "nodeid": 54, "leaf": 0.0486653224 }
+            ]}, 
+            { "nodeid": 30, "depth": 5, "split": "displacement", "split_condition": 101.5, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": -0.142539933 }, 
+              { "nodeid": 56, "leaf": -0.00405979156 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "weight", "split_condition": 2355, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "leaf": 0.462360203 }, 
+          { "nodeid": 18, "depth": 4, "split": "model_year", "split_condition": 72, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "leaf": -0.0782524124 }, 
+            { "nodeid": 32, "depth": 5, "split": "cylinders=3", "yes": 58, "no": 57} , "children": [
+              { "nodeid": 57, "leaf": 0.130189136 }, 
+              { "nodeid": 58, "leaf": -0.00151033408 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 89, "yes": 9, "no": 10, "missing": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "horsepower", "split_condition": 82, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "horsepower", "split_condition": 74, "yes": 33, "no": 34, "missing": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "weight", "split_condition": 2630, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.0459284559 }, 
+              { "nodeid": 60, "leaf": -0.0343380198 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "origin=3", "yes": 62, "no": 61} , "children": [
+              { "nodeid": 61, "leaf": 0.0401725061 }, 
+              { "nodeid": 62, "leaf": 0.275531977 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "model_year", "split_condition": 73, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "acceleration", "split_condition": 15, "yes": 63, "no": 64, "missing": 63 , "children": [
+              { "nodeid": 63, "leaf": 0.130502418 }, 
+              { "nodeid": 64, "leaf": -0.00426578522 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "acceleration", "split_condition": 18.5499992, "yes": 65, "no": 66, "missing": 65 , "children": [
+              { "nodeid": 65, "leaf": -0.196294531 }, 
+              { "nodeid": 66, "leaf": 0.0863840133 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 91, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "acceleration", "split_condition": 17.9000015, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "weight", "split_condition": 3148, "yes": 67, "no": 68, "missing": 67 , "children": [
+              { "nodeid": 67, "leaf": 0.322485924 }, 
+              { "nodeid": 68, "leaf": 0.00702581415 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "displacement", "split_condition": 145.5, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": -0.046906855 }, 
+              { "nodeid": 70, "leaf": 0.122454792 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "horsepower", "split_condition": 95, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "origin=1", "yes": 72, "no": 71} , "children": [
+              { "nodeid": 71, "leaf": -0.326444268 }, 
+              { "nodeid": 72, "leaf": -0.00321311969 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "weight", "split_condition": 2687, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.0928130969 }, 
+              { "nodeid": 74, "leaf": -0.0048002149 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 247, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "model_year", "split_condition": 81, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "horsepower", "split_condition": 64, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "acceleration", "split_condition": 19.3999996, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "displacement", "split_condition": 98, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": -0.178679183 }, 
+              { "nodeid": 76, "leaf": -0.0392782204 }
+            ]}, 
+            { "nodeid": 42, "depth": 5, "split": "horsepower", "split_condition": 54, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.0182149895 }, 
+              { "nodeid": 78, "leaf": 0.0713019893 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "origin=1", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "weight", "split_condition": 2065, "yes": 79, "no": 80, "missing": 80 , "children": [
+              { "nodeid": 79, "leaf": -0.0517513305 }, 
+              { "nodeid": 80, "leaf": 0.187625989 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "cylinders=4", "yes": 82, "no": 81} , "children": [
+              { "nodeid": 81, "leaf": 0.0289595611 }, 
+              { "nodeid": 82, "leaf": -0.0675542876 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "acceleration", "split_condition": 16.8499985, "yes": 25, "no": 26, "missing": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "origin=1", "yes": 46, "no": 45} , "children": [
+            { "nodeid": 45, "depth": 5, "split": "acceleration", "split_condition": 15.3500004, "yes": 83, "no": 84, "missing": 84 , "children": [
+              { "nodeid": 83, "leaf": -0.0239400864 }, 
+              { "nodeid": 84, "leaf": -0.117837474 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2443, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": 0.121455915 }, 
+              { "nodeid": 86, "leaf": -0.0391976684 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "horsepower", "split_condition": 86, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "displacement", "split_condition": 130.5, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": 0.0622468479 }, 
+              { "nodeid": 88, "leaf": -0.0443627387 }
+            ]}, 
+            { "nodeid": 48, "leaf": 0.199650571 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=6", "yes": 14, "no": 13} , "children": [
+        { "nodeid": 13, "leaf": 0.013955784 }, 
+        { "nodeid": 14, "leaf": 0.394413203 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "cylinders=5", "yes": 2, "no": 1} , "children": [
+    { "nodeid": 1, "depth": 1, "split": "horsepower", "split_condition": 59, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "acceleration", "split_condition": 21.6000004, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 77, "yes": 13, "no": 14, "missing": 14 , "children": [
+          { "nodeid": 13, "leaf": -0.00584421167 }, 
+          { "nodeid": 14, "depth": 4, "split": "displacement", "split_condition": 84.5, "yes": 19, "no": 20, "missing": 19 , "children": [
+            { "nodeid": 19, "depth": 5, "split": "cylinders=4", "yes": 28, "no": 27} , "children": [
+              { "nodeid": 27, "leaf": 0.0362434387 }, 
+              { "nodeid": 28, "leaf": 0.138725281 }
+            ]}, 
+            { "nodeid": 20, "depth": 5, "split": "displacement", "split_condition": 90.5, "yes": 29, "no": 30, "missing": 30 , "children": [
+              { "nodeid": 29, "leaf": 0.0154827125 }, 
+              { "nodeid": 30, "leaf": 0.0623973124 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "leaf": -0.0774842277 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 63, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "origin=3", "yes": 16, "no": 15} , "children": [
+          { "nodeid": 15, "leaf": -0.123124696 }, 
+          { "nodeid": 16, "depth": 4, "split": "model_year", "split_condition": 80, "yes": 21, "no": 22, "missing": 22 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "displacement", "split_condition": 182, "yes": 31, "no": 32, "missing": 32 , "children": [
+              { "nodeid": 31, "leaf": 0.00248222356 }, 
+              { "nodeid": 32, "leaf": 0.00935554504 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "displacement", "split_condition": 162, "yes": 33, "no": 34, "missing": 34 , "children": [
+              { "nodeid": 33, "leaf": -0.0571174659 }, 
+              { "nodeid": 34, "leaf": -0.0123830801 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "weight", "split_condition": 1859, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "origin=3", "yes": 24, "no": 23} , "children": [
+            { "nodeid": 23, "leaf": -0.0445667282 }, 
+            { "nodeid": 24, "depth": 5, "split": "displacement", "split_condition": 81, "yes": 35, "no": 36, "missing": 36 , "children": [
+              { "nodeid": 35, "leaf": -0.0208059326 }, 
+              { "nodeid": 36, "leaf": 0.269655228 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "weight", "split_condition": 1993, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "displacement", "split_condition": 101, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": -0.0604607947 }, 
+              { "nodeid": 38, "leaf": 0.0869665146 }
+            ]}, 
+            { "nodeid": 26, "depth": 5, "split": "displacement", "split_condition": 101, "yes": 39, "no": 40, "missing": 40 , "children": [
+              { "nodeid": 39, "leaf": 0.0489968769 }, 
+              { "nodeid": 40, "leaf": 0.00187932141 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 126, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "leaf": 0.224525645 }, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 157, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": 0.0183620453 }, 
+        { "nodeid": 12, "leaf": -0.013744927 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 4849, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "acceleration", "split_condition": 11.75, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 3836, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 303, "yes": 13, "no": 14, "missing": 13 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "weight", "split_condition": 3443, "yes": 19, "no": 20, "missing": 20 , "children": [
+            { "nodeid": 19, "leaf": 0.108525924 }, 
+            { "nodeid": 20, "leaf": -0.0185671821 }
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "cylinders=8", "yes": 22, "no": 21} , "children": [
+            { "nodeid": 21, "depth": 5, "split": "displacement", "split_condition": 311, "yes": 31, "no": 32, "missing": 32 , "children": [
+              { "nodeid": 31, "leaf": 0.0875095427 }, 
+              { "nodeid": 32, "leaf": -0.0721715018 }
+            ]}, 
+            { "nodeid": 22, "leaf": -0.11406973 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "displacement", "split_condition": 420, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "model_year", "split_condition": 71, "yes": 23, "no": 24, "missing": 23 , "children": [
+            { "nodeid": 23, "leaf": 0.217418507 }, 
+            { "nodeid": 24, "leaf": 0.0824165642 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "horsepower", "split_condition": 450, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "displacement", "split_condition": 454.5, "yes": 33, "no": 34, "missing": 33 , "children": [
+              { "nodeid": 33, "leaf": 0.0158054922 }, 
+              { "nodeid": 34, "leaf": 0.0880242363 }
+            ]}, 
+            { "nodeid": 26, "leaf": -0.0823792517 }
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 195, "yes": 9, "no": 10, "missing": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 4141, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 4097, "yes": 27, "no": 28, "missing": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "horsepower", "split_condition": 159, "yes": 35, "no": 36, "missing": 35 , "children": [
+              { "nodeid": 35, "leaf": 0.00686584227 }, 
+              { "nodeid": 36, "leaf": -0.176879033 }
+            ]}, 
+            { "nodeid": 28, "depth": 5, "split": "displacement", "split_condition": 350.5, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": -0.195342571 }, 
+              { "nodeid": 38, "leaf": -0.0383830555 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "acceleration", "split_condition": 13.75, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "acceleration", "split_condition": 12.3500004, "yes": 39, "no": 40, "missing": 40 , "children": [
+              { "nodeid": 39, "leaf": 0.0266154017 }, 
+              { "nodeid": 40, "leaf": -0.0859312564 }
+            ]}, 
+            { "nodeid": 30, "depth": 5, "split": "acceleration", "split_condition": 14.6999998, "yes": 41, "no": 42, "missing": 41 , "children": [
+              { "nodeid": 41, "leaf": 0.211910054 }, 
+              { "nodeid": 42, "leaf": -0.0215729009 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "leaf": -0.144668773 }
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "acceleration", "split_condition": 13, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 391.5, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "leaf": -0.0290706661 }, 
+        { "nodeid": 12, "leaf": 0.0196022987 }
+      ]}, 
+      { "nodeid": 6, "leaf": -0.134794429 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "cylinders=5", "yes": 2, "no": 1} , "children": [
+    { "nodeid": 1, "depth": 1, "split": "acceleration", "split_condition": 18.8500004, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 93.5, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "acceleration", "split_condition": 17.75, "yes": 13, "no": 14, "missing": 13 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "model_year", "split_condition": 164, "yes": 21, "no": 22, "missing": 22 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "horsepower", "split_condition": 61, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": 0.0152084697 }, 
+              { "nodeid": 38, "leaf": -0.0808357596 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "weight", "split_condition": 2223, "yes": 39, "no": 40, "missing": 40 , "children": [
+              { "nodeid": 39, "leaf": 0.0371882208 }, 
+              { "nodeid": 40, "leaf": 0.384626776 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "horsepower", "split_condition": 62, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "leaf": 0.0338590629 }, 
+            { "nodeid": 24, "leaf": 0.283030719 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "weight", "split_condition": 3345, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 3255, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "weight", "split_condition": 3216, "yes": 41, "no": 42, "missing": 42 , "children": [
+              { "nodeid": 41, "leaf": -0.00665916922 }, 
+              { "nodeid": 42, "leaf": 0.172087103 }
+            ]}, 
+            { "nodeid": 26, "depth": 5, "split": "model_year", "split_condition": 73, "yes": 43, "no": 44, "missing": 44 , "children": [
+              { "nodeid": 43, "leaf": 0.127159894 }, 
+              { "nodeid": 44, "leaf": -0.215948597 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "weight", "split_condition": 3367, "yes": 27, "no": 28, "missing": 28 , "children": [
+            { "nodeid": 27, "leaf": 0.362823486 }, 
+            { "nodeid": 28, "depth": 5, "split": "origin=3", "yes": 46, "no": 45} , "children": [
+              { "nodeid": 45, "leaf": 0.00326025696 }, 
+              { "nodeid": 46, "leaf": 0.121544652 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "cylinders=4", "yes": 10, "no": 9} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 3633, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "displacement", "split_condition": 84, "yes": 29, "no": 30, "missing": 30 , "children": [
+            { "nodeid": 29, "leaf": -0.0187150966 }, 
+            { "nodeid": 30, "depth": 5, "split": "horsepower", "split_condition": 102, "yes": 47, "no": 48, "missing": 48 , "children": [
+              { "nodeid": 47, "leaf": 0.0935080573 }, 
+              { "nodeid": 48, "leaf": 0.0184280407 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 259, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "leaf": -0.0850867257 }, 
+            { "nodeid": 32, "leaf": -0.0231422428 }
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "origin=1", "yes": 20, "no": 19} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "origin=3", "yes": 34, "no": 33} , "children": [
+            { "nodeid": 33, "depth": 5, "split": "model_year", "split_condition": 80, "yes": 49, "no": 50, "missing": 50 , "children": [
+              { "nodeid": 49, "leaf": -0.0639068857 }, 
+              { "nodeid": 50, "leaf": -0.00500466535 }
+            ]}, 
+            { "nodeid": 34, "leaf": 0.0514091514 }
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "horsepower", "split_condition": 81, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "leaf": -0.0148420343 }, 
+            { "nodeid": 36, "depth": 5, "split": "weight", "split_condition": 2706, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": -0.0422730446 }, 
+              { "nodeid": 52, "leaf": -0.167866811 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 126, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "leaf": 0.189816862 }, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 157, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": 0.0145777706 }, 
+        { "nodeid": 12, "leaf": -0.0127132423 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "model_year", "split_condition": 80, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "acceleration", "split_condition": 16.4500008, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 153.5, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "model_year", "split_condition": 75, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "horsepower", "split_condition": 113, "yes": 27, "no": 28, "missing": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "origin=2", "yes": 52, "no": 51} , "children": [
+              { "nodeid": 51, "leaf": -0.0149316434 }, 
+              { "nodeid": 52, "leaf": -0.105449773 }
+            ]}, 
+            { "nodeid": 28, "leaf": 0.133199513 }
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 15.25, "yes": 29, "no": 30, "missing": 29 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "cylinders=4", "yes": 54, "no": 53} , "children": [
+              { "nodeid": 53, "leaf": 0.0882819816 }, 
+              { "nodeid": 54, "leaf": 0.00400835695 }
+            ]}, 
+            { "nodeid": 30, "depth": 5, "split": "displacement", "split_condition": 97.5, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.0148065574 }, 
+              { "nodeid": 56, "leaf": 0.22163868 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "displacement", "split_condition": 165.5, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "cylinders=6", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 31, "leaf": -0.410942465 }, 
+            { "nodeid": 32, "depth": 5, "split": "displacement", "split_condition": 159.5, "yes": 57, "no": 58, "missing": 58 , "children": [
+              { "nodeid": 57, "leaf": -0.00159759528 }, 
+              { "nodeid": 58, "leaf": 0.0429110527 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 198.5, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "weight", "split_condition": 2869, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": -0.0957066566 }, 
+              { "nodeid": 60, "leaf": 0.242201388 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "horsepower", "split_condition": 96, "yes": 61, "no": 62, "missing": 61 , "children": [
+              { "nodeid": 61, "leaf": -0.0412464067 }, 
+              { "nodeid": 62, "leaf": 0.0144178756 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "weight", "split_condition": 2430, "yes": 9, "no": 10, "missing": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "horsepower", "split_condition": 79, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "model_year", "split_condition": 71, "yes": 35, "no": 36, "missing": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "cylinders=6", "yes": 64, "no": 63} , "children": [
+              { "nodeid": 63, "leaf": -0.072337456 }, 
+              { "nodeid": 64, "leaf": 0.0899268165 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "weight", "split_condition": 1970, "yes": 65, "no": 66, "missing": 65 , "children": [
+              { "nodeid": 65, "leaf": 0.0290784277 }, 
+              { "nodeid": 66, "leaf": -0.0378921553 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "depth": 4, "split": "displacement", "split_condition": 121, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "displacement", "split_condition": 97.75, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": -0.091635704 }, 
+              { "nodeid": 68, "leaf": 0.024948407 }
+            ]}, 
+            { "nodeid": 38, "depth": 5, "split": "displacement", "split_condition": 131, "yes": 69, "no": 70, "missing": 69 , "children": [
+              { "nodeid": 69, "leaf": -0.231318638 }, 
+              { "nodeid": 70, "leaf": -0.0747143328 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 93, "yes": 21, "no": 22, "missing": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "displacement", "split_condition": 259, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "horsepower", "split_condition": 89, "yes": 71, "no": 72, "missing": 71 , "children": [
+              { "nodeid": 71, "leaf": -0.0134552373 }, 
+              { "nodeid": 72, "leaf": 0.108831219 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "weight", "split_condition": 3980, "yes": 73, "no": 74, "missing": 74 , "children": [
+              { "nodeid": 73, "leaf": 0.106320366 }, 
+              { "nodeid": 74, "leaf": -0.00702381181 }
+            ]}
+          ]}, 
+          { "nodeid": 22, "depth": 4, "split": "weight", "split_condition": 3352, "yes": 41, "no": 42, "missing": 42 , "children": [
+            { "nodeid": 41, "leaf": -0.172262773 }, 
+            { "nodeid": 42, "depth": 5, "split": "weight", "split_condition": 3573, "yes": 75, "no": 76, "missing": 76 , "children": [
+              { "nodeid": 75, "leaf": 0.0853332579 }, 
+              { "nodeid": 76, "leaf": -0.0396795794 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "displacement", "split_condition": 247, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 16.8499985, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "acceleration", "split_condition": 15.1499996, "yes": 23, "no": 24, "missing": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "acceleration", "split_condition": 14.8999996, "yes": 43, "no": 44, "missing": 43 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "weight", "split_condition": 2378, "yes": 77, "no": 78, "missing": 78 , "children": [
+              { "nodeid": 77, "leaf": 0.0504328795 }, 
+              { "nodeid": 78, "leaf": -0.0395109281 }
+            ]}, 
+            { "nodeid": 44, "leaf": 0.19852896 }
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 121.5, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "depth": 5, "split": "weight", "split_condition": 1992, "yes": 79, "no": 80, "missing": 79 , "children": [
+              { "nodeid": 79, "leaf": -0.146740153 }, 
+              { "nodeid": 80, "leaf": -0.0479003936 }
+            ]}, 
+            { "nodeid": 46, "depth": 5, "split": "weight", "split_condition": 2584, "yes": 81, "no": 82, "missing": 82 , "children": [
+              { "nodeid": 81, "leaf": 0.02500806 }, 
+              { "nodeid": 82, "leaf": -0.0386178046 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "displacement", "split_condition": 91.5, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "displacement", "split_condition": 82.5, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "leaf": 0.0409675613 }, 
+            { "nodeid": 48, "leaf": 0.283633232 }
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "displacement", "split_condition": 113, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "depth": 5, "split": "cylinders=4", "yes": 84, "no": 83} , "children": [
+              { "nodeid": 83, "leaf": -0.0282617584 }, 
+              { "nodeid": 84, "leaf": -0.140888795 }
+            ]}, 
+            { "nodeid": 50, "depth": 5, "split": "acceleration", "split_condition": 20, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": 0.105961993 }, 
+              { "nodeid": 86, "leaf": -0.02823475 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=6", "yes": 14, "no": 13} , "children": [
+        { "nodeid": 13, "leaf": 0.00778627442 }, 
+        { "nodeid": 14, "leaf": 0.334938258 }
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 50, "yes": 1, "no": 2, "missing": 2 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "displacement", "split_condition": 194, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 93.5, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 0.00228366861 }, 
+        { "nodeid": 8, "leaf": 0.034326937 }
+      ]}, 
+      { "nodeid": 4, "leaf": 0.14201203 }
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 80, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "acceleration", "split_condition": 16.2999992, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "horsepower", "split_condition": 121, "yes": 13, "no": 14, "missing": 14 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "cylinders=6", "yes": 22, "no": 21} , "children": [
+            { "nodeid": 21, "depth": 5, "split": "model_year", "split_condition": 75, "yes": 33, "no": 34, "missing": 34 , "children": [
+              { "nodeid": 33, "leaf": -0.00357167912 }, 
+              { "nodeid": 34, "leaf": 0.090356864 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "horsepower", "split_condition": 99, "yes": 35, "no": 36, "missing": 36 , "children": [
+              { "nodeid": 35, "leaf": -0.119153939 }, 
+              { "nodeid": 36, "leaf": 0.00596556021 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "acceleration", "split_condition": 12.8999996, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "depth": 5, "split": "model_year", "split_condition": 77, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": 0.00509564765 }, 
+              { "nodeid": 38, "leaf": 0.0861534178 }
+            ]}, 
+            { "nodeid": 24, "depth": 5, "split": "model_year", "split_condition": 76, "yes": 39, "no": 40, "missing": 39 , "children": [
+              { "nodeid": 39, "leaf": -0.00391441165 }, 
+              { "nodeid": 40, "leaf": -0.10051056 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "horsepower", "split_condition": 135, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2638, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "horsepower", "split_condition": 84, "yes": 41, "no": 42, "missing": 42 , "children": [
+              { "nodeid": 41, "leaf": -0.021577362 }, 
+              { "nodeid": 42, "leaf": -0.157100976 }
+            ]}, 
+            { "nodeid": 26, "depth": 5, "split": "weight", "split_condition": 2668, "yes": 43, "no": 44, "missing": 44 , "children": [
+              { "nodeid": 43, "leaf": 0.358440995 }, 
+              { "nodeid": 44, "leaf": -0.0231709089 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "displacement", "split_condition": 90.5, "yes": 27, "no": 28, "missing": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "displacement", "split_condition": 87.5, "yes": 45, "no": 46, "missing": 45 , "children": [
+              { "nodeid": 45, "leaf": 0.0627822205 }, 
+              { "nodeid": 46, "leaf": 0.313690007 }
+            ]}, 
+            { "nodeid": 28, "depth": 5, "split": "horsepower", "split_condition": 152, "yes": 47, "no": 48, "missing": 48 , "children": [
+              { "nodeid": 47, "leaf": 0.111885116 }, 
+              { "nodeid": 48, "leaf": -0.0343727618 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "displacement", "split_condition": 247, "yes": 11, "no": 12, "missing": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "model_year", "split_condition": 81, "yes": 17, "no": 18, "missing": 18 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "acceleration", "split_condition": 15.1499996, "yes": 29, "no": 30, "missing": 29 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "acceleration", "split_condition": 14.5499992, "yes": 49, "no": 50, "missing": 49 , "children": [
+              { "nodeid": 49, "leaf": 0.0269250888 }, 
+              { "nodeid": 50, "leaf": 0.221561924 }
+            ]}, 
+            { "nodeid": 30, "depth": 5, "split": "displacement", "split_condition": 87.5, "yes": 51, "no": 52, "missing": 52 , "children": [
+              { "nodeid": 51, "leaf": 0.138687134 }, 
+              { "nodeid": 52, "leaf": -0.0278539192 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "origin=1", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "origin=3", "yes": 54, "no": 53} , "children": [
+              { "nodeid": 53, "leaf": -0.0847914666 }, 
+              { "nodeid": 54, "leaf": 0.0195922852 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "horsepower", "split_condition": 91, "yes": 55, "no": 56, "missing": 56 , "children": [
+              { "nodeid": 55, "leaf": 0.0503840484 }, 
+              { "nodeid": 56, "leaf": -0.078233242 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "cylinders=6", "yes": 20, "no": 19} , "children": [
+          { "nodeid": 19, "leaf": 0.00661840476 }, 
+          { "nodeid": 20, "leaf": 0.284697533 }
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 4849, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "cylinders=5", "yes": 4, "no": 3} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 3345, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "weight", "split_condition": 3268, "yes": 13, "no": 14, "missing": 13 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "cylinders=4", "yes": 18, "no": 17} , "children": [
+            { "nodeid": 17, "depth": 5, "split": "weight", "split_condition": 2563, "yes": 23, "no": 24, "missing": 24 , "children": [
+              { "nodeid": 23, "leaf": 0.0258151852 }, 
+              { "nodeid": 24, "leaf": -0.0209241845 }
+            ]}, 
+            { "nodeid": 18, "depth": 5, "split": "weight", "split_condition": 2615, "yes": 25, "no": 26, "missing": 26 , "children": [
+              { "nodeid": 25, "leaf": -0.00691044563 }, 
+              { "nodeid": 26, "leaf": 0.0386361182 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "model_year", "split_condition": 73, "yes": 19, "no": 20, "missing": 20 , "children": [
+            { "nodeid": 19, "leaf": 0.117748551 }, 
+            { "nodeid": 20, "leaf": -0.200704411 }
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "weight", "split_condition": 3367, "yes": 15, "no": 16, "missing": 16 , "children": [
+          { "nodeid": 15, "leaf": 0.309712887 }, 
+          { "nodeid": 16, "depth": 4, "split": "horsepower", "split_condition": 143, "yes": 21, "no": 22, "missing": 22 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "acceleration", "split_condition": 15.1000004, "yes": 27, "no": 28, "missing": 28 , "children": [
+              { "nodeid": 27, "leaf": 0.135715201 }, 
+              { "nodeid": 28, "leaf": -0.000813403924 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "horsepower", "split_condition": 147, "yes": 29, "no": 30, "missing": 30 , "children": [
+              { "nodeid": 29, "leaf": -0.118653923 }, 
+              { "nodeid": 30, "leaf": 0.00993285514 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "displacement", "split_condition": 126, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": 0.149628639 }, 
+        { "nodeid": 10, "leaf": 0.00409622211 }
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 72, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 391.5, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": -0.00339059834 }, 
+        { "nodeid": 12, "leaf": 0.0132459644 }
+      ]}, 
+      { "nodeid": 6, "leaf": -0.0956452191 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "cylinders=3", "yes": 2, "no": 1} , "children": [
+    { "nodeid": 1, "depth": 1, "split": "horsepower", "split_condition": 50, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 194, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "displacement", "split_condition": 93.5, "yes": 11, "no": 12, "missing": 12 , "children": [
+          { "nodeid": 11, "leaf": 0.00297775283 }, 
+          { "nodeid": 12, "leaf": 0.0302450191 }
+        ]}, 
+        { "nodeid": 8, "leaf": 0.121746831 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "acceleration", "split_condition": 11.75, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2998, "yes": 13, "no": 14, "missing": 13 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "displacement", "split_condition": 427, "yes": 17, "no": 18, "missing": 18 , "children": [
+            { "nodeid": 17, "depth": 5, "split": "horsepower", "split_condition": 460, "yes": 25, "no": 26, "missing": 26 , "children": [
+              { "nodeid": 25, "leaf": 0.148935556 }, 
+              { "nodeid": 26, "leaf": 0.0376318954 }
+            ]}, 
+            { "nodeid": 18, "depth": 5, "split": "cylinders=8", "yes": 28, "no": 27} , "children": [
+              { "nodeid": 27, "leaf": 0.0200922024 }, 
+              { "nodeid": 28, "leaf": -0.0394168869 }
+            ]}
+          ]}, 
+          { "nodeid": 14, "depth": 4, "split": "displacement", "split_condition": 386.5, "yes": 19, "no": 20, "missing": 19 , "children": [
+            { "nodeid": 19, "depth": 5, "split": "horsepower", "split_condition": 155, "yes": 29, "no": 30, "missing": 30 , "children": [
+              { "nodeid": 29, "leaf": 0.0408299454 }, 
+              { "nodeid": 30, "leaf": -0.039808847 }
+            ]}, 
+            { "nodeid": 20, "depth": 5, "split": "weight", "split_condition": 3468, "yes": 31, "no": 32, "missing": 32 , "children": [
+              { "nodeid": 31, "leaf": -0.0418200046 }, 
+              { "nodeid": 32, "leaf": 0.0837053359 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 334, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "displacement", "split_condition": 259, "yes": 21, "no": 22, "missing": 21 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "displacement", "split_condition": 254, "yes": 33, "no": 34, "missing": 33 , "children": [
+              { "nodeid": 33, "leaf": 0.00166274712 }, 
+              { "nodeid": 34, "leaf": -0.0841599107 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "model_year", "split_condition": 78, "yes": 35, "no": 36, "missing": 35 , "children": [
+              { "nodeid": 35, "leaf": 0.0117181912 }, 
+              { "nodeid": 36, "leaf": 0.176323041 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 14.1499996, "yes": 23, "no": 24, "missing": 23 , "children": [
+            { "nodeid": 23, "depth": 5, "split": "weight", "split_condition": 4069, "yes": 37, "no": 38, "missing": 37 , "children": [
+              { "nodeid": 37, "leaf": -0.11745812 }, 
+              { "nodeid": 38, "leaf": -0.0315398723 }
+            ]}, 
+            { "nodeid": 24, "depth": 5, "split": "horsepower", "split_condition": 127, "yes": 39, "no": 40, "missing": 39 , "children": [
+              { "nodeid": 39, "leaf": 0.018350983 }, 
+              { "nodeid": 40, "leaf": 0.106196128 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "horsepower", "split_condition": 94, "yes": 5, "no": 6, "missing": 6 , "children": [
+      { "nodeid": 5, "leaf": 0.018198682 }, 
+      { "nodeid": 6, "leaf": -0.0884307921 }
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "horsepower", "split_condition": 99, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "horsepower", "split_condition": 96, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "displacement", "split_condition": 117.5, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "horsepower", "split_condition": 91, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2600, "yes": 31, "no": 32, "missing": 32 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "weight", "split_condition": 2227, "yes": 59, "no": 60, "missing": 60 , "children": [
+              { "nodeid": 59, "leaf": 0.000988035928 }, 
+              { "nodeid": 60, "leaf": 0.0820798203 }
+            ]}, 
+            { "nodeid": 32, "depth": 5, "split": "origin=3", "yes": 62, "no": 61} , "children": [
+              { "nodeid": 61, "leaf": -0.0406083539 }, 
+              { "nodeid": 62, "leaf": 0.134336814 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "model_year", "split_condition": 77, "yes": 33, "no": 34, "missing": 34 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "displacement", "split_condition": 226, "yes": 63, "no": 64, "missing": 64 , "children": [
+              { "nodeid": 63, "leaf": 0.0311114509 }, 
+              { "nodeid": 64, "leaf": -0.0728267729 }
+            ]}, 
+            { "nodeid": 34, "depth": 5, "split": "weight", "split_condition": 5170, "yes": 65, "no": 66, "missing": 66 , "children": [
+              { "nodeid": 65, "leaf": -0.31683585 }, 
+              { "nodeid": 66, "leaf": 0.0164866447 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "depth": 3, "split": "horsepower", "split_condition": 89, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 2390, "yes": 35, "no": 36, "missing": 36 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "weight", "split_condition": 2223, "yes": 67, "no": 68, "missing": 68 , "children": [
+              { "nodeid": 67, "leaf": 0.0719398558 }, 
+              { "nodeid": 68, "leaf": -0.131371543 }
+            ]}, 
+            { "nodeid": 36, "depth": 5, "split": "displacement", "split_condition": 212.5, "yes": 69, "no": 70, "missing": 70 , "children": [
+              { "nodeid": 69, "leaf": 0.0336337499 }, 
+              { "nodeid": 70, "leaf": -0.00961011741 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "acceleration", "split_condition": 16.2000008, "yes": 37, "no": 38, "missing": 38 , "children": [
+            { "nodeid": 37, "leaf": 0.250845909 }, 
+            { "nodeid": 38, "depth": 5, "split": "horsepower", "split_condition": 91, "yes": 71, "no": 72, "missing": 72 , "children": [
+              { "nodeid": 71, "leaf": 0.0720784515 }, 
+              { "nodeid": 72, "leaf": -0.0633082911 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "model_year", "split_condition": 78, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "weight", "split_condition": 2879, "yes": 19, "no": 20, "missing": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "model_year", "split_condition": 73, "yes": 39, "no": 40, "missing": 40 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "cylinders=6", "yes": 74, "no": 73} , "children": [
+              { "nodeid": 73, "leaf": -0.0721687376 }, 
+              { "nodeid": 74, "leaf": -0.0189339649 }
+            ]}, 
+            { "nodeid": 40, "depth": 5, "split": "cylinders=6", "yes": 76, "no": 75} , "children": [
+              { "nodeid": 75, "leaf": 0.076089479 }, 
+              { "nodeid": 76, "leaf": -0.0132863047 }
+            ]}
+          ]}, 
+          { "nodeid": 20, "leaf": -0.148704246 }
+        ]}, 
+        { "nodeid": 10, "depth": 3, "split": "displacement", "split_condition": 500, "yes": 21, "no": 22, "missing": 22 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "cylinders=4", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 41, "leaf": 0.0376542099 }, 
+            { "nodeid": 42, "leaf": -0.0990946814 }
+          ]}, 
+          { "nodeid": 22, "leaf": 0.43013975 }
+        ]}
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "origin=1", "yes": 6, "no": 5} , "children": [
+      { "nodeid": 5, "depth": 2, "split": "model_year", "split_condition": 76, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "weight", "split_condition": 4423, "yes": 23, "no": 24, "missing": 24 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "model_year", "split_condition": 74, "yes": 43, "no": 44, "missing": 44 , "children": [
+            { "nodeid": 43, "depth": 5, "split": "cylinders=6", "yes": 78, "no": 77} , "children": [
+              { "nodeid": 77, "leaf": -0.103323348 }, 
+              { "nodeid": 78, "leaf": 0.00211830158 }
+            ]}, 
+            { "nodeid": 44, "depth": 5, "split": "cylinders=4", "yes": 80, "no": 79} , "children": [
+              { "nodeid": 79, "leaf": 0.00875043869 }, 
+              { "nodeid": 80, "leaf": 0.0688791275 }
+            ]}
+          ]}, 
+          { "nodeid": 24, "depth": 4, "split": "displacement", "split_condition": 375.5, "yes": 45, "no": 46, "missing": 46 , "children": [
+            { "nodeid": 45, "leaf": 0.139333501 }, 
+            { "nodeid": 46, "depth": 5, "split": "cylinders=8", "yes": 82, "no": 81} , "children": [
+              { "nodeid": 81, "leaf": 0.0551807657 }, 
+              { "nodeid": 82, "leaf": -0.0751942694 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 12, "depth": 3, "split": "weight", "split_condition": 3980, "yes": 25, "no": 26, "missing": 26 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "horsepower", "split_condition": 109, "yes": 47, "no": 48, "missing": 48 , "children": [
+            { "nodeid": 47, "depth": 5, "split": "displacement", "split_condition": 143.5, "yes": 83, "no": 84, "missing": 83 , "children": [
+              { "nodeid": 83, "leaf": -0.0394772552 }, 
+              { "nodeid": 84, "leaf": -0.363662362 }
+            ]}, 
+            { "nodeid": 48, "depth": 5, "split": "model_year", "split_condition": 79, "yes": 85, "no": 86, "missing": 86 , "children": [
+              { "nodeid": 85, "leaf": -0.0663709641 }, 
+              { "nodeid": 86, "leaf": 0.059046939 }
+            ]}
+          ]}, 
+          { "nodeid": 26, "depth": 4, "split": "acceleration", "split_condition": 15.5, "yes": 49, "no": 50, "missing": 50 , "children": [
+            { "nodeid": 49, "leaf": -0.27154541 }, 
+            { "nodeid": 50, "depth": 5, "split": "displacement", "split_condition": 326, "yes": 87, "no": 88, "missing": 88 , "children": [
+              { "nodeid": 87, "leaf": -0.0547681861 }, 
+              { "nodeid": 88, "leaf": 0.00601158151 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "acceleration", "split_condition": 15.0500002, "yes": 13, "no": 14, "missing": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "weight", "split_condition": 4404, "yes": 27, "no": 28, "missing": 27 , "children": [
+          { "nodeid": 27, "depth": 4, "split": "displacement", "split_condition": 303, "yes": 51, "no": 52, "missing": 51 , "children": [
+            { "nodeid": 51, "depth": 5, "split": "horsepower", "split_condition": 103, "yes": 89, "no": 90, "missing": 90 , "children": [
+              { "nodeid": 89, "leaf": -0.0321672708 }, 
+              { "nodeid": 90, "leaf": 0.0990920439 }
+            ]}, 
+            { "nodeid": 52, "depth": 5, "split": "weight", "split_condition": 4212, "yes": 91, "no": 92, "missing": 92 , "children": [
+              { "nodeid": 91, "leaf": -0.069751583 }, 
+              { "nodeid": 92, "leaf": 0.0685758591 }
+            ]}
+          ]}, 
+          { "nodeid": 28, "depth": 4, "split": "acceleration", "split_condition": 12.25, "yes": 53, "no": 54, "missing": 53 , "children": [
+            { "nodeid": 53, "depth": 5, "split": "weight", "split_condition": 4452, "yes": 93, "no": 94, "missing": 94 , "children": [
+              { "nodeid": 93, "leaf": 0.0533593185 }, 
+              { "nodeid": 94, "leaf": -0.00691013364 }
+            ]}, 
+            { "nodeid": 54, "depth": 5, "split": "weight", "split_condition": 4635, "yes": 95, "no": 96, "missing": 96 , "children": [
+              { "nodeid": 95, "leaf": -0.157447174 }, 
+              { "nodeid": 96, "leaf": -0.0221365932 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 14, "depth": 3, "split": "displacement", "split_condition": 254, "yes": 29, "no": 30, "missing": 30 , "children": [
+          { "nodeid": 29, "depth": 4, "split": "weight", "split_condition": 3839, "yes": 55, "no": 56, "missing": 55 , "children": [
+            { "nodeid": 55, "depth": 5, "split": "weight", "split_condition": 3185, "yes": 97, "no": 98, "missing": 98 , "children": [
+              { "nodeid": 97, "leaf": -0.0479207076 }, 
+              { "nodeid": 98, "leaf": 0.0522680692 }
+            ]}, 
+            { "nodeid": 56, "leaf": -0.0352014564 }
+          ]}, 
+          { "nodeid": 30, "depth": 4, "split": "cylinders=6", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 57, "depth": 5, "split": "cylinders=8", "yes": 100, "no": 99} , "children": [
+              { "nodeid": 99, "leaf": -0.173323974 }, 
+              { "nodeid": 100, "leaf": 0.00208024983 }
+            ]}, 
+            { "nodeid": 58, "depth": 5, "split": "displacement", "split_condition": 516, "yes": 101, "no": 102, "missing": 102 , "children": [
+              { "nodeid": 101, "leaf": -0.0617589019 }, 
+              { "nodeid": 102, "leaf": 0.0623511337 }
+            ]}
+          ]}
+        ]}
+      ]}
+    ]}
+  ]},
+  { "nodeid": 0, "depth": 0, "split": "weight", "split_condition": 2939, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "weight", "split_condition": 2920, "yes": 3, "no": 4, "missing": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "weight", "split_condition": 2903, "yes": 7, "no": 8, "missing": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "weight", "split_condition": 2750, "yes": 15, "no": 16, "missing": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "weight", "split_condition": 2644, "yes": 19, "no": 20, "missing": 19 , "children": [
+            { "nodeid": 19, "depth": 5, "split": "weight", "split_condition": 2579, "yes": 27, "no": 28, "missing": 27 , "children": [
+              { "nodeid": 27, "leaf": 0.00131220114 }, 
+              { "nodeid": 28, "leaf": -0.0833740309 }
+            ]}, 
+            { "nodeid": 20, "depth": 5, "split": "weight", "split_condition": 2668, "yes": 29, "no": 30, "missing": 30 , "children": [
+              { "nodeid": 29, "leaf": 0.26891765 }, 
+              { "nodeid": 30, "leaf": -0.00249519339 }
+            ]}
+          ]}, 
+          { "nodeid": 16, "depth": 4, "split": "acceleration", "split_condition": 15.5500002, "yes": 21, "no": 22, "missing": 21 , "children": [
+            { "nodeid": 21, "depth": 5, "split": "horsepower", "split_condition": 102, "yes": 31, "no": 32, "missing": 31 , "children": [
+              { "nodeid": 31, "leaf": -0.0923828483 }, 
+              { "nodeid": 32, "leaf": -0.020614339 }
+            ]}, 
+            { "nodeid": 22, "depth": 5, "split": "displacement", "split_condition": 186, "yes": 33, "no": 34, "missing": 34 , "children": [
+              { "nodeid": 33, "leaf": -0.0169263855 }, 
+              { "nodeid": 34, "leaf": 0.0196460728 }
+            ]}
+          ]}
+        ]}, 
+        { "nodeid": 8, "leaf": 0.108384326 }
+      ]}, 
+      { "nodeid": 4, "depth": 2, "split": "horsepower", "split_condition": 116, "yes": 9, "no": 10, "missing": 10 , "children": [
+        { "nodeid": 9, "leaf": -0.281183451 }, 
+        { "nodeid": 10, "leaf": 0.100607306 }
+      ]}
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "model_year", "split_condition": 82, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "displacement", "split_condition": 131, "yes": 11, "no": 12, "missing": 12 , "children": [
+        { "nodeid": 11, "leaf": 0.121165656 }, 
+        { "nodeid": 12, "depth": 3, "split": "horsepower", "split_condition": 194, "yes": 17, "no": 18, "missing": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "weight", "split_condition": 3345, "yes": 23, "no": 24, "missing": 24 , "children": [
+            { "nodeid": 23, "depth": 5, "split": "displacement", "split_condition": 241, "yes": 35, "no": 36, "missing": 35 , "children": [
+              { "nodeid": 35, "leaf": 0.00712324772 }, 
+              { "nodeid": 36, "leaf": -0.0797070637 }
+            ]}, 
+            { "nodeid": 24, "depth": 5, "split": "weight", "split_condition": 3367, "yes": 37, "no": 38, "missing": 38 , "children": [
+              { "nodeid": 37, "leaf": 0.24814254 }, 
+              { "nodeid": 38, "leaf": 0.0118589858 }
+            ]}
+          ]}, 
+          { "nodeid": 18, "depth": 4, "split": "displacement", "split_condition": 447.5, "yes": 25, "no": 26, "missing": 26 , "children": [
+            { "nodeid": 25, "leaf": -0.0925153047 }, 
+            { "nodeid": 26, "depth": 5, "split": "cylinders=8", "yes": 40, "no": 39} , "children": [
+              { "nodeid": 39, "leaf": 0.0493550785 }, 
+              { "nodeid": 40, "leaf": -0.0305602457 }
+            ]}
+          ]}
+        ]}
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "cylinders=4", "yes": 14, "no": 13} , "children": [
+        { "nodeid": 13, "leaf": 0.22012426 }, 
+        { "nodeid": 14, "leaf": 0.00771303196 }
+      ]}
+    ]}
+  ]}
+]

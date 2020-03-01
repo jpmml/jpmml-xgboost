@@ -69,7 +69,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(8));
+		evaluate("MultinomialClassification", "Iris");
 	}
 
 	@Test

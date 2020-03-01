@@ -32,6 +32,11 @@ import org.jpmml.converter.mining.MiningModelUtil;
 public class LogisticRegression extends Regression {
 
 	@Override
+	public float probToMargin(float value){
+		return inverseLogit(value);
+	}
+
+	@Override
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 

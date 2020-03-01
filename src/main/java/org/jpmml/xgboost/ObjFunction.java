@@ -45,6 +45,10 @@ public class ObjFunction {
 	abstract
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
 
+	public float probToMargin(float value){
+		return value;
+	}
+
 	static
 	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 
@@ -100,5 +104,15 @@ public class ObjFunction {
 			.setTargets(ModelUtil.createRescaleTargets(null, base_score, continuousLabel));
 
 		return miningModel;
+	}
+
+	static
+	protected float inverseLogit(float value){
+		return (float)-Math.log((1f / value) - 1f);
+	}
+
+	static
+	protected float inverseExp(float value){
+		return (float)Math.log(value);
 	}
 }

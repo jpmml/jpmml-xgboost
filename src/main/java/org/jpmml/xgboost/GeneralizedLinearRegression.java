@@ -32,6 +32,11 @@ import org.jpmml.converter.mining.MiningModelUtil;
 public class GeneralizedLinearRegression extends Regression {
 
 	@Override
+	public float probToMargin(float value){
+		return inverseExp(value);
+	}
+
+	@Override
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 

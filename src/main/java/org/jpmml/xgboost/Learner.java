@@ -48,6 +48,10 @@ public class Learner implements Loadable {
 
 	private int contain_eval_metrics;
 
+	private int major_version;
+
+	private int minor_version;
+
 	private ObjFunction obj;
 
 	private GBTree gbtree;
@@ -68,7 +72,14 @@ public class Learner implements Loadable {
 		this.contain_extra_attrs = input.readInt();
 		this.contain_eval_metrics = input.readInt();
 
-		input.readReserved(29);
+		this.major_version = input.readInt();
+		this.minor_version = input.readInt();
+
+		if(this.major_version < 0 || this.major_version > 1){
+			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
+		}
+
+		input.readReserved(27);
 
 		String name_obj = input.readString();
 		switch(name_obj){
@@ -105,6 +116,15 @@ public class Learner implements Loadable {
 				throw new IllegalArgumentException(name_obj);
 		}
 
+		// Starting from 1.0.0, the base score is saved as an untransformed value
+		if(this.major_version >= 1){
+			this.base_score = this.obj.probToMargin(this.base_score) + 0f;
+		} else
+
+		{
+			this.base_score = this.base_score;
+		}
+
 		String name_gbm = input.readString();
 		switch(name_gbm){
 			case "gbtree":
@@ -121,6 +141,10 @@ public class Learner implements Loadable {
 
 		if(this.contain_extra_attrs != 0){
 			this.attributes = input.readStringMap();
+		} // End if
+
+		if(this.major_version >= 1){
+			return;
 		} // End if
 
 		if(this.obj instanceof PoissonRegression){

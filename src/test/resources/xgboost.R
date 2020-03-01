@@ -19,7 +19,7 @@ storeCsv = function(data, file){
 
 storeModel = function(xgb, funcAndDataset, dataset){
 	xgb.save(xgb, xgboostFile(funcAndDataset, ".model"))
-	xgb.dump(xgb, xgboostFile(funcAndDataset, ".txt"), fmap = csvFile(dataset, ".fmap"))
+	xgb.dump(xgb, xgboostFile(funcAndDataset, ".json"), fmap = csvFile(dataset, ".fmap"), dump_format = "json")
 }
 
 storeResult = function(data, funcAndDataset){
