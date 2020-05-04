@@ -28,9 +28,9 @@ import java.util.function.Predicate;
 import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
-import org.jpmml.evaluator.ArchiveBatch;
-import org.jpmml.evaluator.IntegrationTest;
-import org.jpmml.evaluator.IntegrationTestBatch;
+import org.jpmml.evaluator.testing.ArchiveBatch;
+import org.jpmml.evaluator.testing.IntegrationTest;
+import org.jpmml.evaluator.testing.IntegrationTestBatch;
 
 public class XGBoostTest extends IntegrationTest {
 

@@ -19,7 +19,7 @@
 package org.jpmml.xgboost;
 
 import org.dmg.pmml.FieldName;
-import org.jpmml.evaluator.FloatEquivalence;
+import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
 public class ClassificationTest extends XGBoostTest {
