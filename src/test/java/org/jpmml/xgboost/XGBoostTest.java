@@ -28,6 +28,7 @@ import java.util.function.Predicate;
 import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
+import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.IntegrationTest;
 import org.jpmml.evaluator.testing.IntegrationTestBatch;
@@ -39,8 +40,8 @@ public class XGBoostTest extends IntegrationTest {
 	}
 
 	@Override
-	protected ArchiveBatch createBatch(String name, String dataset, Predicate<FieldName> predicate){
-		ArchiveBatch result = new IntegrationTestBatch(name, dataset, predicate){
+	protected ArchiveBatch createBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
+		ArchiveBatch result = new IntegrationTestBatch(name, dataset, predicate, equivalence){
 
 			@Override
 			public IntegrationTest getIntegrationTest(){
@@ -74,7 +75,7 @@ public class XGBoostTest extends IntegrationTest {
 
 				PMML pmml = learner.encodePMML(null, null, featureMap, options);
 
-				ensureValidity(pmml);
+				validatePMML(pmml);
 
 				return pmml;
 			}
