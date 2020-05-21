@@ -26,7 +26,7 @@ A typical workflow can be summarized as follows:
 
 ### The XGBoost side of operations
 
-Using [`r2pmml`](https://github.com/jpmml/r2pmml) and [`xgboost`](http://cran.r-project.org/web/packages/xgboost/) packages to train a linear regression model for the example `mtcars` dataset:
+Using [`r2pmml`](https://github.com/jpmml/r2pmml) and [`xgboost`](http://cran.r-project.org/web/packages/xgboost/) packages to train a regression model for the example `mtcars` dataset:
 ```R
 library("r2pmml")
 library("xgboost")
@@ -40,26 +40,30 @@ mtcars$am = as.factor(mtcars$am)
 mtcars$gear = as.integer(mtcars$gear)
 mtcars$carb = as.integer(mtcars$carb)
 
-mpg_y = mtcars[, 1]
-mpg_X = mtcars[, 2:ncol(mtcars)]
+mtcars_y = mtcars[, 1]
+mtcars_X = mtcars[, 2:ncol(mtcars)]
+
+mtcars.formula = formula(~ . - 1)
+mtcars.frame = model.frame(mtcars.formula, data = mtcars_X)
+mtcars.matrix = model.matrix(mtcars.formula, data = mtcars.frame)
 
 # Generate feature map
-mpg.fmap = r2pmml::genFMap(mpg_X)
-r2pmml::writeFMap(mpg.fmap, "xgboost.fmap")
+mtcars.fmap = as.fmap(mtcars.frame)
+write.fmap(mtcars.fmap, "xgboost.fmap")
 
 # Generate DMatrix
-mpg.dmatrix = r2pmml::genDMatrix(mpg_y, mpg_X, "xgboost.svm")
+mtcars.dmatrix = xgb.DMatrix(data = mtcars.matrix, label = mtcars_y)
 
 set.seed(31)
 
 # Train a linear regression model
-mpg.xgb = xgboost(data = mpg.dmatrix, objective = "reg:linear", nrounds = 7)
+mtcars.xgb = xgboost(data = mtcars.dmatrix, objective = "reg:squarederror", nrounds = 17)
 
 # Save the model in XGBoost proprietary binary format
-xgb.save(mpg.xgb, "xgboost.model")
+xgb.save(mtcars.xgb, "xgboost.model")
 
 # Dump the model in text format
-xgb.dump(mpg.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
+xgb.dump(mtcars.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 ```
 
 ### The JPMML-XGBoost side of operations
