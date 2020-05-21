@@ -64,19 +64,12 @@ public class XGBoostUtil {
 
 	static
 	public <DIS extends InputStream & DataInput> Learner loadLearner(DIS is, String charset) throws IOException {
-		byte[] magic = XGBoostUtil.SERIALIZATION_HEADER.getBytes(StandardCharsets.UTF_8);
 
 		if(!is.markSupported()){
 			throw new IllegalArgumentException();
 		}
 
-		byte[] buffer = new byte[magic.length];
-
-		is.mark(buffer.length);
-
-		is.readFully(buffer);
-
-		boolean hasSerializationHeader = Arrays.equals(buffer, magic);
+		boolean hasSerializationHeader = consumeHeader(is, XGBoostUtil.SERIALIZATION_HEADER);
 		if(hasSerializationHeader){
 			long offset = is.readLong();
 
@@ -86,7 +79,12 @@ public class XGBoostUtil {
 		} else
 
 		{
-			is.reset();
+			// Ignored
+		}
+
+		boolean hasBInfHeader = consumeHeader(is, XGBoostUtil.BINF_HEADER);
+		if(hasBInfHeader){
+			// Ignored
 		}
 
 		XGBoostDataInput input = new XGBoostDataInput(is, charset);
@@ -144,5 +142,24 @@ public class XGBoostUtil {
 		return lines.iterator();
 	}
 
+	static
+	private <DIS extends InputStream & DataInput> boolean consumeHeader(DIS is, String header) throws IOException {
+		byte[] headerBytes = header.getBytes(StandardCharsets.UTF_8);
+
+		byte[] buffer = new byte[headerBytes.length];
+
+		is.mark(buffer.length);
+
+		is.readFully(buffer);
+
+		boolean equals = Arrays.equals(headerBytes, buffer);
+		if(!equals){
+			is.reset();
+		}
+
+		return equals;
+	}
+
 	public static final String SERIALIZATION_HEADER = "CONFIG-offset:";
+	public static final String BINF_HEADER = "binf";
 }

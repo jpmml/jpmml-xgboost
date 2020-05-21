@@ -136,6 +136,11 @@ genVisitCount = function(visit_y, visit_X, dataset, ...){
 }
 
 visit = loadCsv("csv/Visit.csv")
+visit$outwork = as.factor(visit$outwork)
+visit$female = as.factor(visit$female)
+visit$married = as.factor(visit$married)
+visit$kids = as.factor(visit$kids)
+visit$self = as.factor(visit$self)
 
 visit_y = visit[, ncol(visit)]
 visit_X = visit[, 1:(ncol(visit) - 1)]

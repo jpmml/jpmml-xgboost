@@ -1,10 +1,10 @@
 [
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
-    { "nodeid": 1, "depth": 1, "split": "Education=Professional", "yes": 4, "no": 3} , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Doctorate", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Bachelor", "yes": 16, "no": 15} , "children": [
-          { "nodeid": 15, "depth": 4, "split": "Education=Master", "yes": 28, "no": 27} , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Education=Associate", "yes": 42, "no": 41} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "Education=Professional", "yes": 4, "no": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Doctorate", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Bachelor", "yes": 16, "no": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "Education=Master", "yes": 28, "no": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Education=Associate", "yes": 42, "no": 41 , "children": [
               { "nodeid": 41, "leaf": -0.57522583 }, 
               { "nodeid": 42, "leaf": -0.376744211 }
             ]}, 
@@ -29,13 +29,13 @@
           { "nodeid": 18, "leaf": 0.0666666701 }
         ]}
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Gender=Female", "yes": 10, "no": 9} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Gender=Female", "yes": 10, "no": 9 , "children": [
         { "nodeid": 9, "leaf": 0.272727281 }, 
         { "nodeid": 10, "leaf": -0.300000012 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Age", "split_condition": 37, "yes": 19, "no": 20, "missing": 19 , "children": [
           { "nodeid": 19, "depth": 4, "split": "Hours", "split_condition": 56, "yes": 31, "no": 32, "missing": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Income", "split_condition": 59953.125, "yes": 49, "no": 50, "missing": 49 , "children": [
@@ -47,8 +47,8 @@
               { "nodeid": 52, "leaf": -0.257142872 }
             ]}
           ]}, 
-          { "nodeid": 20, "depth": 4, "split": "Occupation=Clerical", "yes": 34, "no": 33} , "children": [
-            { "nodeid": 33, "depth": 5, "split": "Education=Bachelor", "yes": 54, "no": 53} , "children": [
+          { "nodeid": 20, "depth": 4, "split": "Occupation=Clerical", "yes": 34, "no": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "Education=Bachelor", "yes": 54, "no": 53 , "children": [
               { "nodeid": 53, "leaf": -0.216494843 }, 
               { "nodeid": 54, "leaf": 0.114893623 }
             ]}, 
@@ -58,7 +58,7 @@
             ]}
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Education=College", "yes": 22, "no": 21} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Education=College", "yes": 22, "no": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Hours", "split_condition": 23, "yes": 35, "no": 36, "missing": 35 , "children": [
             { "nodeid": 35, "leaf": -0.200000018 }, 
             { "nodeid": 36, "depth": 5, "split": "Hours", "split_condition": 59, "yes": 57, "no": 58, "missing": 57 , "children": [
@@ -70,17 +70,17 @@
         ]}
       ]}, 
       { "nodeid": 6, "depth": 2, "split": "Age", "split_condition": 32, "yes": 13, "no": 14, "missing": 13 , "children": [
-        { "nodeid": 13, "depth": 3, "split": "Education=Bachelor", "yes": 24, "no": 23} , "children": [
+        { "nodeid": 13, "depth": 3, "split": "Education=Bachelor", "yes": 24, "no": 23 , "children": [
           { "nodeid": 23, "leaf": -0.317647099 }, 
           { "nodeid": 24, "leaf": 0.163636371 }
         ]}, 
-        { "nodeid": 14, "depth": 3, "split": "Employment=Consultant", "yes": 26, "no": 25} , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Education=HSgrad", "yes": 38, "no": 37} , "children": [
+        { "nodeid": 14, "depth": 3, "split": "Employment=Consultant", "yes": 26, "no": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Education=HSgrad", "yes": 38, "no": 37 , "children": [
             { "nodeid": 37, "depth": 5, "split": "Income", "split_condition": 12751.5996, "yes": 59, "no": 60, "missing": 59 , "children": [
               { "nodeid": 59, "leaf": 0.0461538509 }, 
               { "nodeid": 60, "leaf": 0.394285738 }
             ]}, 
-            { "nodeid": 38, "depth": 5, "split": "Employment=Private", "yes": 62, "no": 61} , "children": [
+            { "nodeid": 38, "depth": 5, "split": "Employment=Private", "yes": 62, "no": 61 , "children": [
               { "nodeid": 61, "leaf": 0.280000001 }, 
               { "nodeid": 62, "leaf": -0.0500000045 }
             ]}
@@ -96,12 +96,12 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
-    { "nodeid": 1, "depth": 1, "split": "Education=Professional", "yes": 4, "no": 3} , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Doctorate", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Bachelor", "yes": 16, "no": 15} , "children": [
-          { "nodeid": 15, "depth": 4, "split": "Education=Associate", "yes": 28, "no": 27} , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "Education=Professional", "yes": 4, "no": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Doctorate", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Bachelor", "yes": 16, "no": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "Education=Associate", "yes": 28, "no": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45 , "children": [
               { "nodeid": 45, "leaf": -0.442638993 }, 
               { "nodeid": 46, "leaf": -0.282476664 }
             ]}, 
@@ -111,7 +111,7 @@
             ]}
           ]}, 
           { "nodeid": 16, "depth": 4, "split": "Age", "split_condition": 41, "yes": 29, "no": 30, "missing": 29 , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Marital=Unmarried", "yes": 50, "no": 49} , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Marital=Unmarried", "yes": 50, "no": 49 , "children": [
               { "nodeid": 49, "leaf": -0.389036655 }, 
               { "nodeid": 50, "leaf": -0.0175234526 }
             ]}, 
@@ -131,8 +131,8 @@
         { "nodeid": 10, "leaf": 0.210677475 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Hours", "split_condition": 42, "yes": 19, "no": 20, "missing": 19 , "children": [
           { "nodeid": 19, "depth": 4, "split": "Age", "split_condition": 44, "yes": 31, "no": 32, "missing": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Hours", "split_condition": 40, "yes": 53, "no": 54, "missing": 53 , "children": [
@@ -144,18 +144,18 @@
               { "nodeid": 56, "leaf": 0.221349895 }
             ]}
           ]}, 
-          { "nodeid": 20, "depth": 4, "split": "Occupation=Sales", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 20, "depth": 4, "split": "Occupation=Sales", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Hours", "split_condition": 44, "yes": 57, "no": 58, "missing": 57 , "children": [
               { "nodeid": 57, "leaf": 0.299863547 }, 
               { "nodeid": 58, "leaf": -0.119125895 }
             ]}, 
-            { "nodeid": 34, "depth": 5, "split": "Education=HSgrad", "yes": 60, "no": 59} , "children": [
+            { "nodeid": 34, "depth": 5, "split": "Education=HSgrad", "yes": 60, "no": 59 , "children": [
               { "nodeid": 59, "leaf": 0.210232913 }, 
               { "nodeid": 60, "leaf": -0.0631818473 }
             ]}
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Education=College", "yes": 22, "no": 21} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Education=College", "yes": 22, "no": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Hours", "split_condition": 23, "yes": 35, "no": 36, "missing": 35 , "children": [
             { "nodeid": 35, "leaf": -0.167702854 }, 
             { "nodeid": 36, "depth": 5, "split": "Age", "split_condition": 40, "yes": 61, "no": 62, "missing": 61 , "children": [
@@ -169,13 +169,13 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Age", "split_condition": 32, "yes": 23, "no": 24, "missing": 23 , "children": [
-          { "nodeid": 23, "depth": 4, "split": "Education=Bachelor", "yes": 40, "no": 39} , "children": [
+          { "nodeid": 23, "depth": 4, "split": "Education=Bachelor", "yes": 40, "no": 39 , "children": [
             { "nodeid": 39, "leaf": -0.233468026 }, 
             { "nodeid": 40, "leaf": 0.133030415 }
           ]}, 
-          { "nodeid": 24, "depth": 4, "split": "Education=HSgrad", "yes": 42, "no": 41} , "children": [
+          { "nodeid": 24, "depth": 4, "split": "Education=HSgrad", "yes": 42, "no": 41 , "children": [
             { "nodeid": 41, "depth": 5, "split": "Income", "split_condition": 27597.1445, "yes": 63, "no": 64, "missing": 63 , "children": [
               { "nodeid": 63, "leaf": 0.135031685 }, 
               { "nodeid": 64, "leaf": 0.322837442 }
@@ -187,7 +187,7 @@
           ]}
         ]}, 
         { "nodeid": 14, "depth": 3, "split": "Income", "split_condition": 43039.4688, "yes": 25, "no": 26, "missing": 25 , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Education=HSgrad", "yes": 44, "no": 43} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Education=HSgrad", "yes": 44, "no": 43 , "children": [
             { "nodeid": 43, "leaf": -0.0689305663 }, 
             { "nodeid": 44, "leaf": 0.0689306036 }
           ]}, 
@@ -196,15 +196,15 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 50, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "leaf": -0.380033493 }, 
           { "nodeid": 16, "leaf": -0.0500340909 }
         ]}, 
         { "nodeid": 8, "depth": 3, "split": "Age", "split_condition": 48, "yes": 17, "no": 18, "missing": 17 , "children": [
-          { "nodeid": 17, "depth": 4, "split": "Gender=Female", "yes": 28, "no": 27} , "children": [
+          { "nodeid": 17, "depth": 4, "split": "Gender=Female", "yes": 28, "no": 27 , "children": [
             { "nodeid": 27, "depth": 5, "split": "Age", "split_condition": 32, "yes": 45, "no": 46, "missing": 45 , "children": [
               { "nodeid": 45, "leaf": -0.280434966 }, 
               { "nodeid": 46, "leaf": 0.0392183177 }
@@ -212,7 +212,7 @@
             { "nodeid": 28, "leaf": -0.366176724 }
           ]}, 
           { "nodeid": 18, "depth": 4, "split": "Income", "split_condition": 76022.9688, "yes": 29, "no": 30, "missing": 29 , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Education=Master", "yes": 48, "no": 47} , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Education=Master", "yes": 48, "no": 47 , "children": [
               { "nodeid": 47, "leaf": 0.208961621 }, 
               { "nodeid": 48, "leaf": -0.0947572216 }
             ]}, 
@@ -223,9 +223,9 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9 , "children": [
         { "nodeid": 9, "depth": 3, "split": "Age", "split_condition": 53, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Occupation=Executive", "yes": 32, "no": 31} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Occupation=Executive", "yes": 32, "no": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Income", "split_condition": 50818.0781, "yes": 51, "no": 52, "missing": 51 , "children": [
               { "nodeid": 51, "leaf": -0.135338739 }, 
               { "nodeid": 52, "leaf": -0.306483448 }
@@ -235,7 +235,7 @@
               { "nodeid": 54, "leaf": -0.173527449 }
             ]}
           ]}, 
-          { "nodeid": 20, "depth": 4, "split": "Employment=Private", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 20, "depth": 4, "split": "Employment=Private", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "leaf": 0.188477203 }, 
             { "nodeid": 34, "leaf": -0.128489539 }
           ]}
@@ -243,29 +243,29 @@
         { "nodeid": 10, "leaf": 0.149965733 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Age", "split_condition": 37, "yes": 21, "no": 22, "missing": 21 , "children": [
-          { "nodeid": 21, "depth": 4, "split": "Education=Professional", "yes": 36, "no": 35} , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Education=College", "yes": 56, "no": 55} , "children": [
+          { "nodeid": 21, "depth": 4, "split": "Education=Professional", "yes": 36, "no": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Education=College", "yes": 56, "no": 55 , "children": [
               { "nodeid": 55, "leaf": -0.263004869 }, 
               { "nodeid": 56, "leaf": -0.091052562 }
             ]}, 
             { "nodeid": 36, "leaf": 0.252319783 }
           ]}, 
           { "nodeid": 22, "depth": 4, "split": "Hours", "split_condition": 35, "yes": 37, "no": 38, "missing": 37 , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Occupation=Clerical", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Occupation=Clerical", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": -0.330901384 }, 
               { "nodeid": 58, "leaf": 0.0296025611 }
             ]}, 
-            { "nodeid": 38, "depth": 5, "split": "Employment=Private", "yes": 60, "no": 59} , "children": [
+            { "nodeid": 38, "depth": 5, "split": "Employment=Private", "yes": 60, "no": 59 , "children": [
               { "nodeid": 59, "leaf": 0.0773597062 }, 
               { "nodeid": 60, "leaf": -0.0885497332 }
             ]}
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 24, "no": 23} , "children": [
-          { "nodeid": 23, "depth": 4, "split": "Occupation=Protective", "yes": 40, "no": 39} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 24, "no": 23 , "children": [
+          { "nodeid": 23, "depth": 4, "split": "Occupation=Protective", "yes": 40, "no": 39 , "children": [
             { "nodeid": 39, "depth": 5, "split": "Hours", "split_condition": 49, "yes": 61, "no": 62, "missing": 61 , "children": [
               { "nodeid": 61, "leaf": -0.27429831 }, 
               { "nodeid": 62, "leaf": 0.0204993617 }
@@ -299,12 +299,12 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 50, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "depth": 4, "split": "Age", "split_condition": 35, "yes": 31, "no": 32, "missing": 31 , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Education=Associate", "yes": 54, "no": 53} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Education=Associate", "yes": 54, "no": 53 , "children": [
               { "nodeid": 53, "leaf": -0.366152376 }, 
               { "nodeid": 54, "leaf": -0.172046185 }
             ]}, 
@@ -316,7 +316,7 @@
           { "nodeid": 16, "leaf": -0.0413110144 }
         ]}, 
         { "nodeid": 8, "depth": 3, "split": "Age", "split_condition": 48, "yes": 17, "no": 18, "missing": 17 , "children": [
-          { "nodeid": 17, "depth": 4, "split": "Gender=Female", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 17, "depth": 4, "split": "Gender=Female", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Age", "split_condition": 32, "yes": 57, "no": 58, "missing": 57 , "children": [
               { "nodeid": 57, "leaf": -0.240051836 }, 
               { "nodeid": 58, "leaf": 0.0300876144 }
@@ -336,9 +336,9 @@
         ]}
       ]}, 
       { "nodeid": 4, "depth": 2, "split": "Age", "split_condition": 39, "yes": 9, "no": 10, "missing": 9 , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Occupation=Professional", "yes": 20, "no": 19} , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Education=Bachelor", "yes": 38, "no": 37} , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Occupation=Clerical", "yes": 64, "no": 63} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Occupation=Professional", "yes": 20, "no": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Education=Bachelor", "yes": 38, "no": 37 , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Occupation=Clerical", "yes": 64, "no": 63 , "children": [
               { "nodeid": 63, "leaf": -0.31839174 }, 
               { "nodeid": 64, "leaf": -0.0689338595 }
             ]}, 
@@ -350,8 +350,8 @@
           { "nodeid": 20, "leaf": 0.0249847844 }
         ]}, 
         { "nodeid": 10, "depth": 3, "split": "Income", "split_condition": 78501.9453, "yes": 21, "no": 22, "missing": 21 , "children": [
-          { "nodeid": 21, "depth": 4, "split": "Marital=Absent", "yes": 40, "no": 39} , "children": [
-            { "nodeid": 39, "depth": 5, "split": "Gender=Female", "yes": 68, "no": 67} , "children": [
+          { "nodeid": 21, "depth": 4, "split": "Marital=Absent", "yes": 40, "no": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "Gender=Female", "yes": 68, "no": 67 , "children": [
               { "nodeid": 67, "leaf": 0.0809164792 }, 
               { "nodeid": 68, "leaf": -0.221264705 }
             ]}, 
@@ -367,15 +367,15 @@
         ]}
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11} , "children": [
-        { "nodeid": 11, "depth": 3, "split": "Occupation=Clerical", "yes": 24, "no": 23} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "Occupation=Clerical", "yes": 24, "no": 23 , "children": [
           { "nodeid": 23, "depth": 4, "split": "Hours", "split_condition": 37, "yes": 43, "no": 44, "missing": 43 , "children": [
-            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71 , "children": [
               { "nodeid": 71, "leaf": -0.333825469 }, 
               { "nodeid": 72, "leaf": -0.111151583 }
             ]}, 
-            { "nodeid": 44, "depth": 5, "split": "Occupation=Professional", "yes": 74, "no": 73} , "children": [
+            { "nodeid": 44, "depth": 5, "split": "Occupation=Professional", "yes": 74, "no": 73 , "children": [
               { "nodeid": 73, "leaf": -0.0937851518 }, 
               { "nodeid": 74, "leaf": 0.140462548 }
             ]}
@@ -385,21 +385,21 @@
               { "nodeid": 75, "leaf": -0.262410164 }, 
               { "nodeid": 76, "leaf": -0.0356160291 }
             ]}, 
-            { "nodeid": 46, "depth": 5, "split": "Education=Associate", "yes": 78, "no": 77} , "children": [
+            { "nodeid": 46, "depth": 5, "split": "Education=Associate", "yes": 78, "no": 77 , "children": [
               { "nodeid": 77, "leaf": 0.358992547 }, 
               { "nodeid": 78, "leaf": 0.0469123609 }
             ]}
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 26, "no": 25} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 26, "no": 25 , "children": [
           { "nodeid": 25, "depth": 4, "split": "Hours", "split_condition": 39, "yes": 47, "no": 48, "missing": 47 , "children": [
             { "nodeid": 47, "leaf": -0.303933769 }, 
-            { "nodeid": 48, "depth": 5, "split": "Occupation=Professional", "yes": 80, "no": 79} , "children": [
+            { "nodeid": 48, "depth": 5, "split": "Occupation=Professional", "yes": 80, "no": 79 , "children": [
               { "nodeid": 79, "leaf": 0.130620316 }, 
               { "nodeid": 80, "leaf": -0.28178376 }
             ]}
           ]}, 
-          { "nodeid": 26, "depth": 4, "split": "Occupation=Repair", "yes": 50, "no": 49} , "children": [
+          { "nodeid": 26, "depth": 4, "split": "Occupation=Repair", "yes": 50, "no": 49 , "children": [
             { "nodeid": 49, "depth": 5, "split": "Hours", "split_condition": 41, "yes": 81, "no": 82, "missing": 81 , "children": [
               { "nodeid": 81, "leaf": 0.0736912414 }, 
               { "nodeid": 82, "leaf": 0.254706264 }
@@ -408,7 +408,7 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Age", "split_condition": 39, "yes": 27, "no": 28, "missing": 27 , "children": [
           { "nodeid": 27, "leaf": 0.0826593041 }, 
           { "nodeid": 28, "leaf": 0.343564153 }
@@ -426,10 +426,10 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 50, "yes": 3, "no": 4, "missing": 3 , "children": [
       { "nodeid": 3, "depth": 2, "split": "Age", "split_condition": 39, "yes": 7, "no": 8, "missing": 7 , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Associate", "yes": 16, "no": 15} , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Associate", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "leaf": -0.326577365 }, 
           { "nodeid": 16, "depth": 4, "split": "Income", "split_condition": 79260.2812, "yes": 29, "no": 30, "missing": 29 , "children": [
             { "nodeid": 29, "leaf": -0.244151503 }, 
@@ -441,13 +441,13 @@
         ]}, 
         { "nodeid": 8, "depth": 3, "split": "Income", "split_condition": 47019.25, "yes": 17, "no": 18, "missing": 17 , "children": [
           { "nodeid": 17, "depth": 4, "split": "Income", "split_condition": 39787.6758, "yes": 31, "no": 32, "missing": 31 , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Education=Bachelor", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Education=Bachelor", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.267935306 }, 
               { "nodeid": 52, "leaf": 0.00966796465 }
             ]}, 
             { "nodeid": 32, "leaf": 0.209670261 }
           ]}, 
-          { "nodeid": 18, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 18, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Age", "split_condition": 44, "yes": 53, "no": 54, "missing": 53 , "children": [
               { "nodeid": 53, "leaf": -0.186525792 }, 
               { "nodeid": 54, "leaf": -0.31003347 }
@@ -463,7 +463,7 @@
         { "nodeid": 9, "depth": 3, "split": "Age", "split_condition": 26, "yes": 19, "no": 20, "missing": 19 , "children": [
           { "nodeid": 19, "leaf": -0.276808679 }, 
           { "nodeid": 20, "depth": 4, "split": "Income", "split_condition": 96605.9844, "yes": 35, "no": 36, "missing": 35 , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Occupation=Service", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Occupation=Service", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": -0.0505539291 }, 
               { "nodeid": 58, "leaf": -0.266308397 }
             ]}, 
@@ -476,11 +476,11 @@
         { "nodeid": 10, "leaf": -0.313085765 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5 , "children": [
       { "nodeid": 5, "depth": 2, "split": "Hours", "split_condition": 42, "yes": 11, "no": 12, "missing": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Income", "split_condition": 52592.2734, "yes": 21, "no": 22, "missing": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Age", "split_condition": 44, "yes": 37, "no": 38, "missing": 37 , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Occupation=Repair", "yes": 62, "no": 61} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Occupation=Repair", "yes": 62, "no": 61 , "children": [
               { "nodeid": 61, "leaf": -0.228929192 }, 
               { "nodeid": 62, "leaf": -0.079717651 }
             ]}, 
@@ -491,7 +491,7 @@
           ]}, 
           { "nodeid": 22, "depth": 4, "split": "Income", "split_condition": 54498.1289, "yes": 39, "no": 40, "missing": 39 , "children": [
             { "nodeid": 39, "leaf": 0.347441435 }, 
-            { "nodeid": 40, "depth": 5, "split": "Occupation=Transport", "yes": 66, "no": 65} , "children": [
+            { "nodeid": 40, "depth": 5, "split": "Occupation=Transport", "yes": 66, "no": 65 , "children": [
               { "nodeid": 65, "leaf": 0.0179828145 }, 
               { "nodeid": 66, "leaf": -0.287982434 }
             ]}
@@ -503,13 +503,13 @@
               { "nodeid": 67, "leaf": 0.186833262 }, 
               { "nodeid": 68, "leaf": -0.145261005 }
             ]}, 
-            { "nodeid": 42, "depth": 5, "split": "Employment=Consultant", "yes": 70, "no": 69} , "children": [
+            { "nodeid": 42, "depth": 5, "split": "Employment=Consultant", "yes": 70, "no": 69 , "children": [
               { "nodeid": 69, "leaf": 0.100105479 }, 
               { "nodeid": 70, "leaf": -0.115497909 }
             ]}
           ]}, 
           { "nodeid": 24, "depth": 4, "split": "Age", "split_condition": 50, "yes": 43, "no": 44, "missing": 43 , "children": [
-            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71 , "children": [
               { "nodeid": 71, "leaf": 0.368547767 }, 
               { "nodeid": 72, "leaf": 0.0860657394 }
             ]}, 
@@ -517,7 +517,7 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Age", "split_condition": 58, "yes": 25, "no": 26, "missing": 25 , "children": [
           { "nodeid": 25, "depth": 4, "split": "Age", "split_condition": 52, "yes": 45, "no": 46, "missing": 45 , "children": [
             { "nodeid": 45, "depth": 5, "split": "Income", "split_condition": 29416.7246, "yes": 73, "no": 74, "missing": 73 , "children": [
@@ -541,10 +541,10 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 50, "yes": 3, "no": 4, "missing": 3 , "children": [
       { "nodeid": 3, "depth": 2, "split": "Age", "split_condition": 39, "yes": 7, "no": 8, "missing": 7 , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Associate", "yes": 16, "no": 15} , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Associate", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "leaf": -0.326577365 }, 
           { "nodeid": 16, "depth": 4, "split": "Income", "split_condition": 79260.2812, "yes": 29, "no": 30, "missing": 29 , "children": [
             { "nodeid": 29, "leaf": -0.244151503 }, 
@@ -556,13 +556,13 @@
         ]}, 
         { "nodeid": 8, "depth": 3, "split": "Income", "split_condition": 47019.25, "yes": 17, "no": 18, "missing": 17 , "children": [
           { "nodeid": 17, "depth": 4, "split": "Income", "split_condition": 39787.6758, "yes": 31, "no": 32, "missing": 31 , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Education=Bachelor", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Education=Bachelor", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.267935306 }, 
               { "nodeid": 52, "leaf": 0.00966796465 }
             ]}, 
             { "nodeid": 32, "leaf": 0.209670261 }
           ]}, 
-          { "nodeid": 18, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 18, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Age", "split_condition": 44, "yes": 53, "no": 54, "missing": 53 , "children": [
               { "nodeid": 53, "leaf": -0.186525792 }, 
               { "nodeid": 54, "leaf": -0.31003347 }
@@ -578,7 +578,7 @@
         { "nodeid": 9, "depth": 3, "split": "Age", "split_condition": 26, "yes": 19, "no": 20, "missing": 19 , "children": [
           { "nodeid": 19, "leaf": -0.276808679 }, 
           { "nodeid": 20, "depth": 4, "split": "Income", "split_condition": 96605.9844, "yes": 35, "no": 36, "missing": 35 , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Occupation=Service", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Occupation=Service", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": -0.0505539291 }, 
               { "nodeid": 58, "leaf": -0.266308397 }
             ]}, 
@@ -591,11 +591,11 @@
         { "nodeid": 10, "leaf": -0.313085765 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5 , "children": [
       { "nodeid": 5, "depth": 2, "split": "Hours", "split_condition": 42, "yes": 11, "no": 12, "missing": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Income", "split_condition": 52592.2734, "yes": 21, "no": 22, "missing": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Age", "split_condition": 44, "yes": 37, "no": 38, "missing": 37 , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Occupation=Repair", "yes": 62, "no": 61} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Occupation=Repair", "yes": 62, "no": 61 , "children": [
               { "nodeid": 61, "leaf": -0.228929192 }, 
               { "nodeid": 62, "leaf": -0.079717651 }
             ]}, 
@@ -606,7 +606,7 @@
           ]}, 
           { "nodeid": 22, "depth": 4, "split": "Income", "split_condition": 54498.1289, "yes": 39, "no": 40, "missing": 39 , "children": [
             { "nodeid": 39, "leaf": 0.347441435 }, 
-            { "nodeid": 40, "depth": 5, "split": "Occupation=Transport", "yes": 66, "no": 65} , "children": [
+            { "nodeid": 40, "depth": 5, "split": "Occupation=Transport", "yes": 66, "no": 65 , "children": [
               { "nodeid": 65, "leaf": 0.0179828145 }, 
               { "nodeid": 66, "leaf": -0.287982434 }
             ]}
@@ -618,13 +618,13 @@
               { "nodeid": 67, "leaf": 0.186833262 }, 
               { "nodeid": 68, "leaf": -0.145261005 }
             ]}, 
-            { "nodeid": 42, "depth": 5, "split": "Employment=Consultant", "yes": 70, "no": 69} , "children": [
+            { "nodeid": 42, "depth": 5, "split": "Employment=Consultant", "yes": 70, "no": 69 , "children": [
               { "nodeid": 69, "leaf": 0.100105479 }, 
               { "nodeid": 70, "leaf": -0.115497909 }
             ]}
           ]}, 
           { "nodeid": 24, "depth": 4, "split": "Age", "split_condition": 50, "yes": 43, "no": 44, "missing": 43 , "children": [
-            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71} , "children": [
+            { "nodeid": 43, "depth": 5, "split": "Employment=Consultant", "yes": 72, "no": 71 , "children": [
               { "nodeid": 71, "leaf": 0.368547767 }, 
               { "nodeid": 72, "leaf": 0.0860657394 }
             ]}, 
@@ -632,7 +632,7 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Employment=Consultant", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Age", "split_condition": 58, "yes": 25, "no": 26, "missing": 25 , "children": [
           { "nodeid": 25, "depth": 4, "split": "Age", "split_condition": 52, "yes": 45, "no": 46, "missing": 45 , "children": [
             { "nodeid": 45, "depth": 5, "split": "Income", "split_condition": 29416.7246, "yes": 73, "no": 74, "missing": 73 , "children": [
@@ -656,12 +656,12 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Age", "split_condition": 39, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Bachelor", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Bachelor", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "depth": 3, "split": "Hours", "split_condition": 58, "yes": 15, "no": 16, "missing": 15 , "children": [
-          { "nodeid": 15, "depth": 4, "split": "Education=Associate", "yes": 28, "no": 27} , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45} , "children": [
+          { "nodeid": 15, "depth": 4, "split": "Education=Associate", "yes": 28, "no": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45 , "children": [
               { "nodeid": 45, "leaf": -0.306271613 }, 
               { "nodeid": 46, "leaf": -0.0803190768 }
             ]}, 
@@ -678,20 +678,20 @@
         { "nodeid": 8, "depth": 3, "split": "Age", "split_condition": 27, "yes": 17, "no": 18, "missing": 17 , "children": [
           { "nodeid": 17, "leaf": -0.275284678 }, 
           { "nodeid": 18, "depth": 4, "split": "Income", "split_condition": 73480.7031, "yes": 31, "no": 32, "missing": 31 , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Marital=Unmarried", "yes": 50, "no": 49} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Marital=Unmarried", "yes": 50, "no": 49 , "children": [
               { "nodeid": 49, "leaf": -0.255262494 }, 
               { "nodeid": 50, "leaf": 0.043349009 }
             ]}, 
-            { "nodeid": 32, "depth": 5, "split": "Gender=Female", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 32, "depth": 5, "split": "Gender=Female", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": 0.273399085 }, 
               { "nodeid": 52, "leaf": -0.13007614 }
             ]}
           ]}
         ]}
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9 , "children": [
         { "nodeid": 9, "depth": 3, "split": "Hours", "split_condition": 41, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Occupation=Professional", "yes": 34, "no": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Age", "split_condition": 43, "yes": 53, "no": 54, "missing": 53 , "children": [
               { "nodeid": 53, "leaf": -0.113318004 }, 
               { "nodeid": 54, "leaf": -0.276619732 }
@@ -702,7 +702,7 @@
             ]}
           ]}, 
           { "nodeid": 20, "depth": 4, "split": "Income", "split_condition": 47042.2344, "yes": 35, "no": 36, "missing": 35 , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Marital=Absent", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Marital=Absent", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": -0.150935411 }, 
               { "nodeid": 58, "leaf": 0.423970401 }
             ]}, 
@@ -715,11 +715,11 @@
         { "nodeid": 10, "leaf": 0.184705824 }
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Service", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Service", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Income", "split_condition": 59640.0078, "yes": 21, "no": 22, "missing": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Income", "split_condition": 20620.3164, "yes": 37, "no": 38, "missing": 37 , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Education=HSgrad", "yes": 62, "no": 61} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Education=HSgrad", "yes": 62, "no": 61 , "children": [
               { "nodeid": 61, "leaf": 0.182589009 }, 
               { "nodeid": 62, "leaf": -0.139355838 }
             ]}, 
@@ -728,19 +728,19 @@
               { "nodeid": 64, "leaf": -0.0406652093 }
             ]}
           ]}, 
-          { "nodeid": 22, "depth": 4, "split": "Occupation=Machinist", "yes": 40, "no": 39} , "children": [
+          { "nodeid": 22, "depth": 4, "split": "Occupation=Machinist", "yes": 40, "no": 39 , "children": [
             { "nodeid": 39, "depth": 5, "split": "Income", "split_condition": 213612.344, "yes": 65, "no": 66, "missing": 65 , "children": [
               { "nodeid": 65, "leaf": 0.195884809 }, 
               { "nodeid": 66, "leaf": 0.0149800181 }
             ]}, 
-            { "nodeid": 40, "depth": 5, "split": "Gender=Female", "yes": 68, "no": 67} , "children": [
+            { "nodeid": 40, "depth": 5, "split": "Gender=Female", "yes": 68, "no": 67 , "children": [
               { "nodeid": 67, "leaf": -0.00844163727 }, 
               { "nodeid": 68, "leaf": -0.319600642 }
             ]}
           ]}
         ]}, 
         { "nodeid": 12, "depth": 3, "split": "Age", "split_condition": 58, "yes": 23, "no": 24, "missing": 23 , "children": [
-          { "nodeid": 23, "depth": 4, "split": "Education=College", "yes": 42, "no": 41} , "children": [
+          { "nodeid": 23, "depth": 4, "split": "Education=College", "yes": 42, "no": 41 , "children": [
             { "nodeid": 41, "depth": 5, "split": "Hours", "split_condition": 32, "yes": 69, "no": 70, "missing": 69 , "children": [
               { "nodeid": 69, "leaf": -0.0478034839 }, 
               { "nodeid": 70, "leaf": -0.319848746 }
@@ -765,24 +765,24 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 50, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15} , "children": [
-          { "nodeid": 15, "depth": 4, "split": "Occupation=Repair", "yes": 30, "no": 29} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Master", "yes": 16, "no": 15 , "children": [
+          { "nodeid": 15, "depth": 4, "split": "Occupation=Repair", "yes": 30, "no": 29 , "children": [
             { "nodeid": 29, "depth": 5, "split": "Age", "split_condition": 66, "yes": 49, "no": 50, "missing": 49 , "children": [
               { "nodeid": 49, "leaf": -0.296115518 }, 
               { "nodeid": 50, "leaf": -0.0488070585 }
             ]}, 
-            { "nodeid": 30, "depth": 5, "split": "Marital=Divorced", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 30, "depth": 5, "split": "Marital=Divorced", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.199834973 }, 
               { "nodeid": 52, "leaf": -0.00664430857 }
             ]}
           ]}, 
           { "nodeid": 16, "leaf": 0.0521538928 }
         ]}, 
-        { "nodeid": 8, "depth": 3, "split": "Gender=Female", "yes": 18, "no": 17} , "children": [
-          { "nodeid": 17, "depth": 4, "split": "Marital=Divorced", "yes": 32, "no": 31} , "children": [
+        { "nodeid": 8, "depth": 3, "split": "Gender=Female", "yes": 18, "no": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "Marital=Divorced", "yes": 32, "no": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Age", "split_condition": 32, "yes": 53, "no": 54, "missing": 53 , "children": [
               { "nodeid": 53, "leaf": -0.163338378 }, 
               { "nodeid": 54, "leaf": 0.29460144 }
@@ -794,7 +794,7 @@
               { "nodeid": 55, "leaf": -0.0649491251 }, 
               { "nodeid": 56, "leaf": -0.285778791 }
             ]}, 
-            { "nodeid": 34, "depth": 5, "split": "Education=Bachelor", "yes": 58, "no": 57} , "children": [
+            { "nodeid": 34, "depth": 5, "split": "Education=Bachelor", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": -0.0877510011 }, 
               { "nodeid": 58, "leaf": 0.119790561 }
             ]}
@@ -803,8 +803,8 @@
       ]}, 
       { "nodeid": 4, "depth": 2, "split": "Income", "split_condition": 105556.367, "yes": 9, "no": 10, "missing": 9 , "children": [
         { "nodeid": 9, "depth": 3, "split": "Income", "split_condition": 96605.9844, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Occupation=Executive", "yes": 36, "no": 35} , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Employment=Private", "yes": 60, "no": 59} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Occupation=Executive", "yes": 36, "no": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Employment=Private", "yes": 60, "no": 59 , "children": [
               { "nodeid": 59, "leaf": -0.00841246359 }, 
               { "nodeid": 60, "leaf": -0.217626885 }
             ]}, 
@@ -827,26 +827,26 @@
         ]}
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Education=Bachelor", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Age", "split_condition": 37, "yes": 23, "no": 24, "missing": 23 , "children": [
-          { "nodeid": 23, "depth": 4, "split": "Education=Professional", "yes": 40, "no": 39} , "children": [
-            { "nodeid": 39, "depth": 5, "split": "Occupation=Repair", "yes": 66, "no": 65} , "children": [
+          { "nodeid": 23, "depth": 4, "split": "Education=Professional", "yes": 40, "no": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "Occupation=Repair", "yes": 66, "no": 65 , "children": [
               { "nodeid": 65, "leaf": -0.209504828 }, 
               { "nodeid": 66, "leaf": -0.0249042585 }
             ]}, 
             { "nodeid": 40, "leaf": 0.248404726 }
           ]}, 
-          { "nodeid": 24, "depth": 4, "split": "Occupation=Support", "yes": 42, "no": 41} , "children": [
-            { "nodeid": 41, "depth": 5, "split": "Employment=Private", "yes": 68, "no": 67} , "children": [
+          { "nodeid": 24, "depth": 4, "split": "Occupation=Support", "yes": 42, "no": 41 , "children": [
+            { "nodeid": 41, "depth": 5, "split": "Employment=Private", "yes": 68, "no": 67 , "children": [
               { "nodeid": 67, "leaf": 0.0486351252 }, 
               { "nodeid": 68, "leaf": -0.0831621289 }
             ]}, 
             { "nodeid": 42, "leaf": 0.387038529 }
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 26, "no": 25} , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Occupation=Protective", "yes": 44, "no": 43} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Employment=Private", "yes": 26, "no": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Occupation=Protective", "yes": 44, "no": 43 , "children": [
             { "nodeid": 43, "depth": 5, "split": "Hours", "split_condition": 49, "yes": 69, "no": 70, "missing": 69 , "children": [
               { "nodeid": 69, "leaf": -0.245915681 }, 
               { "nodeid": 70, "leaf": -0.00108821935 }
@@ -877,9 +877,9 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Age", "split_condition": 28, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Associate", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Associate", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "depth": 3, "split": "Hours", "split_condition": 58, "yes": 15, "no": 16, "missing": 15 , "children": [
           { "nodeid": 15, "leaf": -0.305941641 }, 
           { "nodeid": 16, "leaf": -0.0544068031 }
@@ -891,27 +891,27 @@
       ]}, 
       { "nodeid": 4, "depth": 2, "split": "Income", "split_condition": 105720.125, "yes": 9, "no": 10, "missing": 9 , "children": [
         { "nodeid": 9, "depth": 3, "split": "Hours", "split_condition": 50, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Occupation=Professional", "yes": 30, "no": 29} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Occupation=Professional", "yes": 30, "no": 29 , "children": [
             { "nodeid": 29, "depth": 5, "split": "Age", "split_condition": 58, "yes": 43, "no": 44, "missing": 43 , "children": [
               { "nodeid": 43, "leaf": -0.216304675 }, 
               { "nodeid": 44, "leaf": 0.0321780033 }
             ]}, 
-            { "nodeid": 30, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45} , "children": [
+            { "nodeid": 30, "depth": 5, "split": "Education=Master", "yes": 46, "no": 45 , "children": [
               { "nodeid": 45, "leaf": 0.0518061444 }, 
               { "nodeid": 46, "leaf": -0.150474772 }
             ]}
           ]}, 
-          { "nodeid": 20, "depth": 4, "split": "Occupation=Service", "yes": 32, "no": 31} , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Employment=SelfEmp", "yes": 48, "no": 47} , "children": [
+          { "nodeid": 20, "depth": 4, "split": "Occupation=Service", "yes": 32, "no": 31 , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Employment=SelfEmp", "yes": 48, "no": 47 , "children": [
               { "nodeid": 47, "leaf": 0.0778120384 }, 
               { "nodeid": 48, "leaf": -0.122895218 }
             ]}, 
             { "nodeid": 32, "leaf": -0.212204561 }
           ]}
         ]}, 
-        { "nodeid": 10, "depth": 3, "split": "Occupation=Sales", "yes": 22, "no": 21} , "children": [
-          { "nodeid": 21, "depth": 4, "split": "Marital=Widowed", "yes": 34, "no": 33} , "children": [
-            { "nodeid": 33, "depth": 5, "split": "Occupation=Executive", "yes": 50, "no": 49} , "children": [
+        { "nodeid": 10, "depth": 3, "split": "Occupation=Sales", "yes": 22, "no": 21 , "children": [
+          { "nodeid": 21, "depth": 4, "split": "Marital=Widowed", "yes": 34, "no": 33 , "children": [
+            { "nodeid": 33, "depth": 5, "split": "Occupation=Executive", "yes": 50, "no": 49 , "children": [
               { "nodeid": 49, "leaf": -0.296571404 }, 
               { "nodeid": 50, "leaf": -0.0598157384 }
             ]}, 
@@ -921,11 +921,11 @@
         ]}
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
       { "nodeid": 5, "depth": 2, "split": "Age", "split_condition": 30, "yes": 11, "no": 12, "missing": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Hours", "split_condition": 41, "yes": 23, "no": 24, "missing": 23 , "children": [
-          { "nodeid": 23, "depth": 4, "split": "Education=College", "yes": 36, "no": 35} , "children": [
-            { "nodeid": 35, "depth": 5, "split": "Employment=PSLocal", "yes": 52, "no": 51} , "children": [
+          { "nodeid": 23, "depth": 4, "split": "Education=College", "yes": 36, "no": 35 , "children": [
+            { "nodeid": 35, "depth": 5, "split": "Employment=PSLocal", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.273124129 }, 
               { "nodeid": 52, "leaf": -0.0695490092 }
             ]}, 
@@ -942,9 +942,9 @@
             { "nodeid": 38, "leaf": 0.25475207 }
           ]}
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Education=Yr7t8", "yes": 26, "no": 25} , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Occupation=Service", "yes": 40, "no": 39} , "children": [
-            { "nodeid": 39, "depth": 5, "split": "Education=HSgrad", "yes": 58, "no": 57} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Education=Yr7t8", "yes": 26, "no": 25 , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Occupation=Service", "yes": 40, "no": 39 , "children": [
+            { "nodeid": 39, "depth": 5, "split": "Education=HSgrad", "yes": 58, "no": 57 , "children": [
               { "nodeid": 57, "leaf": 0.0418666787 }, 
               { "nodeid": 58, "leaf": -0.0458602197 }
             ]}, 
@@ -971,9 +971,9 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Age", "split_condition": 27, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Associate", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Associate", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "depth": 3, "split": "Hours", "split_condition": 54, "yes": 15, "no": 16, "missing": 15 , "children": [
           { "nodeid": 15, "leaf": -0.301289082 }, 
           { "nodeid": 16, "leaf": -0.040943224 }
@@ -981,8 +981,8 @@
         { "nodeid": 8, "leaf": -0.0458198301 }
       ]}, 
       { "nodeid": 4, "depth": 2, "split": "Income", "split_condition": 116069.711, "yes": 9, "no": 10, "missing": 9 , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Occupation=Service", "yes": 18, "no": 17} , "children": [
-          { "nodeid": 17, "depth": 4, "split": "Education=College", "yes": 28, "no": 27} , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Occupation=Service", "yes": 18, "no": 17 , "children": [
+          { "nodeid": 17, "depth": 4, "split": "Education=College", "yes": 28, "no": 27 , "children": [
             { "nodeid": 27, "depth": 5, "split": "Hours", "split_condition": 36, "yes": 39, "no": 40, "missing": 39 , "children": [
               { "nodeid": 39, "leaf": -0.190865129 }, 
               { "nodeid": 40, "leaf": 0.00697893929 }
@@ -994,9 +994,9 @@
           ]}, 
           { "nodeid": 18, "leaf": -0.266493767 }
         ]}, 
-        { "nodeid": 10, "depth": 3, "split": "Education=Master", "yes": 20, "no": 19} , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Marital=Widowed", "yes": 30, "no": 29} , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Occupation=Executive", "yes": 44, "no": 43} , "children": [
+        { "nodeid": 10, "depth": 3, "split": "Education=Master", "yes": 20, "no": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Marital=Widowed", "yes": 30, "no": 29 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Occupation=Executive", "yes": 44, "no": 43 , "children": [
               { "nodeid": 43, "leaf": -0.283246636 }, 
               { "nodeid": 44, "leaf": -0.0709462166 }
             ]}, 
@@ -1032,10 +1032,10 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Education=Yr9", "yes": 14, "no": 13} , "children": [
-        { "nodeid": 13, "depth": 3, "split": "Education=Yr7t8", "yes": 26, "no": 25} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Education=Yr9", "yes": 14, "no": 13 , "children": [
+        { "nodeid": 13, "depth": 3, "split": "Education=Yr7t8", "yes": 26, "no": 25 , "children": [
           { "nodeid": 25, "depth": 4, "split": "Age", "split_condition": 45, "yes": 37, "no": 38, "missing": 37 , "children": [
-            { "nodeid": 37, "depth": 5, "split": "Occupation=Transport", "yes": 50, "no": 49} , "children": [
+            { "nodeid": 37, "depth": 5, "split": "Occupation=Transport", "yes": 50, "no": 49 , "children": [
               { "nodeid": 49, "leaf": 0.00851570722 }, 
               { "nodeid": 50, "leaf": -0.246951491 }
             ]}, 
@@ -1050,13 +1050,13 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Age", "split_condition": 39, "yes": 3, "no": 4, "missing": 3 , "children": [
       { "nodeid": 3, "depth": 2, "split": "Hours", "split_condition": 39, "yes": 7, "no": 8, "missing": 7 , "children": [
         { "nodeid": 7, "leaf": -0.300037056 }, 
         { "nodeid": 8, "depth": 3, "split": "Income", "split_condition": 105490.266, "yes": 15, "no": 16, "missing": 15 , "children": [
           { "nodeid": 15, "depth": 4, "split": "Income", "split_condition": 88150.5078, "yes": 27, "no": 28, "missing": 27 , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Occupation=Executive", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Occupation=Executive", "yes": 44, "no": 43 , "children": [
               { "nodeid": 43, "leaf": -0.213477209 }, 
               { "nodeid": 44, "leaf": -0.0236853529 }
             ]}, 
@@ -1065,8 +1065,8 @@
               { "nodeid": 46, "leaf": -0.0619606525 }
             ]}
           ]}, 
-          { "nodeid": 16, "depth": 4, "split": "Occupation=Sales", "yes": 30, "no": 29} , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Occupation=Repair", "yes": 48, "no": 47} , "children": [
+          { "nodeid": 16, "depth": 4, "split": "Occupation=Sales", "yes": 30, "no": 29 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Occupation=Repair", "yes": 48, "no": 47 , "children": [
               { "nodeid": 47, "leaf": -0.292825162 }, 
               { "nodeid": 48, "leaf": -0.0785019025 }
             ]}, 
@@ -1074,14 +1074,14 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9} , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Education=Bachelor", "yes": 18, "no": 17} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Education=Professional", "yes": 10, "no": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Education=Bachelor", "yes": 18, "no": 17 , "children": [
           { "nodeid": 17, "depth": 4, "split": "Age", "split_condition": 40, "yes": 31, "no": 32, "missing": 31 , "children": [
-            { "nodeid": 31, "depth": 5, "split": "Education=HSgrad", "yes": 50, "no": 49} , "children": [
+            { "nodeid": 31, "depth": 5, "split": "Education=HSgrad", "yes": 50, "no": 49 , "children": [
               { "nodeid": 49, "leaf": -0.0408505462 }, 
               { "nodeid": 50, "leaf": 0.226713791 }
             ]}, 
-            { "nodeid": 32, "depth": 5, "split": "Education=Doctorate", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 32, "depth": 5, "split": "Education=Doctorate", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.177917883 }, 
               { "nodeid": 52, "leaf": 0.093286857 }
             ]}
@@ -1091,7 +1091,7 @@
               { "nodeid": 53, "leaf": 0.327002317 }, 
               { "nodeid": 54, "leaf": -0.0313855298 }
             ]}, 
-            { "nodeid": 34, "depth": 5, "split": "Occupation=Professional", "yes": 56, "no": 55} , "children": [
+            { "nodeid": 34, "depth": 5, "split": "Occupation=Professional", "yes": 56, "no": 55 , "children": [
               { "nodeid": 55, "leaf": -0.171927586 }, 
               { "nodeid": 56, "leaf": -0.000190844454 }
             ]}
@@ -1101,9 +1101,9 @@
       ]}
     ]}, 
     { "nodeid": 2, "depth": 1, "split": "Hours", "split_condition": 42, "yes": 5, "no": 6, "missing": 5 , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Cleaner", "yes": 12, "no": 11} , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Cleaner", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Income", "split_condition": 36239.4844, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Employment=Private", "yes": 36, "no": 35} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Employment=Private", "yes": 36, "no": 35 , "children": [
             { "nodeid": 35, "depth": 5, "split": "Income", "split_condition": 30446.7188, "yes": 57, "no": 58, "missing": 57 , "children": [
               { "nodeid": 57, "leaf": 0.0951950774 }, 
               { "nodeid": 58, "leaf": -0.172449619 }
@@ -1127,7 +1127,7 @@
         ]}
       ]}, 
       { "nodeid": 6, "depth": 2, "split": "Income", "split_condition": 61026.2031, "yes": 13, "no": 14, "missing": 13 , "children": [
-        { "nodeid": 13, "depth": 3, "split": "Occupation=Farming", "yes": 24, "no": 23} , "children": [
+        { "nodeid": 13, "depth": 3, "split": "Occupation=Farming", "yes": 24, "no": 23 , "children": [
           { "nodeid": 23, "depth": 4, "split": "Age", "split_condition": 36, "yes": 39, "no": 40, "missing": 39 , "children": [
             { "nodeid": 39, "depth": 5, "split": "Income", "split_condition": 52285.9375, "yes": 63, "no": 64, "missing": 63 , "children": [
               { "nodeid": 63, "leaf": 1.95144603e-05 }, 
@@ -1151,32 +1151,32 @@
     ]}
   ]},
   { "nodeid": 0, "depth": 0, "split": "Age", "split_condition": 25, "yes": 1, "no": 2, "missing": 1 , "children": [
-    { "nodeid": 1, "depth": 1, "split": "Education=Associate", "yes": 4, "no": 3} , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7} , "children": [
+    { "nodeid": 1, "depth": 1, "split": "Education=Associate", "yes": 4, "no": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Occupation=Professional", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "leaf": -0.298111528 }, 
         { "nodeid": 8, "leaf": -0.0699026734 }
       ]}, 
       { "nodeid": 4, "leaf": 0.0205996875 }
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Education=Yr7t8", "yes": 10, "no": 9} , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Marital=Married", "yes": 14, "no": 13} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Education=Yr7t8", "yes": 10, "no": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Marital=Married", "yes": 14, "no": 13 , "children": [
           { "nodeid": 13, "depth": 4, "split": "Income", "split_condition": 116069.711, "yes": 19, "no": 20, "missing": 19 , "children": [
-            { "nodeid": 19, "depth": 5, "split": "Gender=Female", "yes": 26, "no": 25} , "children": [
+            { "nodeid": 19, "depth": 5, "split": "Gender=Female", "yes": 26, "no": 25 , "children": [
               { "nodeid": 25, "leaf": 0.03135648 }, 
               { "nodeid": 26, "leaf": -0.101796016 }
             ]}, 
-            { "nodeid": 20, "depth": 5, "split": "Education=Master", "yes": 28, "no": 27} , "children": [
+            { "nodeid": 20, "depth": 5, "split": "Education=Master", "yes": 28, "no": 27 , "children": [
               { "nodeid": 27, "leaf": -0.198702917 }, 
               { "nodeid": 28, "leaf": 0.0570598021 }
             ]}
           ]}, 
           { "nodeid": 14, "depth": 4, "split": "Income", "split_condition": 62903.5742, "yes": 21, "no": 22, "missing": 21 , "children": [
-            { "nodeid": 21, "depth": 5, "split": "Occupation=Farming", "yes": 30, "no": 29} , "children": [
+            { "nodeid": 21, "depth": 5, "split": "Occupation=Farming", "yes": 30, "no": 29 , "children": [
               { "nodeid": 29, "leaf": 0.0073452061 }, 
               { "nodeid": 30, "leaf": -0.187243283 }
             ]}, 
-            { "nodeid": 22, "depth": 5, "split": "Occupation=Machinist", "yes": 32, "no": 31} , "children": [
+            { "nodeid": 22, "depth": 5, "split": "Occupation=Machinist", "yes": 32, "no": 31 , "children": [
               { "nodeid": 31, "leaf": 0.14613907 }, 
               { "nodeid": 32, "leaf": -0.166130751 }
             ]}
@@ -1185,7 +1185,7 @@
         { "nodeid": 10, "leaf": -0.271493137 }
       ]}, 
       { "nodeid": 6, "depth": 2, "split": "Age", "split_condition": 54, "yes": 11, "no": 12, "missing": 11 , "children": [
-        { "nodeid": 11, "depth": 3, "split": "Education=College", "yes": 16, "no": 15} , "children": [
+        { "nodeid": 11, "depth": 3, "split": "Education=College", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "depth": 4, "split": "Hours", "split_condition": 31, "yes": 23, "no": 24, "missing": 23 , "children": [
             { "nodeid": 23, "leaf": -0.0590380654 }, 
             { "nodeid": 24, "leaf": -0.289187461 }
@@ -1199,16 +1199,16 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 36, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Employment=Consultant", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Employment=Consultant", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "leaf": -0.296754539 }, 
         { "nodeid": 8, "leaf": 0.02837996 }
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Education=College", "yes": 10, "no": 9} , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Occupation=Professional", "yes": 16, "no": 15} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Education=College", "yes": 10, "no": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Occupation=Professional", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "depth": 4, "split": "Age", "split_condition": 33, "yes": 27, "no": 28, "missing": 27 , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Education=Associate", "yes": 42, "no": 41} , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Education=Associate", "yes": 42, "no": 41 , "children": [
               { "nodeid": 41, "leaf": -0.194451049 }, 
               { "nodeid": 42, "leaf": 0.0285842065 }
             ]}, 
@@ -1217,7 +1217,7 @@
               { "nodeid": 44, "leaf": -0.141186744 }
             ]}
           ]}, 
-          { "nodeid": 16, "depth": 4, "split": "Employment=PSLocal", "yes": 30, "no": 29} , "children": [
+          { "nodeid": 16, "depth": 4, "split": "Employment=PSLocal", "yes": 30, "no": 29 , "children": [
             { "nodeid": 29, "depth": 5, "split": "Income", "split_condition": 82976.1406, "yes": 45, "no": 46, "missing": 45 , "children": [
               { "nodeid": 45, "leaf": -0.0217699073 }, 
               { "nodeid": 46, "leaf": 0.146279231 }
@@ -1231,10 +1231,10 @@
         ]}
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Support", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Support", "yes": 12, "no": 11 , "children": [
         { "nodeid": 11, "depth": 3, "split": "Income", "split_condition": 20620.3164, "yes": 19, "no": 20, "missing": 19 , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Education=HSgrad", "yes": 32, "no": 31} , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Education=HSgrad", "yes": 32, "no": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Hours", "split_condition": 49, "yes": 47, "no": 48, "missing": 47 , "children": [
               { "nodeid": 47, "leaf": 0.0819585025 }, 
               { "nodeid": 48, "leaf": 0.286831737 }
@@ -1263,7 +1263,7 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Age", "split_condition": 39, "yes": 23, "no": 24, "missing": 23 , "children": [
           { "nodeid": 23, "leaf": 0.0475633182 }, 
           { "nodeid": 24, "depth": 4, "split": "Hours", "split_condition": 49, "yes": 37, "no": 38, "missing": 37 , "children": [
@@ -1272,7 +1272,7 @@
           ]}
         ]}, 
         { "nodeid": 14, "depth": 3, "split": "Hours", "split_condition": 53, "yes": 25, "no": 26, "missing": 25 , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Employment=PSState", "yes": 40, "no": 39} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Employment=PSState", "yes": 40, "no": 39 , "children": [
             { "nodeid": 39, "leaf": 0.203281745 }, 
             { "nodeid": 40, "leaf": -0.0592871346 }
           ]}, 
@@ -1282,19 +1282,19 @@
     ]}
   ]},
   { "nodeid": 0, "depth": 0, "split": "Age", "split_condition": 25, "yes": 1, "no": 2, "missing": 1 , "children": [
-    { "nodeid": 1, "depth": 1, "split": "Education=Associate", "yes": 4, "no": 3} , "children": [
+    { "nodeid": 1, "depth": 1, "split": "Education=Associate", "yes": 4, "no": 3 , "children": [
       { "nodeid": 3, "leaf": -0.261971563 }, 
       { "nodeid": 4, "leaf": 0.0274256244 }
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Education=Professional", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Occupation=Protective", "yes": 12, "no": 11} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Education=Professional", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Occupation=Protective", "yes": 12, "no": 11 , "children": [
           { "nodeid": 11, "depth": 4, "split": "Hours", "split_condition": 38, "yes": 17, "no": 18, "missing": 17 , "children": [
             { "nodeid": 17, "depth": 5, "split": "Income", "split_condition": 265026.031, "yes": 23, "no": 24, "missing": 23 , "children": [
               { "nodeid": 23, "leaf": -0.141365141 }, 
               { "nodeid": 24, "leaf": 0.202248514 }
             ]}, 
-            { "nodeid": 18, "depth": 5, "split": "Education=Yr9", "yes": 26, "no": 25} , "children": [
+            { "nodeid": 18, "depth": 5, "split": "Education=Yr9", "yes": 26, "no": 25 , "children": [
               { "nodeid": 25, "leaf": 0.000814582221 }, 
               { "nodeid": 26, "leaf": -0.288361162 }
             ]}
@@ -1318,7 +1318,7 @@
           { "nodeid": 15, "leaf": -0.289227962 }, 
           { "nodeid": 16, "depth": 4, "split": "Income", "split_condition": 40015.2031, "yes": 21, "no": 22, "missing": 21 , "children": [
             { "nodeid": 21, "leaf": -0.239663973 }, 
-            { "nodeid": 22, "depth": 5, "split": "Marital=Married", "yes": 30, "no": 29} , "children": [
+            { "nodeid": 22, "depth": 5, "split": "Marital=Married", "yes": 30, "no": 29 , "children": [
               { "nodeid": 29, "leaf": -0.179568037 }, 
               { "nodeid": 30, "leaf": 0.217096671 }
             ]}
@@ -1329,11 +1329,11 @@
   ]},
   { "nodeid": 0, "depth": 0, "split": "Age", "split_condition": 24, "yes": 1, "no": 2, "missing": 1 , "children": [
     { "nodeid": 1, "leaf": -0.225063846 }, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 4, "no": 3} , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Occupation=Cleaner", "yes": 6, "no": 5} , "children": [
-        { "nodeid": 5, "depth": 3, "split": "Occupation=Transport", "yes": 10, "no": 9} , "children": [
-          { "nodeid": 9, "depth": 4, "split": "Occupation=Machinist", "yes": 16, "no": 15} , "children": [
-            { "nodeid": 15, "depth": 5, "split": "Occupation=Repair", "yes": 26, "no": 25} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Service", "yes": 4, "no": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Occupation=Cleaner", "yes": 6, "no": 5 , "children": [
+        { "nodeid": 5, "depth": 3, "split": "Occupation=Transport", "yes": 10, "no": 9 , "children": [
+          { "nodeid": 9, "depth": 4, "split": "Occupation=Machinist", "yes": 16, "no": 15 , "children": [
+            { "nodeid": 15, "depth": 5, "split": "Occupation=Repair", "yes": 26, "no": 25 , "children": [
               { "nodeid": 25, "leaf": 0.0361560769 }, 
               { "nodeid": 26, "leaf": -0.0405058637 }
             ]}, 
@@ -1358,7 +1358,7 @@
           { "nodeid": 12, "leaf": 0.0239908602 }
         ]}
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Marital=Married", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Marital=Married", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "leaf": -0.239038184 }, 
         { "nodeid": 8, "depth": 3, "split": "Income", "split_condition": 48465.7656, "yes": 13, "no": 14, "missing": 13 , "children": [
           { "nodeid": 13, "depth": 4, "split": "Age", "split_condition": 38, "yes": 21, "no": 22, "missing": 21 , "children": [
@@ -1373,12 +1373,12 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
-    { "nodeid": 1, "depth": 1, "split": "Education=Doctorate", "yes": 4, "no": 3} , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Education=Bachelor", "yes": 8, "no": 7} , "children": [
-        { "nodeid": 7, "depth": 3, "split": "Education=Professional", "yes": 14, "no": 13} , "children": [
-          { "nodeid": 13, "depth": 4, "split": "Education=Associate", "yes": 26, "no": 25} , "children": [
-            { "nodeid": 25, "depth": 5, "split": "Education=Master", "yes": 44, "no": 43} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "Education=Doctorate", "yes": 4, "no": 3 , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Education=Bachelor", "yes": 8, "no": 7 , "children": [
+        { "nodeid": 7, "depth": 3, "split": "Education=Professional", "yes": 14, "no": 13 , "children": [
+          { "nodeid": 13, "depth": 4, "split": "Education=Associate", "yes": 26, "no": 25 , "children": [
+            { "nodeid": 25, "depth": 5, "split": "Education=Master", "yes": 44, "no": 43 , "children": [
               { "nodeid": 43, "leaf": -0.234442562 }, 
               { "nodeid": 44, "leaf": -0.0815672278 }
             ]}, 
@@ -1391,8 +1391,8 @@
         ]}, 
         { "nodeid": 8, "depth": 3, "split": "Income", "split_condition": 27756.6836, "yes": 15, "no": 16, "missing": 15 , "children": [
           { "nodeid": 15, "leaf": 0.172789842 }, 
-          { "nodeid": 16, "depth": 4, "split": "Employment=Private", "yes": 28, "no": 27} , "children": [
-            { "nodeid": 27, "depth": 5, "split": "Employment=Consultant", "yes": 48, "no": 47} , "children": [
+          { "nodeid": 16, "depth": 4, "split": "Employment=Private", "yes": 28, "no": 27 , "children": [
+            { "nodeid": 27, "depth": 5, "split": "Employment=Consultant", "yes": 48, "no": 47 , "children": [
               { "nodeid": 47, "leaf": -0.292805731 }, 
               { "nodeid": 48, "leaf": 0.0676113367 }
             ]}, 
@@ -1405,11 +1405,11 @@
       ]}, 
       { "nodeid": 4, "leaf": 0.132226333 }
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 10, "no": 9} , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Education=College", "yes": 18, "no": 17} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Occupation=Executive", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Professional", "yes": 10, "no": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Education=College", "yes": 18, "no": 17 , "children": [
           { "nodeid": 17, "depth": 4, "split": "Hours", "split_condition": 42, "yes": 29, "no": 30, "missing": 29 , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Employment=Private", "yes": 52, "no": 51} , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Employment=Private", "yes": 52, "no": 51 , "children": [
               { "nodeid": 51, "leaf": -0.0310117416 }, 
               { "nodeid": 52, "leaf": -0.175979331 }
             ]}, 
@@ -1418,7 +1418,7 @@
               { "nodeid": 54, "leaf": -0.0269241501 }
             ]}
           ]}, 
-          { "nodeid": 18, "depth": 4, "split": "Occupation=Repair", "yes": 32, "no": 31} , "children": [
+          { "nodeid": 18, "depth": 4, "split": "Occupation=Repair", "yes": 32, "no": 31 , "children": [
             { "nodeid": 31, "depth": 5, "split": "Age", "split_condition": 46, "yes": 55, "no": 56, "missing": 55 , "children": [
               { "nodeid": 55, "leaf": -0.00101211551 }, 
               { "nodeid": 56, "leaf": 0.196922347 }
@@ -1429,7 +1429,7 @@
             ]}
           ]}
         ]}, 
-        { "nodeid": 10, "depth": 3, "split": "Education=College", "yes": 20, "no": 19} , "children": [
+        { "nodeid": 10, "depth": 3, "split": "Education=College", "yes": 20, "no": 19 , "children": [
           { "nodeid": 19, "depth": 4, "split": "Age", "split_condition": 40, "yes": 33, "no": 34, "missing": 33 , "children": [
             { "nodeid": 33, "depth": 5, "split": "Income", "split_condition": 50638.8828, "yes": 59, "no": 60, "missing": 59 , "children": [
               { "nodeid": 59, "leaf": 0.168530434 }, 
@@ -1447,14 +1447,14 @@
         ]}
       ]}, 
       { "nodeid": 6, "depth": 2, "split": "Age", "split_condition": 32, "yes": 11, "no": 12, "missing": 11 , "children": [
-        { "nodeid": 11, "depth": 3, "split": "Education=Bachelor", "yes": 22, "no": 21} , "children": [
+        { "nodeid": 11, "depth": 3, "split": "Education=Bachelor", "yes": 22, "no": 21 , "children": [
           { "nodeid": 21, "depth": 4, "split": "Income", "split_condition": 47549.8516, "yes": 37, "no": 38, "missing": 37 , "children": [
             { "nodeid": 37, "leaf": -0.0575597547 }, 
             { "nodeid": 38, "leaf": -0.255298972 }
           ]}, 
           { "nodeid": 22, "leaf": 0.0523619689 }
         ]}, 
-        { "nodeid": 12, "depth": 3, "split": "Employment=Consultant", "yes": 24, "no": 23} , "children": [
+        { "nodeid": 12, "depth": 3, "split": "Employment=Consultant", "yes": 24, "no": 23 , "children": [
           { "nodeid": 23, "depth": 4, "split": "Income", "split_condition": 29239.6953, "yes": 39, "no": 40, "missing": 39 , "children": [
             { "nodeid": 39, "depth": 5, "split": "Income", "split_condition": 25628.2266, "yes": 63, "no": 64, "missing": 63 , "children": [
               { "nodeid": 63, "leaf": 0.121384718 }, 
@@ -1476,20 +1476,20 @@
       ]}
     ]}
   ]},
-  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1} , "children": [
+  { "nodeid": 0, "depth": 0, "split": "Marital=Married", "yes": 2, "no": 1 , "children": [
     { "nodeid": 1, "depth": 1, "split": "Hours", "split_condition": 36, "yes": 3, "no": 4, "missing": 3 , "children": [
-      { "nodeid": 3, "depth": 2, "split": "Employment=Consultant", "yes": 8, "no": 7} , "children": [
+      { "nodeid": 3, "depth": 2, "split": "Employment=Consultant", "yes": 8, "no": 7 , "children": [
         { "nodeid": 7, "leaf": -0.283827692 }, 
         { "nodeid": 8, "leaf": 0.0560398214 }
       ]}, 
-      { "nodeid": 4, "depth": 2, "split": "Education=College", "yes": 10, "no": 9} , "children": [
-        { "nodeid": 9, "depth": 3, "split": "Education=Vocational", "yes": 16, "no": 15} , "children": [
+      { "nodeid": 4, "depth": 2, "split": "Education=College", "yes": 10, "no": 9 , "children": [
+        { "nodeid": 9, "depth": 3, "split": "Education=Vocational", "yes": 16, "no": 15 , "children": [
           { "nodeid": 15, "depth": 4, "split": "Income", "split_condition": 105708.875, "yes": 27, "no": 28, "missing": 27 , "children": [
             { "nodeid": 27, "depth": 5, "split": "Income", "split_condition": 87772.8828, "yes": 41, "no": 42, "missing": 41 , "children": [
               { "nodeid": 41, "leaf": -0.0389812738 }, 
               { "nodeid": 42, "leaf": 0.131929681 }
             ]}, 
-            { "nodeid": 28, "depth": 5, "split": "Education=HSgrad", "yes": 44, "no": 43} , "children": [
+            { "nodeid": 28, "depth": 5, "split": "Education=HSgrad", "yes": 44, "no": 43 , "children": [
               { "nodeid": 43, "leaf": -0.0145487869 }, 
               { "nodeid": 44, "leaf": -0.214772508 }
             ]}
@@ -1502,11 +1502,11 @@
         ]}
       ]}
     ]}, 
-    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5} , "children": [
-      { "nodeid": 5, "depth": 2, "split": "Occupation=Support", "yes": 12, "no": 11} , "children": [
-        { "nodeid": 11, "depth": 3, "split": "Occupation=Executive", "yes": 20, "no": 19} , "children": [
-          { "nodeid": 19, "depth": 4, "split": "Education=Professional", "yes": 30, "no": 29} , "children": [
-            { "nodeid": 29, "depth": 5, "split": "Education=College", "yes": 46, "no": 45} , "children": [
+    { "nodeid": 2, "depth": 1, "split": "Education=Master", "yes": 6, "no": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "Occupation=Support", "yes": 12, "no": 11 , "children": [
+        { "nodeid": 11, "depth": 3, "split": "Occupation=Executive", "yes": 20, "no": 19 , "children": [
+          { "nodeid": 19, "depth": 4, "split": "Education=Professional", "yes": 30, "no": 29 , "children": [
+            { "nodeid": 29, "depth": 5, "split": "Education=College", "yes": 46, "no": 45 , "children": [
               { "nodeid": 45, "leaf": -0.0538366176 }, 
               { "nodeid": 46, "leaf": 0.0223310851 }
             ]}, 
@@ -1531,7 +1531,7 @@
           ]}
         ]}
       ]}, 
-      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13} , "children": [
+      { "nodeid": 6, "depth": 2, "split": "Occupation=Professional", "yes": 14, "no": 13 , "children": [
         { "nodeid": 13, "depth": 3, "split": "Income", "split_condition": 36720.3672, "yes": 23, "no": 24, "missing": 23 , "children": [
           { "nodeid": 23, "depth": 4, "split": "Age", "split_condition": 44, "yes": 35, "no": 36, "missing": 35 , "children": [
             { "nodeid": 35, "leaf": 0.0717941001 }, 
@@ -1543,7 +1543,7 @@
           ]}
         ]}, 
         { "nodeid": 14, "depth": 3, "split": "Hours", "split_condition": 53, "yes": 25, "no": 26, "missing": 25 , "children": [
-          { "nodeid": 25, "depth": 4, "split": "Employment=PSState", "yes": 40, "no": 39} , "children": [
+          { "nodeid": 25, "depth": 4, "split": "Employment=PSState", "yes": 40, "no": 39 , "children": [
             { "nodeid": 39, "leaf": 0.188047633 }, 
             { "nodeid": 40, "leaf": -0.0750461966 }
           ]}, 
