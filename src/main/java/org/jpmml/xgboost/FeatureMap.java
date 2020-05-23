@@ -61,20 +61,20 @@ public class FeatureMap {
 
 			DataField dataField = encoder.getDataField(name);
 			if(dataField == null){
-				String type = entry.getType();
+				Entry.Type type = entry.getType();
 
 				switch(type){
-					case "i":
+					case BINARY_INDICATOR:
 						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
 						break;
-					case "q":
+					case FLOAT:
 						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
 						break;
-					case "int":
+					case INTEGER:
 						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
 						break;
 					default:
-						throw new IllegalArgumentException(type);
+						throw new IllegalArgumentException(String.valueOf(type));
 				}
 			}
 
@@ -127,7 +127,7 @@ public class FeatureMap {
 			name = name.substring(0, equals);
 		}
 
-		Entry entry = new Entry(name, value, type);
+		Entry entry = new Entry(name, value, Entry.Type.fromString(type));
 
 		addEntry(entry);
 	}
@@ -177,10 +177,10 @@ public class FeatureMap {
 
 		private String value = null;
 
-		private String type = null;
+		private Type type = null;
 
 
-		public Entry(String name, String value, String type){
+		public Entry(String name, String value, Type type){
 			setName(name);
 			setValue(value);
 			setType(type);
@@ -202,12 +202,35 @@ public class FeatureMap {
 			this.value = value;
 		}
 
-		public String getType(){
+		public Type getType(){
 			return this.type;
 		}
 
-		private void setType(String type){
+		private void setType(Type type){
 			this.type = Objects.requireNonNull(type);
+		}
+
+		static
+		public enum Type {
+			BINARY_INDICATOR,
+			FLOAT,
+			INTEGER,
+			;
+
+			static
+			public Type fromString(String string){
+
+				switch(string){
+					case "i":
+						return Type.BINARY_INDICATOR;
+					case "q":
+						return Type.FLOAT;
+					case "int":
+						return Type.INTEGER;
+					default:
+						throw new IllegalArgumentException(string);
+				}
+			}
 		}
 	}
 }
