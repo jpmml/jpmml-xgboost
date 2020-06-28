@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 import org.dmg.pmml.FieldName;
@@ -57,15 +58,7 @@ public class ObjFunction {
 			if(trees.size() != weights.size()){
 				throw new IllegalArgumentException();
 			}
-		}
-
-		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
-
-		Schema segmentSchema = schema.toAnonymousSchema();
-
-		PredicateManager predicateManager = new PredicateManager();
-
-		List<TreeModel> treeModels = new ArrayList<>();
+		} // End if
 
 		if(ntreeLimit != null){
 
@@ -78,29 +71,47 @@ public class ObjFunction {
 			if(weights != null){
 				weights = weights.subList(0, ntreeLimit);
 			}
+		} // End if
+
+		if(weights != null){
+			weights = new ArrayList<>(weights);
 		}
 
-		for(RegTree tree : trees){
+		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
+
+		Schema segmentSchema = schema.toAnonymousSchema();
+
+		PredicateManager predicateManager = new PredicateManager();
+
+		List<TreeModel> treeModels = new ArrayList<>();
+
+		boolean equalWeights = true;
+
+		Iterator<RegTree> treeIt = trees.iterator();
+		Iterator<Float> weightIt = (weights != null ? weights.iterator() : null);
+
+		while(treeIt.hasNext()){
+			RegTree tree = treeIt.next();
+			Float weight = (weightIt != null ? weightIt.next() : null);
+
+			if(tree.isEmpty()){
+				weightIt.remove();
+
+				continue;
+			} // End if
+
+			if(weight != null){
+				equalWeights &= ValueUtil.isOne(weight);
+			}
+
 			TreeModel treeModel = tree.encodeTreeModel(predicateManager, segmentSchema);
 
 			treeModels.add(treeModel);
 		}
 
-		if(weights != null){
-			boolean allOnes = true;
-
-			for(Float weight : weights){
-				allOnes &= ValueUtil.isOne(weight);
-			}
-
-			if(allOnes){
-				weights = null;
-			}
-		}
-
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setMathContext(MathContext.FLOAT)
-			.setSegmentation(MiningModelUtil.createSegmentation((weights != null) ? Segmentation.MultipleModelMethod.WEIGHTED_SUM : Segmentation.MultipleModelMethod.SUM, treeModels, weights))
+			.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, treeModels, weights))
 			.setTargets(ModelUtil.createRescaleTargets(null, base_score, continuousLabel));
 
 		return miningModel;

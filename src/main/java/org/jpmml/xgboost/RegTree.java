@@ -35,6 +35,7 @@ import org.jpmml.converter.Feature;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.ValueUtil;
 
 public class RegTree implements Loadable {
 
@@ -71,6 +72,20 @@ public class RegTree implements Loadable {
 
 		this.nodes = input.readObjectArray(Node.class, this.num_nodes);
 		this.stats = input.readObjectArray(NodeStat.class, this.num_nodes);
+	}
+
+	public boolean isEmpty(){
+		Node node = this.nodes[0];
+
+		if(!node.is_leaf()){
+			return false;
+		} else
+
+		{
+			Float value = node.leaf_value();
+
+			return ValueUtil.isZero(value);
+		}
 	}
 
 	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
