@@ -167,7 +167,7 @@ public class Main {
 		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
 
-		PMML pmml = learner.encodePMML(this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap, options);
+		PMML pmml = learner.encodePMML(options, this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
 			MetroJAXBUtil.marshalPMML(pmml, os);

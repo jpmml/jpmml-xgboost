@@ -64,7 +64,7 @@ public class XGBoostTest extends IntegrationTest {
 
 				Map<String, ?> options = getOptions();
 
-				PMML pmml = learner.encodePMML(null, null, featureMap, options);
+				PMML pmml = learner.encodePMML(options, null, null, featureMap);
 
 				validatePMML(pmml);
 

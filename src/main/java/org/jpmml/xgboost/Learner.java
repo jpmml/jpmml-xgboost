@@ -211,7 +211,7 @@ public class Learner implements Loadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public PMML encodePMML(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, Map<String, ?> options){
+	public PMML encodePMML(Map<String, ?> options, FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		Schema schema = encodeSchema(targetField, targetCategories, featureMap, encoder);
