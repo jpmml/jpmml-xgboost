@@ -20,7 +20,6 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
@@ -31,7 +30,6 @@ import org.dmg.pmml.PMML;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.IntegrationTest;
-import org.jpmml.evaluator.testing.IntegrationTestBatch;
 
 public class XGBoostTest extends IntegrationTest {
 
@@ -41,10 +39,10 @@ public class XGBoostTest extends IntegrationTest {
 
 	@Override
 	protected ArchiveBatch createBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
-		ArchiveBatch result = new IntegrationTestBatch(name, dataset, predicate, equivalence){
+		ArchiveBatch result = new XGBoostTestBatch(name, dataset, predicate, equivalence){
 
 			@Override
-			public IntegrationTest getIntegrationTest(){
+			public XGBoostTest getIntegrationTest(){
 				return XGBoostTest.this;
 			}
 
@@ -64,14 +62,7 @@ public class XGBoostTest extends IntegrationTest {
 					featureMap = XGBoostUtil.loadFeatureMap(is);
 				}
 
-				Integer ntreeLimit = null;
-				if(dataset.length > 1){
-					ntreeLimit = new Integer(dataset[1]);
-				}
-
-				Map<String, Object> options = new LinkedHashMap<>();
-				options.put(HasXGBoostOptions.OPTION_COMPACT, ntreeLimit != null);
-				options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
+				Map<String, ?> options = getOptions();
 
 				PMML pmml = learner.encodePMML(null, null, featureMap, options);
 
@@ -90,17 +81,6 @@ public class XGBoostTest extends IntegrationTest {
 			@Override
 			public List<Map<FieldName, String>> getOutput() throws IOException {
 				return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
-			}
-
-			private String[] parseDataset(){
-				String dataset = getDataset();
-
-				int index = dataset.indexOf('@');
-				if(index > -1){
-					return new String[]{dataset.substring(0, index), dataset.substring(index + 1)};
-				}
-
-				return new String[]{dataset};
 			}
 		};
 
