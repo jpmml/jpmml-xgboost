@@ -27,7 +27,7 @@ storeResult = function(data, funcAndDataset){
 	storeCsv(data, csvFile(funcAndDataset, ".csv"))
 }
 
-# See http://stackoverflow.com/a/27454361/1808924
+# See http://stackoverflow.com/a/27454361
 insertNA = function(df){
 	mod = function(x){
 		return (x[sample(c(TRUE, NA), prob = c(0.75, 0.25), size = length(x), replace = TRUE)])
