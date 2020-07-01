@@ -138,7 +138,7 @@ public class RegTree implements Loadable {
 					case FLOAT:
 						break;
 					default:
-						throw new IllegalArgumentException("Expected integer or float data type, got " + dataType.value() + " data type");
+						throw new IllegalArgumentException("Expected integer or float data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
 				}
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);

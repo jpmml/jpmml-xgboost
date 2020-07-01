@@ -200,7 +200,7 @@ public class Learner implements Loadable {
 							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
 							break;
 						default:
-							throw new IllegalArgumentException("Expected integer, float or double data type, got " + dataType.value() + " data type");
+							throw new IllegalArgumentException("Expected integer, float or double data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
 					}
 
 					return continuousFeature;
