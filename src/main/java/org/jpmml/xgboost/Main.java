@@ -95,18 +95,24 @@ public class Main {
 	)
 	private List<String> targetCategories = null;
 
+	/**
+	 * @see HasXGBoostOptions#OPTION_COMPACT
+	 */
 	@Parameter (
-		names = {"--ntree-limit"},
-		description = "Limit the number of trees. Defaults to all trees"
-	)
-	private Integer ntreeLimit = null;
-
-	@Parameter (
-		names = {"--compact"},
+		names = {"--X-compact"},
 		description = "Transform XGBoost-style trees to PMML-style trees",
 		arity = 1
 	)
 	private boolean compact = true;
+
+	/**
+	 * @see HasXGBoostOptions#OPTION_NTREE_LIMIT
+	 */
+	@Parameter (
+		names = {"--X-ntree-limit"},
+		description = "Limit the number of trees. Defaults to all trees"
+	)
+	private Integer ntreeLimit = null;
 
 
 	static
