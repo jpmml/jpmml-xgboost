@@ -21,6 +21,7 @@ package org.jpmml.xgboost.visitors;
 import java.util.List;
 
 import org.dmg.pmml.Predicate;
+import org.dmg.pmml.SimplePredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.Node;
 import org.dmg.pmml.tree.TreeModel;
@@ -47,6 +48,19 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 
 			Node firstChild = children.get(0);
 			Node secondChild = children.get(1);
+
+			Predicate firstPredicate = firstChild.getPredicate();
+			Predicate secondPredicate = secondChild.getPredicate();
+
+			checkFieldReference(firstPredicate, secondPredicate);
+
+			if(firstPredicate instanceof SimplePredicate && secondPredicate instanceof SimplePredicate){
+				checkValue(firstPredicate, secondPredicate);
+			} else
+
+			{
+				throw new IllegalArgumentException();
+			} // End if
 
 			if(equalsNode(defaultChild, firstChild)){
 				children = swapChildren(node);

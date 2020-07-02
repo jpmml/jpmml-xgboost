@@ -29,6 +29,7 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
+import org.jpmml.converter.BaseNFeature;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
@@ -181,6 +182,12 @@ public class Learner implements Loadable {
 
 			@Override
 			public Feature apply(Feature feature){
+
+				if(feature instanceof BaseNFeature){
+					BaseNFeature baseFeature = (BaseNFeature)feature;
+
+					return baseFeature;
+				} else
 
 				if(feature instanceof BinaryFeature){
 					BinaryFeature binaryFeature = (BinaryFeature)feature;

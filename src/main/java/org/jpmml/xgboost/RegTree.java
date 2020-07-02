@@ -19,8 +19,11 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
@@ -29,7 +32,9 @@ import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
 import org.dmg.pmml.tree.TreeModel;
+import org.jpmml.converter.BaseNFeature;
 import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.CategoryManager;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.ModelUtil;
@@ -89,7 +94,7 @@ public class RegTree implements Loadable {
 	}
 
 	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(0, True.INSTANCE, predicateManager, schema);
+		org.dmg.pmml.tree.Node root = encodeNode(0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -99,7 +104,7 @@ public class RegTree implements Loadable {
 		return treeModel;
 	}
 
-	private org.dmg.pmml.tree.Node encodeNode(int index, Predicate predicate, PredicateManager predicateManager, Schema schema){
+	private org.dmg.pmml.tree.Node encodeNode(int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
 		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
@@ -109,10 +114,47 @@ public class RegTree implements Loadable {
 
 			Feature feature = schema.getFeature(splitIndex);
 
+			CategoryManager leftCategoryManager = categoryManager;
+			CategoryManager rightCategoryManager = categoryManager;
+
 			Predicate leftPredicate;
 			Predicate rightPredicate;
 
 			boolean defaultLeft;
+
+			if(feature instanceof BaseNFeature){
+				BaseNFeature baseFeature = (BaseNFeature)feature;
+
+				FieldName name = baseFeature.getName();
+
+				int splitValue = (int)(Float.intBitsToFloat(node.split_cond()) + 1f);
+
+				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
+
+				List<Object> leftValues = baseFeature.getValues((Integer base) -> (base < splitValue)).stream()
+					.filter(valueFilter)
+					.collect(Collectors.toList());
+
+				List<Object> rightValues = baseFeature.getValues((Integer base) -> (base >= splitValue)).stream()
+					.filter(valueFilter)
+					.collect(Collectors.toList());
+
+				if(leftValues.size() == 0){
+					throw new IllegalArgumentException("Left branch is not selectable");
+				} // End if
+
+				if(rightValues.size() == 0){
+					throw new IllegalArgumentException("Right branch is not selectable");
+				}
+
+				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
+				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
+
+				leftPredicate = predicateManager.createPredicate(baseFeature, leftValues);
+				rightPredicate = predicateManager.createPredicate(baseFeature, rightValues);
+
+				defaultLeft = node.default_left();
+			} else
 
 			if(feature instanceof BinaryFeature){
 				BinaryFeature binaryFeature = (BinaryFeature)feature;
@@ -147,8 +189,8 @@ public class RegTree implements Loadable {
 				defaultLeft = node.default_left();
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(node.cleft(), leftPredicate, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(node.cright(), rightPredicate, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(node.cleft(), leftPredicate, leftCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(node.cright(), rightPredicate, rightCategoryManager, predicateManager, schema);
 
 			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)
