@@ -18,7 +18,15 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.IOException;
+import java.util.List;
+import java.util.Map;
+import java.util.function.Predicate;
+
+import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
+import org.jpmml.evaluator.ResultField;
+import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
@@ -26,6 +34,41 @@ public class ClassificationTest extends XGBoostTest {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));
+	}
+
+	@Override
+	protected ArchiveBatch createBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
+		ArchiveBatch result = new XGBoostTestBatch(name, dataset, predicate, equivalence){
+
+			@Override
+			public ClassificationTest getIntegrationTest(){
+				return ClassificationTest.this;
+			}
+
+			@Override
+			public List<Map<FieldName, String>> getInput() throws IOException {
+				String[] dataset = parseDataset();
+
+				List<Map<FieldName, String>> table = super.getInput();
+
+				// XXX
+				if(("AuditNA").equals(dataset[0])){
+					FieldName income = FieldName.create("Income");
+
+ 					for(Map<FieldName, String> row : table){
+ 						String value = row.get(income);
+
+ 						if(value == null){
+ 							row.put(income, "NaN");
+ 						}
+ 					}
+				}
+
+				return table;
+			}
+		};
+
+		return result;
 	}
 
 	@Test

@@ -35,6 +35,7 @@ import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
 public class Learner implements Loadable {
@@ -221,11 +222,19 @@ public class Learner implements Loadable {
 	public PMML encodePMML(Map<String, ?> options, FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
+		Boolean nanAsMissing = (Boolean)options.get(HasXGBoostOptions.OPTION_NAN_AS_MISSING);
+
 		Schema schema = encodeSchema(targetField, targetCategories, featureMap, encoder);
 
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
+
+		if((Boolean.TRUE).equals(nanAsMissing)){
+ 			Visitor visitor = new NaNAsMissingDecorator();
+
+ 			visitor.applyTo(pmml);
+ 		}
 
 		return pmml;
 	}

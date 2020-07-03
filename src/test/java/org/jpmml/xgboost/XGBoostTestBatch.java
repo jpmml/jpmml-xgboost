@@ -52,6 +52,7 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 
 		Map<String, Object> options = new LinkedHashMap<>();
 		options.put(HasXGBoostOptions.OPTION_COMPACT, ntreeLimit != null);
+		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, true);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
 
 		return options;
