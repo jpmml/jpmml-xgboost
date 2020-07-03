@@ -18,11 +18,16 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import org.dmg.pmml.FieldName;
+import org.dmg.pmml.PMML;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.IntegrationTestBatch;
 
@@ -50,6 +55,43 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
 
 		return options;
+	}
+
+	@Override
+	public PMML getPMML() throws Exception {
+		Learner learner;
+
+		String[] dataset = parseDataset();
+
+		try(InputStream is = open("/xgboost/" + getName() + dataset[0] + ".model")){
+			learner = XGBoostUtil.loadLearner(is);
+		}
+
+		FeatureMap featureMap;
+
+		try(InputStream is = open("/csv/" + dataset[0] + ".fmap")){
+			featureMap = XGBoostUtil.loadFeatureMap(is);
+		}
+
+		Map<String, ?> options = getOptions();
+
+		PMML pmml = learner.encodePMML(options, null, null, featureMap);
+
+		validatePMML(pmml);
+
+		return pmml;
+	}
+
+	@Override
+	public List<Map<FieldName, String>> getInput() throws IOException {
+		String[] dataset = parseDataset();
+
+		return loadRecords("/csv/" + dataset[0] + ".csv");
+	}
+
+	@Override
+	public List<Map<FieldName, String>> getOutput() throws IOException {
+		return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
 	}
 
 	protected String[] parseDataset(){
