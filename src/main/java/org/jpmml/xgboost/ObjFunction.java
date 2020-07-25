@@ -95,7 +95,10 @@ public class ObjFunction {
 			Float weight = (weightIt != null ? weightIt.next() : null);
 
 			if(tree.isEmpty()){
-				weightIt.remove();
+
+				if(weightIt != null){
+					weightIt.remove();
+				}
 
 				continue;
 			} // End if
