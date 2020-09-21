@@ -155,7 +155,7 @@ public class Learner implements Loadable {
 
 			try {
 				max_delta_step = input.readString();
-			} catch(EOFException eof){
+			} catch(EOFException eofe){
 				// Ignored
 			}
 		} // End if
