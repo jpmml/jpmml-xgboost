@@ -34,6 +34,8 @@ import com.beust.jcommander.ParameterException;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.jpmml.model.metro.MetroJAXBUtil;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class Main {
 
@@ -163,13 +165,33 @@ public class Main {
 		ByteOrder byteOrder = ByteOrderUtil.forValue(this.byteOrder);
 
 		try(InputStream is = new FileInputStream(this.modelInput)){
+			logger.info("Parsing learner..");
+
+			long begin = System.currentTimeMillis();
 			learner = XGBoostUtil.loadLearner(is, byteOrder, this.charset);
+			long end = System.currentTimeMillis();
+
+			logger.info("Parsed learner in {} ms.", (end - begin));
+		} catch(Exception e){
+			logger.error("Failed to parse learner", e);
+
+			throw e;
 		}
 
 		FeatureMap featureMap;
 
 		try(InputStream is = new FileInputStream(this.fmapInput)){
+			logger.info("Parsing feature map..");
+
+			long begin = System.currentTimeMillis();
 			featureMap = XGBoostUtil.loadFeatureMap(is);
+			long end = System.currentTimeMillis();
+
+			logger.info("Parsed feature map in {} ms.", (end - begin));
+		} catch(Exception e){
+			logger.error("Failed to parse feature map", e);
+
+			throw e;
 		}
 
 		if(this.missingValue != null){
@@ -181,10 +203,36 @@ public class Main {
 		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, this.nanAsMissing);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
 
-		PMML pmml = learner.encodePMML(options, this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
+		PMML pmml;
+
+		try {
+			logger.info("Converting learner to PMML..");
+
+			long begin = System.currentTimeMillis();
+			pmml = learner.encodePMML(options, this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
+			long end = System.currentTimeMillis();
+
+			logger.info("Converted learner to PMML in {} ms.", (end - begin));
+		} catch(Exception e){
+			logger.error("Failed to convert learner to PMML", e);
+
+			throw e;
+		}
 
 		try(OutputStream os = new FileOutputStream(this.pmmlOutput)){
+			logger.info("Marshalling PMML..");
+
+			long begin = System.currentTimeMillis();
 			MetroJAXBUtil.marshalPMML(pmml, os);
+			long end = System.currentTimeMillis();
+
+			logger.info("Marshalled PMML in {} ms.", (end - begin));
+		} catch(Exception e){
+			logger.error("Failed to marshal PMML", e);
+
+			throw e;
 		}
 	}
+
+	private static final Logger logger = LoggerFactory.getLogger(Main.class);
 }

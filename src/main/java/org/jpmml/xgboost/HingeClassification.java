@@ -29,6 +29,7 @@ import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.FunctionTransformation;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
@@ -50,7 +51,7 @@ public class HingeClassification extends Classification {
 
 			@Override
 			public FieldName getName(FieldName name){
-				return FieldName.create("hinge(" + name + ")");
+				return FieldNameUtil.create("hinge", name);
 			}
 
 			@Override

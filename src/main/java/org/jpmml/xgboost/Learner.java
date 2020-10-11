@@ -175,7 +175,7 @@ public class Learner implements Loadable {
 
 		List<Feature> features = featureMap.encodeFeatures(encoder);
 
-		return new Schema(label, features);
+		return new Schema(encoder, label, features);
 	}
 
 	public Schema toXGBoostSchema(Schema schema){

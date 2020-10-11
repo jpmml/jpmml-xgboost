@@ -25,6 +25,7 @@ import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
+import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
@@ -131,6 +132,6 @@ public class ClassificationTest extends XGBoostTest {
 		evaluate("MultinomialClassification", "IrisNA@11");
 	}
 
-	private static final FieldName falseProbabilityField = FieldName.create("probability(0)");
-	private static final FieldName trueProbabilityField = FieldName.create("probability(1)");
+	private static final FieldName falseProbabilityField = FieldNameUtil.create("probability", "0");
+	private static final FieldName trueProbabilityField = FieldNameUtil.create("probability", "1");
 }
