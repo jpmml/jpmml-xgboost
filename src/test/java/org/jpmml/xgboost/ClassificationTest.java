@@ -84,7 +84,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
+		evaluate("BinomialClassification", "AuditNA", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(12));
 	}
 
 	@Test
@@ -109,7 +109,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(8));
+		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(24));
 	}
 
 	@Test
@@ -124,12 +124,12 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateIrisNA() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA", new FloatEquivalence(8));
+		evaluate("MultinomialClassification", "IrisNA", new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluateIrisNALimit() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA@11");
+		evaluate("MultinomialClassification", "IrisNA@11", new FloatEquivalence(12));
 	}
 
 	private static final FieldName falseProbabilityField = FieldNameUtil.create("probability", "0");
