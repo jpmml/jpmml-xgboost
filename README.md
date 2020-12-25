@@ -1,4 +1,4 @@
-JPMML-XGBoost
+JPMML-XGBoost [![Build Status](https://github.com/jpmml/jpmml-xgboost/workflows/maven/badge.svg)](https://github.com/jpmml/jpmml-xgboost/actions?query=workflow%3A%22maven%22)
 =============
 
 Java library and command-line application for converting [XGBoost](https://github.com/dmlc/xgboost) models to PMML.
