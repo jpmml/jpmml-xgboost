@@ -34,6 +34,7 @@ import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
+import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
@@ -194,6 +195,12 @@ public class Learner implements Loadable {
 					BinaryFeature binaryFeature = (BinaryFeature)feature;
 
 					return binaryFeature;
+				} else
+
+				if(feature instanceof MissingValueFeature){
+					MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
+
+					return missingValueFeature;
 				} else
 
 				{
