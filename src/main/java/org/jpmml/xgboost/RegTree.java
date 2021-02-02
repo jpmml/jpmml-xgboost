@@ -121,8 +121,6 @@ public class RegTree implements Loadable {
 			Predicate leftPredicate;
 			Predicate rightPredicate;
 
-			boolean defaultLeft;
-
 			if(feature instanceof BaseNFeature){
 				BaseNFeature baseFeature = (BaseNFeature)feature;
 
@@ -153,8 +151,6 @@ public class RegTree implements Loadable {
 
 				leftPredicate = predicateManager.createPredicate(baseFeature, leftValues);
 				rightPredicate = predicateManager.createPredicate(baseFeature, rightValues);
-
-				defaultLeft = node.default_left();
 			} else
 
 			if(feature instanceof BinaryFeature){
@@ -164,8 +160,6 @@ public class RegTree implements Loadable {
 
 				leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
 				rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
-
-				defaultLeft = true;
 			} else
 
 			if(feature instanceof MissingValueFeature){
@@ -173,8 +167,6 @@ public class RegTree implements Loadable {
 
 				leftPredicate = predicateManager.createSimplePredicate(missingValueFeature, SimplePredicate.Operator.IS_NOT_MISSING, null);
 				rightPredicate = predicateManager.createSimplePredicate(missingValueFeature, SimplePredicate.Operator.IS_MISSING, null);
-
-				defaultLeft = true;
 			} else
 
 			{
@@ -195,8 +187,6 @@ public class RegTree implements Loadable {
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
-
-				defaultLeft = node.default_left();
 			}
 
 			org.dmg.pmml.tree.Node leftChild = encodeNode(node.cleft(), leftPredicate, leftCategoryManager, predicateManager, schema);
@@ -204,7 +194,7 @@ public class RegTree implements Loadable {
 
 			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)
-				.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId())
+				.setDefaultChild(node.default_left() ? leftChild.getId() : rightChild.getId())
 				.addNodes(leftChild, rightChild);
 
 			return result;
