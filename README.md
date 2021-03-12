@@ -14,7 +14,7 @@ Enter the project root directory and build using [Apache Maven](http://maven.apa
 mvn clean install
 ```
 
-The build produces an executable uber-JAR file `target/jpmml-xgboost-executable-1.4-SNAPSHOT.jar`.
+The build produces an executable uber-JAR file `target/jpmml-xgboost-executable-1.5-SNAPSHOT.jar`.
 
 # Usage #
 
@@ -70,12 +70,12 @@ xgb.dump(mtcars.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 
 Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
 ```
-java -jar target/jpmml-xgboost-executable-1.4-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
+java -jar target/jpmml-xgboost-executable-1.5-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
 ```
 
 Getting help:
 ```
-java -jar target/jpmml-xgboost-executable-1.4-SNAPSHOT.jar --help
+java -jar target/jpmml-xgboost-executable-1.5-SNAPSHOT.jar --help
 ```
 
 # Documentation #

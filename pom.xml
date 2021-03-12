@@ -10,7 +10,7 @@
 
 	<groupId>org.jpmml</groupId>
 	<artifactId>jpmml-xgboost</artifactId>
-	<version>1.4-SNAPSHOT</version>
+	<version>1.5-SNAPSHOT</version>
 
 	<name>JPMML-XGBoost</name>
 	<description>Java library and command-line application for converting XGBoost models to PMML</description>
