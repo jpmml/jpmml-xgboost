@@ -20,7 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
-public class Node implements Loadable {
+public class Node implements BinaryLoadable {
 
 	private int parent;
 
@@ -37,7 +37,7 @@ public class Node implements Loadable {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
+	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.parent = input.readInt();
 		this.cleft = input.readInt();
 		this.cright = input.readInt();

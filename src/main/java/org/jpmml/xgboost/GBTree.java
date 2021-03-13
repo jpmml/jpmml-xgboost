@@ -51,7 +51,7 @@ public class GBTree extends GradientBooster {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
+	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.num_trees = input.readInt();
 		this.num_roots = input.readInt();
 		this.num_feature = input.readInt();

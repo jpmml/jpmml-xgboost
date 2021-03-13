@@ -43,7 +43,7 @@ import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
-public class RegTree implements Loadable {
+public class RegTree implements BinaryLoadable {
 
 	private int num_roots;
 
@@ -66,7 +66,7 @@ public class RegTree implements Loadable {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
+	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.num_roots = input.readInt();
 		this.num_nodes = input.readInt();
 		this.num_deleted = input.readInt();

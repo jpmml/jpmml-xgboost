@@ -34,8 +34,8 @@ public class Dart extends GBTree {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
-		super.load(input);
+	public void loadBinary(XGBoostDataInput input) throws IOException {
+		super.loadBinary(input);
 
 		int num_trees = num_trees();
 		if(num_trees != 0){

@@ -20,7 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
-public class NodeStat implements Loadable {
+public class NodeStat implements BinaryLoadable {
 
 	private float loss_chg;
 
@@ -35,7 +35,7 @@ public class NodeStat implements Loadable {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
+	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.loss_chg = input.readFloat();
 		this.sum_hess = input.readFloat();
 		this.base_weight = input.readFloat();

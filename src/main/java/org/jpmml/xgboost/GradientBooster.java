@@ -19,7 +19,7 @@
 package org.jpmml.xgboost;
 
 abstract
-public class GradientBooster implements Loadable {
+public class GradientBooster implements BinaryLoadable {
 
 	abstract
 	public String getAlgorithmName();

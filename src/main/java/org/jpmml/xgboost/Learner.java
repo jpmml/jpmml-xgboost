@@ -39,7 +39,7 @@ import org.jpmml.converter.Schema;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
-public class Learner implements Loadable {
+public class Learner implements BinaryLoadable {
 
 	private float base_score;
 
@@ -68,7 +68,7 @@ public class Learner implements Loadable {
 	}
 
 	@Override
-	public void load(XGBoostDataInput input) throws IOException {
+	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.base_score = input.readFloat();
 		this.num_features = input.readInt();
 		this.num_class = input.readInt();
@@ -141,7 +141,7 @@ public class Learner implements Loadable {
 				throw new IllegalArgumentException(name_gbm);
 		}
 
-		this.gbtree.load(input);
+		this.gbtree.loadBinary(input);
 
 		if(this.contain_extra_attrs != 0){
 			this.attributes = input.readStringMap();

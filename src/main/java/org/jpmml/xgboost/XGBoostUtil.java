@@ -90,7 +90,7 @@ public class XGBoostUtil {
 		XGBoostDataInput input = new XGBoostDataInput(is, charset);
 
 		Learner learner = new Learner();
-		learner.load(input);
+		learner.loadBinary(input);
 
 		if(hasSerializationHeader){
 			// Ignored

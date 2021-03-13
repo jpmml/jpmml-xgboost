@@ -136,13 +136,13 @@ public class XGBoostDataInput implements Closeable {
 		return result;
 	}
 
-	public <E extends Loadable> E[] readObjectVector(Class<? extends E> clazz) throws IOException {
+	public <E extends BinaryLoadable> E[] readObjectVector(Class<? extends E> clazz) throws IOException {
 		int length = (int)readLong();
 
 		return readObjectArray(clazz, length);
 	}
 
-	public <E extends Loadable> E[] readObjectArray(Class<? extends E> clazz, int length) throws IOException {
+	public <E extends BinaryLoadable> E[] readObjectArray(Class<? extends E> clazz, int length) throws IOException {
 		E[] result = (E[])Array.newInstance(clazz, length);
 
 		for(int i = 0; i < result.length; i++){
@@ -154,7 +154,7 @@ public class XGBoostDataInput implements Closeable {
 				throw new IOException(roe);
 			}
 
-			object.load(this);
+			object.loadBinary(this);
 
 			result[i] = object;
 		}

@@ -20,7 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
-public interface Loadable {
+public interface BinaryLoadable {
 
-	void load(XGBoostDataInput input) throws IOException;
+	void loadBinary(XGBoostDataInput input) throws IOException;
 }
