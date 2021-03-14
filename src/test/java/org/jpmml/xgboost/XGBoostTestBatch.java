@@ -27,12 +27,20 @@ import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
+import org.dmg.pmml.Header;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.Timestamp;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.IntegrationTestBatch;
+import org.jpmml.model.ReflectionUtil;
+
+import static org.junit.Assert.assertTrue;
 
 abstract
 public class XGBoostTestBatch extends IntegrationTestBatch {
+
+	private String format = System.getProperty(XGBoostTestBatch.class.getName() + ".format", "model,json");
+
 
 	public XGBoostTestBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
 		super(name, dataset, predicate, equivalence);
@@ -60,27 +68,25 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 
 	@Override
 	public PMML getPMML() throws Exception {
-		Learner learner;
+		PMML result = null;
 
 		String[] dataset = parseDataset();
 
-		try(InputStream is = open("/xgboost/" + getName() + dataset[0] + ".model")){
-			learner = XGBoostUtil.loadLearner(is);
+		String[] extensions = this.format.split(",");
+		for(String extension : extensions){
+			String learnerPath = "/xgboost/" + getName() + dataset[0] + "." + extension;
+			String featureMapPath = "/csv/" + dataset[0] + ".fmap";
+
+			PMML pmml = loadPMML(learnerPath, featureMapPath);
+
+			if(result != null){
+				assertEquals(result, pmml);
+			}
+
+			result = pmml;
 		}
 
-		FeatureMap featureMap;
-
-		try(InputStream is = open("/csv/" + dataset[0] + ".fmap")){
-			featureMap = XGBoostUtil.loadFeatureMap(is);
-		}
-
-		Map<String, ?> options = getOptions();
-
-		PMML pmml = learner.encodePMML(options, null, null, featureMap);
-
-		validatePMML(pmml);
-
-		return pmml;
+		return result;
 	}
 
 	@Override
@@ -95,6 +101,28 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 		return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
 	}
 
+	protected PMML loadPMML(String learnerPath, String featureMapPath) throws Exception {
+		Learner learner;
+
+		try(InputStream is = open(learnerPath)){
+			learner = XGBoostUtil.loadLearner(is);
+		}
+
+		FeatureMap featureMap;
+
+		try(InputStream is = open(featureMapPath)){
+			featureMap = XGBoostUtil.loadFeatureMap(is);
+		}
+
+		Map<String, ?> options = getOptions();
+
+		PMML pmml = learner.encodePMML(options, null, null, featureMap);
+
+		validatePMML(pmml);
+
+		return pmml;
+	}
+
 	protected String[] parseDataset(){
 		String dataset = getDataset();
 
@@ -104,5 +132,23 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 		}
 
 		return new String[]{dataset};
+	}
+
+	private void assertEquals(PMML left, PMML right){
+		Header leftHeader = left.getHeader();
+		Header rightHeader = right.getHeader();
+
+		Timestamp leftTimestamp = leftHeader.getTimestamp();
+		Timestamp rightTimestamp = rightHeader.getTimestamp();
+
+		try {
+			leftHeader.setTimestamp(null);
+			rightHeader.setTimestamp(null);
+
+			assertTrue(ReflectionUtil.equals(left, right));
+		} finally {
+			leftHeader.setTimestamp(leftTimestamp);
+			rightHeader.setTimestamp(rightTimestamp);
+		}
 	}
 }
