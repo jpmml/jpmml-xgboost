@@ -73,6 +73,12 @@ public class Main {
 	private String charset = null;
 
 	@Parameter (
+		names = {"--json-path"},
+		description = "JSONPath expression of the JSON model element"
+	)
+	private String jsonPath = "$";
+
+	@Parameter (
 		names = {"--missing-value"},
 		description = "String representation of feature value(s) that should be regarded as missing"
 	)
@@ -168,7 +174,7 @@ public class Main {
 			logger.info("Parsing learner..");
 
 			long begin = System.currentTimeMillis();
-			learner = XGBoostUtil.loadLearner(is, byteOrder, this.charset);
+			learner = XGBoostUtil.loadLearner(is, byteOrder, this.charset, this.jsonPath);
 			long end = System.currentTimeMillis();
 
 			logger.info("Parsed learner in {} ms.", (end - begin));

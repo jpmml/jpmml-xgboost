@@ -45,14 +45,19 @@ public class XGBoostUtil {
 
 	static
 	public Learner loadLearner(InputStream is, ByteOrder byteOrder, String charset) throws IOException {
+		return loadLearner(is, byteOrder, charset, "$");
+	}
+
+	static
+	public Learner loadLearner(InputStream is, ByteOrder byteOrder, String charset, String jsonPath) throws IOException {
 		is = new BufferedInputStream(is, 16);
 
 		if((ByteOrder.BIG_ENDIAN).equals(byteOrder)){
-			return loadLearner(new DataInputStream(is), charset);
+			return loadLearner(new DataInputStream(is), charset, jsonPath);
 		} else
 
 		if((ByteOrder.LITTLE_ENDIAN).equals(byteOrder)){
-			return loadLearner(new LittleEndianDataInputStream(is), charset);
+			return loadLearner(new LittleEndianDataInputStream(is), charset, jsonPath);
 		} else
 
 		{
@@ -61,7 +66,7 @@ public class XGBoostUtil {
 	}
 
 	static
-	public <DIS extends InputStream & DataInput> Learner loadLearner(DIS is, String charset) throws IOException {
+	public <DIS extends InputStream & DataInput> Learner loadLearner(DIS is, String charset, String jsonPath) throws IOException {
 
 		if(!is.markSupported()){
 			throw new IllegalArgumentException();
@@ -82,7 +87,7 @@ public class XGBoostUtil {
 		Learner learner = new Learner();
 
 		if(isJson){
-			learner.loadJSON(is, charset);
+			learner.loadJSON(is, charset, jsonPath);
 		} else
 
 		{

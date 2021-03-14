@@ -206,7 +206,7 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
-	public void loadJSON(InputStream is, String charset) throws IOException {
+	public void loadJSON(InputStream is, String charset, String jsonPath) throws IOException {
 		JsonParser parser = new JsonParser();
 
 		if(charset == null){
@@ -217,6 +217,22 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			JsonElement element = parser.parse(reader);
 
 			JsonObject object = element.getAsJsonObject();
+
+			String[] names = jsonPath.split("\\.");
+			for(int i = 0; i < names.length; i++){
+				String name = names[i];
+
+				if(i == 0){
+
+					if(!("$").equals(name)){
+						throw new IllegalArgumentException(jsonPath);
+					}
+				} else
+
+				{
+					object = object.getAsJsonObject(name);
+				}
+			}
 
 			loadJSON(object);
 
