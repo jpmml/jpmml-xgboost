@@ -18,12 +18,22 @@
  */
 package org.jpmml.xgboost;
 
+import java.io.DataInput;
 import java.io.EOFException;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.nio.charset.StandardCharsets;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
@@ -39,11 +49,11 @@ import org.jpmml.converter.Schema;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
-public class Learner implements BinaryLoadable {
+public class Learner implements BinaryLoadable, JSONLoadable {
 
 	private float base_score;
 
-	private int num_features;
+	private int num_feature;
 
 	private int num_class;
 
@@ -70,7 +80,7 @@ public class Learner implements BinaryLoadable {
 	@Override
 	public void loadBinary(XGBoostDataInput input) throws IOException {
 		this.base_score = input.readFloat();
-		this.num_features = input.readInt();
+		this.num_feature = input.readInt();
 		this.num_class = input.readInt();
 		this.contain_extra_attrs = input.readInt();
 		this.contain_eval_metrics = input.readInt();
@@ -85,40 +95,8 @@ public class Learner implements BinaryLoadable {
 		input.readReserved(27);
 
 		String name_obj = input.readString();
-		switch(name_obj){
-			case "reg:linear":
-			case "reg:squarederror":
-			case "reg:squaredlogerror":
-				this.obj = new LinearRegression();
-				break;
-			case "reg:logistic":
-				this.obj = new LogisticRegression();
-				break;
-			case "reg:gamma":
-			case "reg:tweedie":
-				this.obj = new GeneralizedLinearRegression();
-				break;
-			case "count:poisson":
-				this.obj = new PoissonRegression();
-				break;
-			case "binary:hinge":
-				this.obj = new HingeClassification();
-				break;
-			case "binary:logistic":
-				this.obj = new BinomialLogisticRegression();
-				break;
-			case "rank:map":
-			case "rank:ndcg":
-			case "rank:pairwise":
-				this.obj = new LambdaMART();
-				break;
-			case "multi:softmax":
-			case "multi:softprob":
-				this.obj = new MultinomialLogisticRegression(this.num_class);
-				break;
-			default:
-				throw new IllegalArgumentException(name_obj);
-		}
+
+		this.obj = parseObjective(name_obj);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		if(this.major_version >= 1){
@@ -130,17 +108,8 @@ public class Learner implements BinaryLoadable {
 		}
 
 		String name_gbm = input.readString();
-		switch(name_gbm){
-			case "gbtree":
-				this.gbtree = new GBTree();
-				break;
-			case "dart":
-				this.gbtree = new Dart();
-				break;
-			default:
-				throw new IllegalArgumentException(name_gbm);
-		}
 
+		this.gbtree = parseGradientBooster(name_gbm);
 		this.gbtree.loadBinary(input);
 
 		if(this.contain_extra_attrs != 0){
@@ -163,6 +132,98 @@ public class Learner implements BinaryLoadable {
 
 		if(this.contain_eval_metrics != 0){
 			this.metrics = input.readStringVector();
+		}
+	}
+
+	@Override
+	public void loadJSON(JsonObject root){
+		JsonArray version = root.getAsJsonArray("version");
+
+		this.major_version = (version.get(0)).getAsInt();
+		this.minor_version = (version.get(1)).getAsInt();
+
+		if(this.major_version < 1 || this.minor_version < 3){
+			throw new IllegalArgumentException();
+		}
+
+		JsonObject learner = root.getAsJsonObject("learner");
+
+		JsonObject learnerModelParam = learner.getAsJsonObject("learner_model_param");
+
+		this.base_score = learnerModelParam.getAsJsonPrimitive("base_score").getAsFloat();
+		this.num_feature = learnerModelParam.getAsJsonPrimitive("num_feature").getAsInt();
+		this.num_class = learnerModelParam.getAsJsonPrimitive("num_class").getAsInt();
+
+		JsonObject objective = learner.getAsJsonObject("objective");
+
+		String name_obj = objective.getAsJsonPrimitive("name").getAsString();
+
+		this.obj = parseObjective(name_obj);
+
+		// Starting from 1.0.0, the base score is saved as an untransformed value
+		this.base_score = this.obj.probToMargin(this.base_score) + 0f;
+
+		JsonObject gradientBooster = learner.getAsJsonObject("gradient_booster");
+
+		String name_gbm = gradientBooster.getAsJsonPrimitive("name").getAsString();
+
+		this.gbtree = parseGradientBooster(name_gbm);
+		this.gbtree.loadJSON(gradientBooster);
+	}
+
+	public <DIS extends InputStream & DataInput> void loadBinary(DIS is, String charset) throws IOException {
+		boolean hasSerializationHeader = consumeHeader(is, XGBoostUtil.SERIALIZATION_HEADER);
+		if(hasSerializationHeader){
+			long offset = is.readLong();
+
+			if(offset < 0L){
+				throw new IOException();
+			}
+		} else
+
+		{
+			// Ignored
+		}
+
+		boolean hasBInfHeader = consumeHeader(is, XGBoostUtil.BINF_HEADER);
+		if(hasBInfHeader){
+			// Ignored
+		}
+
+		try(XGBoostDataInput input = new XGBoostDataInput(is, charset)){
+			loadBinary(input);
+
+			if(hasSerializationHeader){
+				// Ignored
+			} else
+
+			{
+				int eof = is.read();
+				if(eof != -1){
+					throw new IOException();
+				}
+			}
+		}
+	}
+
+	public void loadJSON(InputStream is, String charset) throws IOException {
+		JsonParser parser = new JsonParser();
+
+		if(charset == null){
+			charset = "UTF-8";
+		}
+
+		try(Reader reader = new InputStreamReader(is, charset)){
+			JsonElement element = parser.parse(reader);
+
+			JsonObject object = element.getAsJsonObject();
+
+			loadJSON(object);
+
+			int eof = is.read();
+			if(eof != -1){
+				throw new IOException();
+			}
 		}
 	}
 
@@ -262,8 +323,8 @@ public class Learner implements BinaryLoadable {
 		return miningModel;
 	}
 
-	public int num_features(){
-		return this.num_features;
+	public int num_feature(){
+		return this.num_feature;
 	}
 
 	public int num_class(){
@@ -272,5 +333,65 @@ public class Learner implements BinaryLoadable {
 
 	public ObjFunction obj(){
 		return this.obj;
+	}
+
+	private GBTree parseGradientBooster(String name_gbm){
+
+		switch(name_gbm){
+			case "gbtree":
+				return new GBTree();
+			case "dart":
+				return new Dart();
+			default:
+				throw new IllegalArgumentException(name_gbm);
+		}
+	}
+
+	private ObjFunction parseObjective(String name_obj){
+
+		switch(name_obj){
+			case "reg:linear":
+			case "reg:squarederror":
+			case "reg:squaredlogerror":
+				return new LinearRegression();
+			case "reg:logistic":
+				return new LogisticRegression();
+			case "reg:gamma":
+			case "reg:tweedie":
+				return new GeneralizedLinearRegression();
+			case "count:poisson":
+				return new PoissonRegression();
+			case "binary:hinge":
+				return new HingeClassification();
+			case "binary:logistic":
+				return new BinomialLogisticRegression();
+			case "rank:map":
+			case "rank:ndcg":
+			case "rank:pairwise":
+				return new LambdaMART();
+			case "multi:softmax":
+			case "multi:softprob":
+				return new MultinomialLogisticRegression(this.num_class);
+			default:
+				throw new IllegalArgumentException(name_obj);
+		}
+	}
+
+	static
+	private <DIS extends InputStream & DataInput> boolean consumeHeader(DIS is, String header) throws IOException {
+		byte[] headerBytes = header.getBytes(StandardCharsets.UTF_8);
+
+		byte[] buffer = new byte[headerBytes.length];
+
+		is.mark(buffer.length);
+
+		is.readFully(buffer);
+
+		boolean equals = Arrays.equals(headerBytes, buffer);
+		if(!equals){
+			is.reset();
+		}
+
+		return equals;
 	}
 }

@@ -18,6 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-abstract
-public class NodeStat {
+import com.google.gson.JsonObject;
+
+public interface JSONLoadable {
+
+	void loadJSON(JsonObject object);
 }

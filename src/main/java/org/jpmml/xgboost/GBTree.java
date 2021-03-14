@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.Arrays;
 
 import com.google.common.primitives.Floats;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
 
@@ -65,6 +67,29 @@ public class GBTree extends GradientBooster {
 
 		this.trees = input.readObjectArray(RegTree.class, this.num_trees);
 		this.tree_info = input.readIntArray(this.num_trees);
+	}
+
+	@Override
+	public void loadJSON(JsonObject gradientBooster){
+		JsonObject model = gradientBooster.getAsJsonObject("model");
+
+		JsonObject gbtreeModelParam = model.getAsJsonObject("gbtree_model_param");
+
+		this.num_trees = gbtreeModelParam.getAsJsonPrimitive("num_trees").getAsInt();
+		this.size_leaf_vector = gbtreeModelParam.getAsJsonPrimitive("size_leaf_vector").getAsInt();
+
+		JsonArray trees = model.getAsJsonArray("trees");
+
+		this.trees = new RegTree[this.num_trees];
+
+		for(int i = 0; i < this.num_trees; i++){
+			JsonObject tree = (trees.get(i)).getAsJsonObject();
+
+			this.trees[i] = new RegTree();
+			this.trees[i].loadJSON(tree);
+		}
+
+		this.tree_info = JSONUtil.toIntArray(model.getAsJsonArray("tree_info"));
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, Schema schema){

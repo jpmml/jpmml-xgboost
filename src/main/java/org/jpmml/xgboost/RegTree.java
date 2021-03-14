@@ -22,6 +22,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.gson.JsonObject;
+import com.google.gson.JsonPrimitive;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
@@ -43,7 +45,7 @@ import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 
-public class RegTree implements BinaryLoadable {
+public class RegTree implements BinaryLoadable, JSONLoadable {
 
 	private int num_roots;
 
@@ -76,8 +78,46 @@ public class RegTree implements BinaryLoadable {
 
 		input.readReserved(31);
 
-		this.nodes = input.readObjectArray(Node.class, this.num_nodes);
-		this.stats = input.readObjectArray(NodeStat.class, this.num_nodes);
+		this.nodes = input.readObjectArray(BinaryNode.class, this.num_nodes);
+		this.stats = input.readObjectArray(BinaryNodeStat.class, this.num_nodes);
+	}
+
+	@Override
+	public void loadJSON(JsonObject tree){
+		JsonObject treeParam = tree.getAsJsonObject("tree_param");
+
+		this.num_nodes = treeParam.getAsJsonPrimitive("num_nodes").getAsInt();
+		this.num_deleted = treeParam.getAsJsonPrimitive("num_deleted").getAsInt();
+		this.num_feature = treeParam.getAsJsonPrimitive("num_feature").getAsInt();
+		this.size_leaf_vector = treeParam.getAsJsonPrimitive("size_leaf_vector").getAsInt();
+
+		int[] parents = JSONUtil.toIntArray(tree.getAsJsonArray("parents"));
+		int[] left_children = JSONUtil.toIntArray(tree.getAsJsonArray("left_children"));
+		int[] right_children = JSONUtil.toIntArray(tree.getAsJsonArray("right_children"));
+		boolean[] default_left = JSONUtil.toBooleanArray(tree.getAsJsonArray("default_left"));
+		int[] split_indices = JSONUtil.toIntArray(tree.getAsJsonArray("split_indices"));
+		int[] split_type = JSONUtil.toIntArray(tree.getAsJsonArray("split_type"));
+		float[] split_conditions = JSONUtil.toFloatArray(tree.getAsJsonArray("split_conditions"));
+
+		this.nodes = new Node[this.num_nodes];
+
+		for(int i = 0; i < this.num_nodes; i++){
+
+			if(split_type[i] != 0){
+				throw new IllegalArgumentException();
+			}
+
+			JsonObject node = new JsonObject();
+			node.add("parent", new JsonPrimitive(parents[i]));
+			node.add("left_child", new JsonPrimitive(left_children[i]));
+			node.add("right_child", new JsonPrimitive(right_children[i]));
+			node.add("default_left", new JsonPrimitive(default_left[i]));
+			node.add("split_index", new JsonPrimitive(split_indices[i]));
+			node.add("split_condition", new JsonPrimitive(split_conditions[i]));
+
+			this.nodes[i] = new JSONNode();
+			((JSONLoadable)this.nodes[i]).loadJSON(node);
+		}
 	}
 
 	public boolean isEmpty(){
@@ -189,8 +229,8 @@ public class RegTree implements BinaryLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(node.cleft(), leftPredicate, leftCategoryManager, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(node.cright(), rightPredicate, rightCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
 
 			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)

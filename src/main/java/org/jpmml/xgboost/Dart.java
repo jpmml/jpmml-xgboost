@@ -20,6 +20,9 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonObject;
+
 public class Dart extends GBTree {
 
 	private float[] weight_drop;
@@ -41,6 +44,17 @@ public class Dart extends GBTree {
 		if(num_trees != 0){
 			this.weight_drop = input.readFloatVector();
 		}
+	}
+
+	@Override
+	public void loadJSON(JsonObject gradientBooster){
+		JsonObject gbtree = gradientBooster.getAsJsonObject("gbtree");
+
+		super.loadJSON(gbtree);
+
+		JsonArray weightDrop = gradientBooster.getAsJsonArray("weight_drop");
+
+		this.weight_drop = JSONUtil.toFloatArray(weightDrop);
 	}
 
 	@Override

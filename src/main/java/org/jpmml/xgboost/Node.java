@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2021 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,58 +18,27 @@
  */
 package org.jpmml.xgboost;
 
-import java.io.IOException;
+abstract
+public class Node {
 
-public class Node implements BinaryLoadable {
+	abstract
+	public boolean is_leaf();
 
-	private int parent;
+	abstract
+	public float leaf_value();
 
-	private int cleft;
+	abstract
+	public int split_index();
 
-	private int cright;
+	abstract
+	public int split_cond();
 
-	private int sindex;
+	abstract
+	public int left_child();
 
-	private int info;
+	abstract
+	public int right_child();
 
-
-	public Node(){
-	}
-
-	@Override
-	public void loadBinary(XGBoostDataInput input) throws IOException {
-		this.parent = input.readInt();
-		this.cleft = input.readInt();
-		this.cright = input.readInt();
-		this.sindex = input.readInt();
-		this.info = input.readInt();
-	}
-
-	public int cleft(){
-		return this.cleft;
-	}
-
-	public int cright(){
-		return this.cright;
-	}
-
-	public int split_index(){
-		return (int)(this.sindex & ((1L << 31) - 1L));
-	}
-
-	public boolean default_left(){
-		return (this.sindex >> 31) != 0;
-	}
-
-	public boolean is_leaf(){
-		return (this.cleft == -1);
-	}
-
-	public int split_cond(){
-		return this.info;
-	}
-
-	public float leaf_value(){
-		return Float.intBitsToFloat(this.info);
-	}
+	abstract
+	public boolean default_left();
 }

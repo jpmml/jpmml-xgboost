@@ -26,8 +26,6 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.ByteOrder;
-import java.nio.charset.StandardCharsets;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.List;
 import java.util.StringTokenizer;
@@ -69,38 +67,26 @@ public class XGBoostUtil {
 			throw new IllegalArgumentException();
 		}
 
-		boolean hasSerializationHeader = consumeHeader(is, XGBoostUtil.SERIALIZATION_HEADER);
-		if(hasSerializationHeader){
-			long offset = is.readLong();
+		boolean isJson;
 
-			if(offset < 0L){
-				throw new IOException();
-			}
-		} else
+		is.mark(1);
 
-		{
-			// Ignored
+		try {
+			int c = is.read();
+
+			isJson = (c == '{');
+		} finally {
+			is.reset();
 		}
-
-		boolean hasBInfHeader = consumeHeader(is, XGBoostUtil.BINF_HEADER);
-		if(hasBInfHeader){
-			// Ignored
-		}
-
-		XGBoostDataInput input = new XGBoostDataInput(is, charset);
 
 		Learner learner = new Learner();
-		learner.loadBinary(input);
 
-		if(hasSerializationHeader){
-			// Ignored
+		if(isJson){
+			learner.loadJSON(is, charset);
 		} else
 
 		{
-			int eof = is.read();
-			if(eof != -1){
-				throw new IOException();
-			}
+			learner.loadBinary(is, charset);
 		}
 
 		return learner;
@@ -140,24 +126,6 @@ public class XGBoostUtil {
 		List<String> lines = CharStreams.readLines(reader);
 
 		return lines.iterator();
-	}
-
-	static
-	private <DIS extends InputStream & DataInput> boolean consumeHeader(DIS is, String header) throws IOException {
-		byte[] headerBytes = header.getBytes(StandardCharsets.UTF_8);
-
-		byte[] buffer = new byte[headerBytes.length];
-
-		is.mark(buffer.length);
-
-		is.readFully(buffer);
-
-		boolean equals = Arrays.equals(headerBytes, buffer);
-		if(!equals){
-			is.reset();
-		}
-
-		return equals;
 	}
 
 	public static final String SERIALIZATION_HEADER = "CONFIG-offset:";

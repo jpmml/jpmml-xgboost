@@ -18,6 +18,43 @@
  */
 package org.jpmml.xgboost;
 
-abstract
-public class NodeStat {
+import com.google.gson.JsonArray;
+
+public class JSONUtil {
+
+	private JSONUtil(){
+	}
+
+	static
+	public boolean[] toBooleanArray(JsonArray array){
+		boolean[] result = new boolean[array.size()];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = (array.get(i)).getAsBoolean();
+		}
+
+		return result;
+	}
+
+	static
+	public int[] toIntArray(JsonArray array){
+		int[] result = new int[array.size()];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = (array.get(i)).getAsInt();
+		}
+
+		return result;
+	}
+
+	static
+	public float[] toFloatArray(JsonArray array){
+		float[] result = new float[array.size()];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = (array.get(i)).getAsFloat();
+		}
+
+		return result;
+	}
 }

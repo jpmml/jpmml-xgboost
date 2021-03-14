@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2021 Villu Ruusmann
+ * Copyright (c) 2016 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,6 +18,27 @@
  */
 package org.jpmml.xgboost;
 
-abstract
-public class NodeStat {
+import java.io.IOException;
+
+public class BinaryNodeStat extends NodeStat implements BinaryLoadable {
+
+	private float loss_chg;
+
+	private float sum_hess;
+
+	private float base_weight;
+
+	private int leaf_child_cnt;
+
+
+	public BinaryNodeStat(){
+	}
+
+	@Override
+	public void loadBinary(XGBoostDataInput input) throws IOException {
+		this.loss_chg = input.readFloat();
+		this.sum_hess = input.readFloat();
+		this.base_weight = input.readFloat();
+		this.leaf_child_cnt = input.readInt();
+	}
 }
