@@ -39,13 +39,13 @@ import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
-import org.jpmml.converter.BaseNFeature;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
@@ -262,12 +262,6 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			@Override
 			public Feature apply(Feature feature){
 
-				if(feature instanceof BaseNFeature){
-					BaseNFeature baseFeature = (BaseNFeature)feature;
-
-					return baseFeature;
-				} else
-
 				if(feature instanceof BinaryFeature){
 					BinaryFeature binaryFeature = (BinaryFeature)feature;
 
@@ -278,6 +272,12 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 					MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
 
 					return missingValueFeature;
+				} else
+
+				if(feature instanceof ThresholdFeature){
+					ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
+
+					return thresholdFeature;
 				} else
 
 				{

@@ -34,7 +34,6 @@ import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
 import org.dmg.pmml.tree.TreeModel;
-import org.jpmml.converter.BaseNFeature;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoryManager;
 import org.jpmml.converter.ContinuousFeature;
@@ -43,6 +42,7 @@ import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.ValueUtil;
 
 public class RegTree implements BinaryLoadable, JSONLoadable {
@@ -161,38 +161,6 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 			Predicate leftPredicate;
 			Predicate rightPredicate;
 
-			if(feature instanceof BaseNFeature){
-				BaseNFeature baseFeature = (BaseNFeature)feature;
-
-				FieldName name = baseFeature.getName();
-
-				int splitValue = (int)(Float.intBitsToFloat(node.split_cond()) + 1f);
-
-				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
-
-				List<Object> leftValues = baseFeature.getValues((Integer base) -> (base < splitValue)).stream()
-					.filter(valueFilter)
-					.collect(Collectors.toList());
-
-				List<Object> rightValues = baseFeature.getValues((Integer base) -> (base >= splitValue)).stream()
-					.filter(valueFilter)
-					.collect(Collectors.toList());
-
-				if(leftValues.size() == 0){
-					throw new IllegalArgumentException("Left branch is not selectable");
-				} // End if
-
-				if(rightValues.size() == 0){
-					throw new IllegalArgumentException("Right branch is not selectable");
-				}
-
-				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
-				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
-
-				leftPredicate = predicateManager.createPredicate(baseFeature, leftValues);
-				rightPredicate = predicateManager.createPredicate(baseFeature, rightValues);
-			} else
-
 			if(feature instanceof BinaryFeature){
 				BinaryFeature binaryFeature = (BinaryFeature)feature;
 
@@ -207,6 +175,38 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 				leftPredicate = predicateManager.createSimplePredicate(missingValueFeature, SimplePredicate.Operator.IS_NOT_MISSING, null);
 				rightPredicate = predicateManager.createSimplePredicate(missingValueFeature, SimplePredicate.Operator.IS_MISSING, null);
+			} else
+
+			if(feature instanceof ThresholdFeature){
+				ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
+
+				FieldName name = thresholdFeature.getName();
+
+				Number splitValue = Float.intBitsToFloat(node.split_cond());
+
+				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
+
+				List<Object> leftValues = thresholdFeature.getValues((Number value) -> (value.floatValue() < splitValue.floatValue())).stream()
+					.filter(valueFilter)
+					.collect(Collectors.toList());
+
+				List<Object> rightValues = thresholdFeature.getValues((Number value) -> (value.floatValue() >= splitValue.floatValue())).stream()
+					.filter(valueFilter)
+					.collect(Collectors.toList());
+
+				if(leftValues.size() == 0){
+					throw new IllegalArgumentException("Left branch is not selectable");
+				} // End if
+
+				if(rightValues.size() == 0){
+					throw new IllegalArgumentException("Right branch is not selectable");
+				}
+
+				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
+				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
+
+				leftPredicate = predicateManager.createPredicate(thresholdFeature, leftValues);
+				rightPredicate = predicateManager.createPredicate(thresholdFeature, rightValues);
 			} else
 
 			{
