@@ -134,8 +134,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
-	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
+	public TreeModel encodeTreeModel(boolean numeric, PredicateManager predicateManager, Schema schema){
+		org.dmg.pmml.tree.Node root = encodeNode(0, True.INSTANCE, numeric, new CategoryManager(), predicateManager, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema.getLabel()), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -145,7 +145,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		return treeModel;
 	}
 
-	private org.dmg.pmml.tree.Node encodeNode(int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
+	private org.dmg.pmml.tree.Node encodeNode(int index, Predicate predicate, boolean numeric, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
 		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
@@ -177,7 +177,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(missingValueFeature, SimplePredicate.Operator.IS_MISSING, null);
 			} else
 
-			if(feature instanceof ThresholdFeature){
+			if(feature instanceof ThresholdFeature && !numeric){
 				ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
 
 				FieldName name = thresholdFeature.getName();
@@ -229,8 +229,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(node.left_child(), leftPredicate, numeric, leftCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(node.right_child(), rightPredicate, numeric, rightCategoryManager, predicateManager, schema);
 
 			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)

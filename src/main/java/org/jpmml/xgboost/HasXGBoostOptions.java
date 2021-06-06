@@ -36,6 +36,8 @@ public interface HasXGBoostOptions extends HasOptions, HasNativeConfiguration {
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
 
+	String OPTION_NUMERIC = "numeric";
+
 	@Override
 	default
 	public Map<String, ?> getNativeConfiguration(){

@@ -44,7 +44,7 @@ public class HingeClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		Transformation transformation = new FunctionTransformation(PMMLFunctions.THRESHOLD){
@@ -64,7 +64,7 @@ public class HingeClassification extends Classification {
 			}
 		};
 
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, segmentSchema)
+		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, numeric, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput(FieldName.create("xgbValue"), OpType.CONTINUOUS, DataType.FLOAT, transformation));
 
 		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 1d, 0d, RegressionModel.NormalizationMethod.NONE, true, schema);

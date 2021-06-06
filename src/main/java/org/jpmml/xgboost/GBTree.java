@@ -92,11 +92,11 @@ public class GBTree extends GradientBooster {
 		this.tree_info = JSONUtil.toIntArray(model.getAsJsonArray("tree_info"));
 	}
 
-	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 		RegTree[] trees = trees();
 		float[] weights = tree_weights();
 
-		return obj.encodeMiningModel(Arrays.asList(trees), weights != null ? Floats.asList(weights) : null, base_score, ntreeLimit, schema);
+		return obj.encodeMiningModel(Arrays.asList(trees), weights != null ? Floats.asList(weights) : null, base_score, ntreeLimit, numeric, schema);
 	}
 
 	public int num_trees(){

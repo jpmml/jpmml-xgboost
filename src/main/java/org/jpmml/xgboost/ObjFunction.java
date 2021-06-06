@@ -44,14 +44,14 @@ public class ObjFunction {
 	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
+	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema);
 
 	public float probToMargin(float value){
 		return value;
 	}
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 
 		if(weights != null){
 
@@ -107,7 +107,7 @@ public class ObjFunction {
 				equalWeights &= ValueUtil.isOne(weight);
 			}
 
-			TreeModel treeModel = tree.encodeTreeModel(predicateManager, segmentSchema);
+			TreeModel treeModel = tree.encodeTreeModel(numeric, predicateManager, segmentSchema);
 
 			treeModels.add(treeModel);
 		}

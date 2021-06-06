@@ -256,7 +256,7 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		return new Schema(encoder, label, features);
 	}
 
-	public Schema toXGBoostSchema(Schema schema){
+	public Schema toXGBoostSchema(boolean numeric, Schema schema){
 		Function<Feature, Feature> function = new Function<Feature, Feature>(){
 
 			@Override
@@ -274,7 +274,7 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 					return missingValueFeature;
 				} else
 
-				if(feature instanceof ThresholdFeature){
+				if(feature instanceof ThresholdFeature && !numeric){
 					ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
 
 					return thresholdFeature;
@@ -325,12 +325,22 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
 		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
+		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
-		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
+		if(numeric == null){
+			numeric = Boolean.TRUE;
+		}
+
+		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, numeric, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
 		if((Boolean.TRUE).equals(compact)){
+
+			if((Boolean.FALSE).equals(numeric)){
+				throw new IllegalArgumentException("Conflicting XGBoost options");
+			}
+
 			Visitor visitor = new TreeModelCompactor();
 
 			visitor.applyTo(miningModel);
