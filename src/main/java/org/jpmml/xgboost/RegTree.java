@@ -19,17 +19,21 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
+import org.dmg.pmml.CompoundPredicate;
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.False;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
+import org.dmg.pmml.SimpleSetPredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
@@ -155,6 +159,10 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			Feature feature = schema.getFeature(splitIndex);
 
+			boolean defaultLeft = node.default_left();
+
+			boolean swapChildren = false;
+
 			CategoryManager leftCategoryManager = categoryManager;
 			CategoryManager rightCategoryManager = categoryManager;
 
@@ -182,6 +190,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 				FieldName name = thresholdFeature.getName();
 
+				Object missingValue = thresholdFeature.getMissingValue();
+
 				Number splitValue = Float.intBitsToFloat(node.split_cond());
 
 				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
@@ -194,19 +204,18 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 					.filter(valueFilter)
 					.collect(Collectors.toList());
 
-				if(leftValues.size() == 0){
-					throw new IllegalArgumentException("Left branch is not selectable");
-				} // End if
-
-				if(rightValues.size() == 0){
-					throw new IllegalArgumentException("Right branch is not selectable");
-				}
-
 				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
 				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
 
-				leftPredicate = predicateManager.createPredicate(thresholdFeature, leftValues);
-				rightPredicate = predicateManager.createPredicate(thresholdFeature, rightValues);
+				leftPredicate = createPredicate(thresholdFeature, leftValues, missingValue, predicateManager);
+				rightPredicate = createPredicate(thresholdFeature, rightValues, missingValue, predicateManager);
+
+				if(!isMissingValueSafe(leftPredicate)){
+
+					if(isMissingValueSafe(rightPredicate)){
+						swapChildren = true;
+					}
+				}
 			} else
 
 			{
@@ -234,8 +243,14 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
 				.setId(id)
-				.setDefaultChild(node.default_left() ? leftChild.getId() : rightChild.getId())
+				.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId())
 				.addNodes(leftChild, rightChild);
+
+			if(swapChildren){
+				List<org.dmg.pmml.tree.Node> children = result.getNodes();
+
+				Collections.swap(children, 0, 1);
+			}
 
 			return result;
 		} else
@@ -248,5 +263,71 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			return result;
 		}
+	}
+
+	static
+	private Predicate createPredicate(ThresholdFeature thresholdFeature, List<?> values, Object missingValue, PredicateManager predicateManager){
+		boolean checkMissing = values.remove(missingValue);
+
+		Predicate valuesPredicate = (values.size() > 0 ? predicateManager.createPredicate(thresholdFeature, values) : null);
+		Predicate missingValuePredicate = (checkMissing ? predicateManager.createSimplePredicate(thresholdFeature, SimplePredicate.Operator.IS_MISSING, null) : null);
+
+		if(valuesPredicate != null){
+
+			if(missingValuePredicate != null){
+				return new CompoundPredicate(CompoundPredicate.BooleanOperator.SURROGATE, null)
+					.addPredicates(valuesPredicate, missingValuePredicate);
+			}
+
+			return valuesPredicate;
+		} // End if
+
+		if(missingValuePredicate != null){
+			return missingValuePredicate;
+		}
+
+		return False.INSTANCE;
+	}
+
+	static
+	private boolean isMissingValueSafe(Predicate predicate){
+
+		if(predicate instanceof SimplePredicate){
+			SimplePredicate simplePredicate = (SimplePredicate)predicate;
+
+			SimplePredicate.Operator operator = simplePredicate.getOperator();
+			switch(operator){
+				case IS_MISSING:
+					return true;
+				case IS_NOT_MISSING:
+					return false;
+				default:
+					return false;
+			}
+		} else
+
+		if(predicate instanceof SimpleSetPredicate){
+			SimpleSetPredicate simpleSetPredicate = (SimpleSetPredicate)predicate;
+
+			return false;
+		} else
+
+		if(predicate instanceof CompoundPredicate){
+			CompoundPredicate compoundPredicate = (CompoundPredicate)predicate;
+
+			CompoundPredicate.BooleanOperator booleanOperator = compoundPredicate.getBooleanOperator();
+			switch(booleanOperator){
+				case SURROGATE:
+					return true;
+				default:
+					return false;
+			}
+		} else
+
+		if(predicate instanceof False){
+			return false;
+		}
+
+		throw new IllegalArgumentException();
 	}
 }
