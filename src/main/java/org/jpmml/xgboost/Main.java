@@ -123,6 +123,16 @@ public class Main {
 	)
 	private boolean numeric = true;
 
+	/**
+	 * @see HasXGBoostOptions#OPTION_PRUNE
+	 */
+	@Parameter (
+		names = {"--X-prune"},
+		arity = 1,
+		hidden = true
+	)
+	private boolean prune = true;
+
 	@Parameter (
  		names = {"--X-nan-as-missing"},
  		description = "Treat Not-a-Number (NaN) values as missing values",
@@ -217,6 +227,7 @@ public class Main {
 		Map<String, Object> options = new LinkedHashMap<>();
 		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
 		options.put(HasXGBoostOptions.OPTION_NUMERIC, this.numeric);
+		options.put(HasXGBoostOptions.OPTION_PRUNE, this.prune);
 		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, this.nanAsMissing);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
 

@@ -38,6 +38,8 @@ public interface HasXGBoostOptions extends HasOptions, HasNativeConfiguration {
 
 	String OPTION_NUMERIC = "numeric";
 
+	String OPTION_PRUNE = "prune";
+
 	@Override
 	default
 	public Map<String, ?> getNativeConfiguration(){

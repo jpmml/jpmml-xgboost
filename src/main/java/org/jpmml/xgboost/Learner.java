@@ -48,6 +48,7 @@ import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
+import org.jpmml.xgboost.visitors.TreeModelPruner;
 
 public class Learner implements BinaryLoadable, JSONLoadable {
 
@@ -326,6 +327,7 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
 		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
+		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
 		if(numeric == null){
@@ -342,6 +344,12 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			}
 
 			Visitor visitor = new TreeModelCompactor();
+
+			visitor.applyTo(miningModel);
+		} // End if
+
+		if((Boolean.TRUE).equals(prune)){
+			Visitor visitor = new TreeModelPruner();
 
 			visitor.applyTo(miningModel);
 		}
