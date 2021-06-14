@@ -256,7 +256,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		} else
 
 		{
-			Float value = node.leaf_value();
+			Float value = (node.leaf_value() + 0f);
 
 			org.dmg.pmml.tree.Node result = new LeafNode(value, predicate)
 				.setId(id);
