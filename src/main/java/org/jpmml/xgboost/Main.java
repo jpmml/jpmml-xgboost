@@ -61,13 +61,13 @@ public class Main {
 	private File modelInput = null;
 
 	@Parameter (
-		names = {"--byte-order"},
+		names = {"--" + HasXGBoostOptions.OPTION_BYTE_ORDER},
 		description = "Endianness of XGBoost model input file. Possible values \"BIG_ENDIAN\" (\"BE\") or \"LITTLE_ENDIAN\" (\"LE\")"
 	)
 	private String byteOrder = (ByteOrder.nativeOrder()).toString();
 
 	@Parameter (
-		names = {"--charset"},
+		names = {"--" + HasXGBoostOptions.OPTION_CHARSET},
 		description = "Charset of XGBoost model input file"
 	)
 	private String charset = null;
@@ -103,48 +103,36 @@ public class Main {
 	)
 	private List<String> targetCategories = null;
 
-	/**
-	 * @see HasXGBoostOptions#OPTION_COMPACT
-	 */
 	@Parameter (
-		names = {"--X-compact"},
+		names = {"--X-" + HasXGBoostOptions.OPTION_COMPACT},
 		description = "Transform XGBoost-style trees to PMML-style trees",
 		arity = 1
 	)
 	private boolean compact = true;
 
-	/**
-	 * @see HasXGBoostOptions#OPTION_NUMERIC
-	 */
 	@Parameter (
-		names = {"--X-numeric"},
+		names = {"--X-" + HasXGBoostOptions.OPTION_NUMERIC},
 		arity = 1,
 		hidden = true
 	)
 	private boolean numeric = true;
 
-	/**
-	 * @see HasXGBoostOptions#OPTION_PRUNE
-	 */
 	@Parameter (
-		names = {"--X-prune"},
+		names = {"--X-" + HasXGBoostOptions.OPTION_PRUNE},
 		arity = 1,
 		hidden = true
 	)
 	private boolean prune = true;
 
 	@Parameter (
- 		names = {"--X-nan-as-missing"},
+ 		names = {"--X-" + HasXGBoostOptions.OPTION_NAN_AS_MISSING},
  		description = "Treat Not-a-Number (NaN) values as missing values",
  		arity = 1
  	)
  	private boolean nanAsMissing = true;
 
-	/**
-	 * @see HasXGBoostOptions#OPTION_NTREE_LIMIT
-	 */
 	@Parameter (
-		names = {"--X-ntree-limit"},
+		names = {"--X-" + HasXGBoostOptions.OPTION_NTREE_LIMIT},
 		description = "Limit the number of trees. Defaults to all trees"
 	)
 	private Integer ntreeLimit = null;
