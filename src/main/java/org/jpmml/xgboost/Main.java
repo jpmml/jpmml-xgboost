@@ -112,22 +112,21 @@ public class Main {
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_NUMERIC},
-		arity = 1,
-		hidden = true
+		description = "Simplify non-numeric split conditions to numeric split conditions",
+		arity = 1
 	)
 	private boolean numeric = true;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_PRUNE},
-		arity = 1,
-		hidden = true
+		description = "Remove unreachable nodes",
+		arity = 1
 	)
 	private boolean prune = true;
 
 	@Parameter (
  		names = {"--X-" + HasXGBoostOptions.OPTION_NAN_AS_MISSING},
- 		description = "Treat Not-a-Number (NaN) values as missing values",
- 		arity = 1
+ 		description = "Treat Not-a-Number (NaN) values as missing values"
  	)
  	private boolean nanAsMissing = true;
 
