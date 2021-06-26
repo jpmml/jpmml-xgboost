@@ -47,8 +47,8 @@ import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
+import org.jpmml.converter.visitors.TreeModelPruner;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
-import org.jpmml.xgboost.visitors.TreeModelPruner;
 
 public class Learner implements BinaryLoadable, JSONLoadable {
 

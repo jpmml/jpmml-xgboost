@@ -25,15 +25,12 @@ import java.util.stream.Collectors;
 
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
-import org.dmg.pmml.CompoundPredicate;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.False;
 import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
-import org.dmg.pmml.SimpleSetPredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
@@ -47,6 +44,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
+import org.jpmml.converter.ThresholdFeatureUtil;
 import org.jpmml.converter.ValueUtil;
 
 public class RegTree implements BinaryLoadable, JSONLoadable {
@@ -207,12 +205,12 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
 				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
 
-				leftPredicate = createPredicate(thresholdFeature, leftValues, missingValue, predicateManager);
-				rightPredicate = createPredicate(thresholdFeature, rightValues, missingValue, predicateManager);
+				leftPredicate = ThresholdFeatureUtil.createPredicate(thresholdFeature, leftValues, missingValue, predicateManager);
+				rightPredicate = ThresholdFeatureUtil.createPredicate(thresholdFeature, rightValues, missingValue, predicateManager);
 
-				if(!isMissingValueSafe(leftPredicate)){
+				if(!ThresholdFeatureUtil.isMissingValueSafe(leftPredicate)){
 
-					if(isMissingValueSafe(rightPredicate)){
+					if(ThresholdFeatureUtil.isMissingValueSafe(rightPredicate)){
 						swapChildren = true;
 					}
 				}
@@ -263,71 +261,5 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			return result;
 		}
-	}
-
-	static
-	private Predicate createPredicate(ThresholdFeature thresholdFeature, List<?> values, Object missingValue, PredicateManager predicateManager){
-		boolean checkMissing = values.remove(missingValue);
-
-		Predicate valuesPredicate = (values.size() > 0 ? predicateManager.createPredicate(thresholdFeature, values) : null);
-		Predicate missingValuePredicate = (checkMissing ? predicateManager.createSimplePredicate(thresholdFeature, SimplePredicate.Operator.IS_MISSING, null) : null);
-
-		if(valuesPredicate != null){
-
-			if(missingValuePredicate != null){
-				return new CompoundPredicate(CompoundPredicate.BooleanOperator.SURROGATE, null)
-					.addPredicates(valuesPredicate, missingValuePredicate);
-			}
-
-			return valuesPredicate;
-		} // End if
-
-		if(missingValuePredicate != null){
-			return missingValuePredicate;
-		}
-
-		return False.INSTANCE;
-	}
-
-	static
-	private boolean isMissingValueSafe(Predicate predicate){
-
-		if(predicate instanceof SimplePredicate){
-			SimplePredicate simplePredicate = (SimplePredicate)predicate;
-
-			SimplePredicate.Operator operator = simplePredicate.getOperator();
-			switch(operator){
-				case IS_MISSING:
-					return true;
-				case IS_NOT_MISSING:
-					return false;
-				default:
-					return false;
-			}
-		} else
-
-		if(predicate instanceof SimpleSetPredicate){
-			SimpleSetPredicate simpleSetPredicate = (SimpleSetPredicate)predicate;
-
-			return false;
-		} else
-
-		if(predicate instanceof CompoundPredicate){
-			CompoundPredicate compoundPredicate = (CompoundPredicate)predicate;
-
-			CompoundPredicate.BooleanOperator booleanOperator = compoundPredicate.getBooleanOperator();
-			switch(booleanOperator){
-				case SURROGATE:
-					return true;
-				default:
-					return false;
-			}
-		} else
-
-		if(predicate instanceof False){
-			return false;
-		}
-
-		throw new IllegalArgumentException();
 	}
 }
