@@ -40,13 +40,6 @@ import org.slf4j.LoggerFactory;
 public class Main {
 
 	@Parameter (
-		names = {"--fmap-input"},
-		description = "XGBoost feature map input file",
-		required = true
-	)
-	private File fmapInput = null;
-
-	@Parameter (
 		names = {"--help"},
 		description = "Show the list of configuration options and exit",
 		help = true
@@ -59,6 +52,20 @@ public class Main {
 		required = true
 	)
 	private File modelInput = null;
+
+	@Parameter (
+		names = {"--fmap-input"},
+		description = "XGBoost feature map input file",
+		required = true
+	)
+	private File fmapInput = null;
+
+	@Parameter (
+		names = {"--pmml-output"},
+		description = "PMML output file",
+		required = true
+	)
+	private File pmmlOutput = null;
 
 	@Parameter (
 		names = {"--" + HasXGBoostOptions.OPTION_BYTE_ORDER},
@@ -83,13 +90,6 @@ public class Main {
 		description = "String representation of feature value(s) that should be regarded as missing"
 	)
 	private String missingValue = null;
-
-	@Parameter (
-		names = {"--pmml-output"},
-		description = "PMML output file",
-		required = true
-	)
-	private File pmmlOutput = null;
 
 	@Parameter (
 		names = {"--target-name"},
