@@ -106,7 +106,7 @@ public class FeatureMap {
 		for(DataField dataField : dataFields){
 
 			for(Map.Entry<Value.Property, List<String>> valueEntry : valueEntries){
-				PMMLUtil.addValues(dataField, valueEntry.getValue(), valueEntry.getKey());
+				PMMLUtil.addValues(dataField, valueEntry.getKey(), valueEntry.getValue());
 			}
 		}
 

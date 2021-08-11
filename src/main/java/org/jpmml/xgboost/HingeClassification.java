@@ -20,7 +20,6 @@ package org.jpmml.xgboost;
 
 import java.util.List;
 
-import org.dmg.pmml.Apply;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldName;
@@ -30,7 +29,6 @@ import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
 import org.jpmml.converter.FieldNameUtil;
-import org.jpmml.converter.FunctionTransformation;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
@@ -47,7 +45,7 @@ public class HingeClassification extends Classification {
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
-		Transformation transformation = new FunctionTransformation(PMMLFunctions.THRESHOLD){
+		Transformation transformation = new Transformation(){
 
 			@Override
 			public FieldName getName(FieldName name){
@@ -56,11 +54,7 @@ public class HingeClassification extends Classification {
 
 			@Override
 			public Expression createExpression(FieldRef fieldRef){
-				Apply apply = (Apply)super.createExpression(fieldRef);
-
-				apply.addExpressions(PMMLUtil.createConstant(0f));
-
-				return apply;
+				return PMMLUtil.createApply(PMMLFunctions.THRESHOLD, fieldRef, PMMLUtil.createConstant(0f));
 			}
 		};
 
