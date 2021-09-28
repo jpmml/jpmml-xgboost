@@ -34,6 +34,7 @@ import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.Transformation;
 import org.jpmml.converter.mining.MiningModelUtil;
+import org.jpmml.converter.transformations.AbstractTransformation;
 
 public class HingeClassification extends Classification {
 
@@ -45,7 +46,7 @@ public class HingeClassification extends Classification {
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
-		Transformation transformation = new Transformation(){
+		Transformation transformation = new AbstractTransformation(){
 
 			@Override
 			public FieldName getName(FieldName name){
