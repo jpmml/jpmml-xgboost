@@ -35,7 +35,9 @@ public class Classification extends ObjFunction {
 	private int num_class;
 
 
-	public Classification(int num_class){
+	public Classification(String name, int num_class){
+		super(name);
+
 		this.num_class = num_class;
 	}
 

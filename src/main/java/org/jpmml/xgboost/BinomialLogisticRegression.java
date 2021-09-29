@@ -31,8 +31,8 @@ import org.jpmml.converter.mining.MiningModelUtil;
 
 public class BinomialLogisticRegression extends Classification {
 
-	public BinomialLogisticRegression(){
-		super(2);
+	public BinomialLogisticRegression(String name){
+		super(name, 2);
 	}
 
 	@Override

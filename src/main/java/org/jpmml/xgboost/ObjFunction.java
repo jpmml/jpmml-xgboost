@@ -40,6 +40,13 @@ import org.jpmml.converter.mining.MiningModelUtil;
 abstract
 public class ObjFunction {
 
+	private String name;
+
+
+	public ObjFunction(String name){
+		this.name = name;
+	}
+
 	abstract
 	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder);
 
@@ -48,6 +55,10 @@ public class ObjFunction {
 
 	public float probToMargin(float value){
 		return value;
+	}
+
+	public String getName(){
+		return this.name;
 	}
 
 	static

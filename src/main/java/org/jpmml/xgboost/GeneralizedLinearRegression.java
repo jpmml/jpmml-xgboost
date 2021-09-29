@@ -31,6 +31,10 @@ import org.jpmml.converter.mining.MiningModelUtil;
 
 public class GeneralizedLinearRegression extends Regression {
 
+	public GeneralizedLinearRegression(String name){
+		super(name);
+	}
+
 	@Override
 	public float probToMargin(float value){
 		return inverseExp(value);

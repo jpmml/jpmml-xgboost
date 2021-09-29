@@ -31,6 +31,10 @@ import org.jpmml.converter.PMMLEncoder;
 abstract
 public class Regression extends ObjFunction {
 
+	public Regression(String name){
+		super(name);
+	}
+
 	@Override
 	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder){
 

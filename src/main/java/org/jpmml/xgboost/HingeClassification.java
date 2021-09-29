@@ -38,8 +38,8 @@ import org.jpmml.converter.transformations.AbstractTransformation;
 
 public class HingeClassification extends Classification {
 
-	public HingeClassification(){
-		super(2);
+	public HingeClassification(String name){
+		super(name, 2);
 	}
 
 	@Override

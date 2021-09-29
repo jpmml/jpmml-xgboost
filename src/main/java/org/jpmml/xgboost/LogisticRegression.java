@@ -31,6 +31,10 @@ import org.jpmml.converter.mining.MiningModelUtil;
 
 public class LogisticRegression extends Regression {
 
+	public LogisticRegression(String name){
+		super(name);
+	}
+
 	@Override
 	public float probToMargin(float value){
 		return inverseLogit(value);

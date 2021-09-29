@@ -387,25 +387,25 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			case "reg:linear":
 			case "reg:squarederror":
 			case "reg:squaredlogerror":
-				return new LinearRegression();
+				return new LinearRegression(name_obj);
 			case "reg:logistic":
-				return new LogisticRegression();
+				return new LogisticRegression(name_obj);
 			case "reg:gamma":
 			case "reg:tweedie":
-				return new GeneralizedLinearRegression();
+				return new GeneralizedLinearRegression(name_obj);
 			case "count:poisson":
-				return new PoissonRegression();
+				return new PoissonRegression(name_obj);
 			case "binary:hinge":
-				return new HingeClassification();
+				return new HingeClassification(name_obj);
 			case "binary:logistic":
-				return new BinomialLogisticRegression();
+				return new BinomialLogisticRegression(name_obj);
 			case "rank:map":
 			case "rank:ndcg":
 			case "rank:pairwise":
-				return new LambdaMART();
+				return new LambdaMART(name_obj);
 			case "multi:softmax":
 			case "multi:softprob":
-				return new MultinomialLogisticRegression(this.num_class);
+				return new MultinomialLogisticRegression(name_obj, this.num_class);
 			default:
 				throw new IllegalArgumentException(name_obj);
 		}

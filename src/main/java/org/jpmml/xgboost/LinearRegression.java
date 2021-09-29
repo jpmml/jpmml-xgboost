@@ -25,6 +25,10 @@ import org.jpmml.converter.Schema;
 
 public class LinearRegression extends Regression {
 
+	public LinearRegression(String name){
+		super(name);
+	}
+
 	@Override
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
 		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);

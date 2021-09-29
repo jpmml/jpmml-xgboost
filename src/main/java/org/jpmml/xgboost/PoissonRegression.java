@@ -19,4 +19,8 @@
 package org.jpmml.xgboost;
 
 public class PoissonRegression extends GeneralizedLinearRegression {
+
+	public PoissonRegression(String name){
+		super(name);
+	}
 }
