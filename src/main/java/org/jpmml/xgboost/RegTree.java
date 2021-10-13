@@ -194,6 +194,10 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
 
+				if(!ValueUtil.isNaN(missingValue)){
+					valueFilter = valueFilter.and(value -> !ValueUtil.isNaN(value));
+				}
+
 				List<Object> leftValues = thresholdFeature.getValues((Number value) -> (value.floatValue() < splitValue.floatValue())).stream()
 					.filter(valueFilter)
 					.collect(Collectors.toList());
