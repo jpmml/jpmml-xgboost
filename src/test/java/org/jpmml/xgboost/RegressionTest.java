@@ -49,7 +49,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate("GammaRegression", "Visit");
+		evaluate("GammaRegression", "Visit", new FloatEquivalence(16));
 	}
 
 	@Test
@@ -59,7 +59,7 @@ public class RegressionTest extends XGBoostTest {
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate("PoissonRegression", "Visit");
+		evaluate("PoissonRegression", "Visit", new FloatEquivalence(12));
 	}
 
 	@Test

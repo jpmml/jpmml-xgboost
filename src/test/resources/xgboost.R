@@ -11,7 +11,7 @@ xgboostFile = function(name, ext){
 }
 
 loadCsv = function(file){
-	return (read.csv(file = file, header = TRUE))
+	return (read.csv(file = file, header = TRUE, stringsAsFactors = TRUE))
 }
 
 storeCsv = function(data, file){

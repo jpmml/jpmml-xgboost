@@ -104,7 +104,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(8));
+		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(20));
 	}
 
 	@Test
@@ -114,7 +114,7 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris");
+		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(12));
 	}
 
 	@Test
