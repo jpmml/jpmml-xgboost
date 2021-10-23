@@ -25,13 +25,12 @@ import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
 import org.dmg.pmml.FieldName;
-import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class ClassificationTest extends XGBoostTest {
+public class ClassificationTest extends XGBoostTest implements Algorithms, Datasets {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));
@@ -53,7 +52,7 @@ public class ClassificationTest extends XGBoostTest {
 				List<Map<FieldName, String>> table = super.getInput();
 
 				// XXX
-				if(("AuditNA").equals(dataset[0])){
+				if((AUDIT_NA).equals(dataset[0])){
 					FieldName income = FieldName.create("Income");
 
  					for(Map<FieldName, String> row : table){
@@ -74,64 +73,61 @@ public class ClassificationTest extends XGBoostTest {
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate("BinomialClassification", "Audit", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate("BinomialClassification", "Audit@31", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT + "@31", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate("BinomialClassification", "AuditNA", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(12));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(12));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate("BinomialClassification", "AuditNA@31", excludeFields(ClassificationTest.falseProbabilityField), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA + "@31", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateHingeAudit() throws Exception {
-		evaluate("HingeClassification", "Audit");
+		evaluate(HINGE_CLASSIFICATION, AUDIT);
 	}
 
 	@Test
 	public void evaluateHingeAuditNA() throws Exception {
-		evaluate("HingeClassification", "AuditNA");
+		evaluate(HINGE_CLASSIFICATION, AUDIT_NA);
 	}
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate("MultinomialClassification", "Audit", new FloatEquivalence(20));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate("MultinomialClassification", "AuditNA", new FloatEquivalence(24));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(24));
 	}
 
 	@Test
-	public void evaluateIris() throws Exception {
-		evaluate("MultinomialClassification", "Iris", new FloatEquivalence(12));
+	public void evaluateMultinomialIris() throws Exception {
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(12));
 	}
 
 	@Test
-	public void evaluateIrisLimit() throws Exception {
-		evaluate("MultinomialClassification", "Iris@11", new FloatEquivalence(8));
+	public void evaluateMultinomialIrisLimit() throws Exception {
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS + "@11", new FloatEquivalence(8));
 	}
 
 	@Test
-	public void evaluateIrisNA() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA", new FloatEquivalence(20));
+	public void evaluateMultinomialIrisNA() throws Exception {
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA, new FloatEquivalence(20));
 	}
 
 	@Test
-	public void evaluateIrisNALimit() throws Exception {
-		evaluate("MultinomialClassification", "IrisNA@11", new FloatEquivalence(12));
+	public void evaluateMultinomialIrisNALimit() throws Exception {
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA + "@11", new FloatEquivalence(12));
 	}
-
-	private static final FieldName falseProbabilityField = FieldNameUtil.create("probability", "0");
-	private static final FieldName trueProbabilityField = FieldNameUtil.create("probability", "1");
 }

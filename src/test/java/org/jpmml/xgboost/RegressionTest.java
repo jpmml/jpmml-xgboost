@@ -21,59 +21,59 @@ package org.jpmml.xgboost;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class RegressionTest extends XGBoostTest {
+public class RegressionTest extends XGBoostTest implements Algorithms, Datasets {
 
 	public RegressionTest(){
 		super(new FloatEquivalence(4));
 	}
 
 	@Test
-	public void evaluateAuto() throws Exception {
-		evaluate("LinearRegression", "Auto");
+	public void evaluateLinearAuto() throws Exception {
+		evaluate(LINEAR_REGRESSION, AUTO);
 	}
 
 	@Test
-	public void evaluateAutoNA() throws Exception {
-		evaluate("LinearRegression", "AutoNA");
+	public void evaluateLinearAutoNA() throws Exception {
+		evaluate(LINEAR_REGRESSION, AUTO_NA);
 	}
 
 	@Test
-	public void evaluateAudit() throws Exception {
-		evaluate("LogisticRegression", "Audit");
+	public void evaluateLogisticAudit() throws Exception {
+		evaluate(LOGISTIC_REGRESSION, AUDIT);
 	}
 
 	@Test
-	public void evaluateAuditNA() throws Exception {
-		evaluate("LogisticRegression", "AuditNA");
+	public void evaluateLogisticAuditNA() throws Exception {
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA);
 	}
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate("GammaRegression", "Visit", new FloatEquivalence(16));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate("GammaRegression", "VisitNA", new FloatEquivalence(20));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate("PoissonRegression", "Visit", new FloatEquivalence(12));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(12));
 	}
 
 	@Test
 	public void evaluatePoissonVisitNA() throws Exception {
-		evaluate("PoissonRegression", "VisitNA", new FloatEquivalence(16));
+		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateTweedieVisit() throws Exception {
-		evaluate("TweedieRegression", "Visit", new FloatEquivalence(16));
+		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate("TweedieRegression", "VisitNA", new FloatEquivalence(20));
+		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(20));
 	}
 }
