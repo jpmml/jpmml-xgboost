@@ -63,8 +63,10 @@ public class ObjFunction {
 
 	static
 	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
+		trees = new ArrayList<>(trees);
 
 		if(weights != null){
+			weights = new ArrayList<>(weights);
 
 			if(trees.size() != weights.size()){
 				throw new IllegalArgumentException();
@@ -82,10 +84,6 @@ public class ObjFunction {
 			if(weights != null){
 				weights = weights.subList(0, ntreeLimit);
 			}
-		} // End if
-
-		if(weights != null){
-			weights = new ArrayList<>(weights);
 		}
 
 		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
@@ -96,37 +94,71 @@ public class ObjFunction {
 
 		List<TreeModel> treeModels = new ArrayList<>();
 
+		Number intercept = base_score;
+
 		boolean equalWeights = true;
 
-		Iterator<RegTree> treeIt = trees.iterator();
-		Iterator<Float> weightIt = (weights != null ? weights.iterator() : null);
+		// First filtering pass - eliminating empty trees
+		{
+			Iterator<RegTree> treeIt = trees.iterator();
+			Iterator<Float> weightIt = (weights != null ? weights.iterator() : null);
 
-		while(treeIt.hasNext()){
-			RegTree tree = treeIt.next();
-			Float weight = (weightIt != null ? weightIt.next() : null);
+			while(treeIt.hasNext()){
+				RegTree tree = treeIt.next();
+				Float weight = (weightIt != null ? weightIt.next() : null);
 
-			if(tree.isEmpty()){
+				Float leafValue = tree.getLeafValue();
+				if(leafValue != null && ValueUtil.isZero(leafValue)){
+					treeIt.remove();
 
-				if(weightIt != null){
-					weightIt.remove();
+					if(weightIt != null){
+						weightIt.remove();
+					}
+
+					continue;
+				} // End if
+
+				if(weight != null){
+					equalWeights &= ValueUtil.isOne(weight);
 				}
-
-				continue;
-			} // End if
-
-			if(weight != null){
-				equalWeights &= ValueUtil.isOne(weight);
 			}
+		}
 
-			TreeModel treeModel = tree.encodeTreeModel(numeric, predicateManager, segmentSchema);
+		// Second filtering pass - eliminating constant-prediction trees
+		if(equalWeights){
+			Iterator<RegTree> treeIt = trees.iterator();
+			Iterator<Float> weightIt = (weights != null ? weights.iterator() : null);
 
-			treeModels.add(treeModel);
+			while(treeIt.hasNext()){
+				RegTree tree = treeIt.next();
+				Float weight = (weightIt != null ? weightIt.next() : null);
+
+				Float leafValue = tree.getLeafValue();
+				if(leafValue != null){
+					intercept = ValueUtil.add(MathContext.FLOAT, intercept, leafValue);
+
+					treeIt.remove();
+
+					if(weightIt != null){
+						weightIt.remove();
+					}
+				}
+			}
+		}
+
+		// Final pass - encoding trees
+		{
+			for(RegTree tree : trees){
+				TreeModel treeModel = tree.encodeTreeModel(numeric, predicateManager, segmentSchema);
+
+				treeModels.add(treeModel);
+			}
 		}
 
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setMathContext(MathContext.FLOAT)
 			.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, treeModels, weights))
-			.setTargets(ModelUtil.createRescaleTargets(null, base_score, continuousLabel));
+			.setTargets(ModelUtil.createRescaleTargets(null, intercept, continuousLabel));
 
 		return miningModel;
 	}

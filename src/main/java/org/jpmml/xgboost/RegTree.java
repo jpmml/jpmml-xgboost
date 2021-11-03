@@ -122,18 +122,14 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
-	public boolean isEmpty(){
+	public Float getLeafValue(){
 		Node node = this.nodes[0];
 
-		if(!node.is_leaf()){
-			return false;
-		} else
-
-		{
-			Float value = node.leaf_value();
-
-			return ValueUtil.isZero(value);
+		if(node.is_leaf()){
+			return node.leaf_value();
 		}
+
+		return null;
 	}
 
 	public TreeModel encodeTreeModel(boolean numeric, PredicateManager predicateManager, Schema schema){
