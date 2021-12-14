@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-import org.dmg.pmml.FieldName;
 import org.jpmml.converter.FieldNameUtil;
 
 public interface Datasets {
@@ -32,7 +31,7 @@ public interface Datasets {
 	String VISIT = "Visit";
 	String VISIT_NA = VISIT + "NA";
 
-	FieldName AUDIT_ADJUSTED = FieldName.create("Adjusted");
-	FieldName AUDIT_PROBABILITY_TRUE = FieldNameUtil.create("probability", 1);
-	FieldName AUDIT_PROBABILITY_FALSE = FieldNameUtil.create("probability", 0);
+	String AUDIT_ADJUSTED = "Adjusted";
+	String AUDIT_PROBABILITY_TRUE = FieldNameUtil.create("probability", 1);
+	String AUDIT_PROBABILITY_FALSE = FieldNameUtil.create("probability", 0);
 }

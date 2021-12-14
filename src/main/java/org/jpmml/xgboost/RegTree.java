@@ -26,7 +26,6 @@ import java.util.stream.Collectors;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Predicate;
@@ -182,7 +181,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 			if(feature instanceof ThresholdFeature && !numeric){
 				ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
 
-				FieldName name = thresholdFeature.getName();
+				String name = thresholdFeature.getName();
 
 				Object missingValue = thresholdFeature.getMissingValue();
 

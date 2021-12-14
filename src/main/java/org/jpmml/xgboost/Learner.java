@@ -35,7 +35,6 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
@@ -244,10 +243,10 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
-	public Schema encodeSchema(FieldName targetField, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
+	public Schema encodeSchema(String targetField, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
 
 		if(targetField == null){
-			targetField = FieldName.create("_target");
+			targetField = "_target";
 		}
 
 		Label label = this.obj.encodeLabel(targetField, targetCategories, encoder);
@@ -304,7 +303,7 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public PMML encodePMML(Map<String, ?> options, FieldName targetField, List<String> targetCategories, FeatureMap featureMap){
+	public PMML encodePMML(Map<String, ?> options, String targetField, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		Boolean nanAsMissing = (Boolean)options.get(HasXGBoostOptions.OPTION_NAN_AS_MISSING);

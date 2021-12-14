@@ -30,7 +30,6 @@ import java.util.Set;
 
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
@@ -56,7 +55,7 @@ public class FeatureMap {
 
 		List<Entry> entries = getEntries();
 		for(Entry entry : entries){
-			FieldName name = FieldName.create(entry.getName());
+			String name = entry.getName();
 			String value = entry.getValue();
 
 			DataField dataField = encoder.getDataField(name);

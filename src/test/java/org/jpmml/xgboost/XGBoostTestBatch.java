@@ -26,7 +26,6 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.Header;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Timestamp;
@@ -91,14 +90,14 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 	}
 
 	@Override
-	public List<Map<FieldName, String>> getInput() throws IOException {
+	public List<Map<String, String>> getInput() throws IOException {
 		String[] dataset = parseDataset();
 
 		return loadRecords("/csv/" + dataset[0] + ".csv");
 	}
 
 	@Override
-	public List<Map<FieldName, String>> getOutput() throws IOException {
+	public List<Map<String, String>> getOutput() throws IOException {
 		return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
 	}
 

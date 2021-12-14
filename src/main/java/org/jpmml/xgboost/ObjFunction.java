@@ -22,7 +22,6 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.mining.MiningModel;
@@ -48,7 +47,7 @@ public class ObjFunction {
 	}
 
 	abstract
-	public Label encodeLabel(FieldName targetField, List<?> targetCategories, PMMLEncoder encoder);
+	public Label encodeLabel(String targetField, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema);

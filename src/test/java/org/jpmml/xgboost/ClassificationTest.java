@@ -24,7 +24,6 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
-import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
@@ -46,16 +45,16 @@ public class ClassificationTest extends XGBoostTest implements Algorithms, Datas
 			}
 
 			@Override
-			public List<Map<FieldName, String>> getInput() throws IOException {
+			public List<Map<String, String>> getInput() throws IOException {
 				String[] dataset = parseDataset();
 
-				List<Map<FieldName, String>> table = super.getInput();
+				List<Map<String, String>> table = super.getInput();
 
 				// XXX
 				if((AUDIT_NA).equals(dataset[0])){
-					FieldName income = FieldName.create("Income");
+					String income = "Income";
 
- 					for(Map<FieldName, String> row : table){
+ 					for(Map<String, String> row : table){
  						String value = row.get(income);
 
  						if(value == null){

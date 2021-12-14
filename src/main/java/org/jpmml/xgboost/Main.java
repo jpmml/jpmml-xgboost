@@ -31,7 +31,6 @@ import java.util.Map;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
-import org.dmg.pmml.FieldName;
 import org.dmg.pmml.PMML;
 import org.jpmml.model.metro.MetroJAXBUtil;
 import org.slf4j.Logger;
@@ -224,7 +223,7 @@ public class Main {
 			logger.info("Converting learner to PMML..");
 
 			long begin = System.currentTimeMillis();
-			pmml = learner.encodePMML(options, this.targetName != null ? FieldName.create(this.targetName) : null, this.targetCategories, featureMap);
+			pmml = learner.encodePMML(options, this.targetName, this.targetCategories, featureMap);
 			long end = System.currentTimeMillis();
 
 			logger.info("Converted learner to PMML in {} ms.", (end - begin));
