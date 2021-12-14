@@ -47,7 +47,7 @@ public class ObjFunction {
 	}
 
 	abstract
-	public Label encodeLabel(String targetField, List<?> targetCategories, PMMLEncoder encoder);
+	public Label encodeLabel(String targetName, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema);

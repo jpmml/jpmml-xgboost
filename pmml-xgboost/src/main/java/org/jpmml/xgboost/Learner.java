@@ -243,13 +243,13 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
-	public Schema encodeSchema(String targetField, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
+	public Schema encodeSchema(String targetName, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
 
-		if(targetField == null){
-			targetField = "_target";
+		if(targetName == null){
+			targetName = "_target";
 		}
 
-		Label label = this.obj.encodeLabel(targetField, targetCategories, encoder);
+		Label label = this.obj.encodeLabel(targetName, targetCategories, encoder);
 
 		List<Feature> features = featureMap.encodeFeatures(encoder);
 
@@ -303,12 +303,12 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public PMML encodePMML(Map<String, ?> options, String targetField, List<String> targetCategories, FeatureMap featureMap){
+	public PMML encodePMML(Map<String, ?> options, String targetName, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		Boolean nanAsMissing = (Boolean)options.get(HasXGBoostOptions.OPTION_NAN_AS_MISSING);
 
-		Schema schema = encodeSchema(targetField, targetCategories, featureMap, encoder);
+		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
