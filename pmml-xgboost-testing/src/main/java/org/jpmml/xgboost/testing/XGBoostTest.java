@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with JPMML-XGBoost.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jpmml.xgboost;
+package org.jpmml.xgboost.testing;
 
 import java.util.function.Predicate;
 

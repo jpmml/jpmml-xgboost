@@ -16,9 +16,10 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with JPMML-XGBoost.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jpmml.xgboost;
+package org.jpmml.xgboost.testing;
 
 import org.jpmml.evaluator.testing.FloatEquivalence;
+import org.jpmml.xgboost.testing.XGBoostTest;
 import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest implements Algorithms, Datasets {

@@ -16,7 +16,7 @@
  * You should have received a copy of the GNU Affero General Public License
  * along with JPMML-XGBoost.  If not, see <http://www.gnu.org/licenses/>.
  */
-package org.jpmml.xgboost;
+package org.jpmml.xgboost.testing;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -32,6 +32,10 @@ import org.dmg.pmml.Timestamp;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.IntegrationTestBatch;
 import org.jpmml.model.ReflectionUtil;
+import org.jpmml.xgboost.FeatureMap;
+import org.jpmml.xgboost.HasXGBoostOptions;
+import org.jpmml.xgboost.Learner;
+import org.jpmml.xgboost.XGBoostUtil;
 
 import static org.junit.Assert.assertTrue;
 
