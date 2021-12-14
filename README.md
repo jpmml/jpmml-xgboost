@@ -70,12 +70,12 @@ xgb.dump(mtcars.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
 
 Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
 ```
-java -jar target/jpmml-xgboost-executable-1.6-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
 ```
 
 Getting help:
 ```
-java -jar target/jpmml-xgboost-executable-1.6-SNAPSHOT.jar --help
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --help
 ```
 
 # Documentation #

@@ -34,6 +34,7 @@
 
 	<modules>
 		<module>pmml-xgboost</module>
+		<module>pmml-xgboost-example</module>
 		<module>pmml-xgboost-testing</module>
 	</modules>
 
@@ -53,6 +54,11 @@
 			<dependency>
 				<groupId>org.jpmml</groupId>
 				<artifactId>pmml-xgboost</artifactId>
+				<version>1.6-SNAPSHOT</version>
+			</dependency>
+			<dependency>
+				<groupId>org.jpmml</groupId>
+				<artifactId>pmml-xgboost-example</artifactId>
 				<version>1.6-SNAPSHOT</version>
 			</dependency>
 			<dependency>
