@@ -14,7 +14,7 @@ Enter the project root directory and build using [Apache Maven](http://maven.apa
 mvn clean install
 ```
 
-The build produces an executable uber-JAR file `target/jpmml-xgboost-executable-1.6-SNAPSHOT.jar`.
+The build produces a library JAR file `pmml-xgboost/target/pmml-xgboost-1.6-SNAPSHOT.jar`, and an executable uber-JAR file `pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar`.
 
 # Usage #
 
