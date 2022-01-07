@@ -59,7 +59,11 @@
 							<finalName>${project.artifactId}-executable-${project.version}</finalName>
 							<transformers>
 								<transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
-									<mainClass>org.jpmml.xgboost.example.Main</mainClass>
+									<manifestEntries>
+										<Main-Class>org.jpmml.xgboost.example.Main</Main-Class>
+										<Implementation-Title>JPMML-XGBoost command-line application</Implementation-Title>
+										<Implementation-Version>${project.version}</Implementation-Version>
+									</manifestEntries>
 								</transformer>
 							</transformers>
 						</configuration>
