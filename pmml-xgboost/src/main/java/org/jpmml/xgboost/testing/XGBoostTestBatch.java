@@ -37,8 +37,6 @@ import org.jpmml.xgboost.HasXGBoostOptions;
 import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.XGBoostUtil;
 
-import static org.junit.Assert.assertTrue;
-
 abstract
 public class XGBoostTestBatch extends IntegrationTestBatch {
 
@@ -149,7 +147,10 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 			leftHeader.setTimestamp(null);
 			rightHeader.setTimestamp(null);
 
-			assertTrue(ReflectionUtil.equals(left, right));
+			boolean equals = ReflectionUtil.equals(left, right);
+			if(!equals){
+				throw new AssertionError();
+			}
 		} finally {
 			leftHeader.setTimestamp(leftTimestamp);
 			rightHeader.setTimestamp(rightTimestamp);
