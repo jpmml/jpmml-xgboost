@@ -85,7 +85,7 @@ public class FeatureMap {
 
 			Feature feature;
 
-			OpType opType = dataField.getOpType();
+			OpType opType = dataField.requireOpType();
 			switch(opType){
 				case CATEGORICAL:
 					feature = new BinaryFeature(encoder, dataField, value);

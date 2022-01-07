@@ -24,14 +24,14 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import org.jpmml.converter.testing.Datasets;
+import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
-import org.jpmml.xgboost.testing.XGBoostTest;
-import org.jpmml.xgboost.testing.XGBoostTestBatch;
 import org.junit.Test;
 
-public class ClassificationTest extends XGBoostTest implements Algorithms, Datasets {
+public class ClassificationTest extends XGBoostTest implements Algorithms, Datasets, Fields {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));

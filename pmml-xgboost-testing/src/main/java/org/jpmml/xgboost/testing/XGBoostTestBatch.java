@@ -139,8 +139,8 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 	}
 
 	private void assertEquals(PMML left, PMML right){
-		Header leftHeader = left.getHeader();
-		Header rightHeader = right.getHeader();
+		Header leftHeader = left.requireHeader();
+		Header rightHeader = right.requireHeader();
 
 		Timestamp leftTimestamp = leftHeader.getTimestamp();
 		Timestamp rightTimestamp = rightHeader.getTimestamp();

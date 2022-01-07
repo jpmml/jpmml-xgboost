@@ -18,8 +18,8 @@
  */
 package org.jpmml.xgboost.testing;
 
+import org.jpmml.converter.testing.Datasets;
 import org.jpmml.evaluator.testing.FloatEquivalence;
-import org.jpmml.xgboost.testing.XGBoostTest;
 import org.junit.Test;
 
 public class RegressionTest extends XGBoostTest implements Algorithms, Datasets {
