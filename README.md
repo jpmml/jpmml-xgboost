@@ -9,7 +9,7 @@ Java library and command-line application for converting [XGBoost](https://githu
 
 # Installation #
 
-Enter the project root directory and build using [Apache Maven](http://maven.apache.org/):
+Enter the project root directory and build using [Apache Maven](https://maven.apache.org/):
 ```
 mvn clean install
 ```
@@ -26,7 +26,7 @@ A typical workflow can be summarized as follows:
 
 ### The XGBoost side of operations
 
-Using [`r2pmml`](https://github.com/jpmml/r2pmml) and [`xgboost`](http://cran.r-project.org/web/packages/xgboost/) packages to train a regression model for the example `mtcars` dataset:
+Using [`r2pmml`](https://github.com/jpmml/r2pmml) and [`xgboost`](https://cran.r-project.org/web/packages/xgboost/) packages to train a regression model for the example `mtcars` dataset:
 ```R
 library("r2pmml")
 library("xgboost")
