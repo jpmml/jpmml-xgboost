@@ -24,14 +24,13 @@ import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
-import org.jpmml.converter.testing.Datasets;
 import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms, Datasets, Fields {
+public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms, XGBoostDatasets, Fields {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));
@@ -79,7 +78,7 @@ public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT + "@31", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test
@@ -89,7 +88,7 @@ public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA + "@31", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test
@@ -119,7 +118,7 @@ public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms
 
 	@Test
 	public void evaluateMultinomialIrisLimit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS + "@11", new FloatEquivalence(8));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_LIMIT, new FloatEquivalence(8));
 	}
 
 	@Test
@@ -129,6 +128,6 @@ public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms
 
 	@Test
 	public void evaluateMultinomialIrisNALimit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA + "@11", new FloatEquivalence(12));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA_LIMIT, new FloatEquivalence(12));
 	}
 }
