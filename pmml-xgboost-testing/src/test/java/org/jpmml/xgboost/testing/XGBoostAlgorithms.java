@@ -18,7 +18,7 @@
  */
 package org.jpmml.xgboost.testing;
 
-public interface Algorithms {
+public interface XGBoostAlgorithms {
 
 	String BINOMIAL_CLASSIFICATION = "BinomialClassification";
 	String GAMMA_REGRESSION = "GammaRegression";

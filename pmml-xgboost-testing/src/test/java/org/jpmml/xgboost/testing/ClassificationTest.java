@@ -31,7 +31,7 @@ import org.jpmml.evaluator.testing.ArchiveBatch;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class ClassificationTest extends XGBoostTest implements Algorithms, Datasets, Fields {
+public class ClassificationTest extends XGBoostTest implements XGBoostAlgorithms, Datasets, Fields {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));
