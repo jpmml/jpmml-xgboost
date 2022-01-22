@@ -21,22 +21,21 @@ package org.jpmml.xgboost.testing;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import org.jpmml.converter.testing.ModelEncoderBatchTest;
 import org.jpmml.evaluator.ResultField;
-import org.jpmml.evaluator.testing.ArchiveBatch;
-import org.jpmml.evaluator.testing.IntegrationTest;
 
-public class XGBoostTest extends IntegrationTest {
+public class XGBoostTest extends ModelEncoderBatchTest {
 
 	public XGBoostTest(Equivalence<Object> equivalence){
 		super(equivalence);
 	}
 
 	@Override
-	protected ArchiveBatch createBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
-		ArchiveBatch result = new XGBoostTestBatch(name, dataset, predicate, equivalence){
+	public XGBoostTestBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
+		XGBoostTestBatch result = new XGBoostTestBatch(algorithm, dataset, columnFilter, equivalence){
 
 			@Override
-			public XGBoostTest getIntegrationTest(){
+			public XGBoostTest getArchiveBatchTest(){
 				return XGBoostTest.this;
 			}
 		};

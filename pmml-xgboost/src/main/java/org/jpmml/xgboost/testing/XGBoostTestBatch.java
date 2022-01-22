@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost.testing;
 
-import java.io.IOException;
 import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -29,8 +28,9 @@ import com.google.common.base.Equivalence;
 import org.dmg.pmml.Header;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Timestamp;
+import org.jpmml.converter.testing.ModelEncoderBatch;
+import org.jpmml.converter.testing.OptionsUtil;
 import org.jpmml.evaluator.ResultField;
-import org.jpmml.evaluator.testing.IntegrationTestBatch;
 import org.jpmml.model.ReflectionUtil;
 import org.jpmml.xgboost.FeatureMap;
 import org.jpmml.xgboost.HasXGBoostOptions;
@@ -38,48 +38,54 @@ import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.XGBoostUtil;
 
 abstract
-public class XGBoostTestBatch extends IntegrationTestBatch {
+public class XGBoostTestBatch extends ModelEncoderBatch {
 
 	private String format = System.getProperty(XGBoostTestBatch.class.getName() + ".format", "model,json");
 
 
-	public XGBoostTestBatch(String name, String dataset, Predicate<ResultField> predicate, Equivalence<Object> equivalence){
-		super(name, dataset, predicate, equivalence);
+	public XGBoostTestBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
+		super(algorithm, dataset, columnFilter, equivalence);
 	}
 
 	@Override
 	abstract
-	public XGBoostTest getIntegrationTest();
+	public XGBoostTest getArchiveBatchTest();
 
-	public Map<String, Object> getOptions(){
-		String[] dataset = parseDataset();
+	@Override
+	public List<Map<String, Object>> getOptionsMatrix(){
+		String dataset = getDataset();
 
 		Integer ntreeLimit = null;
-		if(dataset.length > 1){
-			ntreeLimit = new Integer(dataset[1]);
+
+		int index = dataset.indexOf('@');
+		if(index > -1){
+			ntreeLimit = new Integer(dataset.substring(index + 1));
 		}
 
 		Map<String, Object> options = new LinkedHashMap<>();
-		options.put(HasXGBoostOptions.OPTION_COMPACT, ntreeLimit != null);
+		options.put(HasXGBoostOptions.OPTION_COMPACT, new Boolean[]{false, true});
 		options.put(HasXGBoostOptions.OPTION_PRUNE, true);
 		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, true);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
 
-		return options;
+		return OptionsUtil.generateOptionsMatrix(options);
+	}
+
+	public String getLearnerPath(String format){
+		return "/xgboost/" + (getAlgorithm() + truncate(getDataset())) + "." + format;
+	}
+
+	public String getFeatureMapPath(){
+		return "/csv/" + truncate(getDataset()) + ".fmap";
 	}
 
 	@Override
 	public PMML getPMML() throws Exception {
 		PMML result = null;
 
-		String[] dataset = parseDataset();
-
-		String[] extensions = this.format.split(",");
-		for(String extension : extensions){
-			String learnerPath = "/xgboost/" + getName() + dataset[0] + "." + extension;
-			String featureMapPath = "/csv/" + dataset[0] + ".fmap";
-
-			PMML pmml = loadPMML(learnerPath, featureMapPath);
+		String[] formats = this.format.split(",");
+		for(String format : formats){
+			PMML pmml = loadPMML(getLearnerPath(format), getFeatureMapPath());
 
 			if(result != null){
 				assertEquals(result, pmml);
@@ -92,15 +98,13 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 	}
 
 	@Override
-	public List<Map<String, String>> getInput() throws IOException {
-		String[] dataset = parseDataset();
-
-		return loadRecords("/csv/" + dataset[0] + ".csv");
+	public String getInputCsvPath(){
+		return "/csv/" + truncate(getDataset()) + ".csv";
 	}
 
 	@Override
-	public List<Map<String, String>> getOutput() throws IOException {
-		return loadRecords("/csv/" + (getName() + getDataset()) + ".csv");
+	public String getOutputCsvPath(){
+		return super.getOutputCsvPath();
 	}
 
 	protected PMML loadPMML(String learnerPath, String featureMapPath) throws Exception {
@@ -123,17 +127,6 @@ public class XGBoostTestBatch extends IntegrationTestBatch {
 		validatePMML(pmml);
 
 		return pmml;
-	}
-
-	protected String[] parseDataset(){
-		String dataset = getDataset();
-
-		int index = dataset.indexOf('@');
-		if(index > -1){
-			return new String[]{dataset.substring(0, index), dataset.substring(index + 1)};
-		}
-
-		return new String[]{dataset};
 	}
 
 	private void assertEquals(PMML left, PMML right){
