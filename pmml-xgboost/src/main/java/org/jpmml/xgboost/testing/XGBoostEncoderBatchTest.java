@@ -24,19 +24,19 @@ import com.google.common.base.Equivalence;
 import org.jpmml.converter.testing.ModelEncoderBatchTest;
 import org.jpmml.evaluator.ResultField;
 
-public class XGBoostTest extends ModelEncoderBatchTest {
+public class XGBoostEncoderBatchTest extends ModelEncoderBatchTest {
 
-	public XGBoostTest(Equivalence<Object> equivalence){
+	public XGBoostEncoderBatchTest(Equivalence<Object> equivalence){
 		super(equivalence);
 	}
 
 	@Override
-	public XGBoostTestBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
-		XGBoostTestBatch result = new XGBoostTestBatch(algorithm, dataset, columnFilter, equivalence){
+	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
+		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
 			@Override
-			public XGBoostTest getArchiveBatchTest(){
-				return XGBoostTest.this;
+			public XGBoostEncoderBatchTest getArchiveBatchTest(){
+				return XGBoostEncoderBatchTest.this;
 			}
 		};
 

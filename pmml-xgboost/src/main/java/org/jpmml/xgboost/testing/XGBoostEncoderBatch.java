@@ -38,18 +38,18 @@ import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.XGBoostUtil;
 
 abstract
-public class XGBoostTestBatch extends ModelEncoderBatch {
+public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
-	private String format = System.getProperty(XGBoostTestBatch.class.getName() + ".format", "model,json");
+	private String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", "model,json");
 
 
-	public XGBoostTestBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
+	public XGBoostEncoderBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		super(algorithm, dataset, columnFilter, equivalence);
 	}
 
 	@Override
 	abstract
-	public XGBoostTest getArchiveBatchTest();
+	public XGBoostEncoderBatchTest getArchiveBatchTest();
 
 	@Override
 	public List<Map<String, Object>> getOptionsMatrix(){

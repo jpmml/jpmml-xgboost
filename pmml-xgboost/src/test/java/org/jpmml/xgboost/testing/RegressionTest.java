@@ -21,7 +21,7 @@ package org.jpmml.xgboost.testing;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class RegressionTest extends XGBoostTest implements XGBoostAlgorithms, XGBoostDatasets {
+public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets {
 
 	public RegressionTest(){
 		super(new FloatEquivalence(4));
