@@ -20,12 +20,16 @@ package org.jpmml.xgboost.visitors;
 
 import java.util.List;
 
+import org.dmg.pmml.HasFieldReference;
+import org.dmg.pmml.HasValue;
 import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.Node;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.visitors.AbstractTreeModelTransformer;
+import org.jpmml.model.UnsupportedAttributeException;
+import org.jpmml.model.UnsupportedElementException;
 
 public class TreeModelCompactor extends AbstractTreeModelTransformer {
 
@@ -36,31 +40,24 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 		Object defaultChild = node.getDefaultChild();
 
 		if(id == null){
-			throw new IllegalArgumentException();
+			throw new UnsupportedElementException(node);
 		} // End if
 
 		if(node.hasNodes()){
 			List<Node> children = node.getNodes();
 
-			if(children.size() != 2 || score != null || defaultChild == null){
-				throw new IllegalArgumentException();
+			if(score != null || defaultChild == null || children.size() != 2){
+				throw new UnsupportedElementException(node);
 			}
 
 			Node firstChild = children.get(0);
 			Node secondChild = children.get(1);
 
-			Predicate firstPredicate = firstChild.requirePredicate();
-			Predicate secondPredicate = secondChild.requirePredicate();
+			SimplePredicate firstPredicate = firstChild.requirePredicate(SimplePredicate.class);
+			SimplePredicate secondPredicate = secondChild.requirePredicate(SimplePredicate.class);
 
-			checkFieldReference(firstPredicate, secondPredicate);
-
-			if(firstPredicate instanceof SimplePredicate && secondPredicate instanceof SimplePredicate){
-				checkValue(firstPredicate, secondPredicate);
-			} else
-
-			{
-				throw new IllegalArgumentException();
-			} // End if
+			checkFieldReference((HasFieldReference<?>)firstPredicate, secondPredicate);
+			checkValue((HasValue<?>)firstPredicate, secondPredicate);
 
 			if(equalsNode(defaultChild, firstChild)){
 				children = swapChildren(node);
@@ -74,7 +71,7 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 			} else
 
 			{
-				throw new IllegalArgumentException();
+				throw new UnsupportedElementException(node);
 			}
 
 			node.setDefaultChild(null);
@@ -84,7 +81,7 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 
 		{
 			if(score == null || defaultChild != null){
-				throw new IllegalArgumentException();
+				throw new UnsupportedElementException(node);
 			}
 		}
 
@@ -109,20 +106,31 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 
 	@Override
 	public void enterTreeModel(TreeModel treeModel){
+		super.enterTreeModel(treeModel);
+
 		TreeModel.MissingValueStrategy missingValueStrategy = treeModel.getMissingValueStrategy();
-		TreeModel.NoTrueChildStrategy noTrueChildStrategy = treeModel.getNoTrueChildStrategy();
-		TreeModel.SplitCharacteristic splitCharacteristic = treeModel.getSplitCharacteristic();
-
-		if((missingValueStrategy != TreeModel.MissingValueStrategy.DEFAULT_CHILD) || (noTrueChildStrategy != TreeModel.NoTrueChildStrategy.RETURN_NULL_PREDICTION) || (splitCharacteristic != TreeModel.SplitCharacteristic.BINARY_SPLIT)){
-			throw new IllegalArgumentException();
+		if(missingValueStrategy != TreeModel.MissingValueStrategy.DEFAULT_CHILD){
+			throw new UnsupportedAttributeException(treeModel, missingValueStrategy);
 		}
-	}
 
-	@Override
-	public void exitTreeModel(TreeModel treeModel){
+		TreeModel.NoTrueChildStrategy noTrueChildStrategy = treeModel.getNoTrueChildStrategy();
+		if(noTrueChildStrategy != TreeModel.NoTrueChildStrategy.RETURN_NULL_PREDICTION){
+			throw new UnsupportedAttributeException(treeModel, noTrueChildStrategy);
+		}
+
+		TreeModel.SplitCharacteristic splitCharacteristic = treeModel.getSplitCharacteristic();
+		if(splitCharacteristic != TreeModel.SplitCharacteristic.BINARY_SPLIT){
+			throw new UnsupportedAttributeException(treeModel, splitCharacteristic);
+		}
+
 		treeModel
 			.setMissingValueStrategy(TreeModel.MissingValueStrategy.NONE)
 			.setNoTrueChildStrategy(TreeModel.NoTrueChildStrategy.RETURN_LAST_PREDICTION)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.MULTI_SPLIT);
+	}
+
+	@Override
+	public void exitTreeModel(TreeModel treeModel){
+		super.exitTreeModel(treeModel);
 	}
 }
