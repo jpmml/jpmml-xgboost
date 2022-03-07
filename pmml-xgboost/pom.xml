@@ -13,7 +13,7 @@
 	<packaging>jar</packaging>
 
 	<name>JPMML XGBoost converter</name>
-	<description>JPMML XGBoost to class model converter</description>
+	<description>JPMML XGBoost to PMML converter</description>
 
 	<licenses>
 		<license>
@@ -55,7 +55,7 @@
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-jar-plugin</artifactId>
-				<version>3.2.0</version>
+				<version>3.2.2</version>
 				<configuration>
 					<archive>
 						<manifestEntries>
