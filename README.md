@@ -26,51 +26,91 @@ A typical workflow can be summarized as follows:
 
 ### The XGBoost side of operations
 
-Using [`r2pmml`](https://github.com/jpmml/r2pmml) and [`xgboost`](https://cran.r-project.org/web/packages/xgboost/) packages to train a regression model for the example `mtcars` dataset:
+Training a binary classification model using the [`Audit.csv](https://github.com/jpmml/jpmml-xgboost/blob/master/pmml-xgboost/src/test/resources/csv/Audit.csv) dataset.
+
+##### R language
+
 ```R
 library("r2pmml")
 library("xgboost")
 
-data(mtcars)
+df = read.csv("Audit.csv", stringsAsFactors = TRUE)
 
-# Convert selected columns from numeric datatype to integer or factor datatypes
-mtcars$cyl = as.integer(mtcars$cyl)
-mtcars$vs = as.factor(mtcars$vs)
-mtcars$am = as.factor(mtcars$am)
-mtcars$gear = as.integer(mtcars$gear)
-mtcars$carb = as.integer(mtcars$carb)
+# Three continuous features, followed by five categorical features
+X = df[c("Age", "Hours", "Income", "Education", "Employment", "Gender", "Marital", "Occupation")]
+y = df["Adjusted"]
 
-mtcars_y = mtcars[, 1]
-mtcars_X = mtcars[, 2:ncol(mtcars)]
+audit.formula = formula("~ . - 1")
+audit.frame = model.frame(audit.formula, data = X, na.action = na.pass)
+# Define rules for binarizing categorical features into binary indicator features
+audit.contrasts = lapply(X[sapply(X, is.factor)], contrasts, contrasts = FALSE)
+# Perform binarization
+audit.matrix = model.matrix(audit.formula, data = audit.frame, contrasts.arg = audit.contrasts)
 
-mtcars.formula = formula(~ . - 1)
-mtcars.frame = model.frame(mtcars.formula, data = mtcars_X)
-mtcars.matrix = model.matrix(mtcars.formula, data = mtcars.frame)
+# Generate feature map based on audit.frame (not audit.matrix), because data.frame holds richer column meta-information than matrix
+audit.fmap = r2pmml::as.fmap(audit.frame)
+r2pmml::write.fmap(audit.fmap, "Audit.fmap")
 
-# Generate feature map
-mtcars.fmap = as.fmap(mtcars.frame)
-write.fmap(mtcars.fmap, "xgboost.fmap")
+audit.xgb = xgboost(data = audit.matrix, label = as.matrix(y), objective = "binary:logistic", nrounds = 131)
+xgb.save(audit.xgb, "XGBoostAudit.json")
+```
 
-# Generate DMatrix
-mtcars.dmatrix = xgb.DMatrix(data = mtcars.matrix, label = mtcars_y)
+##### Python language (Learning API)
 
-set.seed(31)
+```python
+from pandas import DataFrame
+from xgboost import DMatrix
 
-# Train a linear regression model
-mtcars.xgb = xgboost(data = mtcars.dmatrix, objective = "reg:squarederror", nrounds = 17)
+import pandas
+import xgboost
 
-# Save the model in XGBoost proprietary binary format
-xgb.save(mtcars.xgb, "xgboost.model")
+def make_fmap(X):
+    cols = X.columns
+    dtypes = X.dtypes
 
-# Dump the model in text format
-xgb.dump(mtcars.xgb, "xgboost.model.txt", fmap = "xgboost.fmap")
+    def to_fmap_type(dtype):
+        if dtype == "int":
+            return "int"
+        elif dtype == "float":
+            return "q"
+        elif dtype == "uint8":
+            return "i"
+        else:
+            raise ValueError(dtype)
+
+    fmap_rows = []
+
+    for col in cols:
+        fmap_rows.append((len(fmap_rows), col, to_fmap_type(dtypes[col])))
+
+    return DataFrame(fmap_rows, columns = ["id", "name", "type"])
+
+def save_fmap(fmap, path):
+    fmap.to_csv(path, header = False, index = False, sep = "\t")
+
+df = pandas.read_csv("Audit.csv")
+
+# Three continuous features, followed by five categorical features
+X = df[["Age", "Hours", "Income", "Education", "Employment", "Gender", "Marital", "Occupation"]]
+y = df["Adjusted"]
+
+# Convert categorical features into binary indicator features
+X = pandas.get_dummies(data = X, prefix_sep = "=")
+
+audit_fmap = make_fmap(X)
+save_fmap(audit_fmap, "Audit.fmap")
+
+audit_dmatrix = DMatrix(data = X, label = y)
+
+audit_xgb = xgboost.train(params = {"objective" : "binary:logistic"}, dtrain = audit_dmatrix, num_boost_round = 131)
+audit_xgb.save_model("XGBoostAudit.json")
 ```
 
 ### The JPMML-XGBoost side of operations
 
-Converting the model file `xgboost.model` together with the associated feature map file `xgboost.fmap` to a PMML file `xgboost.pmml`:
+Converting the model file `XGBoostAudit.json` together with the associated feature map file `Audit.fmap` to a PMML file `XGBoostAudit.pmml`:
 ```
-java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --model-input xgboost.model --fmap-input xgboost.fmap --target-name mpg --pmml-output xgboost.pmml
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --model-input XGBoostAudit.json --fmap-input Audit.fmap --target-name Adjusted --pmml-output XGBoostAudit.pmml
 ```
 
 Getting help:
