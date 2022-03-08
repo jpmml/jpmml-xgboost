@@ -28,7 +28,7 @@ A typical workflow can be summarized as follows:
 
 Training a binary classification model using the [`Audit.csv](https://github.com/jpmml/jpmml-xgboost/blob/master/pmml-xgboost/src/test/resources/csv/Audit.csv) dataset.
 
-##### R language
+#### R language
 
 ```R
 library("r2pmml")
@@ -55,7 +55,7 @@ audit.xgb = xgboost(data = audit.matrix, label = as.matrix(y), objective = "bina
 xgb.save(audit.xgb, "XGBoostAudit.json")
 ```
 
-##### Python language (Learning API)
+#### Python language (Learning API)
 
 ```python
 from pandas import DataFrame
