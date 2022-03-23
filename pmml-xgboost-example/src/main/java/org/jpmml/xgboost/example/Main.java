@@ -59,8 +59,7 @@ public class Main {
 
 	@Parameter (
 		names = {"--fmap-input"},
-		description = "XGBoost feature map input file",
-		required = true
+		description = "XGBoost feature map input file"
 	)
 	private File fmapInput = null;
 
@@ -197,19 +196,28 @@ public class Main {
 
 		FeatureMap featureMap;
 
-		try(InputStream is = new FileInputStream(this.fmapInput)){
-			logger.info("Parsing feature map..");
+		if(this.fmapInput != null){
 
-			long begin = System.currentTimeMillis();
-			featureMap = XGBoostUtil.loadFeatureMap(is);
-			long end = System.currentTimeMillis();
+			try(InputStream is = new FileInputStream(this.fmapInput)){
+				logger.info("Parsing feature map..");
 
-			logger.info("Parsed feature map in {} ms.", (end - begin));
-		} catch(Exception e){
-			logger.error("Failed to parse feature map", e);
+				long begin = System.currentTimeMillis();
+				featureMap = XGBoostUtil.loadFeatureMap(is);
+				long end = System.currentTimeMillis();
 
-			throw e;
-		}
+				logger.info("Parsed feature map in {} ms.", (end - begin));
+			} catch(Exception e){
+				logger.error("Failed to parse feature map", e);
+
+				throw e;
+			}
+		} else
+
+		{
+			logger.info("Parsing embedded feature map");
+
+			featureMap = learner.encodeFeatureMap();
+		} // End if
 
 		if(this.missingValue != null){
 			featureMap.addMissingValue(this.missingValue);
