@@ -71,6 +71,10 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 	private Map<String, String> attributes = null;
 
+	private String[] feature_names = null;
+
+	private String[] feature_types = null;
+
 	private String[] metrics = null;
 
 
@@ -169,6 +173,16 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 		this.gbtree = parseGradientBooster(name_gbm);
 		this.gbtree.loadJSON(gradientBooster);
+
+		JsonArray featureNames = learner.getAsJsonArray("feature_names");
+		if(featureNames != null && !featureNames.isEmpty()){
+			this.feature_names = JSONUtil.toStringArray(featureNames);
+		}
+
+		JsonArray featureTypes = learner.getAsJsonArray("feature_types");
+		if(featureTypes != null && !featureTypes.isEmpty()){
+			this.feature_types = JSONUtil.toStringArray(featureTypes);
+		}
 	}
 
 	public <DIS extends InputStream & DataInput> void loadBinary(DIS is, String charset) throws IOException {
@@ -241,6 +255,21 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 				throw new IOException();
 			}
 		}
+	}
+
+	public FeatureMap encodeFeatureMap(){
+
+		if(this.feature_names == null || this.feature_types == null){
+			throw new IllegalArgumentException();
+		}
+
+		FeatureMap result = new FeatureMap();
+
+		for(int i = 0; i < this.feature_names.length; i++){
+			result.addEntry(this.feature_names[i], this.feature_types[i]);
+		}
+
+		return result;
 	}
 
 	public Schema encodeSchema(String targetName, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){

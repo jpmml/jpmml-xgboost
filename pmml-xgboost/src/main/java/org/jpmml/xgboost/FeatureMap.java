@@ -223,6 +223,7 @@ public class FeatureMap {
 					case "i":
 						return Type.BINARY_INDICATOR;
 					case "q":
+					case "float":
 						return Type.FLOAT;
 					case "int":
 						return Type.INTEGER;

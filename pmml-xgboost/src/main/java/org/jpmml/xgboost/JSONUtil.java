@@ -57,4 +57,15 @@ public class JSONUtil {
 
 		return result;
 	}
+
+	static
+	public String[] toStringArray(JsonArray array){
+		String[] result = new String[array.size()];
+
+		for(int i = 0; i < result.length; i++){
+			result[i] = (array.get(i)).getAsString();
+		}
+
+		return result;
+	}
 }
