@@ -55,49 +55,13 @@ public class FeatureMap {
 
 		List<Entry> entries = getEntries();
 		for(Entry entry : entries){
-			String name = entry.getName();
-			String value = entry.getValue();
-
-			DataField dataField = encoder.getDataField(name);
-			if(dataField == null){
-				Entry.Type type = entry.getType();
-
-				switch(type){
-					case BINARY_INDICATOR:
-						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
-						break;
-					case FLOAT:
-						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
-						break;
-					case INTEGER:
-						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
-						break;
-					default:
-						throw new IllegalArgumentException(String.valueOf(type));
-				}
-			}
-
-			if(value != null){
-				PMMLUtil.addValues(dataField, Collections.singletonList(value));
-			}
-
-			dataFields.add(dataField);
-
-			Feature feature;
-
-			OpType opType = dataField.requireOpType();
-			switch(opType){
-				case CATEGORICAL:
-					feature = new BinaryFeature(encoder, dataField, value);
-					break;
-				case CONTINUOUS:
-					feature = new ContinuousFeature(encoder, dataField);
-					break;
-				default:
-					throw new IllegalArgumentException("Expected categorical or continuous operational type, got " + opType.value() + " operational type");
-			}
+			Feature feature = entry.encodeFeature(encoder);
 
 			result.add(feature);
+
+			DataField dataField = (DataField)feature.getField();
+
+			dataFields.add(dataField);
 		}
 
 		Collection<Map.Entry<Value.Property, List<String>>> valueEntries = this.valueMap.entrySet();
@@ -113,20 +77,28 @@ public class FeatureMap {
 	}
 
 	public void addEntry(String name, String type){
-		String value = null;
+		addEntry(name, Entry.Type.fromString(type));
 
-		if(("i").equals(type)){
+	}
+
+	public void addEntry(String name, Entry.Type type){
+		Entry entry;
+
+		if(type == Entry.Type.BINARY_INDICATOR){
+			String value = null;
+
 			int equals = name.indexOf('=');
-
-			if(equals < 0){
-				throw new IllegalArgumentException(name);
+			if(equals > -1){
+				value = name.substring(equals + 1);
+				name = name.substring(0, equals);
 			}
 
-			value = name.substring(equals + 1);
-			name = name.substring(0, equals);
-		}
+			entry = new CategoricalEntry(name, value, type);
+		} else
 
-		Entry entry = new Entry(name, value, Entry.Type.fromString(type));
+		{
+			entry = new ContinuousEntry(name, type);
+		}
 
 		addEntry(entry);
 	}
@@ -169,21 +141,22 @@ public class FeatureMap {
 		values.add(value);
 	}
 
+	abstract
 	static
 	public class Entry {
 
 		private String name = null;
 
-		private String value = null;
-
 		private Type type = null;
 
 
-		public Entry(String name, String value, Type type){
+		public Entry(String name, Type type){
 			setName(name);
-			setValue(value);
 			setType(type);
 		}
+
+		abstract
+		public Feature encodeFeature(PMMLEncoder encoder);
 
 		public String getName(){
 			return this.name;
@@ -191,14 +164,6 @@ public class FeatureMap {
 
 		private void setName(String name){
 			this.name = Objects.requireNonNull(name);
-		}
-
-		public String getValue(){
-			return this.value;
-		}
-
-		private void setValue(String value){
-			this.value = value;
 		}
 
 		public Type getType(){
@@ -231,6 +196,93 @@ public class FeatureMap {
 						throw new IllegalArgumentException(string);
 				}
 			}
+		}
+	}
+
+	static
+	private class ContinuousEntry extends Entry {
+
+		public ContinuousEntry(String name, Type type){
+			super(name, type);
+		}
+
+		@Override
+		public Feature encodeFeature(PMMLEncoder encoder){
+			String name = getName();
+			Type type = getType();
+
+			DataField dataField = encoder.getDataField(name);
+			if(dataField == null){
+
+				switch(type){
+					case FLOAT:
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
+						break;
+					case INTEGER:
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+			}
+
+			return new ContinuousFeature(encoder, dataField);
+		}
+	}
+
+	static
+	private class CategoricalEntry extends Entry {
+
+		private String value = null;
+
+
+		public CategoricalEntry(String name, String value, Type type){
+			super(name, type);
+
+			setValue(value);
+		}
+
+		@Override
+		public Feature encodeFeature(PMMLEncoder encoder){
+			String name = getName();
+			String value = getValue();
+			Type type = getType();
+
+			DataField dataField = encoder.getDataField(name);
+			if(dataField == null){
+
+				switch(type){
+					case BINARY_INDICATOR:
+						if(value != null){
+							dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
+						} else
+
+						{
+							dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.BOOLEAN);
+						}
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+			} // End if
+
+			if(value != null){
+				PMMLUtil.addValues(dataField, Collections.singletonList(value));
+
+				return new BinaryFeature(encoder, dataField, value);
+			} else
+
+			{
+				return new BinaryFeature(encoder, dataField, Boolean.TRUE);
+			}
+		}
+
+		public String getValue(){
+			return this.value;
+		}
+
+		private void setValue(String value){
+			this.value = value;
 		}
 	}
 }
