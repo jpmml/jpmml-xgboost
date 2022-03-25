@@ -84,7 +84,7 @@ public class FeatureMap {
 	public void addEntry(String name, Entry.Type type){
 		Entry entry;
 
-		if(type == Entry.Type.BINARY_INDICATOR){
+		if(type == Entry.Type.INDICATOR){
 			String value = null;
 
 			int equals = name.indexOf('=');
@@ -93,7 +93,7 @@ public class FeatureMap {
 				name = name.substring(0, equals);
 			}
 
-			entry = new CategoricalEntry(name, value, type);
+			entry = new IndicatorEntry(name, value, type);
 		} else
 
 		{
@@ -176,9 +176,10 @@ public class FeatureMap {
 
 		static
 		public enum Type {
-			BINARY_INDICATOR,
-			FLOAT,
+			INDICATOR,
+			QUANTITIVE,
 			INTEGER,
+			FLOAT,
 			;
 
 			static
@@ -186,12 +187,13 @@ public class FeatureMap {
 
 				switch(string){
 					case "i":
-						return Type.BINARY_INDICATOR;
+						return Type.INDICATOR;
 					case "q":
-					case "float":
-						return Type.FLOAT;
+						return Type.QUANTITIVE;
 					case "int":
 						return Type.INTEGER;
+					case "float":
+						return Type.FLOAT;
 					default:
 						throw new IllegalArgumentException(string);
 				}
@@ -200,43 +202,12 @@ public class FeatureMap {
 	}
 
 	static
-	private class ContinuousEntry extends Entry {
-
-		public ContinuousEntry(String name, Type type){
-			super(name, type);
-		}
-
-		@Override
-		public Feature encodeFeature(PMMLEncoder encoder){
-			String name = getName();
-			Type type = getType();
-
-			DataField dataField = encoder.getDataField(name);
-			if(dataField == null){
-
-				switch(type){
-					case FLOAT:
-						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
-						break;
-					case INTEGER:
-						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
-						break;
-					default:
-						throw new IllegalArgumentException();
-				}
-			}
-
-			return new ContinuousFeature(encoder, dataField);
-		}
-	}
-
-	static
-	private class CategoricalEntry extends Entry {
+	private class IndicatorEntry extends Entry {
 
 		private String value = null;
 
 
-		public CategoricalEntry(String name, String value, Type type){
+		public IndicatorEntry(String name, String value, Type type){
 			super(name, type);
 
 			setValue(value);
@@ -252,7 +223,7 @@ public class FeatureMap {
 			if(dataField == null){
 
 				switch(type){
-					case BINARY_INDICATOR:
+					case INDICATOR:
 						if(value != null){
 							dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
 						} else
@@ -283,6 +254,40 @@ public class FeatureMap {
 
 		private void setValue(String value){
 			this.value = value;
+		}
+	}
+
+	static
+	private class ContinuousEntry extends Entry {
+
+		public ContinuousEntry(String name, Type type){
+			super(name, type);
+		}
+
+		@Override
+		public Feature encodeFeature(PMMLEncoder encoder){
+			String name = getName();
+			Type type = getType();
+
+			DataField dataField = encoder.getDataField(name);
+			if(dataField == null){
+
+				switch(type){
+					case QUANTITIVE:
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
+						break;
+					case INTEGER:
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.INTEGER);
+						break;
+					case FLOAT:
+						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+			}
+
+			return new ContinuousFeature(encoder, dataField);
 		}
 	}
 }
