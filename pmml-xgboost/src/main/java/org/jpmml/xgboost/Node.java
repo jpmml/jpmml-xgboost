@@ -31,6 +31,9 @@ public class Node {
 	public int split_index();
 
 	abstract
+	public int split_type();
+
+	abstract
 	public int split_cond();
 
 	abstract

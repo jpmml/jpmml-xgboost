@@ -19,10 +19,12 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.google.common.primitives.Ints;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonPrimitive;
 import org.dmg.pmml.DataType;
@@ -35,6 +37,7 @@ import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.CategoryManager;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
@@ -100,24 +103,80 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		int[] split_type = JSONUtil.toIntArray(tree.getAsJsonArray("split_type"));
 		float[] split_conditions = JSONUtil.toFloatArray(tree.getAsJsonArray("split_conditions"));
 
+		boolean has_cat = Ints.contains(split_type, 1);
+
 		this.nodes = new Node[this.num_nodes];
 
 		for(int i = 0; i < this.num_nodes; i++){
-
-			if(split_type[i] != 0){
-				throw new IllegalArgumentException();
-			}
-
 			JsonObject node = new JsonObject();
 			node.add("parent", new JsonPrimitive(parents[i]));
 			node.add("left_child", new JsonPrimitive(left_children[i]));
 			node.add("right_child", new JsonPrimitive(right_children[i]));
 			node.add("default_left", new JsonPrimitive(default_left[i]));
 			node.add("split_index", new JsonPrimitive(split_indices[i]));
+			node.add("split_type", new JsonPrimitive(split_type[i]));
 			node.add("split_condition", new JsonPrimitive(split_conditions[i]));
 
 			this.nodes[i] = new JSONNode();
 			((JSONLoadable)this.nodes[i]).loadJSON(node);
+		}
+
+		if(has_cat){
+			int[] categories_segments = JSONUtil.toIntArray(tree.getAsJsonArray("categories_segments"));
+			int[] categories_sizes = JSONUtil.toIntArray(tree.getAsJsonArray("categories_sizes"));
+			int[] categories_nodes = JSONUtil.toIntArray(tree.getAsJsonArray("categories_nodes"));
+			int[] categories = JSONUtil.toIntArray(tree.getAsJsonArray("categories"));
+
+			int cnt = 0;
+
+			int last_cat_node = categories_nodes[cnt];
+
+			for(int i = 0; i < this.num_nodes; i++){
+				JSONNode node = (JSONNode)this.nodes[i];
+
+				if(i == last_cat_node){
+					int j_begin = categories_segments[cnt];
+					int j_end = j_begin + categories_sizes[cnt];
+
+					int max_cat = -1;
+
+					for(int j = j_begin; j < j_end; j++){
+						int category = categories[j];
+
+						max_cat = Math.max(max_cat, category);
+					}
+
+					if(max_cat == -1){
+						throw new IllegalArgumentException();
+					}
+
+					int n_cats = (max_cat + 1);
+
+					BitSet cat_bits = new BitSet(n_cats);
+
+					for(int j = j_begin; j < j_end; j++){
+						int category = categories[j];
+
+						cat_bits.set(category, true);
+					}
+
+					node.set_split_categories(cat_bits);
+
+					cnt++;
+
+					if(cnt == categories_nodes.length){
+						last_cat_node = -1;
+					} else
+
+					{
+						last_cat_node = categories_nodes[cnt];
+					}
+				} else
+
+				{
+					node.set_split_categories(null);
+				}
+			}
 		}
 	}
 
@@ -161,6 +220,52 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			Predicate leftPredicate;
 			Predicate rightPredicate;
+
+			if(feature instanceof CategoricalFeature){
+
+				if(node.split_type() != 1){
+					throw new IllegalArgumentException();
+				}
+			} else
+
+			{
+				if(node.split_type() != 0){
+					throw new IllegalArgumentException();
+				}
+			} // End if
+
+			if(feature instanceof CategoricalFeature){
+				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+
+				Float splitValue = Float.intBitsToFloat(node.split_cond());
+				if(!splitValue.isNaN()){
+					throw new IllegalArgumentException();
+				}
+
+				BitSet split_categories = null;
+
+				if(node instanceof JSONNode){
+					JSONNode jsonNode = (JSONNode)node;
+
+					split_categories = jsonNode.get_split_categories();
+				} // End if
+
+				if(split_categories == null){
+					throw new IllegalArgumentException();
+				} else
+
+				// Assume one-hot-encoding
+				if(split_categories.cardinality() != 1){
+					throw new IllegalArgumentException();
+				}
+
+				int catIndex = split_categories.nextSetBit(0);
+
+				Object value = categoricalFeature.getValue(catIndex);
+
+				leftPredicate = predicateManager.createSimplePredicate(categoricalFeature, SimplePredicate.Operator.NOT_EQUAL, value);
+				rightPredicate = predicateManager.createSimplePredicate(categoricalFeature, SimplePredicate.Operator.EQUAL, value);
+			} else
 
 			if(feature instanceof BinaryFeature){
 				BinaryFeature binaryFeature = (BinaryFeature)feature;

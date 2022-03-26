@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -33,6 +34,7 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.PMMLEncoder;
@@ -77,28 +79,7 @@ public class FeatureMap {
 	}
 
 	public void addEntry(String name, String type){
-		addEntry(name, Entry.Type.fromString(type));
-
-	}
-
-	public void addEntry(String name, Entry.Type type){
-		Entry entry;
-
-		if(type == Entry.Type.INDICATOR){
-			String value = null;
-
-			int equals = name.indexOf('=');
-			if(equals > -1){
-				value = name.substring(equals + 1);
-				name = name.substring(0, equals);
-			}
-
-			entry = new IndicatorEntry(name, value, type);
-		} else
-
-		{
-			entry = new ContinuousEntry(name, type);
-		}
+		Entry entry = createEntry(name, Entry.Type.fromString(type));
 
 		addEntry(entry);
 	}
@@ -141,6 +122,31 @@ public class FeatureMap {
 		values.add(value);
 	}
 
+	static
+	private Entry createEntry(String name, Entry.Type type){
+
+		switch(type){
+			case INDICATOR:
+				String value = null;
+
+				int equals = name.indexOf('=');
+				if(equals > -1){
+					value = name.substring(equals + 1);
+					name = name.substring(0, equals);
+				}
+
+				return new IndicatorEntry(name, value, type);
+			case QUANTITIVE:
+			case INTEGER:
+			case FLOAT:
+				return new ContinuousEntry(name, type);
+			case CATEGORICAL:
+				return new CategoricalEntry(name, type);
+			default:
+				throw new IllegalArgumentException();
+		}
+	}
+
 	abstract
 	static
 	public class Entry {
@@ -180,6 +186,7 @@ public class FeatureMap {
 			QUANTITIVE,
 			INTEGER,
 			FLOAT,
+			CATEGORICAL,
 			;
 
 			static
@@ -194,6 +201,9 @@ public class FeatureMap {
 						return Type.INTEGER;
 					case "float":
 						return Type.FLOAT;
+					case "c":
+					case "categorical":
+						return Type.CATEGORICAL;
 					default:
 						throw new IllegalArgumentException(string);
 				}
@@ -288,6 +298,62 @@ public class FeatureMap {
 			}
 
 			return new ContinuousFeature(encoder, dataField);
+		}
+	}
+
+	static
+	private class CategoricalEntry extends Entry {
+
+		public CategoricalEntry(String name, Type type){
+			super(name, type);
+		}
+
+		@Override
+		public Feature encodeFeature(PMMLEncoder encoder){
+			String name = getName();
+			Type type = getType();
+
+			DataField dataField = encoder.getDataField(name);
+			if(dataField == null){
+
+				switch(type){
+					case CATEGORICAL:
+						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+			}
+
+			List<Integer> values = new AbstractList<Integer>(){
+
+				private int max = -1;
+
+
+				@Override
+				public boolean isEmpty(){
+					return false;
+				}
+
+				@Override
+				public int size(){
+
+					if(this.max < 0){
+						throw new IllegalStateException();
+					}
+
+					return (this.max + 1);
+				}
+
+				@Override
+				public Integer get(int i){
+					this.max = Math.max(this.max, i);
+
+					return i;
+				}
+			};
+
+			return new CategoricalFeature(encoder, dataField, values);
 		}
 	}
 }

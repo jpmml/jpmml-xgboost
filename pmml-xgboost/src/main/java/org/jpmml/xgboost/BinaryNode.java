@@ -71,6 +71,11 @@ public class BinaryNode extends Node implements BinaryLoadable {
 	}
 
 	@Override
+	public int split_type(){
+		return 0;
+	}
+
+	@Override
 	public int split_cond(){
 		return this.info;
 	}

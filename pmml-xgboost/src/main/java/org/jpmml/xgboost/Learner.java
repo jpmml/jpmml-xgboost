@@ -39,6 +39,7 @@ import org.dmg.pmml.PMML;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
+import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.Label;
@@ -290,6 +291,12 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 			@Override
 			public Feature apply(Feature feature){
+
+				if(feature instanceof CategoricalFeature){
+					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+
+					return categoricalFeature;
+				} else
 
 				if(feature instanceof BinaryFeature){
 					BinaryFeature binaryFeature = (BinaryFeature)feature;

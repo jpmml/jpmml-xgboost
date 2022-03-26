@@ -18,6 +18,8 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.BitSet;
+
 import com.google.gson.JsonObject;
 
 public class JSONNode extends Node implements JSONLoadable {
@@ -32,7 +34,11 @@ public class JSONNode extends Node implements JSONLoadable {
 
 	private int split_index;
 
+	private int split_type;
+
 	private float split_condition;
+
+	private BitSet split_categories;
 
 
 	public JSONNode(){
@@ -45,7 +51,16 @@ public class JSONNode extends Node implements JSONLoadable {
 		this.right_child = node.getAsJsonPrimitive("right_child").getAsInt();
 		this.default_left = node.getAsJsonPrimitive("default_left").getAsBoolean();
 		this.split_index = node.getAsJsonPrimitive("split_index").getAsInt();
+		this.split_type = node.getAsJsonPrimitive("split_type").getAsInt();
 		this.split_condition = node.getAsJsonPrimitive("split_condition").getAsFloat();
+
+		switch(this.split_type){
+			case 0:
+			case 1:
+				break;
+			default:
+				throw new IllegalArgumentException();
+		}
 	}
 
 	@Override
@@ -69,6 +84,11 @@ public class JSONNode extends Node implements JSONLoadable {
 	}
 
 	@Override
+	public int split_type(){
+		return this.split_type;
+	}
+
+	@Override
 	public int split_index(){
 		return this.split_index;
 	}
@@ -81,5 +101,13 @@ public class JSONNode extends Node implements JSONLoadable {
 	@Override
 	public float leaf_value(){
 		return this.split_condition;
+	}
+
+	public BitSet get_split_categories(){
+		return this.split_categories;
+	}
+
+	void set_split_categories(BitSet split_categories){
+		this.split_categories = split_categories;
 	}
 }
