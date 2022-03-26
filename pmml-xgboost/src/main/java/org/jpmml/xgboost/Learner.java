@@ -222,14 +222,13 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 	}
 
 	public void loadJSON(InputStream is, String charset, String jsonPath) throws IOException {
-		JsonParser parser = new JsonParser();
 
 		if(charset == null){
 			charset = "UTF-8";
 		}
 
 		try(Reader reader = new InputStreamReader(is, charset)){
-			JsonElement element = parser.parse(reader);
+			JsonElement element = JsonParser.parseReader(reader);
 
 			JsonObject object = element.getAsJsonObject();
 

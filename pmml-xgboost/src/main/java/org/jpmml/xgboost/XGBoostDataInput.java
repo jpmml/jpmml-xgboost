@@ -23,6 +23,7 @@ import java.io.DataInput;
 import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
 import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -142,21 +143,22 @@ public class XGBoostDataInput implements Closeable {
 		return readObjectArray(clazz, length);
 	}
 
+	@SuppressWarnings("unchecked")
 	public <E extends BinaryLoadable> E[] readObjectArray(Class<? extends E> clazz, int length) throws IOException {
 		E[] result = (E[])Array.newInstance(clazz, length);
 
-		for(int i = 0; i < result.length; i++){
-			E object;
+		try {
+			Constructor<? extends E> constructor = clazz.getDeclaredConstructor();
 
-			try {
-				object = clazz.newInstance();
-			} catch(ReflectiveOperationException roe){
-				throw new IOException(roe);
+			for(int i = 0; i < result.length; i++){
+				E object = constructor.newInstance();
+
+				object.loadBinary(this);
+
+				result[i] = object;
 			}
-
-			object.loadBinary(this);
-
-			result[i] = object;
+		} catch(ReflectiveOperationException roe){
+			throw new IOException(roe);
 		}
 
 		return result;

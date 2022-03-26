@@ -59,7 +59,7 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 		int index = dataset.indexOf('@');
 		if(index > -1){
-			ntreeLimit = new Integer(dataset.substring(index + 1));
+			ntreeLimit = Integer.valueOf(dataset.substring(index + 1));
 		}
 
 		Map<String, Object> options = new LinkedHashMap<>();
