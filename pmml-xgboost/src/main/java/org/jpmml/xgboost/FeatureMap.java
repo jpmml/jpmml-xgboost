@@ -212,7 +212,7 @@ public class FeatureMap {
 	}
 
 	static
-	private class IndicatorEntry extends Entry {
+	public class IndicatorEntry extends Entry {
 
 		private String value = null;
 
@@ -268,7 +268,7 @@ public class FeatureMap {
 	}
 
 	static
-	private class ContinuousEntry extends Entry {
+	public class ContinuousEntry extends Entry {
 
 		public ContinuousEntry(String name, Type type){
 			super(name, type);
@@ -302,7 +302,7 @@ public class FeatureMap {
 	}
 
 	static
-	private class CategoricalEntry extends Entry {
+	public class CategoricalEntry extends Entry {
 
 		public CategoricalEntry(String name, Type type){
 			super(name, type);
