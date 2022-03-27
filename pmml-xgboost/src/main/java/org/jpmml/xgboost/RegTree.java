@@ -344,7 +344,15 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 				DataType dataType = continuousFeature.getDataType();
 				switch(dataType){
 					case INTEGER:
-						splitValue = (int)(splitValue.floatValue() + 1f);
+						Float flooredSplitValue = (float)Math.floor(splitValue.floatValue());
+
+						if(splitValue.floatValue() == flooredSplitValue.floatValue()){
+							splitValue = (int)flooredSplitValue.floatValue();
+						} else
+
+						{
+							splitValue = (int)(flooredSplitValue.floatValue() + 1f);
+						}
 						break;
 					case FLOAT:
 						break;
