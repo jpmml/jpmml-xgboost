@@ -21,7 +21,9 @@ package org.jpmml.xgboost;
 import java.io.IOException;
 import java.util.BitSet;
 import java.util.Collections;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import com.google.common.primitives.Ints;
@@ -103,7 +105,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		int[] split_type = JSONUtil.toIntArray(tree.getAsJsonArray("split_type"));
 		float[] split_conditions = JSONUtil.toFloatArray(tree.getAsJsonArray("split_conditions"));
 
-		boolean has_cat = Ints.contains(split_type, 1);
+		boolean has_cat = Ints.contains(split_type, Node.SPLIT_CATEGORICAL);
 
 		this.nodes = new Node[this.num_nodes];
 
@@ -180,6 +182,20 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
+	public Set<Integer> getSplitType(int splitIndex){
+		Set<Integer> result = new HashSet<>();
+
+		for(int i = 0; i < this.num_nodes; i++){
+			Node node = this.nodes[i];
+
+			if(node.split_index() == splitIndex){
+				result.add(node.split_type());
+			}
+		}
+
+		return result;
+	}
+
 	public Float getLeafValue(){
 		Node node = this.nodes[0];
 
@@ -223,13 +239,13 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 			if(feature instanceof CategoricalFeature){
 
-				if(node.split_type() != 1){
+				if(node.split_type() != Node.SPLIT_CATEGORICAL){
 					throw new IllegalArgumentException();
 				}
 			} else
 
 			{
-				if(node.split_type() != 0){
+				if(node.split_type() != Node.SPLIT_NUMERICAL){
 					throw new IllegalArgumentException();
 				}
 			} // End if

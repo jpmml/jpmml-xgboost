@@ -44,4 +44,7 @@ public class Node {
 
 	abstract
 	public boolean default_left();
+
+	public static final int SPLIT_NUMERICAL = 0;
+	public static final int SPLIT_CATEGORICAL = 1;
 }

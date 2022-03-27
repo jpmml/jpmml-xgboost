@@ -20,6 +20,8 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 import com.google.common.primitives.Floats;
 import com.google.gson.JsonArray;
@@ -90,6 +92,18 @@ public class GBTree extends GradientBooster {
 		}
 
 		this.tree_info = JSONUtil.toIntArray(model.getAsJsonArray("tree_info"));
+	}
+
+	public Set<Integer> getSplitType(int splitIndex){
+		Set<Integer> result = new HashSet<>();
+
+		for(int i = 0; i < this.num_trees; i++){
+			RegTree tree = this.trees[i];
+
+			result.addAll(tree.getSplitType(splitIndex));
+		}
+
+		return result;
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){

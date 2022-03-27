@@ -28,8 +28,10 @@ import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.function.Function;
 
+import com.google.common.collect.Iterables;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -286,16 +288,28 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 	}
 
 	public Schema toXGBoostSchema(boolean numeric, Schema schema){
+		GBTree gbtree = this.gbtree;
+
 		Function<Feature, Feature> function = new Function<Feature, Feature>(){
+
+			private List<? extends Feature> features = schema.getFeatures();
+
 
 			@Override
 			public Feature apply(Feature feature){
+				int splitType = getSplitType(feature);
 
-				if(feature instanceof CategoricalFeature){
-					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+				switch(splitType){
+					case Node.SPLIT_NUMERICAL:
+						return applyNumerical(feature);
+					case Node.SPLIT_CATEGORICAL:
+						return applyCategorical(feature);
+					default:
+						throw new IllegalArgumentException();
+				}
+			}
 
-					return categoricalFeature;
-				} else
+			private Feature applyNumerical(Feature feature){
 
 				if(feature instanceof BinaryFeature){
 					BinaryFeature binaryFeature = (BinaryFeature)feature;
@@ -331,6 +345,44 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 					}
 
 					return continuousFeature;
+				}
+			}
+
+			private Feature applyCategorical(Feature feature){
+
+				if(feature instanceof CategoricalFeature){
+					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+
+					return categoricalFeature;
+				} else
+
+				{
+					throw new IllegalArgumentException();
+				}
+			}
+
+			private int getSplitType(Feature feature){
+				int splitIndex = this.features.indexOf(feature);
+				if(splitIndex < 0){
+					throw new IllegalArgumentException();
+				}
+
+				return getSplitType(splitIndex);
+			}
+
+			private int getSplitType(int splitIndex){
+				Set<Integer> splitTypes = gbtree.getSplitType(splitIndex);
+
+				if(splitTypes.size() == 0){
+					return Node.SPLIT_NUMERICAL;
+				} else
+
+				if(splitTypes.size() == 1){
+					return Iterables.getOnlyElement(splitTypes);
+				} else
+
+				{
+					throw new IllegalArgumentException();
 				}
 			}
 		};
