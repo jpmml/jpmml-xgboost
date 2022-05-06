@@ -14,7 +14,7 @@ Enter the project root directory and build using [Apache Maven](https://maven.ap
 mvn clean install
 ```
 
-The build produces a library JAR file `pmml-xgboost/target/pmml-xgboost-1.6-SNAPSHOT.jar`, and an executable uber-JAR file `pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar`.
+The build produces a library JAR file `pmml-xgboost/target/pmml-xgboost-1.7-SNAPSHOT.jar`, and an executable uber-JAR file `pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSHOT.jar`.
 
 # Usage #
 
@@ -140,14 +140,14 @@ audit_xgb.save_model("XGBoostAudit.json")
 
 Converting the model file `XGBoostAudit.json` together with the associated feature map file `Audit.fmap` to a PMML file `XGBoostAudit.pmml`:
 ```
-java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --model-input XGBoostAudit.json --fmap-input Audit.fmap --target-name Adjusted --pmml-output XGBoostAudit.pmml
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSHOT.jar --model-input XGBoostAudit.json --fmap-input Audit.fmap --target-name Adjusted --pmml-output XGBoostAudit.pmml
 ```
 
 If the XGBoost model contains an embedded feature map, then the `--fmap-input` command-line option may be omitted.
 
 Getting help:
 ```
-java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.6-SNAPSHOT.jar --help
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSHOT.jar --help
 ```
 
 # Documentation #

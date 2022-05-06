@@ -10,7 +10,7 @@
 
 	<groupId>org.jpmml</groupId>
 	<artifactId>jpmml-xgboost</artifactId>
-	<version>1.6-SNAPSHOT</version>
+	<version>1.7-SNAPSHOT</version>
 	<packaging>pom</packaging>
 
 	<name>JPMML-XGBoost</name>
@@ -53,12 +53,12 @@
 			<dependency>
 				<groupId>org.jpmml</groupId>
 				<artifactId>pmml-xgboost</artifactId>
-				<version>1.6-SNAPSHOT</version>
+				<version>1.7-SNAPSHOT</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jpmml</groupId>
 				<artifactId>pmml-xgboost-example</artifactId>
-				<version>1.6-SNAPSHOT</version>
+				<version>1.7-SNAPSHOT</version>
 			</dependency>
 
 			<dependency>
