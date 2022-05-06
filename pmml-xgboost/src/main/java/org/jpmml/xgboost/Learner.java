@@ -190,12 +190,12 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		this.gbtree.loadJSON(gradientBooster);
 
 		JsonArray featureNames = learner.getAsJsonArray("feature_names");
-		if(featureNames != null && !featureNames.isEmpty()){
+		if(featureNames != null && featureNames.size() > 0){
 			this.feature_names = JSONUtil.toStringArray(featureNames);
 		}
 
 		JsonArray featureTypes = learner.getAsJsonArray("feature_types");
-		if(featureTypes != null && !featureTypes.isEmpty()){
+		if(featureTypes != null && featureTypes.size() > 0){
 			this.feature_types = JSONUtil.toStringArray(featureTypes);
 		}
 	}
@@ -235,14 +235,16 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	public void loadJSON(InputStream is, String charset, String jsonPath) throws IOException {
+		JsonParser parser = new JsonParser();
 
 		if(charset == null){
 			charset = "UTF-8";
 		}
 
 		try(Reader reader = new InputStreamReader(is, charset)){
-			JsonElement element = JsonParser.parseReader(reader);
+			JsonElement element = parser.parse(reader);
 
 			JsonObject object = element.getAsJsonObject();
 
