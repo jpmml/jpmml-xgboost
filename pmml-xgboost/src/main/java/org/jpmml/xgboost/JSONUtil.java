@@ -19,6 +19,8 @@
 package org.jpmml.xgboost;
 
 import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonPrimitive;
 
 public class JSONUtil {
 
@@ -30,7 +32,21 @@ public class JSONUtil {
 		boolean[] result = new boolean[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			result[i] = (array.get(i)).getAsBoolean();
+			JsonElement element = array.get(i);
+
+			JsonPrimitive primitiveElement = element.getAsJsonPrimitive();
+
+			if(primitiveElement.isBoolean()){
+				result[i] = primitiveElement.getAsBoolean();
+			} else
+
+			if(primitiveElement.isNumber()){
+				result[i] = (primitiveElement.getAsInt() == 1);
+			} else
+
+			{
+				throw new IllegalArgumentException();
+			}
 		}
 
 		return result;
@@ -41,7 +57,9 @@ public class JSONUtil {
 		int[] result = new int[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			result[i] = (array.get(i)).getAsInt();
+			JsonElement element = array.get(i);
+
+			result[i] = element.getAsInt();
 		}
 
 		return result;
@@ -52,7 +70,9 @@ public class JSONUtil {
 		float[] result = new float[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			result[i] = (array.get(i)).getAsFloat();
+			JsonElement element = array.get(i);
+
+			result[i] = element.getAsFloat();
 		}
 
 		return result;
@@ -63,7 +83,9 @@ public class JSONUtil {
 		String[] result = new String[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			result[i] = (array.get(i)).getAsString();
+			JsonElement element = array.get(i);
+
+			result[i] = element.getAsString();
 		}
 
 		return result;

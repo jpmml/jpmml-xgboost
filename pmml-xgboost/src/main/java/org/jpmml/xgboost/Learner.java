@@ -68,6 +68,8 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 	private int minor_version;
 
+	private int num_target;
+
 	private ObjFunction obj;
 
 	private GBTree gbtree;
@@ -99,7 +101,9 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
 		}
 
-		input.readReserved(27);
+		this.num_target = Math.max(input.readInt(), 1);
+
+		input.readReserved(26);
 
 		String name_obj = input.readString();
 
@@ -160,6 +164,14 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 		this.base_score = learnerModelParam.getAsJsonPrimitive("base_score").getAsFloat();
 		this.num_feature = learnerModelParam.getAsJsonPrimitive("num_feature").getAsInt();
 		this.num_class = learnerModelParam.getAsJsonPrimitive("num_class").getAsInt();
+
+		if(learnerModelParam.has("num_target")){
+			this.num_target = learnerModelParam.getAsJsonPrimitive("num_target").getAsInt();
+		} else
+
+		{
+			this.num_target = 1;
+		}
 
 		JsonObject objective = learner.getAsJsonObject("objective");
 
@@ -278,6 +290,10 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 		if(targetName == null){
 			targetName = "_target";
+		} // End if
+
+		if(this.num_target != 1){
+			throw new IllegalArgumentException();
 		}
 
 		Label label = this.obj.encodeLabel(targetName, targetCategories, encoder);
