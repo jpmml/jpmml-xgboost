@@ -26,9 +26,12 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import com.devsmart.ubjson.GsonUtil;
+import com.devsmart.ubjson.UBObject;
+import com.devsmart.ubjson.UBValue;
+import com.devsmart.ubjson.UBValueFactory;
 import com.google.common.primitives.Ints;
 import com.google.gson.JsonObject;
-import com.google.gson.JsonPrimitive;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
@@ -51,7 +54,7 @@ import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.ThresholdFeatureUtil;
 import org.jpmml.converter.ValueUtil;
 
-public class RegTree implements BinaryLoadable, JSONLoadable {
+public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	private int num_roots;
 
@@ -90,44 +93,52 @@ public class RegTree implements BinaryLoadable, JSONLoadable {
 
 	@Override
 	public void loadJSON(JsonObject tree){
-		JsonObject treeParam = tree.getAsJsonObject("tree_param");
+		UBValue value = GsonUtil.toUBValue(tree);
 
-		this.num_nodes = treeParam.getAsJsonPrimitive("num_nodes").getAsInt();
-		this.num_deleted = treeParam.getAsJsonPrimitive("num_deleted").getAsInt();
-		this.num_feature = treeParam.getAsJsonPrimitive("num_feature").getAsInt();
-		this.size_leaf_vector = treeParam.getAsJsonPrimitive("size_leaf_vector").getAsInt();
+		loadUBJSON(value.asObject());
+	}
 
-		int[] parents = JSONUtil.toIntArray(tree.getAsJsonArray("parents"));
-		int[] left_children = JSONUtil.toIntArray(tree.getAsJsonArray("left_children"));
-		int[] right_children = JSONUtil.toIntArray(tree.getAsJsonArray("right_children"));
-		boolean[] default_left = JSONUtil.toBooleanArray(tree.getAsJsonArray("default_left"));
-		int[] split_indices = JSONUtil.toIntArray(tree.getAsJsonArray("split_indices"));
-		int[] split_type = JSONUtil.toIntArray(tree.getAsJsonArray("split_type"));
-		float[] split_conditions = JSONUtil.toFloatArray(tree.getAsJsonArray("split_conditions"));
+	@Override
+	public void loadUBJSON(UBObject tree){
+		UBObject treeParam = tree.get("tree_param").asObject();
+
+		this.num_nodes = treeParam.get("num_nodes").asInt();
+		this.num_deleted = treeParam.get("num_deleted").asInt();
+		this.num_feature = treeParam.get("num_feature").asInt();
+		this.size_leaf_vector = treeParam.get("size_leaf_vector").asInt();
+
+		int[] parents = UBJSONUtil.toIntArray(tree.get("parents"));
+		int[] left_children = UBJSONUtil.toIntArray(tree.get("left_children"));
+		int[] right_children = UBJSONUtil.toIntArray(tree.get("right_children"));
+		boolean[] default_left = UBJSONUtil.toBooleanArray(tree.get("default_left"));
+		int[] split_indices = UBJSONUtil.toIntArray(tree.get("split_indices"));
+		int[] split_type = UBJSONUtil.toIntArray(tree.get("split_type"));
+		float[] split_conditions = UBJSONUtil.toFloatArray(tree.get("split_conditions"));
 
 		boolean has_cat = Ints.contains(split_type, Node.SPLIT_CATEGORICAL);
 
 		this.nodes = new Node[this.num_nodes];
 
 		for(int i = 0; i < this.num_nodes; i++){
-			JsonObject node = new JsonObject();
-			node.add("parent", new JsonPrimitive(parents[i]));
-			node.add("left_child", new JsonPrimitive(left_children[i]));
-			node.add("right_child", new JsonPrimitive(right_children[i]));
-			node.add("default_left", new JsonPrimitive(default_left[i]));
-			node.add("split_index", new JsonPrimitive(split_indices[i]));
-			node.add("split_type", new JsonPrimitive(split_type[i]));
-			node.add("split_condition", new JsonPrimitive(split_conditions[i]));
+			UBObject node = UBValueFactory.createObject();
+
+			node.put("parent", UBValueFactory.createInt(parents[i]));
+			node.put("left_child", UBValueFactory.createInt(left_children[i]));
+			node.put("right_child", UBValueFactory.createInt(right_children[i]));
+			node.put("default_left", UBValueFactory.createBool(default_left[i]));
+			node.put("split_index", UBValueFactory.createInt(split_indices[i]));
+			node.put("split_type", UBValueFactory.createInt(split_type[i]));
+			node.put("split_condition", UBValueFactory.createFloat32(split_conditions[i]));
 
 			this.nodes[i] = new JSONNode();
-			((JSONLoadable)this.nodes[i]).loadJSON(node);
+			((UBJSONLoadable)this.nodes[i]).loadUBJSON(node);
 		}
 
 		if(has_cat){
-			int[] categories_segments = JSONUtil.toIntArray(tree.getAsJsonArray("categories_segments"));
-			int[] categories_sizes = JSONUtil.toIntArray(tree.getAsJsonArray("categories_sizes"));
-			int[] categories_nodes = JSONUtil.toIntArray(tree.getAsJsonArray("categories_nodes"));
-			int[] categories = JSONUtil.toIntArray(tree.getAsJsonArray("categories"));
+			int[] categories_segments = UBJSONUtil.toIntArray(tree.get("categories_segments"));
+			int[] categories_sizes = UBJSONUtil.toIntArray(tree.get("categories_sizes"));
+			int[] categories_nodes = UBJSONUtil.toIntArray(tree.get("categories_nodes"));
+			int[] categories = UBJSONUtil.toIntArray(tree.get("categories"));
 
 			int cnt = 0;
 

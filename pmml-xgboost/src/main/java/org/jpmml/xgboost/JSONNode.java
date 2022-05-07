@@ -20,9 +20,12 @@ package org.jpmml.xgboost;
 
 import java.util.BitSet;
 
+import com.devsmart.ubjson.GsonUtil;
+import com.devsmart.ubjson.UBObject;
+import com.devsmart.ubjson.UBValue;
 import com.google.gson.JsonObject;
 
-public class JSONNode extends Node implements JSONLoadable {
+public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 
 	private int parent;
 
@@ -46,13 +49,20 @@ public class JSONNode extends Node implements JSONLoadable {
 
 	@Override
 	public void loadJSON(JsonObject node){
-		this.parent = node.getAsJsonPrimitive("parent").getAsInt();
-		this.left_child = node.getAsJsonPrimitive("left_child").getAsInt();
-		this.right_child = node.getAsJsonPrimitive("right_child").getAsInt();
-		this.default_left = node.getAsJsonPrimitive("default_left").getAsBoolean();
-		this.split_index = node.getAsJsonPrimitive("split_index").getAsInt();
-		this.split_type = node.getAsJsonPrimitive("split_type").getAsInt();
-		this.split_condition = node.getAsJsonPrimitive("split_condition").getAsFloat();
+		UBValue value = GsonUtil.toUBValue(node);
+
+		loadUBJSON(value.asObject());
+	}
+
+	@Override
+	public void loadUBJSON(UBObject node){
+		this.parent = node.get("parent").asInt();
+		this.left_child = node.get("left_child").asInt();
+		this.right_child = node.get("right_child").asInt();
+		this.default_left = node.get("default_left").asBool();
+		this.split_index = node.get("split_index").asInt();
+		this.split_type = node.get("split_type").asInt();
+		this.split_condition = node.get("split_condition").asFloat32();
 
 		switch(this.split_type){
 			case 0:

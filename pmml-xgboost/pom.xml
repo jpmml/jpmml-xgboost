@@ -40,6 +40,15 @@
 		</dependency>
 
 		<dependency>
+			<groupId>com.dev-smart</groupId>
+			<artifactId>ubjson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.dev-smart</groupId>
+			<artifactId>ubjson-gson</artifactId>
+		</dependency>
+
+		<dependency>
 			<groupId>com.google.code.gson</groupId>
 			<artifactId>gson</artifactId>
 		</dependency>

@@ -40,7 +40,7 @@ import org.jpmml.xgboost.XGBoostUtil;
 abstract
 public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
-	private String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", "model,json");
+	private String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", "model,json,ubj");
 
 
 	public XGBoostEncoderBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){

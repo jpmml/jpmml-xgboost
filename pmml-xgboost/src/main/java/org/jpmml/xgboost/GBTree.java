@@ -23,8 +23,11 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.devsmart.ubjson.GsonUtil;
+import com.devsmart.ubjson.UBArray;
+import com.devsmart.ubjson.UBObject;
+import com.devsmart.ubjson.UBValue;
 import com.google.common.primitives.Floats;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.Schema;
@@ -73,25 +76,32 @@ public class GBTree extends GradientBooster {
 
 	@Override
 	public void loadJSON(JsonObject gradientBooster){
-		JsonObject model = gradientBooster.getAsJsonObject("model");
+		UBValue value = GsonUtil.toUBValue(gradientBooster);
 
-		JsonObject gbtreeModelParam = model.getAsJsonObject("gbtree_model_param");
+		loadUBJSON(value.asObject());
+	}
 
-		this.num_trees = gbtreeModelParam.getAsJsonPrimitive("num_trees").getAsInt();
-		this.size_leaf_vector = gbtreeModelParam.getAsJsonPrimitive("size_leaf_vector").getAsInt();
+	@Override
+	public void loadUBJSON(UBObject gradientBooster){
+		UBObject model = gradientBooster.get("model").asObject();
 
-		JsonArray trees = model.getAsJsonArray("trees");
+		UBObject gbtreeModelParam = model.get("gbtree_model_param").asObject();
+
+		this.num_trees = gbtreeModelParam.get("num_trees").asInt();
+		this.size_leaf_vector = gbtreeModelParam.get("size_leaf_vector").asInt();
+
+		UBArray trees = model.get("trees").asArray();
 
 		this.trees = new RegTree[this.num_trees];
 
 		for(int i = 0; i < this.num_trees; i++){
-			JsonObject tree = (trees.get(i)).getAsJsonObject();
+			UBObject tree = (trees.get(i)).asObject();
 
 			this.trees[i] = new RegTree();
-			this.trees[i].loadJSON(tree);
+			this.trees[i].loadUBJSON(tree);
 		}
 
-		this.tree_info = JSONUtil.toIntArray(model.getAsJsonArray("tree_info"));
+		this.tree_info = UBJSONUtil.toIntArray(model.get("tree_info"));
 	}
 
 	public Set<Integer> getSplitType(int splitIndex){

@@ -21,6 +21,7 @@ storeCsv = function(data, file){
 storeModel = function(xgb, funcAndDataset, dataset){
 	xgb.save(xgb, xgboostFile(funcAndDataset, ".model"))
 	xgb.save(xgb, xgboostFile(funcAndDataset, ".json"))
+	xgb.save(xgb, xgboostFile(funcAndDataset, ".ubj"))
 
 	xgb.dump(xgb, xgboostFile(funcAndDataset, ".dump"), fmap = csvFile(dataset, ".fmap"), dump_format = "json")
 }

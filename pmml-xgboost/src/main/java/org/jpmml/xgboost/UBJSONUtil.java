@@ -18,30 +18,33 @@
  */
 package org.jpmml.xgboost;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonPrimitive;
+import com.devsmart.ubjson.UBArray;
+import com.devsmart.ubjson.UBValue;
 
-public class JSONUtil {
+public class UBJSONUtil {
 
-	private JSONUtil(){
+	private UBJSONUtil(){
 	}
 
 	static
-	public boolean[] toBooleanArray(JsonArray array){
+	public boolean[] toBooleanArray(UBValue value){
+		UBArray array = value.asArray();
+
+		if(array.isBool()){
+			return array.asBoolArray();
+		}
+
 		boolean[] result = new boolean[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			JsonElement element = array.get(i);
+			UBValue element = array.get(i);
 
-			JsonPrimitive primitiveElement = element.getAsJsonPrimitive();
-
-			if(primitiveElement.isBoolean()){
-				result[i] = primitiveElement.getAsBoolean();
+			if(element.isBool()){
+				result[i] = element.asBool();
 			} else
 
-			if(primitiveElement.isNumber()){
-				result[i] = (primitiveElement.getAsInt() == 1);
+			if(element.isNumber()){
+				result[i] = (element.asInt() == 1);
 			} else
 
 			{
@@ -53,39 +56,57 @@ public class JSONUtil {
 	}
 
 	static
-	public int[] toIntArray(JsonArray array){
+	public int[] toIntArray(UBValue value){
+		UBArray array = value.asArray();
+
+		if(array.isInteger()){
+			return array.asInt32Array();
+		}
+
 		int[] result = new int[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			JsonElement element = array.get(i);
+			UBValue element = array.get(i);
 
-			result[i] = element.getAsInt();
+			result[i] = element.asInt();
 		}
 
 		return result;
 	}
 
 	static
-	public float[] toFloatArray(JsonArray array){
+	public float[] toFloatArray(UBValue value){
+		UBArray array = value.asArray();
+
+		if(array.isNumber()){
+			return array.asFloat32Array();
+		}
+
 		float[] result = new float[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			JsonElement element = array.get(i);
+			UBValue element = array.get(i);
 
-			result[i] = element.getAsFloat();
+			result[i] = element.asFloat32();
 		}
 
 		return result;
 	}
 
 	static
-	public String[] toStringArray(JsonArray array){
+	public String[] toStringArray(UBValue value){
+		UBArray array = value.asArray();
+
+		if(array.isString()){
+			return array.asStringArray();
+		}
+
 		String[] result = new String[array.size()];
 
 		for(int i = 0; i < result.length; i++){
-			JsonElement element = array.get(i);
+			UBValue element = array.get(i);
 
-			result[i] = element.getAsString();
+			result[i] = element.asString();
 		}
 
 		return result;

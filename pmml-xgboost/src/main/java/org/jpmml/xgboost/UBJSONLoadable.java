@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2019 Villu Ruusmann
+ * Copyright (c) 2022 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,9 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-abstract
-public class GradientBooster implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
+import com.devsmart.ubjson.UBObject;
 
-	abstract
-	public String getAlgorithmName();
+public interface UBJSONLoadable {
+
+	void loadUBJSON(UBObject object);
 }

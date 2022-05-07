@@ -31,8 +31,11 @@ import java.util.Map;
 import java.util.Set;
 import java.util.function.Function;
 
+import com.devsmart.ubjson.GsonUtil;
+import com.devsmart.ubjson.UBObject;
+import com.devsmart.ubjson.UBReader;
+import com.devsmart.ubjson.UBValue;
 import com.google.common.collect.Iterables;
-import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -52,7 +55,7 @@ import org.jpmml.converter.visitors.NaNAsMissingDecorator;
 import org.jpmml.converter.visitors.TreeModelPruner;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
-public class Learner implements BinaryLoadable, JSONLoadable {
+public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	private float base_score;
 
@@ -148,55 +151,65 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 
 	@Override
 	public void loadJSON(JsonObject root){
-		JsonArray version = root.getAsJsonArray("version");
+		UBValue value = GsonUtil.toUBValue(root);
 
-		this.major_version = (version.get(0)).getAsInt();
-		this.minor_version = (version.get(1)).getAsInt();
+		loadUBJSON(value.asObject());
+	}
 
-		if(this.major_version < 1 || this.minor_version < 3){
-			throw new IllegalArgumentException();
+	@Override
+	public void loadUBJSON(UBObject root){
+
+		if(!root.containsKey("version")){
+			throw new IllegalArgumentException("Property \"version\" not found among " + root.keySet());
 		}
 
-		JsonObject learner = root.getAsJsonObject("learner");
+		int[] version = UBJSONUtil.toIntArray(root.get("version"));
 
-		JsonObject learnerModelParam = learner.getAsJsonObject("learner_model_param");
+		this.major_version = version[0];
+		this.minor_version = version[1];
 
-		this.base_score = learnerModelParam.getAsJsonPrimitive("base_score").getAsFloat();
-		this.num_feature = learnerModelParam.getAsJsonPrimitive("num_feature").getAsInt();
-		this.num_class = learnerModelParam.getAsJsonPrimitive("num_class").getAsInt();
+		if(this.major_version < 1 || this.minor_version < 3){
+			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
+		}
 
-		if(learnerModelParam.has("num_target")){
-			this.num_target = learnerModelParam.getAsJsonPrimitive("num_target").getAsInt();
+		UBObject learner = root.get("learner").asObject();
+
+		UBObject learnerModelParam = learner.get("learner_model_param").asObject();
+
+		this.base_score = learnerModelParam.get("base_score").asFloat32();
+		this.num_feature = learnerModelParam.get("num_feature").asInt();
+		this.num_class = learnerModelParam.get("num_class").asInt();
+
+		if(learnerModelParam.containsKey("num_target")){
+			this.num_target = learnerModelParam.get("num_target").asInt();
 		} else
 
 		{
 			this.num_target = 1;
 		}
 
-		JsonObject objective = learner.getAsJsonObject("objective");
+		UBObject objective = learner.get("objective").asObject();
 
-		String name_obj = objective.getAsJsonPrimitive("name").getAsString();
+		String name_obj = objective.get("name").asString();
 
 		this.obj = parseObjective(name_obj);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		this.base_score = this.obj.probToMargin(this.base_score) + 0f;
 
-		JsonObject gradientBooster = learner.getAsJsonObject("gradient_booster");
+		UBObject gradientBooster = learner.get("gradient_booster").asObject();
 
-		String name_gbm = gradientBooster.getAsJsonPrimitive("name").getAsString();
+		String name_gbm = gradientBooster.get("name").asString();
 
 		this.gbtree = parseGradientBooster(name_gbm);
-		this.gbtree.loadJSON(gradientBooster);
+		this.gbtree.loadUBJSON(gradientBooster);
 
-		JsonArray featureNames = learner.getAsJsonArray("feature_names");
-		if(featureNames != null && featureNames.size() > 0){
-			this.feature_names = JSONUtil.toStringArray(featureNames);
-		}
+		if(learner.containsKey("feature_names")){
+			this.feature_names = UBJSONUtil.toStringArray(learner.get("feature_names"));
+		} // End if
 
-		JsonArray featureTypes = learner.getAsJsonArray("feature_types");
-		if(featureTypes != null && featureTypes.size() > 0){
-			this.feature_types = JSONUtil.toStringArray(featureTypes);
+		if(learner.containsKey("feature_types")){
+			this.feature_types = UBJSONUtil.toStringArray(learner.get("feature_types"));
 		}
 	}
 
@@ -252,19 +265,49 @@ public class Learner implements BinaryLoadable, JSONLoadable {
 			for(int i = 0; i < names.length; i++){
 				String name = names[i];
 
-				if(i == 0){
-
-					if(!("$").equals(name)){
-						throw new IllegalArgumentException(jsonPath);
-					}
-				} else
-
-				{
-					object = object.getAsJsonObject(name);
+				if(i == 0 && ("$").equals(name)){
+					continue;
 				}
+
+				JsonElement childElement = object.get(name);
+				if(childElement == null){
+					throw new IllegalArgumentException("Property \"" + name + "\" not among " + object.keySet());
+				}
+
+				object = childElement.getAsJsonObject();
 			}
 
 			loadJSON(object);
+
+			int eof = is.read();
+			if(eof != -1){
+				throw new IOException();
+			}
+		}
+	}
+
+	public void loadUBJSON(InputStream is, String jsonPath) throws IOException {
+
+		try(UBReader reader = new UBReader(is)){
+			UBObject object = reader.read().asObject();
+
+			String[] names = jsonPath.split("\\.");
+			for(int i = 0; i < names.length; i++){
+				String name = names[i];
+
+				if(i == 0 && ("$").equals(name)){
+					continue;
+				}
+
+				UBValue childValue = object.get(name);
+				if(childValue == null){
+					throw new IllegalArgumentException("Property \"" + name + "\" not among " + object.keySet());
+				}
+
+				object = childValue.asObject();
+			}
+
+			loadUBJSON(object);
 
 			int eof = is.read();
 			if(eof != -1){

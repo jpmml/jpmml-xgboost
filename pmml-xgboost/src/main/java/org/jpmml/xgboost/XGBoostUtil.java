@@ -50,7 +50,7 @@ public class XGBoostUtil {
 
 	static
 	public Learner loadLearner(InputStream is, ByteOrder byteOrder, String charset, String jsonPath) throws IOException {
-		is = new BufferedInputStream(is, 16);
+		is = new BufferedInputStream(is, 16 * 1024);
 
 		if((ByteOrder.BIG_ENDIAN).equals(byteOrder)){
 			return loadLearner(new DataInputStream(is), charset, jsonPath);
@@ -72,22 +72,31 @@ public class XGBoostUtil {
 			throw new IllegalArgumentException();
 		}
 
-		boolean isJson;
+		String signature = null;
 
-		is.mark(1);
+		is.mark(10);
 
 		try {
-			int c = is.read();
+			byte[] buffer = new byte[10];
 
-			isJson = (c == '{');
+			int length = is.read(buffer);
+
+			signature = new String(buffer, 0, length);
 		} finally {
 			is.reset();
 		}
 
 		Learner learner = new Learner();
 
-		if(isJson){
-			learner.loadJSON(is, charset, jsonPath);
+		if(signature.startsWith("{")){
+
+			if(signature.contains("\"learner\"")){
+				learner.loadJSON(is, charset, jsonPath);
+			} else
+
+			{
+				learner.loadUBJSON(is, jsonPath);
+			}
 		} else
 
 		{
