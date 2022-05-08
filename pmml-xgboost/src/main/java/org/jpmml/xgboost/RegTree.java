@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashSet;
@@ -264,6 +265,9 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			if(feature instanceof CategoricalFeature){
 				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
 
+				String name = categoricalFeature.getName();
+				List<?> values = categoricalFeature.getValues();
+
 				Float splitValue = Float.intBitsToFloat(node.split_cond());
 				if(!splitValue.isNaN()){
 					throw new IllegalArgumentException();
@@ -279,19 +283,34 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				if(split_categories == null){
 					throw new IllegalArgumentException();
-				} else
-
-				// Assume one-hot-encoding
-				if(split_categories.cardinality() != 1){
-					throw new IllegalArgumentException();
 				}
 
-				int catIndex = split_categories.nextSetBit(0);
+				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
 
-				Object value = categoricalFeature.getValue(catIndex);
+				List<Object> leftValues = new ArrayList<>();
+				List<Object> rightValues = new ArrayList<>();
 
-				leftPredicate = predicateManager.createSimplePredicate(categoricalFeature, SimplePredicate.Operator.NOT_EQUAL, value);
-				rightPredicate = predicateManager.createSimplePredicate(categoricalFeature, SimplePredicate.Operator.EQUAL, value);
+				for(int i = 0; i < values.size(); i++){
+					Object value = values.get(i);
+
+					if(!valueFilter.test(value)){
+						continue;
+					} // End if
+
+					if(!split_categories.get(i)){
+						leftValues.add(value);
+					} else
+
+					{
+						rightValues.add(value);
+					}
+				}
+
+				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
+				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
+
+				leftPredicate = predicateManager.createPredicate(categoricalFeature, leftValues);
+				rightPredicate = predicateManager.createPredicate(categoricalFeature, rightValues);
 			} else
 
 			if(feature instanceof BinaryFeature){
