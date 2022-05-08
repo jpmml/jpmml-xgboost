@@ -72,25 +72,13 @@ public class XGBoostUtil {
 			throw new IllegalArgumentException();
 		}
 
-		String signature = null;
-
-		is.mark(10);
-
-		try {
-			byte[] buffer = new byte[10];
-
-			int length = is.read(buffer);
-
-			signature = new String(buffer, 0, length);
-		} finally {
-			is.reset();
-		}
+		String signature = readSignature(is, 16);
 
 		Learner learner = new Learner();
 
 		if(signature.startsWith("{")){
 
-			if(signature.contains("\"learner\"")){
+			if(isText(signature)){
 				learner.loadJSON(is, charset, jsonPath);
 			} else
 
@@ -140,6 +128,47 @@ public class XGBoostUtil {
 		List<String> lines = CharStreams.readLines(reader);
 
 		return lines.iterator();
+	}
+
+	static
+	private String readSignature(InputStream is, int limit) throws IOException {
+		is.mark(limit);
+
+		try {
+			byte[] buffer = new byte[limit];
+
+			int length = is.read(buffer);
+
+			return new String(buffer, 0, length);
+		} finally {
+			is.reset();
+		}
+	}
+
+	static
+	private boolean isText(String json){
+
+		if(!json.startsWith("{")){
+			throw new IllegalArgumentException();
+		}
+
+		for(int i = 1; i < json.length(); i++){
+			char c = json.charAt(i);
+
+			if(Character.isWhitespace(c)){
+				continue;
+			} // End if
+
+			if(c == '\"'){
+				return true;
+			} else
+
+			{
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	public static final String SERIALIZATION_HEADER = "CONFIG-offset:";
