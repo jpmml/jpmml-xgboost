@@ -156,7 +156,7 @@ public class ObjFunction {
 
 		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
 			.setMathContext(MathContext.FLOAT)
-			.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, treeModels, weights))
+			.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, Segmentation.MissingPredictionTreatment.RETURN_MISSING, treeModels, weights))
 			.setTargets(ModelUtil.createRescaleTargets(null, intercept, continuousLabel));
 
 		return miningModel;
