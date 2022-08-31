@@ -89,12 +89,6 @@ public class Main {
 	private String jsonPath = "$";
 
 	@Parameter (
-		names = {"--missing-value"},
-		description = "String representation of feature value(s) that should be regarded as missing"
-	)
-	private String missingValue = null;
-
-	@Parameter (
 		names = {"--target-name"},
 		description = "Target name. Defaults to \"_target\""
 	)
@@ -105,6 +99,12 @@ public class Main {
 		description = "Target categories. Defaults to 0-based index [0, 1, .., num_class - 1]"
 	)
 	private List<String> targetCategories = null;
+
+	@Parameter (
+ 		names = {"--X-" + HasXGBoostOptions.OPTION_MISSING},
+ 		description = "Missing value. Defaults to Not-a-Number (NaN) value"
+ 	)
+ 	private Float missing = Float.NaN;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_COMPACT},
@@ -126,12 +126,6 @@ public class Main {
 		arity = 1
 	)
 	private boolean prune = true;
-
-	@Parameter (
- 		names = {"--X-" + HasXGBoostOptions.OPTION_NAN_AS_MISSING},
- 		description = "Treat Not-a-Number (NaN) values as missing values"
- 	)
- 	private boolean nanAsMissing = true;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_NTREE_LIMIT},
@@ -217,17 +211,13 @@ public class Main {
 			logger.info("Parsing embedded feature map");
 
 			featureMap = learner.encodeFeatureMap();
-		} // End if
-
-		if(this.missingValue != null){
-			featureMap.addMissingValue(this.missingValue);
 		}
 
 		Map<String, Object> options = new LinkedHashMap<>();
+		options.put(HasXGBoostOptions.OPTION_MISSING, this.missing);
 		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
 		options.put(HasXGBoostOptions.OPTION_NUMERIC, this.numeric);
 		options.put(HasXGBoostOptions.OPTION_PRUNE, this.prune);
-		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, this.nanAsMissing);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
 
 		PMML pmml;

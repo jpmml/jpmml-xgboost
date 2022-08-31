@@ -32,7 +32,7 @@ public interface HasXGBoostOptions extends HasOptions, HasNativeConfiguration {
 
 	String OPTION_COMPACT = "compact";
 
-	String OPTION_NAN_AS_MISSING = "nan_as_missing";
+	String OPTION_MISSING = "missing";
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
 

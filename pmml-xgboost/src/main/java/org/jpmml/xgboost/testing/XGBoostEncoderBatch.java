@@ -63,9 +63,9 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		}
 
 		Map<String, Object> options = new LinkedHashMap<>();
+		options.put(HasXGBoostOptions.OPTION_MISSING, Float.NaN);
 		options.put(HasXGBoostOptions.OPTION_COMPACT, new Boolean[]{false, true});
 		options.put(HasXGBoostOptions.OPTION_PRUNE, true);
-		options.put(HasXGBoostOptions.OPTION_NAN_AS_MISSING, true);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, ntreeLimit);
 
 		return OptionsUtil.generateOptionsMatrix(options);

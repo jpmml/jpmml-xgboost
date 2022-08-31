@@ -62,7 +62,7 @@ import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
-import org.jpmml.converter.visitors.NaNAsMissingDecorator;
+import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.visitors.TreeModelPruner;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
@@ -441,36 +441,65 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			@Override
 			public Feature transformNumerical(Feature feature){
-				ContinuousFeature continuousFeature = feature.toContinuousFeature();
 
-				Field<?> field = continuousFeature.getField();
+				if(feature instanceof BinaryFeature){
+					BinaryFeature binaryFeature = (BinaryFeature)feature;
 
-				if(field instanceof DataField){
-					DataField dataField = (DataField)field;
+					return binaryFeature;
+				} else
 
-					PMMLUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
+				if(feature instanceof MissingValueFeature){
+					MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
 
-					return continuousFeature;
+					return missingValueFeature;
+				} else
+
+				{
+					ContinuousFeature continuousFeature = feature.toContinuousFeature();
+
+					Field<?> field = continuousFeature.getField();
+
+					if(field instanceof DataField){
+						DataField dataField = (DataField)field;
+
+						PMMLUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
+
+						return continuousFeature;
+					} // End if
+
+					// XXX
+					if(ValueUtil.isNaN(missing)){
+						return continuousFeature;
+					}
+
+					PMMLEncoder encoder = continuousFeature.getEncoder();
+
+					Expression expression = PMMLUtil.createApply(PMMLFunctions.IF,
+						PMMLUtil.createApply(PMMLFunctions.AND,
+							PMMLUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
+							PMMLUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), PMMLUtil.createConstant(missing))
+						),
+						continuousFeature.ref()
+					);
+
+					DerivedField derivedField = encoder.createDerivedField(FieldNameUtil.create("filter", continuousFeature, missing), OpType.CONTINUOUS, continuousFeature.getDataType(), expression);
+
+					return new ContinuousFeature(encoder, derivedField);
 				}
-
-				PMMLEncoder encoder = continuousFeature.getEncoder();
-
-				Expression expression = PMMLUtil.createApply(PMMLFunctions.IF,
-					PMMLUtil.createApply(PMMLFunctions.AND,
-						PMMLUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
-						PMMLUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), PMMLUtil.createConstant(missing))
-					),
-					continuousFeature.ref()
-				);
-
-				DerivedField derivedField = encoder.createDerivedField(FieldNameUtil.create("filter", continuousFeature, missing), OpType.CONTINUOUS, continuousFeature.getDataType(), expression);
-
-				return new ContinuousFeature(encoder, derivedField);
 			}
 
 			@Override
 			public Feature transformCategorical(Feature feature){
-				throw new IllegalArgumentException();
+
+				if(feature instanceof CategoricalFeature){
+					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+
+					return categoricalFeature;
+				} else
+
+				{
+					throw new IllegalArgumentException();
+				}
 			}
 		};
 
@@ -480,24 +509,17 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public PMML encodePMML(Map<String, ?> options, String targetName, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
-		Boolean nanAsMissing = (Boolean)options.get(HasXGBoostOptions.OPTION_NAN_AS_MISSING);
-
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
 
-		if((Boolean.TRUE).equals(nanAsMissing)){
- 			Visitor visitor = new NaNAsMissingDecorator();
-
- 			visitor.applyTo(pmml);
- 		}
-
 		return pmml;
 	}
 
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
+		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
 		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
 		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
@@ -505,6 +527,10 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		if(numeric == null){
 			numeric = Boolean.TRUE;
+		} // End if
+
+		if(missing != null){
+			schema = toValueFilteredSchema(missing, schema);
 		}
 
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, numeric, schema)
