@@ -26,6 +26,7 @@ import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -39,16 +40,26 @@ import com.google.common.collect.Iterables;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
+import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.DerivedField;
+import org.dmg.pmml.Expression;
+import org.dmg.pmml.Field;
+import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.PMMLFunctions;
+import org.dmg.pmml.Value;
 import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
+import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
+import org.jpmml.converter.PMMLEncoder;
+import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.visitors.NaNAsMissingDecorator;
@@ -349,28 +360,18 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Schema toXGBoostSchema(boolean numeric, Schema schema){
-		GBTree gbtree = this.gbtree;
-
-		Function<Feature, Feature> function = new Function<Feature, Feature>(){
+		FeatureTransformer function = new FeatureTransformer(){
 
 			private List<? extends Feature> features = schema.getFeatures();
 
 
 			@Override
-			public Feature apply(Feature feature){
-				int splitType = getSplitType(feature);
-
-				switch(splitType){
-					case Node.SPLIT_NUMERICAL:
-						return applyNumerical(feature);
-					case Node.SPLIT_CATEGORICAL:
-						return applyCategorical(feature);
-					default:
-						throw new IllegalArgumentException();
-				}
+			public int getSplitIndex(Feature feature){
+				return this.features.indexOf(feature);
 			}
 
-			private Feature applyNumerical(Feature feature){
+			@Override
+			public Feature transformNumerical(Feature feature){
 
 				if(feature instanceof BinaryFeature){
 					BinaryFeature binaryFeature = (BinaryFeature)feature;
@@ -409,7 +410,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				}
 			}
 
-			private Feature applyCategorical(Feature feature){
+			@Override
+			public Feature transformCategorical(Feature feature){
 
 				if(feature instanceof CategoricalFeature){
 					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
@@ -421,30 +423,54 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					throw new IllegalArgumentException();
 				}
 			}
+		};
 
-			private int getSplitType(Feature feature){
-				int splitIndex = this.features.indexOf(feature);
-				if(splitIndex < 0){
-					throw new IllegalArgumentException();
-				}
+		return schema.toTransformedSchema(function);
+	}
 
-				return getSplitType(splitIndex);
+	public Schema toValueFilteredSchema(Number missing, Schema schema){
+		FeatureTransformer function = new FeatureTransformer(){
+
+			private List<? extends Feature> features = schema.getFeatures();
+
+
+			@Override
+			public int getSplitIndex(Feature feature){
+				return this.features.indexOf(feature);
 			}
 
-			private int getSplitType(int splitIndex){
-				Set<Integer> splitTypes = gbtree.getSplitType(splitIndex);
+			@Override
+			public Feature transformNumerical(Feature feature){
+				ContinuousFeature continuousFeature = feature.toContinuousFeature();
 
-				if(splitTypes.size() == 0){
-					return Node.SPLIT_NUMERICAL;
-				} else
+				Field<?> field = continuousFeature.getField();
 
-				if(splitTypes.size() == 1){
-					return Iterables.getOnlyElement(splitTypes);
-				} else
+				if(field instanceof DataField){
+					DataField dataField = (DataField)field;
 
-				{
-					throw new IllegalArgumentException();
+					PMMLUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
+
+					return continuousFeature;
 				}
+
+				PMMLEncoder encoder = continuousFeature.getEncoder();
+
+				Expression expression = PMMLUtil.createApply(PMMLFunctions.IF,
+					PMMLUtil.createApply(PMMLFunctions.AND,
+						PMMLUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
+						PMMLUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), PMMLUtil.createConstant(missing))
+					),
+					continuousFeature.ref()
+				);
+
+				DerivedField derivedField = encoder.createDerivedField(FieldNameUtil.create("filter", continuousFeature, missing), OpType.CONTINUOUS, continuousFeature.getDataType(), expression);
+
+				return new ContinuousFeature(encoder, derivedField);
+			}
+
+			@Override
+			public Feature transformCategorical(Feature feature){
+				throw new IllegalArgumentException();
 			}
 		};
 
@@ -575,5 +601,49 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 
 		return equals;
+	}
+
+	abstract
+	private class FeatureTransformer implements Function<Feature, Feature> {
+
+		abstract
+		public int getSplitIndex(Feature feature);
+
+		abstract
+		public Feature transformNumerical(Feature feature);
+
+		abstract
+		public Feature transformCategorical(Feature feature);
+
+		@Override
+		public Feature apply(Feature feature){
+			int splitIndex = getSplitIndex(feature);
+
+			int splitType = getSplitType(splitIndex);
+			switch(splitType){
+				case Node.SPLIT_NUMERICAL:
+					return transformNumerical(feature);
+				case Node.SPLIT_CATEGORICAL:
+					return transformCategorical(feature);
+				default:
+					throw new IllegalArgumentException();
+			}
+		}
+
+		private int getSplitType(int splitIndex){
+			Set<Integer> splitTypes = Learner.this.gbtree.getSplitType(splitIndex);
+
+			if(splitTypes.size() == 0){
+				return Node.SPLIT_NUMERICAL;
+			} else
+
+			if(splitTypes.size() == 1){
+				return Iterables.getOnlyElement(splitTypes);
+			} else
+
+			{
+				throw new IllegalArgumentException();
+			}
+		}
 	}
 }
