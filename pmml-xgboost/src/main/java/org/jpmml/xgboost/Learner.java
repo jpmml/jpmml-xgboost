@@ -84,6 +84,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	private int num_target;
 
+	private int base_score_estimated;
+
 	private ObjFunction obj;
 
 	private GBTree gbtree;
@@ -116,8 +118,9 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 
 		this.num_target = Math.max(input.readInt(), 1);
+		this.base_score_estimated = input.readInt();
 
-		input.readReserved(26);
+		input.readReserved(25);
 
 		String name_obj = input.readString();
 
