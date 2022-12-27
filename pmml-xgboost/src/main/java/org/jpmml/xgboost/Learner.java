@@ -465,6 +465,19 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					if(field instanceof DataField){
 						DataField dataField = (DataField)field;
 
+						// XXX
+						if(ValueUtil.isNaN(missing)){
+							DataType dataType = dataField.getDataType();
+
+							switch(dataType){
+								case FLOAT:
+								case DOUBLE:
+									break;
+								default:
+									return continuousFeature;
+							}
+						}
+
 						PMMLUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
 
 						return continuousFeature;
