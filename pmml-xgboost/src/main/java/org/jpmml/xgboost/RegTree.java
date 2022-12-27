@@ -273,14 +273,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					throw new IllegalArgumentException();
 				}
 
-				BitSet split_categories = null;
-
-				if(node instanceof JSONNode){
-					JSONNode jsonNode = (JSONNode)node;
-
-					split_categories = jsonNode.get_split_categories();
-				} // End if
-
+				BitSet split_categories = node.get_split_categories();
 				if(split_categories == null){
 					throw new IllegalArgumentException();
 				}

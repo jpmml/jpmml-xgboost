@@ -18,6 +18,8 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.BitSet;
+
 abstract
 public class Node {
 
@@ -35,6 +37,9 @@ public class Node {
 
 	abstract
 	public int split_cond();
+
+	abstract
+	public BitSet get_split_categories();
 
 	abstract
 	public int left_child();

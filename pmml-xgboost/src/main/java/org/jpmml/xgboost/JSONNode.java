@@ -65,8 +65,8 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 		this.split_condition = node.get("split_condition").asFloat32();
 
 		switch(this.split_type){
-			case 0:
-			case 1:
+			case Node.SPLIT_NUMERICAL:
+			case Node.SPLIT_CATEGORICAL:
 				break;
 			default:
 				throw new IllegalArgumentException();
@@ -113,6 +113,7 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 		return this.split_condition;
 	}
 
+	@Override
 	public BitSet get_split_categories(){
 		return this.split_categories;
 	}

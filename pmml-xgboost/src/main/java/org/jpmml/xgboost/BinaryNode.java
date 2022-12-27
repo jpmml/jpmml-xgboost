@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.BitSet;
 
 public class BinaryNode extends Node implements BinaryLoadable {
 
@@ -72,7 +73,7 @@ public class BinaryNode extends Node implements BinaryLoadable {
 
 	@Override
 	public int split_type(){
-		return 0;
+		return Node.SPLIT_NUMERICAL;
 	}
 
 	@Override
@@ -83,5 +84,10 @@ public class BinaryNode extends Node implements BinaryLoadable {
 	@Override
 	public float leaf_value(){
 		return Float.intBitsToFloat(this.info);
+	}
+
+	@Override
+	public BitSet get_split_categories(){
+		return null;
 	}
 }
