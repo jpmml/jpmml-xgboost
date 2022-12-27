@@ -49,7 +49,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateAFTLungNA() throws Exception {
-		evaluate(AFT, LUNG_NA);
+		evaluate(AFT, LUNG_NA, new FloatEquivalence(20));
 	}
 
 	@Test

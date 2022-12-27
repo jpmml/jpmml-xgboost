@@ -1,8 +1,8 @@
-0	age	int
+0	age	q
 1	sex=1	i
 2	sex=2	i
-3	ph.ecog	int
-4	ph.karno	int
-5	pat.karno	int
-6	meal.cal	int
-7	wt.loss	int
+3	ph.ecog	q
+4	ph.karno	q
+5	pat.karno	q
+6	meal.cal	q
+7	wt.loss	q
