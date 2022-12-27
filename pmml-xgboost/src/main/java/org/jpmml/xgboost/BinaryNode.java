@@ -52,6 +52,11 @@ public class BinaryNode extends Node implements BinaryLoadable {
 	}
 
 	@Override
+	public float leaf_value(){
+		return Float.intBitsToFloat(this.info);
+	}
+
+	@Override
 	public int left_child(){
 		return this.cleft;
 	}
@@ -79,11 +84,6 @@ public class BinaryNode extends Node implements BinaryLoadable {
 	@Override
 	public int split_cond(){
 		return this.info;
-	}
-
-	@Override
-	public float leaf_value(){
-		return Float.intBitsToFloat(this.info);
 	}
 
 	@Override

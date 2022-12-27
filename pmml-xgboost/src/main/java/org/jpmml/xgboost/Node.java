@@ -30,6 +30,15 @@ public class Node {
 	public float leaf_value();
 
 	abstract
+	public int left_child();
+
+	abstract
+	public int right_child();
+
+	abstract
+	public boolean default_left();
+
+	abstract
 	public int split_index();
 
 	abstract
@@ -40,15 +49,6 @@ public class Node {
 
 	abstract
 	public BitSet get_split_categories();
-
-	abstract
-	public int left_child();
-
-	abstract
-	public int right_child();
-
-	abstract
-	public boolean default_left();
 
 	public static final int SPLIT_NUMERICAL = 0;
 	public static final int SPLIT_CATEGORICAL = 1;

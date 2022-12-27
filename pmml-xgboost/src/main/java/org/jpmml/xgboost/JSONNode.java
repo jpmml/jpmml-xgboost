@@ -79,6 +79,11 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 	}
 
 	@Override
+	public float leaf_value(){
+		return this.split_condition;
+	}
+
+	@Override
 	public int left_child(){
 		return this.left_child;
 	}
@@ -94,23 +99,18 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 	}
 
 	@Override
-	public int split_type(){
-		return this.split_type;
-	}
-
-	@Override
 	public int split_index(){
 		return this.split_index;
 	}
 
 	@Override
-	public int split_cond(){
-		return Float.floatToIntBits(this.split_condition);
+	public int split_type(){
+		return this.split_type;
 	}
 
 	@Override
-	public float leaf_value(){
-		return this.split_condition;
+	public int split_cond(){
+		return Float.floatToIntBits(this.split_condition);
 	}
 
 	@Override
