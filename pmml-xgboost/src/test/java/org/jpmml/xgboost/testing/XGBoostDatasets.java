@@ -26,4 +26,6 @@ public interface XGBoostDatasets extends Datasets {
 	String AUDIT_NA_LIMIT = AUDIT_NA + "@31";
 	String IRIS_LIMIT = IRIS + "@11";
 	String IRIS_NA_LIMIT = IRIS_NA + "@11";
+	String LUNG = "Lung";
+	String LUNG_NA = LUNG + "NA";
 }

@@ -1,0 +1,23 @@
+[
+  { "nodeid": 0, "depth": 0, "split": "age", "split_condition": 81, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "leaf": 1.85369349 }, 
+    { "nodeid": 2, "leaf": 0.721817732 }
+  ]},
+  { "nodeid": 0, "leaf": 1.30659175 },
+  { "nodeid": 0, "depth": 0, "split": "ph.ecog", "split_condition": 2, "yes": 1, "no": 2, "missing": 1 , "children": [
+    { "nodeid": 1, "depth": 1, "split": "pat.karno", "split_condition": 200, "yes": 3, "no": 4, "missing": 4 , "children": [
+      { "nodeid": 3, "leaf": 0.96549964 }, 
+      { "nodeid": 4, "leaf": 0.15939495 }
+    ]}, 
+    { "nodeid": 2, "depth": 1, "split": "pat.karno", "split_condition": 95, "yes": 5, "no": 6, "missing": 5 , "children": [
+      { "nodeid": 5, "depth": 2, "split": "meal.cal", "split_condition": 426, "yes": 7, "no": 8, "missing": 8 , "children": [
+        { "nodeid": 7, "leaf": 0.503742456 }, 
+        { "nodeid": 8, "leaf": 0.85577172 }
+      ]}, 
+      { "nodeid": 6, "depth": 2, "split": "age", "split_condition": 69, "yes": 9, "no": 10, "missing": 9 , "children": [
+        { "nodeid": 9, "leaf": 0.407579333 }, 
+        { "nodeid": 10, "leaf": -0.0103864176 }
+      ]}
+    ]}
+  ]}
+]

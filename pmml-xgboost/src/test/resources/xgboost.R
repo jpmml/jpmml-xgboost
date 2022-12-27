@@ -42,6 +42,53 @@ insertNA = function(df){
 }
 
 #
+# Survival analysis
+#
+
+predictLungTime = function(lung.xgb, lung.matrix){
+	time = predict(lung.xgb, newdata = lung.matrix)
+
+	return (data.frame("_target" = time))
+}
+
+genLungTime = function(lung_y, lung_X, dataset){
+	lung.formula = formula(~ . - 1)
+	lung.frame = model.frame(lung.formula, data = lung_X, na.action = na.pass)
+	lung.contrasts = lapply(lung_X[sapply(lung_X, is.factor)], contrasts, contrasts = FALSE)
+	lung.matrix = model.matrix(lung.formula, data = lung.frame, contrasts.arg = lung.contrasts)
+	lung.matrix = Matrix(lung.matrix, sparse = TRUE)
+
+	lung.dmatrix = xgb.DMatrix(data = lung.matrix)
+
+	lung_y_lower = as.numeric(lung_y$time)
+	setinfo(lung.dmatrix, "label_lower_bound", lung_y_lower)
+
+	lung_y_upper = as.numeric(lung_y$time)
+	lung_y_upper[lung_y$status == 0] = +Inf
+	setinfo(lung.dmatrix, "label_upper_bound", lung_y_upper)
+
+	lung.fmap = as.fmap(lung.frame)
+	write.fmap(lung.fmap, csvFile(dataset, ".fmap"))
+
+	funcAndDataset = paste("AFT", dataset, sep = "")
+
+	set.seed(42)
+
+	lung.xgb = xgboost(data = lung.dmatrix, objective = "survival:aft", eval_metric = "aft-nloglik", aft_loss_distribution = "normal", max_depth = 3, nrounds = 3)
+
+	storeModel(lung.xgb, funcAndDataset, dataset)
+	storeResult(predictLungTime(lung.xgb, lung.matrix), funcAndDataset)
+}
+
+lung = loadCsv("csv/LungNA.csv")
+lung$sex = as.factor(lung$sex)
+
+lung_y = lung[, (ncol(lung) - 1):(ncol(lung))]
+lung_X = lung[, 1:(ncol(lung) - 2)]
+
+genLungTime(lung_y, lung_X, "LungNA")
+
+#
 # Regression
 #
 

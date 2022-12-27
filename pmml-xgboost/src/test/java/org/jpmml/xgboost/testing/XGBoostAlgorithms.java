@@ -20,6 +20,7 @@ package org.jpmml.xgboost.testing;
 
 public interface XGBoostAlgorithms {
 
+	String AFT = "AFT";
 	String BINOMIAL_CLASSIFICATION = "BinomialClassification";
 	String GAMMA_REGRESSION = "GammaRegression";
 	String HINGE_CLASSIFICATION = "HingeClassification";

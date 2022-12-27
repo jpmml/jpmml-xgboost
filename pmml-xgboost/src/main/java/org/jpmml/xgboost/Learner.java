@@ -606,6 +606,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "rank:ndcg":
 			case "rank:pairwise":
 				return new LambdaMART(name_obj);
+			case "survival:aft":
+				return new AFT(name_obj);
 			case "multi:softmax":
 			case "multi:softprob":
 				return new MultinomialLogisticRegression(name_obj, this.num_class);
