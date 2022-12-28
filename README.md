@@ -7,6 +7,39 @@ Java library and command-line application for converting [XGBoost](https://githu
 
 * Java 1.8 or newer.
 
+# Features #
+
+Supports all XGBoost versions 0.4 through 1.7(.2).
+
+* Functionality:
+  * Model data formats:
+    * Binary (XGBoost 0.4 and newer)
+    * JSON (XGBoost 1.3 and newer)
+    * Universal Binary JSON (UBJ) (XGBoost 1.6 and newer)
+  * Gradient boosters:
+    * GBTree
+    * DART
+  * Feature maps
+  * Split types:
+    * Numeric (XGBoost 0.4 and newer)
+    * Categorical, One-Hot-Encoding (OHE)-based (XGBoost 1.5 and newer)
+    * Categorical, Set-based (XGBoost 1.6 and newer)
+    * Missing values (XGBoost 0.4 and newer)
+  * Objective functions:
+    * Regression
+    * Binary- and multi-class classification
+    * Ranking
+    * Survival Analysis
+* Conversion options:
+  * Truncation (`ntree_limit` aka `iteration_range` parameters)
+  * Elimination of empty and constant trees
+  * Tree rearrangements:
+    * Compaction and flattening (reshaping deep binary trees into shallow multi-way trees)
+    * Pruning
+* Production quality:
+  * Complete test coverage.
+  * Fully compliant with [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) and [JPMML-Transpiler](https://github.com/jpmml/jpmml-transpiler) libraries
+
 # Installation #
 
 Enter the project root directory and build using [Apache Maven](https://maven.apache.org/):
