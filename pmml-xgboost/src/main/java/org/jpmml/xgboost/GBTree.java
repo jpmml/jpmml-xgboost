@@ -104,6 +104,19 @@ public class GBTree extends GradientBooster {
 		this.tree_info = UBJSONUtil.toIntArray(model.get("tree_info"));
 	}
 
+	public boolean hasCategoricalSplits(){
+
+		for(int i = 0; i < this.num_trees; i++){
+			RegTree tree = this.trees[i];
+
+			if(tree.hasCategoricalSplits()){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public Set<Integer> getSplitType(int splitIndex){
 		Set<Integer> result = new HashSet<>();
 

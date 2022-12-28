@@ -584,6 +584,10 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return this.obj;
 	}
 
+	public GBTree gbtree(){
+		return this.gbtree;
+	}
+
 	private GBTree parseGradientBooster(String name_gbm){
 
 		switch(name_gbm){

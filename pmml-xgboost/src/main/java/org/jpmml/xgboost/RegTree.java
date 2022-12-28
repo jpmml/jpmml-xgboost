@@ -194,6 +194,19 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
+	public boolean hasCategoricalSplits(){
+
+		for(int i = 0; i < this.num_nodes; i++){
+			Node node = this.nodes[i];
+
+			if(node.split_type() == Node.SPLIT_CATEGORICAL){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public Set<Integer> getSplitType(int splitIndex){
 		Set<Integer> result = new HashSet<>();
 
