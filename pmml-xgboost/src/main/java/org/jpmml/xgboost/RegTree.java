@@ -213,8 +213,11 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		for(int i = 0; i < this.num_nodes; i++){
 			Node node = this.nodes[i];
 
-			if(node.split_index() == splitIndex){
-				result.add(node.split_type());
+			if(!node.is_leaf()){
+
+				if(node.split_index() == splitIndex){
+					result.add(node.split_type());
+				}
 			}
 		}
 
