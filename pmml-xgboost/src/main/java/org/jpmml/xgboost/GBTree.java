@@ -20,6 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -124,6 +125,27 @@ public class GBTree extends GradientBooster {
 			RegTree tree = this.trees[i];
 
 			result.addAll(tree.getSplitType(splitIndex));
+		}
+
+		return result;
+	}
+
+	public BitSet getSplitCategories(int splitIndex){
+		BitSet result = null;
+
+		for(int i = 0; i < this.num_trees; i++){
+			RegTree tree = this.trees[i];
+
+			BitSet splitCategories = tree.getSplitCategories(splitIndex);
+
+			if(splitCategories != null){
+
+				if(result == null){
+					result = new BitSet();
+				}
+
+				result.or(splitCategories);
+			}
 		}
 
 		return result;

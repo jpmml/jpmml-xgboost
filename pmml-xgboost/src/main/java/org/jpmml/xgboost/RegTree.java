@@ -194,13 +194,26 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
+	public Float getLeafValue(){
+		Node node = this.nodes[0];
+
+		if(!node.is_leaf()){
+			return null;
+		}
+
+		return node.leaf_value();
+	}
+
 	public boolean hasCategoricalSplits(){
 
 		for(int i = 0; i < this.num_nodes; i++){
 			Node node = this.nodes[i];
 
-			if(node.split_type() == Node.SPLIT_CATEGORICAL){
-				return true;
+			if(!node.is_leaf()){
+
+				if(node.split_type() == Node.SPLIT_CATEGORICAL){
+					return true;
+				}
 			}
 		}
 
@@ -224,14 +237,30 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return result;
 	}
 
-	public Float getLeafValue(){
-		Node node = this.nodes[0];
+	public BitSet getSplitCategories(int splitIndex){
+		BitSet result = null;
 
-		if(node.is_leaf()){
-			return node.leaf_value();
+		for(int i = 0; i < this.num_nodes; i++){
+			Node node = this.nodes[i];
+
+			if(!node.is_leaf()){
+
+				if(node.split_index() == splitIndex){
+					BitSet splitCategories = node.get_split_categories();
+
+					if(splitCategories != null){
+
+						if(result == null){
+							result = new BitSet();
+						}
+
+						result.or(splitCategories);
+					}
+				}
+			}
 		}
 
-		return null;
+		return result;
 	}
 
 	public TreeModel encodeTreeModel(boolean numeric, PredicateManager predicateManager, Schema schema){
