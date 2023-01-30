@@ -88,7 +88,7 @@ audit.xgb = xgboost(data = audit.matrix, label = as.matrix(y), objective = "bina
 xgb.save(audit.xgb, "XGBoostAudit.json")
 ```
 
-#### Python language (Learning API)
+#### Python language - Learning API
 
 Using an `Audit.fmap` feature map file (works with any XGBoost version):
 ```python
@@ -152,6 +152,38 @@ feature_types = [to_fmap_type(dtype) for dtype in X.dtypes]
 audit_dmatrix = DMatrix(data = X, label = y, feature_names = feature_names, feature_types = feature_types)
 
 audit_xgb = xgboost.train(params = {"objective" : "binary:logistic"}, dtrain = audit_dmatrix, num_boost_round = 131)
+audit_xgb.save_model("XGBoostAudit.json")
+```
+
+#### Python language - Scikit-Learn API
+
+Using an `Audit.fmap` feature map file (works with any XGBoost version):
+```python
+from sklearn.preprocessing import LabelEncoder
+from sklearn2pmml.xgboost import make_feature_map
+from xgboost.sklearn import XGBClassifier
+
+import pandas
+
+df = pandas.read_csv("Audit.csv")
+
+# Three continuous features, followed by five categorical features
+X = df[["Age", "Hours", "Income", "Education", "Employment", "Gender", "Marital", "Occupation"]]
+y = df["Adjusted"]
+
+# Convert categorical features into binary indicator features
+X = pandas.get_dummies(data = X, prefix_sep = "=", dtype = bool)
+
+label_encoder = LabelEncoder()
+y = label_encoder.fit_transform(y)
+
+audit_fmap = make_feature_map(X, enable_categorical = False)
+audit_fmap.save("Audit.fmap")
+
+classifier = XGBClassifier(objective = "binary:logistic", n_estimators = 131)
+classifier.fit(X, y)
+
+audit_xgb = classifier.get_booster()
 audit_xgb.save_model("XGBoostAudit.json")
 ```
 
