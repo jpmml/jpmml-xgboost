@@ -59,7 +59,7 @@ A typical workflow can be summarized as follows:
 
 ### The XGBoost side of operations
 
-Training a binary classification model using the [`Audit.csv](https://github.com/jpmml/jpmml-xgboost/blob/master/pmml-xgboost/src/test/resources/csv/Audit.csv) dataset.
+Training a binary classification model using the [Audit.csv](https://github.com/jpmml/jpmml-xgboost/blob/master/pmml-xgboost/src/test/resources/csv/Audit.csv) dataset.
 
 #### R language
 
@@ -85,7 +85,7 @@ audit.fmap = r2pmml::as.fmap(audit.frame)
 r2pmml::write.fmap(audit.fmap, "Audit.fmap")
 
 audit.xgb = xgboost(data = audit.matrix, label = as.matrix(y), objective = "binary:logistic", nrounds = 131)
-xgb.save(audit.xgb, "XGBoostAudit.json")
+xgb.save(audit.xgb, "XGBoostAudit.model")
 ```
 
 #### Python language - Learning API
@@ -113,7 +113,7 @@ audit_fmap.save("Audit.fmap")
 audit_dmatrix = DMatrix(data = X, label = y)
 
 audit_xgb = xgboost.train(params = {"objective" : "binary:logistic"}, dtrain = audit_dmatrix, num_boost_round = 131)
-audit_xgb.save_model("XGBoostAudit.json")
+audit_xgb.save_model("XGBoostAudit.model")
 ```
 
 The same, but using an embedded feature map (works with XGBoost 1.5 and newer):
@@ -152,7 +152,7 @@ feature_types = [to_fmap_type(dtype) for dtype in X.dtypes]
 audit_dmatrix = DMatrix(data = X, label = y, feature_names = feature_names, feature_types = feature_types)
 
 audit_xgb = xgboost.train(params = {"objective" : "binary:logistic"}, dtrain = audit_dmatrix, num_boost_round = 131)
-audit_xgb.save_model("XGBoostAudit.json")
+audit_xgb.save_model("XGBoostAudit.model")
 ```
 
 #### Python language - Scikit-Learn API
@@ -184,14 +184,14 @@ classifier = XGBClassifier(objective = "binary:logistic", n_estimators = 131)
 classifier.fit(X, y)
 
 audit_xgb = classifier.get_booster()
-audit_xgb.save_model("XGBoostAudit.json")
+audit_xgb.save_model("XGBoostAudit.model")
 ```
 
 ### The JPMML-XGBoost side of operations
 
-Converting the model file `XGBoostAudit.json` together with the associated feature map file `Audit.fmap` to a PMML file `XGBoostAudit.pmml`:
+Converting the model file `XGBoostAudit.model` (binary data format) together with the associated feature map file `Audit.fmap` to a PMML file `XGBoostAudit.pmml`:
 ```
-java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSHOT.jar --model-input XGBoostAudit.json --fmap-input Audit.fmap --target-name Adjusted --pmml-output XGBoostAudit.pmml
+java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSHOT.jar --model-input XGBoostAudit.model --fmap-input Audit.fmap --target-name Adjusted --pmml-output XGBoostAudit.pmml
 ```
 
 If the XGBoost model contains an embedded feature map, then the `--fmap-input` command-line option may be omitted.
