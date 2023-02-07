@@ -14,15 +14,15 @@ Supports all XGBoost versions 0.4 through 1.7(.2).
 * Functionality:
   * Model data formats:
     * Binary (XGBoost 0.4 and newer)
-    * JSON (XGBoost 1.3 and newer)
-    * Universal Binary JSON (UBJ) (XGBoost 1.6 and newer)
+    * JSON (XGBoost 1.0 and newer)
+    * Universal Binary JSON (UBJSON) (XGBoost 1.6 and newer)
   * Gradient boosters:
     * GBTree
     * DART
   * Feature maps
   * Split types:
     * Numeric (XGBoost 0.4 and newer)
-    * Categorical, One-Hot-Encoding (OHE)-based (XGBoost 1.5 and newer)
+    * Categorical, One-Hot-Encoding (OHE)-based (XGBoost 1.3 and newer)
     * Categorical, Set-based (XGBoost 1.6 and newer)
     * Missing values (XGBoost 0.4 and newer)
   * Objective functions:
@@ -116,7 +116,7 @@ audit_xgb = xgboost.train(params = {"objective" : "binary:logistic"}, dtrain = a
 audit_xgb.save_model("XGBoostAudit.model")
 ```
 
-The same, but using an embedded feature map (works with XGBoost 1.5 and newer):
+The same, but using an embedded feature map (works with XGBoost 1.4 and newer):
 ```python
 from xgboost import DMatrix
 
@@ -203,6 +203,7 @@ java -jar pmml-xgboost-example/target/pmml-xgboost-example-executable-1.7-SNAPSH
 
 # Documentation #
 
+* [Upgrading Scikit-Learn based XGBoost pipelines](https://openscoring.io/blog/2023/02/06/upgrading_sklearn_xgboost_pipeline_pmml/)
 * [Training Python-based XGBoost accelerated failure time (AFT) models](https://openscoring.io/blog/2023/01/28/python_xgboost_aft_pmml/)
 * [One-hot-encoding (OHE) categorical features in Scikit-Learn based XGBoost pipelines](https://openscoring.io/blog/2022/04/12/onehot_encoding_sklearn_xgboost_pipeline/)
 * [Training Scikit-Learn based TF(-IDF) plus XGBoost pipelines](https://openscoring.io/blog/2021/02/27/sklearn_tf_tfidf_xgboost_pipeline/)
