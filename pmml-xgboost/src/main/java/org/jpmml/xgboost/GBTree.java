@@ -89,7 +89,10 @@ public class GBTree extends GradientBooster {
 		UBObject gbtreeModelParam = model.get("gbtree_model_param").asObject();
 
 		this.num_trees = gbtreeModelParam.get("num_trees").asInt();
-		this.size_leaf_vector = gbtreeModelParam.get("size_leaf_vector").asInt();
+
+		if(gbtreeModelParam.containsKey("size_leaf_vector")){
+			this.size_leaf_vector = gbtreeModelParam.get("size_leaf_vector").asInt();
+		}
 
 		UBArray trees = model.get("trees").asArray();
 

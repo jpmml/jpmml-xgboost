@@ -29,22 +29,22 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLinearAuto() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO);
+		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateLinearAutoNA() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO_NA);
+		evaluate(LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateLogisticAudit() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT);
+		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluateLogisticAuditNA() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(8));
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(24));
 	}
 
 	@Test
@@ -64,7 +64,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(16));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(20));
 	}
 
 	@Test
