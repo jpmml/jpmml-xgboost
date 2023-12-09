@@ -333,7 +333,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public FeatureMap encodeFeatureMap(){
 
 		if(this.feature_names == null || this.feature_types == null){
-			throw new IllegalArgumentException();
+			return null;
 		}
 
 		FeatureMap result = new FeatureMap();
@@ -524,6 +524,13 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	public PMML encodePMML(Map<String, ?> options, String targetName, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
+
+		FeatureMap embeddedFeatureMap = encodeFeatureMap();
+		if(embeddedFeatureMap != null){
+			embeddedFeatureMap.update(featureMap);
+
+			featureMap = embeddedFeatureMap;
+		}
 
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 

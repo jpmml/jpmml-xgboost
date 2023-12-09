@@ -188,7 +188,7 @@ public class Main {
 			throw e;
 		}
 
-		FeatureMap featureMap;
+		FeatureMap featureMap = null;
 
 		if(this.fmapInput != null){
 
@@ -205,12 +205,6 @@ public class Main {
 
 				throw e;
 			}
-		} else
-
-		{
-			logger.info("Parsing embedded feature map");
-
-			featureMap = learner.encodeFeatureMap();
 		}
 
 		Map<String, Object> options = new LinkedHashMap<>();

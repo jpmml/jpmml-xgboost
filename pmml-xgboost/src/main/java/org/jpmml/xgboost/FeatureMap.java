@@ -28,6 +28,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
@@ -78,6 +79,29 @@ public class FeatureMap {
 		return result;
 	}
 
+	public void update(FeatureMap featureMap){
+		List<Entry> entries = getEntries();
+
+		for(Entry entry : entries){
+			List<Entry> updateEntries = featureMap.getEntries(entry.getName());
+
+			if(updateEntries.isEmpty()){
+				throw new IllegalArgumentException();
+			} // End if
+
+			if(entry instanceof CategoricalEntry){
+				CategoricalEntry categoricalEntry = (CategoricalEntry)entry;
+
+				List<?> values = updateEntries.stream()
+					.map(IndicatorEntry.class::cast)
+					.map(IndicatorEntry::getValue)
+					.collect(Collectors.toList());
+
+				categoricalEntry.setValues(values);
+			}
+		}
+	}
+
 	public void addEntry(String name, String type){
 		Entry entry = createEntry(name, Entry.Type.fromString(type));
 
@@ -88,6 +112,20 @@ public class FeatureMap {
 		List<Entry> entries = getEntries();
 
 		entries.add(entry);
+	}
+
+	public List<Entry> getEntries(String name){
+		List<Entry> result = new ArrayList<>();
+
+		List<Entry> entries = getEntries();
+		for(Entry entry : entries){
+
+			if(Objects.equals(name, entry.getName())){
+				result.add(entry);
+			}
+		}
+
+		return result;
 	}
 
 	public List<Entry> getEntries(){
@@ -304,6 +342,9 @@ public class FeatureMap {
 	static
 	public class CategoricalEntry extends Entry {
 
+		private List<?> values = null;
+
+
 		public CategoricalEntry(String name, Type type){
 			super(name, type);
 		}
@@ -312,20 +353,29 @@ public class FeatureMap {
 		public Feature encodeFeature(PMMLEncoder encoder){
 			String name = getName();
 			Type type = getType();
+			List<?> values = getValues();
 
 			DataField dataField = encoder.getDataField(name);
 			if(dataField == null){
 
 				switch(type){
 					case CATEGORICAL:
-						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING);
+						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING, values);
 						break;
 					default:
 						throw new IllegalArgumentException();
 				}
+			} // End if
+
+			if(values == null){
+				values = createValues();
 			}
 
-			List<Integer> values = new AbstractList<Integer>(){
+			return new CategoricalFeature(encoder, dataField, values);
+		}
+
+		private List<Integer> createValues(){
+			List<Integer> result = new AbstractList<Integer>(){
 
 				private int max = -1;
 
@@ -353,7 +403,15 @@ public class FeatureMap {
 				}
 			};
 
-			return new CategoricalFeature(encoder, dataField, values);
+			return result;
+		}
+
+		public List<?> getValues(){
+			return this.values;
+		}
+
+		private void setValues(List<?> values){
+			this.values = values;
 		}
 	}
 }
