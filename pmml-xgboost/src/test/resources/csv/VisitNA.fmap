@@ -2,7 +2,7 @@
 1	edlevel=Grad_School	i
 2	edlevel=HS_grad	i
 3	edlevel=Not_HS_grad	i
-4	age	int
+4	age	q
 5	outwork=0	i
 6	outwork=1	i
 7	female=0	i

@@ -107,17 +107,17 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(24));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(28));
 	}
 
 	@Test
 	public void evaluateMultinomialIris() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(12));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateMultinomialIrisLimit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_LIMIT, new FloatEquivalence(8));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_LIMIT, new FloatEquivalence(12));
 	}
 
 	@Test

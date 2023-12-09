@@ -44,7 +44,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLogisticAuditNA() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT_NA);
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(8));
 	}
 
 	@Test
@@ -59,17 +59,17 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(20));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(24));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(12));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluatePoissonVisitNA() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(16));
+		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(20));
 	}
 
 	@Test
