@@ -29,7 +29,7 @@ import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, Fields {
+public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, Fields {
 
 	public ClassificationTest(){
 		super(new FloatEquivalence(4));
@@ -38,6 +38,15 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 	@Override
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
+
+			{
+				String dataset = getDataset();
+
+				// XXX
+				if(dataset.startsWith(AUDIT)){
+					setFormats(new String[]{JSON, UBJSON});
+				}
+			}
 
 			@Override
 			public ClassificationTest getArchiveBatchTest(){

@@ -22,6 +22,7 @@ import java.io.InputStream;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
@@ -40,8 +41,15 @@ import org.jpmml.xgboost.XGBoostUtil;
 abstract
 public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
-	private String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", "model,json,ubj");
+	private String[] formats = {XGBoostFormats.BINARY, XGBoostFormats.JSON, XGBoostFormats.UBJSON};
 
+	{
+		String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", null);
+
+		if(format != null){
+			this.formats = format.split(",");
+		}
+	}
 
 	public XGBoostEncoderBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		super(algorithm, dataset, columnFilter, equivalence);
@@ -83,7 +91,7 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 	public PMML getPMML() throws Exception {
 		PMML result = null;
 
-		String[] formats = this.format.split(",");
+		String[] formats = getFormats();
 		for(String format : formats){
 			PMML pmml = loadPMML(getLearnerPath(format), getFeatureMapPath());
 
@@ -105,6 +113,14 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 	@Override
 	public String getOutputCsvPath(){
 		return super.getOutputCsvPath();
+	}
+
+	public String[] getFormats(){
+		return this.formats;
+	}
+
+	public void setFormats(String[] formats){
+		this.formats = Objects.requireNonNull(formats);
 	}
 
 	protected PMML loadPMML(String learnerPath, String featureMapPath) throws Exception {

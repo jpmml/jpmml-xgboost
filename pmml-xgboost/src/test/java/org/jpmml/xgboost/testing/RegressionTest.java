@@ -18,13 +18,39 @@
  */
 package org.jpmml.xgboost.testing;
 
+import java.util.function.Predicate;
+
+import com.google.common.base.Equivalence;
+import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
-public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets {
+public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats {
 
 	public RegressionTest(){
 		super(new FloatEquivalence(4));
+	}
+
+	@Override
+	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
+		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
+
+			{
+				String dataset = getDataset();
+
+				// XXX
+				if(dataset.startsWith(AUDIT) || dataset.startsWith(AUTO) || dataset.startsWith(VISIT)){
+					setFormats(new String[]{JSON, UBJSON});
+				}
+			}
+
+			@Override
+			public RegressionTest getArchiveBatchTest(){
+				return RegressionTest.this;
+			}
+		};
+
+		return result;
 	}
 
 	@Test
