@@ -85,7 +85,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(24));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(20));
 	}
 
 	@Test
@@ -95,7 +95,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluatePoissonVisitNA() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(20));
+		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(16));
 	}
 
 	@Test

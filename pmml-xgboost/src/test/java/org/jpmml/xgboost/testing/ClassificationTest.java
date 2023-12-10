@@ -121,12 +121,12 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateMultinomialIris() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(16));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateMultinomialIrisLimit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_LIMIT, new FloatEquivalence(12));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_LIMIT, new FloatEquivalence(8));
 	}
 
 	@Test
