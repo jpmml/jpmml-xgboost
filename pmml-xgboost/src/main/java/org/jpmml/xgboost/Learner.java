@@ -674,7 +674,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		public Feature apply(Feature feature){
 			int splitIndex = getSplitIndex(feature);
 
-			int splitType = getSplitType(splitIndex);
+			Integer splitType = getSplitType(splitIndex);
+			if(splitType == null){
+				return feature;
+			}
+
 			switch(splitType){
 				case Node.SPLIT_NUMERICAL:
 					return transformNumerical(feature);
@@ -685,11 +689,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			}
 		}
 
-		private int getSplitType(int splitIndex){
+		private Integer getSplitType(int splitIndex){
 			Set<Integer> splitTypes = Learner.this.gbtree.getSplitType(splitIndex);
 
 			if(splitTypes.size() == 0){
-				return Node.SPLIT_NUMERICAL;
+				return null;
 			} else
 
 			if(splitTypes.size() == 1){
