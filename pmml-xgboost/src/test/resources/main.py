@@ -5,7 +5,16 @@ from xgboost.core import XGBoostError
 
 import numpy
 import pandas
+import sys
 import xgboost
+
+datasets = []
+
+if __name__ == "__main__":
+	if len(sys.argv) > 1:
+		datasets = (sys.argv[1]).split(",")
+	else:
+		datasets = ["Audit", "Auto", "Iris", "Lung", "Visit"]
 
 def csv_file(name, ext):
 	return "csv/" + name + ext;
@@ -46,6 +55,10 @@ def store_result(df, name):
 def make_opts(num_rounds = None):
 	return {"iteration_range" : (0, num_rounds)} if num_rounds else {}
 
+#
+# Survival regression
+#
+
 def predict_lung(lung_booster, lung_dmat):
 	time = lung_booster.predict(lung_dmat)
 
@@ -83,7 +96,12 @@ def train_lung(dataset, **params):
 
 	store_csv(predict_lung(lung_booster, lung_dmat), csv_file("AFT" + dataset, ".csv"))
 
-train_lung("LungNA")
+if "Lung" in datasets:
+	train_lung("LungNA")
+
+#
+# Regression
+#
 
 def predict_auto(auto_booster, auto_dmat, num_rounds = None):
 	mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
@@ -115,8 +133,9 @@ def train_auto(dataset, **params):
 
 	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("LinearRegression" + dataset, ".csv"))
 
-train_auto("Auto", booster = "dart", rate_drop = 0.05)
-train_auto("AutoNA")
+if "Auto" in datasets:
+	train_auto("Auto", booster = "dart", rate_drop = 0.05)
+	train_auto("AutoNA")
 
 def predict_visit(visit_booster, visit_dmat, num_rounds = None):
 	count = visit_booster.predict(visit_dmat, **make_opts(num_rounds))
@@ -172,8 +191,13 @@ def train_visit(dataset, **params):
 
 	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("TweedieRegression" + dataset, ".csv"))
 
-train_visit("Visit", booster = "dart", rate_drop = 0.05)
-train_visit("VisitNA")
+if "Visit" in datasets:
+	train_visit("Visit", booster = "dart", rate_drop = 0.05)
+	train_visit("VisitNA")
+
+#
+# Binary classification
+#
 
 def predict_audit(audit_booster, audit_dmat, num_rounds = None):
 	adjusted = audit_booster.predict(audit_dmat, **make_opts(num_rounds))
@@ -253,8 +277,13 @@ def train_audit(dataset, **params):
 
 	store_csv(predict_multinomial_audit(audit_booster, audit_dmat), csv_file("MultinomialClassification" + dataset, ".csv"))
 
-train_audit("Audit", booster = "dart", rate_drop = 0.05)
-train_audit("AuditNA")
+if "Audit" in datasets:
+	train_audit("Audit", booster = "dart", rate_drop = 0.05)
+	train_audit("AuditNA")
+
+#
+# Multi-class classification
+#
 
 def predict_iris(iris_booster, iris_dmat, num_rounds = None):
 	species_proba = iris_booster.predict(iris_dmat, **make_opts(num_rounds))
@@ -289,5 +318,6 @@ def train_iris(dataset, **params):
 	store_csv(predict_iris(iris_booster, iris_dmat), csv_file("MultinomialClassification" + dataset, ".csv"))
 	store_csv(predict_iris(iris_booster, iris_dmat, 11), csv_file("MultinomialClassification" + dataset + "@11", ".csv"))
 
-train_iris("Iris", booster = "dart", rate_drop = 0.05)
-train_iris("IrisNA")
+if "Iris" in datasets:
+	train_iris("Iris", booster = "dart", rate_drop = 0.05)
+	train_iris("IrisNA")
