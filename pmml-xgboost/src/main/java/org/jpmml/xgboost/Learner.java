@@ -25,6 +25,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -58,6 +59,7 @@ import org.jpmml.converter.Feature;
 import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
+import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
@@ -349,17 +351,36 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		if(targetName == null){
 			targetName = "_target";
-		} // End if
-
-		if(this.num_target != 1){
-			throw new IllegalArgumentException();
 		}
 
-		Label label = this.obj.encodeLabel(targetName, targetCategories, encoder);
+		Label label = encodeLabel(targetName, targetCategories, encoder);
 
 		List<Feature> features = featureMap.encodeFeatures(encoder);
 
 		return new Schema(encoder, label, features);
+	}
+
+	public Label encodeLabel(String targetName, List<String> targetCategories, XGBoostEncoder encoder){
+
+		if(this.num_target == 1){
+			return this.obj.encodeLabel(targetName, targetCategories, encoder);
+		} else
+
+		if(this.num_target >= 2){
+			List<Label> labels = new ArrayList<>();
+
+			for(int i = 0; i < this.num_target; i++){
+				Label label = this.obj.encodeLabel(targetName + String.valueOf(i + 1), targetCategories, encoder);
+
+				labels.add(label);
+			}
+
+			return new MultiLabel(labels);
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public Schema toXGBoostSchema(boolean numeric, Schema schema){

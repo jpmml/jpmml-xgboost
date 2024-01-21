@@ -29,9 +29,18 @@ def split_csv(df):
 	columns = df.columns.tolist()
 	return (df[columns[: -1]], df[columns[-1]])
 
+def split_multi_csv(df, target_columns):
+	columns = df.columns.tolist()
+	feature_columns = [column for column in columns if column not in target_columns]
+	return (df[feature_columns], df[target_columns])
+
 def load_split_csv(dataset):
 	df = load_csv(csv_file(dataset, ".csv"))
 	return split_csv(df)
+
+def load_split_multi_csv(dataset, target_columns):
+	df = load_csv(csv_file(dataset, ".csv"))
+	return split_multi_csv(df, target_columns)
 
 def store_csv(df, path):
 	df.to_csv(path, sep = ",", header = True, index = False)
@@ -136,6 +145,46 @@ def train_auto(dataset, **params):
 if "Auto" in datasets:
 	train_auto("Auto", booster = "dart", rate_drop = 0.05)
 	train_auto("AutoNA")
+
+def predict_multi_auto(auto_booster, auto_dmat, num_rounds = None):
+	acceleration_mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
+
+	result = DataFrame(acceleration_mpg, columns = ["_target1", "_target2"])
+
+	return result
+
+def train_multi_auto(dataset, target_columns, **params):
+	auto_X, auto_y = load_split_multi_csv(dataset, target_columns)
+
+	# Ensure that all labels are dense
+	if dataset.endswith("NA"):
+		auto_df = load_csv(csv_file(dataset.replace("NA", ""), ".csv"))
+
+		auto_y = auto_df[auto_y.columns.values.tolist()]
+
+	for col in ["cylinders", "model_year", "origin"]:
+		auto_X[col] = auto_X[col].astype("Int64").astype("category")
+
+	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
+	auto_fmap.save(csv_file("Multi" + dataset, ".fmap"))
+
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+
+	auto_params = dict(**params)
+	auto_params.update({
+		"objective" : "reg:squarederror",
+		"tree_method" : "hist",
+		"seed" : 42
+	})
+
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
+	store_model(auto_booster, "MultiLinearRegression", dataset, with_legacy_binary = False)
+
+	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiLinearRegression" + dataset, ".csv"))
+
+if "Auto" in datasets:
+	train_multi_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
+	train_multi_auto("AutoNA", ["acceleration", "mpg"])
 
 def predict_visit(visit_booster, visit_dmat, num_rounds = None):
 	count = visit_booster.predict(visit_dmat, **make_opts(num_rounds))

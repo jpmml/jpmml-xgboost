@@ -19,9 +19,11 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import com.devsmart.ubjson.GsonUtil;
@@ -30,8 +32,15 @@ import com.devsmart.ubjson.UBObject;
 import com.devsmart.ubjson.UBValue;
 import com.google.common.primitives.Floats;
 import com.google.gson.JsonObject;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.mining.Segmentation;
+import org.jpmml.converter.CMatrixUtil;
+import org.jpmml.converter.Label;
+import org.jpmml.converter.ScalarLabel;
+import org.jpmml.converter.ScalarLabelUtil;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
 
 public class GBTree extends GradientBooster {
 
@@ -155,10 +164,46 @@ public class GBTree extends GradientBooster {
 	}
 
 	public MiningModel encodeMiningModel(ObjFunction obj, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
-		RegTree[] trees = trees();
-		float[] weights = tree_weights();
+		List<RegTree> trees = Arrays.asList(trees());
+		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 
-		return obj.encodeMiningModel(Arrays.asList(trees), weights != null ? Floats.asList(weights) : null, base_score, ntreeLimit, numeric, schema);
+		Label label = schema.getLabel();
+
+		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(label);
+
+		if(trees.size() % scalarLabels.size() != 0){
+			throw new IllegalArgumentException();
+		} // End if
+
+		if(scalarLabels.size() == 1){
+			return obj.encodeMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+		} else
+
+		if(scalarLabels.size() >= 2){
+			int rows = trees.size() / scalarLabels.size();
+			int columns = scalarLabels.size();
+
+			List<Model> models = new ArrayList<>();
+
+			for(int i = 0; i < scalarLabels.size(); i++){
+				ScalarLabel scalarLabel = scalarLabels.get(i);
+
+				List<RegTree> segmentTrees = CMatrixUtil.getColumn(trees, rows, columns, i);
+				List<Float> segmentWeights = weights != null ? CMatrixUtil.getColumn(weights, rows, columns, i) : null;
+
+				Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
+
+				Model model = obj.encodeMiningModel(segmentTrees, segmentWeights, base_score, ntreeLimit, numeric, segmentSchema);
+
+				models.add(model);
+			}
+
+			return MiningModelUtil.createMultiModelChain(models, Segmentation.MissingPredictionTreatment.CONTINUE);
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	public int num_trees(){
