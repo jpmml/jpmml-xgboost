@@ -22,11 +22,21 @@ import java.util.List;
 
 import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
+import org.dmg.pmml.Output;
+import org.dmg.pmml.OutputField;
+import org.dmg.pmml.ResultFeature;
+import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.CategoricalLabel;
+import org.jpmml.converter.FieldNamePrefixes;
+import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.LabelUtil;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PMMLEncoder;
+import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
 public class Classification extends ObjFunction {
@@ -59,6 +69,38 @@ public class Classification extends ObjFunction {
 		}
 
 		return new CategoricalLabel(dataField);
+	}
+
+	@Override
+	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
+		MiningModel miningModel = encodeMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+
+		if(targetIndex != -1){
+			Model finalModel = MiningModelUtil.getFinalModel(miningModel);
+
+			Output output = finalModel.getOutput();
+			if(output == null || !output.hasOutputFields()){
+				throw new IllegalArgumentException();
+			}
+
+			List<OutputField> outputFields = output.getOutputFields();
+
+			outputFields.removeIf((outputField) -> {
+				return (outputField.getResultFeature() == ResultFeature.PROBABILITY);
+			});
+
+			CategoricalLabel categoricalLabel = (CategoricalLabel)schema.getLabel();
+
+			List<?> values = categoricalLabel.getValues();
+
+			values.stream()
+				.map(value -> {
+					return ModelUtil.createProbabilityField(FieldNameUtil.create(FieldNamePrefixes.PROBABILITY, categoricalLabel.getName(), value), DataType.FLOAT, value);
+				})
+				.forEach(outputFields::add);
+		}
+
+		return miningModel;
 	}
 
 	public int num_class(){

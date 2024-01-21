@@ -52,6 +52,10 @@ public class ObjFunction {
 	abstract
 	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema);
 
+	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
+		return encodeMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+	}
+
 	public float probToMargin(float value){
 		return value;
 	}

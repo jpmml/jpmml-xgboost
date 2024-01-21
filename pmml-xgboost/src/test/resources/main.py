@@ -330,6 +330,61 @@ if "Audit" in datasets:
 	train_audit("Audit", booster = "dart", rate_drop = 0.05)
 	train_audit("AuditNA")
 
+def predict_binomial_multi_audit(audit_booster, audit_dmat, num_rounds = None):
+	gender_adjusted_proba = audit_booster.predict(audit_dmat, **make_opts(num_rounds)).reshape((-1, 2))
+
+	gender_proba = gender_adjusted_proba[:, 0].reshape(-1, 1)
+	gender_proba = DataFrame(numpy.hstack(((gender_proba > 0.5), (1 - gender_proba), gender_proba)), columns = ["_target1", "probability(_target1; 0)", "probability(_target1; 1)"])
+
+	adjusted_proba = gender_adjusted_proba[:, 1].reshape(-1, 1)
+	adjusted_proba = DataFrame(numpy.hstack(((adjusted_proba > 0.5), (1 - adjusted_proba), adjusted_proba)), columns = ["_target2", "probability(_target2; 0)", "probability(_target2; 1)"])
+
+	result = pandas.concat((gender_proba, adjusted_proba), axis = 1)
+	result[["_target1", "_target2"]] = result[["_target1", "_target2"]].astype(int)
+
+	return result
+
+def train_multi_audit(dataset, target_columns, **params):
+	audit_X, audit_y = load_split_multi_csv(dataset, target_columns)
+
+	# Ensure that all labels are dense
+	if dataset.endswith("NA"):
+		audit_df = load_csv(csv_file(dataset.replace("NA", ""), ".csv"))
+
+		audit_y = audit_df[audit_y.columns.values.tolist()]
+
+	for col in ["Education", "Employment", "Marital", "Occupation"]:
+		audit_X[col] = audit_X[col].astype("category")
+
+	audit_y["Gender"] = audit_y["Gender"].replace({
+		"Female" : 0,
+		"Male" : 1
+	})
+
+	audit_y = audit_y.astype(int)
+
+	audit_fmap = make_feature_map(audit_X, category_to_indicator = True)
+	audit_fmap.save(csv_file("Multi" + dataset, ".fmap"))
+
+	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = True)
+
+	audit_params = dict(**params)
+	audit_params.update({
+		"objective" : "binary:logistic",
+		"tree_method" : "hist",
+		"seed" : 42
+	})
+
+	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
+	store_model(audit_booster, "MultiBinomialClassification", dataset, with_legacy_binary = False)
+
+	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat), csv_file("MultiBinomialClassification" + dataset, ".csv"))
+	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), csv_file("MultiBinomialClassification" + dataset + "@31", ".csv"))
+
+if "Audit" in datasets:
+	train_multi_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
+	train_multi_audit("AuditNA", ["Gender", "Adjusted"])
+
 #
 # Multi-class classification
 #

@@ -176,7 +176,7 @@ public class GBTree extends GradientBooster {
 		} // End if
 
 		if(scalarLabels.size() == 1){
-			return obj.encodeMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+			return obj.encodeMiningModel(-1, trees, weights, base_score, ntreeLimit, numeric, schema);
 		} else
 
 		if(scalarLabels.size() >= 2){
@@ -193,7 +193,7 @@ public class GBTree extends GradientBooster {
 
 				Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
 
-				Model model = obj.encodeMiningModel(segmentTrees, segmentWeights, base_score, ntreeLimit, numeric, segmentSchema);
+				Model model = obj.encodeMiningModel(i, segmentTrees, segmentWeights, base_score, ntreeLimit, numeric, segmentSchema);
 
 				models.add(model);
 			}
