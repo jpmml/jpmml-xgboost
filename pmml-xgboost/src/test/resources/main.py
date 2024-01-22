@@ -113,7 +113,7 @@ if "Lung" in datasets:
 #
 
 def predict_auto(auto_booster, auto_dmat, num_rounds = None):
-	mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
+	mpg = auto_booster.predict(auto_dmat, iteration_range = (0, auto_booster.best_iteration + 1), **make_opts(num_rounds))
 
 	result = DataFrame(mpg, columns = ["_target"])
 
@@ -121,6 +121,8 @@ def predict_auto(auto_booster, auto_dmat, num_rounds = None):
 
 def train_auto(dataset, **params):
 	auto_X, auto_y = load_split_csv(dataset)
+
+	eval_mask = numpy.random.choice([True, False], size = (auto_X.shape[0], ), p = [0.15, 0.85])
 
 	for col in ["cylinders", "model_year", "origin"]:
 		auto_X[col] = auto_X[col].astype("Int64").astype("category")
@@ -130,14 +132,17 @@ def train_auto(dataset, **params):
 
 	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
 
+	auto_eval_dmat = xgboost.DMatrix(data = auto_X[eval_mask], label = auto_y[eval_mask], enable_categorical = True)
+
 	auto_params = dict(**params)
 	auto_params.update({
 		"objective" : "reg:squarederror",
 		"tree_method" : "hist",
+		"max_depth" : 2,
 		"seed" : 42
 	})
 
-	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 71, early_stopping_rounds = 3, evals = [(auto_eval_dmat, "eval")])
 	store_model(auto_booster, "LinearRegression", dataset, with_legacy_binary = False)
 
 	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("LinearRegression" + dataset, ".csv"))

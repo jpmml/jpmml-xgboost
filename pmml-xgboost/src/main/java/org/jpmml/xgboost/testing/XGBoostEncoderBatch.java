@@ -136,7 +136,16 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 			featureMap = XGBoostUtil.loadFeatureMap(is);
 		}
 
-		Map<String, ?> options = getOptions();
+		Map<String, Object> options = getOptions();
+
+		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
+		if(ntreeLimit == null){
+			Integer bestIteration = learner.getBestIteration();
+
+			if(bestIteration != null){
+				options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, bestIteration + 1);
+			}
+		}
 
 		PMML pmml = learner.encodePMML(options, null, null, featureMap);
 

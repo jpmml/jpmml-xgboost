@@ -28,6 +28,7 @@ import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -219,6 +220,20 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		this.gbtree = parseGradientBooster(name_gbm);
 		this.gbtree.loadUBJSON(gradientBooster);
+
+		if(learner.containsKey("attributes")){
+			UBObject attributes = learner.get("attributes").asObject();
+
+			this.attributes = new HashMap<>();
+
+			String[] keys = {"best_iteration", "best_score"};
+			for(String key : keys){
+
+				if(attributes.containsKey(key)){
+					this.attributes.put(key, attributes.get(key).asString());
+				}
+			}
+		} // End if
 
 		if(learner.containsKey("feature_names")){
 			this.feature_names = UBJSONUtil.toStringArray(learner.get("feature_names"));
@@ -614,6 +629,35 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	public GBTree gbtree(){
 		return this.gbtree;
+	}
+
+	public String getAttribute(String key){
+
+		if(this.attributes != null && this.attributes.containsKey(key)){
+			return this.attributes.get(key);
+		}
+
+		return null;
+	}
+
+	public Integer getBestIteration(){
+		String bestIteration = getAttribute("best_iteration");
+
+		if(bestIteration != null){
+			return Integer.valueOf(bestIteration);
+		}
+
+		return null;
+	}
+
+	public Double getBestScore(){
+		String bestScore = getAttribute("best_score");
+
+		if(bestScore != null){
+			return Double.valueOf(bestScore);
+		}
+
+		return null;
 	}
 
 	private GBTree parseGradientBooster(String name_gbm){
