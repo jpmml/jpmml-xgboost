@@ -187,6 +187,24 @@ def train_multi_auto(dataset, target_columns, **params):
 
 	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiLinearRegression" + dataset, ".csv"))
 
+	auto_params.update({
+		"booster" : "gbtree"
+	})
+
+	if "rate_drop" in auto_params:
+		auto_params.pop("rate_drop")
+
+	auto_params.update({
+		"num_parallel_tree" : 37,
+		"subsample" : 0.85,
+		"colsample_bynode" : 0.75
+	})
+
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
+	store_model(auto_booster, "MultiRandomForest", dataset, with_legacy_binary = False)
+
+	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiRandomForest" + dataset, ".csv"))
+
 if "Auto" in datasets:
 	train_multi_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
 	train_multi_auto("AutoNA", ["acceleration", "mpg"])

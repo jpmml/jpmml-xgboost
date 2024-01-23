@@ -46,6 +46,8 @@ public class GBTree extends GradientBooster {
 
 	private int num_trees;
 
+	private int num_parallel_tree;
+
 	private int num_roots;
 
 	private int num_feature;
@@ -98,6 +100,14 @@ public class GBTree extends GradientBooster {
 		UBObject gbtreeModelParam = model.get("gbtree_model_param").asObject();
 
 		this.num_trees = gbtreeModelParam.get("num_trees").asInt();
+
+		if(gbtreeModelParam.containsKey("num_parallel_tree")){
+			this.num_parallel_tree = gbtreeModelParam.get("num_parallel_tree").asInt();
+		} else
+
+		{
+			this.num_parallel_tree = 1;
+		} // End if
 
 		if(gbtreeModelParam.containsKey("size_leaf_vector")){
 			this.size_leaf_vector = gbtreeModelParam.get("size_leaf_vector").asInt();
@@ -180,16 +190,35 @@ public class GBTree extends GradientBooster {
 		} else
 
 		if(scalarLabels.size() >= 2){
-			int rows = trees.size() / scalarLabels.size();
-			int columns = scalarLabels.size();
-
 			List<Model> models = new ArrayList<>();
 
 			for(int i = 0; i < scalarLabels.size(); i++){
 				ScalarLabel scalarLabel = scalarLabels.get(i);
 
-				List<RegTree> segmentTrees = CMatrixUtil.getColumn(trees, rows, columns, i);
-				List<Float> segmentWeights = weights != null ? CMatrixUtil.getColumn(weights, rows, columns, i) : null;
+				List<RegTree> segmentTrees;
+				List<Float> segmentWeights;
+
+				// Boosting
+				if(this.num_parallel_tree == 1){
+					int rows = trees.size() / scalarLabels.size();
+					int columns = scalarLabels.size();
+
+					segmentTrees = CMatrixUtil.getColumn(trees, rows, columns, i);
+					segmentWeights = weights != null ? CMatrixUtil.getColumn(weights, rows, columns, i) : null;
+				} else
+
+				// Bagging
+				if(this.num_parallel_tree >= 2){
+					int rows = scalarLabels.size();
+					int columns = trees.size() / scalarLabels.size();
+
+					segmentTrees = CMatrixUtil.getRow(trees, rows, columns, i);
+					segmentWeights = weights != null ? CMatrixUtil.getRow(weights, rows, columns, i) : null;
+				} else
+
+				{
+					throw new IllegalArgumentException();
+				}
 
 				Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
 
@@ -208,6 +237,10 @@ public class GBTree extends GradientBooster {
 
 	public int num_trees(){
 		return this.num_trees;
+	}
+
+	public int num_parallel_tree(){
+		return this.num_parallel_tree;
 	}
 
 	public RegTree[] trees(){
