@@ -3,13 +3,9 @@ JPMML-XGBoost [![Build Status](https://github.com/jpmml/jpmml-xgboost/workflows/
 
 Java library and command-line application for converting [XGBoost](https://github.com/dmlc/xgboost) models to PMML.
 
-# Prerequisites #
-
-* Java 1.8 or newer.
-
 # Features #
 
-Supports all XGBoost versions 0.4 through 1.7(.2).
+Supports all XGBoost versions 0.4 through 2.0(.3).
 
 * Functionality:
   * Model data formats:
@@ -19,6 +15,9 @@ Supports all XGBoost versions 0.4 through 1.7(.2).
   * Gradient boosters:
     * GBTree
     * DART
+  * Target cardinality:
+    * Single-target
+    * One-Model-Per-Target (OMPT)-style Multi-target
   * Feature maps
   * Split types:
     * Numeric (XGBoost 0.4 and newer)
@@ -39,6 +38,14 @@ Supports all XGBoost versions 0.4 through 1.7(.2).
 * Production quality:
   * Complete test coverage.
   * Fully compliant with [JPMML-Evaluator](https://github.com/jpmml/jpmml-evaluator) and [JPMML-Transpiler](https://github.com/jpmml/jpmml-transpiler) libraries
+
+# News and Updates #
+
+See the [NEWS.md](https://github.com/jpmml/jpmml-xgboost/blob/master/NEWS.md#182) file.
+
+# Prerequisites #
+
+* Java 1.8 or newer.
 
 # Installation #
 
