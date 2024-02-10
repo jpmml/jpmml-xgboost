@@ -29,8 +29,8 @@ import org.dmg.pmml.OutputField;
 import org.dmg.pmml.ResultFeature;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.CategoricalLabel;
-import org.jpmml.converter.FieldNamePrefixes;
 import org.jpmml.converter.FieldNameUtil;
+import org.jpmml.converter.FieldNames;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.LabelUtil;
 import org.jpmml.converter.ModelUtil;
@@ -95,7 +95,7 @@ public class Classification extends ObjFunction {
 
 			values.stream()
 				.map(value -> {
-					return ModelUtil.createProbabilityField(FieldNameUtil.create(FieldNamePrefixes.PROBABILITY, categoricalLabel.getName(), value), DataType.FLOAT, value);
+					return ModelUtil.createProbabilityField(FieldNameUtil.create(FieldNames.PROBABILITY, categoricalLabel.getName(), value), DataType.FLOAT, value);
 				})
 				.forEach(outputFields::add);
 		}

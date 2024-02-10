@@ -56,13 +56,14 @@ import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.ExpressionUtil;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.FieldNameUtil;
+import org.jpmml.converter.FieldUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
-import org.jpmml.converter.PMMLUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.ValueUtil;
@@ -514,7 +515,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 							}
 						}
 
-						PMMLUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
+						FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
 
 						return continuousFeature;
 					} // End if
@@ -526,10 +527,10 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 					PMMLEncoder encoder = continuousFeature.getEncoder();
 
-					Expression expression = PMMLUtil.createApply(PMMLFunctions.IF,
-						PMMLUtil.createApply(PMMLFunctions.AND,
-							PMMLUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
-							PMMLUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), PMMLUtil.createConstant(missing))
+					Expression expression = ExpressionUtil.createApply(PMMLFunctions.IF,
+						ExpressionUtil.createApply(PMMLFunctions.AND,
+							ExpressionUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
+							ExpressionUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), ExpressionUtil.createConstant(missing))
 						),
 						continuousFeature.ref()
 					);

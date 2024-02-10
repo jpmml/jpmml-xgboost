@@ -38,8 +38,8 @@ import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.Feature;
+import org.jpmml.converter.FieldUtil;
 import org.jpmml.converter.PMMLEncoder;
-import org.jpmml.converter.PMMLUtil;
 
 public class FeatureMap {
 
@@ -72,7 +72,7 @@ public class FeatureMap {
 		for(DataField dataField : dataFields){
 
 			for(Map.Entry<Value.Property, List<String>> valueEntry : valueEntries){
-				PMMLUtil.addValues(dataField, valueEntry.getKey(), valueEntry.getValue());
+				FieldUtil.addValues(dataField, valueEntry.getKey(), valueEntry.getValue());
 			}
 		}
 
@@ -286,7 +286,7 @@ public class FeatureMap {
 			} // End if
 
 			if(value != null){
-				PMMLUtil.addValues(dataField, Collections.singletonList(value));
+				FieldUtil.addValues(dataField, Collections.singletonList(value));
 
 				return new BinaryFeature(encoder, dataField, value);
 			} else

@@ -18,16 +18,11 @@
  */
 package org.jpmml.xgboost.testing;
 
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
-import java.util.stream.Collectors;
 
 import com.google.common.base.Equivalence;
-import org.jpmml.converter.FieldNamePrefixes;
 import org.jpmml.converter.FieldNameUtil;
+import org.jpmml.converter.FieldNames;
 import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
@@ -58,19 +53,15 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 			}
 
 			@Override
-			public List<? extends Map<String, ?>> getOutput() throws IOException {
-				List<? extends Map<String, ?>> table = super.getOutput();
+			protected String getSeparator(){
+				String algorithm = getAlgorithm();
 
-				List<Map<String, ?>> result = new ArrayList<>();
-
-				for(Map<String, ?> row : table){
-					row = (row.entrySet()).stream()
-						.collect(Collectors.toMap(entry -> (entry.getKey()).replace(";", ","), entry -> entry.getValue()));
-
-					result.add(row);
+				// XXX
+				if(("Multi" + BINOMIAL_CLASSIFICATION).equals(algorithm)){
+					return null;
 				}
 
-				return result;
+				return super.getSeparator();
 			}
 		};
 
@@ -98,6 +89,6 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	// XXX
-	private static final String AUDIT_GENDER_PROBABILITY_FALSE = FieldNameUtil.create(FieldNamePrefixes.PROBABILITY, "_target1", 0);
-	private static final String AUDIT_ADJUSTED_PROBABILITY_FALSE = FieldNameUtil.create(FieldNamePrefixes.PROBABILITY, "_target2", 0);
+	private static final String AUDIT_GENDER_PROBABILITY_FALSE = FieldNameUtil.create(FieldNames.PROBABILITY, "_target1", 0);
+	private static final String AUDIT_ADJUSTED_PROBABILITY_FALSE = FieldNameUtil.create(FieldNames.PROBABILITY, "_target2", 0);
 }
