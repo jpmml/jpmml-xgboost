@@ -1,8 +1,8 @@
-# 1.8.2
+# 1.8.2 #
 
 ## Breaking changes
 
-None
+None.
 
 ## New features
 
