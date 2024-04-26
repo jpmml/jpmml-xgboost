@@ -573,7 +573,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		schema = configureSchema(options, schema);
 
-		MiningModel miningModel = encodeMiningModel(options, schema);
+		MiningModel miningModel = encodeModel(options, schema);
 
 		miningModel = configureModel(options, miningModel);
 
@@ -582,7 +582,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return pmml;
 	}
 
-	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
+	public MiningModel encodeModel(Map<String, ?> options, Schema schema){
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
