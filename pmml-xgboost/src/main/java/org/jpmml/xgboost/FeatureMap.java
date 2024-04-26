@@ -18,7 +18,6 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.AbstractList;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -357,10 +356,15 @@ public class FeatureMap {
 
 			DataField dataField = encoder.getDataField(name);
 			if(dataField == null){
+				DataType dataType = DataType.STRING;
+
+				if(values == null){
+					dataType = DataType.INTEGER;
+				}
 
 				switch(type){
 					case CATEGORICAL:
-						dataField = encoder.createDataField(name, OpType.CATEGORICAL, DataType.STRING, values);
+						dataField = encoder.createDataField(name, OpType.CATEGORICAL, dataType, values);
 						break;
 					default:
 						throw new IllegalArgumentException();
@@ -368,42 +372,10 @@ public class FeatureMap {
 			} // End if
 
 			if(values == null){
-				values = createValues();
+				values = new IntegerRange();
 			}
 
 			return new CategoricalFeature(encoder, dataField, values);
-		}
-
-		private List<Integer> createValues(){
-			List<Integer> result = new AbstractList<Integer>(){
-
-				private int max = -1;
-
-
-				@Override
-				public boolean isEmpty(){
-					return false;
-				}
-
-				@Override
-				public int size(){
-
-					if(this.max < 0){
-						throw new IllegalStateException();
-					}
-
-					return (this.max + 1);
-				}
-
-				@Override
-				public Integer get(int i){
-					this.max = Math.max(this.max, i);
-
-					return i;
-				}
-			};
-
-			return result;
 		}
 
 		public List<?> getValues(){

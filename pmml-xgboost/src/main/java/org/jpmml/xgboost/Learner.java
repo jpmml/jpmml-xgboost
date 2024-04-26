@@ -27,6 +27,7 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -456,6 +457,18 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				if(feature instanceof CategoricalFeature){
 					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
 
+					List<?> values = categoricalFeature.getValues();
+					if(values instanceof IntegerRange){
+						IntegerRange integerRange = (IntegerRange)values;
+
+						int splitIndex = getSplitIndex(feature);
+
+						BitSet splitCategorires = Learner.this.gbtree.getSplitCategories(splitIndex);
+
+						// XXX
+						integerRange.ensureSize(splitCategorires.length());
+					}
+
 					return categoricalFeature;
 				} else
 
@@ -564,7 +577,10 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		FeatureMap embeddedFeatureMap = encodeFeatureMap();
 		if(embeddedFeatureMap != null){
-			embeddedFeatureMap.update(featureMap);
+
+			if(featureMap != null){
+				embeddedFeatureMap.update(featureMap);
+			}
 
 			featureMap = embeddedFeatureMap;
 		}
