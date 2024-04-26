@@ -51,7 +51,6 @@ import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.Value;
-import org.dmg.pmml.Visitor;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoricalFeature;
@@ -68,6 +67,7 @@ import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.visitors.TreeModelPruner;
+import org.jpmml.model.visitors.VisitorBattery;
 import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
 public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
@@ -575,36 +575,18 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
+		miningModel = configureModel(options, miningModel);
+
 		PMML pmml = encoder.encodePMML(miningModel);
 
 		return pmml;
 	}
 
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
-		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
-		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
-		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
-
-		if((Boolean.TRUE).equals(compact)){
-
-			if((Boolean.FALSE).equals(numeric)){
-				throw new IllegalArgumentException("Conflicting XGBoost options");
-			}
-
-			Visitor visitor = new TreeModelCompactor();
-
-			visitor.applyTo(miningModel);
-		} // End if
-
-		if((Boolean.TRUE).equals(prune)){
-			Visitor visitor = new TreeModelPruner();
-
-			visitor.applyTo(miningModel);
-		}
 
 		return miningModel;
 	}
@@ -624,6 +606,31 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 
 		return schema;
+	}
+
+	public MiningModel configureModel(Map<String, ?> options, MiningModel miningModel){
+		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
+		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
+		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
+
+		VisitorBattery visitors = new VisitorBattery();
+
+		if((Boolean.TRUE).equals(compact)){
+
+			if((Boolean.FALSE).equals(numeric)){
+				throw new IllegalArgumentException("Conflicting XGBoost options");
+			}
+
+			visitors.add(TreeModelCompactor.class);
+		} // End if
+
+		if((Boolean.TRUE).equals(prune)){
+			visitors.add(TreeModelPruner.class);
+		}
+
+		visitors.applyTo(miningModel);
+
+		return miningModel;
 	}
 
 	public int num_feature(){
