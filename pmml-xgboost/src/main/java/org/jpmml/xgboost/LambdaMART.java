@@ -30,8 +30,8 @@ public class LambdaMART extends Regression {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, schema);
 
 		return miningModel;
 	}

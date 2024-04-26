@@ -50,10 +50,10 @@ public class ObjFunction {
 	public Label encodeLabel(String targetName, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema);
+	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
 
-	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
-		return encodeMiningModel(trees, weights, base_score, ntreeLimit, numeric, schema);
+	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+		return encodeMiningModel(trees, weights, base_score, ntreeLimit, schema);
 	}
 
 	public float probToMargin(float value){
@@ -65,7 +65,7 @@ public class ObjFunction {
 	}
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, boolean numeric, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 		trees = new ArrayList<>(trees);
 
 		if(weights != null){
@@ -152,7 +152,7 @@ public class ObjFunction {
 		// Final pass - encoding trees
 		{
 			for(RegTree tree : trees){
-				TreeModel treeModel = tree.encodeTreeModel(numeric, predicateManager, segmentSchema);
+				TreeModel treeModel = tree.encodeTreeModel(predicateManager, segmentSchema);
 
 				treeModels.add(treeModel);
 			}

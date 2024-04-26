@@ -399,7 +399,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
-	public Schema toXGBoostSchema(boolean numeric, Schema schema){
+	public Schema toNumericFilteredSchema(Boolean numeric, Schema schema){
 		FeatureTransformer function = new FeatureTransformer(){
 
 			private List<? extends Feature> features = schema.getFeatures();
@@ -425,7 +425,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					return missingValueFeature;
 				} else
 
-				if(feature instanceof ThresholdFeature && !numeric){
+				if(feature instanceof ThresholdFeature && (numeric != null && !numeric)){
 					ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
 
 					return thresholdFeature;
@@ -468,7 +468,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public Schema toValueFilteredSchema(Number missing, Schema schema){
+	public Schema toMissingFilteredSchema(Number missing, Schema schema){
 		FeatureTransformer function = new FeatureTransformer(){
 
 			private List<? extends Feature> features = schema.getFeatures();
@@ -571,6 +571,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 
+		schema = configureSchema(options, schema);
+
 		MiningModel miningModel = encodeMiningModel(options, schema);
 
 		PMML pmml = encoder.encodePMML(miningModel);
@@ -579,21 +581,12 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public MiningModel encodeMiningModel(Map<String, ?> options, Schema schema){
-		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
-		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
+		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
-		if(numeric == null){
-			numeric = Boolean.TRUE;
-		} // End if
-
-		if(missing != null){
-			schema = toValueFilteredSchema(missing, schema);
-		}
-
-		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, numeric, schema)
+		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
 		if((Boolean.TRUE).equals(compact)){
@@ -614,6 +607,23 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 
 		return miningModel;
+	}
+
+	public Schema configureSchema(Map<String, ?> options, Schema schema){
+		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
+		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
+
+		if(numeric == null){
+			numeric = Boolean.TRUE;
+		} // End if
+
+		schema = toNumericFilteredSchema(numeric, schema);
+
+		if(missing != null){
+			schema = toMissingFilteredSchema(missing, schema);
+		}
+
+		return schema;
 	}
 
 	public int num_feature(){
