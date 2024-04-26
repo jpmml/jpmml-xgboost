@@ -48,6 +48,8 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.DerivedField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.Field;
+import org.dmg.pmml.HasContinuousDomain;
+import org.dmg.pmml.Interval;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.PMMLFunctions;
@@ -400,7 +402,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
-	public Schema toNumericFilteredSchema(Boolean numeric, Schema schema){
+	public Schema toNumericFilteredSchema(Boolean numeric, Boolean inputFloat, Schema schema){
 		FeatureTransformer function = new FeatureTransformer(){
 
 			private List<? extends Feature> features = schema.getFeatures();
@@ -441,7 +443,42 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 						case FLOAT:
 							break;
 						case DOUBLE:
-							continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
+							{
+								if(inputFloat != null && inputFloat){
+									Field<?> field = continuousFeature.getField();
+
+									field.setDataType(DataType.FLOAT);
+
+									// XXX
+									if(field instanceof HasContinuousDomain){
+										HasContinuousDomain<?> hasContinuousDomain = (HasContinuousDomain<?>)field;
+
+										if(hasContinuousDomain.hasIntervals()){
+											List<Interval> intervals = hasContinuousDomain.getIntervals();
+
+											for(Interval interval : intervals){
+												Number leftMargin = interval.getLeftMargin();
+												Number rightMargin = interval.getRightMargin();
+
+												if(leftMargin != null){
+													interval.setLeftMargin(Math.min(leftMargin.doubleValue(), leftMargin.floatValue()));
+												} // End if
+
+												if(rightMargin != null){
+													interval.setRightMargin(Math.max(rightMargin.doubleValue(), rightMargin.floatValue()));
+												}
+											}
+										}
+									}
+
+									continuousFeature = new ContinuousFeature(continuousFeature.getEncoder(), field);
+								} else
+
+								{
+									continuousFeature = continuousFeature
+										.toContinuousFeature(DataType.FLOAT);
+								}
+							}
 							break;
 						default:
 							throw new IllegalArgumentException("Expected integer, float or double data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
@@ -608,14 +645,15 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Schema configureSchema(Map<String, ?> options, Schema schema){
-		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
 		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
+		Boolean inputFloat = (Boolean)options.get(HasXGBoostOptions.OPTION_INPUT_FLOAT);
+		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
 
 		if(numeric == null){
 			numeric = Boolean.TRUE;
 		} // End if
 
-		schema = toNumericFilteredSchema(numeric, schema);
+		schema = toNumericFilteredSchema(numeric, inputFloat, schema);
 
 		if(missing != null){
 			schema = toMissingFilteredSchema(missing, schema);

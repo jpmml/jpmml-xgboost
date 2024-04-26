@@ -114,6 +114,13 @@ public class Main {
 	private boolean compact = true;
 
 	@Parameter (
+		names = {"--X-" + HasXGBoostOptions.OPTION_INPUT_FLOAT},
+		description = "Allow field data type updates",
+		arity = 1
+	)
+	private Boolean inputFloat = null;
+
+	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_NUMERIC},
 		description = "Simplify non-numeric split conditions to numeric split conditions",
 		arity = 1
@@ -210,6 +217,7 @@ public class Main {
 		Map<String, Object> options = new LinkedHashMap<>();
 		options.put(HasXGBoostOptions.OPTION_MISSING, this.missing);
 		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
+		options.put(HasXGBoostOptions.OPTION_INPUT_FLOAT, this.inputFloat);
 		options.put(HasXGBoostOptions.OPTION_NUMERIC, this.numeric);
 		options.put(HasXGBoostOptions.OPTION_PRUNE, this.prune);
 		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
