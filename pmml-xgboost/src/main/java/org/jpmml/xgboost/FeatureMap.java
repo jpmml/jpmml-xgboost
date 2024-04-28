@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import java.util.ArrayList;
+import java.util.BitSet;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumMap;
@@ -50,14 +51,17 @@ public class FeatureMap {
 	public FeatureMap(){
 	}
 
-	public List<Feature> encodeFeatures(PMMLEncoder encoder){
+	public List<Feature> encodeFeatures(Learner learner, PMMLEncoder encoder){
+		List<Entry> entries = getEntries();
+
 		List<Feature> result = new ArrayList<>();
 
 		Set<DataField> dataFields = new LinkedHashSet<>();
 
-		List<Entry> entries = getEntries();
-		for(Entry entry : entries){
-			Feature feature = entry.encodeFeature(encoder);
+		for(int i = 0; i < entries.size(); i++){
+			Entry entry = entries.get(i);
+
+			Feature feature = entry.encodeFeature(learner, i, encoder);
 
 			result.add(feature);
 
@@ -199,7 +203,7 @@ public class FeatureMap {
 		}
 
 		abstract
-		public Feature encodeFeature(PMMLEncoder encoder);
+		public Feature encodeFeature(Learner learner, int index, PMMLEncoder encoder);
 
 		public String getName(){
 			return this.name;
@@ -261,7 +265,7 @@ public class FeatureMap {
 		}
 
 		@Override
-		public Feature encodeFeature(PMMLEncoder encoder){
+		public Feature encodeFeature(Learner learner, int index, PMMLEncoder encoder){
 			String name = getName();
 			String value = getValue();
 			Type type = getType();
@@ -312,7 +316,7 @@ public class FeatureMap {
 		}
 
 		@Override
-		public Feature encodeFeature(PMMLEncoder encoder){
+		public Feature encodeFeature(Learner learner, int index, PMMLEncoder encoder){
 			String name = getName();
 			Type type = getType();
 
@@ -349,18 +353,28 @@ public class FeatureMap {
 		}
 
 		@Override
-		public Feature encodeFeature(PMMLEncoder encoder){
+		public Feature encodeFeature(Learner learner, int index, PMMLEncoder encoder){
 			String name = getName();
 			Type type = getType();
 			List<?> values = getValues();
 
+			DataType dataType = DataType.STRING;
+
+			if(values == null){
+				GBTree gbtree = learner.gbtree();
+
+				BitSet splitIndices = gbtree.getSplitCategories(index);
+
+				// Binary categorical features
+				int size = Math.max(splitIndices.length(), 2);
+
+				values = new IntegerRange(size);
+
+				dataType = DataType.INTEGER;
+			}
+
 			DataField dataField = encoder.getDataField(name);
 			if(dataField == null){
-				DataType dataType = DataType.STRING;
-
-				if(values == null){
-					dataType = DataType.INTEGER;
-				}
 
 				switch(type){
 					case CATEGORICAL:
@@ -369,10 +383,6 @@ public class FeatureMap {
 					default:
 						throw new IllegalArgumentException();
 				}
-			} // End if
-
-			if(values == null){
-				values = new IntegerRange();
 			}
 
 			return new CategoricalFeature(encoder, dataField, values);

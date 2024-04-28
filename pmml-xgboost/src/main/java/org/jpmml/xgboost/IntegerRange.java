@@ -22,32 +22,35 @@ import java.util.AbstractList;
 
 class IntegerRange extends AbstractList<Integer> {
 
-	private int max = -1;
+	private int size;
 
+
+	IntegerRange(int size){
+
+		if(size < 0){
+			throw new IllegalArgumentException();
+		}
+
+		this.size = size;
+	}
 
 	@Override
 	public boolean isEmpty(){
-		return false;
+		return (this.size == 0);
 	}
 
 	@Override
 	public int size(){
-
-		if(this.max < 0){
-			throw new IllegalStateException();
-		}
-
-		return (this.max + 1);
+		return this.size;
 	}
 
 	@Override
 	public Integer get(int i){
-		this.max = Math.max(this.max, i);
+
+		if(i < 0 || i >= this.size){
+			throw new IndexOutOfBoundsException();
+		}
 
 		return i;
-	}
-
-	void ensureSize(int size){
-		get(size - 1);
 	}
 }
