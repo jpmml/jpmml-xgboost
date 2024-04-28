@@ -402,6 +402,21 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
+	public Schema toXGBoostSchema(Schema schema){
+		FeatureTransformer function = new DefaultFeatureTransformer(){
+
+			private List<? extends Feature> features = schema.getFeatures();
+
+
+			@Override
+			public int getSplitIndex(Feature feature){
+				return this.features.indexOf(feature);
+			}
+		};
+
+		return schema.toTransformedSchema(function);
+	}
+
 	public Schema toNumericFilteredSchema(Boolean numeric, Boolean inputFloat, Schema schema){
 		FeatureTransformer function = new FeatureTransformer(){
 
@@ -840,6 +855,68 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			{
 				throw new IllegalArgumentException();
 			}
+		}
+	}
+
+	abstract
+	private class DefaultFeatureTransformer extends FeatureTransformer {
+
+		@Override
+		public Feature transformNumerical(Feature feature){
+
+			if(feature instanceof BinaryFeature){
+				BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+				return binaryFeature;
+			} else
+
+			if(feature instanceof MissingValueFeature){
+				MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
+
+				return missingValueFeature;
+			} else
+
+			if(feature instanceof ThresholdFeature){
+				ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
+
+				return thresholdFeature;
+			} else
+
+			{
+				ContinuousFeature continuousFeature = feature.toContinuousFeature();
+
+				DataType dataType = continuousFeature.getDataType();
+				switch(dataType){
+					case INTEGER:
+					case FLOAT:
+						break;
+					case DOUBLE:
+						continuousFeature = toFloat(continuousFeature);
+						break;
+					default:
+						throw new IllegalArgumentException();
+				}
+
+				return continuousFeature;
+			}
+		}
+
+		@Override
+		public Feature transformCategorical(Feature feature){
+
+			if(feature instanceof CategoricalFeature){
+				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+
+				return categoricalFeature;
+			} else
+
+			{
+				throw new IllegalArgumentException();
+			}
+		}
+
+		protected ContinuousFeature toFloat(ContinuousFeature continuousFeature){
+			return continuousFeature.toContinuousFeature(DataType.FLOAT);
 		}
 	}
 }
