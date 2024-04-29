@@ -43,7 +43,7 @@ public class MultinomialLogisticRegression extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		List<MiningModel> miningModels = new ArrayList<>();

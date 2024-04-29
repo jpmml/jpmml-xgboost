@@ -451,7 +451,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public MiningModel encodeModel(Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
+		MiningModel miningModel = this.gbtree.encodeModel(this.obj, this.base_score, ntreeLimit, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
 		return miningModel;

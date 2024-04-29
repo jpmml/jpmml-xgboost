@@ -50,10 +50,10 @@ public class ObjFunction {
 	public Label encodeLabel(String targetName, List<?> targetCategories, PMMLEncoder encoder);
 
 	abstract
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
 
-	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
-		return encodeMiningModel(trees, weights, base_score, ntreeLimit, schema);
+	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+		return encodeModel(trees, weights, base_score, ntreeLimit, schema);
 	}
 
 	public float probToMargin(float value){

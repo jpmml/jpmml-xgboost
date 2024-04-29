@@ -30,7 +30,7 @@ public class LinearRegression extends Regression {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
 		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, schema);
 
 		return miningModel;

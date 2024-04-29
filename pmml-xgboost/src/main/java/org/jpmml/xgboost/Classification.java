@@ -72,8 +72,8 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public MiningModel encodeMiningModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = encodeMiningModel(trees, weights, base_score, ntreeLimit, schema);
+	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+		MiningModel miningModel = encodeModel(trees, weights, base_score, ntreeLimit, schema);
 
 		if(targetIndex != -1){
 			Model finalModel = MiningModelUtil.getFinalModel(miningModel);
