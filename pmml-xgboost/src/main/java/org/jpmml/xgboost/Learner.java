@@ -431,11 +431,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 
-		schema = configureSchema(options, schema);
-
 		MiningModel miningModel = encodeModel(options, schema);
-
-		miningModel = configureModel(options, miningModel);
 
 		PMML pmml = encoder.encodePMML(miningModel);
 
@@ -445,6 +441,16 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public MiningModel encodeModel(Map<String, ?> options, Schema schema){
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
+		schema = configureSchema(options, schema);
+
+		MiningModel miningModel = encodeModel(ntreeLimit, schema);
+
+		miningModel = configureModel(options, miningModel);
+
+		return miningModel;
+	}
+
+	public MiningModel encodeModel(Integer ntreeLimit, Schema schema){
 		MiningModel miningModel = this.gbtree.encodeMiningModel(this.obj, this.base_score, ntreeLimit, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
