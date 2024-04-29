@@ -416,201 +416,6 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public Schema toNumericFilteredSchema(Boolean numeric, Boolean inputFloat, Schema schema){
-		FeatureTransformer function = new FeatureTransformer(){
-
-			private List<? extends Feature> features = schema.getFeatures();
-
-
-			@Override
-			public int getSplitIndex(Feature feature){
-				return this.features.indexOf(feature);
-			}
-
-			@Override
-			public Feature transformNumerical(Feature feature){
-
-				if(feature instanceof BinaryFeature){
-					BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-					return binaryFeature;
-				} else
-
-				if(feature instanceof MissingValueFeature){
-					MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
-
-					return missingValueFeature;
-				} else
-
-				if(feature instanceof ThresholdFeature && (numeric != null && !numeric)){
-					ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
-
-					return thresholdFeature;
-				} else
-
-				{
-					ContinuousFeature continuousFeature = feature.toContinuousFeature();
-
-					DataType dataType = continuousFeature.getDataType();
-					switch(dataType){
-						case INTEGER:
-						case FLOAT:
-							break;
-						case DOUBLE:
-							{
-								if(inputFloat != null && inputFloat){
-									Field<?> field = continuousFeature.getField();
-
-									field.setDataType(DataType.FLOAT);
-
-									// XXX
-									if(field instanceof HasContinuousDomain){
-										HasContinuousDomain<?> hasContinuousDomain = (HasContinuousDomain<?>)field;
-
-										if(hasContinuousDomain.hasIntervals()){
-											List<Interval> intervals = hasContinuousDomain.getIntervals();
-
-											for(Interval interval : intervals){
-												Number leftMargin = interval.getLeftMargin();
-												Number rightMargin = interval.getRightMargin();
-
-												if(leftMargin != null){
-													interval.setLeftMargin(Math.min(leftMargin.doubleValue(), leftMargin.floatValue()));
-												} // End if
-
-												if(rightMargin != null){
-													interval.setRightMargin(Math.max(rightMargin.doubleValue(), rightMargin.floatValue()));
-												}
-											}
-										}
-									}
-
-									continuousFeature = new ContinuousFeature(continuousFeature.getEncoder(), field);
-								} else
-
-								{
-									continuousFeature = continuousFeature
-										.toContinuousFeature(DataType.FLOAT);
-								}
-							}
-							break;
-						default:
-							throw new IllegalArgumentException("Expected integer, float or double data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
-					}
-
-					return continuousFeature;
-				}
-			}
-
-			@Override
-			public Feature transformCategorical(Feature feature){
-
-				if(feature instanceof CategoricalFeature){
-					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
-
-					return categoricalFeature;
-				} else
-
-				{
-					throw new IllegalArgumentException();
-				}
-			}
-		};
-
-		return schema.toTransformedSchema(function);
-	}
-
-	public Schema toMissingFilteredSchema(Number missing, Schema schema){
-		FeatureTransformer function = new FeatureTransformer(){
-
-			private List<? extends Feature> features = schema.getFeatures();
-
-
-			@Override
-			public int getSplitIndex(Feature feature){
-				return this.features.indexOf(feature);
-			}
-
-			@Override
-			public Feature transformNumerical(Feature feature){
-
-				if(feature instanceof BinaryFeature){
-					BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-					return binaryFeature;
-				} else
-
-				if(feature instanceof MissingValueFeature){
-					MissingValueFeature missingValueFeature = (MissingValueFeature)feature;
-
-					return missingValueFeature;
-				} else
-
-				{
-					ContinuousFeature continuousFeature = feature.toContinuousFeature();
-
-					Field<?> field = continuousFeature.getField();
-
-					if(field instanceof DataField){
-						DataField dataField = (DataField)field;
-
-						// XXX
-						if(ValueUtil.isNaN(missing)){
-							DataType dataType = dataField.getDataType();
-
-							switch(dataType){
-								case FLOAT:
-								case DOUBLE:
-									break;
-								default:
-									return continuousFeature;
-							}
-						}
-
-						FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(missing));
-
-						return continuousFeature;
-					} // End if
-
-					// XXX
-					if(ValueUtil.isNaN(missing)){
-						return continuousFeature;
-					}
-
-					PMMLEncoder encoder = continuousFeature.getEncoder();
-
-					Expression expression = ExpressionUtil.createApply(PMMLFunctions.IF,
-						ExpressionUtil.createApply(PMMLFunctions.AND,
-							ExpressionUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
-							ExpressionUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), ExpressionUtil.createConstant(missing))
-						),
-						continuousFeature.ref()
-					);
-
-					DerivedField derivedField = encoder.createDerivedField(FieldNameUtil.create("filter", continuousFeature, missing), OpType.CONTINUOUS, continuousFeature.getDataType(), expression);
-
-					return new ContinuousFeature(encoder, derivedField);
-				}
-			}
-
-			@Override
-			public Feature transformCategorical(Feature feature){
-
-				if(feature instanceof CategoricalFeature){
-					CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
-
-					return categoricalFeature;
-				} else
-
-				{
-					throw new IllegalArgumentException();
-				}
-			}
-		};
-
-		return schema.toTransformedSchema(function);
-	}
-
 	public PMML encodePMML(Map<String, ?> options, String targetName, List<String> targetCategories, FeatureMap featureMap){
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
@@ -649,19 +454,128 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public Schema configureSchema(Map<String, ?> options, Schema schema){
 		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
 		Boolean inputFloat = (Boolean)options.get(HasXGBoostOptions.OPTION_INPUT_FLOAT);
-		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
+		Boolean numeric = (Boolean)((Map)options).getOrDefault(HasXGBoostOptions.OPTION_NUMERIC, Boolean.TRUE);
 
-		if(numeric == null){
-			numeric = Boolean.TRUE;
-		} // End if
+		FeatureTransformer function = new DefaultFeatureTransformer(){
 
-		schema = toNumericFilteredSchema(numeric, inputFloat, schema);
+			private List<? extends Feature> features = schema.getFeatures();
 
-		if(missing != null){
-			schema = toMissingFilteredSchema(missing, schema);
-		}
 
-		return schema;
+			@Override
+			public int getSplitIndex(Feature feature){
+				return this.features.indexOf(feature);
+			}
+
+			@Override
+			public Feature transformNumerical(Feature feature){
+
+				if(numeric != null && numeric){
+
+					if(feature instanceof ThresholdFeature){
+						ThresholdFeature thresholdFeature = (ThresholdFeature)feature;
+
+						feature = thresholdFeature.toContinuousFeature();
+					}
+				}
+
+				return super.transformNumerical(feature);
+			}
+
+			@Override
+			protected ContinuousFeature transformContinuousFeature(ContinuousFeature continuousFeature){
+				DataType dataType = continuousFeature.getDataType();
+
+				inputFloat:
+				if(inputFloat != null && inputFloat){
+
+					switch(dataType){
+						case INTEGER:
+						case FLOAT:
+							break;
+						case DOUBLE:
+							{
+								Field<?> field = continuousFeature.getField();
+
+								field.setDataType(DataType.FLOAT);
+
+								// XXX
+								if(field instanceof HasContinuousDomain){
+									HasContinuousDomain<?> hasContinuousDomain = (HasContinuousDomain<?>)field;
+
+									if(hasContinuousDomain.hasIntervals()){
+										List<Interval> intervals = hasContinuousDomain.getIntervals();
+
+										for(Interval interval : intervals){
+											Number leftMargin = interval.getLeftMargin();
+											Number rightMargin = interval.getRightMargin();
+
+											if(leftMargin != null){
+												interval.setLeftMargin(Math.min(leftMargin.doubleValue(), leftMargin.floatValue()));
+											} // End if
+
+											if(rightMargin != null){
+												interval.setRightMargin(Math.max(rightMargin.doubleValue(), rightMargin.floatValue()));
+											}
+										}
+									}
+								}
+
+								continuousFeature = new ContinuousFeature(continuousFeature.getEncoder(), field);
+
+								dataType = continuousFeature.getDataType();
+							}
+							break;
+						default:
+							throw new IllegalArgumentException();
+					}
+				}
+
+				missing:
+				if(missing != null){
+
+					if(ValueUtil.isNaN(missing)){
+						Field<?> field = continuousFeature.getField();
+
+						if(field instanceof DataField){
+							DataField dataField = (DataField)field;
+
+							switch(dataType){
+								case INTEGER:
+									break;
+								case FLOAT:
+								case DOUBLE:
+									{
+										FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList("NaN"));
+									}
+									break;
+								default:
+									throw new IllegalArgumentException();
+							}
+						}
+
+						break missing;
+					}
+
+					PMMLEncoder encoder = continuousFeature.getEncoder();
+
+					Expression expression = ExpressionUtil.createApply(PMMLFunctions.IF,
+						ExpressionUtil.createApply(PMMLFunctions.AND,
+							ExpressionUtil.createApply(PMMLFunctions.ISNOTMISSING, continuousFeature.ref()),
+							ExpressionUtil.createApply(PMMLFunctions.NOTEQUAL, continuousFeature.ref(), ExpressionUtil.createConstant(missing))
+						),
+						continuousFeature.ref()
+					);
+
+					DerivedField derivedField = encoder.createDerivedField(FieldNameUtil.create("filter", continuousFeature, missing), OpType.CONTINUOUS, continuousFeature.getDataType(), expression);
+
+					continuousFeature = new ContinuousFeature(encoder, derivedField);
+				}
+
+				return continuousFeature;
+			}
+		};
+
+		return schema.toTransformedSchema(function);
 	}
 
 	public MiningModel configureModel(Map<String, ?> options, MiningModel miningModel){
@@ -872,19 +786,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			{
 				ContinuousFeature continuousFeature = feature.toContinuousFeature();
 
-				DataType dataType = continuousFeature.getDataType();
-				switch(dataType){
-					case INTEGER:
-					case FLOAT:
-						break;
-					case DOUBLE:
-						continuousFeature = toFloat(continuousFeature);
-						break;
-					default:
-						throw new IllegalArgumentException();
-				}
-
-				return continuousFeature;
+				return transformContinuousFeature(continuousFeature);
 			}
 		}
 
@@ -902,8 +804,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			}
 		}
 
-		protected ContinuousFeature toFloat(ContinuousFeature continuousFeature){
-			return continuousFeature.toContinuousFeature(DataType.FLOAT);
+		protected ContinuousFeature transformContinuousFeature(ContinuousFeature continuousFeature){
+			return continuousFeature;
 		}
 	}
 }

@@ -424,8 +424,11 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 						break;
 					case FLOAT:
 						break;
+					case DOUBLE:
+						continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
+						break;
 					default:
-						throw new IllegalArgumentException("Expected integer or float data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
+						throw new IllegalArgumentException("Expected integer or floating-point data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
 				}
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);
