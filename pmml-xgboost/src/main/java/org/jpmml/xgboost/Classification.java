@@ -33,8 +33,8 @@ import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.FieldNames;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.LabelUtil;
+import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -51,7 +51,7 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public Label encodeLabel(String targetName, List<?> targetCategories, PMMLEncoder encoder){
+	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
 		DataField dataField;
 
 		if(targetCategories == null){

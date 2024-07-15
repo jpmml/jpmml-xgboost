@@ -29,8 +29,8 @@ import org.dmg.pmml.mining.Segmentation;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
+import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
@@ -47,7 +47,7 @@ public class ObjFunction {
 	}
 
 	abstract
-	public Label encodeLabel(String targetName, List<?> targetCategories, PMMLEncoder encoder);
+	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
 
 	abstract
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
