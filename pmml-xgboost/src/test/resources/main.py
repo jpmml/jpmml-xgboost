@@ -4,6 +4,7 @@ from sklearn2pmml.xgboost import make_feature_map
 from xgboost.core import XGBoostError
 
 import numpy
+import os
 import pandas
 import sys
 import xgboost
@@ -47,7 +48,8 @@ def store_csv(df, path, sep = ","):
 
 def store_model(booster, algorithm, dataset, with_legacy_binary = True, with_json = True, with_ubjson = True):
 	if with_legacy_binary:
-		booster.save_model(xgboost_file(algorithm + dataset, ".model"))
+		booster.save_model(xgboost_file(algorithm + dataset, ".deprecated"))
+		os.rename(xgboost_file(algorithm + dataset, ".deprecated"), xgboost_file(algorithm + dataset, ".model"))
 
 	if with_json:
 		booster.save_model(xgboost_file(algorithm + dataset, ".json"))

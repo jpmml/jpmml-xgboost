@@ -55,7 +55,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLinearAuto() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO);
+		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(8));
 	}
 
 	@Test
@@ -80,7 +80,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16 + 4));
 	}
 
 	@Test

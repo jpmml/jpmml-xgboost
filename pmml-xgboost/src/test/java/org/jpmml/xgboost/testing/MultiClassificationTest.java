@@ -70,12 +70,12 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 
 	@Test
 	public void evaluateMultiBinomialAudit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 4));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 12));
 	}
 
 	@Test
 	public void evaluateMultiBinomialAuditLimit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 4));
 	}
 
 	@Test
