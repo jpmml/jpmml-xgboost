@@ -669,6 +669,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	private ObjFunction parseObjective(String name_obj){
 
 		switch(name_obj){
+			case "reg:absoluteerror":
 			case "reg:linear":
 			case "reg:pseudohubererror":
 			case "reg:squarederror":
