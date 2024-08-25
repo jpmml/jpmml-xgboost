@@ -95,7 +95,7 @@ public class FeatureMap {
 			List<Entry> updateEntries = featureMap.getEntries(entry.getName());
 
 			if(updateEntries.isEmpty()){
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Feature \'" + entry.getName() + "\' has no feature map entries");
 			} // End if
 
 			if(entry instanceof CategoricalEntry){

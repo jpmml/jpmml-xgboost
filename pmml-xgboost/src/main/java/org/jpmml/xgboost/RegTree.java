@@ -295,15 +295,16 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			Predicate rightPredicate;
 
 			if(feature instanceof CategoricalFeature){
+				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
 
 				if(node.split_type() != Node.SPLIT_CATEGORICAL){
-					throw new IllegalArgumentException();
+					throw new IllegalArgumentException("Expected a categorical (" + Node.SPLIT_CATEGORICAL + ") split type for categorical feature \'" + categoricalFeature.getName() + "\', got non-categorical (" + node.split_type() + ")");
 				}
 			} else
 
 			{
 				if(node.split_type() != Node.SPLIT_NUMERICAL){
-					throw new IllegalArgumentException();
+					throw new IllegalArgumentException("Expected a numerical (" + Node.SPLIT_NUMERICAL + ") split type for feature \'" + feature.getName() + "\', got non-numerical (" + node.split_type() +")");
 				}
 			} // End if
 
@@ -428,7 +429,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 						continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
 						break;
 					default:
-						throw new IllegalArgumentException("Expected integer or floating-point data type for continuous feature " + continuousFeature.getName() + ", got " + dataType.value() + " data type");
+						throw new IllegalArgumentException("Expected integer or floating-point data type for continuous feature \'" + continuousFeature.getName() + "\', got " + dataType.value() + " data type");
 				}
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);

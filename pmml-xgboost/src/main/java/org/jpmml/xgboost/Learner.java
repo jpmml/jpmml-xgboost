@@ -763,7 +763,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			} else
 
 			{
-				throw new IllegalArgumentException();
+				throw new IllegalArgumentException("Expected a single split type, found multiple split types");
 			}
 		}
 	}
