@@ -365,10 +365,19 @@ public class FeatureMap {
 
 				BitSet splitIndices = gbtree.getSplitCategories(index);
 
-				// Binary categorical features
-				int size = Math.max(splitIndices.length(), 2);
+				// Used feature
+				if(splitIndices != null){
+					// Binary categorical features only exhibit one "effective" category level
+					int size = Math.max(splitIndices.length(), 2);
 
-				values = new IntegerRange(size);
+					values = new IntegerRange(size);
+				} else
+
+				// Unused feature
+				{
+					// Constant-like feature
+					values = new IntegerRange(1);
+				}
 
 				dataType = DataType.INTEGER;
 			}
