@@ -82,6 +82,12 @@ public class FeatureMap {
 		return result;
 	}
 
+	public boolean isEmpty(){
+		List<Entry> entries = getEntries();
+
+		return entries.isEmpty();
+	}
+
 	public void update(FeatureMap featureMap){
 		List<Entry> entries = getEntries();
 

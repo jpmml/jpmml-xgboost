@@ -420,9 +420,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		XGBoostEncoder encoder = new XGBoostEncoder();
 
 		FeatureMap embeddedFeatureMap = encodeFeatureMap();
-		if(embeddedFeatureMap != null){
 
-			if(featureMap != null){
+		// The embedded feature map takes priority over the user-provided feature map
+		if(embeddedFeatureMap != null && !embeddedFeatureMap.isEmpty()){
+
+			if(featureMap != null && !featureMap.isEmpty()){
 				embeddedFeatureMap.update(featureMap);
 			}
 
