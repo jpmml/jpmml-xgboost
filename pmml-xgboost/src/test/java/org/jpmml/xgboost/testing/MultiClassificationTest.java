@@ -51,18 +51,6 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 			public String getFeatureMapPath(){
 				return "/csv/Multi" + truncate(getDataset()) + ".fmap";
 			}
-
-			@Override
-			protected String getSeparator(){
-				String algorithm = getAlgorithm();
-
-				// XXX
-				if(("Multi" + BINOMIAL_CLASSIFICATION).equals(algorithm)){
-					return null;
-				}
-
-				return super.getSeparator();
-			}
 		};
 
 		return result;

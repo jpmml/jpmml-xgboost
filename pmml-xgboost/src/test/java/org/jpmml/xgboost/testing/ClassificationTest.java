@@ -19,13 +19,12 @@
 package org.jpmml.xgboost.testing;
 
 import java.io.IOException;
-import java.util.List;
-import java.util.Map;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
 import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
+import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.Test;
 
@@ -54,22 +53,21 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 			}
 
 			@Override
-			public List<? extends Map<String, ?>> getInput() throws IOException {
-				List<? extends Map<String, ?>> table = super.getInput();
+			public Table getInput() throws IOException {
+				Table table = super.getInput();
 
 				String dataset = truncate(getDataset());
 
 				// XXX
 				if((AUDIT_NA).equals(dataset)){
-					String income = "Income";
+					table.apply("Income", (value) -> {
 
- 					for(Map<String, ?> row : table){
- 						Object value = row.get(income);
+						if(value == null){
+							return "NaN";
+						}
 
- 						if(value == null){
- 							((Map)row).put(income, "NaN");
- 						}
- 					}
+						return value;
+					});
 				}
 
 				return table;

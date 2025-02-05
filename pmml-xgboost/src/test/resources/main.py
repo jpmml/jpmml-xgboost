@@ -43,8 +43,8 @@ def load_split_multi_csv(dataset, target_columns):
 	df = load_csv(csv_file(dataset, ".csv"))
 	return split_multi_csv(df, target_columns)
 
-def store_csv(df, path, sep = ","):
-	df.to_csv(path, sep = sep, header = True, index = False)
+def store_csv(df, path):
+	df.to_csv(path, header = True, index = False)
 
 def store_model(booster, algorithm, dataset, with_legacy_binary = True, with_json = True, with_ubjson = True):
 	if with_legacy_binary:
@@ -403,8 +403,8 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
 	store_model(audit_booster, "MultiBinomialClassification", dataset, with_legacy_binary = False)
 
-	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat), csv_file("MultiBinomialClassification" + dataset, ".csv"), sep = ";")
-	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), csv_file("MultiBinomialClassification" + dataset + "@31", ".csv"), sep = ";")
+	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat), csv_file("MultiBinomialClassification" + dataset, ".csv"))
+	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), csv_file("MultiBinomialClassification" + dataset + "@31", ".csv"))
 
 if "Audit" in datasets:
 	train_multi_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
