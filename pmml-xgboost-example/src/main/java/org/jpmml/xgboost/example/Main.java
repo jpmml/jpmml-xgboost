@@ -28,6 +28,8 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.beust.jcommander.DefaultUsageFormatter;
+import com.beust.jcommander.IUsageFormatter;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -45,101 +47,116 @@ import org.slf4j.LoggerFactory;
 public class Main {
 
 	@Parameter (
-		names = {"--help"},
-		description = "Show the list of configuration options and exit",
-		help = true
-	)
-	private boolean help = false;
-
-	@Parameter (
 		names = {"--model-input"},
 		description = "XGBoost model input file",
-		required = true
+		required = true,
+		order = 1
 	)
 	private File modelInput = null;
 
 	@Parameter (
 		names = {"--fmap-input"},
-		description = "XGBoost feature map input file"
+		description = "XGBoost feature map input file",
+		order = 2
 	)
 	private File fmapInput = null;
 
 	@Parameter (
 		names = {"--pmml-output"},
 		description = "PMML output file",
-		required = true
+		required = true,
+		order = 3
 	)
 	private File pmmlOutput = null;
 
 	@Parameter (
 		names = {"--" + HasXGBoostOptions.OPTION_BYTE_ORDER},
-		description = "Endianness of XGBoost model input file. Possible values \"BIG_ENDIAN\" (\"BE\") or \"LITTLE_ENDIAN\" (\"LE\")"
+		description = "Endianness of XGBoost model input file. Possible values \"BIG_ENDIAN\" (\"BE\") or \"LITTLE_ENDIAN\" (\"LE\")",
+		order = 4
 	)
 	private String byteOrder = (ByteOrder.nativeOrder()).toString();
 
 	@Parameter (
 		names = {"--" + HasXGBoostOptions.OPTION_CHARSET},
-		description = "Charset of XGBoost model input file"
+		description = "Charset of XGBoost model input file",
+		order = 5
 	)
 	private String charset = null;
 
 	@Parameter (
 		names = {"--json-path"},
-		description = "JSONPath expression of the JSON model element"
+		description = "JSONPath expression of the JSON model element",
+		order = 6
 	)
 	private String jsonPath = "$";
 
 	@Parameter (
 		names = {"--target-name"},
-		description = "Target name. Defaults to \"_target\""
+		description = "Target name. Defaults to \"_target\"",
+		order = 7
 	)
 	private String targetName = null;
 
 	@Parameter (
 		names = {"--target-categories"},
-		description = "Target categories. Defaults to 0-based index [0, 1, .., num_class - 1]"
+		description = "Target categories. Defaults to 0-based index [0, 1, .., num_class - 1]",
+		order = 8
 	)
 	private List<String> targetCategories = null;
 
 	@Parameter (
  		names = {"--X-" + HasXGBoostOptions.OPTION_MISSING},
- 		description = "Missing value. Defaults to Not-a-Number (NaN) value"
+ 		description = "Missing value. Defaults to Not-a-Number (NaN) value",
+ 		order = 9
  	)
  	private Float missing = Float.NaN;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_COMPACT},
 		description = "Transform XGBoost-style trees to PMML-style trees",
-		arity = 1
+		arity = 1,
+		order = 10
 	)
 	private boolean compact = true;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_INPUT_FLOAT},
 		description = "Allow field data type updates",
-		arity = 1
+		arity = 1,
+		order = 11
 	)
 	private Boolean inputFloat = null;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_NUMERIC},
 		description = "Simplify non-numeric split conditions to numeric split conditions",
-		arity = 1
+		arity = 1,
+		order = 12
 	)
 	private boolean numeric = true;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_PRUNE},
 		description = "Remove unreachable nodes",
-		arity = 1
+		arity = 1,
+		order = 13
 	)
 	private boolean prune = true;
 
 	@Parameter (
 		names = {"--X-" + HasXGBoostOptions.OPTION_NTREE_LIMIT},
-		description = "Limit the number of trees. Defaults to all trees"
+		description = "Limit the number of trees. Defaults to all trees",
+		order = 14
 	)
 	private Integer ntreeLimit = null;
+
+	@Parameter (
+		names = {"--help"},
+		description = "Show the list of configuration options and exit",
+		help = true,
+		order = Integer.MAX_VALUE
+	)
+	private boolean help = false;
 
 
 	static
@@ -149,6 +166,8 @@ public class Main {
 		JCommander commander = new JCommander(main);
 		commander.setProgramName(Main.class.getName());
 
+		IUsageFormatter usageFormatter = new DefaultUsageFormatter(commander);
+
 		try {
 			commander.parse(args);
 		} catch(ParameterException pe){
@@ -157,7 +176,7 @@ public class Main {
 			sb.append(pe.toString());
 			sb.append("\n");
 
-			commander.usage(sb);
+			usageFormatter.usage(sb);
 
 			System.err.println(sb.toString());
 
@@ -167,7 +186,7 @@ public class Main {
 		if(main.help){
 			StringBuilder sb = new StringBuilder();
 
-			commander.usage(sb);
+			usageFormatter.usage(sb);
 
 			System.out.println(sb.toString());
 
