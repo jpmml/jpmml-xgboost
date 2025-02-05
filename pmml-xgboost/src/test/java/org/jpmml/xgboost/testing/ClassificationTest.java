@@ -26,7 +26,7 @@ import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, Fields {
 

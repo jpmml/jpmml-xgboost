@@ -23,7 +23,7 @@ import java.util.function.Predicate;
 import com.google.common.base.Equivalence;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats {
 
