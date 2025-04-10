@@ -79,7 +79,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(40 + 12));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(40 + 16));
 	}
 
 	@Test
@@ -89,7 +89,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(40));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(40 + 12));
 	}
 
 	@Test

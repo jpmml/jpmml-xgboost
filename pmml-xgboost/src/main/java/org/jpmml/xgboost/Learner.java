@@ -119,7 +119,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.major_version = input.readInt();
 		this.minor_version = input.readInt();
 
-		if(this.major_version < 0 || this.major_version > 2){
+		if(this.major_version < 0 || this.major_version > 3){
 			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
 		}
 
@@ -188,7 +188,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.major_version = version[0];
 		this.minor_version = version[1];
 
-		if(this.major_version < 1 || this.major_version > 2){
+		if(this.major_version < 1 || this.major_version > 3){
 			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
 		}
 
