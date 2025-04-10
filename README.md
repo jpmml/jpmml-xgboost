@@ -5,7 +5,7 @@ Java library and command-line application for converting [XGBoost](https://githu
 
 # Features #
 
-Supports all XGBoost versions 0.4 through 2.0(.3).
+Supports all XGBoost versions 0.4 through 3.0(.0).
 
 * Functionality:
   * Model data formats:
@@ -45,7 +45,7 @@ See the [NEWS.md](https://github.com/jpmml/jpmml-xgboost/blob/master/NEWS.md#182
 
 # Prerequisites #
 
-* Java 1.8 or newer.
+* Java 11 or newer.
 
 # Installation #
 
