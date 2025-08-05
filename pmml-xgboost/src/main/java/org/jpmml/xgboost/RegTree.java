@@ -315,7 +315,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				List<?> values = categoricalFeature.getValues();
 
 				Float splitValue = Float.intBitsToFloat(node.split_cond());
-				if(!splitValue.isNaN()){
+				if(!splitValue.isNaN() && splitValue.floatValue() != Float.MIN_VALUE){
 					throw new IllegalArgumentException();
 				}
 
