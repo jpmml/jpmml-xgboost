@@ -5,7 +5,7 @@ Java library and command-line application for converting [XGBoost](https://githu
 
 # Features #
 
-Supports all XGBoost versions 0.4 through 3.0(.0).
+Supports all XGBoost versions 0.4 through 3.1.
 
 * Functionality:
   * Model data formats:

@@ -35,12 +35,12 @@ public class GeneralizedLinearRegression extends Regression {
 	}
 
 	@Override
-	public float probToMargin(float value){
-		return inverseExp(value);
+	public ProbToMarginFunction probToMarginFunction(){
+		return x -> inverseExp(x);
 	}
 
 	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
 		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, segmentSchema)

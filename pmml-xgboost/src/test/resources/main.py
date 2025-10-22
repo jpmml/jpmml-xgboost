@@ -66,6 +66,16 @@ def store_result(df, name):
 def make_opts(num_rounds = None):
 	return {"iteration_range" : (0, num_rounds)} if num_rounds else {}
 
+def _as_str_categorical(x):
+	return (x
+		.astype("category"))
+
+def _as_int64_categorical(x):
+	return (x
+		.astype("Int64")
+		.astype(str).replace("<NA>", None) # XXX: Needed by XGBoost 3.1.0, not needed by any of earlier XGBoost versions
+		.astype("category"))
+
 #
 # Survival regression
 #
@@ -127,7 +137,7 @@ def train_auto(dataset, **params):
 	eval_mask = numpy.random.choice([True, False], size = (auto_X.shape[0], ), p = [0.15, 0.85])
 
 	for col in ["cylinders", "model_year", "origin"]:
-		auto_X[col] = auto_X[col].astype("Int64").astype("category")
+		auto_X[col] = _as_int64_categorical(auto_X[col])
 
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file(dataset, ".fmap"))
@@ -170,7 +180,7 @@ def train_multi_auto(dataset, target_columns, **params):
 		auto_y = auto_df[auto_y.columns.values.tolist()]
 
 	for col in ["cylinders", "model_year", "origin"]:
-		auto_X[col] = auto_X[col].astype("Int64").astype("category")
+		auto_X[col] = _as_int64_categorical(auto_X[col])
 
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file("Multi" + dataset, ".fmap"))
@@ -223,11 +233,11 @@ def train_visit(dataset, **params):
 
 	# categorical strings
 	for col in ["edlevel"]:
-		visit_X[col] = visit_X[col].astype("category")
+		visit_X[col] = _as_str_categorical(visit_X[col])
 
 	# categorical integers
 	for col in ["female", "kids", "married", "outwork", "self"]:
-		visit_X[col] = visit_X[col].astype("Int64").astype("category")
+		visit_X[col] = _as_int64_categorical(visit_X[col])
 
 	visit_fmap = make_feature_map(visit_X, category_to_indicator = True)
 	visit_fmap.save(csv_file(dataset, ".fmap"))
@@ -301,7 +311,7 @@ def train_audit(dataset, **params):
 	audit_X, audit_y = load_split_csv(dataset)
 
 	for col in ["Education", "Employment", "Gender", "Marital", "Occupation"]:
-		audit_X[col] = audit_X[col].astype("category")
+		audit_X[col] = _as_str_categorical(audit_X[col])
 
 	audit_y = audit_y.astype(int)
 
@@ -379,7 +389,7 @@ def train_multi_audit(dataset, target_columns, **params):
 		audit_y = audit_df[audit_y.columns.values.tolist()]
 
 	for col in ["Education", "Employment", "Marital", "Occupation"]:
-		audit_X[col] = audit_X[col].astype("category")
+		audit_X[col] = _as_str_categorical(audit_X[col])
 
 	audit_y["Gender"] = audit_y["Gender"].replace({
 		"Female" : 0,

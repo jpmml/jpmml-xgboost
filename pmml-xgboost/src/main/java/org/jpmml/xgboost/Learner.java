@@ -39,6 +39,7 @@ import com.devsmart.ubjson.UBObject;
 import com.devsmart.ubjson.UBReader;
 import com.devsmart.ubjson.UBValue;
 import com.google.common.collect.Iterables;
+import com.google.gson.Gson;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -74,7 +75,7 @@ import org.jpmml.xgboost.visitors.TreeModelCompactor;
 
 public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
-	private float base_score;
+	private float[] base_score;
 
 	private int num_feature;
 
@@ -110,7 +111,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 	@Override
 	public void loadBinary(XGBoostDataInput input) throws IOException {
-		this.base_score = input.readFloat();
+		this.base_score = new float[]{input.readFloat()};
 		this.num_feature = input.readInt();
 		this.num_class = input.readInt();
 		this.contain_extra_attrs = input.readInt();
@@ -134,11 +135,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		if(this.major_version >= 1){
-			this.base_score = this.obj.probToMargin(this.base_score) + 0f;
-		} else
-
-		{
-			this.base_score = this.base_score;
+			this.base_score = this.obj.probToMargin(this.base_score);
 		}
 
 		String name_gbm = input.readString();
@@ -196,7 +193,20 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		UBObject learnerModelParam = learner.get("learner_model_param").asObject();
 
-		this.base_score = learnerModelParam.get("base_score").asFloat32();
+		UBValue base_score = learnerModelParam.get("base_score");
+		// Starting from 3.1.0, the base score is an array (often an 1-element array) formatted as JSON string
+		if(isArrayString(base_score)){
+			String base_score_json = base_score.asString();
+
+			Gson gson = Learner.gson;
+
+			this.base_score = gson.fromJson(base_score_json, float[].class);
+		} else
+
+		{
+			this.base_score = new float[]{base_score.asFloat32()};
+		}
+
 		this.num_feature = learnerModelParam.get("num_feature").asInt();
 		this.num_class = learnerModelParam.get("num_class").asInt();
 
@@ -215,7 +225,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.obj = parseObjective(name_obj);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
-		this.base_score = this.obj.probToMargin(this.base_score) + 0f;
+		this.base_score = this.obj.probToMargin(this.base_score);
 
 		UBObject gradientBooster = learner.get("gradient_booster").asObject();
 
@@ -720,6 +730,18 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return equals;
 	}
 
+	static
+	private boolean isArrayString(UBValue value){
+
+		if(value.isString()){
+			String string = value.asString();
+
+			return string.startsWith("[") && string.endsWith("]");
+		}
+
+		return false;
+	}
+
 	abstract
 	private class FeatureTransformer implements Function<Feature, Feature> {
 
@@ -817,4 +839,6 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			return continuousFeature;
 		}
 	}
+
+	private static final Gson gson = new Gson();
 }

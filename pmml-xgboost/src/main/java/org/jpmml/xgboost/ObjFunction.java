@@ -21,6 +21,7 @@ package org.jpmml.xgboost;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+import java.util.function.Function;
 
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
@@ -50,14 +51,26 @@ public class ObjFunction {
 	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
 
 	abstract
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema);
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema);
 
-	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
-		return encodeModel(trees, weights, base_score, ntreeLimit, schema);
+	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+		return encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
-	public float probToMargin(float value){
-		return value;
+	public float[] probToMargin(float[] base_score){
+		ProbToMarginFunction function = probToMarginFunction();
+
+		float[] result = new float[base_score.length];
+
+		for(int i = 0; i < base_score.length; i++){
+			result[i] = function.apply(base_score[i]);
+		}
+
+		return result;
+	}
+
+	public ProbToMarginFunction probToMarginFunction(){
+		return (x) -> x;
 	}
 
 	public String getName(){
@@ -65,7 +78,7 @@ public class ObjFunction {
 	}
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		trees = new ArrayList<>(trees);
 
 		if(weights != null){
@@ -97,7 +110,7 @@ public class ObjFunction {
 
 		List<TreeModel> treeModels = new ArrayList<>();
 
-		Number intercept = base_score;
+		Number intercept = base_score[0];
 
 		boolean equalWeights = true;
 
@@ -167,6 +180,20 @@ public class ObjFunction {
 	}
 
 	static
+	protected float[] targetBaseScore(int targetIndex, float[] base_score){
+
+		if(targetIndex == ObjFunction.DEFAULT_TARGET_INDEX){
+			return base_score;
+		} // End if
+
+		if(base_score.length == 1){
+			return base_score;
+		}
+
+		return new float[]{base_score[targetIndex]};
+	}
+
+	static
 	protected float inverseLogit(float value){
 		return (float)-Math.log((1f / value) - 1f);
 	}
@@ -175,4 +202,10 @@ public class ObjFunction {
 	protected float inverseExp(float value){
 		return (float)Math.log(value);
 	}
+
+	static
+	public interface ProbToMarginFunction extends Function<Float, Float> {
+	}
+
+	public static final int DEFAULT_TARGET_INDEX = -1;
 }

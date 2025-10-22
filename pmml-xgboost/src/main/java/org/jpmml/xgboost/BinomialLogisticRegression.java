@@ -35,12 +35,12 @@ public class BinomialLogisticRegression extends Classification {
 	}
 
 	@Override
-	public float probToMargin(float value){
-		return inverseLogit(value);
+	public ProbToMarginFunction probToMarginFunction(){
+		return (x) -> inverseLogit(x);
 	}
 
 	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, segmentSchema)

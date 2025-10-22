@@ -42,7 +42,7 @@ public class HingeClassification extends Classification {
 	}
 
 	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		Transformation transformation = new AbstractTransformation(){

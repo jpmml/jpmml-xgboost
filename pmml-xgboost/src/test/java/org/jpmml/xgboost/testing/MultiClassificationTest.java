@@ -58,22 +58,22 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 
 	@Test
 	public void evaluateMultiBinomialAudit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 12));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 32));
 	}
 
 	@Test
 	public void evaluateMultiBinomialAuditLimit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 4));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 8));
 	}
 
 	@Test
 	public void evaluateMultiBinomialAuditNA() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 12));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(24 + 32));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 4));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 8));
 	}
 
 	// XXX

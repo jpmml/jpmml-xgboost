@@ -173,7 +173,7 @@ public class GBTree extends GradientBooster {
 		return result;
 	}
 
-	public MiningModel encodeModel(ObjFunction obj, float base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(ObjFunction obj, float[] base_score, Integer ntreeLimit, Schema schema){
 		List<RegTree> trees = Arrays.asList(trees());
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 
@@ -186,7 +186,7 @@ public class GBTree extends GradientBooster {
 		} // End if
 
 		if(scalarLabels.size() == 1){
-			return obj.encodeModel(-1, trees, weights, base_score, ntreeLimit, schema);
+			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, base_score, ntreeLimit, schema);
 		} else
 
 		if(scalarLabels.size() >= 2){
