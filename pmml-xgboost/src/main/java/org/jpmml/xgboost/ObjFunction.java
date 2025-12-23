@@ -102,7 +102,7 @@ public class ObjFunction {
 			}
 		}
 
-		ContinuousLabel continuousLabel = (ContinuousLabel)schema.getLabel();
+		ContinuousLabel continuousLabel = schema.requireContinuousLabel();
 
 		Schema segmentSchema = schema.toAnonymousSchema();
 

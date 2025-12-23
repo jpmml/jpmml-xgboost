@@ -89,7 +89,7 @@ public class Classification extends ObjFunction {
 				return (outputField.getResultFeature() == ResultFeature.PROBABILITY);
 			});
 
-			CategoricalLabel categoricalLabel = (CategoricalLabel)schema.getLabel();
+			CategoricalLabel categoricalLabel = schema.requireCategoricalLabel();
 
 			List<?> values = categoricalLabel.getValues();
 

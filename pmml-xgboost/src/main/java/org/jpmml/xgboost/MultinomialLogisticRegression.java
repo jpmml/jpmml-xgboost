@@ -48,7 +48,7 @@ public class MultinomialLogisticRegression extends Classification {
 
 		List<MiningModel> miningModels = new ArrayList<>();
 
-		CategoricalLabel categoricalLabel = (CategoricalLabel)schema.getLabel();
+		CategoricalLabel categoricalLabel = schema.requireCategoricalLabel();
 
 		for(int i = 0, columns = categoricalLabel.size(), rows = (trees.size() / columns); i < columns; i++){
 			MiningModel miningModel = createMiningModel(CMatrixUtil.getColumn(trees, rows, columns, i), (weights != null) ? CMatrixUtil.getColumn(weights, rows, columns, i) : null, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)

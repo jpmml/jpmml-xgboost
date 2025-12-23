@@ -36,7 +36,6 @@ import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.CMatrixUtil;
-import org.jpmml.converter.Label;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.ScalarLabelUtil;
 import org.jpmml.converter.Schema;
@@ -177,9 +176,7 @@ public class GBTree extends GradientBooster {
 		List<RegTree> trees = Arrays.asList(trees());
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 
-		Label label = schema.getLabel();
-
-		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(label);
+		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(schema.getLabel());
 
 		if(trees.size() % scalarLabels.size() != 0){
 			throw new IllegalArgumentException();
