@@ -36,6 +36,7 @@ import org.jpmml.converter.LabelUtil;
 import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.SchemaException;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
@@ -62,7 +63,7 @@ public class Classification extends ObjFunction {
 
 		{
 			if(targetCategories.size() != this.num_class){
-				throw new IllegalArgumentException("Expected " + this.num_class + " target categories, got " + targetCategories.size() + " target categories");
+				throw new SchemaException("Expected " + this.num_class + " target categories, got " + targetCategories.size() + " target categories");
 			}
 
 			dataField = encoder.createDataField(targetName, OpType.CATEGORICAL, DataType.STRING, targetCategories);

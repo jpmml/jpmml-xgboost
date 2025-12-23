@@ -67,6 +67,7 @@ import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.SchemaException;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.visitors.TreeModelPruner;
@@ -831,7 +832,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			} else
 
 			{
-				throw new IllegalArgumentException();
+				throw new SchemaException("Expected a categorical feature, got " + feature);
 			}
 		}
 
