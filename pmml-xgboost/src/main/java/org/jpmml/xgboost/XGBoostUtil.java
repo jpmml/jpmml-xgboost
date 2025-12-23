@@ -104,7 +104,7 @@ public class XGBoostUtil {
 
 			StringTokenizer st = new StringTokenizer(line, "\t");
 			if(st.countTokens() != 3){
-				throw new IllegalArgumentException(line);
+				throw new XGBoostException("Expected 3 entry fields, got " + st.countTokens() + " entry fields");
 			}
 
 			String id = st.nextToken();
@@ -112,7 +112,7 @@ public class XGBoostUtil {
 			String type = st.nextToken();
 
 			if(Integer.parseInt(id) != i){
-				throw new IllegalArgumentException(id);
+				throw new XGBoostException("Expected entry identifier " + i + ", got " + Integer.parseInt(id));
 			}
 
 			featureMap.addEntry(name, type);

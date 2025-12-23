@@ -179,7 +179,7 @@ public class GBTree extends GradientBooster {
 		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(schema.getLabel());
 
 		if(trees.size() % scalarLabels.size() != 0){
-			throw new IllegalArgumentException();
+			throw new XGBoostException("Expected the number of trees to be a multiple of " + scalarLabels.size() + ", got " + trees.size());
 		} // End if
 
 		if(scalarLabels.size() == 1){

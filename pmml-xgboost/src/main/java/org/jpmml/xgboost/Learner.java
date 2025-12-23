@@ -121,7 +121,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.minor_version = input.readInt();
 
 		if(this.major_version < 0 || this.major_version > 3){
-			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
+			throw new XGBoostException("Version \'" + this.major_version + "." + this.minor_version + "\' is not supported");
 		}
 
 		this.num_target = Math.max(input.readInt(), 1);
@@ -177,7 +177,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public void loadUBJSON(UBObject root){
 
 		if(!root.containsKey("version")){
-			throw new IllegalArgumentException("Property \"version\" not found among " + root.keySet());
+			throw new XGBoostException("Property \'version\' not found among " + root.keySet());
 		}
 
 		int[] version = UBJSONUtil.toIntArray(root.get("version"));
@@ -186,7 +186,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.minor_version = version[1];
 
 		if(this.major_version < 1 || this.major_version > 3){
-			throw new IllegalArgumentException(this.major_version + "." + this.minor_version);
+			throw new XGBoostException("Version \'" + this.major_version + "." + this.minor_version + "\' is not supported");
 		}
 
 		UBObject learner = root.get("learner").asObject();
@@ -315,7 +315,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				JsonElement childElement = object.get(name);
 				if(childElement == null){
-					throw new IllegalArgumentException("Property \"" + name + "\" not among " + object.keySet());
+					throw new XGBoostException("Property \'" + name + "\' not among " + object.keySet());
 				}
 
 				object = childElement.getAsJsonObject();
@@ -345,7 +345,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				UBValue childValue = object.get(name);
 				if(childValue == null){
-					throw new IllegalArgumentException("Property \"" + name + "\" not among " + object.keySet());
+					throw new XGBoostException("Property \'" + name + "\' not among " + object.keySet());
 				}
 
 				object = childValue.asObject();
@@ -606,7 +606,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		if((Boolean.TRUE).equals(compact)){
 
 			if((Boolean.FALSE).equals(numeric)){
-				throw new IllegalArgumentException("Conflicting XGBoost options");
+				throw new XGBoostException("Conflicting XGBoost options");
 			}
 
 			visitors.add(TreeModelCompactor.class);
@@ -674,7 +674,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "dart":
 				return new Dart();
 			default:
-				throw new IllegalArgumentException(name_gbm);
+				throw new XGBoostException("Booster type \'" + name_gbm + "\' is not suported");
 		}
 	}
 
@@ -708,7 +708,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "multi:softprob":
 				return new MultinomialLogisticRegression(name_obj, this.num_class);
 			default:
-				throw new IllegalArgumentException(name_obj);
+				throw new XGBoostException("Objective function \'" + name_obj + "\' is not supported");
 		}
 	}
 
@@ -785,7 +785,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			} else
 
 			{
-				throw new IllegalArgumentException("Expected a single split type, found multiple split types");
+				throw new XGBoostException("Expected a single split type, found multiple split types");
 			}
 		}
 	}

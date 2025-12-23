@@ -38,7 +38,7 @@ public class MultinomialLogisticRegression extends Classification {
 		super(name, num_class);
 
 		if(num_class < 2){
-			throw new IllegalArgumentException("Multi-class classification requires two or more target categories");
+			throw new XGBoostException("Multi-class classification requires two or more target categories");
 		}
 	}
 

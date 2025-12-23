@@ -92,7 +92,7 @@ public class ObjFunction {
 		if(ntreeLimit != null){
 
 			if(ntreeLimit > trees.size()){
-				throw new IllegalArgumentException("Tree limit " + ntreeLimit + " is greater than the number of trees");
+				throw new XGBoostException("Tree limit " + ntreeLimit + " is greater than the number of trees");
 			}
 
 			trees = trees.subList(0, ntreeLimit);
