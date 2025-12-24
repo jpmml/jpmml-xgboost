@@ -183,7 +183,7 @@ public class FeatureMap {
 				}
 
 				return new IndicatorEntry(name, value, type);
-			case QUANTITIVE:
+			case QUANTITATIVE:
 			case INTEGER:
 			case FLOAT:
 				return new ContinuousEntry(name, type);
@@ -230,7 +230,7 @@ public class FeatureMap {
 		static
 		public enum Type {
 			INDICATOR,
-			QUANTITIVE,
+			QUANTITATIVE,
 			INTEGER,
 			FLOAT,
 			CATEGORICAL,
@@ -243,7 +243,7 @@ public class FeatureMap {
 					case "i":
 						return Type.INDICATOR;
 					case "q":
-						return Type.QUANTITIVE;
+						return Type.QUANTITATIVE;
 					case "int":
 						return Type.INTEGER;
 					case "float":
@@ -330,7 +330,7 @@ public class FeatureMap {
 			if(dataField == null){
 
 				switch(type){
-					case QUANTITIVE:
+					case QUANTITATIVE:
 						dataField = encoder.createDataField(name, OpType.CONTINUOUS, DataType.FLOAT);
 						break;
 					case INTEGER:
