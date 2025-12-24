@@ -104,7 +104,7 @@ public class XGBoostUtil {
 
 			StringTokenizer st = new StringTokenizer(line, "\t");
 			if(st.countTokens() != 3){
-				throw new XGBoostException("Expected 3 entry fields, got " + st.countTokens() + " entry fields");
+				throw new XGBoostException("Expected 3 entry fields, got " + st.countTokens());
 			}
 
 			String id = st.nextToken();
