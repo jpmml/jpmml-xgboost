@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import org.dmg.pmml.PMMLConstants;
 import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.Table;
@@ -63,7 +64,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 					table.apply("Income", (value) -> {
 
 						if(value == null){
-							return "NaN";
+							return PMMLConstants.NOT_A_NUMBER;
 						}
 
 						return value;

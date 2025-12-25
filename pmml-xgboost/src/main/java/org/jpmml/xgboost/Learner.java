@@ -52,6 +52,7 @@ import org.dmg.pmml.HasContinuousDomain;
 import org.dmg.pmml.Interval;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
+import org.dmg.pmml.PMMLConstants;
 import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.Value;
 import org.dmg.pmml.mining.MiningModel;
@@ -565,7 +566,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 								case FLOAT:
 								case DOUBLE:
 									{
-										FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList("NaN"));
+										FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(PMMLConstants.NOT_A_NUMBER));
 									}
 									break;
 								default:

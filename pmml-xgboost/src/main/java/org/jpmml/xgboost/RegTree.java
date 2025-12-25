@@ -310,6 +310,15 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				}
 			} // End if
 
+			if(feature instanceof BinaryFeature){
+				BinaryFeature binaryFeature = (BinaryFeature)feature;
+
+				Object value = binaryFeature.getValue();
+
+				leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
+				rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
+			} else
+
 			if(feature instanceof DiscreteFeature){
 				DiscreteFeature discreteFeature = (DiscreteFeature)feature;
 
@@ -352,15 +361,6 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				leftPredicate = predicateManager.createPredicate(discreteFeature, leftValues);
 				rightPredicate = predicateManager.createPredicate(discreteFeature, rightValues);
-			} else
-
-			if(feature instanceof BinaryFeature){
-				BinaryFeature binaryFeature = (BinaryFeature)feature;
-
-				Object value = binaryFeature.getValue();
-
-				leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
-				rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
 			} else
 
 			if(feature instanceof MissingValueFeature){
