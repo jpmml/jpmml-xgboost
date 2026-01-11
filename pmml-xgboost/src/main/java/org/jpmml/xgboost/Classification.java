@@ -29,14 +29,15 @@ import org.dmg.pmml.OutputField;
 import org.dmg.pmml.ResultFeature;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.CategoricalLabel;
+import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.FieldNames;
+import org.jpmml.converter.InvalidLabelException;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.LabelUtil;
 import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.SchemaException;
 import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
@@ -63,7 +64,7 @@ public class Classification extends ObjFunction {
 
 		{
 			if(targetCategories.size() != this.num_class){
-				throw new SchemaException("Expected " + this.num_class + " target categories, got " + targetCategories.size());
+				throw new InvalidLabelException("Expected " + ExceptionUtil.formatCount(this.num_class, "target category", "target categories") + ", got " + targetCategories.size());
 			}
 
 			dataField = encoder.createDataField(targetName, OpType.CATEGORICAL, DataType.STRING, targetCategories);

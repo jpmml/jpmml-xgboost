@@ -43,10 +43,12 @@ import org.dmg.pmml.tree.BranchNode;
 import org.dmg.pmml.tree.LeafNode;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.BinaryFeature;
-import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.CategoryManager;
 import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.DiscreteFeature;
+import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.Feature;
+import org.jpmml.converter.InvalidFeatureException;
 import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PredicateManager;
@@ -294,25 +296,25 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			Predicate leftPredicate;
 			Predicate rightPredicate;
 
-			if(feature instanceof CategoricalFeature){
-				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+			if(feature instanceof DiscreteFeature){
+				DiscreteFeature discreteFeature = (DiscreteFeature)feature;
 
 				if(node.split_type() != Node.SPLIT_CATEGORICAL){
-					throw new XGBoostException("Expected a categorical (" + Node.SPLIT_CATEGORICAL + ") split type for categorical feature \'" + categoricalFeature.getName() + "\', got non-categorical (" + node.split_type() + ")");
+					throw new XGBoostException("Expected a categorical split type (" + Node.SPLIT_CATEGORICAL + ") for feature " + ExceptionUtil.formatName(discreteFeature) + ", got non-categorical (" + node.split_type() + ")");
 				}
 			} else
 
 			{
 				if(node.split_type() != Node.SPLIT_NUMERICAL){
-					throw new XGBoostException("Expected a numerical (" + Node.SPLIT_NUMERICAL + ") split type for feature \'" + feature.getName() + "\', got non-numerical (" + node.split_type() +")");
+					throw new XGBoostException("Expected a numerical split type (" + Node.SPLIT_NUMERICAL + ") for feature " + ExceptionUtil.formatName(feature) + ", got non-numerical (" + node.split_type() +")");
 				}
 			} // End if
 
-			if(feature instanceof CategoricalFeature){
-				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+			if(feature instanceof DiscreteFeature){
+				DiscreteFeature discreteFeature = (DiscreteFeature)feature;
 
-				String name = categoricalFeature.getName();
-				List<?> values = categoricalFeature.getValues();
+				String name = discreteFeature.getName();
+				List<?> values = discreteFeature.getValues();
 
 				Float splitValue = Float.intBitsToFloat(node.split_cond());
 				if(!splitValue.isNaN() && splitValue.floatValue() != Float.MIN_VALUE){
@@ -348,8 +350,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				leftCategoryManager = leftCategoryManager.fork(name, leftValues);
 				rightCategoryManager = rightCategoryManager.fork(name, rightValues);
 
-				leftPredicate = predicateManager.createPredicate(categoricalFeature, leftValues);
-				rightPredicate = predicateManager.createPredicate(categoricalFeature, rightValues);
+				leftPredicate = predicateManager.createPredicate(discreteFeature, leftValues);
+				rightPredicate = predicateManager.createPredicate(discreteFeature, rightValues);
 			} else
 
 			if(feature instanceof BinaryFeature){
@@ -429,7 +431,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 						continuousFeature = continuousFeature.toContinuousFeature(DataType.FLOAT);
 						break;
 					default:
-						throw new XGBoostException("Expected integer or floating-point data type for continuous feature \'" + continuousFeature.getName() + "\', got " + dataType.value());
+						throw new InvalidFeatureException("Expected numeric data type for continuous feature " + ExceptionUtil.formatName(continuousFeature) + ", got " + ExceptionUtil.formatValue(dataType));
 				}
 
 				leftPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.LESS_THAN, splitValue);

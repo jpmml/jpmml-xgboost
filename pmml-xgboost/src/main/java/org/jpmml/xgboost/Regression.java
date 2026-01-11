@@ -24,9 +24,9 @@ import org.dmg.pmml.DataField;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 import org.jpmml.converter.ContinuousLabel;
+import org.jpmml.converter.InvalidLabelException;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelEncoder;
-import org.jpmml.converter.SchemaException;
 
 abstract
 public class Regression extends ObjFunction {
@@ -38,8 +38,8 @@ public class Regression extends ObjFunction {
 	@Override
 	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
 
-		if(targetCategories != null){
-			throw new SchemaException("Regression requires zero target categories");
+		if(targetCategories != null && !targetCategories.isEmpty()){
+			throw new InvalidLabelException("Expected zero target categories, got " + targetCategories.size());
 		}
 
 		DataField dataField = encoder.createDataField(targetName, OpType.CONTINUOUS, DataType.FLOAT);

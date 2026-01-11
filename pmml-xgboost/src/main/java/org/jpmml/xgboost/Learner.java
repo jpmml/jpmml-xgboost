@@ -56,8 +56,9 @@ import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.Value;
 import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
-import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.DiscreteFeature;
+import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.ExpressionUtil;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.FieldNameUtil;
@@ -67,8 +68,8 @@ import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.SchemaException;
 import org.jpmml.converter.ThresholdFeature;
+import org.jpmml.converter.UnsupportedFeatureException;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.visitors.TreeModelPruner;
 import org.jpmml.model.visitors.VisitorBattery;
@@ -122,7 +123,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.minor_version = input.readInt();
 
 		if(this.major_version < 0 || this.major_version > 3){
-			throw new XGBoostException("Version \'" + this.major_version + "." + this.minor_version + "\' is not supported");
+			throw new XGBoostException("Version " + ExceptionUtil.formatVersion(this.major_version + "." + this.minor_version) + " is not supported");
 		}
 
 		this.num_target = Math.max(input.readInt(), 1);
@@ -178,7 +179,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public void loadUBJSON(UBObject root){
 
 		if(!root.containsKey("version")){
-			throw new XGBoostException("Property \'version\' not found among " + root.keySet());
+			throw new XGBoostException("Property " + ExceptionUtil.formatName("version") + " not in " + ExceptionUtil.formatNameSet(root.keySet()));
 		}
 
 		int[] version = UBJSONUtil.toIntArray(root.get("version"));
@@ -187,7 +188,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.minor_version = version[1];
 
 		if(this.major_version < 1 || this.major_version > 3){
-			throw new XGBoostException("Version \'" + this.major_version + "." + this.minor_version + "\' is not supported");
+			throw new XGBoostException("Version " + ExceptionUtil.formatVersion(this.major_version + "." + this.minor_version) + " is not supported");
 		}
 
 		UBObject learner = root.get("learner").asObject();
@@ -316,7 +317,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				JsonElement childElement = object.get(name);
 				if(childElement == null){
-					throw new XGBoostException("Property \'" + name + "\' not among " + object.keySet());
+					throw new XGBoostException("Property " + ExceptionUtil.formatName(name) + " not in " + ExceptionUtil.formatNameSet(object.keySet()));
 				}
 
 				object = childElement.getAsJsonObject();
@@ -346,7 +347,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				UBValue childValue = object.get(name);
 				if(childValue == null){
-					throw new XGBoostException("Property \'" + name + "\' not among " + object.keySet());
+					throw new XGBoostException("Property " + ExceptionUtil.formatName(name) + " not in " + ExceptionUtil.formatNameSet(object.keySet()));
 				}
 
 				object = childValue.asObject();
@@ -675,7 +676,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "dart":
 				return new Dart();
 			default:
-				throw new XGBoostException("Booster type \'" + name_gbm + "\' is not suported");
+				throw new XGBoostException("Booster type " + ExceptionUtil.formatParameter(name_gbm) + " is not suported");
 		}
 	}
 
@@ -709,7 +710,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "multi:softprob":
 				return new MultinomialLogisticRegression(name_obj, this.num_class);
 			default:
-				throw new XGBoostException("Objective function \'" + name_obj + "\' is not supported");
+				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(name_obj) + " is not supported");
 		}
 	}
 
@@ -825,14 +826,14 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		@Override
 		public Feature transformCategorical(Feature feature){
 
-			if(feature instanceof CategoricalFeature){
-				CategoricalFeature categoricalFeature = (CategoricalFeature)feature;
+			if(feature instanceof DiscreteFeature){
+				DiscreteFeature discreteFeature = (DiscreteFeature)feature;
 
-				return categoricalFeature;
+				return discreteFeature;
 			} else
 
 			{
-				throw new SchemaException("Expected a categorical feature, got " + feature);
+				throw new UnsupportedFeatureException("Expected a discrete feature, got " + feature.typeString());
 			}
 		}
 

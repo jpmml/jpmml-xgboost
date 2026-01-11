@@ -37,6 +37,7 @@ import org.dmg.pmml.Value;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.CategoricalFeature;
 import org.jpmml.converter.ContinuousFeature;
+import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.FieldUtil;
 import org.jpmml.converter.PMMLEncoder;
@@ -95,7 +96,7 @@ public class FeatureMap {
 			List<Entry> updateEntries = featureMap.getEntries(entry.getName());
 
 			if(updateEntries.isEmpty()){
-				throw new XGBoostException("Feature \'" + entry.getName() + "\' has no feature map entries");
+				throw new XGBoostException("Feature " + ExceptionUtil.formatName(entry.getName()) + " has no feature map entries");
 			} // End if
 
 			if(entry instanceof CategoricalEntry){
@@ -252,7 +253,7 @@ public class FeatureMap {
 					case "categorical":
 						return Type.CATEGORICAL;
 					default:
-						throw new XGBoostException("Entry type \'" + string + "\' is not supported");
+						throw new XGBoostException("Entry type " + ExceptionUtil.formatParameter(string) + " is not supported");
 				}
 			}
 		}
