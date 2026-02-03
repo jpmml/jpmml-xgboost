@@ -8,9 +8,7 @@
 		<version>1.9-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.jpmml</groupId>
 	<artifactId>pmml-xgboost</artifactId>
-	<packaging>jar</packaging>
 
 	<name>JPMML XGBoost converter</name>
 	<description>JPMML XGBoost to PMML converter</description>

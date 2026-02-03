@@ -8,9 +8,7 @@
 		<version>1.9-SNAPSHOT</version>
 	</parent>
 
-	<groupId>org.jpmml</groupId>
 	<artifactId>pmml-xgboost-example</artifactId>
-	<packaging>jar</packaging>
 
 	<name>JPMML XGBoost converter example applications</name>
 	<description>JPMML XGBoost to PMML converter example command-line applications</description>
@@ -60,6 +58,14 @@
 						</configuration>
 					</execution>
 				</executions>
+			</plugin>
+
+			<plugin>
+				<groupId>org.jacoco</groupId>
+				<artifactId>jacoco-maven-plugin</artifactId>
+				<configuration>
+					<skip>true</skip>
+				</configuration>
 			</plugin>
 		</plugins>
 	</build>
