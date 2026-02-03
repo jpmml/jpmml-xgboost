@@ -60,7 +60,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLinearAutoNA() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(8 + 2));
+		evaluate(LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(8));
 	}
 
 	@Test
@@ -70,27 +70,27 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLogisticAuditNA() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(24));
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(16 + 4));
 	}
 
 	@Test
 	public void evaluateAFTLungNA() throws Exception {
-		evaluate(AFT, LUNG_NA, new FloatEquivalence(20));
+		evaluate(AFT, LUNG_NA, new FloatEquivalence(16 + 2));
 	}
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16 + 4));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16 + 2));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(20));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(20));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(16));
 	}
 
 	@Test
@@ -100,11 +100,11 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateTweedieVisit() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(16));
+		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(12 + 2));
 	}
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(20));
+		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(12 + 2));
 	}
 }
