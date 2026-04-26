@@ -96,9 +96,9 @@ def train_lung(dataset, **params):
 	lung_fmap = make_feature_map(lung_X)
 	lung_fmap.save(csv_file(dataset, ".fmap"))
 
-	lung_y_lower = lung_y["time"].copy()
+	lung_y_lower = lung_y["time"].astype(float).copy()
 
-	lung_y_upper = lung_y["time"].copy()
+	lung_y_upper = lung_y["time"].astype(float).copy()
 	lung_y_upper[lung_y["status"] == 0] = numpy.inf
 
 	lung_dmat = xgboost.DMatrix(data = lung_X, label_lower_bound = lung_y_lower, label_upper_bound = lung_y_upper)

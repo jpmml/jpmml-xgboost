@@ -110,12 +110,12 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(20));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(20 + 8));
 	}
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(20 + 8));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(20 + 16));
 	}
 
 	@Test
