@@ -64,6 +64,16 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 	}
 
 	@Test
+	public void evaluatQuantileAuto() throws Exception {
+		evaluate(QUANTILE_REGRESSION, AUTO, new FloatEquivalence(8));
+	}
+
+	@Test
+	public void evaluateQuantileAutoNA() throws Exception {
+		evaluate(QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(8));
+	}
+
+	@Test
 	public void evaluateLogisticAudit() throws Exception {
 		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(20 + 8));
 	}

@@ -163,6 +163,42 @@ if "Auto" in datasets:
 	train_auto("Auto", booster = "dart", rate_drop = 0.05)
 	train_auto("AutoNA")
 
+def predict_quantile_auto(auto_booster, auto_dmat, num_rounds = None):
+	mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
+
+	result = DataFrame(mpg, columns = ["_target"])
+
+	return result
+
+def train_quantile_auto(dataset, **params):
+	auto_X, auto_y = load_split_csv(dataset)
+
+	for col in ["cylinders", "model_year", "origin"]:
+		auto_X[col] = _as_int64_categorical(auto_X[col])
+
+	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
+	auto_fmap.save(csv_file(dataset, ".fmap"))
+
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+
+	auto_params = dict(**params)
+	auto_params.update({
+		"objective" : "reg:quantileerror",
+		"quantile_alpha" : 0.5,
+		"tree_method" : "hist",
+		"max_depth" : 3,
+		"seed" : 42
+	})
+
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
+	store_model(auto_booster, "QuantileRegression", dataset, with_legacy_binary = False)
+
+	store_csv(predict_quantile_auto(auto_booster, auto_dmat), csv_file("QuantileRegression" + dataset, ".csv"))
+
+if "Auto" in datasets:
+	train_quantile_auto("Auto")
+	train_quantile_auto("AutoNA")
+
 def predict_multi_auto(auto_booster, auto_dmat, num_rounds = None):
 	acceleration_mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
 

@@ -686,6 +686,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "reg:absoluteerror":
 			case "reg:linear":
 			case "reg:pseudohubererror":
+			case "reg:quantileerror":
 			case "reg:squarederror":
 			case "reg:squaredlogerror":
 				return new LinearRegression(name_obj);

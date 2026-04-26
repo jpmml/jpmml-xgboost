@@ -28,6 +28,7 @@ public interface XGBoostAlgorithms {
 	String LOGISTIC_REGRESSION = "LogisticRegression";
 	String MULTINOMIAL_CLASSIFICATION = "MultinomialClassification";
 	String POISSON_REGRESSION = "PoissonRegression";
+	String QUANTILE_REGRESSION = "QuantileRegression";
 	String RANDOM_FOREST = "RandomForest";
 	String TWEEDIE_REGRESSION = "TweedieRegression";
 }
