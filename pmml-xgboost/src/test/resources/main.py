@@ -9,6 +9,8 @@ import pandas
 import sys
 import xgboost
 
+numpy.random.seed(42)
+
 datasets = []
 
 if __name__ == "__main__":
