@@ -20,7 +20,7 @@ package org.jpmml.xgboost;
 
 import java.util.List;
 
-import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.Model;
 import org.jpmml.converter.Schema;
 
 public class LambdaMART extends Regression {
@@ -30,9 +30,9 @@ public class LambdaMART extends Regression {
 	}
 
 	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, schema);
+	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, schema);
 
-		return miningModel;
+		return model;
 	}
 }

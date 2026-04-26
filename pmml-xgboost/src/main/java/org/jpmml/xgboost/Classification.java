@@ -27,7 +27,6 @@ import org.dmg.pmml.OpType;
 import org.dmg.pmml.Output;
 import org.dmg.pmml.OutputField;
 import org.dmg.pmml.ResultFeature;
-import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.CategoricalLabel;
 import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.FieldNameUtil;
@@ -74,11 +73,11 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
+	public Model encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+		Model model = encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 
 		if(targetIndex != ObjFunction.DEFAULT_TARGET_INDEX){
-			Model finalModel = MiningModelUtil.getFinalModel(miningModel);
+			Model finalModel = MiningModelUtil.getFinalModel(model);
 
 			Output output = finalModel.getOutput();
 			if(output == null || !output.hasOutputFields()){
@@ -102,7 +101,7 @@ public class Classification extends ObjFunction {
 				.forEach(outputFields::add);
 		}
 
-		return miningModel;
+		return model;
 	}
 
 	public int num_class(){

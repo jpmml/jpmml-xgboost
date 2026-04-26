@@ -21,6 +21,7 @@ package org.jpmml.xgboost;
 import java.util.List;
 
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
@@ -43,9 +44,9 @@ public class LogisticRegression extends Regression {
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, segmentSchema)
+		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
 
-		return MiningModelUtil.createRegression(miningModel, RegressionModel.NormalizationMethod.LOGIT, schema);
+		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
 	}
 }

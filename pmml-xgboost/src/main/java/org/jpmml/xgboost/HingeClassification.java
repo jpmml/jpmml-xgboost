@@ -23,6 +23,7 @@ import java.util.List;
 import org.dmg.pmml.DataType;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.FieldRef;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.mining.MiningModel;
@@ -58,9 +59,9 @@ public class HingeClassification extends Classification {
 			}
 		};
 
-		MiningModel miningModel = createMiningModel(trees, weights, base_score, ntreeLimit, segmentSchema)
+		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, transformation));
 
-		return MiningModelUtil.createBinaryLogisticClassification(miningModel, 1d, 0d, RegressionModel.NormalizationMethod.NONE, true, schema);
+		return MiningModelUtil.createBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.NONE, true, schema);
 	}
 }

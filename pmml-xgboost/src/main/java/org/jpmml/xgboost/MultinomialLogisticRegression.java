@@ -22,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.DataType;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
@@ -46,17 +47,17 @@ public class MultinomialLogisticRegression extends Classification {
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
-		List<MiningModel> miningModels = new ArrayList<>();
+		List<Model> models = new ArrayList<>();
 
 		CategoricalLabel categoricalLabel = schema.requireCategoricalLabel();
 
 		for(int i = 0, columns = categoricalLabel.size(), rows = (trees.size() / columns); i < columns; i++){
-			MiningModel miningModel = createMiningModel(CMatrixUtil.getColumn(trees, rows, columns, i), (weights != null) ? CMatrixUtil.getColumn(weights, rows, columns, i) : null, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
+			Model model = encodeOutputGroup(CMatrixUtil.getColumn(trees, rows, columns, i), (weights != null) ? CMatrixUtil.getColumn(weights, rows, columns, i) : null, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
 				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", categoricalLabel.getValue(i)), OpType.CONTINUOUS, DataType.FLOAT));
 
-			miningModels.add(miningModel);
+			models.add(model);
 		}
 
-		return MiningModelUtil.createClassification(miningModels, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
+		return MiningModelUtil.createClassification(models, RegressionModel.NormalizationMethod.SOFTMAX, true, schema);
 	}
 }

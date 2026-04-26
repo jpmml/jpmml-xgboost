@@ -25,6 +25,7 @@ import java.util.function.Function;
 
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.dmg.pmml.tree.TreeModel;
@@ -51,9 +52,9 @@ public class ObjFunction {
 	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
 
 	abstract
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema);
+	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema);
 
-	public MiningModel encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+	public Model encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		return encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
@@ -78,7 +79,7 @@ public class ObjFunction {
 	}
 
 	static
-	protected MiningModel createMiningModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+	protected Model encodeOutputGroup(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		trees = new ArrayList<>(trees);
 
 		if(weights != null){

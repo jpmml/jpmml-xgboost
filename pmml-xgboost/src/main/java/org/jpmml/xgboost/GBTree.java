@@ -33,7 +33,6 @@ import com.devsmart.ubjson.UBValue;
 import com.google.common.primitives.Floats;
 import com.google.gson.JsonObject;
 import org.dmg.pmml.Model;
-import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.CMatrixUtil;
 import org.jpmml.converter.ScalarLabel;
@@ -172,7 +171,7 @@ public class GBTree extends GradientBooster {
 		return result;
 	}
 
-	public MiningModel encodeModel(ObjFunction obj, float[] base_score, Integer ntreeLimit, Schema schema){
+	public Model encodeModel(ObjFunction obj, float[] base_score, Integer ntreeLimit, Schema schema){
 		List<RegTree> trees = Arrays.asList(trees());
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 

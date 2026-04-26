@@ -49,12 +49,12 @@ import org.dmg.pmml.Expression;
 import org.dmg.pmml.Field;
 import org.dmg.pmml.HasContinuousDomain;
 import org.dmg.pmml.Interval;
+import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.PMMLConstants;
 import org.dmg.pmml.PMMLFunctions;
 import org.dmg.pmml.Value;
-import org.dmg.pmml.mining.MiningModel;
 import org.jpmml.converter.BinaryFeature;
 import org.jpmml.converter.ContinuousFeature;
 import org.jpmml.converter.DiscreteFeature;
@@ -445,30 +445,30 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
 
-		MiningModel miningModel = encodeModel(options, schema);
+		Model model = encodeModel(options, schema);
 
-		PMML pmml = encoder.encodePMML(miningModel);
+		PMML pmml = encoder.encodePMML(model);
 
 		return pmml;
 	}
 
-	public MiningModel encodeModel(Map<String, ?> options, Schema schema){
+	public Model encodeModel(Map<String, ?> options, Schema schema){
 		Integer ntreeLimit = (Integer)options.get(HasXGBoostOptions.OPTION_NTREE_LIMIT);
 
 		schema = configureSchema(options, schema);
 
-		MiningModel miningModel = encodeModel(ntreeLimit, schema);
+		Model model = encodeModel(ntreeLimit, schema);
 
-		miningModel = configureModel(options, miningModel);
+		model = configureModel(options, model);
 
-		return miningModel;
+		return model;
 	}
 
-	public MiningModel encodeModel(Integer ntreeLimit, Schema schema){
-		MiningModel miningModel = this.gbtree.encodeModel(this.obj, this.base_score, ntreeLimit, schema)
+	public Model encodeModel(Integer ntreeLimit, Schema schema){
+		Model model = this.gbtree.encodeModel(this.obj, this.base_score, ntreeLimit, schema)
 			.setAlgorithmName("XGBoost (" + this.gbtree.getAlgorithmName() + ")");
 
-		return miningModel;
+		return model;
 	}
 
 	public Schema configureSchema(Map<String, ?> options, Schema schema){
@@ -598,7 +598,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return schema.toTransformedSchema(function);
 	}
 
-	public MiningModel configureModel(Map<String, ?> options, MiningModel miningModel){
+	public Model configureModel(Map<String, ?> options, Model model){
 		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
 		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
 		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
@@ -618,9 +618,9 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			visitors.add(TreeModelPruner.class);
 		}
 
-		visitors.applyTo(miningModel);
+		visitors.applyTo(model);
 
-		return miningModel;
+		return model;
 	}
 
 	public int num_feature(){
