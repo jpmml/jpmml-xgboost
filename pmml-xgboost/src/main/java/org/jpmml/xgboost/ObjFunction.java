@@ -23,6 +23,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 
+import com.google.common.collect.Iterables;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Model;
@@ -172,12 +173,25 @@ public class ObjFunction {
 			}
 		}
 
-		MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
-			.setMathContext(MathContext.FLOAT)
-			.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, Segmentation.MissingPredictionTreatment.RETURN_MISSING, treeModels, weights))
-			.setTargets(ModelUtil.createRescaleTargets(null, intercept, continuousLabel));
+		if(treeModels.size() == 1){
+			TreeModel treeModel = Iterables.getOnlyElement(treeModels);
+			Number weight = equalWeights ? null : (weights != null ? Iterables.getOnlyElement(weights) : null);
 
-		return miningModel;
+			treeModel = treeModel
+				.setMiningSchema(ModelUtil.createMiningSchema(continuousLabel))
+				.setTargets(ModelUtil.createRescaleTargets(weight, intercept, continuousLabel));
+
+			return treeModel;
+		} else
+
+		{
+			MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
+				.setMathContext(MathContext.FLOAT)
+				.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, Segmentation.MissingPredictionTreatment.RETURN_MISSING, treeModels, weights))
+				.setTargets(ModelUtil.createRescaleTargets(null, intercept, continuousLabel));
+
+			return miningModel;
+		}
 	}
 
 	static

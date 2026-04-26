@@ -127,7 +127,8 @@ if "Lung" in datasets:
 #
 
 def predict_auto(auto_booster, auto_dmat, num_rounds = None):
-	mpg = auto_booster.predict(auto_dmat, iteration_range = (0, auto_booster.best_iteration + 1), **make_opts(num_rounds))
+	iteration_range = (0, auto_booster.best_iteration + 1) if hasattr(auto_booster, "best_iteration") else (0, 0)
+	mpg = auto_booster.predict(auto_dmat, iteration_range = iteration_range, **make_opts(num_rounds))
 
 	result = DataFrame(mpg, columns = ["_target"])
 
@@ -165,13 +166,6 @@ if "Auto" in datasets:
 	train_auto("Auto", booster = "dart", rate_drop = 0.05)
 	train_auto("AutoNA")
 
-def predict_quantile_auto(auto_booster, auto_dmat, num_rounds = None):
-	mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
-
-	result = DataFrame(mpg, columns = ["_target"])
-
-	return result
-
 def train_quantile_auto(dataset, **params):
 	auto_X, auto_y = load_split_csv(dataset)
 
@@ -195,7 +189,7 @@ def train_quantile_auto(dataset, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
 	store_model(auto_booster, "QuantileRegression", dataset, with_legacy_binary = False)
 
-	store_csv(predict_quantile_auto(auto_booster, auto_dmat), csv_file("QuantileRegression" + dataset, ".csv"))
+	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("QuantileRegression" + dataset, ".csv"))
 
 if "Auto" in datasets:
 	train_quantile_auto("Auto")
@@ -238,11 +232,23 @@ def train_multi_auto(dataset, target_columns, **params):
 	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiLinearRegression" + dataset, ".csv"))
 
 	auto_params.update({
+		"max_depth" : 6
+	})
+
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
+	store_model(auto_booster, "MultiDecisionTree", dataset, with_legacy_binary = True)
+
+	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiDecisionTree" + dataset, ".csv"))
+
+	auto_params.update({
 		"booster" : "gbtree"
 	})
 
 	if "rate_drop" in auto_params:
 		auto_params.pop("rate_drop")
+
+	if "max_depth" in auto_params:
+		auto_params.pop("max_depth")
 
 	auto_params.update({
 		"num_parallel_tree" : 37,
