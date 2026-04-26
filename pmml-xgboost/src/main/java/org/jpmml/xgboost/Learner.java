@@ -27,7 +27,6 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -566,7 +565,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 								case FLOAT:
 								case DOUBLE:
 									{
-										FieldUtil.addValues(dataField, Value.Property.MISSING, Collections.singletonList(PMMLConstants.NOT_A_NUMBER));
+										FieldUtil.addValue(dataField, Value.Property.MISSING, PMMLConstants.NOT_A_NUMBER);
 									}
 									break;
 								default:

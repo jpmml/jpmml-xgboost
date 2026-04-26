@@ -21,7 +21,6 @@ package org.jpmml.xgboost;
 import java.util.ArrayList;
 import java.util.BitSet;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.EnumMap;
 import java.util.LinkedHashSet;
 import java.util.List;
@@ -296,7 +295,7 @@ public class FeatureMap {
 			} // End if
 
 			if(value != null){
-				FieldUtil.addValues(dataField, Collections.singletonList(value));
+				FieldUtil.addValue(dataField, value);
 
 				return new BinaryFeature(encoder, dataField, value);
 			} else
