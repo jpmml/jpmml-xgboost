@@ -20,4 +20,7 @@ package org.jpmml.xgboost;
 
 abstract
 public class NodeStat {
+
+	abstract
+	public float base_weight();
 }

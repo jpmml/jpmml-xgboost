@@ -118,9 +118,14 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		int[] split_type = UBJSONUtil.toIntArray(tree.get("split_type"));
 		float[] split_conditions = UBJSONUtil.toFloatArray(tree.get("split_conditions"));
 
+		float[] base_weights = UBJSONUtil.toFloatArray(tree.get("base_weights"));
+		float[] loss_changes = UBJSONUtil.toFloatArray(tree.get("loss_changes"));
+		float[] sum_hessian = UBJSONUtil.toFloatArray(tree.get("sum_hessian"));
+
 		boolean has_cat = Ints.contains(split_type, Node.SPLIT_CATEGORICAL);
 
 		this.nodes = new Node[this.num_nodes];
+		this.stats = new NodeStat[this.num_nodes];
 
 		for(int i = 0; i < this.num_nodes; i++){
 			UBObject node = UBValueFactory.createObject();
@@ -135,6 +140,13 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			this.nodes[i] = new JSONNode();
 			((UBJSONLoadable)this.nodes[i]).loadUBJSON(node);
+
+			node.put("loss_chg", UBValueFactory.createFloat32(loss_changes[i]));
+			node.put("sum_hess", UBValueFactory.createFloat32(sum_hessian[i]));
+			node.put("base_weight", UBValueFactory.createFloat32(base_weights[i]));
+
+			this.stats[i] = new JSONNodeStat();
+			((UBJSONLoadable)this.stats[i]).loadUBJSON(node);
 		}
 
 		if(has_cat){

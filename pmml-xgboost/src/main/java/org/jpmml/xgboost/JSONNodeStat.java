@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2026 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,9 +18,12 @@
  */
 package org.jpmml.xgboost;
 
-import java.io.IOException;
+import com.devsmart.ubjson.GsonUtil;
+import com.devsmart.ubjson.UBObject;
+import com.devsmart.ubjson.UBValue;
+import com.google.gson.JsonObject;
 
-public class BinaryNodeStat extends NodeStat implements BinaryLoadable {
+public class JSONNodeStat extends NodeStat implements JSONLoadable, UBJSONLoadable {
 
 	private float loss_chg;
 
@@ -28,18 +31,22 @@ public class BinaryNodeStat extends NodeStat implements BinaryLoadable {
 
 	private float base_weight;
 
-	private int leaf_child_cnt;
 
-
-	public BinaryNodeStat(){
+	public JSONNodeStat(){
 	}
 
 	@Override
-	public void loadBinary(XGBoostDataInput input) throws IOException {
-		this.loss_chg = input.readFloat();
-		this.sum_hess = input.readFloat();
-		this.base_weight = input.readFloat();
-		this.leaf_child_cnt = input.readInt();
+	public void loadJSON(JsonObject node){
+		UBValue value = GsonUtil.toUBValue(node);
+
+		loadUBJSON(value.asObject());
+	}
+
+	@Override
+	public void loadUBJSON(UBObject node){
+		this.loss_chg = node.get("loss_chg").asFloat32();
+		this.sum_hess = node.get("sum_hess").asFloat32();
+		this.base_weight = node.get("base_weight").asFloat32();
 	}
 
 	@Override
