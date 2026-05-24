@@ -59,6 +59,10 @@ public class ObjFunction {
 		return encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
+	public boolean hasIntermediateValues(){
+		return true;
+	}
+
 	public float[] probToMargin(float[] base_score){
 		ProbToMarginFunction function = probToMarginFunction();
 

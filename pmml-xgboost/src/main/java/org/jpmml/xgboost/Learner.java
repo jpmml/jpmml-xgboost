@@ -683,13 +683,14 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	private ObjFunction parseObjective(String name_obj){
 
 		switch(name_obj){
-			case "reg:absoluteerror":
 			case "reg:linear":
 			case "reg:pseudohubererror":
-			case "reg:quantileerror":
 			case "reg:squarederror":
 			case "reg:squaredlogerror":
 				return new LinearRegression(name_obj);
+			case "reg:absoluteerror":
+			case "reg:quantileerror":
+				return new QuantileRegression(name_obj);
 			case "reg:logistic":
 				return new LogisticRegression(name_obj);
 			case "reg:gamma":
