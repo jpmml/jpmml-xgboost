@@ -18,15 +18,10 @@
  */
 package org.jpmml.xgboost;
 
-public class QuantileRegression extends LinearRegression {
+public class SquaredErrorRegression extends LinearRegression {
 
-	public QuantileRegression(String name){
+	public SquaredErrorRegression(String name){
 		super(name);
-	}
-
-	@Override
-	public boolean hasIntermediateValues(){
-		return false;
 	}
 
 	@Override

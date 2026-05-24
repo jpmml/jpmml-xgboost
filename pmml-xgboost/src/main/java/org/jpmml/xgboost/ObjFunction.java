@@ -63,6 +63,10 @@ public class ObjFunction {
 		return true;
 	}
 
+	public boolean hasRecordCounts(){
+		return false;
+	}
+
 	public float[] probToMargin(float[] base_score){
 		ProbToMarginFunction function = probToMarginFunction();
 
