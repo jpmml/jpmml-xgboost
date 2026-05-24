@@ -47,12 +47,12 @@ import org.slf4j.LoggerFactory;
 public class Main {
 
 	@Parameter (
-		names = {"--model-input"},
+		names = {"--xgb-input", "--xgboost-input", "--model-input"},
 		description = "XGBoost model input file",
 		required = true,
 		order = 1
 	)
-	private File modelInput = null;
+	private File xgbInput = null;
 
 	@Parameter (
 		names = {"--fmap-input"},
@@ -201,7 +201,7 @@ public class Main {
 
 		ByteOrder byteOrder = ByteOrderUtil.forValue(this.byteOrder);
 
-		try(InputStream is = new FileInputStream(this.modelInput)){
+		try(InputStream is = new FileInputStream(this.xgbInput)){
 			logger.info("Parsing learner..");
 
 			long begin = System.currentTimeMillis();
