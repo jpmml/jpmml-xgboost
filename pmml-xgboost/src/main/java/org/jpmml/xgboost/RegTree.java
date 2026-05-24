@@ -40,6 +40,8 @@ import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
+import org.dmg.pmml.tree.CountingBranchNode;
+import org.dmg.pmml.tree.CountingLeafNode;
 import org.dmg.pmml.tree.LeafNode;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.BinaryFeature;
@@ -464,7 +466,18 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				value = null;
 			}
 
-			org.dmg.pmml.tree.Node result = new BranchNode(value, predicate)
+			org.dmg.pmml.tree.Node result;
+
+			if(obj.hasRecordCounts()){
+				result = new CountingBranchNode(value, predicate)
+					.setRecordCount(stat.sum_hess());
+			} else
+
+			{
+				result = new BranchNode(value, predicate);
+			}
+
+			result
 				.setId(id)
 				.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId())
 				.addNodes(leftChild, rightChild);
@@ -481,7 +494,18 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		{
 			Float value = (node.leaf_value() + 0f);
 
-			org.dmg.pmml.tree.Node result = new LeafNode(value, predicate)
+			org.dmg.pmml.tree.Node result;
+
+			if(obj.hasRecordCounts()){
+				result = new CountingLeafNode(value, predicate)
+					.setRecordCount(stat.sum_hess());
+			} else
+
+			{
+				result = new LeafNode(value, predicate);
+			}
+
+			result
 				.setId(id);
 
 			return result;

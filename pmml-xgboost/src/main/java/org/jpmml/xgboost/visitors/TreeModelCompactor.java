@@ -81,7 +81,12 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 
 	@Override
 	public void exitNode(Node node){
+		Number recordCount = node.getRecordCount();
 		Predicate predicate = node.requirePredicate();
+
+		if(recordCount != null){
+			node.setRecordCount(null);
+		} // End if
 
 		if(predicate instanceof True){
 			Node parentNode = getParentNode();

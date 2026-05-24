@@ -47,6 +47,8 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 	private String[] formats = {XGBoostFormats.JSON, XGBoostFormats.UBJSON};
 
+	private int recordCount = -1;
+
 	{
 		String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", null);
 
@@ -127,6 +129,14 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		this.formats = Objects.requireNonNull(formats);
 	}
 
+	public int getRecordCount(){
+		return this.recordCount;
+	}
+
+	public void setRecordCount(int recordCount){
+		this.recordCount = recordCount;
+	}
+
 	protected PMML loadPMML(String learnerPath, String featureMapPath) throws Exception {
 		Learner learner;
 
@@ -154,6 +164,17 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 						assertTrue(node.leaf_value() == stat.base_weight());
 					}
 				}
+			}
+		} // End if
+
+		if(obj.hasRecordCounts()){
+			RegTree regTree = regTrees[0];
+
+			Node[] nodes = regTree.nodes();
+			NodeStat[] stats = regTree.stats();
+
+			if(this.recordCount > -1){
+				assertTrue(stats[0].sum_hess() == this.recordCount);
 			}
 		}
 

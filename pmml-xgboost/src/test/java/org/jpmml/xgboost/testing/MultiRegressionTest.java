@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost.testing;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
@@ -34,6 +35,22 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	@Override
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
+
+			{
+				String algorithm = getAlgorithm();
+				String dataset = getDataset();
+
+				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+
+					if(Objects.equals(algorithm, "Multi" + RANDOM_FOREST)){
+						setRecordCount(331);
+					} else
+
+					{
+						setRecordCount(392);
+					}
+				}
+			}
 
 			@Override
 			public MultiRegressionTest getArchiveBatchTest(){

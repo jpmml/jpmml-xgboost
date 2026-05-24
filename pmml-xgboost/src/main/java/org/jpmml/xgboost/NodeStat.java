@@ -22,6 +22,9 @@ abstract
 public class NodeStat {
 
 	abstract
+	public float sum_hess();
+
+	abstract
 	public boolean hasShrunkenBaseWeight();
 
 	abstract
