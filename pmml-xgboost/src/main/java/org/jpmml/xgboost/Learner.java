@@ -133,7 +133,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		String name_obj = input.readString();
 
-		this.obj = parseObjective(name_obj);
+		this.obj = parseObjective(name_obj, this.num_class);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		if(this.major_version >= 1){
@@ -224,7 +224,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		String name_obj = objective.get("name").asString();
 
-		this.obj = parseObjective(name_obj);
+		this.obj = parseObjective(name_obj, this.num_class);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		this.base_score = this.obj.probToMargin(this.base_score);
@@ -668,6 +668,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return null;
 	}
 
+	static
 	private GBTree parseGradientBooster(String name_gbm){
 
 		switch(name_gbm){
@@ -680,7 +681,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
-	private ObjFunction parseObjective(String name_obj){
+	static
+	private ObjFunction parseObjective(String name_obj, int num_class){
 
 		switch(name_obj){
 			case "reg:linear":
@@ -710,7 +712,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				return new AFT(name_obj);
 			case "multi:softmax":
 			case "multi:softprob":
-				return new MultinomialLogisticRegression(name_obj, this.num_class);
+				return new MultinomialLogisticRegression(name_obj, num_class);
 			default:
 				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(name_obj) + " is not supported");
 		}

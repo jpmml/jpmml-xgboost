@@ -50,6 +50,11 @@ public class JSONNodeStat extends NodeStat implements JSONLoadable, UBJSONLoadab
 	}
 
 	@Override
+	public boolean hasShrunkenBaseWeight(){
+		return true;
+	}
+
+	@Override
 	public float base_weight(){
 		return this.base_weight;
 	}

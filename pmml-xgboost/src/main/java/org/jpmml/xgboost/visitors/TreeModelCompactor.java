@@ -43,7 +43,7 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 		if(node.hasNodes()){
 			List<Node> children = node.getNodes();
 
-			if(score != null || defaultChild == null || children.size() != 2){
+			if(defaultChild == null || children.size() != 2){
 				throw new UnsupportedElementException(node);
 			}
 
@@ -89,6 +89,8 @@ public class TreeModelCompactor extends AbstractTreeModelTransformer {
 			if(parentNode == null){
 				return;
 			}
+
+			parentNode.setScore(null);
 
 			initScore(parentNode, node);
 			replaceChildWithGrandchildren(parentNode, node);

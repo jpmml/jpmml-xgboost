@@ -36,6 +36,10 @@ import org.jpmml.model.ReflectionUtil;
 import org.jpmml.xgboost.FeatureMap;
 import org.jpmml.xgboost.HasXGBoostOptions;
 import org.jpmml.xgboost.Learner;
+import org.jpmml.xgboost.Node;
+import org.jpmml.xgboost.NodeStat;
+import org.jpmml.xgboost.ObjFunction;
+import org.jpmml.xgboost.RegTree;
 import org.jpmml.xgboost.XGBoostUtil;
 
 abstract
@@ -96,7 +100,7 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 			PMML pmml = loadPMML(getLearnerPath(format), getFeatureMapPath());
 
 			if(result != null){
-				assertEquals(result, pmml);
+				checkPMML(result, pmml);
 			}
 
 			result = pmml;
@@ -130,6 +134,29 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 			learner = XGBoostUtil.loadLearner(is);
 		}
 
+		ObjFunction obj = learner.obj();
+
+		RegTree[] regTrees = (learner.gbtree()).trees();
+
+		if(obj.hasIntermediateValues()){
+
+			for(RegTree regTree : regTrees){
+				Node[] nodes = regTree.nodes();
+				NodeStat[] stats = regTree.stats();
+
+				assertTrue(nodes.length == stats.length);
+
+				for(int i = 0; i < nodes.length; i++){
+					Node node = nodes[i];
+					NodeStat stat = stats[i];
+
+					if(node.is_leaf()){
+						assertTrue(node.leaf_value() == stat.base_weight());
+					}
+				}
+			}
+		}
+
 		FeatureMap featureMap;
 
 		try(InputStream is = open(featureMapPath)){
@@ -154,7 +181,7 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		return pmml;
 	}
 
-	private void assertEquals(PMML left, PMML right){
+	private void checkPMML(PMML left, PMML right){
 		Header leftHeader = left.requireHeader();
 		Header rightHeader = right.requireHeader();
 
@@ -165,13 +192,21 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 			leftHeader.setTimestamp(null);
 			rightHeader.setTimestamp(null);
 
-			boolean equals = ReflectionUtil.equals(left, right);
-			if(!equals){
-				throw new AssertionError();
-			}
+			assertTrue(ReflectionUtil.equals(left, right));
 		} finally {
 			leftHeader.setTimestamp(leftTimestamp);
 			rightHeader.setTimestamp(rightTimestamp);
+		}
+	}
+
+	protected void assertTrue(boolean value){
+		assertTrue(value, null);
+	}
+
+	protected void assertTrue(boolean value, String message){
+
+		if(!value){
+			throw new AssertionError(message);
 		}
 	}
 }

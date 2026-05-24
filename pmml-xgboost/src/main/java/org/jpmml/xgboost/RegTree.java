@@ -277,8 +277,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return result;
 	}
 
-	public TreeModel encodeTreeModel(PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
+	public TreeModel encodeTreeModel(ObjFunction obj, PredicateManager predicateManager, Schema schema){
+		org.dmg.pmml.tree.Node root = encodeNode(obj, 0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -288,10 +288,11 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return treeModel;
 	}
 
-	private org.dmg.pmml.tree.Node encodeNode(int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
+	private org.dmg.pmml.tree.Node encodeNode(ObjFunction obj, int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
 		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
+		NodeStat stat = this.stats[index];
 
 		if(!node.is_leaf()){
 			int splitIndex = node.split_index();
@@ -450,10 +451,20 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
 
-			org.dmg.pmml.tree.Node result = new BranchNode(null, predicate)
+			Float value;
+
+			if(obj.hasIntermediateValues() && stat.hasShrunkenBaseWeight()){
+				value = (stat.base_weight() + 0f);
+			} else
+
+			{
+				value = null;
+			}
+
+			org.dmg.pmml.tree.Node result = new BranchNode(value, predicate)
 				.setId(id)
 				.setDefaultChild(defaultLeft ? leftChild.getId() : rightChild.getId())
 				.addNodes(leftChild, rightChild);
@@ -475,5 +486,13 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			return result;
 		}
+	}
+
+	public Node[] nodes(){
+		return this.nodes;
+	}
+
+	public NodeStat[] stats(){
+		return this.stats;
 	}
 }

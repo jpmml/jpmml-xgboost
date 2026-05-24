@@ -83,7 +83,6 @@ public class ObjFunction {
 		return this.name;
 	}
 
-	static
 	protected Model encodeOutputGroup(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
 		trees = new ArrayList<>(trees);
 
@@ -171,7 +170,7 @@ public class ObjFunction {
 		// Final pass - encoding trees
 		{
 			for(RegTree tree : trees){
-				TreeModel treeModel = tree.encodeTreeModel(predicateManager, segmentSchema);
+				TreeModel treeModel = tree.encodeTreeModel(this, predicateManager, segmentSchema);
 
 				treeModels.add(treeModel);
 			}

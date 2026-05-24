@@ -22,5 +22,8 @@ abstract
 public class NodeStat {
 
 	abstract
+	public boolean hasShrunkenBaseWeight();
+
+	abstract
 	public float base_weight();
 }
