@@ -1,5 +1,6 @@
 from pandas import DataFrame
-from sklearn.preprocessing import LabelEncoder
+from sklearn.compose import ColumnTransformer
+from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn2pmml.xgboost import make_feature_map
 from xgboost.core import XGBoostError
 
@@ -11,19 +12,26 @@ import xgboost
 
 numpy.random.seed(42)
 
+legacy = False
 datasets = []
 
 if __name__ == "__main__":
-	if len(sys.argv) > 1:
-		datasets = (sys.argv[1]).split(",")
+	args = sys.argv[1:]
+
+	if "--legacy" in args:
+		legacy = True
+		args.remove("--legacy")
+
+	if args:
+		datasets = args[0].split(",")
 	else:
 		datasets = ["Audit", "Auto", "Iris", "Lung", "Visit"]
 
 def csv_file(name, ext):
-	return "csv/" + name + ext;
+	return "csv/" + name + ext
 
 def xgboost_file(name, ext):
-	return "xgboost/" + name + ext;
+	return "xgboost/" + name + ext
 
 def load_csv(path):
 	return pandas.read_csv(path)
@@ -49,17 +57,17 @@ def store_csv(df, path):
 	df.to_csv(path, header = True, index = False)
 
 def store_model(booster, algorithm, dataset, with_json = True, with_ubjson = True):
-	if with_json:
-		booster.save_model(xgboost_file(algorithm + dataset, ".json"))
-
-	if with_ubjson:
-		booster.save_model(xgboost_file(algorithm + dataset, ".ubj"))
-
-	# XXX
-	#booster.dump_model(xgboost_file(algorithm + dataset, ".dump"), fmap = csv_file(dataset, ".fmap"), dump_format = "json")
+	if legacy:
+		booster.save_model(xgboost_file("legacy/" + algorithm + dataset, ".deprecated"))
+		os.rename(xgboost_file("legacy/" + algorithm + dataset, ".deprecated"), xgboost_file("legacy/" + algorithm + dataset, ".model"))
+	else:
+		if with_json:
+			booster.save_model(xgboost_file(algorithm + dataset, ".json"))
+		if with_ubjson:
+			booster.save_model(xgboost_file(algorithm + dataset, ".ubj"))
 
 def store_result(df, name):
-	store_csv(df, csv_file(name, ".csv"))
+	store_csv(df, csv_file(("legacy/" + name if legacy else name), ".csv"))
 
 def make_opts(num_rounds = None):
 	return {"iteration_range" : (0, num_rounds)} if num_rounds else {}
@@ -73,6 +81,13 @@ def _as_int64_categorical(x):
 		.astype("Int64")
 		.astype(str).replace("<NA>", None) # XXX: Needed by XGBoost 3.1.0, not needed by any of earlier XGBoost versions
 		.astype("category"))
+
+def _one_hot_encode(X, cat_cols):
+	transformer = ColumnTransformer([
+		(col, OneHotEncoder(categories = [X[col].cat.categories.tolist()], sparse_output = False, feature_name_combiner = lambda feature, category: f"{feature}={category}"), [col]) if col in cat_cols else (col, "passthrough", [col]) for col in X.columns 
+	], verbose_feature_names_out = False)
+	transformer.set_output(transform = "pandas")
+	return transformer.fit_transform(X)
 
 #
 # Survival regression
@@ -113,9 +128,9 @@ def train_lung(dataset, **params):
 	lung_booster = xgboost.train(params = lung_params, dtrain = lung_dmat, num_boost_round = 15)
 	store_model(lung_booster, "AFT", dataset)
 
-	store_csv(predict_lung(lung_booster, lung_dmat), csv_file("AFT" + dataset, ".csv"))
+	store_result(predict_lung(lung_booster, lung_dmat), "AFT" + dataset)
 
-if "Lung" in datasets:
+if "Lung" in datasets and not legacy:
 	train_lung("LungNA")
 
 #
@@ -135,15 +150,20 @@ def train_auto(dataset, **params):
 
 	eval_mask = numpy.random.choice([True, False], size = (auto_X.shape[0], ), p = [0.15, 0.85])
 
-	for col in ["cylinders", "model_year", "origin"]:
+	cat_cols = ["cylinders", "model_year", "origin"]
+
+	for col in cat_cols:
 		auto_X[col] = _as_int64_categorical(auto_X[col])
 
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file(dataset, ".fmap"))
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+	if legacy:
+		auto_X = _one_hot_encode(auto_X, cat_cols)
 
-	auto_eval_dmat = xgboost.DMatrix(data = auto_X[eval_mask], label = auto_y[eval_mask], enable_categorical = True)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = (not legacy))
+
+	auto_eval_dmat = xgboost.DMatrix(data = auto_X[eval_mask], label = auto_y[eval_mask], enable_categorical = (not legacy))
 
 	auto_params = dict(**params)
 	auto_params.update({
@@ -156,11 +176,13 @@ def train_auto(dataset, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 71, early_stopping_rounds = 3, evals = [(auto_eval_dmat, "eval")])
 	store_model(auto_booster, "LinearRegression", dataset)
 
-	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("LinearRegression" + dataset, ".csv"))
+	store_result(predict_auto(auto_booster, auto_dmat), "LinearRegression" + dataset)
 
 if "Auto" in datasets:
 	train_auto("Auto", booster = "dart", rate_drop = 0.05)
-	train_auto("AutoNA")
+
+	if not legacy:
+		train_auto("AutoNA")
 
 def train_quantile_auto(dataset, **params):
 	auto_X, auto_y = load_split_csv(dataset)
@@ -185,9 +207,9 @@ def train_quantile_auto(dataset, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
 	store_model(auto_booster, "QuantileRegression", dataset)
 
-	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("QuantileRegression" + dataset, ".csv"))
+	store_result(predict_auto(auto_booster, auto_dmat), "QuantileRegression" + dataset)
 
-if "Auto" in datasets:
+if "Auto" in datasets and not legacy:
 	train_quantile_auto("Auto")
 	train_quantile_auto("AutoNA")
 
@@ -225,7 +247,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
 	store_model(auto_booster, "MultiLinearRegression", dataset)
 
-	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiLinearRegression" + dataset, ".csv"))
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiLinearRegression" + dataset)
 
 	auto_params.update({
 		"max_depth" : 6
@@ -234,7 +256,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
 	store_model(auto_booster, "MultiDecisionTree", dataset)
 
-	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiDecisionTree" + dataset, ".csv"))
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiDecisionTree" + dataset)
 
 	auto_params.update({
 		"booster" : "gbtree"
@@ -255,9 +277,9 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
 	store_model(auto_booster, "MultiRandomForest", dataset)
 
-	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiRandomForest" + dataset, ".csv"))
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiRandomForest" + dataset)
 
-if "Auto" in datasets:
+if "Auto" in datasets and not legacy:
 	train_multi_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
 	train_multi_auto("AutoNA", ["acceleration", "mpg"])
 
@@ -294,7 +316,7 @@ def train_visit(dataset, **params):
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
 	store_model(visit_booster, "PoissonRegression", dataset)
 
-	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("PoissonRegression" + dataset, ".csv"))
+	store_result(predict_visit(visit_booster, visit_dmat), "PoissonRegression" + dataset)
 
 	visit_params.update({
 		"objective" : "reg:gamma"
@@ -303,7 +325,7 @@ def train_visit(dataset, **params):
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
 	store_model(visit_booster, "GammaRegression", dataset)
 
-	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("GammaRegression" + dataset, ".csv"))
+	store_result(predict_visit(visit_booster, visit_dmat), "GammaRegression" + dataset)
 
 	visit_params.update({
 		"objective" : "reg:tweedie",
@@ -313,9 +335,9 @@ def train_visit(dataset, **params):
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
 	store_model(visit_booster, "TweedieRegression", dataset)
 
-	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("TweedieRegression" + dataset, ".csv"))
+	store_result(predict_visit(visit_booster, visit_dmat), "TweedieRegression" + dataset)
 
-if "Visit" in datasets:
+if "Visit" in datasets and not legacy:
 	train_visit("Visit", booster = "dart", rate_drop = 0.05)
 	train_visit("VisitNA")
 
@@ -350,15 +372,20 @@ def predict_multinomial_audit(audit_booster, audit_dmat, num_rounds = None):
 def train_audit(dataset, **params):
 	audit_X, audit_y = load_split_csv(dataset)
 
-	for col in ["Education", "Employment", "Gender", "Marital", "Occupation"]:
-		audit_X[col] = _as_str_categorical(audit_X[col])
+	cat_cols = ["Education", "Employment", "Gender", "Marital", "Occupation"]
 
-	audit_y = audit_y.astype(int)
+	for col in cat_cols:
+		audit_X[col] = _as_str_categorical(audit_X[col])
 
 	audit_fmap = make_feature_map(audit_X, category_to_indicator = True)
 	audit_fmap.save(csv_file(dataset, ".fmap"))
 
-	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = True)
+	if legacy:
+		audit_X = _one_hot_encode(audit_X, cat_cols)
+
+	audit_y = audit_y.astype(int)
+
+	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = (not legacy))
 
 	audit_params = dict(**params)
 	audit_params.update({
@@ -370,7 +397,7 @@ def train_audit(dataset, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 17)
 	store_model(audit_booster, "LogisticRegression", dataset)
 
-	store_csv(predict_audit(audit_booster, audit_dmat), csv_file("LogisticRegression" + dataset, ".csv"))
+	store_result(predict_audit(audit_booster, audit_dmat), "LogisticRegression" + dataset)
 
 	audit_params.update({
 		"objective" : "binary:logistic"
@@ -379,8 +406,9 @@ def train_audit(dataset, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
 	store_model(audit_booster, "BinomialClassification", dataset)
 
-	store_csv(predict_binomial_audit(audit_booster, audit_dmat), csv_file("BinomialClassification" + dataset, ".csv"))
-	store_csv(predict_binomial_audit(audit_booster, audit_dmat, 31), csv_file("BinomialClassification" + dataset + "@31", ".csv"))
+	store_result(predict_binomial_audit(audit_booster, audit_dmat), "BinomialClassification" + dataset)
+	if not legacy:
+		store_result(predict_binomial_audit(audit_booster, audit_dmat, 31), "BinomialClassification" + dataset + "@31")
 
 	audit_params.update({
 		"objective" : "binary:hinge"
@@ -389,7 +417,7 @@ def train_audit(dataset, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 31)
 	store_model(audit_booster, "HingeClassification", dataset)
 
-	store_csv(predict_binomial_audit(audit_booster, audit_dmat), csv_file("HingeClassification" + dataset, ".csv"))
+	store_result(predict_binomial_audit(audit_booster, audit_dmat), "HingeClassification" + dataset)
 
 	audit_params.update({
 		"objective" : "multi:softprob",
@@ -399,11 +427,13 @@ def train_audit(dataset, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 31)
 	store_model(audit_booster, "MultinomialClassification", dataset)
 
-	store_csv(predict_multinomial_audit(audit_booster, audit_dmat), csv_file("MultinomialClassification" + dataset, ".csv"))
+	store_result(predict_multinomial_audit(audit_booster, audit_dmat), "MultinomialClassification" + dataset)
 
 if "Audit" in datasets:
 	train_audit("Audit", booster = "dart", rate_drop = 0.05)
-	train_audit("AuditNA")
+	
+	if not legacy:
+		train_audit("AuditNA")
 
 def predict_binomial_multi_audit(audit_booster, audit_dmat, num_rounds = None):
 	gender_adjusted_proba = audit_booster.predict(audit_dmat, **make_opts(num_rounds)).reshape((-1, 2))
@@ -453,10 +483,10 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
 	store_model(audit_booster, "MultiBinomialClassification", dataset)
 
-	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat), csv_file("MultiBinomialClassification" + dataset, ".csv"))
-	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), csv_file("MultiBinomialClassification" + dataset + "@31", ".csv"))
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), "MultiBinomialClassification" + dataset)
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), "MultiBinomialClassification" + dataset + "@31")
 
-if "Audit" in datasets:
+if "Audit" in datasets and not legacy:
 	train_multi_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
 	train_multi_audit("AuditNA", ["Gender", "Adjusted"])
 
@@ -494,9 +524,12 @@ def train_iris(dataset, **params):
 	iris_booster = xgboost.train(params = iris_params, dtrain = iris_dmat, num_boost_round = 17)
 	store_model(iris_booster, "MultinomialClassification", dataset)
 
-	store_csv(predict_iris(iris_booster, iris_dmat), csv_file("MultinomialClassification" + dataset, ".csv"))
-	store_csv(predict_iris(iris_booster, iris_dmat, 11), csv_file("MultinomialClassification" + dataset + "@11", ".csv"))
+	store_result(predict_iris(iris_booster, iris_dmat), "MultinomialClassification" + dataset)
+	if not legacy:
+		store_result(predict_iris(iris_booster, iris_dmat, 11), "MultinomialClassification" + dataset + "@11")
 
 if "Iris" in datasets:
 	train_iris("Iris", booster = "dart", rate_drop = 0.05)
-	train_iris("IrisNA")
+
+	if not legacy:
+		train_iris("IrisNA")
