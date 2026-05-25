@@ -9,7 +9,7 @@
 	</parent>
 
 	<artifactId>jpmml-xgboost</artifactId>
-	<version>1.9-SNAPSHOT</version>
+	<version>1.9.8</version>
 	<packaging>pom</packaging>
 
 	<name>JPMML-XGBoost</name>
@@ -32,7 +32,7 @@
 		<connection>scm:git:git@github.com:jpmml/jpmml-xgboost.git</connection>
 		<developerConnection>scm:git:git@github.com:jpmml/jpmml-xgboost.git</developerConnection>
 		<url>https://github.com/jpmml/jpmml-xgboost</url>
-		<tag>HEAD</tag>
+		<tag>1.9.8</tag>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
@@ -44,7 +44,7 @@
 		<jpmml-evaluator.version>1.7.7</jpmml-evaluator.version>
 		<gson.version>[2.8.1, 2.14.0]</gson.version>
 		<ubjson.version>0.1.8</ubjson.version>
-		<project.build.outputTimestamp>2026-04-26T12:18:32Z</project.build.outputTimestamp>
+		<project.build.outputTimestamp>2026-05-25T18:56:58Z</project.build.outputTimestamp>
 	</properties>
 
 	<dependencyManagement>
@@ -52,12 +52,12 @@
 			<dependency>
 				<groupId>org.jpmml</groupId>
 				<artifactId>pmml-xgboost</artifactId>
-				<version>1.9-SNAPSHOT</version>
+				<version>1.9.8</version>
 			</dependency>
 			<dependency>
 				<groupId>org.jpmml</groupId>
 				<artifactId>pmml-xgboost-example</artifactId>
-				<version>1.9-SNAPSHOT</version>
+				<version>1.9.8</version>
 			</dependency>
 
 			<dependency>
