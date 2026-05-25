@@ -441,6 +441,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			}
 
 			featureMap = embeddedFeatureMap;
+		} // End if
+
+		if(featureMap == null){
+			throw new XGBoostException("The booster object does not specify feature information")
+				.setSolution("Supply feature information using a feature map");
 		}
 
 		Schema schema = encodeSchema(targetName, targetCategories, featureMap, encoder);
