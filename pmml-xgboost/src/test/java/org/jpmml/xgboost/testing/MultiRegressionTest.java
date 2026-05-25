@@ -35,10 +35,6 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
-			{
-				setFormats(new String[]{JSON, UBJSON});
-			}
-
 			@Override
 			public MultiRegressionTest getArchiveBatchTest(){
 				return MultiRegressionTest.this;

@@ -39,15 +39,6 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
-			{
-				String dataset = getDataset();
-
-				// XXX
-				if(dataset.startsWith(AUDIT)){
-					setFormats(new String[]{JSON, UBJSON});
-				}
-			}
-
 			@Override
 			public ClassificationTest getArchiveBatchTest(){
 				return ClassificationTest.this;

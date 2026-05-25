@@ -48,11 +48,7 @@ def load_split_multi_csv(dataset, target_columns):
 def store_csv(df, path):
 	df.to_csv(path, header = True, index = False)
 
-def store_model(booster, algorithm, dataset, with_legacy_binary = True, with_json = True, with_ubjson = True):
-	if with_legacy_binary:
-		booster.save_model(xgboost_file(algorithm + dataset, ".deprecated"))
-		os.rename(xgboost_file(algorithm + dataset, ".deprecated"), xgboost_file(algorithm + dataset, ".model"))
-
+def store_model(booster, algorithm, dataset, with_json = True, with_ubjson = True):
 	if with_json:
 		booster.save_model(xgboost_file(algorithm + dataset, ".json"))
 
@@ -158,7 +154,7 @@ def train_auto(dataset, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 71, early_stopping_rounds = 3, evals = [(auto_eval_dmat, "eval")])
-	store_model(auto_booster, "LinearRegression", dataset, with_legacy_binary = False)
+	store_model(auto_booster, "LinearRegression", dataset)
 
 	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("LinearRegression" + dataset, ".csv"))
 
@@ -187,7 +183,7 @@ def train_quantile_auto(dataset, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
-	store_model(auto_booster, "QuantileRegression", dataset, with_legacy_binary = False)
+	store_model(auto_booster, "QuantileRegression", dataset)
 
 	store_csv(predict_auto(auto_booster, auto_dmat), csv_file("QuantileRegression" + dataset, ".csv"))
 
@@ -227,7 +223,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
-	store_model(auto_booster, "MultiLinearRegression", dataset, with_legacy_binary = False)
+	store_model(auto_booster, "MultiLinearRegression", dataset)
 
 	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiLinearRegression" + dataset, ".csv"))
 
@@ -236,7 +232,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "MultiDecisionTree", dataset, with_legacy_binary = True)
+	store_model(auto_booster, "MultiDecisionTree", dataset)
 
 	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiDecisionTree" + dataset, ".csv"))
 
@@ -257,7 +253,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "MultiRandomForest", dataset, with_legacy_binary = False)
+	store_model(auto_booster, "MultiRandomForest", dataset)
 
 	store_csv(predict_multi_auto(auto_booster, auto_dmat), csv_file("MultiRandomForest" + dataset, ".csv"))
 
@@ -296,7 +292,7 @@ def train_visit(dataset, **params):
 	})
 
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
-	store_model(visit_booster, "PoissonRegression", dataset, with_legacy_binary = False)
+	store_model(visit_booster, "PoissonRegression", dataset)
 
 	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("PoissonRegression" + dataset, ".csv"))
 
@@ -305,7 +301,7 @@ def train_visit(dataset, **params):
 	})
 
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
-	store_model(visit_booster, "GammaRegression", dataset, with_legacy_binary = False)
+	store_model(visit_booster, "GammaRegression", dataset)
 
 	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("GammaRegression" + dataset, ".csv"))
 
@@ -315,7 +311,7 @@ def train_visit(dataset, **params):
 	})
 
 	visit_booster = xgboost.train(params = visit_params, dtrain = visit_dmat, num_boost_round = 31)
-	store_model(visit_booster, "TweedieRegression", dataset, with_legacy_binary = False)
+	store_model(visit_booster, "TweedieRegression", dataset)
 
 	store_csv(predict_visit(visit_booster, visit_dmat), csv_file("TweedieRegression" + dataset, ".csv"))
 
@@ -372,7 +368,7 @@ def train_audit(dataset, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 17)
-	store_model(audit_booster, "LogisticRegression", dataset, with_legacy_binary = False)
+	store_model(audit_booster, "LogisticRegression", dataset)
 
 	store_csv(predict_audit(audit_booster, audit_dmat), csv_file("LogisticRegression" + dataset, ".csv"))
 
@@ -381,7 +377,7 @@ def train_audit(dataset, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
-	store_model(audit_booster, "BinomialClassification", dataset, with_legacy_binary = False)
+	store_model(audit_booster, "BinomialClassification", dataset)
 
 	store_csv(predict_binomial_audit(audit_booster, audit_dmat), csv_file("BinomialClassification" + dataset, ".csv"))
 	store_csv(predict_binomial_audit(audit_booster, audit_dmat, 31), csv_file("BinomialClassification" + dataset + "@31", ".csv"))
@@ -391,7 +387,7 @@ def train_audit(dataset, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 31)
-	store_model(audit_booster, "HingeClassification", dataset, with_legacy_binary = False)
+	store_model(audit_booster, "HingeClassification", dataset)
 
 	store_csv(predict_binomial_audit(audit_booster, audit_dmat), csv_file("HingeClassification" + dataset, ".csv"))
 
@@ -401,7 +397,7 @@ def train_audit(dataset, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 31)
-	store_model(audit_booster, "MultinomialClassification", dataset, with_legacy_binary = False)
+	store_model(audit_booster, "MultinomialClassification", dataset)
 
 	store_csv(predict_multinomial_audit(audit_booster, audit_dmat), csv_file("MultinomialClassification" + dataset, ".csv"))
 
@@ -455,7 +451,7 @@ def train_multi_audit(dataset, target_columns, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
-	store_model(audit_booster, "MultiBinomialClassification", dataset, with_legacy_binary = False)
+	store_model(audit_booster, "MultiBinomialClassification", dataset)
 
 	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat), csv_file("MultiBinomialClassification" + dataset, ".csv"))
 	store_csv(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), csv_file("MultiBinomialClassification" + dataset + "@31", ".csv"))

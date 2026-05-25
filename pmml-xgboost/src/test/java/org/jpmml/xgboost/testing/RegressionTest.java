@@ -35,15 +35,6 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
-			{
-				String dataset = getDataset();
-
-				// XXX
-				if(dataset.startsWith(AUDIT) || dataset.startsWith(AUTO) || dataset.startsWith(VISIT)){
-					setFormats(new String[]{JSON, UBJSON});
-				}
-			}
-
 			@Override
 			public RegressionTest getArchiveBatchTest(){
 				return RegressionTest.this;

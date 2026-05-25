@@ -41,7 +41,7 @@ import org.jpmml.xgboost.XGBoostUtil;
 abstract
 public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
-	private String[] formats = {XGBoostFormats.BINARY, XGBoostFormats.JSON, XGBoostFormats.UBJSON};
+	private String[] formats = {XGBoostFormats.JSON, XGBoostFormats.UBJSON};
 
 	{
 		String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", null);

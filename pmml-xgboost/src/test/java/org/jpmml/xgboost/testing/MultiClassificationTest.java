@@ -38,10 +38,6 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
-			{
-				setFormats(new String[]{JSON, UBJSON});
-			}
-
 			@Override
 			public MultiClassificationTest getArchiveBatchTest(){
 				return MultiClassificationTest.this;
