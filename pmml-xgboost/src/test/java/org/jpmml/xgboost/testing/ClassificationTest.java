@@ -19,6 +19,7 @@
 package org.jpmml.xgboost.testing;
 
 import java.io.IOException;
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
@@ -51,7 +52,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 				String dataset = truncate(getDataset());
 
 				// XXX
-				if((AUDIT_NA).equals(dataset)){
+				if(Objects.equals(AUDIT_NA, dataset)){
 					table.apply("Income", (value) -> {
 
 						if(value == null){

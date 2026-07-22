@@ -318,7 +318,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			for(int i = 0; i < names.length; i++){
 				String name = names[i];
 
-				if(i == 0 && ("$").equals(name)){
+				if(i == 0 && Objects.equals("$", name)){
 					continue;
 				}
 
@@ -348,7 +348,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			for(int i = 0; i < names.length; i++){
 				String name = names[i];
 
-				if(i == 0 && ("$").equals(name)){
+				if(i == 0 && Objects.equals("$", name)){
 					continue;
 				}
 
@@ -617,16 +617,16 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		VisitorBattery visitors = new VisitorBattery();
 
-		if((Boolean.TRUE).equals(compact)){
+		if(Objects.equals(Boolean.TRUE, compact)){
 
-			if((Boolean.FALSE).equals(numeric)){
+			if(Objects.equals(Boolean.FALSE, numeric)){
 				throw new XGBoostException("Conflicting XGBoost options");
 			}
 
 			visitors.add(TreeModelCompactor.class);
 		} // End if
 
-		if((Boolean.TRUE).equals(prune)){
+		if(Objects.equals(Boolean.TRUE, prune)){
 			visitors.add(TreeModelPruner.class);
 		}
 

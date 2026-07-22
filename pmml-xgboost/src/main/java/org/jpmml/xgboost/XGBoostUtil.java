@@ -28,6 +28,7 @@ import java.io.Reader;
 import java.nio.ByteOrder;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Objects;
 import java.util.StringTokenizer;
 
 import com.google.common.io.CharStreams;
@@ -52,11 +53,11 @@ public class XGBoostUtil {
 	public Learner loadLearner(InputStream is, ByteOrder byteOrder, String charset, String jsonPath) throws IOException {
 		is = new BufferedInputStream(is, 16 * 1024);
 
-		if((ByteOrder.BIG_ENDIAN).equals(byteOrder)){
+		if(Objects.equals(ByteOrder.BIG_ENDIAN, byteOrder)){
 			return loadLearner(new DataInputStream(is), charset, jsonPath);
 		} else
 
-		if((ByteOrder.LITTLE_ENDIAN).equals(byteOrder)){
+		if(Objects.equals(ByteOrder.LITTLE_ENDIAN, byteOrder)){
 			return loadLearner(new LittleEndianDataInputStream(is), charset, jsonPath);
 		} else
 
