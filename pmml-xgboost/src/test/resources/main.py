@@ -193,7 +193,7 @@ def train_quantile_auto(dataset, **params):
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file(dataset, ".fmap"))
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
 
 	auto_params = dict(**params)
 	auto_params.update({
@@ -235,7 +235,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file("Multi" + dataset, ".fmap"))
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
 
 	auto_params = dict(**params)
 	auto_params.update({
@@ -304,7 +304,7 @@ def train_visit(dataset, **params):
 	visit_fmap = make_feature_map(visit_X, category_to_indicator = True)
 	visit_fmap.save(csv_file(dataset, ".fmap"))
 
-	visit_dmat = xgboost.DMatrix(data = visit_X, label = visit_y, enable_categorical = True)
+	visit_dmat = xgboost.DMatrix(data = visit_X, label = visit_y)
 
 	visit_params = dict(**params)
 	visit_params.update({
@@ -471,7 +471,7 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_fmap = make_feature_map(audit_X, category_to_indicator = True)
 	audit_fmap.save(csv_file("Multi" + dataset, ".fmap"))
 
-	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = True)
+	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y)
 
 	audit_params = dict(**params)
 	audit_params.update({

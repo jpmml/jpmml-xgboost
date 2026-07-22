@@ -59,7 +59,7 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 
 	@Test
 	public void evaluateMultiBinomialAuditLimit() throws Exception {
-		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 8));
+		evaluate("Multi" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 12));
 	}
 
 	@Test

@@ -19,6 +19,7 @@
 package org.jpmml.xgboost;
 
 import java.io.IOException;
+import java.util.Objects;
 
 import com.devsmart.ubjson.GsonUtil;
 import com.devsmart.ubjson.UBObject;
@@ -57,9 +58,23 @@ public class Dart extends GBTree {
 
 	@Override
 	public void loadUBJSON(UBObject gradientBooster){
-		UBObject gbtree = gradientBooster.get("gbtree").asObject();
+		String name = gradientBooster.get("name").asString();
 
-		super.loadUBJSON(gbtree);
+		// XGBoost 3.2.0
+		if(Objects.equals("dart", name)){
+			UBObject gbtree = gradientBooster.get("gbtree").asObject();
+
+			super.loadUBJSON(gbtree);
+		} else
+
+		// XGBoost 3.3.0+
+		if(Objects.equals("gbtree", name)){
+			super.loadUBJSON(gradientBooster);
+		} else
+
+		{
+			throw new IllegalArgumentException(name);
+		}
 
 		this.weight_drop = UBJSONUtil.toFloatArray(gradientBooster.get("weight_drop"));
 	}

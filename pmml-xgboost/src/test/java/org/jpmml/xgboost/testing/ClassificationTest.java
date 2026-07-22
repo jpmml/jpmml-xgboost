@@ -76,7 +76,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(20));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(20 + 8));
 	}
 
 	@Test

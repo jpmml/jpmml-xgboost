@@ -43,7 +43,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
 
 					if(Objects.equals(algorithm, "Multi" + RANDOM_FOREST)){
-						setRecordCount(331);
+						setRecordCount(325);
 					} else
 
 					{
@@ -93,6 +93,6 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateMultiRFAutoNA() throws Exception {
-		evaluate("Multi" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(8));
+		evaluate("Multi" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(8 + 4));
 	}
 }

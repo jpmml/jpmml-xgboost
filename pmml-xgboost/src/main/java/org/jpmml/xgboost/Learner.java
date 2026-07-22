@@ -30,6 +30,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Function;
 
@@ -232,6 +233,12 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		UBObject gradientBooster = learner.get("gradient_booster").asObject();
 
 		String name_gbm = gradientBooster.get("name").asString();
+
+		// Starting from 3.3.0, the name of the DART booster changed from "dart" to (canonical-) "gbtree".
+		// The nature of the booster is signalled by the "weight_drop" mapping.
+		if(Objects.equals("gbtree", name_gbm) && gradientBooster.containsKey("weight_drop")){
+			name_gbm = "dart";
+		}
 
 		this.gbtree = parseGradientBooster(name_gbm);
 		this.gbtree.loadUBJSON(gradientBooster);
