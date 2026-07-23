@@ -47,7 +47,7 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(32 + 16));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(35 + 10));
 	}
 
 	@Test
@@ -57,11 +57,11 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(16 + 4));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(15 + 3));
 	}
 
 	@Test
 	public void evaluateMultinomialIris() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(8));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS, new FloatEquivalence(5 + 3));
 	}
 }

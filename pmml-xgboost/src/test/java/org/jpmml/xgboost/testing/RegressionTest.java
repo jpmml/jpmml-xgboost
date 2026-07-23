@@ -55,66 +55,66 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateLinearAuto() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(8 + 4));
+		evaluate(LINEAR_REGRESSION, AUTO);
 	}
 
 	@Test
 	public void evaluateLinearAutoNA() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(8 + 4));
+		evaluate(LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6 + 4));
 	}
 
 	@Test
-	public void evaluatQuantileAuto() throws Exception {
-		evaluate(QUANTILE_REGRESSION, AUTO, new FloatEquivalence(8));
+	public void evaluateQuantileAuto() throws Exception {
+		evaluate(QUANTILE_REGRESSION, AUTO, new FloatEquivalence(3 + 3));
 	}
 
 	@Test
 	public void evaluateQuantileAutoNA() throws Exception {
-		evaluate(QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(8));
+		evaluate(QUANTILE_REGRESSION, AUTO_NA);
 	}
 
 	@Test
 	public void evaluateLogisticAudit() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(20 + 8));
+		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(18 + 4));
 	}
 
 	@Test
 	public void evaluateLogisticAuditNA() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(16 + 8));
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(13 + 8));
 	}
 
 	@Test
 	public void evaluateAFTLungNA() throws Exception {
-		evaluate(AFT, LUNG_NA, new FloatEquivalence(16 + 2));
+		evaluate(AFT, LUNG_NA, new FloatEquivalence(12 + 5));
 	}
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(16 + 2));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(10 + 6));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(16));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(12 + 1));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(16));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(12 + 4));
 	}
 
 	@Test
 	public void evaluatePoissonVisitNA() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(16 + 4));
+		evaluate(POISSON_REGRESSION, VISIT_NA, new FloatEquivalence(12 + 7));
 	}
 
 	@Test
 	public void evaluateTweedieVisit() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(12 + 8));
+		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(10 + 7));
 	}
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(12 + 2));
+		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(10 + 2));
 	}
 }
