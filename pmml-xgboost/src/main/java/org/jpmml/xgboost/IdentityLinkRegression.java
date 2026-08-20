@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2016 Villu Ruusmann
+ * Copyright (c) 2026 Villu Ruusmann
  *
  * This file is part of JPMML-XGBoost
  *
@@ -18,9 +18,22 @@
  */
 package org.jpmml.xgboost;
 
-public class LinearRegression extends IdentityLinkRegression {
+import java.util.List;
 
-	public LinearRegression(String name){
+import org.dmg.pmml.Model;
+import org.jpmml.converter.Schema;
+
+abstract
+public class IdentityLinkRegression extends Regression {
+
+	public IdentityLinkRegression(String name){
 		super(name);
+	}
+
+	@Override
+	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, schema);
+
+		return model;
 	}
 }

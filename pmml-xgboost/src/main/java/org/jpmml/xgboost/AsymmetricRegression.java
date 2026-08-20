@@ -19,7 +19,7 @@
 package org.jpmml.xgboost;
 
 abstract
-public class AsymmetricRegression extends LinearRegression {
+public class AsymmetricRegression extends IdentityLinkRegression {
 
 	public AsymmetricRegression(String name){
 		super(name);
