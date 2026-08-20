@@ -21,10 +21,7 @@ package org.jpmml.xgboost;
 import java.io.IOException;
 import java.util.Objects;
 
-import com.devsmart.ubjson.GsonUtil;
 import com.devsmart.ubjson.UBObject;
-import com.devsmart.ubjson.UBValue;
-import com.google.gson.JsonObject;
 
 public class Dart extends GBTree {
 
@@ -47,13 +44,6 @@ public class Dart extends GBTree {
 		if(num_trees != 0){
 			this.weight_drop = input.readFloatVector();
 		}
-	}
-
-	@Override
-	public void loadJSON(JsonObject gradientBooster){
-		UBValue value = GsonUtil.toUBValue(gradientBooster);
-
-		loadUBJSON(value.asObject());
 	}
 
 	@Override

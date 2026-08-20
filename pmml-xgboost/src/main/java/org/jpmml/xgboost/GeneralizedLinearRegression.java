@@ -37,7 +37,7 @@ public class GeneralizedLinearRegression extends Regression {
 
 	@Override
 	public ProbToMarginFunction probToMarginFunction(){
-		return x -> inverseExp(x);
+		return (x) -> inverseExp(x);
 	}
 
 	@Override
