@@ -184,7 +184,7 @@ if "Auto" in datasets:
 	if not legacy:
 		train_auto("AutoNA")
 
-def train_quantile_auto(dataset, **params):
+def train_asymmetric_auto(dataset, algorithm, **params):
 	auto_X, auto_y = load_split_csv(dataset)
 
 	for col in ["cylinders", "model_year", "origin"]:
@@ -197,21 +197,39 @@ def train_quantile_auto(dataset, **params):
 
 	auto_params = dict(**params)
 	auto_params.update({
-		"objective" : "reg:quantileerror",
-		"quantile_alpha" : 0.5,
 		"tree_method" : "hist",
 		"max_depth" : 3,
 		"seed" : 42
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
-	store_model(auto_booster, "QuantileRegression", dataset)
+	store_model(auto_booster, algorithm, dataset)
 
-	store_result(predict_auto(auto_booster, auto_dmat), "QuantileRegression" + dataset)
+	store_result(predict_auto(auto_booster, auto_dmat), algorithm + dataset)
+
+def train_quantile_auto(dataset, **params):
+	quantile_params = dict(params)
+	quantile_params.update({
+		"objective" : "reg:quantileerror",
+		"quantile_alpha" : 0.5
+	})
+
+	train_asymmetric_auto(dataset, "QuantileRegression", **quantile_params)
+
+def train_expectile_auto(dataset, **params):
+	expectile_params = dict(params)
+	expectile_params.update({
+		"objective" : "reg:expectileerror",
+		"expectile_alpha" : 0.75
+	})
+
+	train_asymmetric_auto(dataset, "ExpectileRegression", **expectile_params)
 
 if "Auto" in datasets and not legacy:
 	train_quantile_auto("Auto")
 	train_quantile_auto("AutoNA")
+	train_expectile_auto("Auto")
+	train_expectile_auto("AutoNA")
 
 def predict_multi_auto(auto_booster, auto_dmat, num_rounds = None):
 	acceleration_mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))

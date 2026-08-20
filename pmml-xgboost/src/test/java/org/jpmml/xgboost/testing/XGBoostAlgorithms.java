@@ -23,6 +23,7 @@ public interface XGBoostAlgorithms {
 	String AFT = "AFT";
 	String BINOMIAL_CLASSIFICATION = "BinomialClassification";
 	String DECISION_TREE = "DecisionTree";
+	String EXPECTILE_REGRESSION = "ExpectileRegression";
 	String GAMMA_REGRESSION = "GammaRegression";
 	String HINGE_CLASSIFICATION = "HingeClassification";
 	String LINEAR_REGRESSION = "LinearRegression";

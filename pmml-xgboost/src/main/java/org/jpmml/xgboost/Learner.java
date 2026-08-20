@@ -706,6 +706,8 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "reg:absoluteerror":
 			case "reg:quantileerror":
 				return new QuantileRegression(name_obj);
+			case "reg:expectileerror":
+				return new ExpectileRegression(name_obj);
 			case "reg:logistic":
 				return new LogisticRegression(name_obj);
 			case "reg:gamma":

@@ -54,6 +54,16 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 	}
 
 	@Test
+	public void evaluateExpectileAuto() throws Exception {
+		evaluate(EXPECTILE_REGRESSION, AUTO);
+	}
+
+	@Test
+	public void evaluateExpectileAutoNA() throws Exception {
+		evaluate(EXPECTILE_REGRESSION, AUTO_NA, new FloatEquivalence(7 + 2));
+	}
+
+	@Test
 	public void evaluateLinearAuto() throws Exception {
 		evaluate(LINEAR_REGRESSION, AUTO);
 	}
