@@ -59,10 +59,6 @@ public class ObjFunction {
 		return encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
-	public boolean hasIntermediateValues(){
-		return true;
-	}
-
 	public boolean hasRecordCounts(){
 		return (this instanceof HasUnitHessian);
 	}

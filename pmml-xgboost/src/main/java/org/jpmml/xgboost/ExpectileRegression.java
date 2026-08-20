@@ -23,9 +23,4 @@ public class ExpectileRegression extends AsymmetricRegression {
 	public ExpectileRegression(String name){
 		super(name);
 	}
-
-	@Override
-	public boolean hasIntermediateValues(){
-		return false;
-	}
 }

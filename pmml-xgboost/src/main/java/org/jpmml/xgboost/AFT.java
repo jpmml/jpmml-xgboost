@@ -36,11 +36,6 @@ public class AFT extends Regression {
 	}
 
 	@Override
-	public boolean hasIntermediateValues(){
-		return false;
-	}
-
-	@Override
 	public ProbToMarginFunction probToMarginFunction(){
 		return (x) -> inverseExp(x);
 	}

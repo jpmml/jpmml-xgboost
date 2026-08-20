@@ -148,25 +148,6 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 		RegTree[] regTrees = (learner.gbtree()).trees();
 
-		if(obj.hasIntermediateValues()){
-
-			for(RegTree regTree : regTrees){
-				Node[] nodes = regTree.nodes();
-				NodeStat[] stats = regTree.stats();
-
-				assertTrue(nodes.length == stats.length);
-
-				for(int i = 0; i < nodes.length; i++){
-					Node node = nodes[i];
-					NodeStat stat = stats[i];
-
-					if(node.is_leaf()){
-						assertTrue(node.leaf_value() == stat.base_weight());
-					}
-				}
-			}
-		} // End if
-
 		if(obj.hasRecordCounts()){
 			RegTree regTree = regTrees[0];
 

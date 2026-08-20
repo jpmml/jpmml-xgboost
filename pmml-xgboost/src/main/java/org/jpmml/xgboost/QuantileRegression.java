@@ -24,9 +24,4 @@ public class QuantileRegression extends AsymmetricRegression {
 	public QuantileRegression(String name){
 		super(name);
 	}
-
-	@Override
-	public boolean hasIntermediateValues(){
-		return false;
-	}
 }

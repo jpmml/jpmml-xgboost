@@ -56,7 +56,7 @@ public class JSONNodeStat extends NodeStat implements JSONLoadable, UBJSONLoadab
 
 	@Override
 	public boolean hasShrunkenBaseWeight(){
-		return true;
+		return false;
 	}
 
 	@Override
