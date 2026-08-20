@@ -64,7 +64,7 @@ public class ObjFunction {
 	}
 
 	public boolean hasRecordCounts(){
-		return false;
+		return (this instanceof HasUnitHessian);
 	}
 
 	public float[] probToMargin(float[] base_score){

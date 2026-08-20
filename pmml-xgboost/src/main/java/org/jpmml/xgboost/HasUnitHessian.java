@@ -18,9 +18,5 @@
  */
 package org.jpmml.xgboost;
 
-public class SquaredErrorRegression extends LinearRegression implements HasUnitHessian {
-
-	public SquaredErrorRegression(String name){
-		super(name);
-	}
+public interface HasUnitHessian {
 }
