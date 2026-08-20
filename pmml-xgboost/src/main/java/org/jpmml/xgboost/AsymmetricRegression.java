@@ -24,9 +24,4 @@ public class AsymmetricRegression extends IdentityLinkRegression {
 	public AsymmetricRegression(String name){
 		super(name);
 	}
-
-	@Override
-	public boolean hasRecordCounts(){
-		return false;
-	}
 }
