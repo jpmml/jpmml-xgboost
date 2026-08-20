@@ -18,14 +18,15 @@
  */
 package org.jpmml.xgboost;
 
-public class QuantileRegression extends AsymmetricRegression {
+abstract
+public class AsymmetricRegression extends LinearRegression {
 
-	public QuantileRegression(String name){
+	public AsymmetricRegression(String name){
 		super(name);
 	}
 
 	@Override
-	public boolean hasIntermediateValues(){
+	public boolean hasRecordCounts(){
 		return false;
 	}
 }

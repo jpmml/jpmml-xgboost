@@ -18,7 +18,7 @@
  */
 package org.jpmml.xgboost;
 
-public class ExpectileRegression extends LinearRegression {
+public class ExpectileRegression extends AsymmetricRegression {
 
 	public ExpectileRegression(String name){
 		super(name);
@@ -26,11 +26,6 @@ public class ExpectileRegression extends LinearRegression {
 
 	@Override
 	public boolean hasIntermediateValues(){
-		return false;
-	}
-
-	@Override
-	public boolean hasRecordCounts(){
 		return false;
 	}
 }
