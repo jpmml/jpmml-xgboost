@@ -18,15 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-abstract
-public class QuantileRegression extends AsymmetricRegression {
+public class AdaptiveQuantileRegression extends QuantileRegression implements HasUnitHessian {
 
-	public QuantileRegression(String name){
+	public AdaptiveQuantileRegression(String name){
 		super(name);
-	}
-
-	@Override
-	public boolean hasIntermediateValues(){
-		return false;
 	}
 }

@@ -369,6 +369,51 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		}
 	}
 
+	private ObjFunction parseObjective(String name_obj, int num_class){
+
+		switch(name_obj){
+			case "reg:linear":
+			case "reg:squarederror":
+				return new SquaredErrorRegression(name_obj);
+			case "reg:pseudohubererror":
+			case "reg:squaredlogerror":
+				return new LinearRegression(name_obj);
+			case "reg:absoluteerror":
+			case "reg:quantileerror":
+				if(compareVersion(3, 3) <= 0){
+					return new AdaptiveQuantileRegression(name_obj);
+				} else
+
+				{
+					return new SmoothedQuantileRegression(name_obj);
+				}
+			case "reg:expectileerror":
+				return new ExpectileRegression(name_obj);
+			case "reg:logistic":
+				return new LogisticRegression(name_obj);
+			case "reg:gamma":
+			case "reg:tweedie":
+				return new GeneralizedLinearRegression(name_obj);
+			case "count:poisson":
+				return new PoissonRegression(name_obj);
+			case "binary:hinge":
+				return new HingeClassification(name_obj);
+			case "binary:logistic":
+				return new BinomialLogisticRegression(name_obj);
+			case "rank:map":
+			case "rank:ndcg":
+			case "rank:pairwise":
+				return new LambdaMART(name_obj);
+			case "survival:aft":
+				return new AFT(name_obj);
+			case "multi:softmax":
+			case "multi:softprob":
+				return new MultinomialLogisticRegression(name_obj, num_class);
+			default:
+				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(name_obj) + " is not supported");
+		}
+	}
+
 	public FeatureMap encodeFeatureMap(){
 
 		if(this.feature_names == null || this.feature_types == null){
@@ -635,6 +680,16 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return model;
 	}
 
+	public int compareVersion(int major_version, int minor_version){
+		int result = Integer.compare(this.major_version, major_version);
+
+		if(result != 0){
+			return result;
+		}
+
+		return Integer.compare(this.minor_version, minor_version);
+	}
+
 	public int num_feature(){
 		return this.num_feature;
 	}
@@ -690,46 +745,6 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				return new Dart();
 			default:
 				throw new XGBoostException("Booster type " + ExceptionUtil.formatParameter(name_gbm) + " is not suported");
-		}
-	}
-
-	static
-	private ObjFunction parseObjective(String name_obj, int num_class){
-
-		switch(name_obj){
-			case "reg:linear":
-			case "reg:squarederror":
-				return new SquaredErrorRegression(name_obj);
-			case "reg:pseudohubererror":
-			case "reg:squaredlogerror":
-				return new LinearRegression(name_obj);
-			case "reg:absoluteerror":
-			case "reg:quantileerror":
-				return new QuantileRegression(name_obj);
-			case "reg:expectileerror":
-				return new ExpectileRegression(name_obj);
-			case "reg:logistic":
-				return new LogisticRegression(name_obj);
-			case "reg:gamma":
-			case "reg:tweedie":
-				return new GeneralizedLinearRegression(name_obj);
-			case "count:poisson":
-				return new PoissonRegression(name_obj);
-			case "binary:hinge":
-				return new HingeClassification(name_obj);
-			case "binary:logistic":
-				return new BinomialLogisticRegression(name_obj);
-			case "rank:map":
-			case "rank:ndcg":
-			case "rank:pairwise":
-				return new LambdaMART(name_obj);
-			case "survival:aft":
-				return new AFT(name_obj);
-			case "multi:softmax":
-			case "multi:softprob":
-				return new MultinomialLogisticRegression(name_obj, num_class);
-			default:
-				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(name_obj) + " is not supported");
 		}
 	}
 
