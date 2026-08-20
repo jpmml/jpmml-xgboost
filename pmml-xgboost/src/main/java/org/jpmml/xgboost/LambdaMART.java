@@ -18,21 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
-import org.dmg.pmml.Model;
-import org.jpmml.converter.Schema;
-
-public class LambdaMART extends Regression {
+public class LambdaMART extends IdentityLinkRegression {
 
 	public LambdaMART(String name){
 		super(name);
-	}
-
-	@Override
-	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
-		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, schema);
-
-		return model;
 	}
 }
