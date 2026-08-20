@@ -116,7 +116,7 @@ public class GBTree extends GradientBooster {
 		this.trees = new RegTree[this.num_trees];
 
 		for(int i = 0; i < this.num_trees; i++){
-			UBObject tree = (trees.get(i)).asObject();
+			UBObject tree = trees.get(i).asObject();
 
 			this.trees[i] = new RegTree();
 			this.trees[i].loadUBJSON(tree);
@@ -245,5 +245,48 @@ public class GBTree extends GradientBooster {
 
 	public float[] tree_weights(){
 		return null;
+	}
+
+	static
+	protected boolean hasWeightDrop(UBObject gradientBooster){
+
+		if(gradientBooster.containsKey("weight_drop")){
+			return true;
+		} // End if
+
+		if(gradientBooster.containsKey("model")){
+			UBObject model = gradientBooster.get("model").asObject();
+
+			if(model.containsKey("weight_drop")){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	static
+	protected float[] getWeightDrop(UBObject gradientBooster){
+
+		// XGBoost 3.3.0
+		if(gradientBooster.containsKey("weight_drop")){
+			return parseWeightDrop(gradientBooster);
+		} // End if
+
+		// XGBoost 3.4.0+
+		if(gradientBooster.containsKey("model")){
+			UBObject model = gradientBooster.get("model").asObject();
+
+			if(model.containsKey("weight_drop")){
+				return parseWeightDrop(model);
+			}
+		}
+
+		return null;
+	}
+
+	static
+	private float[] parseWeightDrop(UBObject object){
+		return UBJSONUtil.toFloatArray(object.get("weight_drop"));
 	}
 }

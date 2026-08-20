@@ -31,6 +31,6 @@ public class QuantileRegression extends LinearRegression {
 
 	@Override
 	public boolean hasRecordCounts(){
-		return true;
+		return false;
 	}
 }

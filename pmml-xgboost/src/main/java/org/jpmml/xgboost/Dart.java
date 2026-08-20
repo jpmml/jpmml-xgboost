@@ -76,7 +76,7 @@ public class Dart extends GBTree {
 			throw new IllegalArgumentException(name);
 		}
 
-		this.weight_drop = UBJSONUtil.toFloatArray(gradientBooster.get("weight_drop"));
+		this.weight_drop = GBTree.getWeightDrop(gradientBooster);
 	}
 
 	@Override

@@ -236,7 +236,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 		// Starting from 3.3.0, the name of the DART booster changed from "dart" to (canonical-) "gbtree".
 		// The nature of the booster is signalled by the "weight_drop" mapping.
-		if(Objects.equals("gbtree", name_gbm) && gradientBooster.containsKey("weight_drop")){
+		if(Objects.equals("gbtree", name_gbm) && GBTree.hasWeightDrop(gradientBooster)){
 			name_gbm = "dart";
 		}
 
