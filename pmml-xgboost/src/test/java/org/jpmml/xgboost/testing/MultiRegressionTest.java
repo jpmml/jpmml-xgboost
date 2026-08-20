@@ -78,7 +78,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateMultiLinearAuto() throws Exception {
-		evaluate("Multi" + LINEAR_REGRESSION, AUTO, new FloatEquivalence(5 + 1));
+		evaluate("Multi" + LINEAR_REGRESSION, AUTO, new FloatEquivalence(4 + 1));
 	}
 
 	@Test

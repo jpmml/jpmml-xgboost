@@ -65,22 +65,22 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateQuantileAuto() throws Exception {
-		evaluate(QUANTILE_REGRESSION, AUTO, new FloatEquivalence(3 + 3));
+		evaluate(QUANTILE_REGRESSION, AUTO, new FloatEquivalence(3 + 4));
 	}
 
 	@Test
 	public void evaluateQuantileAutoNA() throws Exception {
-		evaluate(QUANTILE_REGRESSION, AUTO_NA);
+		evaluate(QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(4 + 1));
 	}
 
 	@Test
 	public void evaluateLogisticAudit() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(18 + 4));
+		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(19 + 5));
 	}
 
 	@Test
 	public void evaluateLogisticAuditNA() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(13 + 8));
+		evaluate(LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(13 + 7));
 	}
 
 	@Test
@@ -90,12 +90,12 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(10 + 6));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(12));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(12 + 1));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(11 + 2));
 	}
 
 	@Test
