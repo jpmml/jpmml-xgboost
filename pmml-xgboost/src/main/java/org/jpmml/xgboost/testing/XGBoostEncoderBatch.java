@@ -26,6 +26,7 @@ import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import com.google.common.collect.Range;
 import org.dmg.pmml.Header;
 import org.dmg.pmml.PMML;
 import org.dmg.pmml.Timestamp;
@@ -34,6 +35,7 @@ import org.jpmml.converter.testing.OptionsUtil;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.model.ReflectionUtil;
 import org.jpmml.xgboost.FeatureMap;
+import org.jpmml.xgboost.GBTreeUtil;
 import org.jpmml.xgboost.HasXGBoostOptions;
 import org.jpmml.xgboost.Learner;
 import org.jpmml.xgboost.Node;
@@ -147,6 +149,40 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		ObjFunction obj = learner.obj();
 
 		RegTree[] regTrees = (learner.gbtree()).trees();
+
+		Float eta = GBTreeUtil.estimateEta(learner.gbtree());
+		if(eta != null){
+
+			for(RegTree regTree : regTrees){
+				Node[] nodes = regTree.nodes();
+				NodeStat[] stats = regTree.stats();
+
+				assertTrue(nodes.length == stats.length);
+
+				for(int i = 0; i < nodes.length; i++){
+					Node node = nodes[i];
+					NodeStat stat = stats[i];
+
+					if(node.is_leaf()){
+						continue;
+					}
+
+					Node leftChild = nodes[node.left_child()];
+					Node rightChild = nodes[node.right_child()];
+
+					if(!leftChild.is_leaf() || !rightChild.is_leaf()){
+						continue;
+					}
+
+					float leftValue = leftChild.leaf_value();
+					float rightValue = rightChild.leaf_value();
+
+					Range<Float> range = Range.closed(Math.min(leftValue, rightValue) - 1e-4f, Math.max(leftValue, rightValue) + 1e-4f);
+
+					assertTrue(range.contains(eta * stat.base_weight()));
+				}
+			}
+		} // End if
 
 		if(obj.hasRecordCounts()){
 			RegTree regTree = regTrees[0];

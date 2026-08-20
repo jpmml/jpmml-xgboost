@@ -58,6 +58,9 @@ public class GBTree extends GradientBooster {
 
 	private int[] tree_info;
 
+	// The learning rate, inferred from the geometry of trees if possible
+	private Float eta = null;
+
 
 	public GBTree(){
 	}
@@ -82,6 +85,8 @@ public class GBTree extends GradientBooster {
 
 		this.trees = input.readObjectArray(RegTree.class, this.num_trees);
 		this.tree_info = input.readIntArray(this.num_trees);
+
+		this.eta = GBTreeUtil.estimateEta(this);
 	}
 
 	@Override
@@ -123,6 +128,8 @@ public class GBTree extends GradientBooster {
 		}
 
 		this.tree_info = UBJSONUtil.toIntArray(model.get("tree_info"));
+
+		this.eta = GBTreeUtil.estimateEta(this);
 	}
 
 	public boolean hasCategoricalSplits(){
@@ -245,6 +252,10 @@ public class GBTree extends GradientBooster {
 
 	public float[] tree_weights(){
 		return null;
+	}
+
+	public Float eta(){
+		return this.eta;
 	}
 
 	static
