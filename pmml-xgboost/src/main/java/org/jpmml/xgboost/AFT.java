@@ -18,35 +18,9 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
-import org.dmg.pmml.DataType;
-import org.dmg.pmml.Model;
-import org.dmg.pmml.OpType;
-import org.dmg.pmml.mining.MiningModel;
-import org.dmg.pmml.regression.RegressionModel;
-import org.jpmml.converter.ModelUtil;
-import org.jpmml.converter.Schema;
-import org.jpmml.converter.mining.MiningModelUtil;
-
-public class AFT extends Regression {
+public class AFT extends LogLinkRegression {
 
 	public AFT(String name){
 		super(name);
-	}
-
-	@Override
-	public ProbToMarginFunction probToMarginFunction(){
-		return (x) -> inverseExp(x);
-	}
-
-	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = schema.toAnonymousSchema();
-
-		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
-
-		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
 	}
 }
