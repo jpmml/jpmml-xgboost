@@ -68,6 +68,11 @@ public class GBTreeUtil {
 					continue;
 				} // End if
 
+				// A zero-valued leaf node is identical under both conventions
+				if(Math.abs(stat.base_weight()) < GBTreeUtil.EPSILON){
+					continue;
+				} // End if
+
 				if(node.leaf_value() == stat.base_weight()){
 					shrunken++;
 				} else
