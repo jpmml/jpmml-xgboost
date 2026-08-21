@@ -47,10 +47,6 @@ public class BinaryNodeStat extends NodeStat implements BinaryLoadable {
 		return this.sum_hess;
 	}
 
-	@Override
-	public boolean hasShrunkenBaseWeight(){
-		return false;
-	}
 
 	@Override
 	public float base_weight(){

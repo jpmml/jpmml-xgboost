@@ -456,14 +456,14 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, eta, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
 			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, eta, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
 
-			Float value;
+			Float value = null;
 
-			if(stat.hasShrunkenBaseWeight() && obj.hasBranchScores()){
-				value = (stat.base_weight() + 0f);
-			} else
+			if(obj.hasBranchScores()){
 
-			{
-				value = null;
+				if(eta != null){
+					// XGBoost saves leaf values in shrunken mode (ie. corrected by the learning rate), but branch values in unshrunken mode
+					value = (eta.floatValue() * stat.base_weight());
+				}
 			}
 
 			org.dmg.pmml.tree.Node result;

@@ -54,10 +54,6 @@ public class JSONNodeStat extends NodeStat implements JSONLoadable, UBJSONLoadab
 		return this.sum_hess;
 	}
 
-	@Override
-	public boolean hasShrunkenBaseWeight(){
-		return false;
-	}
 
 	@Override
 	public float base_weight(){
