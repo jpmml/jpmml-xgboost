@@ -59,6 +59,10 @@ public class ObjFunction {
 		return encodeModel(trees, weights, eta, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
+	public boolean hasBranchScores(){
+		return !(this instanceof HasAdaptiveLeafValues);
+	}
+
 	public boolean hasRecordCounts(){
 		return (this instanceof HasUnitHessian);
 	}

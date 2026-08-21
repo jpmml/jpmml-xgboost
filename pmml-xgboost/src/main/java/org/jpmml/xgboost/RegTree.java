@@ -458,7 +458,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			Float value;
 
-			if(stat.hasShrunkenBaseWeight()){
+			if(stat.hasShrunkenBaseWeight() && obj.hasBranchScores()){
 				value = (stat.base_weight() + 0f);
 			} else
 

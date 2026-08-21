@@ -18,9 +18,5 @@
  */
 package org.jpmml.xgboost;
 
-public class AdaptiveQuantileRegression extends QuantileRegression implements HasAdaptiveLeafValues, HasUnitHessian {
-
-	public AdaptiveQuantileRegression(String name){
-		super(name);
-	}
+public interface HasAdaptiveLeafValues {
 }
