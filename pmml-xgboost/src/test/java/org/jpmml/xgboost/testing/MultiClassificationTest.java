@@ -29,7 +29,7 @@ import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.jupiter.api.Test;
 
-public class MultiClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, Fields {
+public class MultiClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, XGBoostLearningRates, Fields {
 
 	public MultiClassificationTest(){
 		super(new FloatEquivalence(4));
@@ -43,15 +43,15 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 				String dataset = getDataset();
 
 				if(Objects.equals(dataset, AUDIT) || Objects.equals(dataset, AUDIT_NA)){
-					setEta(0.11f);
+					setEta(ETA_AUDIT);
 				} else
 
 				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
-					setEta(0.37f);
+					setEta(ETA_AUTO);
 				} else
 
 				if(Objects.equals(dataset, VISIT) || Objects.equals(dataset, VISIT_NA)){
-					setEta(0.19f);
+					setEta(ETA_VISIT);
 				}
 			}
 

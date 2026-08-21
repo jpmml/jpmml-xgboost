@@ -26,7 +26,7 @@ import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.jupiter.api.Test;
 
-public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats {
+public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, XGBoostLearningRates {
 
 	public MultiRegressionTest(){
 		super(new FloatEquivalence(4));
@@ -43,12 +43,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
 
 					if(Objects.equals(algorithm, "Multi" + RANDOM_FOREST)){
-						setEta(0.37f / 37);
+						setEta(ETA_AUTO / 37);
 						setRecordCount(325);
 					} else
 
 					{
-						setEta(0.37f);
+						setEta(ETA_AUTO);
 						setRecordCount(392);
 					}
 				}

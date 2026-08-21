@@ -27,7 +27,7 @@ import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.jupiter.api.Test;
 
-public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, Fields {
+public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostLearningRates, Fields {
 
 	public LegacyClassificationTest(){
 		super(new FloatEquivalence(4));
@@ -41,11 +41,11 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 				String dataset = getDataset();
 
 				if(Objects.equals(dataset, AUDIT)){
-					setEta(0.11f);
+					setEta(ETA_AUDIT);
 				} else
 
 				if(Objects.equals(dataset, AUTO)){
-					setEta(0.37f);
+					setEta(ETA_AUTO);
 				}
 			}
 
