@@ -58,7 +58,8 @@ public class GBTree extends GradientBooster {
 
 	private int[] tree_info;
 
-	// The learning rate, inferred from the geometry of trees if possible
+	// The per-tree shrinkage factor, inferred from the geometry of trees if possible.
+	// Identical to the "learning_rate" for boosting models, and "learning_rate" divided by "num_parallel_tree" for bagging models (eg. random forests).
 	private Float eta = null;
 
 
