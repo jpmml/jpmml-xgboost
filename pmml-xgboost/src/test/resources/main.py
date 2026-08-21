@@ -88,7 +88,7 @@ def _as_int64_categorical(x):
 
 def _one_hot_encode(X, cat_cols):
 	transformer = ColumnTransformer([
-		(col, OneHotEncoder(categories = [X[col].cat.categories.tolist()], sparse_output = False, feature_name_combiner = lambda feature, category: f"{feature}={category}"), [col]) if col in cat_cols else (col, "passthrough", [col]) for col in X.columns 
+		(("encode_" + col), OneHotEncoder(categories = [X[col].cat.categories.tolist()], sparse_output = False, feature_name_combiner = lambda feature, category: f"{feature}={category}"), [col]) if col in cat_cols else (("passthrough_" + col), "passthrough", [col]) for col in X.columns
 	], verbose_feature_names_out = False)
 	transformer.set_output(transform = "pandas")
 	return transformer.fit_transform(X)
@@ -172,7 +172,7 @@ def train_auto(dataset, **params):
 	auto_params = dict(**params)
 	auto_params.update({
 		"objective" : "reg:squarederror",
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"max_depth" : 2,
 		"learning_rate" : auto_learning_rate,
 		"seed" : 42
@@ -202,7 +202,7 @@ def train_asymmetric_auto(dataset, algorithm, **params):
 
 	auto_params = dict(**params)
 	auto_params.update({
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"max_depth" : 3,
 		"learning_rate" : auto_learning_rate,
 		"seed" : 42
@@ -264,7 +264,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_params = dict(**params)
 	auto_params.update({
 		"objective" : "reg:squarederror",
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : auto_learning_rate,
 		"seed" : 42
 	})
@@ -329,12 +329,17 @@ def train_visit(dataset, **params):
 	visit_fmap = make_feature_map(visit_X, category_to_indicator = True)
 	visit_fmap.save(csv_file(dataset, ".fmap"))
 
-	visit_dmat = xgboost.DMatrix(data = visit_X, label = visit_y)
+	cat_cols = ["edlevel", "female", "kids", "married", "outwork", "self"]
+
+	if legacy:
+		visit_X = _one_hot_encode(visit_X, cat_cols)
+
+	visit_dmat = xgboost.DMatrix(data = visit_X, label = visit_y, enable_categorical = (not legacy))
 
 	visit_params = dict(**params)
 	visit_params.update({
 		"objective" : "count:poisson",
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : visit_learning_rate,
 		"seed" : 42
 	})
@@ -363,9 +368,11 @@ def train_visit(dataset, **params):
 
 	store_result(predict_visit(visit_booster, visit_dmat), "TweedieRegression" + dataset)
 
-if "Visit" in datasets and not legacy:
+if "Visit" in datasets:
 	train_visit("Visit", booster = "dart", rate_drop = 0.05)
-	train_visit("VisitNA")
+
+	if not legacy:
+		train_visit("VisitNA")
 
 #
 # Binary classification
@@ -416,7 +423,7 @@ def train_audit(dataset, **params):
 	audit_params = dict(**params)
 	audit_params.update({
 		"objective" : "reg:logistic",
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : audit_learning_rate,
 		"seed" : 42
 	})
@@ -503,7 +510,7 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_params = dict(**params)
 	audit_params.update({
 		"objective" : "binary:logistic",
-		"tree_method" : "hist",
+		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : audit_learning_rate,
 		"seed" : 42
 	})

@@ -41,7 +41,7 @@ public class LegacyRegressionTest extends XGBoostEncoderBatchTest implements XGB
 
 				if(Objects.equals(dataset, AUTO)){
 					setRecordCount(392);
-				}
+				} // End if
 
 				if(Objects.equals(dataset, AUDIT)){
 					setEta(ETA_AUDIT);
@@ -49,6 +49,10 @@ public class LegacyRegressionTest extends XGBoostEncoderBatchTest implements XGB
 
 				if(Objects.equals(dataset, AUTO)){
 					setEta(ETA_AUTO);
+				} else
+
+				if(Objects.equals(dataset, VISIT)){
+					setEta(ETA_VISIT);
 				}
 			}
 
@@ -63,11 +67,26 @@ public class LegacyRegressionTest extends XGBoostEncoderBatchTest implements XGB
 
 	@Test
 	public void evaluateLogisticAudit() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(15 + 1));
+		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(7 + 3));
 	}
 
 	@Test
 	public void evaluateLinearAuto() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
+		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(5 + 1));
+	}
+
+	@Test
+	public void evaluateGammaVisit() throws Exception {
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(9 + 1));
+	}
+
+	@Test
+	public void evaluatePoissonVisit() throws Exception {
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(12 + 2));
+	}
+
+	@Test
+	public void evaluateTweedieVisit() throws Exception {
+		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(14 + 2));
 	}
 }

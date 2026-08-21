@@ -42,10 +42,6 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 
 				if(Objects.equals(dataset, AUDIT)){
 					setEta(ETA_AUDIT);
-				} else
-
-				if(Objects.equals(dataset, AUTO)){
-					setEta(ETA_AUTO);
 				}
 			}
 
@@ -60,7 +56,7 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(35 + 10));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(22 + 6));
 	}
 
 	@Test
@@ -70,7 +66,7 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(15 + 3));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(10 + 1));
 	}
 
 	@Test
