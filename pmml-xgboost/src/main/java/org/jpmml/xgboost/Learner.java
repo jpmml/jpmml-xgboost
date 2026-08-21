@@ -744,7 +744,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			case "dart":
 				return new Dart();
 			default:
-				throw new XGBoostException("Booster type " + ExceptionUtil.formatParameter(name_gbm) + " is not suported");
+				throw new XGBoostException("Booster type " + ExceptionUtil.formatParameter(name_gbm) + " is not supported");
 		}
 	}
 

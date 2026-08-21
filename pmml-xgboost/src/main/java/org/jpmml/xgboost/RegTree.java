@@ -112,6 +112,10 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.num_feature = treeParam.get("num_feature").asInt();
 		this.size_leaf_vector = treeParam.get("size_leaf_vector").asInt();
 
+		if(this.size_leaf_vector != 1){
+			throw new XGBoostException("Vector leaf values are not supported");
+		}
+
 		int[] parents = UBJSONUtil.toIntArray(tree.get("parents"));
 		int[] left_children = UBJSONUtil.toIntArray(tree.get("left_children"));
 		int[] right_children = UBJSONUtil.toIntArray(tree.get("right_children"));
