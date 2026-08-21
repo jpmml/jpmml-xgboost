@@ -53,10 +53,10 @@ public class ObjFunction {
 	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
 
 	abstract
-	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema);
+	public Model encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema);
 
-	public Model encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
-		return encodeModel(trees, weights, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
+	public Model encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		return encodeModel(trees, weights, eta, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
 	}
 
 	public boolean hasRecordCounts(){
@@ -83,7 +83,7 @@ public class ObjFunction {
 		return this.name;
 	}
 
-	protected Model encodeOutputGroup(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+	protected Model encodeOutputGroup(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
 		trees = new ArrayList<>(trees);
 
 		if(weights != null){
@@ -170,7 +170,7 @@ public class ObjFunction {
 		// Final pass - encoding trees
 		{
 			for(RegTree tree : trees){
-				TreeModel treeModel = tree.encodeTreeModel(this, predicateManager, segmentSchema);
+				TreeModel treeModel = tree.encodeTreeModel(this, eta, predicateManager, segmentSchema);
 
 				treeModels.add(treeModel);
 			}

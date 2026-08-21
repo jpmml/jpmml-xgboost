@@ -31,8 +31,8 @@ public class IdentityLinkRegression extends Regression {
 	}
 
 	@Override
-	public Model encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
-		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, schema);
+	public Model encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, schema);
 
 		return model;
 	}

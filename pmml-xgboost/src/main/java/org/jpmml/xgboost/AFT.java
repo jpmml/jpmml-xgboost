@@ -41,10 +41,10 @@ public class AFT extends Regression {
 	}
 
 	@Override
-	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, float[] base_score, Integer ntreeLimit, Schema schema){
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
 		Schema segmentSchema = schema.toAnonymousSchema();
 
-		Model model = encodeOutputGroup(trees, weights, base_score, ntreeLimit, segmentSchema)
+		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
 
 		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.EXP, schema);

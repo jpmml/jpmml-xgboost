@@ -181,6 +181,7 @@ public class GBTree extends GradientBooster {
 	public Model encodeModel(ObjFunction obj, float[] base_score, Integer ntreeLimit, Schema schema){
 		List<RegTree> trees = Arrays.asList(trees());
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
+		Float eta = eta();
 
 		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(schema.getLabel());
 
@@ -189,7 +190,7 @@ public class GBTree extends GradientBooster {
 		} // End if
 
 		if(scalarLabels.size() == 1){
-			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, base_score, ntreeLimit, schema);
+			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, eta, base_score, ntreeLimit, schema);
 		} else
 
 		if(scalarLabels.size() >= 2){
@@ -225,7 +226,7 @@ public class GBTree extends GradientBooster {
 
 				Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
 
-				Model model = obj.encodeModel(i, segmentTrees, segmentWeights, base_score, ntreeLimit, segmentSchema);
+				Model model = obj.encodeModel(i, segmentTrees, segmentWeights, eta, base_score, ntreeLimit, segmentSchema);
 
 				models.add(model);
 			}

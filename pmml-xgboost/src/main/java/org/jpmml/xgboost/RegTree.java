@@ -279,8 +279,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return result;
 	}
 
-	public TreeModel encodeTreeModel(ObjFunction obj, PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(obj, 0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
+	public TreeModel encodeTreeModel(ObjFunction obj, Float eta, PredicateManager predicateManager, Schema schema){
+		org.dmg.pmml.tree.Node root = encodeNode(obj, eta, 0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -290,7 +290,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return treeModel;
 	}
 
-	private org.dmg.pmml.tree.Node encodeNode(ObjFunction obj, int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
+	private org.dmg.pmml.tree.Node encodeNode(ObjFunction obj, Float eta, int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
 		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
@@ -453,8 +453,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, eta, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, eta, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
 
 			Float value;
 
