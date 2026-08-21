@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost.testing;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
@@ -35,6 +36,18 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 	@Override
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new LegacyXGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
+
+			{
+				String dataset = getDataset();
+
+				if(Objects.equals(dataset, AUDIT)){
+					setEta(0.11f);
+				} else
+
+				if(Objects.equals(dataset, AUTO)){
+					setEta(0.37f);
+				}
+			}
 
 			@Override
 			public LegacyClassificationTest getArchiveBatchTest(){

@@ -27,6 +27,10 @@ if __name__ == "__main__":
 	else:
 		datasets = ["Audit", "Auto", "Iris", "Lung", "Visit"]
 
+audit_learning_rate = 0.11
+auto_learning_rate = 0.37
+visit_learning_rate = 0.19
+
 def csv_file(name, ext):
 	return "csv/" + name + ext
 
@@ -170,6 +174,7 @@ def train_auto(dataset, **params):
 		"objective" : "reg:squarederror",
 		"tree_method" : "hist",
 		"max_depth" : 2,
+		"learning_rate" : auto_learning_rate,
 		"seed" : 42
 	})
 
@@ -199,6 +204,7 @@ def train_asymmetric_auto(dataset, algorithm, **params):
 	auto_params.update({
 		"tree_method" : "hist",
 		"max_depth" : 3,
+		"learning_rate" : auto_learning_rate,
 		"seed" : 42
 	})
 
@@ -259,6 +265,7 @@ def train_multi_auto(dataset, target_columns, **params):
 	auto_params.update({
 		"objective" : "reg:squarederror",
 		"tree_method" : "hist",
+		"learning_rate" : auto_learning_rate,
 		"seed" : 42
 	})
 
@@ -328,6 +335,7 @@ def train_visit(dataset, **params):
 	visit_params.update({
 		"objective" : "count:poisson",
 		"tree_method" : "hist",
+		"learning_rate" : visit_learning_rate,
 		"seed" : 42
 	})
 
@@ -409,6 +417,7 @@ def train_audit(dataset, **params):
 	audit_params.update({
 		"objective" : "reg:logistic",
 		"tree_method" : "hist",
+		"learning_rate" : audit_learning_rate,
 		"seed" : 42
 	})
 
@@ -495,6 +504,7 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_params.update({
 		"objective" : "binary:logistic",
 		"tree_method" : "hist",
+		"learning_rate" : audit_learning_rate,
 		"seed" : 42
 	})
 

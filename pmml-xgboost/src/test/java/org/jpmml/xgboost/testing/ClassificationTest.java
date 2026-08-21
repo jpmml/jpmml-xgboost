@@ -40,6 +40,22 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
+			{
+				String dataset = getDataset();
+
+				if(Objects.equals(dataset, AUDIT) || Objects.equals(dataset, AUDIT_NA)){
+					setEta(0.11f);
+				} else
+
+				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+					setEta(0.37f);
+				} else
+
+				if(Objects.equals(dataset, VISIT) || Objects.equals(dataset, VISIT_NA)){
+					setEta(0.19f);
+				}
+			}
+
 			@Override
 			public ClassificationTest getArchiveBatchTest(){
 				return ClassificationTest.this;
@@ -82,7 +98,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(36 + 2));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(36 + 44));
 	}
 
 	@Test

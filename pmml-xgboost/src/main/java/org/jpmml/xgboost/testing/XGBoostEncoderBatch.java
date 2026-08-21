@@ -49,6 +49,8 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 	private String[] formats = {XGBoostFormats.JSON, XGBoostFormats.UBJSON};
 
+	private Float eta = null;
+
 	private int recordCount = -1;
 
 	{
@@ -131,6 +133,14 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		this.formats = Objects.requireNonNull(formats);
 	}
 
+	public Float getEta(){
+		return this.eta;
+	}
+
+	public void setEta(Float eta){
+		this.eta = eta;
+	}
+
 	public int getRecordCount(){
 		return this.recordCount;
 	}
@@ -151,6 +161,11 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		RegTree[] regTrees = (learner.gbtree()).trees();
 
 		Float eta = GBTreeUtil.estimateEta(learner.gbtree());
+
+		if(this.eta != null){
+			assertTrue(Objects.equals(this.eta, eta));
+		} // End if
+
 		if(eta != null){
 
 			for(RegTree regTree : regTrees){

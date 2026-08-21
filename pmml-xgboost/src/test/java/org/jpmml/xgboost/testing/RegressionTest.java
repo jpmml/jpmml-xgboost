@@ -42,6 +42,18 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
 					setRecordCount(392);
 				}
+
+				if(Objects.equals(dataset, AUDIT) || Objects.equals(dataset, AUDIT_NA)){
+					setEta(0.11f);
+				} else
+
+				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+					setEta(0.37f);
+				} else
+
+				if(Objects.equals(dataset, VISIT) || Objects.equals(dataset, VISIT_NA)){
+					setEta(0.19f);
+				}
 			}
 
 			@Override
@@ -55,7 +67,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateExpectileAuto() throws Exception {
-		evaluate(EXPECTILE_REGRESSION, AUTO);
+		evaluate(EXPECTILE_REGRESSION, AUTO, new FloatEquivalence(4 + 8));
 	}
 
 	@Test
@@ -80,7 +92,7 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateQuantileAutoNA() throws Exception {
-		evaluate(QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(4 + 1));
+		evaluate(QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(4 + 16));
 	}
 
 	@Test
@@ -100,12 +112,12 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(12));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(12 + 8));
 	}
 
 	@Test
 	public void evaluateGammaVisitNA() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(11 + 2));
+		evaluate(GAMMA_REGRESSION, VISIT_NA, new FloatEquivalence(11 + 10));
 	}
 
 	@Test
@@ -125,6 +137,6 @@ public class RegressionTest extends XGBoostEncoderBatchTest implements XGBoostAl
 
 	@Test
 	public void evaluateTweedieVisitNA() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(10 + 2));
+		evaluate(TWEEDIE_REGRESSION, VISIT_NA, new FloatEquivalence(10 + 10));
 	}
 }

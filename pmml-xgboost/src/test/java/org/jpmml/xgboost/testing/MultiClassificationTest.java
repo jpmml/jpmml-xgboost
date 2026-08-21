@@ -18,6 +18,7 @@
  */
 package org.jpmml.xgboost.testing;
 
+import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
@@ -37,6 +38,22 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	@Override
 	public XGBoostEncoderBatch createBatch(String algorithm, String dataset, Predicate<ResultField> columnFilter, Equivalence<Object> equivalence){
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
+
+			{
+				String dataset = getDataset();
+
+				if(Objects.equals(dataset, AUDIT) || Objects.equals(dataset, AUDIT_NA)){
+					setEta(0.11f);
+				} else
+
+				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+					setEta(0.37f);
+				} else
+
+				if(Objects.equals(dataset, VISIT) || Objects.equals(dataset, VISIT_NA)){
+					setEta(0.19f);
+				}
+			}
 
 			@Override
 			public MultiClassificationTest getArchiveBatchTest(){
