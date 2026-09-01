@@ -42,7 +42,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
 
-					if(Objects.equals(algorithm, "Multi" + RANDOM_FOREST)){
+					if(Objects.equals(algorithm, "ScalarLeaf" + RANDOM_FOREST)){
 						setEta(ETA_AUTO / 37);
 						setRecordCount(325);
 					} else
@@ -69,32 +69,32 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
-	public void evaluateMultiDTAuto() throws Exception {
-		evaluate("Multi" + DECISION_TREE, AUTO);
+	public void evaluateScalarLeafDTAuto() throws Exception {
+		evaluate("ScalarLeaf" + DECISION_TREE, AUTO);
 	}
 
 	@Test
-	public void evaluateMultiDTAutoNA() throws Exception {
-		evaluate("Multi" + DECISION_TREE, AUTO_NA);
+	public void evaluateScalarLeafDTAutoNA() throws Exception {
+		evaluate("ScalarLeaf" + DECISION_TREE, AUTO_NA);
 	}
 
 	@Test
-	public void evaluateMultiLinearAuto() throws Exception {
-		evaluate("Multi" + LINEAR_REGRESSION, AUTO, new FloatEquivalence(4 + 9));
+	public void evaluateScalarLeafLinearAuto() throws Exception {
+		evaluate("ScalarLeaf" + LINEAR_REGRESSION, AUTO, new FloatEquivalence(4 + 9));
 	}
 
 	@Test
-	public void evaluateMultiLinearAutoNA() throws Exception {
-		evaluate("Multi" + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6 + 8));
+	public void evaluateScalarLeafLinearAutoNA() throws Exception {
+		evaluate("ScalarLeaf" + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6 + 8));
 	}
 
 	@Test
-	public void evaluateMultiRFAuto() throws Exception {
-		evaluate("Multi" + RANDOM_FOREST, AUTO, new FloatEquivalence(7 + 12));
+	public void evaluateScalarLeafRFAuto() throws Exception {
+		evaluate("ScalarLeaf" + RANDOM_FOREST, AUTO, new FloatEquivalence(7 + 12));
 	}
 
 	@Test
-	public void evaluateMultiRFAutoNA() throws Exception {
-		evaluate("Multi" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(7 + 4));
+	public void evaluateScalarLeafRFAutoNA() throws Exception {
+		evaluate("ScalarLeaf" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(7 + 4));
 	}
 }

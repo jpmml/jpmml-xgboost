@@ -270,18 +270,18 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
-	store_model(auto_booster, "MultiLinearRegression", dataset)
+	store_model(auto_booster, "ScalarLeafLinearRegression", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiLinearRegression" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafLinearRegression" + dataset)
 
 	auto_params.update({
 		"max_depth" : 6
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "MultiDecisionTree", dataset)
+	store_model(auto_booster, "ScalarLeafDecisionTree", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiDecisionTree" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafDecisionTree" + dataset)
 
 	auto_params.update({
 		"booster" : "gbtree"
@@ -300,9 +300,9 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "MultiRandomForest", dataset)
+	store_model(auto_booster, "ScalarLeafRandomForest", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "MultiRandomForest" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafRandomForest" + dataset)
 
 if "Auto" in datasets and not legacy:
 	train_multi_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
@@ -516,10 +516,10 @@ def train_multi_audit(dataset, target_columns, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
-	store_model(audit_booster, "MultiBinomialClassification", dataset)
+	store_model(audit_booster, "ScalarLeafBinomialClassification", dataset)
 
-	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), "MultiBinomialClassification" + dataset)
-	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), "MultiBinomialClassification" + dataset + "@31")
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), "ScalarLeafBinomialClassification" + dataset)
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), "ScalarLeafBinomialClassification" + dataset + "@31")
 
 if "Audit" in datasets and not legacy:
 	train_multi_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
