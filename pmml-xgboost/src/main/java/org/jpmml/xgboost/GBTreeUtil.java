@@ -57,6 +57,11 @@ public class GBTreeUtil {
 		int raw = 0;
 
 		for(RegTree tree : trees){
+
+			if(tree.is_multi_target()){
+				return null;
+			}
+
 			Node[] nodes = tree.nodes();
 			NodeStat[] stats = tree.stats();
 

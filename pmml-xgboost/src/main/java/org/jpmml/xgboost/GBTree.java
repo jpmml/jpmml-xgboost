@@ -36,6 +36,7 @@ import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.CMatrixUtil;
 import org.jpmml.converter.Label;
+import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -179,6 +180,19 @@ public class GBTree extends GradientBooster {
 		return result;
 	}
 
+	public boolean isMultiTarget(){
+		RegTree[] trees = trees();
+
+		for(RegTree tree : trees){
+
+			if(tree.is_multi_target()){
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public Model encodeModel(ObjFunction obj, float[] base_score, Integer ntreeLimit, Schema schema){
 		List<RegTree> trees = Arrays.asList(trees());
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
@@ -187,6 +201,19 @@ public class GBTree extends GradientBooster {
 		Label label = schema.getLabel();
 
 		List<ScalarLabel> scalarLabels = label.toScalarLabels();
+
+		if(isMultiTarget()){
+
+			if(!trees.isEmpty()){
+				RegTree tree = trees.get(0);
+
+				@SuppressWarnings("unused")
+				MultiLabel multiLabel = schema.requireMultiLabel()
+					.expectSize(tree.num_targets());
+			}
+
+			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, eta, base_score, ntreeLimit, schema);
+		} // End if
 
 		if(trees.size() % scalarLabels.size() != 0){
 			throw new XGBoostException("Expected the number of trees to be a multiple of " + scalarLabels.size() + ", got " + trees.size());

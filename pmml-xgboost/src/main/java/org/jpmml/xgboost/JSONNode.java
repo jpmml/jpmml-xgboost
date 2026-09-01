@@ -19,10 +19,12 @@
 package org.jpmml.xgboost;
 
 import java.util.BitSet;
+import java.util.List;
 
 import com.devsmart.ubjson.GsonUtil;
 import com.devsmart.ubjson.UBObject;
 import com.devsmart.ubjson.UBValue;
+import com.google.common.primitives.Floats;
 import com.google.gson.JsonObject;
 
 public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
@@ -42,6 +44,8 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 	private float split_condition;
 
 	private BitSet split_categories;
+
+	private float[] leaf_values;
 
 
 	public JSONNode(){
@@ -80,7 +84,32 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 
 	@Override
 	public float leaf_value(){
+
+		if(this.leaf_values != null){
+			throw new UnsupportedOperationException();
+		}
+
 		return this.split_condition;
+	}
+
+	@Override
+	public float leaf_value(int index){
+
+		if(this.leaf_values == null){
+			throw new UnsupportedOperationException();
+		}
+
+		return this.leaf_values[index];
+	}
+
+	@Override
+	public List<Float> leaf_values(){
+
+		if(this.leaf_values == null){
+			throw new UnsupportedOperationException();
+		}
+
+		return Floats.asList(this.leaf_values);
 	}
 
 	@Override
@@ -120,5 +149,9 @@ public class JSONNode extends Node implements JSONLoadable, UBJSONLoadable {
 
 	void set_split_categories(BitSet split_categories){
 		this.split_categories = split_categories;
+	}
+
+	void set_leaf_values(float[] leaf_values){
+		this.leaf_values = leaf_values;
 	}
 }

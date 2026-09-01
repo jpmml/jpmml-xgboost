@@ -18,6 +18,8 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.List;
+
 import java.util.BitSet;
 
 abstract
@@ -28,6 +30,12 @@ public class Node {
 
 	abstract
 	public float leaf_value();
+
+	abstract
+	public float leaf_value(int index);
+
+	abstract
+	public List<Float> leaf_values();
 
 	abstract
 	public int left_child();

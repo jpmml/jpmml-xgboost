@@ -88,10 +88,14 @@ def _as_int64_categorical(x):
 
 def _one_hot_encode(X, cat_cols):
 	transformer = ColumnTransformer([
-		(("encode_" + col), OneHotEncoder(categories = [X[col].cat.categories.tolist()], sparse_output = False, feature_name_combiner = lambda feature, category: f"{feature}={category}"), [col]) if col in cat_cols else (("passthrough_" + col), "passthrough", [col]) for col in X.columns
+		(("encode_" + col), OneHotEncoder(categories = [X[col].cat.categories.tolist()], handle_unknown = "ignore", sparse_output = False, feature_name_combiner = lambda feature, category: f"{feature}={category}"), [col]) if col in cat_cols else (("passthrough_" + col), "passthrough", [col]) for col in X.columns
 	], verbose_feature_names_out = False)
 	transformer.set_output(transform = "pandas")
-	return transformer.fit_transform(X)
+	Xt = transformer.fit_transform(X)
+	# Propagate missing values to indicator columns
+	for col in cat_cols:
+		Xt.loc[X[col].isna(), [column for column in Xt.columns if column.startswith(col + "=")]] = numpy.nan
+	return Xt
 
 #
 # Survival regression
@@ -244,7 +248,7 @@ def predict_multi_auto(auto_booster, auto_dmat, num_rounds = None):
 
 	return result
 
-def train_multi_auto(dataset, target_columns, **params):
+def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 	auto_X, auto_y = load_split_multi_csv(dataset, target_columns)
 
 	# Ensure that all labels are dense
@@ -253,11 +257,16 @@ def train_multi_auto(dataset, target_columns, **params):
 
 		auto_y = auto_df[auto_y.columns.values.tolist()]
 
-	for col in ["cylinders", "model_year", "origin"]:
+	cat_cols = ["cylinders", "model_year", "origin"]
+
+	for col in cat_cols:
 		auto_X[col] = _as_int64_categorical(auto_X[col])
 
 	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
 	auto_fmap.save(csv_file("Multi" + dataset, ".fmap"))
+
+	if dummify:
+		auto_X = _one_hot_encode(auto_X, cat_cols).to_numpy()
 
 	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
 
@@ -270,18 +279,18 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
-	store_model(auto_booster, "ScalarLeafLinearRegression", dataset)
+	store_model(auto_booster, prefix + "LinearRegression", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafLinearRegression" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "LinearRegression" + dataset)
 
 	auto_params.update({
 		"max_depth" : 6
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "ScalarLeafDecisionTree", dataset)
+	store_model(auto_booster, prefix + "DecisionTree", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafDecisionTree" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "DecisionTree" + dataset)
 
 	auto_params.update({
 		"booster" : "gbtree"
@@ -300,13 +309,22 @@ def train_multi_auto(dataset, target_columns, **params):
 	})
 
 	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 1)
-	store_model(auto_booster, "ScalarLeafRandomForest", dataset)
+	store_model(auto_booster, prefix + "RandomForest", dataset)
 
-	store_result(predict_multi_auto(auto_booster, auto_dmat), "ScalarLeafRandomForest" + dataset)
+	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "RandomForest" + dataset)
+
+def train_scalar_leaf_auto(dataset, target_columns, **params):
+	train_multi_auto("ScalarLeaf", dataset, target_columns, dummify = False, **params)
+
+def train_vector_leaf_auto(dataset, target_columns, **params):
+	train_multi_auto("VectorLeaf", dataset, target_columns, dummify = True, multi_strategy = "multi_output_tree", **params)
 
 if "Auto" in datasets and not legacy:
-	train_multi_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
-	train_multi_auto("AutoNA", ["acceleration", "mpg"])
+	train_scalar_leaf_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
+	train_scalar_leaf_auto("AutoNA", ["acceleration", "mpg"])
+
+	train_vector_leaf_auto("Auto", ["acceleration", "mpg"])
+	train_vector_leaf_auto("AutoNA", ["acceleration", "mpg"])
 
 def predict_visit(visit_booster, visit_dmat, num_rounds = None):
 	count = visit_booster.predict(visit_dmat, **make_opts(num_rounds))

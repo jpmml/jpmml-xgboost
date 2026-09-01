@@ -18,11 +18,13 @@
  */
 package org.jpmml.xgboost.testing;
 
+import java.io.IOException;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
 import org.jpmml.evaluator.ResultField;
+import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
 import org.junit.jupiter.api.Test;
 
@@ -47,7 +49,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 						setRecordCount(325);
 					} else
 
-					{
+					if(algorithm.startsWith("ScalarLeaf")){
 						setEta(ETA_AUTO);
 						setRecordCount(392);
 					}
@@ -62,6 +64,20 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 			@Override
 			public String getFeatureMapPath(){
 				return "/csv/Multi" + truncate(getDataset()) + ".fmap";
+			}
+
+			@Override
+			public Table getInput() throws IOException {
+				String algorithm = getAlgorithm();
+
+				return super.getInput();
+			}
+
+			@Override
+			public Table getOutput() throws IOException {
+				String algorithm = getAlgorithm();
+
+				return super.getOutput();
 			}
 		};
 
@@ -97,4 +113,36 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	public void evaluateScalarLeafRFAutoNA() throws Exception {
 		evaluate("ScalarLeaf" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(7 + 4));
 	}
+
+	@Test
+	public void evaluateVectorLeafDTAuto() throws Exception {
+		evaluate("VectorLeaf" + DECISION_TREE, AUTO);
+	}
+
+	@Test
+	public void evaluateVectorLeafDTAutoNA() throws Exception {
+		evaluate("VectorLeaf" + DECISION_TREE, AUTO_NA);
+	}
+
+	@Test
+	public void evaluateVectorLeafLinearAuto() throws Exception {
+		evaluate("VectorLeaf" + LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
+	}
+
+	@Test
+	public void evaluateVectorLeafLinearAutoNA() throws Exception {
+		evaluate("VectorLeaf" + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6));
+	}
+
+	@Test
+	public void evaluateVectorLeafRFAuto() throws Exception {
+		evaluate("VectorLeaf" + RANDOM_FOREST, AUTO, new FloatEquivalence(12));
+	}
+
+	@Test
+	public void evaluateVectorLeafRFAutoNA() throws Exception {
+		evaluate("VectorLeaf" + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(15));
+	}
+
+	private static final Table DATASET_EMPTY = new Table(0);
 }

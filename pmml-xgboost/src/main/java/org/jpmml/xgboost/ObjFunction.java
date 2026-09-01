@@ -19,11 +19,13 @@
 package org.jpmml.xgboost;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 import java.util.function.Function;
 
 import com.google.common.collect.Iterables;
+import com.google.common.primitives.Floats;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Model;
@@ -34,6 +36,7 @@ import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.PayloadManager;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
@@ -111,15 +114,30 @@ public class ObjFunction {
 			}
 		}
 
-		ContinuousLabel continuousLabel = schema.requireContinuousLabel();
+		Label label = schema.getLabel();
+
+		List<ContinuousLabel> continuousLabels = label.toScalarLabels(ContinuousLabel.class);
 
 		Schema segmentSchema = schema.toSegmentSchema();
 
 		PredicateManager predicateManager = new PredicateManager();
+		PayloadManager payloadManager = new PayloadManager();
 
 		List<TreeModel> treeModels = new ArrayList<>();
 
-		Number intercept = base_score[0];
+		List<Number> intercepts = new ArrayList<>();
+
+		if(base_score.length == 1){
+			intercepts.addAll(Collections.nCopies(continuousLabels.size(), base_score[0]));
+		} else
+
+		if(base_score.length == continuousLabels.size()){
+			intercepts.addAll(Floats.asList(base_score));
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
 
 		boolean equalWeights = true;
 
@@ -160,7 +178,9 @@ public class ObjFunction {
 
 				Float leafValue = tree.getLeafValue();
 				if(leafValue != null){
-					intercept = ValueUtil.add(MathContext.FLOAT, intercept, leafValue);
+					Number intercept = intercepts.get(0);
+
+					intercepts.set(0, ValueUtil.add(MathContext.FLOAT, intercept, leafValue));
 
 					treeIt.remove();
 
@@ -174,7 +194,7 @@ public class ObjFunction {
 		// Final pass - encoding trees
 		{
 			for(RegTree tree : trees){
-				TreeModel treeModel = tree.encodeTreeModel(this, eta, predicateManager, segmentSchema);
+				TreeModel treeModel = tree.encodeTreeModel(this, eta, predicateManager, payloadManager, segmentSchema);
 
 				treeModels.add(treeModel);
 			}
@@ -184,18 +204,20 @@ public class ObjFunction {
 			TreeModel treeModel = Iterables.getOnlyElement(treeModels);
 			Number weight = equalWeights ? null : (weights != null ? Iterables.getOnlyElement(weights) : null);
 
+			List<? extends Number> slopes = (weight != null ? Collections.nCopies(continuousLabels.size(), weight) : null);
+
 			treeModel = treeModel
-				.setMiningSchema(ModelUtil.createMiningSchema(continuousLabel))
-				.setTargets(ModelUtil.createRescaleTargets(weight, intercept, continuousLabel));
+				.setMiningSchema(ModelUtil.createMiningSchema(label))
+				.setTargets(ModelUtil.createRescaleTargets(slopes, intercepts, label));
 
 			return treeModel;
 		} else
 
 		{
-			MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(continuousLabel))
+			MiningModel miningModel = new MiningModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(label))
 				.setMathContext(MathContext.FLOAT)
 				.setSegmentation(MiningModelUtil.createSegmentation(equalWeights ? Segmentation.MultipleModelMethod.SUM : Segmentation.MultipleModelMethod.WEIGHTED_SUM, Segmentation.MissingPredictionTreatment.RETURN_MISSING, treeModels, weights))
-				.setTargets(ModelUtil.createRescaleTargets(null, intercept, continuousLabel));
+				.setTargets(ModelUtil.createRescaleTargets(null, intercepts, label));
 
 			return miningModel;
 		}

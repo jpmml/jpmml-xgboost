@@ -20,6 +20,7 @@ package org.jpmml.xgboost;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Collections;
 import java.util.HashSet;
@@ -40,6 +41,7 @@ import org.dmg.pmml.Predicate;
 import org.dmg.pmml.SimplePredicate;
 import org.dmg.pmml.True;
 import org.dmg.pmml.tree.BranchNode;
+import org.dmg.pmml.tree.ComplexNode;
 import org.dmg.pmml.tree.CountingBranchNode;
 import org.dmg.pmml.tree.CountingLeafNode;
 import org.dmg.pmml.tree.LeafNode;
@@ -53,6 +55,8 @@ import org.jpmml.converter.Feature;
 import org.jpmml.converter.InvalidFeatureException;
 import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.MultiLabel;
+import org.jpmml.converter.PayloadManager;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
@@ -112,9 +116,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.num_feature = treeParam.get("num_feature").asInt();
 		this.size_leaf_vector = treeParam.get("size_leaf_vector").asInt();
 
-		if(this.size_leaf_vector != 1){
-			throw new XGBoostException("Vector leaf values are not supported");
-		}
+		boolean multi_target = is_multi_target();
 
 		int[] parents = UBJSONUtil.toIntArray(tree.get("parents"));
 		int[] left_children = UBJSONUtil.toIntArray(tree.get("left_children"));
@@ -125,13 +127,23 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		float[] split_conditions = UBJSONUtil.toFloatArray(tree.get("split_conditions"));
 
 		float[] base_weights = UBJSONUtil.toFloatArray(tree.get("base_weights"));
-		float[] loss_changes = UBJSONUtil.toFloatArray(tree.get("loss_changes"));
-		float[] sum_hessian = UBJSONUtil.toFloatArray(tree.get("sum_hessian"));
+
+		float[] loss_changes = null;
+		float[] sum_hessian = null;
+
+		if(tree.containsKey("loss_changes")){
+			loss_changes = UBJSONUtil.toFloatArray(tree.get("loss_changes"));
+		} // End if
+
+		if(tree.containsKey("sum_hessian")){
+			sum_hessian = UBJSONUtil.toFloatArray(tree.get("sum_hessian"));
+		}
 
 		boolean has_cat = Ints.contains(split_type, Node.SPLIT_CATEGORICAL);
+		boolean has_stats = (loss_changes != null) && (sum_hessian != null);
 
 		this.nodes = new Node[this.num_nodes];
-		this.stats = new NodeStat[this.num_nodes];
+		this.stats = (has_stats ? new NodeStat[this.num_nodes] : null);
 
 		for(int i = 0; i < this.num_nodes; i++){
 			UBObject node = UBValueFactory.createObject();
@@ -147,12 +159,20 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			this.nodes[i] = new JSONNode();
 			((UBJSONLoadable)this.nodes[i]).loadUBJSON(node);
 
-			node.put("loss_chg", UBValueFactory.createFloat32(loss_changes[i]));
-			node.put("sum_hess", UBValueFactory.createFloat32(sum_hessian[i]));
-			node.put("base_weight", UBValueFactory.createFloat32(base_weights[i]));
+			if(multi_target){
+				float[] leaf_values = Arrays.copyOfRange(base_weights, i * this.size_leaf_vector, (i + 1) * this.size_leaf_vector);
 
-			this.stats[i] = new JSONNodeStat();
-			((UBJSONLoadable)this.stats[i]).loadUBJSON(node);
+				((JSONNode)this.nodes[i]).set_leaf_values(leaf_values);
+			} // End if
+
+			if(has_stats){
+				node.put("loss_chg", UBValueFactory.createFloat32(loss_changes[i]));
+				node.put("sum_hess", UBValueFactory.createFloat32(sum_hessian[i]));
+				node.put("base_weight", UBValueFactory.createFloat32(base_weights[i]));
+
+				this.stats[i] = new JSONNodeStat();
+				((UBJSONLoadable)this.stats[i]).loadUBJSON(node);
+			}
 		}
 
 		if(has_cat){
@@ -215,6 +235,11 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Float getLeafValue(){
+
+		if(is_multi_target()){
+			return null;
+		}
+
 		Node node = this.nodes[0];
 
 		if(!node.is_leaf()){
@@ -283,8 +308,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return result;
 	}
 
-	public TreeModel encodeTreeModel(ObjFunction obj, Float eta, PredicateManager predicateManager, Schema schema){
-		org.dmg.pmml.tree.Node root = encodeNode(obj, eta, 0, True.INSTANCE, new CategoryManager(), predicateManager, schema);
+	public TreeModel encodeTreeModel(ObjFunction obj, Float eta, PredicateManager predicateManager, PayloadManager payloadManager, Schema schema){
+		org.dmg.pmml.tree.Node root = encodeNode(obj, eta, 0, True.INSTANCE, new CategoryManager(), predicateManager, payloadManager, schema);
 
 		TreeModel treeModel = new TreeModel(MiningFunction.REGRESSION, ModelUtil.createMiningSchema(schema), root)
 			.setSplitCharacteristic(TreeModel.SplitCharacteristic.BINARY_SPLIT)
@@ -294,11 +319,13 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		return treeModel;
 	}
 
-	private org.dmg.pmml.tree.Node encodeNode(ObjFunction obj, Float eta, int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, Schema schema){
+	private org.dmg.pmml.tree.Node encodeNode(ObjFunction obj, Float eta, int index, Predicate predicate, CategoryManager categoryManager, PredicateManager predicateManager, PayloadManager payloadManager, Schema schema){
 		Integer id = Integer.valueOf(index);
 
 		Node node = this.nodes[index];
-		NodeStat stat = this.stats[index];
+		NodeStat stat = (this.stats != null ? this.stats[index] : null);
+
+		boolean multi_target = is_multi_target();
 
 		if(!node.is_leaf()){
 			int splitIndex = node.split_index();
@@ -457,12 +484,12 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				rightPredicate = predicateManager.createSimplePredicate(continuousFeature, SimplePredicate.Operator.GREATER_OR_EQUAL, splitValue);
 			}
 
-			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, eta, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, schema);
-			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, eta, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, schema);
+			org.dmg.pmml.tree.Node leftChild = encodeNode(obj, eta, node.left_child(), leftPredicate, leftCategoryManager, predicateManager, payloadManager, schema);
+			org.dmg.pmml.tree.Node rightChild = encodeNode(obj, eta, node.right_child(), rightPredicate, rightCategoryManager, predicateManager, payloadManager, schema);
 
 			Float value = null;
 
-			if(obj.hasBranchScores()){
+			if(obj.hasBranchScores() && stat != null){
 
 				if(eta != null){
 					// XGBoost saves leaf values in shrunken mode (ie. corrected by the learning rate), but branch values in unshrunken mode
@@ -472,7 +499,11 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			org.dmg.pmml.tree.Node result;
 
-			if(obj.hasRecordCounts()){
+			if(multi_target){
+				result = new ComplexNode(value, predicate);
+			} else
+
+			if(obj.hasRecordCounts() && stat != null){
 				result = new CountingBranchNode(value, predicate)
 					.setRecordCount(stat.sum_hess());
 			} else
@@ -496,17 +527,29 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		} else
 
 		{
-			Float value = (node.leaf_value() + 0f);
-
 			org.dmg.pmml.tree.Node result;
 
-			if(obj.hasRecordCounts()){
-				result = new CountingLeafNode(value, predicate)
-					.setRecordCount(stat.sum_hess());
+			if(multi_target){
+				List<Float> values = node.leaf_values();
+
+				MultiLabel multiLabel = schema.requireMultiLabel();
+
+				result = new ComplexNode(null, predicate);
+
+				payloadManager.addScores(result, values, multiLabel);
 			} else
 
 			{
-				result = new LeafNode(value, predicate);
+				Float value = (node.leaf_value() + 0f);
+
+				if(obj.hasRecordCounts() && stat != null){
+					result = new CountingLeafNode(value, predicate)
+						.setRecordCount(stat.sum_hess());
+				} else
+
+				{
+					result = new LeafNode(value, predicate);
+				}
 			}
 
 			result
@@ -514,6 +557,14 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 			return result;
 		}
+	}
+
+	public boolean is_multi_target(){
+		return (this.size_leaf_vector > 1);
+	}
+
+	public int num_targets(){
+		return this.size_leaf_vector;
 	}
 
 	public Node[] nodes(){

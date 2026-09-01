@@ -18,6 +18,8 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.List;
+
 import java.io.IOException;
 import java.util.BitSet;
 
@@ -54,6 +56,16 @@ public class BinaryNode extends Node implements BinaryLoadable {
 	@Override
 	public float leaf_value(){
 		return Float.intBitsToFloat(this.info);
+	}
+
+	@Override
+	public float leaf_value(int index){
+		throw new UnsupportedOperationException();
+	}
+
+	@Override
+	public List<Float> leaf_values(){
+		throw new UnsupportedOperationException();
 	}
 
 	@Override
