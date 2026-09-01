@@ -18,36 +18,16 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.LinkedHashMap;
-import java.util.Map;
+import org.jpmml.converter.HasSchemaOptions;
+import org.jpmml.converter.tree.HasTreeModelOptions;
 
-import org.jpmml.converter.HasNativeConfiguration;
-import org.jpmml.converter.HasOptions;
-
-public interface HasXGBoostOptions extends HasOptions, HasNativeConfiguration {
+public interface HasXGBoostOptions extends HasSchemaOptions, HasTreeModelOptions {
 
 	String OPTION_BYTE_ORDER = "byte_order";
 
 	String OPTION_CHARSET = "charset";
 
-	String OPTION_COMPACT = "compact";
-
-	String OPTION_INPUT_FLOAT = "input_float";
-
 	String OPTION_MISSING = "missing";
 
 	String OPTION_NTREE_LIMIT = "ntree_limit";
-
-	String OPTION_NUMERIC = "numeric";
-
-	String OPTION_PRUNE = "prune";
-
-	@Override
-	default
-	public Map<String, ?> getNativeConfiguration(){
-		Map<String, Object> result = new LinkedHashMap<>();
-		result.put(HasXGBoostOptions.OPTION_COMPACT, Boolean.FALSE);
-
-		return result;
-	}
 }

@@ -35,8 +35,8 @@ import com.google.gson.JsonObject;
 import org.dmg.pmml.Model;
 import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.CMatrixUtil;
+import org.jpmml.converter.Label;
 import org.jpmml.converter.ScalarLabel;
-import org.jpmml.converter.ScalarLabelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -184,7 +184,9 @@ public class GBTree extends GradientBooster {
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 		Float eta = eta();
 
-		List<ScalarLabel> scalarLabels = ScalarLabelUtil.toScalarLabels(schema.getLabel());
+		Label label = schema.getLabel();
+
+		List<ScalarLabel> scalarLabels = label.toScalarLabels();
 
 		if(trees.size() % scalarLabels.size() != 0){
 			throw new XGBoostException("Expected the number of trees to be a multiple of " + scalarLabels.size() + ", got " + trees.size());

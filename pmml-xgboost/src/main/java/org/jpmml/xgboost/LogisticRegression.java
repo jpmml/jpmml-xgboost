@@ -42,7 +42,7 @@ public class LogisticRegression extends Regression {
 
 	@Override
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = schema.toAnonymousSchema();
+		Schema segmentSchema = schema.toSegmentSchema();
 
 		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));

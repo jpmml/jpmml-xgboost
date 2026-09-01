@@ -51,8 +51,6 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 	private Float eta = null;
 
-	private int recordCount = -1;
-
 	{
 		String format = System.getProperty(XGBoostEncoderBatch.class.getName() + ".format", null);
 
@@ -141,14 +139,6 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		this.eta = eta;
 	}
 
-	public int getRecordCount(){
-		return this.recordCount;
-	}
-
-	public void setRecordCount(int recordCount){
-		this.recordCount = recordCount;
-	}
-
 	protected PMML loadPMML(String learnerPath, String featureMapPath) throws Exception {
 		Learner learner;
 
@@ -200,13 +190,15 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		} // End if
 
 		if(obj.hasRecordCounts()){
-			RegTree regTree = regTrees[0];
+			Number recordCount = getRecordCount();
 
-			Node[] nodes = regTree.nodes();
-			NodeStat[] stats = regTree.stats();
+			if(recordCount != null){
+				RegTree regTree = regTrees[0];
 
-			if(this.recordCount > -1){
-				assertTrue(stats[0].sum_hess() == this.recordCount);
+				Node[] nodes = regTree.nodes();
+				NodeStat[] stats = regTree.stats();
+
+				assertRecordCount(stats[0].sum_hess());
 			}
 		}
 
@@ -249,17 +241,6 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		} finally {
 			leftHeader.setTimestamp(leftTimestamp);
 			rightHeader.setTimestamp(rightTimestamp);
-		}
-	}
-
-	protected void assertTrue(boolean value){
-		assertTrue(value, null);
-	}
-
-	protected void assertTrue(boolean value, String message){
-
-		if(!value){
-			throw new AssertionError(message);
 		}
 	}
 }

@@ -113,7 +113,7 @@ public class ObjFunction {
 
 		ContinuousLabel continuousLabel = schema.requireContinuousLabel();
 
-		Schema segmentSchema = schema.toAnonymousSchema();
+		Schema segmentSchema = schema.toSegmentSchema();
 
 		PredicateManager predicateManager = new PredicateManager();
 

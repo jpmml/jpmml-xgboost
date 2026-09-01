@@ -48,8 +48,7 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.DerivedField;
 import org.dmg.pmml.Expression;
 import org.dmg.pmml.Field;
-import org.dmg.pmml.HasContinuousDomain;
-import org.dmg.pmml.Interval;
+import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.PMML;
@@ -64,17 +63,18 @@ import org.jpmml.converter.ExpressionUtil;
 import org.jpmml.converter.Feature;
 import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.FieldUtil;
+import org.jpmml.converter.FloatUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
+import org.jpmml.converter.ModelTransformer;
 import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
+import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.UnsupportedFeatureException;
 import org.jpmml.converter.ValueUtil;
-import org.jpmml.converter.visitors.TreeModelPruner;
-import org.jpmml.model.visitors.VisitorBattery;
-import org.jpmml.xgboost.visitors.TreeModelCompactor;
+import org.jpmml.converter.tree.TreeModelTransformerBuilder;
 
 public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
@@ -449,15 +449,15 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		} else
 
 		if(this.num_target >= 2){
-			List<Label> labels = new ArrayList<>();
+			List<ScalarLabel> scalarLabels = new ArrayList<>();
 
 			for(int i = 0; i < this.num_target; i++){
-				Label label = this.obj.encodeLabel(targetName + String.valueOf(i + 1), targetCategories, encoder);
+				ScalarLabel scalarLabel = (ScalarLabel)this.obj.encodeLabel(targetName + String.valueOf(i + 1), targetCategories, encoder);
 
-				labels.add(label);
+				scalarLabels.add(scalarLabel);
 			}
 
-			return new MultiLabel(labels);
+			return new MultiLabel(scalarLabels);
 		} else
 
 		{
@@ -573,29 +573,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 							{
 								Field<?> field = continuousFeature.getField();
 
-								field.setDataType(DataType.FLOAT);
-
-								// XXX
-								if(field instanceof HasContinuousDomain){
-									HasContinuousDomain<?> hasContinuousDomain = (HasContinuousDomain<?>)field;
-
-									if(hasContinuousDomain.hasIntervals()){
-										List<Interval> intervals = hasContinuousDomain.getIntervals();
-
-										for(Interval interval : intervals){
-											Number leftMargin = interval.getLeftMargin();
-											Number rightMargin = interval.getRightMargin();
-
-											if(leftMargin != null){
-												interval.setLeftMargin(Math.min(leftMargin.doubleValue(), leftMargin.floatValue()));
-											} // End if
-
-											if(rightMargin != null){
-												interval.setRightMargin(Math.max(rightMargin.doubleValue(), rightMargin.floatValue()));
-											}
-										}
-									}
-								}
+								field = FloatUtil.narrow(field);
 
 								continuousFeature = new ContinuousFeature(continuousFeature.getEncoder(), field);
 
@@ -656,26 +634,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Model configureModel(Map<String, ?> options, Model model){
-		Boolean numeric = (Boolean)options.get(HasXGBoostOptions.OPTION_NUMERIC);
-		Boolean compact = (Boolean)options.get(HasXGBoostOptions.OPTION_COMPACT);
-		Boolean prune = (Boolean)options.get(HasXGBoostOptions.OPTION_PRUNE);
+		ModelTransformer modelTransformer = new TreeModelTransformerBuilder(MiningFunction.REGRESSION)
+			.putOptions(options)
+			.build();
 
-		VisitorBattery visitors = new VisitorBattery();
-
-		if(Objects.equals(Boolean.TRUE, compact)){
-
-			if(Objects.equals(Boolean.FALSE, numeric)){
-				throw new XGBoostException("Conflicting XGBoost options");
-			}
-
-			visitors.add(TreeModelCompactor.class);
-		} // End if
-
-		if(Objects.equals(Boolean.TRUE, prune)){
-			visitors.add(TreeModelPruner.class);
-		}
-
-		visitors.applyTo(model);
+		modelTransformer.applyTo(model);
 
 		return model;
 	}
