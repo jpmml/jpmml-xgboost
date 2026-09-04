@@ -18,9 +18,8 @@
  */
 package org.jpmml.xgboost;
 
-import java.util.List;
-
 import java.util.BitSet;
+import java.util.List;
 
 abstract
 public class Node {
@@ -60,4 +59,9 @@ public class Node {
 
 	public static final int SPLIT_NUMERICAL = 0;
 	public static final int SPLIT_CATEGORICAL = 1;
+
+	/**
+	 * Indicates a missingness check on a (degenerate-) one-hot encoded feature.
+	 */
+	public static final float SPLIT_VALUE_MISSINGNESS = 2.00001f;
 }
