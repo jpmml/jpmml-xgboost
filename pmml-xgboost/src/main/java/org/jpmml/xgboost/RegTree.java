@@ -346,7 +346,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				DiscreteFeature discreteFeature = (DiscreteFeature)feature;
 
 				if(node.split_type() != Node.SPLIT_CATEGORICAL){
-					throw new XGBoostException("Expected a categorical split type (" + Node.SPLIT_CATEGORICAL + ") for feature " + ExceptionUtil.formatName(discreteFeature) + ", got non-categorical (" + node.split_type() + ")");
+					throw new XGBoostException("Expected a categorical split type (" + Node.SPLIT_CATEGORICAL + ") for discrete feature " + ExceptionUtil.formatName(discreteFeature) + ", got non-categorical (" + node.split_type() + ")");
 				}
 			} else
 
@@ -374,7 +374,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				} else
 
 				{
-					throw new XGBoostException("Expected a one-hot split value in range (0, 1] or " + Node.SPLIT_VALUE_MISSINGNESS + ", got " + splitValue);
+					throw new XGBoostException("Expected a one-hot split value in range (0, 1] or " + Node.SPLIT_VALUE_MISSINGNESS + " for binary feature " + ExceptionUtil.formatName(binaryFeature) + ", got " + splitValue);
 				}
 			} else
 
@@ -386,12 +386,12 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 
 				Float splitValue = Float.intBitsToFloat(node.split_cond());
 				if(!splitValue.isNaN() && splitValue.floatValue() != Float.MIN_VALUE){
-					throw new XGBoostException("Expected a Float.NaN or Float.MIN_VALUE split value, got " + splitValue);
+					throw new XGBoostException("Expected a Float.NaN or Float.MIN_VALUE split value for discrete feature " + ExceptionUtil.formatName(discreteFeature) + ", got " + splitValue);
 				}
 
 				BitSet split_categories = node.get_split_categories();
 				if(split_categories == null){
-					throw new XGBoostException("Expected non-null split categories, got null");
+					throw new XGBoostException("Expected non-null split categories for discrete feature " + ExceptionUtil.formatName(discreteFeature) + ", got null");
 				}
 
 				java.util.function.Predicate<Object> valueFilter = categoryManager.getValueFilter(name);
