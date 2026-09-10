@@ -501,7 +501,7 @@ def predict_binomial_multi_audit(audit_booster, audit_dmat, num_rounds = None):
 
 	return result
 
-def train_multi_audit(dataset, target_columns, **params):
+def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 	audit_X, audit_y = load_split_multi_csv(dataset, target_columns)
 
 	# Ensure that all labels are dense
@@ -510,7 +510,9 @@ def train_multi_audit(dataset, target_columns, **params):
 
 		audit_y = audit_df[audit_y.columns.values.tolist()]
 
-	for col in ["Education", "Employment", "Marital", "Occupation"]:
+	cat_cols = ["Education", "Employment", "Marital", "Occupation"]
+
+	for col in cat_cols:
 		audit_X[col] = _as_str_categorical(audit_X[col])
 
 	audit_y["Gender"] = audit_y["Gender"].replace({
@@ -523,7 +525,10 @@ def train_multi_audit(dataset, target_columns, **params):
 	audit_fmap = make_feature_map(audit_X, category_to_indicator = True)
 	audit_fmap.save(csv_file("Multi" + dataset, ".fmap"))
 
-	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y)
+	if dummify:
+		audit_X = _one_hot_encode(audit_X, cat_cols).to_numpy()
+
+	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = True)
 
 	audit_params = dict(**params)
 	audit_params.update({
@@ -534,14 +539,23 @@ def train_multi_audit(dataset, target_columns, **params):
 	})
 
 	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
-	store_model(audit_booster, "ScalarLeafBinomialClassification", dataset)
+	store_model(audit_booster, prefix + "BinomialClassification", dataset)
 
-	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), "ScalarLeafBinomialClassification" + dataset)
-	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), "ScalarLeafBinomialClassification" + dataset + "@31")
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), prefix + "BinomialClassification" + dataset)
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), prefix + "BinomialClassification" + dataset + "@31")
+
+def train_scalar_leaf_audit(dataset, target_columns, **params):
+	train_multi_audit("ScalarLeaf", dataset, target_columns, dummify = False, **params)
+
+def train_vector_leaf_audit(dataset, target_columns, **params):
+	train_multi_audit("VectorLeaf", dataset, target_columns, dummify = True, multi_strategy = "multi_output_tree", **params)
 
 if "Audit" in datasets and not legacy:
-	train_multi_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
-	train_multi_audit("AuditNA", ["Gender", "Adjusted"])
+	train_scalar_leaf_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
+	train_scalar_leaf_audit("AuditNA", ["Gender", "Adjusted"])
+
+	train_vector_leaf_audit("Audit", ["Gender", "Adjusted"])
+	train_vector_leaf_audit("AuditNA", ["Gender", "Adjusted"])
 
 #
 # Multi-class classification
