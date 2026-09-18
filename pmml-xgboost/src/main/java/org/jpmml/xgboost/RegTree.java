@@ -368,13 +368,21 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
 				} else
 
-				if(splitValue == Node.SPLIT_VALUE_MISSINGNESS){
+				if(splitValue == Node.SPLIT_VALUE_BINARY_SPARSE){
+					Object value = binaryFeature.getValue();
+
+					leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
+					rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
+				} else
+
+				// A missingness check, not an actual value check
+				if(splitValue == Node.SPLIT_VALUE_BINARY_DENSE){
 					leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.IS_NOT_MISSING, null);
 					rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.IS_MISSING, null);
 				} else
 
 				{
-					throw new XGBoostException("Expected a one-hot split value in range (0, 1] or " + Node.SPLIT_VALUE_MISSINGNESS + " for binary feature " + ExceptionUtil.formatName(binaryFeature) + ", got " + splitValue);
+					throw new XGBoostException("Expected a one-hot split value in range (0, 1], " + Node.SPLIT_VALUE_BINARY_SPARSE + " or " + Node.SPLIT_VALUE_BINARY_DENSE + " for binary feature " + ExceptionUtil.formatName(binaryFeature) + ", got " + splitValue);
 				}
 			} else
 

@@ -60,8 +60,17 @@ public class Node {
 	public static final int SPLIT_NUMERICAL = 0;
 	public static final int SPLIT_CATEGORICAL = 1;
 
+	private static final float kRtEps = 1.0E-5f;
+
 	/**
-	 * Indicates a missingness check on a (degenerate-) one-hot encoded feature.
+	 * Missingness check against a low-density (ie. many "off" values, few "on" values) one-hot encoded feature.
+	 * Missing values go to the left.
 	 */
-	public static final float SPLIT_VALUE_MISSINGNESS = 2.00001f;
+	public static final float SPLIT_VALUE_BINARY_SPARSE = 0f - (Math.abs(0f) + kRtEps);
+
+	/**
+	 * Missingness check against a high-density (ie. few "off" values, many "on" values) one-hot encoded feature.
+	 * Missing values go to the right.
+	 */
+	public static final float SPLIT_VALUE_BINARY_DENSE = 1f + (Math.abs(1f) + kRtEps);
 }
