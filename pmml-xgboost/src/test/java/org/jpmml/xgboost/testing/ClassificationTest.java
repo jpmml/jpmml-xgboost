@@ -57,6 +57,24 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 			}
 
 			@Override
+			public String getInputCsvPath(){
+				String path = super.getInputCsvPath();
+
+				path = path.replace("Sparse", "");
+
+				return path;
+			}
+
+			@Override
+			public String getFeatureMapPath(){
+				String path = super.getFeatureMapPath();
+
+				path = path.replace("Sparse", "");
+
+				return path;
+			}
+
+			@Override
 			public ClassificationTest getArchiveBatchTest(){
 				return ClassificationTest.this;
 			}
@@ -104,6 +122,11 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
 		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(17 + 8));
+	}
+
+	@Test
+	public void evaluateBinomialAuditNASparse() throws Exception {
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA + "Sparse", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
 	}
 
 	@Test

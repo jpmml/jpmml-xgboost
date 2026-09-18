@@ -60,17 +60,19 @@ public class Node {
 	public static final int SPLIT_NUMERICAL = 0;
 	public static final int SPLIT_CATEGORICAL = 1;
 
-	private static final float kRtEps = 1.0E-5f;
+	private static final float kRtEps_HIST = 1.0E-5f;
+	private static final float kRtEps_EXACT = 1.0E-6f;
 
 	/**
 	 * Missingness check against a low-density (ie. many "off" values, few "on" values) one-hot encoded feature.
-	 * Missing values go to the left.
+	 * Missing values go with the majority to the left.
 	 */
-	public static final float SPLIT_VALUE_BINARY_SPARSE = 0f - (Math.abs(0f) + kRtEps);
+	public static final float SPLIT_VALUE_BINARY_SPARSE_HIST = 0f - (Math.abs(0f) + kRtEps_HIST);
+	public static final float SPLIT_VALUE_BINARY_SPARSE_EXACT = 1f - (Math.abs(1f) + kRtEps_EXACT);
 
 	/**
 	 * Missingness check against a high-density (ie. few "off" values, many "on" values) one-hot encoded feature.
-	 * Missing values go to the right.
+	 * Missing values go with the majority to the right.
 	 */
-	public static final float SPLIT_VALUE_BINARY_DENSE = 1f + (Math.abs(1f) + kRtEps);
+	public static final float SPLIT_VALUE_BINARY_DENSE_HIST = 1f + (Math.abs(1f) + kRtEps_HIST);
 }

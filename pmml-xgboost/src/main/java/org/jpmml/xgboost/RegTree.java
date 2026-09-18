@@ -368,7 +368,7 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 					rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.EQUAL, value);
 				} else
 
-				if(splitValue == Node.SPLIT_VALUE_BINARY_SPARSE){
+				if(splitValue == Node.SPLIT_VALUE_BINARY_SPARSE_HIST || splitValue == Node.SPLIT_VALUE_BINARY_SPARSE_EXACT){
 					Object value = binaryFeature.getValue();
 
 					leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.NOT_EQUAL, value);
@@ -376,13 +376,13 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 				} else
 
 				// A missingness check, not an actual value check
-				if(splitValue == Node.SPLIT_VALUE_BINARY_DENSE){
+				if(splitValue == Node.SPLIT_VALUE_BINARY_DENSE_HIST){
 					leftPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.IS_NOT_MISSING, null);
 					rightPredicate = predicateManager.createSimplePredicate(binaryFeature, SimplePredicate.Operator.IS_MISSING, null);
 				} else
 
 				{
-					throw new XGBoostException("Expected a one-hot split value in range (0, 1], " + Node.SPLIT_VALUE_BINARY_SPARSE + " or " + Node.SPLIT_VALUE_BINARY_DENSE + " for binary feature " + ExceptionUtil.formatName(binaryFeature) + ", got " + splitValue);
+					throw new XGBoostException("Expected a one-hot split value in range (0, 1], " + Node.SPLIT_VALUE_BINARY_SPARSE_HIST + ", " + Node.SPLIT_VALUE_BINARY_SPARSE_EXACT + " or " + Node.SPLIT_VALUE_BINARY_DENSE_HIST + " for binary feature " + ExceptionUtil.formatName(binaryFeature) + ", got " + splitValue);
 				}
 			} else
 

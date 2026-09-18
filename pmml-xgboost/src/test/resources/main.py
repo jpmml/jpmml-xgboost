@@ -7,6 +7,7 @@ from xgboost.core import XGBoostError
 import numpy
 import os
 import pandas
+import scipy.sparse
 import sys
 import xgboost
 
@@ -501,6 +502,32 @@ def predict_binomial_multi_audit(audit_booster, audit_dmat, num_rounds = None):
 
 	return result
 
+def train_sparse_audit(dataset, **params):
+	audit_X, audit_y = load_split_csv(dataset)
+
+	cat_cols = ["Education", "Employment", "Gender", "Marital", "Occupation"]
+
+	for col in cat_cols:
+		audit_X[col] = _as_str_categorical(audit_X[col])
+
+	audit_X = _one_hot_encode(audit_X, cat_cols)
+
+	audit_y = audit_y.astype(int)
+
+	audit_dmat = xgboost.DMatrix(data = scipy.sparse.csr_matrix(audit_X.to_numpy(dtype = "float64")), label = audit_y)
+
+	audit_params = dict(**params)
+	audit_params.update({
+		"objective" : "binary:logistic",
+		"learning_rate" : audit_learning_rate,
+		"seed" : 42
+	})
+
+	audit_booster = xgboost.train(params = dict(audit_params, tree_method = "exact"), dtrain = audit_dmat, num_boost_round = 17)
+	store_model(audit_booster, "BinomialClassification", dataset + "Sparse")
+
+	store_result(predict_binomial_audit(audit_booster, audit_dmat), "BinomialClassification" + dataset + "Sparse")
+
 def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 	audit_X, audit_y = load_split_multi_csv(dataset, target_columns)
 
@@ -551,6 +578,8 @@ def train_vector_leaf_audit(dataset, target_columns, **params):
 	train_multi_audit("VectorLeaf", dataset, target_columns, dummify = True, multi_strategy = "multi_output_tree", **params)
 
 if "Audit" in datasets and not legacy:
+	train_sparse_audit("AuditNA")
+
 	train_scalar_leaf_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
 	train_scalar_leaf_audit("AuditNA", ["Gender", "Adjusted"])
 
