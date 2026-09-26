@@ -42,7 +42,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 				String algorithm = getAlgorithm();
 				String dataset = getDataset();
 
-				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+				if(Objects.equals(AUTO, dataset) || Objects.equals(AUTO_NA, dataset)){
 
 					if(Objects.equals(algorithm, "ScalarLeaf" + RANDOM_FOREST)){
 						setEta(ETA_AUTO / 37);

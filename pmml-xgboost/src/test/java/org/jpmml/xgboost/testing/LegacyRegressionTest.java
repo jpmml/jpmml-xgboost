@@ -39,19 +39,19 @@ public class LegacyRegressionTest extends XGBoostEncoderBatchTest implements XGB
 			{
 				String dataset = getDataset();
 
-				if(Objects.equals(dataset, AUTO)){
+				if(Objects.equals(AUTO, dataset)){
 					setRecordCount(392);
 				} // End if
 
-				if(Objects.equals(dataset, AUDIT)){
+				if(Objects.equals(AUDIT, dataset)){
 					setEta(ETA_AUDIT);
 				} else
 
-				if(Objects.equals(dataset, AUTO)){
+				if(Objects.equals(AUTO, dataset)){
 					setEta(ETA_AUTO);
 				} else
 
-				if(Objects.equals(dataset, VISIT)){
+				if(Objects.equals(VISIT, dataset)){
 					setEta(ETA_VISIT);
 				}
 			}

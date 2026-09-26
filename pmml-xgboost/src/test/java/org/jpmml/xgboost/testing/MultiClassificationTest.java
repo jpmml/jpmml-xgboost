@@ -42,15 +42,15 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 			{
 				String dataset = getDataset();
 
-				if(Objects.equals(dataset, AUDIT) || Objects.equals(dataset, AUDIT_NA)){
+				if(Objects.equals(AUDIT, dataset) || Objects.equals(AUDIT_NA, dataset)){
 					setEta(ETA_AUDIT);
 				} else
 
-				if(Objects.equals(dataset, AUTO) || Objects.equals(dataset, AUTO_NA)){
+				if(Objects.equals(AUTO, dataset) || Objects.equals(AUTO_NA, dataset)){
 					setEta(ETA_AUTO);
 				} else
 
-				if(Objects.equals(dataset, VISIT) || Objects.equals(dataset, VISIT_NA)){
+				if(Objects.equals(VISIT, dataset) || Objects.equals(VISIT_NA, dataset)){
 					setEta(ETA_VISIT);
 				}
 			}

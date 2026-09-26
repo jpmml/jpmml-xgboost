@@ -40,7 +40,7 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 			{
 				String dataset = getDataset();
 
-				if(Objects.equals(dataset, AUDIT)){
+				if(Objects.equals(AUDIT, dataset)){
 					setEta(ETA_AUDIT);
 				}
 			}
