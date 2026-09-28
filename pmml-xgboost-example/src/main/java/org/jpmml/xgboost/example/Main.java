@@ -27,6 +27,7 @@ import java.nio.ByteOrder;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import com.beust.jcommander.DefaultUsageFormatter;
 import com.beust.jcommander.IUsageFormatter;
@@ -34,6 +35,9 @@ import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
 import org.dmg.pmml.PMML;
+import org.jpmml.converter.Parameters;
+import org.jpmml.converter.SchemaParameters;
+import org.jpmml.converter.tree.TreeModelParameters;
 import org.jpmml.model.JAXBSerializer;
 import org.jpmml.model.metro.MetroJAXBSerializer;
 import org.jpmml.xgboost.ByteOrderUtil;
@@ -50,109 +54,133 @@ public class Main {
 		names = {"--xgb-input", "--xgboost-input", "--model-input"},
 		description = "XGBoost model input file",
 		required = true,
-		order = 1
+		order = Parameters.BLOCK_IO + 1
 	)
 	private File xgbInput = null;
 
 	@Parameter (
-		names = {"--fmap-input"},
-		description = "XGBoost feature map input file",
-		order = 2
-	)
-	private File fmapInput = null;
-
-	@Parameter (
-		names = {"--pmml-output"},
-		description = "PMML output file",
+		names = {Parameters.NAME_PMML_OUTPUT},
+		description = Parameters.DESCRIPTION_PMML_OUTPUT,
 		required = true,
-		order = 3
+		order = Parameters.BLOCK_IO + 2
 	)
 	private File pmmlOutput = null;
 
 	@Parameter (
-		names = {"--" + HasXGBoostOptions.OPTION_BYTE_ORDER},
+		names = {"--fmap-input"},
+		description = "XGBoost feature map input file",
+		order = Parameters.BLOCK_IO + 3
+	)
+	private File fmapInput = null;
+
+	@Parameter (
+		names = {"--byte-order"},
 		description = "Endianness of XGBoost model input file. Possible values \"BIG_ENDIAN\" (\"BE\") or \"LITTLE_ENDIAN\" (\"LE\")",
-		order = 4
+		order = Parameters.BLOCK_IO + 4
 	)
 	private String byteOrder = (ByteOrder.nativeOrder()).toString();
 
 	@Parameter (
-		names = {"--" + HasXGBoostOptions.OPTION_CHARSET},
+		names = {"--charset"},
 		description = "Charset of XGBoost model input file",
-		order = 5
+		order = Parameters.BLOCK_IO + 5
 	)
 	private String charset = null;
 
 	@Parameter (
 		names = {"--json-path"},
 		description = "JSONPath expression of the JSON model element",
-		order = 6
+		order = Parameters.BLOCK_IO + 6
 	)
 	private String jsonPath = "$";
 
 	@Parameter (
-		names = {"--target-name"},
-		description = "Target name. Defaults to \"_target\"",
-		order = 7
+		names = {SchemaParameters.NAME_TARGET_NAME},
+		description = SchemaParameters.DESCRIPTION_TARGET_NAME,
+		order = Parameters.BLOCK_SCHEMA + 1
 	)
 	private String targetName = null;
 
 	@Parameter (
-		names = {"--target-categories"},
-		description = "Target categories. Defaults to 0-based index [0, 1, .., num_class - 1]",
-		order = 8
+		names = {SchemaParameters.NAME_TARGET_CATEGORIES},
+		description = SchemaParameters.DESCRIPTION_TARGET_CATEGORIES,
+		order = Parameters.BLOCK_SCHEMA + 2
 	)
 	private List<String> targetCategories = null;
 
 	@Parameter (
- 		names = {"--X-" + HasXGBoostOptions.OPTION_MISSING},
- 		description = "Missing value. Defaults to Not-a-Number (NaN) value",
- 		order = 9
- 	)
- 	private Float missing = Float.NaN;
-
-	@Parameter (
-		names = {"--X-" + HasXGBoostOptions.OPTION_COMPACT},
-		description = "Transform XGBoost-style trees to PMML-style trees",
-		arity = 1,
-		order = 10
+		names = {"--missing"},
+		description = "Missing value. Defaults to Not-a-Number (NaN) value",
+		order = Parameters.BLOCK_SCHEMA + 3
 	)
-	private boolean compact = true;
+	private Float missing = null;
 
 	@Parameter (
-		names = {"--X-" + HasXGBoostOptions.OPTION_INPUT_FLOAT},
-		description = "Allow field data type updates",
-		arity = 1,
-		order = 11
-	)
-	private Boolean inputFloat = null;
-
-	@Parameter (
-		names = {"--X-" + HasXGBoostOptions.OPTION_NUMERIC},
-		description = "Simplify non-numeric split conditions to numeric split conditions",
-		arity = 1,
-		order = 12
-	)
-	private boolean numeric = true;
-
-	@Parameter (
-		names = {"--X-" + HasXGBoostOptions.OPTION_PRUNE},
-		description = "Remove unreachable nodes",
-		arity = 1,
-		order = 13
-	)
-	private boolean prune = true;
-
-	@Parameter (
-		names = {"--X-" + HasXGBoostOptions.OPTION_NTREE_LIMIT},
+		names = {"--ntree-limit"},
 		description = "Limit the number of trees. Defaults to all trees",
-		order = 14
+		order = Parameters.BLOCK_MODEL + 1
 	)
 	private Integer ntreeLimit = null;
 
 	@Parameter (
-		names = {"--help"},
-		description = "Show the list of configuration options and exit",
+		names = {SchemaParameters.NAME_INPUT_FLOAT},
+		description = SchemaParameters.DESCRIPTION_INPUT_FLOAT,
+		arity = 1,
+		order = Parameters.BLOCK_SCHEMA_OPTIONS + 1
+	)
+	private Boolean inputFloat = null;
+
+	@Parameter (
+		names = {SchemaParameters.NAME_NUMERIC},
+		description = SchemaParameters.DESCRIPTION_NUMERIC,
+		arity = 1,
+		order = Parameters.BLOCK_SCHEMA_OPTIONS + 2
+	)
+	private Boolean numeric = null;
+
+	@Parameter (
+		names = {TreeModelParameters.NAME_COMPACT},
+		description = TreeModelParameters.DESCRIPTION_COMPACT,
+		arity = 1,
+		order = Parameters.BLOCK_MODEL_OPTIONS + 1
+	)
+	private Boolean compact = null;
+
+	@Parameter (
+		names = {TreeModelParameters.NAME_FLAT},
+		description = TreeModelParameters.DESCRIPTION_FLAT,
+		arity = 1,
+		order = Parameters.BLOCK_MODEL_OPTIONS + 2
+	)
+	private Boolean flat = null;
+
+	@Parameter (
+		names = {TreeModelParameters.NAME_NODE_ID},
+		description = TreeModelParameters.DESCRIPTION_NODE_ID,
+		arity = 1,
+		order = Parameters.BLOCK_MODEL_OPTIONS + 3
+	)
+	private Boolean nodeId = null;
+
+	@Parameter (
+		names = {TreeModelParameters.NAME_NODE_RECORDCOUNT},
+		description = TreeModelParameters.DESCRIPTION_NODE_RECORDCOUNT,
+		arity = 1,
+		order = Parameters.BLOCK_MODEL_OPTIONS + 4
+	)
+	private Boolean nodeRecordCount = null;
+
+	@Parameter (
+		names = {TreeModelParameters.NAME_PRUNE},
+		description = TreeModelParameters.DESCRIPTION_PRUNE,
+		arity = 1,
+		order = Parameters.BLOCK_MODEL_OPTIONS + 5
+	)
+	private Boolean prune = null;
+
+	@Parameter (
+		names = {Parameters.NAME_HELP},
+		description = Parameters.DESCRIPTION_HELP,
 		help = true,
 		order = Integer.MAX_VALUE
 	)
@@ -236,11 +264,16 @@ public class Main {
 
 		Map<String, Object> options = new LinkedHashMap<>();
 		options.put(HasXGBoostOptions.OPTION_MISSING, this.missing);
-		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
+		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
 		options.put(HasXGBoostOptions.OPTION_INPUT_FLOAT, this.inputFloat);
 		options.put(HasXGBoostOptions.OPTION_NUMERIC, this.numeric);
+		options.put(HasXGBoostOptions.OPTION_COMPACT, this.compact);
+		options.put(HasXGBoostOptions.OPTION_FLAT, this.flat);
+		options.put(HasXGBoostOptions.OPTION_NODE_ID, this.nodeId);
+		options.put(HasXGBoostOptions.OPTION_NODE_RECORDCOUNT, this.nodeRecordCount);
 		options.put(HasXGBoostOptions.OPTION_PRUNE, this.prune);
-		options.put(HasXGBoostOptions.OPTION_NTREE_LIMIT, this.ntreeLimit);
+
+		options.values().removeIf(Objects::isNull);
 
 		PMML pmml;
 

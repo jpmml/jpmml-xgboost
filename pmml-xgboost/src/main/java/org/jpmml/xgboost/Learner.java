@@ -27,6 +27,7 @@ import java.io.Reader;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -71,9 +72,11 @@ import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.SchemaParameters;
 import org.jpmml.converter.ThresholdFeature;
 import org.jpmml.converter.UnsupportedFeatureException;
 import org.jpmml.converter.ValueUtil;
+import org.jpmml.converter.tree.HasTreeModelOptions;
 import org.jpmml.converter.tree.TreeModelTransformerBuilder;
 
 public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
@@ -432,7 +435,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	public Schema encodeSchema(String targetName, List<String> targetCategories, FeatureMap featureMap, XGBoostEncoder encoder){
 
 		if(targetName == null){
-			targetName = "_target";
+			targetName = SchemaParameters.DEFAULT_TARGET_NAME;
 		}
 
 		Label label = encodeLabel(targetName, targetCategories, encoder);
@@ -529,7 +532,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Schema configureSchema(Map<String, ?> options, Schema schema){
-		Number missing = (Number)options.get(HasXGBoostOptions.OPTION_MISSING);
+		Number missing = (Number)((Map)options).getOrDefault(HasXGBoostOptions.OPTION_MISSING, Float.NaN);
 		Boolean inputFloat = (Boolean)options.get(HasXGBoostOptions.OPTION_INPUT_FLOAT);
 		Boolean numeric = (Boolean)((Map)options).getOrDefault(HasXGBoostOptions.OPTION_NUMERIC, Boolean.TRUE);
 
@@ -634,7 +637,13 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 	}
 
 	public Model configureModel(Map<String, ?> options, Model model){
-		ModelTransformer modelTransformer = new TreeModelTransformerBuilder(MiningFunction.REGRESSION)
+		ModelTransformer modelTransformer = new TreeModelTransformerBuilder(MiningFunction.REGRESSION){
+
+			@Override
+			protected Map<String, ?> getDefaults(){
+				return Collections.singletonMap(HasTreeModelOptions.OPTION_COMPACT, Boolean.TRUE);
+			}
+		}
 			.putOptions(options)
 			.build();
 
