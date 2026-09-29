@@ -455,7 +455,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			List<ScalarLabel> scalarLabels = new ArrayList<>();
 
 			for(int i = 0; i < this.num_target; i++){
-				ScalarLabel scalarLabel = (ScalarLabel)this.obj.encodeLabel(targetName + String.valueOf(i + 1), targetCategories, encoder);
+				ScalarLabel scalarLabel = this.obj.encodeLabel(targetName + String.valueOf(i + 1), targetCategories, encoder);
 
 				scalarLabels.add(scalarLabel);
 			}

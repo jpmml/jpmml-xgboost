@@ -25,8 +25,8 @@ import org.dmg.pmml.DataType;
 import org.dmg.pmml.OpType;
 import org.jpmml.converter.ContinuousLabel;
 import org.jpmml.converter.InvalidLabelException;
-import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelEncoder;
+import org.jpmml.converter.ScalarLabel;
 
 abstract
 public class Regression extends ObjFunction {
@@ -36,7 +36,7 @@ public class Regression extends ObjFunction {
 	}
 
 	@Override
-	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
+	public ScalarLabel encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
 
 		if(targetCategories != null && !targetCategories.isEmpty()){
 			throw new InvalidLabelException("Expected zero target categories, got " + targetCategories.size());

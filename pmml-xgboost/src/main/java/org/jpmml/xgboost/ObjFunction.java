@@ -38,6 +38,7 @@ import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.PayloadManager;
 import org.jpmml.converter.PredicateManager;
+import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
@@ -53,7 +54,7 @@ public class ObjFunction {
 	}
 
 	abstract
-	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
+	public ScalarLabel encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder);
 
 	abstract
 	public Model encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema);

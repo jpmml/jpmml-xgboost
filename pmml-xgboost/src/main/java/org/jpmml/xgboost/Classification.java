@@ -32,10 +32,10 @@ import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.FieldNames;
 import org.jpmml.converter.InvalidLabelException;
-import org.jpmml.converter.Label;
 import org.jpmml.converter.LabelUtil;
 import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -52,7 +52,7 @@ public class Classification extends ObjFunction {
 	}
 
 	@Override
-	public Label encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
+	public ScalarLabel encodeLabel(String targetName, List<?> targetCategories, ModelEncoder encoder){
 		DataField dataField;
 
 		if(targetCategories == null){
