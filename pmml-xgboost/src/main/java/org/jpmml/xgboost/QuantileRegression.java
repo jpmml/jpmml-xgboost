@@ -19,7 +19,7 @@
 package org.jpmml.xgboost;
 
 abstract
-public class QuantileRegression extends AsymmetricRegression {
+public class QuantileRegression extends AsymmetricRegression implements HasMultiOutputTreeSupport {
 
 	public QuantileRegression(String name){
 		super(name);

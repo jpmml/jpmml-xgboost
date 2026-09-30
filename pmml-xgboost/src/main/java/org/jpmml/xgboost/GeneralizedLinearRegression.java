@@ -18,7 +18,7 @@
  */
 package org.jpmml.xgboost;
 
-public class GeneralizedLinearRegression extends LogLinkRegression {
+public class GeneralizedLinearRegression extends LogLinkRegression implements HasMultiOutputTreeSupport {
 
 	public GeneralizedLinearRegression(String name){
 		super(name);

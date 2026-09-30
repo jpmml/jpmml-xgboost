@@ -18,7 +18,7 @@
  */
 package org.jpmml.xgboost;
 
-public class ExpectileRegression extends AsymmetricRegression {
+public class ExpectileRegression extends AsymmetricRegression implements HasMultiOutputTreeSupport {
 
 	public ExpectileRegression(String name){
 		super(name);

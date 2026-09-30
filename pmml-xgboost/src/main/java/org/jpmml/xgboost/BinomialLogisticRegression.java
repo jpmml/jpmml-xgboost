@@ -29,7 +29,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
-public class BinomialLogisticRegression extends Classification {
+public class BinomialLogisticRegression extends Classification implements HasMultiOutputTreeSupport {
 
 	public BinomialLogisticRegression(String name){
 		super(name, 2);

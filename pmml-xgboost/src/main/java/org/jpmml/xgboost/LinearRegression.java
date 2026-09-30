@@ -18,9 +18,14 @@
  */
 package org.jpmml.xgboost;
 
-public class LinearRegression extends IdentityLinkRegression {
+public class LinearRegression extends IdentityLinkRegression implements HasMultiOutputTreeSupport {
 
 	public LinearRegression(String name){
 		super(name);
+	}
+
+	@Override
+	public boolean hasVectorLeafSupport(){
+		return true;
 	}
 }

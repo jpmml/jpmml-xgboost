@@ -29,7 +29,7 @@ import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
-public class LogisticRegression extends Regression {
+public class LogisticRegression extends Regression implements HasMultiOutputTreeSupport {
 
 	public LogisticRegression(String name){
 		super(name);
