@@ -18,10 +18,16 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.dmg.pmml.Model;
+import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.mining.Segmentation;
+import org.jpmml.converter.MultiLabel;
+import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
 
 abstract
 public class IdentityLinkRegression extends Regression {
@@ -35,5 +41,35 @@ public class IdentityLinkRegression extends Regression {
 		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, schema);
 
 		return model;
+	}
+
+	@Override
+	public MiningModel encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+
+		if(targetWeights != null && targetWeights.size() != targetTrees.size()){
+			throw new IllegalArgumentException();
+		}
+
+		requireMultiOutputTreeSupport();
+
+		MultiLabel multiLabel = schema.requireMultiLabel()
+			.expectSize(targetTrees.size());
+
+		List<Model> models = new ArrayList<>();
+
+		for(int i = 0; i < targetTrees.size(); i++){
+			ScalarLabel scalarLabel = multiLabel.getScalarLabel(i);
+
+			List<RegTree> trees = targetTrees.get(i);
+			List<Float> weights = (targetWeights != null ? targetWeights.get(i) : null);
+
+			Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
+
+			Model model = encodeOutputGroup(trees, weights, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema);
+
+			models.add(model);
+		}
+
+		return MiningModelUtil.createMultiModelChain(models, Segmentation.MissingPredictionTreatment.CONTINUE);
 	}
 }

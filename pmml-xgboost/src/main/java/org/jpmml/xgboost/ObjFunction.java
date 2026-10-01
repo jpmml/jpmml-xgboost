@@ -26,16 +26,21 @@ import java.util.function.Function;
 
 import com.google.common.collect.Iterables;
 import com.google.common.primitives.Floats;
+import org.dmg.pmml.DataType;
 import org.dmg.pmml.MathContext;
 import org.dmg.pmml.MiningFunction;
 import org.dmg.pmml.Model;
+import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.mining.Segmentation;
 import org.dmg.pmml.tree.TreeModel;
 import org.jpmml.converter.ContinuousLabel;
+import org.jpmml.converter.ExceptionUtil;
+import org.jpmml.converter.FieldNameUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelEncoder;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.PayloadManager;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.ScalarLabel;
@@ -59,8 +64,8 @@ public class ObjFunction {
 	abstract
 	public Model encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema);
 
-	public Model encodeModel(int targetIndex, List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		return encodeModel(trees, weights, eta, targetBaseScore(targetIndex, base_score), ntreeLimit, schema);
+	public Model encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		throw new UnsupportedOperationException();
 	}
 
 	public boolean hasBranchScores(){
@@ -69,6 +74,19 @@ public class ObjFunction {
 
 	public boolean hasRecordCounts(){
 		return (this instanceof HasUnitHessian);
+	}
+
+	public boolean hasMultiOutputTreeSupport(){
+		return (this instanceof HasMultiOutputTreeSupport);
+	}
+
+	public HasMultiOutputTreeSupport requireMultiOutputTreeSupport(){
+
+		if(!hasMultiOutputTreeSupport()){
+			throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(getName()) + " does not support multi-target models");
+		}
+
+		return (HasMultiOutputTreeSupport)this;
 	}
 
 	public float[] probToMargin(float[] base_score){
@@ -224,12 +242,38 @@ public class ObjFunction {
 		}
 	}
 
+	protected List<Model> encodeTargetOutputGroups(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+
+		if(targetWeights != null && targetWeights.size() != targetTrees.size()){
+			throw new IllegalArgumentException();
+		}
+
+		requireMultiOutputTreeSupport();
+
+		MultiLabel multiLabel = schema.requireMultiLabel()
+			.expectSize(targetTrees.size());
+
+		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
+
+		List<Model> result = new ArrayList<>();
+
+		for(int i = 0; i < targetTrees.size(); i++){
+			ScalarLabel scalarLabel = multiLabel.getScalarLabel(i);
+
+			List<RegTree> trees = targetTrees.get(i);
+			List<Float> weights = (targetWeights != null ? targetWeights.get(i) : null);
+
+			Model model = encodeOutputGroup(trees, weights, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
+				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", scalarLabel.getName()), OpType.CONTINUOUS, DataType.FLOAT));
+
+			result.add(model);
+		}
+
+		return result;
+	}
+
 	static
 	protected float[] targetBaseScore(int targetIndex, float[] base_score){
-
-		if(targetIndex == ObjFunction.DEFAULT_TARGET_INDEX){
-			return base_score;
-		} // End if
 
 		if(base_score.length == 1){
 			return base_score;
@@ -251,6 +295,4 @@ public class ObjFunction {
 	static
 	public interface ProbToMarginFunction extends Function<Float, Float> {
 	}
-
-	public static final int DEFAULT_TARGET_INDEX = -1;
 }

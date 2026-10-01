@@ -33,14 +33,12 @@ import com.devsmart.ubjson.UBValue;
 import com.google.common.primitives.Floats;
 import com.google.gson.JsonObject;
 import org.dmg.pmml.Model;
-import org.dmg.pmml.mining.Segmentation;
 import org.jpmml.converter.CMatrixUtil;
 import org.jpmml.converter.ExceptionUtil;
 import org.jpmml.converter.Label;
 import org.jpmml.converter.MultiLabel;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
-import org.jpmml.converter.mining.MiningModelUtil;
 
 public class GBTree extends GradientBooster {
 
@@ -204,7 +202,7 @@ public class GBTree extends GradientBooster {
 		List<ScalarLabel> scalarLabels = label.toScalarLabels();
 
 		if(isMultiTarget()){
-			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = requireMultiOutputTreeSupport(obj);
+			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = obj.requireMultiOutputTreeSupport();
 
 			if(!hasMultiOutputTreeSupport.hasVectorLeafSupport()){
 				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(obj.getName()) + " does not support the " + ExceptionUtil.formatParameter("multi_output_tree") + " multi-target strategy");
@@ -218,7 +216,7 @@ public class GBTree extends GradientBooster {
 					.expectSize(tree.num_targets());
 			}
 
-			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, eta, base_score, ntreeLimit, schema);
+			return obj.encodeModel(trees, weights, eta, base_score, ntreeLimit, schema);
 		} // End if
 
 		if(trees.size() % scalarLabels.size() != 0){
@@ -226,21 +224,20 @@ public class GBTree extends GradientBooster {
 		} // End if
 
 		if(scalarLabels.size() == 1){
-			return obj.encodeModel(ObjFunction.DEFAULT_TARGET_INDEX, trees, weights, eta, base_score, ntreeLimit, schema);
+			return obj.encodeModel(trees, weights, eta, base_score, ntreeLimit, schema);
 		} else
 
 		if(scalarLabels.size() >= 2){
-			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = requireMultiOutputTreeSupport(obj);
+			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = obj.requireMultiOutputTreeSupport();
 
 			if(!hasMultiOutputTreeSupport.hasScalarLeafSupport()){
 				throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(obj.getName()) + " does not support the " + ExceptionUtil.formatParameter("one_output_per_tree") + " multi-target strategy");
 			}
 
-			List<Model> models = new ArrayList<>();
+			List<List<RegTree>> targetTrees = new ArrayList<>();
+			List<List<Float>> targetWeights = (weights != null ? new ArrayList<>() : null);
 
 			for(int i = 0; i < scalarLabels.size(); i++){
-				ScalarLabel scalarLabel = scalarLabels.get(i);
-
 				List<RegTree> segmentTrees;
 				List<Float> segmentWeights;
 
@@ -266,14 +263,14 @@ public class GBTree extends GradientBooster {
 					throw new IllegalArgumentException();
 				}
 
-				Schema segmentSchema = schema.toRelabeledSchema(scalarLabel);
+				targetTrees.add(segmentTrees);
 
-				Model model = obj.encodeModel(i, segmentTrees, segmentWeights, eta, base_score, ntreeLimit, segmentSchema);
-
-				models.add(model);
+				if(targetWeights != null){
+					targetWeights.add(segmentWeights);
+				}
 			}
 
-			return MiningModelUtil.createMultiModelChain(models, Segmentation.MissingPredictionTreatment.CONTINUE);
+			return obj.encodeMultiModel(targetTrees, targetWeights, eta, base_score, ntreeLimit, schema);
 		} else
 
 		{
@@ -299,16 +296,6 @@ public class GBTree extends GradientBooster {
 
 	public Float eta(){
 		return this.eta;
-	}
-
-	static
-	private HasMultiOutputTreeSupport requireMultiOutputTreeSupport(ObjFunction obj){
-
-		if(!(obj instanceof HasMultiOutputTreeSupport)){
-			throw new XGBoostException("Objective function " + ExceptionUtil.formatParameter(obj.getName()) + " does not support multi-target models");
-		}
-
-		return (HasMultiOutputTreeSupport)obj;
 	}
 
 	static

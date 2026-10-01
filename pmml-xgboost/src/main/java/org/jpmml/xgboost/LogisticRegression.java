@@ -49,4 +49,11 @@ public class LogisticRegression extends Regression implements HasMultiOutputTree
 
 		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
 	}
+
+	@Override
+	public MiningModel encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		List<Model> models = encodeTargetOutputGroups(targetTrees, targetWeights, eta, base_score, ntreeLimit, schema);
+
+		return MiningModelUtil.createMultiRegression(models, RegressionModel.NormalizationMethod.LOGIT, schema);
+	}
 }

@@ -49,4 +49,11 @@ public class BinomialLogisticRegression extends Classification implements HasMul
 
 		return MiningModelUtil.createBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.LOGIT, true, schema);
 	}
+
+	@Override
+	public MiningModel encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		List<Model> models = encodeTargetOutputGroups(targetTrees, targetWeights, eta, base_score, ntreeLimit, schema);
+
+		return MiningModelUtil.createMultiBinaryLogisticClassification(models, 1d, 0d, RegressionModel.NormalizationMethod.LOGIT, true, schema);
+	}
 }
