@@ -71,22 +71,22 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 
 	@Test
 	public void evaluateScalarLeafBinomialAudit() throws Exception {
-		evaluate("ScalarLeaf" + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(41 + 4));
+		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(41 + 4));
 	}
 
 	@Test
 	public void evaluateScalarLeafBinomialAuditLimit() throws Exception {
-		evaluate("ScalarLeaf" + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(26 + 5));
+		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(26 + 5));
 	}
 
 	@Test
 	public void evaluateScalarLeafBinomialAuditNA() throws Exception {
-		evaluate("ScalarLeaf" + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(47 + 20));
+		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(47 + 20));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate("ScalarLeaf" + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 5));
+		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 5));
 	}
 
 	// XXX

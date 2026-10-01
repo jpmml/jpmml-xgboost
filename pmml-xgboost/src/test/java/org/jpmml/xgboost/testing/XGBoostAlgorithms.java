@@ -20,6 +20,9 @@ package org.jpmml.xgboost.testing;
 
 public interface XGBoostAlgorithms {
 
+	String SCALAR_LEAF = "ScalarLeaf";
+	String VECTOR_LEAF = "VectorLeaf";
+
 	String AFT = "AFT";
 	String BINOMIAL_CLASSIFICATION = "BinomialClassification";
 	String DECISION_TREE = "DecisionTree";
@@ -32,5 +35,6 @@ public interface XGBoostAlgorithms {
 	String POISSON_REGRESSION = "PoissonRegression";
 	String QUANTILE_REGRESSION = "QuantileRegression";
 	String RANDOM_FOREST = "RandomForest";
+	String SQUARED_LOG_REGRESSION = "SquaredLogRegression";
 	String TWEEDIE_REGRESSION = "TweedieRegression";
 }

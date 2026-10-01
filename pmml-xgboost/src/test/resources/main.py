@@ -269,7 +269,7 @@ def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 	if dummify:
 		auto_X = _one_hot_encode(auto_X, cat_cols).to_numpy()
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
 
 	auto_params = dict(**params)
 	auto_params.update({
@@ -283,6 +283,18 @@ def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 	store_model(auto_booster, prefix + "LinearRegression", dataset)
 
 	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "LinearRegression" + dataset)
+
+	if prefix == "ScalarLeaf":
+		auto_booster = xgboost.train(params = dict(auto_params, objective = "reg:gamma"), dtrain = auto_dmat, num_boost_round = 31)
+		store_model(auto_booster, prefix + "GammaRegression", dataset)
+
+		store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "GammaRegression" + dataset)
+
+	if prefix == "VectorLeaf":
+		auto_booster = xgboost.train(params = dict(auto_params, objective = "reg:squaredlogerror"), dtrain = auto_dmat, num_boost_round = 31)
+		store_model(auto_booster, prefix + "SquaredLogRegression", dataset)
+
+		store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "SquaredLogRegression" + dataset)
 
 	auto_params.update({
 		"max_depth" : 6
@@ -488,6 +500,13 @@ if "Audit" in datasets:
 	if not legacy:
 		train_audit("AuditNA")
 
+def predict_multi_audit(audit_booster, audit_dmat, num_rounds = None):
+	gender_adjusted = audit_booster.predict(audit_dmat, **make_opts(num_rounds))
+
+	result = DataFrame(gender_adjusted, columns = ["_target1", "_target2"])
+
+	return result
+
 def predict_binomial_multi_audit(audit_booster, audit_dmat, num_rounds = None):
 	gender_adjusted_proba = audit_booster.predict(audit_dmat, **make_opts(num_rounds)).reshape((-1, 2))
 
@@ -570,6 +589,12 @@ def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), prefix + "BinomialClassification" + dataset)
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), prefix + "BinomialClassification" + dataset + "@31")
+
+	if prefix == "ScalarLeaf":
+		audit_booster = xgboost.train(params = dict(audit_params, objective = "reg:logistic"), dtrain = audit_dmat, num_boost_round = 71)
+		store_model(audit_booster, prefix + "LogisticRegression", dataset)
+
+		store_result(predict_multi_audit(audit_booster, audit_dmat), prefix + "LogisticRegression" + dataset)
 
 def train_scalar_leaf_audit(dataset, target_columns, **params):
 	train_multi_audit("ScalarLeaf", dataset, target_columns, dummify = False, **params)
