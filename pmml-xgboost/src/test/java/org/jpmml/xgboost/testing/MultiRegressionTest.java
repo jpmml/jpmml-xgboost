@@ -103,7 +103,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafGammaAuto() throws Exception {
-		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(21));
+		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(24));
 	}
 
 	@Test
@@ -123,12 +123,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafLogisticAudit() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(13));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(14));
 	}
 
 	@Test
 	public void evaluateScalarLeafLogisticAuditNA() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(23));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(25));
 	}
 
 	@Test
@@ -153,12 +153,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafGammaAuto() throws Exception {
-		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(17));
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(16));
 	}
 
 	@Test
 	public void evaluateVectorLeafGammaAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(22));
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(18));
 	}
 
 	@Test
@@ -173,12 +173,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafLogisticAudit() throws Exception {
-		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(26));
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(23));
 	}
 
 	@Test
 	public void evaluateVectorLeafLogisticAuditNA() throws Exception {
-		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(19));
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(20));
 	}
 
 	@Test

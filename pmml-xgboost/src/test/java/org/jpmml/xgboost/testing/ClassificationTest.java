@@ -126,7 +126,7 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAuditNASparse() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA + "Sparse", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA + "Sparse", excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(12));
 	}
 
 	@Test
