@@ -162,6 +162,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateVectorLeafLogisticAudit() throws Exception {
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(26));
+	}
+
+	@Test
+	public void evaluateVectorLeafLogisticAuditNA() throws Exception {
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(19));
+	}
+
+	@Test
 	public void evaluateVectorLeafRFAuto() throws Exception {
 		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(12));
 	}

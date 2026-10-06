@@ -25,7 +25,10 @@ import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.MultiLabel;
+import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -41,13 +44,35 @@ public class LogisticRegression extends Regression implements HasMultiOutputTree
 	}
 
 	@Override
+	public boolean hasVectorLeafSupport(){
+		return true;
+	}
+
+	@Override
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = schema.toSegmentSchema();
+		Label label = schema.getLabel();
 
-		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
+		Schema segmentSchema = schema.toLocalRegressorSchema("margin", DataType.FLOAT);
 
-		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
+		if(label instanceof ScalarLabel){
+			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
+				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
+
+			return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
+		} else
+
+		if(label instanceof MultiLabel){
+			MultiLabel multiLabel = segmentSchema.requireMultiLabel();
+
+			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
+				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel));
+
+			return MiningModelUtil.createMultiRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
 	}
 
 	@Override

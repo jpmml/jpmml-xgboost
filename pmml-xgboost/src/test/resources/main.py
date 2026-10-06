@@ -590,11 +590,10 @@ def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), prefix + "BinomialClassification" + dataset)
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), prefix + "BinomialClassification" + dataset + "@31")
 
-	if prefix == "ScalarLeaf":
-		audit_booster = xgboost.train(params = dict(audit_params, objective = "reg:logistic"), dtrain = audit_dmat, num_boost_round = 71)
-		store_model(audit_booster, prefix + "LogisticRegression", dataset)
+	audit_booster = xgboost.train(params = dict(audit_params, objective = "reg:logistic"), dtrain = audit_dmat, num_boost_round = 71)
+	store_model(audit_booster, prefix + "LogisticRegression", dataset)
 
-		store_result(predict_multi_audit(audit_booster, audit_dmat), prefix + "LogisticRegression" + dataset)
+	store_result(predict_multi_audit(audit_booster, audit_dmat), prefix + "LogisticRegression" + dataset)
 
 def train_scalar_leaf_audit(dataset, target_columns, **params):
 	train_multi_audit("ScalarLeaf", dataset, target_columns, dummify = False, **params)
