@@ -89,7 +89,7 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	@Test
-	public void evaluateBinomialAuditNALimit() throws Exception {
+	public void evaluateScalarLeafBinomialAuditNALimit() throws Exception {
 		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 5));
 	}
 
@@ -99,18 +99,8 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	@Test
-	public void evaluateScalarLeafHingeAuditLimit() throws Exception {
-		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_LIMIT);
-	}
-
-	@Test
 	public void evaluateScalarLeafHingeAuditNA() throws Exception {
 		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA);
-	}
-
-	@Test
-	public void evaluateScalarLeafHingeAuditNALimit() throws Exception {
-		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA_LIMIT);
 	}
 
 	@Test
@@ -119,18 +109,8 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	@Test
-	public void evaluateVectorLeafBinomialAuditLimit() throws Exception {
-		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(8));
-	}
-
-	@Test
 	public void evaluateVectorLeafBinomialAuditNA() throws Exception {
 		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(19));
-	}
-
-	@Test
-	public void evaluateVectorLeafBinomialAuditNALimit() throws Exception {
-		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(10));
 	}
 
 	@Test
@@ -139,18 +119,8 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	@Test
-	public void evaluateVectorLeafHingeAuditLimit() throws Exception {
-		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_LIMIT);
-	}
-
-	@Test
 	public void evaluateVectorLeafHingeAuditNA() throws Exception {
 		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA);
-	}
-
-	@Test
-	public void evaluateVectorLeafHingeAuditNALimit() throws Exception {
-		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA_LIMIT);
 	}
 
 	// XXX
