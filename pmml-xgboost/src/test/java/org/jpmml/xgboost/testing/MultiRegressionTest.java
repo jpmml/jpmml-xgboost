@@ -152,6 +152,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateVectorLeafGammaAuto() throws Exception {
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(17));
+	}
+
+	@Test
+	public void evaluateVectorLeafGammaAutoNA() throws Exception {
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(22));
+	}
+
+	@Test
 	public void evaluateVectorLeafLinearAuto() throws Exception {
 		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
 	}

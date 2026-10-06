@@ -18,9 +18,59 @@
  */
 package org.jpmml.xgboost;
 
+import java.util.List;
+
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.Model;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.mining.MiningModel;
+import org.dmg.pmml.regression.RegressionModel;
+import org.jpmml.converter.Label;
+import org.jpmml.converter.ModelUtil;
+import org.jpmml.converter.MultiLabel;
+import org.jpmml.converter.ScalarLabel;
+import org.jpmml.converter.Schema;
+import org.jpmml.converter.mining.MiningModelUtil;
+
 public class GeneralizedLinearRegression extends LogLinkRegression implements HasMultiOutputTreeSupport {
 
 	public GeneralizedLinearRegression(String name){
 		super(name);
+	}
+
+	@Override
+	public boolean hasVectorLeafSupport(){
+		return true;
+	}
+
+	@Override
+	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		Label label = schema.getLabel();
+
+		if(label instanceof ScalarLabel){
+			return super.encodeModel(trees, weights, eta, base_score, ntreeLimit, schema);
+		} else
+
+		if(label instanceof MultiLabel){
+			Schema segmentSchema = schema.toLocalRegressorSchema("margin", DataType.FLOAT);
+
+			MultiLabel multiLabel = segmentSchema.requireMultiLabel();
+
+			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
+				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel));
+
+			return MiningModelUtil.createMultiRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
+		} else
+
+		{
+			throw new IllegalArgumentException();
+		}
+	}
+
+	@Override
+	public MiningModel encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		List<Model> models = encodeTargetOutputGroups(targetTrees, targetWeights, eta, base_score, ntreeLimit, schema);
+
+		return MiningModelUtil.createMultiRegression(models, RegressionModel.NormalizationMethod.EXP, schema);
 	}
 }

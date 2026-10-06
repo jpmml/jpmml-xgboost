@@ -43,18 +43,11 @@ public class LogLinkRegression extends Regression {
 
 	@Override
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		Schema segmentSchema = schema.toSegmentSchema();
+		Schema segmentSchema = schema.toLocalRegressorSchema(DataType.FLOAT);
 
 		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
 			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
 
 		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
-	}
-
-	@Override
-	public MiningModel encodeMultiModel(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		List<Model> models = encodeTargetOutputGroups(targetTrees, targetWeights, eta, base_score, ntreeLimit, schema);
-
-		return MiningModelUtil.createMultiRegression(models, RegressionModel.NormalizationMethod.EXP, schema);
 	}
 }
