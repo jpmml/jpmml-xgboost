@@ -40,10 +40,14 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 		XGBoostEncoderBatch result = new XGBoostEncoderBatch(algorithm, dataset, columnFilter, equivalence){
 
 			{
+				String algorithm = getAlgorithm();
 				String dataset = getDataset();
 
 				if(Objects.equals(AUDIT, dataset) || Objects.equals(AUDIT_NA, dataset)){
-					setEta(ETA_AUDIT);
+
+					if(algorithm.startsWith(SCALAR_LEAF)){
+						setEta(ETA_AUDIT);
+					}
 				} else
 
 				if(Objects.equals(AUTO, dataset) || Objects.equals(AUTO_NA, dataset)){
@@ -87,6 +91,26 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
 		evaluate(SCALAR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(20 + 5));
+	}
+
+	@Test
+	public void evaluateVectorLeafBinomialAudit() throws Exception {
+		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(26));
+	}
+
+	@Test
+	public void evaluateVectorLeafBinomialAuditLimit() throws Exception {
+		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(8));
+	}
+
+	@Test
+	public void evaluateVectorLeafBinomialAuditNA() throws Exception {
+		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(19));
+	}
+
+	@Test
+	public void evaluateVectorLeafBinomialAuditNALimit() throws Exception {
+		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(10));
 	}
 
 	// XXX
