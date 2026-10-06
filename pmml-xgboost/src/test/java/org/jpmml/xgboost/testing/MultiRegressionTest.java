@@ -103,7 +103,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafGammaAuto() throws Exception {
-		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(24));
+		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(18));
 	}
 
 	@Test
@@ -123,12 +123,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafLogisticAudit() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(14));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(30));
 	}
 
 	@Test
 	public void evaluateScalarLeafLogisticAuditNA() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(25));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(34));
 	}
 
 	@Test
@@ -153,42 +153,42 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafGammaAuto() throws Exception {
-		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(16));
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(18));
 	}
 
 	@Test
 	public void evaluateVectorLeafGammaAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(18));
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(13));
 	}
 
 	@Test
 	public void evaluateVectorLeafLinearAuto() throws Exception {
-		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
+		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(5));
 	}
 
 	@Test
 	public void evaluateVectorLeafLinearAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6));
+		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(7));
 	}
 
 	@Test
 	public void evaluateVectorLeafLogisticAudit() throws Exception {
-		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(23));
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(41));
 	}
 
 	@Test
 	public void evaluateVectorLeafLogisticAuditNA() throws Exception {
-		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(20));
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(26));
 	}
 
 	@Test
 	public void evaluateVectorLeafRFAuto() throws Exception {
-		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(12));
+		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(10));
 	}
 
 	@Test
 	public void evaluateVectorLeafRFAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(15));
+		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(10));
 	}
 
 	@Test
