@@ -589,6 +589,12 @@ def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), prefix + "BinomialClassification" + dataset)
 	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), prefix + "BinomialClassification" + dataset + "@31")
 
+	audit_booster = xgboost.train(params = dict(audit_params, objective = "binary:hinge"), dtrain = audit_dmat, num_boost_round = 71)
+	store_model(audit_booster, prefix + "HingeClassification", dataset)
+
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat), prefix + "HingeClassification" + dataset)
+	store_result(predict_binomial_multi_audit(audit_booster, audit_dmat, 31), prefix + "HingeClassification" + dataset + "@31")
+
 	audit_booster = xgboost.train(params = dict(audit_params, objective = "reg:logistic"), dtrain = audit_dmat, num_boost_round = 71)
 	store_model(audit_booster, prefix + "LogisticRegression", dataset)
 

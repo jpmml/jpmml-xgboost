@@ -94,6 +94,26 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	}
 
 	@Test
+	public void evaluateScalarLeafHingeAudit() throws Exception {
+		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT);
+	}
+
+	@Test
+	public void evaluateScalarLeafHingeAuditLimit() throws Exception {
+		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_LIMIT);
+	}
+
+	@Test
+	public void evaluateScalarLeafHingeAuditNA() throws Exception {
+		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA);
+	}
+
+	@Test
+	public void evaluateScalarLeafHingeAuditNALimit() throws Exception {
+		evaluate(SCALAR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA_LIMIT);
+	}
+
+	@Test
 	public void evaluateVectorLeafBinomialAudit() throws Exception {
 		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(26));
 	}
@@ -111,6 +131,26 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 	@Test
 	public void evaluateVectorLeafBinomialAuditNALimit() throws Exception {
 		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(10));
+	}
+
+	@Test
+	public void evaluateVectorLeafHingeAudit() throws Exception {
+		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT);
+	}
+
+	@Test
+	public void evaluateVectorLeafHingeAuditLimit() throws Exception {
+		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_LIMIT);
+	}
+
+	@Test
+	public void evaluateVectorLeafHingeAuditNA() throws Exception {
+		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA);
+	}
+
+	@Test
+	public void evaluateVectorLeafHingeAuditNALimit() throws Exception {
+		evaluate(VECTOR_LEAF + HINGE_CLASSIFICATION, AUDIT_NA_LIMIT);
 	}
 
 	// XXX

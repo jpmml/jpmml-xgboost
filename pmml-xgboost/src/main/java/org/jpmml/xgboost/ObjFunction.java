@@ -45,6 +45,7 @@ import org.jpmml.converter.PayloadManager;
 import org.jpmml.converter.PredicateManager;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
+import org.jpmml.converter.Transformation;
 import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -242,7 +243,7 @@ public class ObjFunction {
 		}
 	}
 
-	protected List<Model> encodeTargetOutputGroups(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+	protected List<Model> encodeTargetOutputGroups(List<List<RegTree>> targetTrees, List<List<Float>> targetWeights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema, Transformation... transformations){
 
 		if(targetWeights != null && targetWeights.size() != targetTrees.size()){
 			throw new IllegalArgumentException();
@@ -264,7 +265,7 @@ public class ObjFunction {
 			List<Float> weights = (targetWeights != null ? targetWeights.get(i) : null);
 
 			Model model = encodeOutputGroup(trees, weights, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", scalarLabel.getName()), OpType.CONTINUOUS, DataType.FLOAT));
+				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", scalarLabel.getName()), OpType.CONTINUOUS, DataType.FLOAT, transformations));
 
 			result.add(model);
 		}
