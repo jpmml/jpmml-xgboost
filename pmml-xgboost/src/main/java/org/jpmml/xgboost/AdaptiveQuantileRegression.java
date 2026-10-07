@@ -23,9 +23,4 @@ public class AdaptiveQuantileRegression extends QuantileRegression implements Ha
 	public AdaptiveQuantileRegression(String name){
 		super(name);
 	}
-
-	@Override
-	public boolean hasVectorLeafSupport(){
-		return true;
-	}
 }

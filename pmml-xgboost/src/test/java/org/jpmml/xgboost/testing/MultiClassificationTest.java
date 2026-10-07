@@ -105,7 +105,7 @@ public class MultiClassificationTest extends XGBoostEncoderBatchTest implements 
 
 	@Test
 	public void evaluateVectorLeafBinomialAudit() throws Exception {
-		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(41));
+		evaluate(VECTOR_LEAF + BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_GENDER_PROBABILITY_FALSE, AUDIT_ADJUSTED_PROBABILITY_FALSE), new FloatEquivalence(42));
 	}
 
 	@Test

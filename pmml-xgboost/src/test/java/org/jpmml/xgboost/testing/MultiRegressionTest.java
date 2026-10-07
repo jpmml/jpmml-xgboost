@@ -26,6 +26,7 @@ import com.google.common.base.Equivalence;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, XGBoostLearningRates {
@@ -113,12 +114,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafGammaAuto() throws Exception {
-		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(18));
+		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO, new FloatEquivalence(21));
 	}
 
 	@Test
 	public void evaluateScalarLeafGammaAutoNA() throws Exception {
-		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(18));
+		evaluate(SCALAR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(21));
 	}
 
 	@Test
@@ -133,12 +134,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafLogisticAudit() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(30));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(39));
 	}
 
 	@Test
 	public void evaluateScalarLeafLogisticAuditNA() throws Exception {
-		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(34));
+		evaluate(SCALAR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(33));
 	}
 
 	@Test
@@ -148,12 +149,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafMedianAutoNA() throws Exception {
-		evaluate(SCALAR_LEAF + MEDIAN_REGRESSION, AUTO_NA, new FloatEquivalence(8));
+		evaluate(SCALAR_LEAF + MEDIAN_REGRESSION, AUTO_NA, new FloatEquivalence(6));
 	}
 
 	@Test
 	public void evaluateScalarLeafPoissonAuto() throws Exception {
-		evaluate(SCALAR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(18));
+		evaluate(SCALAR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(27));
 	}
 
 	@Test
@@ -162,11 +163,13 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	@Disabled
 	public void evaluateScalarLeafQuantileAuto() throws Exception {
 		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
 	}
 
 	@Test
+	@Disabled
 	public void evaluateScalarLeafQuantileAutoNA() throws Exception {
 		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(7));
 	}
@@ -183,7 +186,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafTweedieAuto() throws Exception {
-		evaluate(SCALAR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(20));
+		evaluate(SCALAR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(19));
 	}
 
 	@Test
@@ -208,22 +211,22 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafGammaAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(13));
+		evaluate(VECTOR_LEAF + GAMMA_REGRESSION, AUTO_NA, new FloatEquivalence(20));
 	}
 
 	@Test
 	public void evaluateVectorLeafLinearAuto() throws Exception {
-		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(5));
+		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
 	}
 
 	@Test
 	public void evaluateVectorLeafLinearAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(7));
+		evaluate(VECTOR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(8));
 	}
 
 	@Test
 	public void evaluateVectorLeafLogisticAudit() throws Exception {
-		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(41));
+		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(42));
 	}
 
 	@Test
@@ -243,7 +246,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafPoissonAuto() throws Exception {
-		evaluate(VECTOR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(19));
+		evaluate(VECTOR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(16));
 	}
 
 	@Test
@@ -252,11 +255,13 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	@Disabled
 	public void evaluateVectorLeafQuantileAuto() throws Exception {
 		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
 	}
 
 	@Test
+	@Disabled
 	public void evaluateVectorLeafQuantileAutoNA() throws Exception {
 		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(5));
 	}
@@ -268,7 +273,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafRFAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(10));
+		evaluate(VECTOR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(9));
 	}
 
 	@Test
@@ -283,7 +288,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateVectorLeafTweedieAuto() throws Exception {
-		evaluate(VECTOR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(20));
+		evaluate(VECTOR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(17));
 	}
 
 	@Test

@@ -24,4 +24,9 @@ public class QuantileRegression extends AsymmetricRegression implements HasMulti
 	public QuantileRegression(String name){
 		super(name);
 	}
+
+	@Override
+	public boolean hasVectorLeafSupport(){
+		return true;
+	}
 }

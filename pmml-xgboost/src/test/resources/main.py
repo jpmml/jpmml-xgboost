@@ -2,7 +2,6 @@ from pandas import DataFrame
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn2pmml.xgboost import make_feature_map
-from xgboost.core import XGBoostError
 
 import numpy
 import os
@@ -269,12 +268,11 @@ def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 	if dummify:
 		auto_X = _one_hot_encode(auto_X, cat_cols).to_numpy()
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
 
 	auto_params = dict(**params)
 	auto_params.update({
 		"objective" : "reg:squarederror",
-		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : auto_learning_rate,
 		"seed" : 42
 	})
@@ -319,10 +317,6 @@ def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 
 	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "DecisionTree" + dataset)
 
-	auto_params.update({
-		"booster" : "gbtree"
-	})
-
 	if "rate_drop" in auto_params:
 		auto_params.pop("rate_drop")
 
@@ -347,7 +341,7 @@ def train_vector_leaf_auto(dataset, target_columns, **params):
 	train_multi_auto("VectorLeaf", dataset, target_columns, dummify = True, multi_strategy = "multi_output_tree", **params)
 
 if "Auto" in datasets and not legacy:
-	train_scalar_leaf_auto("Auto", ["acceleration", "mpg"], booster = "dart", rate_drop = 0.05)
+	train_scalar_leaf_auto("Auto", ["acceleration", "mpg"], rate_drop = 0.05)
 	train_scalar_leaf_auto("AutoNA", ["acceleration", "mpg"])
 
 	train_vector_leaf_auto("Auto", ["acceleration", "mpg"])
@@ -374,13 +368,12 @@ def train_multi_quantile_auto(prefix, dataset, dummify, **params):
 	if dummify:
 		auto_X = _one_hot_encode(auto_X, cat_cols).to_numpy()
 
-	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y)
 
 	auto_params = dict(**params)
 	auto_params.update({
 		"objective" : "reg:quantileerror",
 		"quantile_alpha" : [0.25, 0.5, 0.75],
-		"tree_method" : "hist",
 		"max_depth" : 3,
 		"learning_rate" : auto_learning_rate,
 		"seed" : 42
@@ -639,12 +632,11 @@ def train_multi_audit(prefix, dataset, target_columns, dummify, **params):
 	if dummify:
 		audit_X = _one_hot_encode(audit_X, cat_cols).to_numpy()
 
-	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y, enable_categorical = True)
+	audit_dmat = xgboost.DMatrix(data = audit_X, label = audit_y)
 
 	audit_params = dict(**params)
 	audit_params.update({
 		"objective" : "binary:logistic",
-		"tree_method" : ("exact" if legacy else "hist"),
 		"learning_rate" : audit_learning_rate,
 		"seed" : 42
 	})
@@ -676,7 +668,7 @@ def train_vector_leaf_audit(dataset, target_columns, **params):
 if "Audit" in datasets and not legacy:
 	train_sparse_audit("AuditNA")
 
-	train_scalar_leaf_audit("Audit", ["Gender", "Adjusted"], booster = "dart", rate_drop = 0.05)
+	train_scalar_leaf_audit("Audit", ["Gender", "Adjusted"], rate_drop = 0.05)
 	train_scalar_leaf_audit("AuditNA", ["Gender", "Adjusted"])
 
 	train_vector_leaf_audit("Audit", ["Gender", "Adjusted"])
