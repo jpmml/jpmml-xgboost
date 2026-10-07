@@ -142,6 +142,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateScalarLeafTweedieAuto() throws Exception {
+		evaluate(SCALAR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(20));
+	}
+
+	@Test
+	public void evaluateScalarLeafTweedieAutoNA() throws Exception {
+		evaluate(SCALAR_LEAF + TWEEDIE_REGRESSION, AUTO_NA, new FloatEquivalence(22));
+	}
+
+	@Test
 	public void evaluateVectorLeafDTAuto() throws Exception {
 		evaluate(VECTOR_LEAF + DECISION_TREE, AUTO);
 	}
@@ -199,6 +209,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	@Test
 	public void evaluateVectorLeafSquaredLogAutoNA() throws Exception {
 		evaluate(VECTOR_LEAF + SQUARED_LOG_REGRESSION, AUTO_NA);
+	}
+
+	@Test
+	public void evaluateVectorLeafTweedieAuto() throws Exception {
+		evaluate(VECTOR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(20));
+	}
+
+	@Test
+	public void evaluateVectorLeafTweedieAutoNA() throws Exception {
+		evaluate(VECTOR_LEAF + TWEEDIE_REGRESSION, AUTO_NA, new FloatEquivalence(20));
 	}
 
 	private static final Table DATASET_EMPTY = new Table(0);
