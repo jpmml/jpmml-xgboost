@@ -67,26 +67,26 @@ public class LegacyRegressionTest extends XGBoostEncoderBatchTest implements XGB
 
 	@Test
 	public void evaluateLogisticAudit() throws Exception {
-		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(7 + 3));
+		evaluate(LOGISTIC_REGRESSION, AUDIT, new FloatEquivalence(10));
 	}
 
 	@Test
 	public void evaluateLinearAuto() throws Exception {
-		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(5 + 1));
+		evaluate(LINEAR_REGRESSION, AUTO, new FloatEquivalence(6));
 	}
 
 	@Test
 	public void evaluateGammaVisit() throws Exception {
-		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(9 + 1));
+		evaluate(GAMMA_REGRESSION, VISIT, new FloatEquivalence(10));
 	}
 
 	@Test
 	public void evaluatePoissonVisit() throws Exception {
-		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(12 + 2));
+		evaluate(POISSON_REGRESSION, VISIT, new FloatEquivalence(14));
 	}
 
 	@Test
 	public void evaluateTweedieVisit() throws Exception {
-		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(14 + 2));
+		evaluate(TWEEDIE_REGRESSION, VISIT, new FloatEquivalence(16));
 	}
 }

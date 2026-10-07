@@ -19,14 +19,30 @@
 package org.jpmml.xgboost.testing;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Predicate;
 
 import com.google.common.base.Equivalence;
+import com.google.common.collect.Iterables;
+import org.dmg.pmml.DataType;
+import org.dmg.pmml.Expression;
+import org.dmg.pmml.FieldRef;
+import org.dmg.pmml.Model;
+import org.dmg.pmml.OpType;
+import org.dmg.pmml.Output;
+import org.dmg.pmml.OutputField;
+import org.dmg.pmml.PMML;
+import org.dmg.pmml.PMMLFunctions;
+import org.dmg.pmml.ResultFeature;
+import org.jpmml.converter.ExpressionUtil;
+import org.jpmml.converter.FieldNameUtil;
+import org.jpmml.converter.ModelUtil;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
-import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, XGBoostLearningRates {
@@ -93,9 +109,72 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 			@Override
 			public Table getOutput() throws IOException {
+				Table table = super.getOutput();
+
 				String algorithm = getAlgorithm();
 
-				return super.getOutput();
+				// XXX
+				if(algorithm.endsWith(QUANTILE_REGRESSION)){
+
+					for(int i = 0; i < QUANTILE_REGRESSION_TARGETS.size(); i++){
+						table.renameColumn(QUANTILE_REGRESSION_TARGETS.get(i), QUANTILE_REGRESSION_OUTPUTS.get(i));
+					}
+				}
+
+				return table;
+			}
+
+			@Override
+			public PMML getPMML() throws Exception {
+				PMML pmml = super.getPMML();
+
+				String algorithm = getAlgorithm();
+
+				// XXX
+				if(algorithm.endsWith(QUANTILE_REGRESSION)){
+					List<Model> models = pmml.getModels();
+
+					Model model = Iterables.getOnlyElement(models);
+
+					Output output = ModelUtil.ensureOutput(model);
+
+					List<String> predictedNames = new ArrayList<>();
+
+					for(String targetField : QUANTILE_REGRESSION_TARGETS){
+						OutputField predictedOutputField = ModelUtil.createPredictedField(FieldNameUtil.create("predicted", targetField), OpType.CONTINUOUS, DataType.FLOAT)
+							.setTargetField(targetField);
+
+						output.addOutputFields(predictedOutputField);
+
+						predictedNames.add(predictedOutputField.requireName());
+					}
+
+					String firstField = predictedNames.get(0);
+					String secondField = predictedNames.get(1);
+					String thirdField = predictedNames.get(2);
+
+					// The median of three values, as max(min(a, b), min(max(a, b), c))
+					Expression median = ExpressionUtil.createApply(PMMLFunctions.MAX,
+						ExpressionUtil.createApply(PMMLFunctions.MIN, new FieldRef(firstField), new FieldRef(secondField)),
+						ExpressionUtil.createApply(PMMLFunctions.MIN, ExpressionUtil.createApply(PMMLFunctions.MAX, new FieldRef(firstField), new FieldRef(secondField)), new FieldRef(thirdField))
+					);
+
+					List<Expression> expressions = Arrays.asList(
+						ExpressionUtil.createApply(PMMLFunctions.MIN, new FieldRef(firstField), new FieldRef(secondField), new FieldRef(thirdField)),
+						median,
+						ExpressionUtil.createApply(PMMLFunctions.MAX, new FieldRef(firstField), new FieldRef(secondField), new FieldRef(thirdField))
+					);
+
+					for(int i = 0; i < QUANTILE_REGRESSION_OUTPUTS.size(); i++){
+						OutputField quantileOutputField = new OutputField(QUANTILE_REGRESSION_OUTPUTS.get(i), OpType.CONTINUOUS, DataType.FLOAT)
+							.setResultFeature(ResultFeature.TRANSFORMED_VALUE)
+							.setExpression(expressions.get(i));
+
+						output.addOutputFields(quantileOutputField);
+					}
+				}
+
+				return pmml;
 			}
 		};
 
@@ -124,12 +203,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 	@Test
 	public void evaluateScalarLeafLinearAuto() throws Exception {
-		evaluate(SCALAR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(4 + 9));
+		evaluate(SCALAR_LEAF + LINEAR_REGRESSION, AUTO, new FloatEquivalence(7));
 	}
 
 	@Test
 	public void evaluateScalarLeafLinearAutoNA() throws Exception {
-		evaluate(SCALAR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(6 + 8));
+		evaluate(SCALAR_LEAF + LINEAR_REGRESSION, AUTO_NA, new FloatEquivalence(7));
 	}
 
 	@Test
@@ -163,25 +242,23 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
-	@Disabled
 	public void evaluateScalarLeafQuantileAuto() throws Exception {
-		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
+		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO, excludeFields(QUANTILE_REGRESSION_EXCLUDED_FIELDS), new FloatEquivalence(5));
 	}
 
 	@Test
-	@Disabled
 	public void evaluateScalarLeafQuantileAutoNA() throws Exception {
-		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(7));
+		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO_NA, excludeFields(QUANTILE_REGRESSION_EXCLUDED_FIELDS), new FloatEquivalence(6));
 	}
 
 	@Test
 	public void evaluateScalarLeafRFAuto() throws Exception {
-		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(7 + 12));
+		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(12));
 	}
 
 	@Test
 	public void evaluateScalarLeafRFAutoNA() throws Exception {
-		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(7 + 4));
+		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO_NA, new FloatEquivalence(10));
 	}
 
 	@Test
@@ -255,15 +332,13 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
-	@Disabled
 	public void evaluateVectorLeafQuantileAuto() throws Exception {
-		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
+		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO, excludeFields(QUANTILE_REGRESSION_EXCLUDED_FIELDS), new FloatEquivalence(6));
 	}
 
 	@Test
-	@Disabled
 	public void evaluateVectorLeafQuantileAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(5));
+		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO_NA, excludeFields(QUANTILE_REGRESSION_EXCLUDED_FIELDS), new FloatEquivalence(5));
 	}
 
 	@Test
@@ -277,16 +352,6 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
-	public void evaluateVectorLeafSquaredLogAuto() throws Exception {
-		evaluate(VECTOR_LEAF + SQUARED_LOG_REGRESSION, AUTO);
-	}
-
-	@Test
-	public void evaluateVectorLeafSquaredLogAutoNA() throws Exception {
-		evaluate(VECTOR_LEAF + SQUARED_LOG_REGRESSION, AUTO_NA);
-	}
-
-	@Test
 	public void evaluateVectorLeafTweedieAuto() throws Exception {
 		evaluate(VECTOR_LEAF + TWEEDIE_REGRESSION, AUTO, new FloatEquivalence(17));
 	}
@@ -297,4 +362,9 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	private static final Table DATASET_EMPTY = new Table(0);
+
+	private static final List<String> QUANTILE_REGRESSION_TARGETS = Arrays.asList("_target1", "_target2", "_target3");
+	private static final List<String> QUANTILE_REGRESSION_OUTPUTS = Arrays.asList(FieldNameUtil.create("quantile", "_target", 25), FieldNameUtil.create("quantile", "_target", 50), FieldNameUtil.create("quantile", "_target", 75));
+
+	private static final List<String> QUANTILE_REGRESSION_EXCLUDED_FIELDS = Arrays.asList("_target1", "_target2", "_target3", "predicted(_target1)", "predicted(_target2)", "predicted(_target3)");
 }

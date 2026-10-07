@@ -106,22 +106,22 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateBinomialAudit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(39 + 9));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(37));
 	}
 
 	@Test
 	public void evaluateBinomialAuditLimit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(19 + 2));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(18));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNA() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(36 + 44));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(44));
 	}
 
 	@Test
 	public void evaluateBinomialAuditNALimit() throws Exception {
-		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(17 + 8));
+		evaluate(BINOMIAL_CLASSIFICATION, AUDIT_NA_LIMIT, excludeFields(AUDIT_PROBABILITY_FALSE), new FloatEquivalence(18));
 	}
 
 	@Test
@@ -141,12 +141,12 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateMultinomialAudit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(23 + 5));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT, new FloatEquivalence(15));
 	}
 
 	@Test
 	public void evaluateMultinomialAuditNA() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(23 + 3));
+		evaluate(MULTINOMIAL_CLASSIFICATION, AUDIT_NA, new FloatEquivalence(18));
 	}
 
 	@Test
@@ -166,6 +166,6 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 
 	@Test
 	public void evaluateMultinomialIrisNALimit() throws Exception {
-		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA_LIMIT, new FloatEquivalence(4 + 1));
+		evaluate(MULTINOMIAL_CLASSIFICATION, IRIS_NA_LIMIT, new FloatEquivalence(5));
 	}
 }
