@@ -294,6 +294,11 @@ def train_multi_auto(prefix, dataset, target_columns, dummify, **params):
 
 	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "TweedieRegression" + dataset)
 
+	auto_booster = xgboost.train(params = dict(auto_params, objective = "count:poisson"), dtrain = auto_dmat, num_boost_round = 31)
+	store_model(auto_booster, prefix + "PoissonRegression", dataset)
+
+	store_result(predict_multi_auto(auto_booster, auto_dmat), prefix + "PoissonRegression" + dataset)
+
 	if prefix == "VectorLeaf":
 		auto_booster = xgboost.train(params = dict(auto_params, objective = "reg:squaredlogerror"), dtrain = auto_dmat, num_boost_round = 31)
 		store_model(auto_booster, prefix + "SquaredLogRegression", dataset)

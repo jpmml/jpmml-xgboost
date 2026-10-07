@@ -132,6 +132,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateScalarLeafPoissonAuto() throws Exception {
+		evaluate(SCALAR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(18));
+	}
+
+	@Test
+	public void evaluateScalarLeafPoissonAutoNA() throws Exception {
+		evaluate(SCALAR_LEAF + POISSON_REGRESSION, AUTO_NA, new FloatEquivalence(17));
+	}
+
+	@Test
 	public void evaluateScalarLeafRFAuto() throws Exception {
 		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(7 + 12));
 	}
@@ -189,6 +199,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	@Test
 	public void evaluateVectorLeafLogisticAuditNA() throws Exception {
 		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(26));
+	}
+
+	@Test
+	public void evaluateVectorLeafPoissonAuto() throws Exception {
+		evaluate(VECTOR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(19));
+	}
+
+	@Test
+	public void evaluateVectorLeafPoissonAutoNA() throws Exception {
+		evaluate(VECTOR_LEAF + POISSON_REGRESSION, AUTO_NA, new FloatEquivalence(18));
 	}
 
 	@Test
