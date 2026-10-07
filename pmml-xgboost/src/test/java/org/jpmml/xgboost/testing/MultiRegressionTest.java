@@ -51,7 +51,7 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 				if(Objects.equals(AUTO, dataset) || Objects.equals(AUTO_NA, dataset)){
 
-					if(Objects.equals(algorithm, SCALAR_LEAF + MEDIAN_REGRESSION)){
+					if(Objects.equals(algorithm, SCALAR_LEAF + MEDIAN_REGRESSION) || Objects.equals(algorithm, SCALAR_LEAF + QUANTILE_REGRESSION)){
 						setRecordCount(392);
 					} else
 
@@ -74,6 +74,12 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 			@Override
 			public String getFeatureMapPath(){
+				String algorithm = getAlgorithm();
+
+				if(algorithm.endsWith(QUANTILE_REGRESSION)){
+					return super.getFeatureMapPath();
+				}
+
 				return "/csv/Multi" + truncate(getDataset()) + ".fmap";
 			}
 
@@ -156,6 +162,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateScalarLeafQuantileAuto() throws Exception {
+		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
+	}
+
+	@Test
+	public void evaluateScalarLeafQuantileAutoNA() throws Exception {
+		evaluate(SCALAR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(7));
+	}
+
+	@Test
 	public void evaluateScalarLeafRFAuto() throws Exception {
 		evaluate(SCALAR_LEAF + RANDOM_FOREST, AUTO, new FloatEquivalence(7 + 12));
 	}
@@ -233,6 +249,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	@Test
 	public void evaluateVectorLeafPoissonAutoNA() throws Exception {
 		evaluate(VECTOR_LEAF + POISSON_REGRESSION, AUTO_NA, new FloatEquivalence(18));
+	}
+
+	@Test
+	public void evaluateVectorLeafQuantileAuto() throws Exception {
+		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO, new FloatEquivalence(7));
+	}
+
+	@Test
+	public void evaluateVectorLeafQuantileAutoNA() throws Exception {
+		evaluate(VECTOR_LEAF + QUANTILE_REGRESSION, AUTO_NA, new FloatEquivalence(5));
 	}
 
 	@Test

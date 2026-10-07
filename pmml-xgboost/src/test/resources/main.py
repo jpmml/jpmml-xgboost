@@ -353,6 +353,57 @@ if "Auto" in datasets and not legacy:
 	train_vector_leaf_auto("Auto", ["acceleration", "mpg"])
 	train_vector_leaf_auto("AutoNA", ["acceleration", "mpg"])
 
+def predict_multi_quantile_auto(auto_booster, auto_dmat, num_rounds = None):
+	mpg = auto_booster.predict(auto_dmat, **make_opts(num_rounds))
+
+	result = DataFrame(mpg, columns = ["_target1", "_target2", "_target3"])
+
+	return result
+
+def train_multi_quantile_auto(prefix, dataset, dummify, **params):
+	auto_X, auto_y = load_split_csv(dataset)
+
+	cat_cols = ["cylinders", "model_year", "origin"]
+
+	for col in cat_cols:
+		auto_X[col] = _as_int64_categorical(auto_X[col])
+
+	auto_fmap = make_feature_map(auto_X, category_to_indicator = True)
+	auto_fmap.save(csv_file(dataset, ".fmap"))
+
+	if dummify:
+		auto_X = _one_hot_encode(auto_X, cat_cols).to_numpy()
+
+	auto_dmat = xgboost.DMatrix(data = auto_X, label = auto_y, enable_categorical = True)
+
+	auto_params = dict(**params)
+	auto_params.update({
+		"objective" : "reg:quantileerror",
+		"quantile_alpha" : [0.25, 0.5, 0.75],
+		"tree_method" : "hist",
+		"max_depth" : 3,
+		"learning_rate" : auto_learning_rate,
+		"seed" : 42
+	})
+
+	auto_booster = xgboost.train(params = auto_params, dtrain = auto_dmat, num_boost_round = 31)
+	store_model(auto_booster, prefix + "QuantileRegression", dataset)
+
+	store_result(predict_multi_quantile_auto(auto_booster, auto_dmat), prefix + "QuantileRegression" + dataset)
+
+def train_scalar_leaf_quantile_auto(dataset, **params):
+	train_multi_quantile_auto("ScalarLeaf", dataset, dummify = False, **params)
+
+def train_vector_leaf_quantile_auto(dataset, **params):
+	train_multi_quantile_auto("VectorLeaf", dataset, dummify = True, multi_strategy = "multi_output_tree", **params)
+
+if "Auto" in datasets and not legacy:
+	train_scalar_leaf_quantile_auto("Auto")
+	train_scalar_leaf_quantile_auto("AutoNA")
+
+	train_vector_leaf_quantile_auto("Auto")
+	train_vector_leaf_quantile_auto("AutoNA")
+
 def predict_visit(visit_booster, visit_dmat, num_rounds = None):
 	count = visit_booster.predict(visit_dmat, **make_opts(num_rounds))
 
