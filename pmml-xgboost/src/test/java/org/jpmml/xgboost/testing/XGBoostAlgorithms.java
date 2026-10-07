@@ -31,6 +31,7 @@ public interface XGBoostAlgorithms {
 	String HINGE_CLASSIFICATION = "HingeClassification";
 	String LINEAR_REGRESSION = "LinearRegression";
 	String LOGISTIC_REGRESSION = "LogisticRegression";
+	String MEDIAN_REGRESSION = "MedianRegression";
 	String MULTINOMIAL_CLASSIFICATION = "MultinomialClassification";
 	String POISSON_REGRESSION = "PoissonRegression";
 	String QUANTILE_REGRESSION = "QuantileRegression";

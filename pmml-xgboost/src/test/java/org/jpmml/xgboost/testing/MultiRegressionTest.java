@@ -51,6 +51,10 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 
 				if(Objects.equals(AUTO, dataset) || Objects.equals(AUTO_NA, dataset)){
 
+					if(Objects.equals(algorithm, SCALAR_LEAF + MEDIAN_REGRESSION)){
+						setRecordCount(392);
+					} else
+
 					if(Objects.equals(algorithm, SCALAR_LEAF + RANDOM_FOREST)){
 						setEta(ETA_AUTO / 37);
 						setRecordCount(325);
@@ -132,6 +136,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	}
 
 	@Test
+	public void evaluateScalarLeafMedianAuto() throws Exception {
+		evaluate(SCALAR_LEAF + MEDIAN_REGRESSION, AUTO, new FloatEquivalence(7));
+	}
+
+	@Test
+	public void evaluateScalarLeafMedianAutoNA() throws Exception {
+		evaluate(SCALAR_LEAF + MEDIAN_REGRESSION, AUTO_NA, new FloatEquivalence(8));
+	}
+
+	@Test
 	public void evaluateScalarLeafPoissonAuto() throws Exception {
 		evaluate(SCALAR_LEAF + POISSON_REGRESSION, AUTO, new FloatEquivalence(18));
 	}
@@ -199,6 +213,16 @@ public class MultiRegressionTest extends XGBoostEncoderBatchTest implements XGBo
 	@Test
 	public void evaluateVectorLeafLogisticAuditNA() throws Exception {
 		evaluate(VECTOR_LEAF + LOGISTIC_REGRESSION, AUDIT_NA, new FloatEquivalence(26));
+	}
+
+	@Test
+	public void evaluateVectorLeafMedianAuto() throws Exception {
+		evaluate(VECTOR_LEAF + MEDIAN_REGRESSION, AUTO, new FloatEquivalence(5));
+	}
+
+	@Test
+	public void evaluateVectorLeafMedianAutoNA() throws Exception {
+		evaluate(VECTOR_LEAF + MEDIAN_REGRESSION, AUTO_NA, new FloatEquivalence(6));
 	}
 
 	@Test
