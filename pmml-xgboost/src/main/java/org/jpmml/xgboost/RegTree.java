@@ -127,6 +127,12 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		float[] split_conditions = UBJSONUtil.toFloatArray(tree.get("split_conditions"));
 
 		float[] base_weights = UBJSONUtil.toFloatArray(tree.get("base_weights"));
+		float[] leaf_weights = null;
+
+		// With the multi_output_tree strategy, adaptive objective functions refit vector leaf values into leaf_weights
+		if(multi_target && tree.containsKey("leaf_weights")){
+			leaf_weights = UBJSONUtil.toFloatArray(tree.get("leaf_weights"));
+		}
 
 		float[] loss_changes = null;
 		float[] sum_hessian = null;
@@ -145,6 +151,8 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		this.nodes = new Node[this.num_nodes];
 		this.stats = (has_stats ? new NodeStat[this.num_nodes] : null);
 
+		int leafIndex = 0;
+
 		for(int i = 0; i < this.num_nodes; i++){
 			UBObject node = UBValueFactory.createObject();
 
@@ -160,7 +168,17 @@ public class RegTree implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			((UBJSONLoadable)this.nodes[i]).loadUBJSON(node);
 
 			if(multi_target){
-				float[] leaf_values = Arrays.copyOfRange(base_weights, i * this.size_leaf_vector, (i + 1) * this.size_leaf_vector);
+				float[] leaf_values;
+
+				if(leaf_weights != null && this.nodes[i].is_leaf()){
+					leaf_values = Arrays.copyOfRange(leaf_weights, leafIndex * this.size_leaf_vector, (leafIndex + 1) * this.size_leaf_vector);
+
+					leafIndex++;
+				} else
+
+				{
+					leaf_values = Arrays.copyOfRange(base_weights, i * this.size_leaf_vector, (i + 1) * this.size_leaf_vector);
+				}
 
 				((JSONNode)this.nodes[i]).set_leaf_values(leaf_values);
 			} // End if
