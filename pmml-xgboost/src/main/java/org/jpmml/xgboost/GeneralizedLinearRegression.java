@@ -52,12 +52,14 @@ public class GeneralizedLinearRegression extends LogLinkRegression implements Ha
 		} else
 
 		if(label instanceof MultiLabel){
-			Schema segmentSchema = schema.toLocalRegressorSchema("margin", DataType.FLOAT);
+			MultiLabel multiLabel = (MultiLabel)label;
 
-			MultiLabel multiLabel = segmentSchema.requireMultiLabel();
+			Schema segmentSchema = schema.toLocalRegressorSchema(DataType.FLOAT);
+
+			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel));
+				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
 
 			return MiningModelUtil.createMultiRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
 		} else
