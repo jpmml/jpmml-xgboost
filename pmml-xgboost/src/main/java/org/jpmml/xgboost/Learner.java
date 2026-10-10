@@ -138,6 +138,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		String name_obj = input.readString();
 
 		this.obj = parseObjective(name_obj, this.num_class);
+		this.obj.set_num_target(this.num_target);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		if(this.major_version >= 1){
@@ -229,6 +230,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		String name_obj = objective.get("name").asString();
 
 		this.obj = parseObjective(name_obj, this.num_class);
+		this.obj.set_num_target(this.num_target);
 
 		// Starting from 1.0.0, the base score is saved as an untransformed value
 		this.base_score = this.obj.probToMargin(this.base_score);

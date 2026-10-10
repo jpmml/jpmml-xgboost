@@ -25,10 +25,8 @@ import org.dmg.pmml.Model;
 import org.dmg.pmml.OpType;
 import org.dmg.pmml.mining.MiningModel;
 import org.dmg.pmml.regression.RegressionModel;
-import org.jpmml.converter.Label;
 import org.jpmml.converter.ModelUtil;
 import org.jpmml.converter.MultiLabel;
-import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 import org.jpmml.converter.mining.MiningModelUtil;
 
@@ -50,19 +48,20 @@ public class LogisticRegression extends Regression implements HasMultiOutputTree
 
 	@Override
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
-		Label label = schema.getLabel();
+		int num_target = num_target();
 
 		Schema segmentSchema = schema.toLocalRegressorSchema(DataType.FLOAT);
 
-		if(label instanceof ScalarLabel){
+		if(num_target == 1){
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
 				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
 
 			return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
 		} else
 
-		if(label instanceof MultiLabel){
-			MultiLabel multiLabel = (MultiLabel)label;
+		if(num_target >= 2){
+			MultiLabel multiLabel = schema.requireMultiLabel()
+				.expectSize(num_target);
 
 			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 

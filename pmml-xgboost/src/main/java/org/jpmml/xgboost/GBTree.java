@@ -35,9 +35,7 @@ import com.google.gson.JsonObject;
 import org.dmg.pmml.Model;
 import org.jpmml.converter.CMatrixUtil;
 import org.jpmml.converter.ExceptionUtil;
-import org.jpmml.converter.Label;
 import org.jpmml.converter.MultiLabel;
-import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
 
 public class GBTree extends GradientBooster {
@@ -197,9 +195,7 @@ public class GBTree extends GradientBooster {
 		List<Float> weights = tree_weights() != null ? Floats.asList(tree_weights()) : null;
 		Float eta = eta();
 
-		Label label = schema.getLabel();
-
-		List<ScalarLabel> scalarLabels = label.toScalarLabels();
+		int num_target = obj.num_target();
 
 		if(isMultiTarget()){
 			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = obj.requireMultiOutputTreeSupport();
@@ -219,15 +215,15 @@ public class GBTree extends GradientBooster {
 			return obj.encodeModel(trees, weights, eta, base_score, ntreeLimit, schema);
 		} // End if
 
-		if(trees.size() % scalarLabels.size() != 0){
-			throw new XGBoostException("Expected the number of trees to be a multiple of " + scalarLabels.size() + ", got " + trees.size());
+		if(trees.size() % num_target != 0){
+			throw new XGBoostException("Expected the number of trees to be a multiple of " + num_target + ", got " + trees.size());
 		} // End if
 
-		if(scalarLabels.size() == 1){
+		if(num_target == 1){
 			return obj.encodeModel(trees, weights, eta, base_score, ntreeLimit, schema);
 		} else
 
-		if(scalarLabels.size() >= 2){
+		if(num_target >= 2){
 			HasMultiOutputTreeSupport hasMultiOutputTreeSupport = obj.requireMultiOutputTreeSupport();
 
 			if(!hasMultiOutputTreeSupport.hasScalarLeafSupport()){
@@ -237,14 +233,14 @@ public class GBTree extends GradientBooster {
 			List<List<RegTree>> targetTrees = new ArrayList<>();
 			List<List<Float>> targetWeights = (weights != null ? new ArrayList<>() : null);
 
-			for(int i = 0; i < scalarLabels.size(); i++){
+			for(int i = 0; i < num_target; i++){
 				List<RegTree> segmentTrees;
 				List<Float> segmentWeights;
 
 				// Boosting
 				if(this.num_parallel_tree == 1){
-					int rows = trees.size() / scalarLabels.size();
-					int columns = scalarLabels.size();
+					int rows = trees.size() / num_target;
+					int columns = num_target;
 
 					segmentTrees = CMatrixUtil.getColumn(trees, rows, columns, i);
 					segmentWeights = weights != null ? CMatrixUtil.getColumn(weights, rows, columns, i) : null;
@@ -252,8 +248,8 @@ public class GBTree extends GradientBooster {
 
 				// Bagging
 				if(this.num_parallel_tree >= 2){
-					int rows = scalarLabels.size();
-					int columns = trees.size() / scalarLabels.size();
+					int rows = num_target;
+					int columns = trees.size() / num_target;
 
 					segmentTrees = CMatrixUtil.getRow(trees, rows, columns, i);
 					segmentWeights = weights != null ? CMatrixUtil.getRow(weights, rows, columns, i) : null;

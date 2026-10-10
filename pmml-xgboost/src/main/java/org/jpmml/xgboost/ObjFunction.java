@@ -54,6 +54,8 @@ public class ObjFunction {
 
 	private String name;
 
+	private int num_target = -1;
+
 
 	public ObjFunction(String name){
 		this.name = name;
@@ -108,6 +110,14 @@ public class ObjFunction {
 
 	public String getName(){
 		return this.name;
+	}
+
+	public int num_target(){
+		return this.num_target;
+	}
+
+	void set_num_target(int num_target){
+		this.num_target = num_target;
 	}
 
 	protected Model encodeOutputGroup(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
