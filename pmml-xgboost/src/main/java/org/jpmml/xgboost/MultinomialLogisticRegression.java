@@ -45,13 +45,16 @@ public class MultinomialLogisticRegression extends Classification {
 
 	@Override
 	public MiningModel encodeModel(List<RegTree> trees, List<Float> weights, Float eta, float[] base_score, Integer ntreeLimit, Schema schema){
+		int num_class = num_class();
+
+		CategoricalLabel categoricalLabel = schema.requireCategoricalLabel()
+			.expectCardinality(num_class);
+
 		Schema segmentSchema = schema.toAnonymousRegressorSchema(DataType.FLOAT);
 
 		List<Model> models = new ArrayList<>();
 
-		CategoricalLabel categoricalLabel = schema.requireCategoricalLabel();
-
-		for(int i = 0, columns = categoricalLabel.size(), rows = (trees.size() / columns); i < columns; i++){
+		for(int i = 0, columns = num_class, rows = (trees.size() / columns); i < columns; i++){
 			Model model = encodeOutputGroup(CMatrixUtil.getColumn(trees, rows, columns, i), (weights != null) ? CMatrixUtil.getColumn(weights, rows, columns, i) : null, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
 				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", categoricalLabel.getValue(i)), OpType.CONTINUOUS, DataType.FLOAT));
 
