@@ -54,7 +54,7 @@ public class BinomialLogisticRegression extends Classification implements HasMul
 
 		if(num_target == 1){
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT));
 
 			return MiningModelUtil.createBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.LOGIT, true, schema);
 		} else
@@ -66,7 +66,7 @@ public class BinomialLogisticRegression extends Classification implements HasMul
 			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
 
 			return MiningModelUtil.createMultiBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.LOGIT, true, schema);
 		} else

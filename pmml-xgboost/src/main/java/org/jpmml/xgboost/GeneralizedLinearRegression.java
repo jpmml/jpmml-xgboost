@@ -58,7 +58,7 @@ public class GeneralizedLinearRegression extends LogLinkRegression implements Ha
 			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
 
 			return MiningModelUtil.createMultiRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
 		} else

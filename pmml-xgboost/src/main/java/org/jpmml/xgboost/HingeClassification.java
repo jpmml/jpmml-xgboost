@@ -58,7 +58,7 @@ public class HingeClassification extends Classification implements HasMultiOutpu
 
 		if(num_target == 1){
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, transformation));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT, transformation));
 
 			return MiningModelUtil.createBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.NONE, true, schema);
 		} else
@@ -70,7 +70,7 @@ public class HingeClassification extends Classification implements HasMultiOutpu
 			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel, transformation));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel, transformation));
 
 			return MiningModelUtil.createMultiBinaryLogisticClassification(model, 1d, 0d, RegressionModel.NormalizationMethod.NONE, true, schema);
 		} else

@@ -56,7 +56,7 @@ public class MultinomialLogisticRegression extends Classification {
 
 		for(int i = 0, columns = num_class, rows = (trees.size() / columns); i < columns; i++){
 			Model model = encodeOutputGroup(CMatrixUtil.getColumn(trees, rows, columns, i), (weights != null) ? CMatrixUtil.getColumn(weights, rows, columns, i) : null, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", categoricalLabel.getValue(i)), OpType.CONTINUOUS, DataType.FLOAT));
+				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create(ObjFunction.FIELD_BOOSTED_VALUE, categoricalLabel.getValue(i)), OpType.CONTINUOUS, DataType.FLOAT));
 
 			models.add(model);
 		}

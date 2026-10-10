@@ -275,7 +275,7 @@ public class ObjFunction {
 			List<Float> weights = (targetWeights != null ? targetWeights.get(i) : null);
 
 			Model model = encodeOutputGroup(trees, weights, eta, targetBaseScore(i, base_score), ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create("xgbValue", scalarLabel.getName()), OpType.CONTINUOUS, DataType.FLOAT, transformations));
+				.setOutput(ModelUtil.createPredictedOutput(FieldNameUtil.create(ObjFunction.FIELD_BOOSTED_VALUE, scalarLabel.getName()), OpType.CONTINUOUS, DataType.FLOAT, transformations));
 
 			result.add(model);
 		}
@@ -306,4 +306,6 @@ public class ObjFunction {
 	static
 	public interface ProbToMarginFunction extends Function<Float, Float> {
 	}
+
+	protected static final String FIELD_BOOSTED_VALUE = "xgbValue";
 }

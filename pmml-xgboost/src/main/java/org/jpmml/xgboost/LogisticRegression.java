@@ -54,7 +54,7 @@ public class LogisticRegression extends Regression implements HasMultiOutputTree
 
 		if(num_target == 1){
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT));
 
 			return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
 		} else
@@ -66,7 +66,7 @@ public class LogisticRegression extends Regression implements HasMultiOutputTree
 			MultiLabel segmentMultiLabel = segmentSchema.requireMultiLabel();
 
 			Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-				.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
+				.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT, multiLabel, segmentMultiLabel));
 
 			return MiningModelUtil.createMultiRegression(model, RegressionModel.NormalizationMethod.LOGIT, schema);
 		} else

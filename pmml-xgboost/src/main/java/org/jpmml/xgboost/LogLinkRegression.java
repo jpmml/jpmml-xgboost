@@ -46,7 +46,7 @@ public class LogLinkRegression extends Regression {
 		Schema segmentSchema = schema.toLocalRegressorSchema(DataType.FLOAT);
 
 		Model model = encodeOutputGroup(trees, weights, eta, base_score, ntreeLimit, segmentSchema)
-			.setOutput(ModelUtil.createPredictedOutput("xgbValue", OpType.CONTINUOUS, DataType.FLOAT));
+			.setOutput(ModelUtil.createPredictedOutput(ObjFunction.FIELD_BOOSTED_VALUE, OpType.CONTINUOUS, DataType.FLOAT));
 
 		return MiningModelUtil.createRegression(model, RegressionModel.NormalizationMethod.EXP, schema);
 	}
