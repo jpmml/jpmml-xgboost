@@ -841,7 +841,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 			} else
 
 			{
-				throw new UnsupportedFeatureException("Expected a discrete feature, got " + feature.typeString());
+				throw new UnsupportedFeatureException("Expected a discrete feature, got " + ExceptionUtil.formatFeature(feature));
 			}
 		}
 
