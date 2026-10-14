@@ -69,6 +69,7 @@ import org.jpmml.converter.Label;
 import org.jpmml.converter.MissingValueFeature;
 import org.jpmml.converter.ModelTransformer;
 import org.jpmml.converter.MultiLabel;
+import org.jpmml.converter.PMMLEncodable;
 import org.jpmml.converter.PMMLEncoder;
 import org.jpmml.converter.ScalarLabel;
 import org.jpmml.converter.Schema;
@@ -79,7 +80,7 @@ import org.jpmml.converter.ValueUtil;
 import org.jpmml.converter.tree.HasTreeModelOptions;
 import org.jpmml.converter.tree.TreeModelTransformerBuilder;
 
-public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
+public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable, PMMLEncodable {
 
 	private float[] base_score;
 
@@ -483,6 +484,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable {
 		};
 
 		return schema.toTransformedSchema(function);
+	}
+
+	@Override
+	public PMML encodePMML(Map<String, ?> options){
+		return encodePMML(options, null, null, null);
 	}
 
 	public PMML encodePMML(Map<String, ?> options, String targetName, List<String> targetCategories, FeatureMap featureMap){
