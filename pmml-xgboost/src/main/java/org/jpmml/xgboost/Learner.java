@@ -422,7 +422,11 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable, PM
 
 	public FeatureMap encodeFeatureMap(){
 
-		if(this.feature_names == null || this.feature_types == null){
+		if(this.feature_names == null || this.feature_names.length == 0){
+			return null;
+		} // End if
+
+		if(this.feature_types == null || this.feature_types.length == 0){
 			return null;
 		}
 
