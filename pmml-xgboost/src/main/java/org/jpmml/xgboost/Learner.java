@@ -375,7 +375,7 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable, PM
 		}
 	}
 
-	private ObjFunction parseObjective(String name_obj, int num_class){
+	public ObjFunction parseObjective(String name_obj, int num_class){
 
 		switch(name_obj){
 			case "reg:linear":
@@ -680,6 +680,12 @@ public class Learner implements BinaryLoadable, JSONLoadable, UBJSONLoadable, PM
 
 	public ObjFunction obj(){
 		return this.obj;
+	}
+
+	public void setObj(ObjFunction obj){
+		obj.set_num_target(this.num_target);
+
+		this.obj = obj;
 	}
 
 	public GBTree gbtree(){

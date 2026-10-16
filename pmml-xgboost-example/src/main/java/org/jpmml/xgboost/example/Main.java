@@ -44,6 +44,7 @@ import org.jpmml.xgboost.ByteOrderUtil;
 import org.jpmml.xgboost.FeatureMap;
 import org.jpmml.xgboost.HasXGBoostOptions;
 import org.jpmml.xgboost.Learner;
+import org.jpmml.xgboost.ObjFunction;
 import org.jpmml.xgboost.XGBoostUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -121,6 +122,13 @@ public class Main {
 		order = Parameters.BLOCK_MODEL + 1
 	)
 	private Integer ntreeLimit = null;
+
+	@Parameter (
+		names = {"--objective"},
+		description = "Custom objective function",
+		order = Parameters.BLOCK_MODEL + 2
+	)
+	private String objective = null;
 
 	@Parameter (
 		names = {SchemaParameters.NAME_INPUT_FLOAT},
@@ -241,6 +249,14 @@ public class Main {
 			logger.error("Failed to parse learner", e);
 
 			throw e;
+		}
+
+		if(this.objective != null){
+			logger.info("Setting custom objective function");
+
+			ObjFunction obj = learner.parseObjective(this.objective, learner.num_class());
+
+			learner.setObj(obj);
 		}
 
 		FeatureMap featureMap = null;

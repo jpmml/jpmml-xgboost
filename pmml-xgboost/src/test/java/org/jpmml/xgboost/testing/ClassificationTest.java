@@ -28,6 +28,8 @@ import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.Table;
 import org.jpmml.evaluator.testing.FloatEquivalence;
+import org.jpmml.xgboost.BinomialLogisticRegression;
+import org.jpmml.xgboost.ObjFunction;
 import org.junit.jupiter.api.Test;
 
 public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostFormats, XGBoostLearningRates, Fields {
@@ -77,6 +79,23 @@ public class ClassificationTest extends XGBoostEncoderBatchTest implements XGBoo
 			@Override
 			public ClassificationTest getArchiveBatchTest(){
 				return ClassificationTest.this;
+			}
+
+			@Override
+			public ObjFunction getObjFunction(){
+				ObjFunction objFunction = super.getObjFunction();
+
+				String algorithm = getAlgorithm();
+				String dataset = getDataset();
+
+				if(Objects.equals(BINOMIAL_CLASSIFICATION, algorithm)){
+
+					if(Objects.equals(AUDIT, dataset) || Objects.equals(AUDIT_LIMIT, dataset)){
+						return new BinomialLogisticRegression("binary:logistic");
+					}
+				}
+
+				return objFunction;
 			}
 
 			@Override

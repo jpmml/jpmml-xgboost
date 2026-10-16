@@ -25,6 +25,8 @@ import com.google.common.base.Equivalence;
 import org.jpmml.converter.testing.Fields;
 import org.jpmml.evaluator.ResultField;
 import org.jpmml.evaluator.testing.FloatEquivalence;
+import org.jpmml.xgboost.BinomialLogisticRegression;
+import org.jpmml.xgboost.ObjFunction;
 import org.junit.jupiter.api.Test;
 
 public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements XGBoostAlgorithms, XGBoostDatasets, XGBoostLearningRates, Fields {
@@ -48,6 +50,23 @@ public class LegacyClassificationTest extends XGBoostEncoderBatchTest implements
 			@Override
 			public LegacyClassificationTest getArchiveBatchTest(){
 				return LegacyClassificationTest.this;
+			}
+
+			@Override
+			public ObjFunction getObjFunction(){
+				ObjFunction objFunction = super.getObjFunction();
+
+				String algorithm = getAlgorithm();
+				String dataset = getDataset();
+
+				if(Objects.equals(BINOMIAL_CLASSIFICATION, algorithm)){
+
+					if(Objects.equals(AUDIT, dataset)){
+						return new BinomialLogisticRegression("binary:logistic");
+					}
+				}
+
+				return objFunction;
 			}
 		};
 

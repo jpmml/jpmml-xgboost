@@ -87,6 +87,10 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 		return OptionsUtil.generateOptionsMatrix(options);
 	}
 
+	public ObjFunction getObjFunction(){
+		return null;
+	}
+
 	public String getLearnerPath(String format){
 		return "/xgboost/" + (getAlgorithm() + truncate(getDataset())) + "." + format;
 	}
@@ -144,6 +148,11 @@ public class XGBoostEncoderBatch extends ModelEncoderBatch {
 
 		try(InputStream is = open(learnerPath)){
 			learner = XGBoostUtil.loadLearner(is);
+		}
+
+		ObjFunction objFunction = getObjFunction();
+		if(objFunction != null){
+			learner.setObj(objFunction);
 		}
 
 		ObjFunction obj = learner.obj();

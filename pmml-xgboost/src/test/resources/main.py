@@ -1,4 +1,5 @@
 from pandas import DataFrame
+from scipy.special import expit
 from sklearn.compose import ColumnTransformer
 from sklearn.preprocessing import LabelEncoder, OneHotEncoder
 from sklearn2pmml.xgboost import make_feature_map
@@ -96,6 +97,12 @@ def _one_hot_encode(X, cat_cols):
 	for col in cat_cols:
 		Xt.loc[X[col].isna(), [column for column in Xt.columns if column.startswith(col + "=")]] = numpy.nan
 	return Xt
+
+def custom_binomial_classification(predt, dmat):
+	proba = expit(predt)
+	grad = (proba - dmat.get_label())
+	hess = proba * (1 - proba)
+	return grad, hess
 
 #
 # Survival regression
@@ -468,8 +475,11 @@ def predict_audit(audit_booster, audit_dmat, num_rounds = None):
 
 	return result
 
-def predict_binomial_audit(audit_booster, audit_dmat, num_rounds = None):
-	adjusted_proba = audit_booster.predict(audit_dmat, **make_opts(num_rounds)).reshape((-1, 1))
+def predict_binomial_audit(audit_booster, audit_dmat, num_rounds = None, output_margin = False):
+	adjusted_proba = audit_booster.predict(audit_dmat, output_margin = output_margin, **make_opts(num_rounds))
+	if output_margin:
+		adjusted_proba = expit(adjusted_proba)
+	adjusted_proba = adjusted_proba.reshape((-1, 1))
 
 	result = DataFrame(numpy.hstack(((adjusted_proba > 0.5), (1 - adjusted_proba), adjusted_proba)), columns = ["_target", "probability(0)", "probability(1)"])
 	result["_target"] = result["_target"].astype(int)
@@ -485,7 +495,7 @@ def predict_multinomial_audit(audit_booster, audit_dmat, num_rounds = None):
 
 	return result
 
-def train_audit(dataset, **params):
+def train_audit(dataset, objective = "binary:logistic", **params):
 	audit_X, audit_y = load_split_csv(dataset)
 
 	cat_cols = ["Education", "Employment", "Gender", "Marital", "Occupation"]
@@ -516,16 +526,22 @@ def train_audit(dataset, **params):
 
 	store_result(predict_audit(audit_booster, audit_dmat), "LogisticRegression" + dataset)
 
-	audit_params.update({
-		"objective" : "binary:logistic"
-	})
+	if callable(objective):
+		del audit_params["objective"]
 
-	audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
+		audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71, obj = objective)
+	else:
+		audit_params.update({
+			"objective" : objective
+		})
+
+		audit_booster = xgboost.train(params = audit_params, dtrain = audit_dmat, num_boost_round = 71)
+
 	store_model(audit_booster, "BinomialClassification", dataset)
 
-	store_result(predict_binomial_audit(audit_booster, audit_dmat), "BinomialClassification" + dataset)
+	store_result(predict_binomial_audit(audit_booster, audit_dmat, output_margin = callable(objective)), "BinomialClassification" + dataset)
 	if not legacy:
-		store_result(predict_binomial_audit(audit_booster, audit_dmat, 31), "BinomialClassification" + dataset + "@31")
+		store_result(predict_binomial_audit(audit_booster, audit_dmat, 31, output_margin = callable(objective)), "BinomialClassification" + dataset + "@31")
 
 	audit_params.update({
 		"objective" : "binary:hinge"
@@ -547,7 +563,7 @@ def train_audit(dataset, **params):
 	store_result(predict_multinomial_audit(audit_booster, audit_dmat), "MultinomialClassification" + dataset)
 
 if "Audit" in datasets:
-	train_audit("Audit", booster = "dart", rate_drop = 0.05)
+	train_audit("Audit", objective = custom_binomial_classification, booster = "dart", rate_drop = 0.05)
 	
 	if not legacy:
 		train_audit("AuditNA")
